@@ -1,0 +1,141 @@
+
+extends ../layouts/default.jade
+
+include ../mixins/blast-button.jade
+
+block jsState
+    script meta = 
+        != JSON.stringify(meta)
+
+block breadcrumbs
+    ul
+        li.inactive
+            a(href='/search')
+                span.fa.fa-search
+                    |  Search
+
+        if prefix
+            li #{prefix} &gt; #{meta.id}
+        else
+            li
+                a(href=meta.uri) #{meta.uri} 
+
+block content
+    div.submission-detail.container-fluid
+
+        div.row
+            div.col-md-12.entry-title
+                h1 #{meta.name}
+                span #{meta.type}
+
+                br
+                br
+
+                if meta.protein && meta.protein.encodedBy !== undefined
+                    span
+                        | Encoded by
+                        for entity in meta.protein.encodedBy
+                            | 
+                            a(href=entity.url) #{entity.name}
+
+
+                if encodedProteins.length > 0
+                    span
+                        | Encodes
+                        for protein in encodedProteins
+                            | 
+                            a(href=protein.url) #{protein.name}
+                
+
+        p
+        p
+
+        div.row
+            div.col-md-6
+                table.table.table-striped.entry-detail-table
+                    tr
+                        td Identifier
+                        td #{meta.id}
+
+                    if meta.labels.length > 0
+                        tr
+                            td Labels
+                            td #{meta.labels.join(', ')}
+
+                    if meta.description != ''
+                        tr
+                            td Description
+                            td
+                                != meta.description
+
+                    if meta.roles.length > 0
+                        tr
+                            td Roles
+                            td
+                                for role in meta.roles
+                                    if role.term
+                                        a(href=role.uri,title=role.description.def) #{role.description.name}
+                                    else 
+                                        a(href=role.uri) #{role.uri}
+                                    br
+
+
+                    if meta.protein !== undefined
+                        if meta.protein.pI !== undefined
+                            tr
+                                td pI
+                                td #{meta.protein.pI}
+                        if meta.protein.locatedIn !== undefined
+                            tr
+                                td Located in
+                                td
+                                    for locatedIn in meta.protein.locatedIn
+                                        if locatedIn.term
+                                            a(href=locatedIn.uri) #{locatedIn.description}
+                                        else 
+                                            a(href=locatedIn.uri) #{locatedIn.uri}
+                                        br
+
+            div.col-md-6.entry-actions
+                a.btn.btn-primary(href=sbolUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download SBOL File
+                br
+                br
+                a.btn.btn-primary(href=fastaUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download FASTA
+                br
+                br
+        div.row
+            div.col-md-6
+                div.pull-right
+                    +blast-button(meta.sequences[0])
+                h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
+                pre #{meta.sequences[0].formatted}
+
+            div.col-md-6
+
+        div.row
+            div.col-md-12
+
+        br
+        br
+
+        if canEdit
+
+            a.btn.btn-inverse(href='/edit/design/' + meta.id)
+                span.fa.fa-edit
+                    |  Edit Record
+
+            |  
+
+            if design.triplestore != 'public'
+                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
+                    span.fa.fa-unlock
+                        |  Make Public
+
+
+

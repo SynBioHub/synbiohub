@@ -1,0 +1,41 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-align-left
+            |  About
+
+block content
+    div.submission-detail
+
+        p
+            | The SBOLhub is a Web application that connects to the SBOL Stack, a
+            | Sesame Resource Description Framework (RDF) database specifically
+            | designed for the storing and publishing of Synthetic Biology Open Language (SBOL) data.
+
+        p
+            | SBOL is an open-source standard for representing genetic designs. It
+            | is actively being developed to facilitate the electronic exchange and storage
+            | of designs as well as the embedding of genetic designs in publications.
+            | The SBOLhub can be used to publish a library of synthetic parts and designs as a
+            | service, to share SBOL with collaborators, to publish designs to a journal,
+            | and to store designs of biological systems locally.
+            
+        p
+            | Data in the SBOLhub can be accessed via the Web interface's search options.
+            | This interface contains options to allow users to upload new biological data
+            | to the database, to filter the data using keywords, and to download
+            | SBOL data to a file.
+
+        br
+
+        p
+            a(href='http://ico2s.org',target='_blank')
+                img(src='/images/icos.png',style='width: 150px')
+
+            a(href='http://ncl.ac.uk',target='_blank')
+                img(src='/images/newcastle-university.png',style='width: 150px')
+
+

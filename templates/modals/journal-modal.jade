@@ -1,0 +1,33 @@
+
+#journalModal.modal.fade(tabindex='-1',role='dialog',aria-labelledby='journalModal')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button',data-dismiss='modal',aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4#myModalLabel.modal-title
+          span.fa.fa-unlock
+          | Submit to Journal?
+      .modal-body
+        label Journal
+        select#journal.form-control
+          option(value='acs') ACS
+        br
+        label Submission ID
+        input#submission_id.form-control(name='id', placeholder='Enter journal submission id')
+        input#journal_designid(name='journal_designid', value='', type='hidden')
+      .modal-footer
+        button.btn.btn-danger(type='button', data-dismiss='modal') Cancel
+        button.btn.btn-success.submit-journal-btn(type='button ') Submit to Journal
+
+
+script(type='text/javascript').
+  $(".submit-journal-btn").click(function() {
+	  var journal = $("#journal").val();
+	  var submission_id = $("#submission_id").val();
+	  var designid = $("#journal_designid").val();
+
+	  alert("Submitting to " + journal + " with submission id " + submission_id);
+	  $("#journalModal").modal("hide");
+  })
+

@@ -1,0 +1,61 @@
+
+extends ../layouts/dark.jade
+
+block content
+
+    block alert
+
+    div.account-container
+
+        div(align='center')
+            span.fa.fa-lock(style='font-size: 3.5em')
+                p(style='font-size: 1.5em') Login
+
+        br
+
+        div(align='center')
+
+            if loginAlert
+                div.alert.alert-danger #{loginAlert}
+
+            form#user_edit.formbody(accept-charset='UTF-8', action='login', autocomplete='off', method='post')
+                input.text(name='utf8', type='hidden', value='✓')
+
+                input(name='next',type='hidden',value=next)
+
+                //input(style='display:none', type='text', name='fakeusernameremembered')
+                //input(style='display:none', type='password', name='fakepasswordremembered')
+
+                div.input-item
+                    span.input-label(style='border-bottom: 1px solid white; padding-bottom: 4px')
+                        span.icon-mail
+                            input.sbol-login-text.username-text(type='text', placeholder='e-mail', name='email', autocomplete='off')
+
+                div.input-item(style='margin-top: 4px')
+                    span.input-label(style='border-bottom: 1px solid white; padding-bottom: 4px')
+                        span.icon-lock
+                            input.sbol-login-text.password-text(type='password', placeholder='password', name='password', autocomplete='off')
+
+                div.clearfix
+                br
+                br
+
+                div
+                    input.btn.btn-primary(name='commit', type='submit', value='Log in')
+
+                br
+
+                div.white-text(align='center')
+                    p Forgot your password? Reset it #[a(href='resetpassword') here].
+
+        br
+
+        div(align='center')
+            a.btn.btn-primary(href='register') I need an account
+
+        div.clearfix
+
+
+
+
+

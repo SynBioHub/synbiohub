@@ -1,0 +1,25 @@
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+        title= title || 'SynBioHub'
+        link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+
+        link(href="/styles/site.css", rel="stylesheet")
+
+        block css
+        block head
+        block body
+
+        block jsState
+
+        script(src='/js/jquery/jquery-2.1.3.min.js')
+        script(src='/js/bootstrap/bootstrap-3.3.4.min.js')
+        script(src='/js/synbiohub.js')
+
+        block js
+

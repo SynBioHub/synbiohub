@@ -1,0 +1,38 @@
+
+extends ../layouts/default.jade
+
+include ../mixins/search-result.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-cogs
+            |  Manage Submissions
+
+
+block content
+
+    div.container
+        div.row
+            div.col-md-6.submission-list
+                h4 Private Submissions
+
+                p You currently have #{privateSubmissions.length} private submissions
+
+                br
+
+                each submission in privateSubmissions
+                    +search-result(submission)
+
+            div.col-md-6.submission-list
+                h4 Public Submissions
+
+                p You currently have #{publicSubmissions.length} public submissions
+
+                br
+
+                each submission in publicSubmissions
+                    +search-result(submission)
+
+
+

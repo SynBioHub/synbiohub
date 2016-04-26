@@ -1,0 +1,20 @@
+
+extends ../layouts/dark.jade
+
+block content
+
+    div(align='center').search-main
+        div.sbol-logo-white
+        p A parts repository for synthetic biology
+        br
+
+        form(action='search').main-search-form
+            input(type='text',name='q',placeholder='Search SynBioHub')
+            button(type='submit').submit Search
+
+        br
+
+        a(href='/search').search-examples Browse all entries
+
+
+

@@ -1,0 +1,60 @@
+
+extends base.jade
+
+block body
+
+    body
+
+        nav.navbar.navbar-fixed-top
+            div.content
+                a(href='/')
+                    div.pull-left.sbol-logo-dark-single-line
+
+                if section != 'search'
+                    div.pull-left
+                        form(action='search').top-search-form
+                            input(type='text',name='q',placeholder='Search SynBioHub' value=(searchQuery || ''))
+                            button(type='submit').submit Search
+
+                div.pull-right.menu
+                    ul
+                        li
+                            a(href='/submit')
+                                span.fa.fa-cloud-upload
+                                span.blue-text  Submit
+                        li
+                            a(href='/about')
+                                span.fa.fa-align-left
+                                span.blue-text  About
+
+                        if locals.user
+                            li
+                                a(href='/manage')
+                                    span.fa.fa-cogs
+                                    span.blue-text  Manage Submissions
+                            li
+                                a(href='/logout')
+                                    span.fa.fa-power-off
+                        else
+                            li
+                                a(href='/login')
+                                    span.fa.fa-lock
+                                    span.blue-text  Login or Register
+
+
+        div.clearfix
+
+        block intro
+
+        div.sbol-breadcrumbs
+            block breadcrumbs
+
+        block content
+
+        div.clearfix
+
+        div(align='center').footer-bar.home-page-footer.blue-text.grey-page-mark
+            p &copy; 2016 #[a(href='http://ncl.ac.uk') Newcastle University]. Design by #[a(href='http://antarctic-design.co.uk') Antarctic Design].
+
+
+

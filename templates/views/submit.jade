@@ -1,0 +1,100 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-cloud-upload
+            |  Submit
+
+
+block content
+    div.submission-container(align='center')
+        div.submission-header
+            span(style='color: #D25627; font-size: 3.3em').fa.fa-cloud-upload
+            p(style='font-size: 1.7em; font-weight: bolder')
+                | Tell us about your submission
+            p
+                | #[span(style='color: #D25627; font-weight: bolder;') Orange fields] are required
+        
+        form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
+        
+            if errors.length > 0
+                div.alert.alert-danger
+                    each error in errors
+                        p #{error}
+                        br
+
+            if submission.type == 'acs'
+                div(style='margin: 0 auto').form-group-100.required
+                    label ACS submission ID
+                    input(name='acs',type='text',value=submission.acs)
+        
+            div.clearfix
+
+            div.form-group-50.required
+                label Name
+                br
+                input(name='name',placeholder='Submission Name',value=submission.name)
+
+            div.form-group-50
+                label Citations
+                br
+                input(name='citations'
+                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                        value=submission.citations)
+
+            div.clearfix
+
+            div.form-group-100.required
+                label Description
+                br
+                textarea(name='description'
+                    placeholder='The more you say, the easier it will be to find your design...')
+                        | #{submission.description}
+
+            div.clearfix
+
+            div.form-group-100.required
+                label Purpose
+                br
+                textarea(name='purpose'
+                    placeholder='What is this circuit doing?')
+                        | #{submission.purpose}
+
+            div.clearfix
+
+            div.form-group-50
+                label Keywords
+                br
+                input(name='keywords'
+                        placeholder='Comma separated descriptors'
+                        value=submission.keywords)
+
+            div.form-group-50
+                label Intended Chassis
+                br
+                input(name='chassis',placeholder='',value=submission.chassis)
+
+            div.clearfix
+
+            div.form-group-100.required
+                label SBOL2 File
+                br
+                input(type='file',name='file',value=submission.file)
+
+            div.clearfix
+
+            br
+            br
+
+            button(type='submit').btn.btn-primary.btn-lg
+                | Submit
+
+
+
+
+
+
+                
+

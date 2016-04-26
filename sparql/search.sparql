@@ -1,0 +1,18 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
+PREFIX synbiohub: <http://synbiohub.org#>
+
+SELECT
+    ?subject
+    ?name
+    ?description
+WHERE {
+    $criteria
+    ?subject a sbol2:$type .
+    OPTIONAL { ?subject dcterms:title ?name . }
+    OPTIONAL { ?subject dcterms:description ?description . }
+}
+$limit
+
+

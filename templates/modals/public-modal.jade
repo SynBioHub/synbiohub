@@ -1,0 +1,20 @@
+
+#publicModal.modal.fade(tabindex='-1',role='dialog',aria-labelledby='publicModal')
+
+	div.modal-dialog(role='document')
+
+		div.modal-content
+			div.modal-header
+				button.close(type='button',data-dismiss='modal',aria-label='Close')
+					span(aria-hidden='true') &times;
+			h4#myModalLabel.modal-title
+				span.fa.fa-unlock Make Submission Public?
+
+		  div.modal-body Are you sure? You won't be able to undo this action.
+
+		  div.modal-footer
+			  button.btn.btn-danger(type='button',data-dismiss='modal') Cancel
+			a#make_public_btn.btn.btn-success(href='',type='button') Make Public
+
+
+
