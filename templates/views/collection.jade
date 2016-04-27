@@ -1,0 +1,75 @@
+
+extends ../layouts/default.jade
+
+include ../mixins/blast-button.jade
+
+block jsState
+    script meta = 
+        != JSON.stringify(meta)
+
+block breadcrumbs
+    ul
+        li.inactive
+            a(href='/search')
+                span.fa.fa-search
+                    |  Search
+
+        if prefix
+            li #{prefix} &gt; #{meta.id}
+        else
+            li
+                a(href=meta.uri) #{meta.uri} 
+
+block content
+    div.submission-detail.container-fluid
+
+        div.row
+            div.col-md-12.entry-title
+                h1 #{meta.name}
+
+        p
+        p
+
+        div.row
+            div.col-md-6
+                table.table.table-striped.entry-detail-table
+                    tr
+                        td Description
+                        td
+                            != meta.description
+                    tr
+                        td Purpose
+                        td
+                            != meta.purpose
+                    tr
+                        td Intended Chassis
+                        td
+                            != meta.chassis
+                    tr
+                        td Components (#{meta.numComponents})
+                        td
+                            for component in meta.components
+                                a(href=component.url) #{component.name}
+                                br
+
+
+            div.col-md-6.entry-actions
+                a.btn.btn-primary(href=sbolUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download SBOL File
+                br
+                br
+                if meta.triplestore != 'public'
+                    a.btn.btn-success(href='/collection/' + meta.base64Uri + '/makePublic')
+                        span.fa.fa-unlock
+                            |  Make Public
+        div.row
+            div.col-md-12
+
+        br
+        br
+
+
+
+

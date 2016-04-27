@@ -17,22 +17,18 @@ block content
             div.col-md-6.submission-list
                 h4 Private Submissions
 
-                p You currently have #{privateSubmissions.length} private submissions
-
-                br
+                p You currently have #{privateSubmissions.length} private submission(s)
 
                 each submission in privateSubmissions
-                    +search-result(submission)
+                    +search-result-collection(submission)
 
             div.col-md-6.submission-list
                 h4 Public Submissions
 
-                p You currently have #{publicSubmissions.length} public submissions
-
-                br
+                p You currently have #{publicSubmissions.length} public submission(s)
 
                 each submission in publicSubmissions
-                    +search-result(submission)
+                    +search-result-collection(submission)
 
 
 

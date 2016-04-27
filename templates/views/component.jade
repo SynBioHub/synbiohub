@@ -45,6 +45,12 @@ block content
                         for protein in encodedProteins
                             | 
                             a(href=protein.url) #{protein.name}
+
+                if collections.length > 0
+                    span
+                        for collection in collections
+                            | Part of collection 
+                            a(href=collection.url) #{collection.name}
                 
 
         p
@@ -125,12 +131,6 @@ block content
         br
 
         if canEdit
-
-            a.btn.btn-inverse(href='/edit/design/' + meta.id)
-                span.fa.fa-edit
-                    |  Edit Record
-
-            |  
 
             if design.triplestore != 'public'
                 a.btn.btn-success(href='/actions/makePublic/' + meta.id)

@@ -1,5 +1,5 @@
 
-mixin search-result(submission)
+mixin search-result-component-definition(submission)
     div.search-result-item
 
         div.ribbon-wrapper
@@ -22,7 +22,34 @@ mixin search-result(submission)
         //button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal
 
         if submission.triplestore != 'public'
-            a(href='/entry/' + submission.base64Uri + '/makePublic')
+            a(href='/component/' + submission.base64Uri + '/makePublic')
+                button(type='button').btn.btn-success.public-btn Make Public
+
+
+mixin search-result-collection(submission)
+    div.search-result-item
+
+        div.ribbon-wrapper
+            if submission.triplestore == 'public'
+                div.ribbon-public Public
+            else
+                div.ribbon-private Private
+
+        a(href=submission.url) #{submission.name}
+
+        if submission.prefix
+            br
+            | #{submission.prefix}
+
+        div.keywords
+            if submission.description != ''
+                strong #{submission.description}
+        br
+
+        //button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal
+
+        if submission.triplestore != 'public'
+            a(href='/collection/' + submission.base64Uri + '/makePublic')
                 button(type='button').btn.btn-success.public-btn Make Public
 
 
