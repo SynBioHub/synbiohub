@@ -1,5 +1,5 @@
 
-var config = require('config')
+var config = require('./lib/config')
 
 var mongoose = require('mongoose')
 

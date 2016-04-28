@@ -1,0 +1,67 @@
+
+extends ../layouts/base.jade
+
+block body
+    div.setup-logo
+    div.setup
+        h1 Congratulations, SynBioHub is successfully installed!
+
+        div.text-center
+            p We just need a few more details to configure your SynBioHub instance.
+
+        br
+
+        if errors.length > 0
+            div.alert.alert-danger
+                each error in errors
+                    p #{error}
+                    br
+
+        form(action='/setup',method='post',enctype='application/x-www-form-urlencoded')
+
+            h2 1. Name your Hub
+            div.form-group
+                input.form-control(name='instanceName',value=settings.instanceName)
+                p
+                    i Try to choose something descriptive to identify the kind of parts your Hub will store.  Don't worry, you can change this later.
+
+            br
+
+            h2 2. Connect to an SBOL Stack
+            div.form-group
+                p
+                    i For more information, see the 
+                        a(href='http://sbolstack.org/docs.html') SBOL Stack documentation
+
+                label URL
+                    input.form-control(name='stackURL',value=settings.stackURL)
+                br
+
+                label Stack Username
+                    input.form-control(name='stackUsername',value=settings.stackUsername)
+
+                br
+
+                label Stack Password
+                    input.form-control(type='password',name='stackPassword',value=settings.stackPassword,autocomplete='new-password')
+
+
+            br
+
+            h2 3. Create your first user account
+            div.form-group
+                label Name
+                    input.form-control(name='userName',value=settings.userName,placeholder='John Doe')
+                br
+                label E-mail address
+                    input.form-control(name='userEmail',value=settings.userEmail,placeholder='john@example.com')
+                br
+                label Password
+                    input.form-control(type='password',name='userPassword',autocomplete='new-password')
+                br
+                label Password (again)
+                    input.form-control(type='password',name='userPasswordConfirm',autocomplete='new-password')
+
+            div.text-center
+                input(type='submit',value='Continue').btn.btn-primary.setup-done
+

@@ -1,0 +1,12 @@
+{
+  "firstLaunch": true,
+  "instanceName": "SynBioHub",
+  "backendURL": "http://localhost:9090",
+  "backendUser": "admin",
+  "backendPassword": "admin",
+  "databaseHost": "localhost",
+  "databaseName": "synbiohub",
+  "sessionSecret": "synbiohub_change_me",
+  "triplestoreIDSalt": "synbiohub_change_me",
+  "passwordSalt": "synbiohub_change_me"
+}

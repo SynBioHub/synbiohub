@@ -32,6 +32,10 @@ block body
                                 a(href='/manage')
                                     span.fa.fa-cogs
                                     span.blue-text  Manage Submissions
+                            if locals.user.isAdmin
+                                a(href='/admin')
+                                    span.fa.fa-cogs
+                                    span.blue-text  Admin
                             li
                                 a(href='/logout')
                                     span.fa.fa-power-off

@@ -81,7 +81,9 @@ block content
                                 for role in meta.roles
                                     if role.term
                                         a(href=role.uri,title=role.description.def) #{role.description.name}
-                                    else 
+                                    else if role.title
+                                        span #{role.title}
+                                    else
                                         a(href=role.uri) #{role.uri}
                                     br
 
