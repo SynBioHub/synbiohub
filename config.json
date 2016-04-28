@@ -1,7 +1,7 @@
 {
-  "firstLaunch": true,
+  "firstLaunch": false,
   "instanceName": "SynBioHub",
-  "backendURL": "http://localhost:9090",
+  "backendURL": "http://synbiohub.org:9090",
   "backendUser": "admin",
   "backendPassword": "admin",
   "databaseHost": "localhost",

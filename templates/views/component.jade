@@ -3,6 +3,10 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 
+block js
+    script(src='/js/pathseg.js')
+    script(src='/js/visbol.js')
+
 block jsState
     script meta = 
         != JSON.stringify(meta)
@@ -117,17 +121,18 @@ block content
                     span Download FASTA
                 br
                 br
+
+        if meta.displayList
+            div.row
+                div.col-md-12.text-center
+                    div#design
+
         div.row
             div.col-md-6
                 div.pull-right
                     +blast-button(meta.sequences[0])
                 h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
                 pre #{meta.sequences[0].formatted}
-
-            div.col-md-6
-
-        div.row
-            div.col-md-12
 
         br
         br

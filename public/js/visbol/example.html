@@ -1,0 +1,119 @@
+<html>
+<body>
+
+<div>
+    <svg id="design" style="width: 640px; height: 480px;"></svg>
+</div>
+
+<script src="jquery-2.1.3.js"></script>
+<script src="require.js"></script>
+
+<script>
+
+require.config({
+    packages: [
+        { 
+            name: 'visbol',
+            location: 'lib'
+        },
+        { 
+            name: 'visbol-font',
+            location: 'font'
+        }
+    ]
+});
+
+require([
+
+    'visbol',
+    'visbol-font',
+    'visbol-font!font/sbolv',
+    'visbol-font!font/sbolv-improved-directionality'
+
+], function(visbol, visbolFont, sbolv, sbolvImprovedDirectionality) {
+
+    var design = new visbol.Design({
+        element: document.getElementById('design'),
+        font: visbolFont.get('sbolv')
+    });
+
+    design.setDisplayList(displayList);
+
+});
+
+displayList = {
+  "version": 1,
+  "components": [
+    {
+      "segments": [
+        {
+          "id": "payload",
+          "name": "Payload",
+          "sequence": [
+            {
+              "strand": "positive",
+              "type": "promoter",
+              "id": "[I1]",
+              "name": "[I1]",
+              "color": "#ff7f00"
+            },
+            {
+              "strand": "positive",
+              "type": "promoter",
+              "id": "p",
+              "name": "p",
+              "color": "#ff7f00"
+            },
+            {
+              "strand": "positive",
+              "type": "res",
+              "id": "r",
+              "name": "r",
+              "color": "#33a02c"
+            },
+            {
+              "strand": "positive",
+              "type": "cds",
+              "id": "cds",
+              "name": "cds",
+              "color": "#e31a1c"
+            },
+            {
+              "strand": "positive",
+              "type": "terminator",
+              "id": "t",
+              "name": "t"
+            },
+            {
+              "strand": "positive",
+              "type": "promoter",
+              "id": "p2",
+              "name": "p2",
+              "color": "#ff7f00"
+            }
+          ]
+        }
+      ],
+      "entities": [],
+      "joins": []
+    }
+  ],
+  "interactions": [
+    {
+      "id": "cds-p2",
+      "type": "repression",
+      "origin": "cds",
+      "target": "p2"
+    }
+  ]
+};
+
+
+
+</script>
+
+</body>
+</html>
+
+
+

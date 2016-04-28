@@ -1,0 +1,12 @@
+{
+    "name": "sbolv-improved-directionality",
+    "base": "sbolv",
+
+    "glyphs": [
+        "cds",
+        "terminator",
+        "origin-of-replication"
+    ]
+}
+
+
