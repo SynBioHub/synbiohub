@@ -3,6 +3,10 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 
+block js
+    script(src='/js/pathseg.js')
+    script(src='/js/visbol.js')
+
 block jsState
     script meta = 
         != JSON.stringify(meta)
@@ -65,8 +69,11 @@ block content
                     a.btn.btn-success(href='/collection/' + meta.base64Uri + '/makePublic')
                         span.fa.fa-unlock
                             |  Make Public
-        div.row
-            div.col-md-12
+
+        if meta.displayList
+            div.row
+                div.col-md-12.text-center
+                    div#design
 
         br
         br
