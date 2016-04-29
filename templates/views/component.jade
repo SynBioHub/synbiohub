@@ -83,7 +83,7 @@ block content
                             td Roles
                             td
                                 for role in meta.roles
-                                    if role.term
+                                    if role.description
                                         a(href=role.uri,title=role.description.def) #{role.description.name}
                                     else if role.title
                                         span #{role.title}
@@ -127,12 +127,14 @@ block content
                 div.col-md-12.text-center
                     div#design
 
-        div.row
-            div.col-md-6
-                div.pull-right
-                    +blast-button(meta.sequences[0])
-                h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
-                pre #{meta.sequences[0].formatted}
+
+        if meta.sequences.length > 0
+            div.row
+                div.col-md-6
+                    div.pull-right
+                        +blast-button(meta.sequences[0])
+                    h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
+                    pre #{meta.sequences[0].formatted}
 
         br
         br
