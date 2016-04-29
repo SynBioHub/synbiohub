@@ -87,6 +87,8 @@ block content
                                         a(href=role.uri,title=role.description.def) #{role.description.name}
                                     else if role.title
                                         span #{role.title}
+                                    else if role.term
+                                        a(href=role.uri) #{role.term}
                                     else
                                         a(href=role.uri) #{role.uri}
                                     br
