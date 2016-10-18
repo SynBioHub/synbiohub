@@ -1,5 +1,5 @@
 {
-  "firstLaunch": true,
+  "firstLaunch": false,
   "instanceName": "SynBioHub",
   "backendURL": "http://localhost:9090",
   "backendUser": "admin",
