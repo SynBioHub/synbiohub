@@ -33,7 +33,6 @@ block content
                 span #{meta.type}
 
                 br
-                br
 
                 if meta.protein && meta.protein.encodedBy !== undefined
                     span
@@ -55,7 +54,7 @@ block content
                         for collection in collections
                             | Part of collection 
                             a(href=collection.url) #{collection.name}
-                
+                            br
 
                 if meta.experience
                     span
