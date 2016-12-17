@@ -30,9 +30,6 @@ block content
         div.row
             div.col-md-12.entry-title
                 h1 #{meta.name}
-                span #{meta.type}
-
-                br
 
                 if meta.protein && meta.protein.encodedBy !== undefined
                     span
@@ -49,13 +46,6 @@ block content
                             | 
                             a(href=protein.url) #{protein.name}
 
-                if collections.length > 0
-                    span
-                        for collection in collections
-                            | Part of collection 
-                            a(href=collection.url) #{collection.name}
-                            br
-
                 if meta.experience
                     span
                         a(href=meta.experience) iGEM experience for this part
@@ -70,6 +60,11 @@ block content
                     tr
                         td Identifier
                         td #{meta.id}
+			
+                    tr
+                        td Was derived from
+                        td
+                           a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
 
                     if meta.labels.length > 0
                         tr
@@ -81,6 +76,12 @@ block content
                             td Description
                             td
                                 != meta.description
+
+                    if meta.types.length > 0
+                        tr
+                            td Types
+                            td #{meta.type}
+                                    br
 
                     if meta.roles.length > 0
                         tr
@@ -96,7 +97,14 @@ block content
                                     else
                                         a(href=role.uri) #{role.uri}
                                     br
-
+				    
+                    if meta.roles.length > 0
+                        tr
+                            td Collections
+                            td
+                                for collection in collections
+                                    a(href=collection.url) #{collection.name}
+                                    br
 
                     if meta.protein !== undefined
                         if meta.protein.pI !== undefined
