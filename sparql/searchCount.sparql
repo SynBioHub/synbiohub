@@ -8,11 +8,8 @@ select (sum(?tempcount) as ?count) WHERE {
 {
     SELECT (count(distinct ?subject) as ?tempcount)
     WHERE {
-        
-        ?subject a sbol2:ComponentDefinition .
-        ?subject dcterms:title ?name .
-        OPTIONAL { ?subject dcterms:description ?description }
+        ?subject a sbol2:$type .
+        $criteria
     }
 }
-
 }
