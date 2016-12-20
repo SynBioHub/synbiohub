@@ -62,7 +62,7 @@ block content
                         td #{meta.id}
 			
                     tr
-                        td Was derived from
+                        td Derived from
                         td
                            a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
 
@@ -90,6 +90,7 @@ block content
                                 for role in meta.roles
                                     if role.description
                                         a(href=role.uri,title=role.description.def) #{role.description.name}
+                                        a(href=role.term,title='definition') #{' (definition)'}
                                     else if role.title
                                         span #{role.title}
                                     else if role.term
