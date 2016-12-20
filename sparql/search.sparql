@@ -14,5 +14,6 @@ WHERE {
     OPTIONAL { ?subject dcterms:description ?description . }
 }
 $limit
+$offset
 
 

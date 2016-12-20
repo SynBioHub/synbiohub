@@ -62,9 +62,12 @@ block content
 
         div.search-result-summary
             | Showing #{firstResultNum} - #{lastResultNum} of #{numResultsTotal} result(s)
+            br
+            a(href=originalUrl + '/?offset='+lastResultNum) Next 50
 
     div.clearfix
 
+    br
     br
     br
 
