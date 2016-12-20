@@ -51,7 +51,7 @@ block content
 
     div(align='center').search-section
 
-        form(action='search').main-search-form
+        form(action='/search').main-search-form
             input(type='text',name='q',placeholder='Search SynBioHub',value=searchQuery)
             button(type='submit').submit Search
 
@@ -62,11 +62,17 @@ block content
 
         div.search-result-summary
             | Showing #{firstResultNum} - #{lastResultNum} of #{numResultsTotal} result(s)
-            br
-            a(href=originalUrl + '/?offset='+lastResultNum) Next 50
+            - var previous = firstResultNum - 51
+            if (previous >= 0)
+                br
+                a(href=originalUrl + '/?offset='+previous) Previous 50
+            if (lastResultNum < numResultsTotal)
+                br
+                a(href=originalUrl + '/?offset='+lastResultNum) Next 50
 
     div.clearfix
 
+    br
     br
     br
     br
