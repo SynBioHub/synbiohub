@@ -2,6 +2,7 @@ PREFIX sbol2: <http://sbols.org/v2#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
 PREFIX synbiohub: <http://synbiohub.org#>
+PREFIX igem: <http://synbiohub.org/terms/igem/>
 
 SELECT
     ?subject

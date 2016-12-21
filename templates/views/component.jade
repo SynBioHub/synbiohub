@@ -60,11 +60,51 @@ block content
                     tr
                         td Identifier
                         td #{meta.id}
+
+                    if meta.creator != ''
+                        tr
+                            td Creator
+                            td
+                                != meta.creator
+
+                    if meta.created != ''
+                        tr
+                            td Created
+                            td
+                                != meta.created
+
+                    if meta.modified != ''
+                        tr
+                            td Modified
+                            td
+                                != meta.modified
+
+                    if meta.igemPartStatus != ''
+                        tr
+                            td Part Status
+                            td
+                                != meta.igemPartStatus
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
+
+                    if meta.igemStatus.description != 'igem:'
+                        tr
+                            td Status
+                            td
+                                a(href=meta.igemStatus.uri) #{meta.igemStatus.description}
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
+
+                    if meta.igemResults.description != 'igem:'
+                        tr
+                            td Results
+                            td
+                                a(href=meta.igemResults.uri) #{meta.igemResults.description}
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
 			
-                    tr
-                        td Derived from
-                        td
-                           a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                    if meta.wasDerivedFrom != ''
+                        tr
+                            td Source
+                            td
+                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
 
                     if meta.labels.length > 0
                         tr
@@ -136,7 +176,31 @@ block content
                     span Download FASTA
                 br
                 br
+                a.btn.btn-primary(href=searchUsesUrl)
+                    span.fa.fa-search
+                    | 
+                    span Find Uses
+                br
 
+        if (meta.igemDescription != '') 
+            div.row
+                | <h3>Detailed Description</h3>
+                | !{meta.igemDescription}
+                br
+
+        if (meta.igemNotes != '') 
+            div.row
+                | <h3>Notes</h3>
+                | !{meta.igemNotes}
+                br
+
+        if (meta.source != '') 
+            div.row
+                | <h3>Source</h3>
+                | !{meta.source}
+                br
+    
+        br
         if meta.displayList
             div.row
                 div.col-md-12.text-center
