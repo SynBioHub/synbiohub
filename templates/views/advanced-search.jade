@@ -76,6 +76,13 @@ block content
                     td
                         input(type='text',name='modifiedBefore',placeholder='YYYY-MM-DD',value=modifiedBefore)
                 tr
+                    td igem:PartStatus
+                    td
+                        select(name='partStatus')
+                            option #{'Any iGEM Part Status'}
+                            for partStatus in partStatuses
+                                option #{partStatus.name}
+                tr
                     td igem:Status
                     td
                         select(name='status')
@@ -117,7 +124,21 @@ block content
                 tr
                     td Collection
                     td
-                        select(name='collection')
+                        select(name='collection1')
+                            option #{'Any Collection'}
+                            for collection in collections
+                                option #{collection.name}
+                tr
+                    td Collection
+                    td
+                        select(name='collection2')
+                            option #{'Any Collection'}
+                            for collection in collections
+                                option #{collection.name}
+                tr
+                    td Collection
+                    td
+                        select(name='collection3')
                             option #{'Any Collection'}
                             for collection in collections
                                 option #{collection.name}
@@ -128,7 +149,7 @@ block content
         br
 
         button(type='submit').btn.btn-primary.btn-lg
-            | Submit
+            | Search
 
 
 
