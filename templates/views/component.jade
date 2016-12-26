@@ -65,7 +65,7 @@ block content
                         tr
                             td Creator
                             td
-                                != meta.creator
+                                a(href=meta.creator.uri) #{meta.creator.description}
 
                     if meta.created != ''
                         tr
@@ -79,11 +79,11 @@ block content
                             td
                                 != meta.modified.description
 
-                    if meta.igemPartStatus != ''
+                    if meta.igemPartStatus.description != ''
                         tr
                             td Part Status
                             td
-                                != meta.igemPartStatus
+                                a(href=meta.igemPartStatus.uri) #{meta.igemPartStatus.description}
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
 
                     if meta.igemStatus.description != 'igem:'
@@ -111,16 +111,20 @@ block content
                             td Labels
                             td #{meta.labels.join(', ')}
 
-                    if meta.description != ''
-                        tr
-                            td Description
-                            td
-                                != meta.description
-
                     if meta.types.length > 0
                         tr
                             td Types
-                            td #{meta.type}
+                            td 
+                                for type in meta.types
+                                    if type.description
+                                        a(href=type.uri,title=type.description) #{type.description}
+                                        a(href=type.term,title='definition') #{' (definition)'}
+                                    else if type.title
+                                        span #{type.title}
+                                    else if type.term
+                                        a(href=type.uri) #{type.term}
+                                    else
+                                        a(href=type.uri) #{type.uri}
                                     br
 
                     if meta.roles.length > 0
@@ -184,7 +188,7 @@ block content
 
         if (meta.igemDescription != '') 
             div.row
-                | <h3>Detailed Description</h3>
+                | <h3>#{meta.description}</h3>
                 | !{meta.igemDescription}
                 br
 
