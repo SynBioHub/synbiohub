@@ -34,7 +34,7 @@ block head
             height: 60px;
             padding: 20px;
             margin: 0 auto;
-            width: 50%;
+            width: 60%;
             margin-bottom: 40px;
             text-align: center;
         }
@@ -60,14 +60,30 @@ block content
                             for creator in creators
                                 option #{creator.name}
                 tr
-                    td iGEM Status
+                    td CreatedAfter
+                    td
+                        input(type='text',name='createdAfter',placeholder='YYYY-MM-DD',value=createdAfter)
+                tr
+                    td CreatedBefore
+                    td
+                        input(type='text',name='createdBefore',placeholder='YYYY-MM-DD',value=createdBefore)
+                tr
+                    td ModifiedAfter
+                    td
+                        input(type='text',name='modifiedAfter',placeholder='YYYY-MM-DD',value=modifiedAfter)
+                tr
+                    td ModifiedBefore
+                    td
+                        input(type='text',name='modifiedBefore',placeholder='YYYY-MM-DD',value=modifiedBefore)
+                tr
+                    td igem:Status
                     td
                         select(name='status')
                             option #{'Any iGEM Status'}
                             for status in statuses
                                 option #{status.name}
                 tr
-                    td iGEM Results
+                    td igem:Results
                     td
                         select(name='results')
                             option #{'Any iGEM Results'}
@@ -92,7 +108,7 @@ block content
                             for role in roles
                                 option #{role.name}
                 tr
-                    td iGEM Part Type
+                    td igem:PartType
                     td
                         select(name='partType')
                             option #{'Any iGEM Part Type'}
@@ -105,7 +121,6 @@ block content
                             option #{'Any Collection'}
                             for collection in collections
                                 option #{collection.name}
-
 
         div.clearfix
 

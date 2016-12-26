@@ -71,13 +71,13 @@ block content
                         tr
                             td Created
                             td
-                                != meta.created
+                                != meta.created.description
 
                     if meta.modified != ''
                         tr
                             td Modified
                             td
-                                != meta.modified
+                                != meta.modified.description
 
                     if meta.igemPartStatus != ''
                         tr
