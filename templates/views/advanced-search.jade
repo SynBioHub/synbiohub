@@ -1,8 +1,6 @@
 
 extends ../layouts/default.jade
 
-include ../mixins/search-result.jade
-
 block head
     style.
         body {
@@ -48,17 +46,71 @@ block breadcrumbs
             |  Advanced Search
 
 block content
+  div.submission-container(align='center')
+    form(name="advancedSearch", method="post")
+        div.form-group-50.required
+            table.table.advanced-search-table
+                th Property
+                th Value
+                tr
+                    td Creator
+                    td
+                       select(name='creator')
+                            option #{'Any Creator'}
+                            for creator in creators
+                                option #{creator.name}
+                tr
+                    td iGEM Status
+                    td
+                        select(name='status')
+                            option #{'Any iGEM Status'}
+                            for status in statuses
+                                option #{status.name}
+                tr
+                    td iGEM Results
+                    td
+                        select(name='results')
+                            option #{'Any iGEM Results'}
+                            for result in results
+                                option #{result.name}
+                tr
+                    td Type
+                    td
+                        select(name='type')
+                            option #{'Any Type'}
+                            for type in types
+                                option #{type.name}
+                tr
+                    td Role
+                    td
+                        select(name='role')
+                            option #{'Any Role'}
+                            for role in roles
+                                option #{role.name}
+                tr
+                    td iGEM Part Type
+                    td
+                        select(name='partType')
+                            option #{'Any iGEM Part Type'}
+                            for igemRole in igemRoles
+                                option #{igemRole.name}
+                tr
+                    td Collection
+                    td
+                        select(name='collection')
+                            option #{'Any Collection'}
+                            for collection in collections
+                                option #{collection.name}
 
-    div
-        table.table.advanced-search-table
-            th Property
-            th Value
-            tr
-                td
-                    select
-                        for property in properties
-                            option #{property.name}
-                td
-                    | foo
+
+        div.clearfix
+
+        br
+        br
+
+        button(type='submit').btn.btn-primary.btn-lg
+            | Submit
+
+
 
 
