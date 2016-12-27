@@ -75,9 +75,16 @@ block content
 
                     if meta.modified != ''
                         tr
+                            td Description
+                            td
+                                != meta.description
+
+                    if meta.description != ''
+                        tr
                             td Modified
                             td
                                 != meta.modified.description
+
 
                     if meta.igemPartStatus.description != ''
                         tr
@@ -185,10 +192,16 @@ block content
                     | 
                     span Find Uses
                 br
+                br
+                a.btn.btn-primary(href=searchTwinsUrl)
+                    span.fa.fa-search
+                    | 
+                    span Find Twins
+                br
 
         if (meta.igemDescription != '') 
             div.row
-                | <h3>#{meta.description}</h3>
+                | <h2>!{meta.description}</h2>
                 | !{meta.igemDescription}
                 br
 
