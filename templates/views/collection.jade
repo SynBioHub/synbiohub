@@ -38,20 +38,25 @@ block content
             div.col-md-6
                 table.table.table-striped.entry-detail-table
                     tr
+                        td Identifier
+                        td #{meta.id}
+                    tr
                         td Description
                         td
                             != meta.description
+                    if meta.purpose != ''
+                        tr
+                            td Purpose
+                            td
+                                != meta.purpose
+                    if meta.chassis != ''
+                        tr
+                            td Intended Chassis
+                            td
+                                i
+                                    != meta.chassis
                     tr
-                        td Purpose
-                        td
-                            != meta.purpose
-                    tr
-                        td Intended Chassis
-                        td
-                            i
-                                != meta.chassis
-                    tr
-                        td Components (#{meta.numComponents})
+                        td Component Definitions (#{meta.numComponents})
                         td
                             for component in meta.components
                                 a(href=component.url) #{component.name}

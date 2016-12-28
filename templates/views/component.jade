@@ -61,30 +61,29 @@ block content
                         td Identifier
                         td #{meta.id}
 
-                    if meta.creator != ''
+                    if meta.creator.description != ''
                         tr
                             td Creator
                             td
                                 a(href=meta.creator.uri) #{meta.creator.description}
 
-                    if meta.created != ''
+                    if meta.created.description != ''
                         tr
                             td Created
                             td
                                 != meta.created.description
 
-                    if meta.modified != ''
-                        tr
-                            td Description
-                            td
-                                != meta.description
-
-                    if meta.description != ''
+                    if meta.modified.description != ''
                         tr
                             td Modified
                             td
                                 != meta.modified.description
 
+                    if meta.description != ''
+                        tr
+                            td Description
+                            td
+                                != meta.description
 
                     if meta.igemPartStatus.description != ''
                         tr
