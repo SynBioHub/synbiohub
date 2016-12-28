@@ -40,10 +40,11 @@ block content
                     tr
                         td Identifier
                         td #{meta.id}
-                    tr
-                        td Description
-                        td
-                            != meta.description
+                    if meta.description != ''
+                        tr
+                            td Description
+                            td
+                                != meta.description
                     if meta.purpose != ''
                         tr
                             td Purpose
