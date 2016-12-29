@@ -11,5 +11,8 @@
   "sessionSecret": "synbiohub_change_me",
   "triplestoreIDSalt": "synbiohub_change_me",
   "passwordSalt": "synbiohub_change_me",
-  "converterURL": "http://synbiohub.org:8081/sbol-convert-servlet/sbol-convert"
+  "converterURL": "http://synbiohub.org:8081/sbol-convert-servlet/sbol-convert",
+  "requireCompliant": false,
+  "requireComplete": false,
+  "requireBestPractice": false
 }
