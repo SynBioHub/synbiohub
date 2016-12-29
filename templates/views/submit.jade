@@ -42,15 +42,6 @@ block content
                 br
                 input(name='name',placeholder='Submission Name',value=submission.name)
 
-            div.form-group-100
-                label Citations
-                br
-                input(name='citations'
-                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
-                        value=submission.citations)
-
-            div.clearfix
-
             div.form-group-100.required
                 label Description
                 br
@@ -60,7 +51,16 @@ block content
 
             div.clearfix
 
-            div.form-group-100.required
+            div.form-group-100
+                label Citations
+                br
+                input(name='citations'
+                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                        value=submission.citations)
+
+            div.clearfix
+
+            div.form-group-100
                 label Purpose
                 br
                 textarea(name='purpose'
@@ -84,7 +84,7 @@ block content
             div.clearfix
 
             div.form-group-100.required
-                label SBOL2 File
+                label SBOL or GenBank File
                 br
                 input(type='file',name='file',value=submission.file)
 
