@@ -33,11 +33,16 @@ block content
             div.clearfix
 
             div.form-group-50.required
+                label Id
+                br
+                input(name='id',placeholder='Submission Id',value=submission.id)
+
+            div.form-group-50.required
                 label Name
                 br
                 input(name='name',placeholder='Submission Name',value=submission.name)
 
-            div.form-group-50
+            div.form-group-100
                 label Citations
                 br
                 input(name='citations'
