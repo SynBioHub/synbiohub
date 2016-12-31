@@ -22,8 +22,11 @@ mixin search-result-component-definition(submission)
         //button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal
 
         if submission.triplestore != 'public'
-            a(href='/component/' + submission.base64Uri + '/makePublic')
+            a(href=submission.url + '/makePublic')
                 button(type='button').btn.btn-success.public-btn Make Public
+            | 
+            a(href=submission.url + '/removeSubmission')
+                button(type='button').btn.btn-success.remove-btn Remove
 
 
 mixin search-result-collection(submission)
@@ -49,10 +52,10 @@ mixin search-result-collection(submission)
         //button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal
 
         if submission.triplestore != 'public'
-            a(href='/collection/' + submission.base64Uri + '/makePublic')
+            a(href=submission.url + '/makePublic')
                 button(type='button').btn.btn-success.public-btn Make Public
             | 
-            a(href='/collection/' + submission.base64Uri + '/removeSubmission')
+            a(href=submission.url + '/removeSubmission')
                 button(type='button').btn.btn-success.remove-btn Remove
 
 

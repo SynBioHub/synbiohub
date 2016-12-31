@@ -65,7 +65,7 @@ block content
                         tr
                             td Creator
                             td
-                                a(href=meta.creator.uri) #{meta.creator.description}
+                                a(href='/search/dcterms:creator=\''+meta.creator.description+'\'&') #{meta.creator.description}
 
                     if meta.created.description != ''
                         tr
@@ -89,21 +89,21 @@ block content
                         tr
                             td Part Status
                             td
-                                a(href=meta.igemPartStatus.uri) #{meta.igemPartStatus.description}
+                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&') #{meta.igemPartStatus.description}
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
 
                     if meta.igemStatus.description != 'igem:'
                         tr
                             td Status
                             td
-                                a(href=meta.igemStatus.uri) #{meta.igemStatus.description}
+                                a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{meta.igemStatus.description}
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
 
                     if meta.igemResults.description != 'igem:'
                         tr
                             td Results
                             td
-                                a(href=meta.igemResults.uri) #{meta.igemResults.description}
+                                a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{meta.igemResults.description}
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
 			
                     if meta.wasDerivedFrom != ''
@@ -122,15 +122,8 @@ block content
                             td Types
                             td 
                                 for type in meta.types
-                                    if type.description
-                                        a(href=type.uri,title=type.description) #{type.description}
-                                        a(href=type.term,title='definition') #{' (definition)'}
-                                    else if type.title
-                                        span #{type.title}
-                                    else if type.term
-                                        a(href=type.uri) #{type.term}
-                                    else
-                                        a(href=type.uri) #{type.uri}
+                                    a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) #{type.description}
+                                    a(href=type.term,title='definition') #{' (definition)'}
                                     br
 
                     if meta.roles.length > 0
@@ -139,14 +132,10 @@ block content
                             td
                                 for role in meta.roles
                                     if role.description
-                                        a(href=role.uri,title=role.description.def) #{role.description.name}
+                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title=role.description.def) #{role.description.name}
                                         a(href=role.term,title='definition') #{' (definition)'}
-                                    else if role.title
-                                        span #{role.title}
-                                    else if role.term
-                                        a(href=role.uri) #{role.term}
-                                    else
-                                        a(href=role.uri) #{role.uri}
+                                    else 
+                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') #{role.term}
                                     br
 				    
                     if collections.length > 0
@@ -154,7 +143,8 @@ block content
                             td Collections
                             td
                                 for collection in collections
-                                    a(href=collection.url) #{collection.name}
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{collection.name}
+                                    a(href=collection.url,title='definition') #{' (definition)'}
                                     br
 
                     if meta.protein !== undefined
