@@ -51,5 +51,8 @@ mixin search-result-collection(submission)
         if submission.triplestore != 'public'
             a(href='/collection/' + submission.base64Uri + '/makePublic')
                 button(type='button').btn.btn-success.public-btn Make Public
+            | 
+            a(href='/collection/' + submission.base64Uri + '/removeSubmission')
+                button(type='button').btn.btn-success.remove-btn Remove
 
 
