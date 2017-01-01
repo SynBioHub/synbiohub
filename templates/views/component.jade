@@ -61,6 +61,13 @@ block content
                         td Identifier
                         td #{meta.id}
                         td
+			
+                    if meta.wasDerivedFrom != ''
+                        tr
+                            td Source
+                            td
+                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                            td
 
                     if meta.creator.description != ''
                         tr
@@ -76,6 +83,7 @@ block content
                             td
                                 != meta.created.description
                             td
+                               a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
 
                     if meta.modified.description != ''
                         tr
@@ -83,6 +91,7 @@ block content
                             td
                                 != meta.modified.description
                             td
+                               a(href='/search/modifiedBefore='+meta.created.description.split(' ')[0]+'&modifiedAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
 
                     if meta.description != ''
                         tr
@@ -90,6 +99,7 @@ block content
                             td
                                 != meta.description
                             td
+                                a(href='/search/?q='+meta.description) #{'Search'}
 
                     if meta.igemPartStatus.description != ''
                         tr
@@ -114,13 +124,6 @@ block content
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemResults.description}
                             td
                                 a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{'Search'} 
-			
-                    if meta.wasDerivedFrom != ''
-                        tr
-                            td Source
-                            td
-                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
-                            td
 
                     if meta.labels.length > 0
                         tr
