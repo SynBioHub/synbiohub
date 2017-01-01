@@ -60,70 +60,84 @@ block content
                     tr
                         td Identifier
                         td #{meta.id}
+                        td
 
                     if meta.creator.description != ''
                         tr
                             td Creator
                             td
-                                a(href='/search/dcterms:creator=\''+meta.creator.description+'\'&') #{meta.creator.description}
-
+                                != meta.creator.description
+                            td
+                                a(href='/search/dcterms:creator=\''+meta.creator.description+'\'&') #{'Search'}
+       
                     if meta.created.description != ''
                         tr
                             td Created
                             td
                                 != meta.created.description
+                            td
 
                     if meta.modified.description != ''
                         tr
                             td Modified
                             td
                                 != meta.modified.description
+                            td
 
                     if meta.description != ''
                         tr
                             td Description
                             td
                                 != meta.description
+                            td
 
                     if meta.igemPartStatus.description != ''
                         tr
                             td Part Status
                             td
-                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&') #{meta.igemPartStatus.description}
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
+                            td
+                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&') #{'Search'} 
 
                     if meta.igemStatus.description != 'igem:'
                         tr
                             td Status
                             td
-                                a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{meta.igemStatus.description}
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemStatus.description}
+                            td
+                                a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
 
                     if meta.igemResults.description != 'igem:'
                         tr
                             td Results
                             td
-                                a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{meta.igemResults.description}
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{' (definition)'}
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemResults.description}
+                            td
+                                a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{'Search'} 
 			
                     if meta.wasDerivedFrom != ''
                         tr
                             td Source
                             td
                                a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                            td
 
                     if meta.labels.length > 0
                         tr
                             td Labels
                             td #{meta.labels.join(', ')}
+                            td
 
                     if meta.types.length > 0
                         tr
                             td Types
                             td 
                                 for type in meta.types
-                                    a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) #{type.description}
-                                    a(href=type.term,title='definition') #{' (definition)'}
+                                    a(href=type.term,title='definition') #{type.description}
+                                    br
+                            td 
+                                for type in meta.types
+                                    a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) #{'Search'}
                                     br
 
                     if meta.roles.length > 0
@@ -132,19 +146,25 @@ block content
                             td
                                 for role in meta.roles
                                     if role.description
-                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title=role.description.def) #{role.description.name}
-                                        a(href=role.term,title='definition') #{' (definition)'}
+                                        a(href=role.term,title='definition') #{role.description.name}
                                     else 
-                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') #{role.term}
+                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') #{role.term} 
+                                    br
+                            td
+                                for role in meta.roles
+                                    a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') #{'Search'}
                                     br
 				    
                     if collections.length > 0
                         tr
-                            td Collections
+                           td Collections
                             td
                                 for collection in collections
-                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{collection.name}
-                                    a(href=collection.url,title='definition') #{' (definition)'}
+                                    a(href=collection.url,title=collection.name) #{collection.name}
+                                    br
+                            td
+                                for collection in collections
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
 
                     if meta.protein !== undefined
@@ -152,6 +172,7 @@ block content
                             tr
                                 td pI
                                 td #{meta.protein.pI}
+                                td
                         if meta.protein.locatedIn !== undefined
                             tr
                                 td Located in
@@ -162,6 +183,7 @@ block content
                                         else 
                                             a(href=locatedIn.uri) #{locatedIn.uri}
                                         br
+                                td
 
             div.col-md-6.entry-actions
                 a.btn.btn-primary(href=sbolUrl)

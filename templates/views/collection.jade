@@ -60,6 +60,17 @@ block content
                                 i
                                     != meta.chassis
                             td
+                    if collections.length > 0
+                        tr
+                            td Collections
+                            td
+                                for collection in collections
+                                    a(href=collection.url,title=collection.name) #{collection.name}
+                                    br
+                            td
+                                for collection in collections
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
+                                    br
                     tr
                         td Members (#{meta.numComponents})  
                         td

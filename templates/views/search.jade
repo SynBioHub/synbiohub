@@ -70,11 +70,11 @@ block content
                 = ' '
             - var start = (firstResultNum - 251)<0 ? 0 : (firstResultNum - 251)/50 
             - var last = (firstResultNum + 201)>numResultsTotal ? numResultsTotal/50 : (firstResultNum + 201)/50 
-            - var last = start==0 ? 10 : last
-            - for (var i=start; i<last; i++)
-                - var offset = i * 50
-                a(href=originalUrl + '/?offset='+offset) #{i+1}
-                = ' '
+            if (previous >= 0 || lastResultNum < numResultsTotal)
+                - for (var i=start; i<last; i++)
+                    - var offset = i * 50
+                    a(href=originalUrl + '/?offset='+offset) #{i+1}
+                    = ' '
             if (lastResultNum < numResultsTotal)
                 a(href=originalUrl + '/?offset='+lastResultNum) Next
 
