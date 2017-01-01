@@ -53,6 +53,13 @@ block content
                 th Property
                 th Value
                 tr
+                    td Object Type
+                    td
+                       select(name='objectType')
+                            option #{'Any Object Type'}
+                            for objectType in objectTypes
+                                option #{objectType.name}
+                tr
                     td Creator
                     td
                        select(name='creator')

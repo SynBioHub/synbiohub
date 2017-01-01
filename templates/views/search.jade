@@ -64,16 +64,22 @@ block content
         div.search-result-summary
             | Showing #{firstResultNum} - #{lastResultNum} of #{numResultsTotal} result(s)
             - var previous = firstResultNum - 51
+            br
             if (previous >= 0)
-                br
-                a(href=originalUrl + '/?offset='+previous) Previous 50
+                a(href=originalUrl + '/?offset='+previous) Previous
+                = ' '
+            - var start = (firstResultNum - 251)<0 ? 0 : (firstResultNum - 251)/50 
+            - var last = (firstResultNum + 201)>numResultsTotal ? numResultsTotal/50 : (firstResultNum + 201)/50 
+            - var last = start==0 ? 10 : last
+            - for (var i=start; i<last; i++)
+                - var offset = i * 50
+                a(href=originalUrl + '/?offset='+offset) #{i+1}
+                = ' '
             if (lastResultNum < numResultsTotal)
-                br
-                a(href=originalUrl + '/?offset='+lastResultNum) Next 50
+                a(href=originalUrl + '/?offset='+lastResultNum) Next
 
     div.clearfix
 
-    br
     br
     br
     br
