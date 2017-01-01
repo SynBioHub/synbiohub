@@ -72,9 +72,14 @@ block content
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
                     tr
-                        td Members (#{meta.numComponents})  
+                        td Members
                         td
+                            if (meta.numComponents===10000)
+                                | 10000+
+                            else
+                                | #{meta.numComponents} 
                         td
+                            a(href='/search/collection=<'+encodeURIComponent(meta.uri)+'>&') #{'Search'}
                     tr
                         td Type
                         td Identifier
