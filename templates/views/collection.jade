@@ -40,24 +40,43 @@ block content
                     tr
                         td Identifier
                         td #{meta.id}
+                        td
                     if meta.description != ''
                         tr
                             td Description
                             td
                                 != meta.description
+                            td
                     if meta.purpose != ''
                         tr
                             td Purpose
                             td
                                 != meta.purpose
+                            td
                     if meta.chassis != ''
                         tr
                             td Intended Chassis
                             td
                                 i
                                     != meta.chassis
+                            td
                     tr
-                        td Members (#{meta.numComponents})
+                        td Members (#{meta.numComponents})  
+                        td
+                        td
+                    tr
+                        td Type
+                        td Identifier
+                        td Name
+                    tr
+                        td
+                            for component in meta.components
+                                != component.type 
+                                br
+                        td
+                            for component in meta.components
+                                a(href=component.url) #{component.id}
+                                br
                         td
                             for component in meta.components
                                 a(href=component.url) #{component.name}

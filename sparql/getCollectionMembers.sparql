@@ -1,0 +1,15 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?uri 
+       ?displayId
+       ?name
+       ?description
+       ?type
+WHERE { 
+<$collection> a sbol2:Collection .
+<$collection> sbol2:member ?uri .
+?uri a ?type .
+?uri sbol2:displayId ?displayId .
+OPTIONAL { ?uri dcterms:title ?name . }
+OPTIONAL { ?uri dcterms:description ?description . }
+}

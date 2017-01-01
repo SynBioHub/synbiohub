@@ -1,0 +1,18 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX synbiohub: <http://synbiohub.org#>
+
+SELECT 
+       ?displayId 
+       ?name
+       ?description
+       ?purpose
+       ?chassis 
+WHERE { 
+      <$collection> a sbol2:Collection .
+      OPTIONAL { <$collection> sbol2:displayId ?displayId . }
+      OPTIONAL { <$collection> dcterms:title ?name . }
+      OPTIONAL { <$collection> dcterms:description ?description . }
+      OPTIONAL { <$collection> synbiohub:purpose ?purpose . }
+      OPTIONAL { <$collection> synbiohub:chassis ?chassis . }
+}
