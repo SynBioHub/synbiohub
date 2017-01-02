@@ -9,6 +9,8 @@ select (sum(?tempcount) as ?count) WHERE {
 {
     SELECT (count(distinct ?subject) as ?tempcount)
     WHERE {
+        { ?subject a sbol2:ModuleDefinition } UNION 
+        { ?subject a sbol2:Model } UNION 
         { ?subject a sbol2:ComponentDefinition } UNION 
         { ?subject a sbol2:Collection } .
         $criteria

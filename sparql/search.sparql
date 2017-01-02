@@ -15,7 +15,8 @@ WHERE {
     $criteria
     { ?subject a sbol2:ComponentDefinition } UNION 
     { ?subject a sbol2:ModuleDefinition } UNION 
-    { ?subject a sbol2:Collection } .
+    { ?subject a sbol2:Collection } UNION 
+    { ?subject a sbol2:Model } .
     ?subject a ?type
     OPTIONAL { ?subject sbol2:displayId ?displayId . }
     OPTIONAL { ?subject dcterms:title ?name . }

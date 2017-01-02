@@ -1,0 +1,183 @@
+
+extends ../layouts/default.jade
+
+include ../mixins/blast-button.jade
+
+block js
+    script(src='/js/pathseg.js')
+    script(src='/js/visbol.js')
+
+block jsState
+    script meta = 
+        != JSON.stringify(meta)
+
+block breadcrumbs
+    ul
+        li.inactive
+            a(href='/search')
+                span.fa.fa-search
+                    |  Search
+
+        if prefix
+            li #{prefix} &gt; #{meta.id}
+        else
+            li
+                a(href=meta.url) #{meta.uri} 
+
+block content
+    div.submission-detail.container-fluid
+
+        div.row
+            div.col-md-12.entry-title
+                h1 #{meta.name}
+        p
+        p
+
+        div.row
+            div.col-md-6
+                table.table.table-striped.entry-detail-table
+                    tr
+                        td Identifier
+                        td #{meta.id}
+                        td
+			
+                    if meta.wasDerivedFrom != ''
+                        tr
+                            td Source
+                            td
+                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                            td
+
+                    if meta.creator.description != ''
+                        tr
+                            td Creator
+                            td
+                                != meta.creator.description
+                            td
+                                a(href='/search/dcterms:creator=\''+meta.creator.description+'\'&') #{'Search'}
+       
+                    if meta.created.description != ''
+                        tr
+                            td Created
+                            td
+                                != meta.created.description
+                            td
+                               a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
+
+                    if meta.modified.description != ''
+                        tr
+                            td Modified
+                            td
+                                != meta.modified.description
+                            td
+                               a(href='/search/modifiedBefore='+meta.created.description.split(' ')[0]+'&modifiedAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
+
+                    if meta.description != ''
+                        tr
+                            td Description
+                            td
+                                != meta.description
+                            td
+                                a(href='/search/?q='+meta.description) #{'Search'}
+
+                    if meta.igemPartStatus.description != ''
+                        tr
+                            td Part Status
+                            td
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
+                            td
+                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&') #{'Search'} 
+
+                    if meta.igemStatus.description != 'igem:'
+                        tr
+                            td Status
+                            td
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemStatus.description}
+                            td
+                                a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
+
+                    if meta.igemResults.description != 'igem:'
+                        tr
+                            td Results
+                            td
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemResults.description}
+                            td
+                                a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{'Search'} 
+
+                    if meta.labels.length > 0
+                        tr
+                            td Labels
+                            td #{meta.labels.join(', ')}
+                            td
+				    
+                    if collections.length > 0
+                        tr
+                            td Collections
+                            td
+                                for collection in collections
+                                    a(href=collection.url,title=collection.name) #{collection.name}
+                                    br
+                            td
+                                for collection in collections
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
+                                    br
+                    tr
+                        td Source
+                        td
+                            a(href=meta.source.toString(),title=meta.source) #{meta.source.toString()}
+                            br
+                        td
+
+                    tr
+                        td Language
+                        td
+                            a(href=meta.language.uri.toString(),title=meta.language.name) #{meta.language.name}
+                            br
+                        td
+                            a(href='/search/language=<'+encodeURIComponent(meta.language.uri)+'>&',title=meta.language.name) #{'Search'}
+                            br
+                    tr  
+                        td Framework
+                        td
+                            a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
+                            br
+                        td
+                            a(href='/search/framework=<'+encodeURIComponent(meta.framework.uri)+'>&',title=meta.framework.name) #{'Search'}
+                            br
+
+            div.col-md-6.entry-actions
+                a.btn.btn-primary(href=sbolUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download SBOL File
+                br
+
+        if (meta.igemDescription != '') 
+            div.row
+                | <h2>!{meta.description}</h2>
+                | !{meta.igemDescription}
+                br
+
+        if (meta.igemNotes != '') 
+            div.row
+                | <h3>Notes</h3>
+                | !{meta.igemNotes}
+                br
+
+        if (meta.source != '') 
+            div.row
+                | <h3>Source</h3>
+                | !{meta.source}
+                br
+
+        br
+
+        if canEdit
+
+            if design.triplestore != 'public'
+                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
+                    span.fa.fa-unlock
+                        |  Make Public
+
+
+
