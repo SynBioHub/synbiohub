@@ -14,5 +14,6 @@
   "converterURL": "http://www.async.ece.utah.edu/validate/",
   "requireCompliant": false,
   "requireComplete": false,
-  "requireBestPractice": false
+  "requireBestPractice": false,
+  "removePublicEnabled": true
 }

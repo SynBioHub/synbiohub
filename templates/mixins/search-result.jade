@@ -29,7 +29,7 @@ mixin search-result-component-definition(submission)
                 button(type='button').btn.btn-success.remove-btn Remove
 
 
-mixin search-result-collection(submission)
+mixin search-result-collection(submission,removePublicEnabled)
     div.search-result-item
 
         div.ribbon-wrapper
@@ -57,5 +57,7 @@ mixin search-result-collection(submission)
             | 
             a(href=submission.url + '/removeSubmission')
                 button(type='button').btn.btn-success.remove-btn Remove
-
+        else if removePublicEnabled
+            a(href=submission.url + '/removeSubmission')
+                button(type='button').btn.btn-success.remove-btn Remove
 
