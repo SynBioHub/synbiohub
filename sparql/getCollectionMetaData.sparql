@@ -4,6 +4,7 @@ PREFIX synbiohub: <http://synbiohub.org#>
 
 SELECT 
        ?displayId 
+       ?version
        ?name
        ?description
        ?purpose
@@ -11,6 +12,7 @@ SELECT
 WHERE { 
       <$collection> a sbol2:Collection .
       OPTIONAL { <$collection> sbol2:displayId ?displayId . }
+      OPTIONAL { <$collection> sbol2:version ?version . }
       OPTIONAL { <$collection> dcterms:title ?name . }
       OPTIONAL { <$collection> dcterms:description ?description . }
       OPTIONAL { <$collection> synbiohub:purpose ?purpose . }

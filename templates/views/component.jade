@@ -60,7 +60,9 @@ block content
                     tr
                         td Identifier
                         td #{meta.id}
-                        td
+                        td Version
+                           =' '
+                           != meta.version
 			
                     if meta.wasDerivedFrom != ''
                         tr
