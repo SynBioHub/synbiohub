@@ -92,36 +92,42 @@ block content
                                 for collection in collections
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
-                    tr
-                        td Type
-                        td Identifier
-                        td Name
-                    tr
-                        td
-                            for functionalComponent in functionalComponents
-                                | FunctionalComponent
-                                br
-                        td
-                            for functionalComponent in functionalComponents
-                                a(href=functionalComponent.url) #{functionalComponent.definition.displayId}
-                                br
-                        td
-                            for functionalComponent in functionalComponents
-                                a(href=functionalComponent.url) #{functionalComponent.definition.name}
-                                br
-                    tr
-                        td
-                            for module in modules
-                                | Module
-                                br
-                        td
-                            for module in modules
-                                a(href=module.url) #{module.definition.displayId}
-                                br
-                        td
-                            for module in modules
-                                a(href=module.url) #{module.definition.name}
-                                br
+                    if functionalComponents.length > 0
+                        tr
+                            td FunctionalComponents
+                            td Identifier
+                            td Name
+                        tr
+                            td
+                                for functionalComponent in functionalComponents
+                                    != functionalComponent.typeStr
+                                    br
+                            td
+                                for functionalComponent in functionalComponents
+                                    a(href=functionalComponent.url) #{functionalComponent.definition.displayId}
+                                    br
+                            td
+                                for functionalComponent in functionalComponents
+                                    a(href=functionalComponent.url) #{functionalComponent.definition.name}
+                                    br
+                    if modules.length > 0 
+                        tr
+                            td Modules
+                            td Identifier
+                            td Name
+                        tr
+                            td
+                                for module in modules
+                                    | Module
+                                    br
+                            td
+                                for module in modules
+                                    a(href=module.url) #{module.definition.displayId}
+                                    br
+                            td
+                                for module in modules
+                                    a(href=module.url) #{module.definition.name}
+                                    br
 
             div.col-md-6.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
