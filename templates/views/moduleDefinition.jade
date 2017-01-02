@@ -1,0 +1,172 @@
+
+extends ../layouts/default.jade
+
+include ../mixins/blast-button.jade
+
+block js
+    script(src='/js/pathseg.js')
+    script(src='/js/visbol.js')
+
+block jsState
+    script meta = 
+        != JSON.stringify(meta)
+
+block breadcrumbs
+    ul
+        li.inactive
+            a(href='/search')
+                span.fa.fa-search
+                    |  Search
+
+        if prefix
+            li #{prefix} &gt; #{meta.id}
+        else
+            li
+                a(href=meta.url) #{meta.uri} 
+
+block content
+    div.submission-detail.container-fluid
+
+        div.row
+            div.col-md-12.entry-title
+                h1 #{meta.name}
+
+        p
+        p
+
+        div.row
+            div.col-md-6
+                table.table.table-striped.entry-detail-table
+                    tr
+                        td Identifier
+                        td #{meta.id}
+                        td
+			
+                    if meta.wasDerivedFrom != ''
+                        tr
+                            td Source
+                            td
+                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                            td
+
+                    if meta.creator.description != ''
+                        tr
+                            td Creator
+                            td
+                                != meta.creator.description
+                            td
+                                a(href='/search/dcterms:creator=\''+meta.creator.description+'\'&') #{'Search'}
+       
+                    if meta.created.description != ''
+                        tr
+                            td Created
+                            td
+                                != meta.created.description
+                            td
+                               a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
+
+                    if meta.modified.description != ''
+                        tr
+                            td Modified
+                            td
+                                != meta.modified.description
+                            td
+                               a(href='/search/modifiedBefore='+meta.created.description.split(' ')[0]+'&modifiedAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
+
+                    if meta.description != ''
+                        tr
+                            td Description
+                            td
+                                != meta.description
+                            td
+                                a(href='/search/?q='+meta.description) #{'Search'}
+				    
+                    if collections.length > 0
+                        tr
+                           td Collections
+                            td
+                                for collection in collections
+                                    a(href=collection.url,title=collection.name) #{collection.name}
+                                    br
+                            td
+                                for collection in collections
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
+                                    br
+                    tr
+                        td Type
+                        td Identifier
+                        td Name
+                    tr
+                        td
+                            for functionalComponent in functionalComponents
+                                | FunctionalComponent
+                                br
+                        td
+                            for functionalComponent in functionalComponents
+                                a(href=functionalComponent.url) #{functionalComponent.definition.displayId}
+                                br
+                        td
+                            for functionalComponent in functionalComponents
+                                a(href=functionalComponent.url) #{functionalComponent.definition.name}
+                                br
+                    tr
+                        td
+                            for module in modules
+                                | Module
+                                br
+                        td
+                            for module in modules
+                                a(href=module.url) #{module.definition.displayId}
+                                br
+                        td
+                            for module in modules
+                                a(href=module.url) #{module.definition.name}
+                                br
+
+            div.col-md-6.entry-actions
+                a.btn.btn-primary(href=sbolUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download SBOL File
+                br
+                br
+                a.btn.btn-primary(href=genBankUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download GenBank
+                br
+                br
+                a.btn.btn-primary(href=fastaUrl)
+                    span.fa.fa-download
+                    | 
+                    span Download FASTA
+                br
+                br
+                a.btn.btn-primary(href=searchUsesUrl)
+                    span.fa.fa-search
+                    | 
+                    span Find Uses
+                br
+                br
+                a.btn.btn-primary(href=searchTwinsUrl)
+                    span.fa.fa-search
+                    | 
+                    span Find Twins
+                br
+
+        br
+        if meta.displayList
+            div.row
+                div.col-md-12.text-center
+                    div#design
+        br
+
+        if canEdit
+
+            if design.triplestore != 'public'
+                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
+                    span.fa.fa-unlock
+                        |  Make Public
+
+
+
