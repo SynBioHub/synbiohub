@@ -3,6 +3,7 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX synbiohub: <http://synbiohub.org#>
 
 SELECT 
+       ?persistentIdentity
        ?displayId 
        ?version
        ?name
@@ -11,6 +12,7 @@ SELECT
        ?chassis 
 WHERE { 
       <$collection> a sbol2:Collection .
+      OPTIONAL { <$collection> sbol2:persistentIdentity ?persistentIdentity . }
       OPTIONAL { <$collection> sbol2:displayId ?displayId . }
       OPTIONAL { <$collection> sbol2:version ?version . }
       OPTIONAL { <$collection> dcterms:title ?name . }

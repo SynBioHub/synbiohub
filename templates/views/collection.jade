@@ -39,16 +39,17 @@ block content
                 table.table.table-striped.entry-detail-table
                     tr
                         td Identifier
-                        td #{meta.id}
-                        td Version
-                           =' '
-                           != meta.version
+                        td 
+                            a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
+                        td 
+                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
                     if meta.description != ''
                         tr
                             td Description
                             td
                                 != meta.description
                             td
+                                a(href='/search/?q='+meta.description) #{'Search'}
                     if meta.purpose != ''
                         tr
                             td Purpose
