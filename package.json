@@ -20,9 +20,9 @@
     "pg-escape": "^0.2.0",
     "pug": "^0.1.0",
     "request": "^2.60.0",
-    "sboljs": "^1.4.0"
-    "sbolmeta": "^0.1.1",
-    "sbolstack-frontend": "^1.2.0",
+    "sboljs": "^1.5.0",
+    "sbolmeta": "^0.1.2",
+    "sbolstack-frontend": "^1.4.0",
     "sequence-formatter": "^1.0.0",
     "sha1": "^1.1.1",
     "underscore": "^1.8.0",
