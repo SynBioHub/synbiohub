@@ -82,17 +82,23 @@ block content
                                 != meta.description
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
-				    
-                    if collections.length > 0
+                    if modules.length > 0 
                         tr
-                           td Collections
+                            td Modules
+                            td Identifier
+                            td Name
+                        tr
                             td
-                                for collection in collections
-                                    a(href=collection.url,title=collection.name) #{collection.name}
+                                for module in modules
+                                    | Module
                                     br
                             td
-                                for collection in collections
-                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
+                                for module in modules
+                                    a(href=module.url) #{module.definition.displayId}
+                                    br
+                            td
+                                for module in modules
+                                    a(href=module.url) #{module.definition.name}
                                     br
                     if functionalComponents.length > 0
                         tr
@@ -112,23 +118,28 @@ block content
                                 for functionalComponent in functionalComponents
                                     a(href=functionalComponent.url) #{functionalComponent.definition.name}
                                     br
-                    if modules.length > 0 
+                    if models.length > 0 
                         tr
-                            td Modules
-                            td Identifier
-                            td Name
-                        tr
+                            td Models
                             td
-                                for module in modules
-                                    | Module
+                                for model in models
+                                    a(href=model.url) #{model.id}
                                     br
                             td
-                                for module in modules
-                                    a(href=module.url) #{module.definition.displayId}
+                                for model in models
+                                    a(href=model.url) #{'Version '+model.version}
+                                    br
+				    
+                    if collections.length > 0
+                        tr
+                            td Collections
+                            td
+                                for collection in collections
+                                    a(href=collection.url,title=collection.name) #{collection.name}
                                     br
                             td
-                                for module in modules
-                                    a(href=module.url) #{module.definition.name}
+                                for collection in collections
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
 
             div.col-md-6.entry-actions
