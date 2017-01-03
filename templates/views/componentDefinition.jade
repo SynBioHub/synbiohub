@@ -159,6 +159,18 @@ block content
                                 for role in meta.roles
                                     a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') #{'Search'}
                                     br
+
+                    if meta.sequences.length > 0
+                        tr
+                            td Sequences
+                            td
+                                for sequence in meta.sequences
+                                    a(href=sequence.url) #{sequence.id}
+                                    br
+                            td
+                                for sequence in meta.sequences
+                                    a(href=sequence.url) #{'Version '+sequence.version}
+                                    br
 				    
                     if collections.length > 0
                         tr
@@ -221,12 +233,12 @@ block content
                     span Download GenBank
                 br
                 br
-                a.btn.btn-primary(href=fastaUrl)
-                    span.fa.fa-download
-                    | 
-                    span Download FASTA
-                br
-                br
+                // a.btn.btn-primary(href=fastaUrl)
+                //     span.fa.fa-download
+                //     | 
+                //     span Download FASTA
+                // br
+                // br
                 a.btn.btn-primary(href=searchUsesUrl)
                     span.fa.fa-search
                     | 
@@ -264,15 +276,15 @@ block content
                     div#design
 
 
-        if meta.sequences.length > 0
-            div.row
-                div.col-md-6
-                    div.pull-right
-                        +blast-button(meta.sequences[0])
-                    h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
-                    pre #{meta.sequences[0].formatted}
+        // if meta.sequences.length > 0
+        //     div.row
+        //         div.col-md-6
+        //             div.pull-right
+        //                 +blast-button(meta.sequences[0])
+        //             h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
+        //             pre #{meta.sequences[0].formatted}
 
-        br
+        // br
         br
 
         if canEdit
