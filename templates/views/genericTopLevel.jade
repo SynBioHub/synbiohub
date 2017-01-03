@@ -123,29 +123,6 @@ block content
                                 for collection in collections
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
-                    tr
-                        td Source
-                        td
-                            a(href=meta.source.toString(),title=meta.source) #{meta.source.toString()}
-                            br
-                        td
-
-                    tr
-                        td Language
-                        td
-                            a(href=meta.language.uri.toString(),title=meta.language.name) #{meta.language.name}
-                            br
-                        td
-                            a(href='/search/language=<'+encodeURIComponent(meta.language.uri)+'>&',title=meta.language.name) #{'Search'}
-                            br
-                    tr  
-                        td Framework
-                        td
-                            a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
-                            br
-                        td
-                            a(href='/search/framework=<'+encodeURIComponent(meta.framework.uri)+'>&',title=meta.framework.name) #{'Search'}
-                            br
 
             div.col-md-6.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
@@ -175,7 +152,7 @@ block content
         if (meta.dcTermsSource != '') 
             div.row
                 | <h3>Source</h3>
-                | !{meta.source}
+                | !{meta.dcTermsSource}
                 br
 
         br
