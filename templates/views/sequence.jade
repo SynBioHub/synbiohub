@@ -111,6 +111,12 @@ block content
                             td Labels
                             td #{meta.labels.join(', ')}
                             td
+
+                    tr
+                        td Type
+                        td
+                            a(href=meta.encoding.toString(),title=meta.type) #{meta.type}
+                        td
 				    
                     if collections.length > 0
                         tr
