@@ -82,6 +82,19 @@ block content
                                 != meta.description
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
+
+                    if roles.length > 0
+                        tr
+                            td Roles
+                            td
+                                for role in roles
+                                    a(href=role.toString(),title='definition') #{role.toString()}
+                                    br
+                            td
+                                for role in roles
+                                    a(href='/search/role=<'+encodeURIComponent(role.toString())+'>&') #{'Search'}
+                                    br
+
                     if modules.length > 0 
                         tr
                             td Modules
