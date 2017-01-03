@@ -83,6 +83,18 @@ block content
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
 
+                    if annotations.length > 0
+                        tr
+                            td
+                                for annotation in annotations
+                                    annotation.name
+                                    br
+                            td
+                                for annotation in annotations
+                                    annotation.value
+                                    br
+                            td
+
                     if roles.length > 0
                         tr
                             td Roles
