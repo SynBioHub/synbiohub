@@ -63,6 +63,22 @@ block content
                                 i
                                     != meta.chassis
                             td
+
+                    if annotations && annotations.length > 0
+                        tr
+                            td
+                                for annotation in annotations
+                                    != annotation.name.toString()
+                                    br
+                            td
+                                for annotation in annotations
+                                    if (annotation.type === 'uri')
+                                        a(href=annotation.value.toString(),title='link') #{'URL'}
+                                    else 
+                                        != annotation.value.toString()
+                                    br
+                            td
+
                     if collections.length > 0
                         tr
                             td Collections

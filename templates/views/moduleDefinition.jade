@@ -83,15 +83,18 @@ block content
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
 
-                    if annotations.length > 0
+                    if annotations && annotations.length > 0
                         tr
                             td
                                 for annotation in annotations
-                                    annotation.name
+                                    != annotation.name.toString()
                                     br
                             td
                                 for annotation in annotations
-                                    annotation.value
+                                    if (annotation.type === 'uri')
+                                        a(href=annotation.value.toString(),title='link') #{'URL'}
+                                    else 
+                                        != annotation.value.toString()
                                     br
                             td
 
