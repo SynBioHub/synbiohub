@@ -18,7 +18,7 @@ define([ 'visbol' ], function(visbol) {
 
         return {
             glyph: group,
-            backboneOffset: boxSize.y / 2.0
+            backboneOffset: boxSize.y
         };
     }
 
