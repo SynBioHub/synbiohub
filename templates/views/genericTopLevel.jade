@@ -34,14 +34,14 @@ block content
         p
 
         div.row
-            div.col-md-6
+            div.col-md-8
                 table.table.table-striped.entry-detail-table
                     tr
                         td Identifier
                         td 
                            a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
                         td 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
+                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Ver'+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -129,7 +129,7 @@ block content
 				    
                     if collections.length > 0
                         tr
-                            td Collections
+                            td In Collections
                             td
                                 for collection in collections
                                     a(href=collection.url,title=collection.name) #{collection.name}
@@ -139,7 +139,7 @@ block content
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
 
-            div.col-md-6.entry-actions
+            div.col-md-4.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
                     span.fa.fa-download
                     | 

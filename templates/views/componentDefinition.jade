@@ -55,14 +55,14 @@ block content
         p
 
         div.row
-            div.col-md-6
+            div.col-md-8
                 table.table.table-striped.entry-detail-table
                     tr
                         td Identifier
                         td 
-                           a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
+                            a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
                         td 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
+                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Ver'+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -184,12 +184,12 @@ block content
                                     br
                             td
                                 for sequence in meta.sequences
-                                    a(href=sequence.url) #{'Version '+sequence.version}
+                                    a(href=sequence.url) #{'Ver'+sequence.version}
                                     br
 				    
                     if collections.length > 0
                         tr
-                           td Collections
+                            td In Collections
                             td
                                 for collection in collections
                                     a(href=collection.url,title=collection.name) #{collection.name}
@@ -235,7 +235,7 @@ block content
                                     a(href=component.url) #{component.definition.name}
                                     br
 
-            div.col-md-6.entry-actions
+            div.col-md-4.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
                     span.fa.fa-download
                     | 
@@ -293,7 +293,7 @@ block content
 
         // if meta.sequences.length > 0
         //     div.row
-        //         div.col-md-6
+        //         div.col-md-8
         //             div.pull-right
         //                 +blast-button(meta.sequences[0])
         //             h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
