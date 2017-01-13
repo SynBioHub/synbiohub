@@ -62,7 +62,7 @@ block content
                         td 
                             a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
                         td 
-                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Ver'+meta.version}
+                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -109,7 +109,7 @@ block content
                             td
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
                             td
-                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&') #{'Search'} 
+                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&', title) #{'Search'} 
 
                     if meta.igemStatus.description != 'igem:'
                         tr
@@ -184,7 +184,7 @@ block content
                                     br
                             td
                                 for sequence in meta.sequences
-                                    a(href=sequence.url) #{'Ver'+sequence.version}
+                                    != 'Version '+sequence.version
                                     br
 				    
                     if collections.length > 0

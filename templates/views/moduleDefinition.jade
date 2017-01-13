@@ -42,7 +42,7 @@ block content
                         td 
                            a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
                         td 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Ver'+meta.version}
+                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -155,7 +155,7 @@ block content
                                     br
                             td
                                 for model in models
-                                    a(href=model.url) #{'Ver'+model.version}
+                                    != 'Version '+model.version
                                     br
 				    
                     if collections.length > 0
