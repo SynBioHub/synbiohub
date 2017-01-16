@@ -106,16 +106,19 @@ block content
                     tr
                         td
                             for component in meta.components
-                                != component.type 
-                                br
+                                if (component.id)
+                                    != component.type 
+                                    br
                         td
                             for component in meta.components
-                                a(href=component.url) #{component.id}
-                                br
+                                if (component.id)
+                                    a(href=component.url) #{component.id}
+                                    br
                         td
                             for component in meta.components
-                                a(href=component.url) #{component.name}
-                                br
+                                if (component.id)
+                                    a(href=component.url) #{component.name}
+                                    br
 
 
             div.col-md-4.entry-actions

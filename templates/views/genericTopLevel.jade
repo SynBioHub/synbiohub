@@ -36,12 +36,13 @@ block content
         div.row
             div.col-md-8
                 table.table.table-striped.entry-detail-table
-                    tr
-                        td Identifier
-                        td 
-                           a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
-                        td 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
+                    if meta.id != ''
+                        tr
+                            td Identifier
+                            td 
+                               a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
+                            td 
+                               a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -127,7 +128,7 @@ block content
                                     br
                             td
 				    
-                    if collections.length > 0
+                    if meta.id != '' && collections.length > 0
                         tr
                             td In Collections
                             td
@@ -139,18 +140,19 @@ block content
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
 
-            div.col-md-4.entry-actions
-                a.btn.btn-primary(href=sbolUrl)
-                    span.fa.fa-download
-                    | 
-                    span Download SBOL File
-                br
-                br
-                a.btn.btn-primary(href=searchUsesUrl)
-                    span.fa.fa-search
-                    | 
-                    span Find Uses
-                br
+            if meta.id != ''
+                div.col-md-4.entry-actions
+                    a.btn.btn-primary(href=sbolUrl)
+                        span.fa.fa-download
+                        | 
+                        span Download SBOL File
+                    br
+                    br
+                    a.btn.btn-primary(href=searchUsesUrl)
+                        span.fa.fa-search
+                        | 
+                        span Find Uses
+                    br
 
         if (meta.igemDescription != '') 
             div.row
