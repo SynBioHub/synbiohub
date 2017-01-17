@@ -216,24 +216,24 @@ block content
                                             a(href=locatedIn.uri) #{locatedIn.uri}
                                         br
                                 td
-                    if components.length > 0
-                        tr
-                            td Components
-                            td Identifier
-                            td Name
-                        tr
-                            td
-                                for component in components
-                                    != component.typeStr
-                                    br
-                            td
-                                for component in components
-                                    a(href=component.url) #{component.definition.displayId}
-                                    br
-                            td
-                                for component in components
-                                    a(href=component.url) #{component.definition.name}
-                                    br
+                    // if components.length > 0
+                    //     tr
+                    //         td Components
+                    //         td Identifier
+                    //         td Name
+                    //     tr
+                    //         td
+                    //             for component in components
+                    //                 != component.typeStr
+                    //                 br
+                    //         td
+                    //             for component in components
+                    //                 a(href=component.url) #{component.definition.displayId}
+                    //                 br
+                    //         td
+                    //             for component in components
+                    //                 a(href=component.url) #{component.definition.name}
+                    //                 br
 
             div.col-md-4.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
