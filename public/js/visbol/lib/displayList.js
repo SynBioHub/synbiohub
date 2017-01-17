@@ -114,6 +114,7 @@ define([], function() {
         this.thickness = glyphObject.thickness;
         this.start = glyphObject.start || 0;
         this.end = glyphObject.end || this.start;
+        this.uri = glyphObject.uri || ''
     }
 
     DisplayList.Process = function Process(displayList, process) {
