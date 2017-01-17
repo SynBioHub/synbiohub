@@ -21,7 +21,7 @@ function() {
 
                     font[glyphName] = glyph;
 
-                    if(Object.keys(font).length === fontSpec.glyphs.length) {
+                    if(Object.keys(font).length === fontSpec.glyphs.length + 1 /* base property */) {
                         
                         fonts[fontSpec.name] = font;
 

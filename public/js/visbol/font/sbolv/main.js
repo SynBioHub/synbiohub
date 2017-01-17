@@ -5,7 +5,8 @@ var glyphMapping = {
     'sbolv-cds': 'cds',
     'sbolv-user-defined': 'user-defined',
     'sbolv-terminator': 'terminator',
-    'sbolv-res': 'res'
+    'sbolv-res': 'res',
+    'sbolv-helix': 'helix',
 };
 
 var glyphNames = Object.keys(glyphMapping);

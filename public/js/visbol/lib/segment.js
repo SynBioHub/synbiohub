@@ -34,8 +34,12 @@ function(SVG, Rect, Vec2, Matrix) {
 
             var boundingBoxSize = Vec2(glyphLength, design.geom.defaultGlyphSize.y);
 
-            if(glyph === undefined)
+            if(glyph === undefined) {
+
+                console.warn('cannot find glyph: ' + glyphObject.type)
+
                 glyph = design.font['user-defined'];
+            }
 
             var glyphInsets = {
                 left: glyph.insets && glyph.insets.left ?

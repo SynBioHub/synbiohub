@@ -9,7 +9,8 @@
         "terminator",
         "origin-of-replication",
         "origin-of-transfer",
-        "restriction-site"
+        "restriction-site",
+        "helix"
     ]
 }
 
