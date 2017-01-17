@@ -12,6 +12,9 @@ define([ 'visbol' ], function(visbol) {
         glyph.attr('stroke', 'black');
         glyph.attr('fill', glyphObject.color || '#cee');
 
+        if(glyphObject.uri)
+            glyph.attr('data-uri', glyphObject.uri);
+
         var group = design.surface.group();
 
         group.add(glyph);

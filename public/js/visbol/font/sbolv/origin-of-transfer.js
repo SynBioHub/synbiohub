@@ -42,6 +42,9 @@ define([ 'visbol' ], function(visbol) {
             add.path('M4,0L10,5L4,10z').stroke(color).fill(color);
         });
 
+        if(glyphObject.uri)
+            glyph.attr('data-uri', glyphObject.uri);
+
         return {
             glyph: glyph,
             backboneOffset: boxSize.y / 2
