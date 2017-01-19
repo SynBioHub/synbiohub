@@ -10,7 +10,8 @@
         "origin-of-replication",
         "origin-of-transfer",
         "restriction-site",
-        "helix"
+        "helix",
+        "tag"
     ]
 }
 
