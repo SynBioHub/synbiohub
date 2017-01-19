@@ -23,7 +23,7 @@
     "request": "^2.60.0",
     "sboljs": "^1.7.6",
     "sbolmeta": "^0.1.2",
-    "sbolstack-frontend": "^1.4.0",
+    "sbolstack-frontend": "^1.6.1",
     "sequence-formatter": "^1.0.0",
     "sha1": "^1.1.1",
     "underscore": "^1.8.0",

@@ -7,6 +7,7 @@ var glyphMapping = {
     'sbolv-terminator': 'terminator',
     'sbolv-res': 'res',
     'sbolv-helix': 'helix',
+    'sbolv-tag': 'tag',
 };
 
 var glyphNames = Object.keys(glyphMapping);
