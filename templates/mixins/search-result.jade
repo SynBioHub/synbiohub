@@ -29,7 +29,7 @@ mixin search-result-component-definition(submission)
                 button(type='button').btn.btn-success.remove-btn Remove
             | 
             a(href=submission.url + '/cloneSubmission')
-                button(type='button').btn.btn-success.clone-btn Clone
+                button(type='button').btn.btn-success.clone-btn Copy
 
 
 mixin search-result-collection(submission,removePublicEnabled)
@@ -62,7 +62,7 @@ mixin search-result-collection(submission,removePublicEnabled)
                 button(type='button').btn.btn-success.remove-btn Remove
             | 
             a(href=submission.url + '/cloneSubmission')
-                button(type='button').btn.btn-success.clone-btn Clone
+                button(type='button').btn.btn-success.clone-btn Copy
         else if removePublicEnabled
             a(href=submission.url + '/removeSubmission')
                 button(type='button').btn.btn-success.remove-btn Remove
