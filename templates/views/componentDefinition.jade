@@ -29,7 +29,15 @@ block content
 
         div.row
             div.col-md-12.entry-title
-                h1 #{meta.name}
+                h1 #{meta.name} 
+                    if meta.igemFavorite.description == 'true'
+                        span.fa.fa-star
+                if meta.igemDiscontinued.description == 'true'
+                    h4(style=" color: #FF0000") This part has been discontinued.
+                if meta.igemReplacedBy.uri != ''
+                    h4(style=" color: #FF0000") Please consider using 
+                        a(href=meta.igemReplacedBy.uri) #{meta.igemReplacedBy.id}
+                        | as a replacement.
 
                 if meta.protein && meta.protein.encodedBy !== undefined
                     span
@@ -60,9 +68,9 @@ block content
                     tr
                         td Identifier
                         td 
-                            a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
+                            a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
                         td 
-                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
+                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -111,7 +119,7 @@ block content
                             td
                                 a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&', title) #{'Search'} 
 
-                    if meta.igemStatus.description != 'igem:'
+                    if meta.igemStatus.description != ''
                         tr
                             td Status
                             td
@@ -119,7 +127,7 @@ block content
                             td
                                 a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
 
-                    if meta.igemResults.description != 'igem:'
+                    if meta.igemResults.description != ''
                         tr
                             td Results
                             td
@@ -142,7 +150,7 @@ block content
                             td
                                 for annotation in annotations
                                     if (annotation.type === 'uri')
-                                        a(href=annotation.value.toString(),title='link') #{'URL'}
+                                        a(href=annotation.uri,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br
@@ -168,7 +176,7 @@ block content
                                     if role.description
                                         a(href=role.term,title='definition') #{role.description.name}
                                     else 
-                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') #{role.term} 
+                                        a(href=role.uri,title=role.uri) #{role.term} 
                                     br
                             td
                                 for role in meta.roles
@@ -260,11 +268,18 @@ block content
                     span Find Uses
                 br
                 br
-                a.btn.btn-primary(href=searchTwinsUrl)
-                    span.fa.fa-search
-                    | 
-                    span Find Twins
-                br
+                if meta.igemDominant.description == 'true'
+                    a.btn.btn-success(href=searchTwinsUrl)
+                        span.fa.fa-search
+                        | 
+                        span Find Twins
+                    br
+                else
+                    a.btn.btn-primary(href=searchTwinsUrl)
+                        span.fa.fa-search
+                        | 
+                        span Find Twins
+                    br
 
         if (meta.igemDescription != '') 
             div.row

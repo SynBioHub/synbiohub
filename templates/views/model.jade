@@ -39,9 +39,9 @@ block content
                     tr
                         td Identifier
                         td 
-                           a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
+                           a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
                         td 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
+                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr
@@ -81,30 +81,6 @@ block content
                                 != meta.description
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
-
-                    if meta.igemPartStatus.description != ''
-                        tr
-                            td Part Status
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
-                            td
-                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&') #{'Search'} 
-
-                    if meta.igemStatus.description != 'igem:'
-                        tr
-                            td Status
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemStatus.description}
-                            td
-                                a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
-
-                    if meta.igemResults.description != 'igem:'
-                        tr
-                            td Results
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemResults.description}
-                            td
-                                a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{'Search'} 
 
                     if meta.labels.length > 0
                         tr
@@ -173,18 +149,6 @@ block content
                     span.fa.fa-search
                     | 
                     span Find Uses
-                br
-
-        if (meta.igemDescription != '') 
-            div.row
-                | <h2>!{meta.description}</h2>
-                | !{meta.igemDescription}
-                br
-
-        if (meta.igemNotes != '') 
-            div.row
-                | <h3>Notes</h3>
-                | !{meta.igemNotes}
                 br
 
         if (meta.dcTermsSource != '') 

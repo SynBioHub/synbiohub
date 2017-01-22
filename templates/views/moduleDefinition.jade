@@ -40,9 +40,9 @@ block content
                     tr
                         td Identifier
                         td 
-                           a(href='/search/displayId=\''+meta.id+'\'&') #{meta.id}
+                           a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
                         td 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&') #{'Version '+meta.version}
+                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
                         tr

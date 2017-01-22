@@ -83,30 +83,9 @@ block content
                     td
                         input(type='text',name='modifiedBefore',placeholder='YYYY-MM-DD',value=modifiedBefore)
                 tr
-                    td igem:PartStatus
-                    td
-                        select(name='partStatus')
-                            option #{'Any iGEM Part Status'}
-                            for partStatus in partStatuses
-                                option #{partStatus.name}
-                tr
-                    td igem:Status
-                    td
-                        select(name='status')
-                            option #{'Any iGEM Status'}
-                            for status in statuses
-                                option #{status.name}
-                tr
-                    td igem:Results
-                    td
-                        select(name='results')
-                            option #{'Any iGEM Results'}
-                            for result in results
-                                option #{result.name}
-                tr
                     td Description
                     td
-                        input(type='text',name='description',placeholder='Search terms',value=description)
+                        input(type='text',name='description',placeholder='Search terms',value=description,style="width: 550px;")
                 tr
                     td Type
                     td
@@ -122,12 +101,33 @@ block content
                             for role in roles
                                 option #{role.name}
                 tr
-                    td igem:PartType
+                    td PartType
                     td
                         select(name='partType')
                             option #{'Any iGEM Part Type'}
                             for igemRole in igemRoles
                                 option #{igemRole.name}
+                tr
+                    td PartStatus
+                    td
+                        select(name='partStatus')
+                            option #{'Any iGEM Part Status'}
+                            for partStatus in partStatuses
+                                option #{partStatus.name}
+                tr
+                    td Status
+                    td
+                        select(name='status')
+                            option #{'Any iGEM Status'}
+                            for status in statuses
+                                option #{status.name}
+                tr
+                    td Results
+                    td
+                        select(name='results')
+                            option #{'Any iGEM Results'}
+                            for result in results
+                                option #{result.name}
                 tr
                     td Collection
                     td
