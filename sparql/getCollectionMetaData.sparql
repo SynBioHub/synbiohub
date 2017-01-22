@@ -10,6 +10,7 @@ SELECT
        ?description
        ?purpose
        ?chassis 
+       ?uploadedBy
 WHERE { 
       <$collection> a sbol2:Collection .
       OPTIONAL { <$collection> sbol2:persistentIdentity ?persistentIdentity . }
@@ -19,4 +20,5 @@ WHERE {
       OPTIONAL { <$collection> dcterms:description ?description . }
       OPTIONAL { <$collection> synbiohub:purpose ?purpose . }
       OPTIONAL { <$collection> synbiohub:chassis ?chassis . }
+      OPTIONAL { <$collection> synbiohub:uploadedBy ?uploadedBy . }
 }

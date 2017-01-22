@@ -161,11 +161,17 @@ block content
                             td Types
                             td 
                                 for type in meta.types
-                                    a(href=type.term,title='definition') #{type.description.name}
+                                    if type.description
+                                       a(href=type.term,title='definition') #{type.description.name}
+                                    else 
+                                       a(href=type.uri,title='definition') #{type.uri}
                                     br
                             td 
                                 for type in meta.types
-                                    a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) #{'Search'}
+                                    if type.description
+                                       a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) #{'Search'}
+                                    else
+                                       a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.uri) #{'Search'}
                                     br
 
                     if meta.roles.length > 0

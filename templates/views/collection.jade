@@ -63,6 +63,13 @@ block content
                                 i
                                     != meta.chassis
                             td
+                    if meta.uploadedBy != ''
+                        tr
+                            td Uploaded By
+                            td
+                                i
+                                    != meta.uploadedBy
+                            td
 
                     if annotations && annotations.length > 0
                         tr

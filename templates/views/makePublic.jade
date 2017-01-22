@@ -5,7 +5,7 @@ block breadcrumbs
     ul
         li
             span.fa.fa-cloud-upload
-            |  Submit
+            |  Make Public
 
 
 block content
@@ -35,70 +35,19 @@ block content
             div.form-group-50.required
                 label Id
                 br
-                input(name='id',placeholder='Submission Id',value=submission.id)
+                input(type='text', name='id',placeholder='Submission Id',value=submission.id)
 
             div.form-group-50.required
                 label Version
                 br
-                input(name='version',placeholder='Version',value=submission.version)
-
-            div.form-group-100.required
-                label Name
-                br
-                input(name='name',placeholder='Submission Name',value=submission.name)
-
-            div.form-group-100.required
-                label Description
-                br
-                textarea(name='description'
-                    placeholder='The more you say, the easier it will be to find your design...')
-                        | #{submission.description}
-
-            div.clearfix
-
-            div.form-group-100
-                label Citations
-                br
-                input(name='citations'
-                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
-                        value=submission.citations)
-
-            div.clearfix
-
-            div.form-group-100
-                label Purpose
-                br
-                textarea(name='purpose'
-                    placeholder='What is this circuit doing?')
-                        | #{submission.purpose}
-
-            div.clearfix
-
-            div.form-group-50
-                label Keywords
-                br
-                input(name='keywords'
-                        placeholder='Comma separated descriptors'
-                        value=submission.keywords)
-
-            div.form-group-50
-                label Intended Chassis
-                br
-                input(name='chassis',placeholder='',value=submission.chassis)
-
-            div.clearfix
-
-            div.form-group-100.required
-                label SBOL or GenBank File
-                br
-                input(type='file',name='file',value=submission.file)
+                input(type='text', name='version',placeholder='Version',value=submission.version)
 
             div.form-group-50.required
                 label If Existing:
                 br
                 label.radio.inline
                     input(type="radio", name="overwrite_merge", value="0", checked=true)
-                    | Prevent submission
+                    | Prevent making public
                 label.radio.inline
                     input(id="om", type="radio", name="overwrite_merge", value="1", checked=overwrite=="Overwrite")
                     | Overwrite
@@ -113,11 +62,6 @@ block content
 
             button(type='submit').btn.btn-primary.btn-lg
                 | Submit
-
-
-
-
-
 
                 
 
