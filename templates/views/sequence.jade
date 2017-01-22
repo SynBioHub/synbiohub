@@ -92,12 +92,12 @@ block content
                         tr
                             td
                                 for annotation in annotations
-                                    != annotation.name.toString()
+                                    a(href=annotation.nameDef,title=annotation.nameDef) #{annotation.name}
                                     br
                             td
                                 for annotation in annotations
                                     if (annotation.type === 'uri')
-                                        a(href=annotation.value.toString(),title='link') #{'URL'}
+                                        a(href=annotation.uri,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br

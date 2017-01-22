@@ -145,7 +145,7 @@ block content
                         tr
                             td
                                 for annotation in annotations
-                                    != annotation.name.toString()
+                                    a(href=annotation.nameDef,title=annotation.nameDef) #{annotation.name}
                                     br
                             td
                                 for annotation in annotations
