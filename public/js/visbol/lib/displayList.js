@@ -115,6 +115,7 @@ define([], function() {
         this.start = glyphObject.start || 0;
         this.end = glyphObject.end || this.start;
         this.uri = glyphObject.uri || ''
+        this.tooltip = glyphObject.tooltip || ''
     }
 
     DisplayList.Process = function Process(displayList, process) {
