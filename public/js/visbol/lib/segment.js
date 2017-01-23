@@ -114,6 +114,13 @@ function(SVG, Rect, Vec2, Matrix) {
                 labelText.transform({ matrix: Matrix.toSVGString(labelMatrix) });
             }
 
+            if(glyphObject.tooltip) {
+
+                glyph.attr('data-toggle', 'tooltip')
+                glyph.attr('data-placement', 'top')
+                glyph.attr('title', glyphObject.tooltip)
+
+            }
 
             glyphOffset += boundingBoxSize.x;
             glyphOffset += design.geom.glyphPadding;
