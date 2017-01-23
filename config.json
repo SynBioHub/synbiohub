@@ -2,7 +2,7 @@
   "firstLaunch": false,
   "instanceName": "SynBioHub",
   "port": 7777,
-  "backendURL": "http://kilchoman:9090",
+  "backendURL": "http://synbiohub.utah.edu:9090",
   "backendUser": "admin",
   "backendPassword": "admin",
   "databaseHost": "localhost",
