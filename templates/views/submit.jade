@@ -56,23 +56,12 @@ block content
 
             div.clearfix
 
-            div.form-group-100
+            div.form-group-50
                 label Citations
                 br
                 input(name='citations'
                         placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
                         value=submission.citations)
-
-            div.clearfix
-
-            div.form-group-100
-                label Purpose
-                br
-                textarea(name='purpose'
-                    placeholder='What is this circuit doing?')
-                        | #{submission.purpose}
-
-            div.clearfix
 
             div.form-group-50
                 label Keywords
@@ -80,13 +69,6 @@ block content
                 input(name='keywords'
                         placeholder='Comma separated descriptors'
                         value=submission.keywords)
-
-            div.form-group-50
-                label Intended Chassis
-                br
-                input(name='chassis',placeholder='',value=submission.chassis)
-
-            div.clearfix
 
             div.form-group-100.required
                 label SBOL or GenBank File

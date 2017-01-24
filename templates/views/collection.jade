@@ -50,19 +50,6 @@ block content
                                 != meta.description
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
-                    if meta.purpose != ''
-                        tr
-                            td Purpose
-                            td
-                                != meta.purpose
-                            td
-                    if meta.chassis != ''
-                        tr
-                            td Intended Chassis
-                            td
-                                i
-                                    != meta.chassis
-                            td
                     if meta.uploadedBy != ''
                         tr
                             td Uploaded By
