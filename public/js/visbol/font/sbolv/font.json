@@ -11,7 +11,8 @@
         "origin-of-transfer",
         "restriction-site",
         "helix",
-        "tag"
+        "tag",
+        "protein-domain"
     ]
 }
 
