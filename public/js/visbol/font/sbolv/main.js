@@ -8,6 +8,8 @@ var glyphMapping = {
     'sbolv-res': 'res',
     'sbolv-helix': 'helix',
     'sbolv-tag': 'tag',
+    'sbolv-proten-domain': 'protein-domain',
+    'sbolv-origin-of-transfer': 'origin-of-transfer',
 };
 
 var glyphNames = Object.keys(glyphMapping);
