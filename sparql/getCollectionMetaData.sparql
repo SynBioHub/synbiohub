@@ -8,9 +8,9 @@ SELECT
        ?version
        ?name
        ?description
-       ?purpose
-       ?chassis 
        ?uploadedBy
+       ?creator
+       ?created
 WHERE { 
       <$collection> a sbol2:Collection .
       OPTIONAL { <$collection> sbol2:persistentIdentity ?persistentIdentity . }
@@ -18,7 +18,7 @@ WHERE {
       OPTIONAL { <$collection> sbol2:version ?version . }
       OPTIONAL { <$collection> dcterms:title ?name . }
       OPTIONAL { <$collection> dcterms:description ?description . }
-      OPTIONAL { <$collection> synbiohub:purpose ?purpose . }
-      OPTIONAL { <$collection> synbiohub:chassis ?chassis . }
+      OPTIONAL { <$collection> dcterms:creator ?creator . }
+      OPTIONAL { <$collection> dcterms:created ?created . }
       OPTIONAL { <$collection> synbiohub:uploadedBy ?uploadedBy . }
 }

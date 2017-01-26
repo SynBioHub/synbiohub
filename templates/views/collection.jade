@@ -43,6 +43,22 @@ block content
                            a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
                         td 
                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
+                    if meta.creator != ''
+                        tr
+                            td Creator
+                            td
+                                i
+                                    != meta.creator
+                            td
+ 
+                    if meta.created != ''
+                        tr
+                            td Created
+                            td
+                                != meta.created
+                            td
+                               a(href='/search/createdBefore='+meta.created.split(' ')[0]+'&createdAfter='+meta.created.split(' ')[0]+'&') #{'Search'}
+
                     if meta.description != ''
                         tr
                             td Description
@@ -50,13 +66,6 @@ block content
                                 != meta.description
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
-                    if meta.uploadedBy != ''
-                        tr
-                            td Uploaded By
-                            td
-                                i
-                                    != meta.uploadedBy
-                            td
 
                     if annotations && annotations.length > 0
                         tr
