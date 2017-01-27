@@ -26,6 +26,7 @@
     "sbolstack-frontend": "^1.6.1",
     "sequence-formatter": "^1.0.0",
     "sha1": "^1.1.1",
+    "striptags": "^2.2.1",
     "underscore": "^1.8.0",
     "validator": "^4.1.0",
     "xml2js": "^0.4.10",
