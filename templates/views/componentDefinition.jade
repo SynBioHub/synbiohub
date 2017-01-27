@@ -31,7 +31,8 @@ block content
             div.col-md-12.entry-title
                 h1 #{meta.name} 
                     if meta.igemFavorite.description == 'true'
-                        span.fa.fa-star
+                        a(href='http://parts.igem.org/Help:Favorite_Parts',title='Favorite Part')
+                            span.fa.fa-star
                 if meta.igemDiscontinued.description == 'true'
                     h4(style=" color: #FF0000") This part has been discontinued.
                 if meta.igemReplacedBy.uri != ''
@@ -274,20 +275,20 @@ block content
                     span Download Image
                 br
                 br
-                a.btn.btn-primary(href=searchUsesUrl)
+                a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
                     span.fa.fa-search
                     | 
                     span Find Uses
                 br
                 br
                 if meta.igemDominant.description == 'true'
-                    a.btn.btn-success(href=searchTwinsUrl)
+                    a.btn.btn-success(href=searchTwinsUrl,title='This is a dominant twin')
                         span.fa.fa-search
                         | 
                         span Find Twins
                     br
                 else
-                    a.btn.btn-primary(href=searchTwinsUrl)
+                    a.btn.btn-primary(href=searchTwinsUrl,title='This is NOT a dominant twin')
                         span.fa.fa-search
                         | 
                         span Find Twins
