@@ -115,6 +115,13 @@ block content
                             for partStatus in partStatuses
                                 option #{partStatus.name}
                 tr
+                    td SampleStatus
+                    td
+                        select(name='sampleStatus')
+                            option #{'Any iGEM Sample Status'}
+                            for sampleStatus in sampleStatuses
+                                option #{sampleStatus.name}
+                tr
                     td Status
                     td
                         select(name='status')

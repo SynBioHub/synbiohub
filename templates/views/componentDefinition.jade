@@ -32,6 +32,9 @@ block content
                 h1 #{meta.name} 
                     if meta.igemFavorite.description == 'true'
                         a(href='http://parts.igem.org/Help:Favorite_Parts',title='Favorite Part')
+                            span.fa.fa-bookmark
+                    if meta.igemRating.description == 'true'
+                        a(href='http://parts.igem.org/Help:Part_Status_Box',title='Experience')
                             span.fa.fa-star
                 if meta.igemDiscontinued.description == 'true'
                     h4(style=" color: #FF0000") This part has been discontinued.
@@ -119,6 +122,14 @@ block content
                                 a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
                             td
                                 a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&', title) #{'Search'} 
+
+                    if meta.igemSampleStatus.description != ''
+                        tr
+                            td Sample Status
+                            td
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemSampleStatus.description}
+                            td
+                                a(href='/search/igem:sampleStatus=\''+meta.igemSampleStatus.description+'\'&', title) #{'Search'} 
 
                     if meta.igemStatus.description != ''
                         tr
