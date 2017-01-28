@@ -48,7 +48,7 @@ define([ 'visbol' ], function(visbol) {
         render: renderGlyph,
 
         insets: {
-            top: 0.2
+            top: 0.4
         }
 
     };
