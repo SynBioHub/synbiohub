@@ -3,6 +3,6 @@ DELETE {
 ?s ?p ?o
 } WHERE {
 ?s ?p ?o .
-?s sbol2:version '$version' 
-FILTER(CONTAINS(str(?s),'$uriPrefix'))
+FILTER(STRSTARTS(str(?s),'$uriPrefix'))
+FILTER(STRENDS(str(?s),'/$version'))
 }
