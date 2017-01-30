@@ -123,7 +123,6 @@ block content
                                     a(href=component.url) #{component.name}
                                     br
 
-
             div.col-md-4.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
                     span.fa.fa-download
@@ -135,6 +134,27 @@ block content
                     a.btn.btn-success(href=meta.url + '/makePublic')
                         span.fa.fa-unlock
                             |  Make Public
+        
+        if (submissionCitations.length > 0) 
+            div.row
+                | <h3>References</h3>
+                br
+    
+                for citation in submissionCitations
+                    != citation.publicationAuthors 
+                    != ', "'
+                    != citation.publicationTitle
+                    != '", '
+                    != citation.publicationJournalInfo
+                    != ', '
+                    != citation.publicationYear
+                    != ', PMID: '
+                    != citation.pubmedID
+                    != ', '
+                    a(href='http://dx.doi.org/'+citation.publicationDOI) #{citation.publicationDOI}
+                    != '.'
+                    br
+                    br
 
         if meta.displayList
             div.row
