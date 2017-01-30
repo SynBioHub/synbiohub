@@ -1,4 +1,6 @@
 node_modules
 db
 config.json
+public/styles/site.css
+
 
