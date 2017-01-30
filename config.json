@@ -28,5 +28,6 @@
         "xmlns:ncbi": "http://www.ncbi.nlm.nih.gov#",
         "xmlns:igem": "http://synbiohub.org/terms/igem/",
         "xmlns:gb": "http://www.ncbi.nlm.nih.gov"
-    }
+  },
+  "threadPoolSize": 8
 }

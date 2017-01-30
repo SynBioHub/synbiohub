@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "async": "^0.9.2",
+    "autocomplete": "0.0.1",
     "basic-auth": "^1.0.3",
     "body-parser": "^1.15.0",
     "connect-mongo": "^1.1.0",
@@ -17,6 +18,7 @@
     "mongoose": "^4.7.7",
     "multer": "^1.1.0",
     "node-uuid": "^1.4.7",
+    "npool": "^1.4.7",
     "pg-escape": "^0.2.0",
     "pug": "^0.1.0",
     "request": "^2.60.0",
@@ -26,6 +28,7 @@
     "sequence-formatter": "^1.0.0",
     "sha1": "^1.1.1",
     "striptags": "^2.2.1",
+    "trie-search": "^1.0.0",
     "underscore": "^1.8.0",
     "validator": "^4.1.0",
     "xml2js": "^0.4.10",
