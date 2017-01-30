@@ -41,13 +41,15 @@ define([ 'visbol' ], function(visbol) {
         if(glyphObject.uri)
             glyph.attr('data-uri', glyphObject.uri);
 
-            var glyphMatrix = Matrix();
-            var labelMatrix = Matrix();
+        var glyphMatrix = Matrix();
 
+        glyphMatrix = Matrix.translate(glyphMatrix, Vec2(boxSize.x, 0))
+        glyphMatrix = Matrix.multiply(glyphMatrix, Matrix.rotation(-135))
+        //glyphMatrix = Matrix.translate(glyphMatrix, Vec2.subtract(0, boxSize))
 
 
         glyph.transform({
-            matrix: Matrix.toSVGString(Matrix.rotation(-135))
+            matrix: Matrix.toSVGString(glyphMatrix)
             //matrix: Matrix.toSVGString(Matrix())
         })
 
@@ -56,7 +58,7 @@ define([ 'visbol' ], function(visbol) {
 
         return {
             glyph: group,
-            backboneOffset: boxSize.y / 2.0
+            backboneOffset: boxSize.y
         };
     }
 
