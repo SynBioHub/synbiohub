@@ -210,8 +210,9 @@ block content
                                     br
                             td
                                 for sequence in meta.sequences
-                                    != 'Version '+sequence.version
-                                    br
+                                    if (sequence.version)
+                                        != 'Version '+sequence.version
+                                        br
 				    
                     if collections.length > 0
                         tr
