@@ -1,0 +1,9 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
+
+SELECT ?name ?description WHERE {
+    <$uri> dcterms:title ?name .
+    OPTIONAL { <$uri> dcterms:description ?description }
+}
+

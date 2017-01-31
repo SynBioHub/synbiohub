@@ -2,11 +2,14 @@
   "firstLaunch": false,
   "instanceName": "SynBioHub",
   "port": 7777,
-  "backendURL": "http://localhost:9090",
-  "backendUser": "admin",
-  "backendPassword": "admin",
-  "databaseHost": "localhost",
-  "databaseName": "synbiohub",
+  "triplestore": {
+      "sparqlEndpoint": "http://localhost:8890/sparql",
+      "graphStoreEndpoint": "http://localhost:8890/sparql-graph-crud-auth/",
+      "defaultGraph": "http://synbiohub.org/public",
+      "graphPrefix": "http://synbiohub.org/",
+      "username": "dba",
+      "password": "moomins"
+  },
   "databasePrefix": "http://synbiohub.org/",
   "sessionSecret": "synbiohub_change_me",
   "triplestoreIDSalt": "synbiohub_change_me",
@@ -29,5 +32,8 @@
         "xmlns:igem": "http://synbiohub.org/terms/igem/",
         "xmlns:gb": "http://www.ncbi.nlm.nih.gov"
   },
-  "threadPoolSize": 8
+  "threadPoolSize": 8,
+  "uploadLimit": "150mb",
+  "resolveBatch": 10
+  
 }

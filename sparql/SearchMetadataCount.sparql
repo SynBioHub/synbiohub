@@ -1,0 +1,15 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
+
+select (sum(?tempcount) as ?count)
+{
+    SELECT (count(distinct ?$type) as ?tempcount) 	
+    WHERE
+    {
+        $criteria
+        ?$type a sbol2:$type .
+        ?$type dcterms:title ?name .
+        OPTIONAL { ?$type dcterms:description ?description }
+    }
+}

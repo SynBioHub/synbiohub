@@ -1,0 +1,12 @@
+
+PREFIX sbol2: <http://sbols.org/v2#>
+
+SELECT ?module ?interaction WHERE {
+    ?participation a sbol2:Participation .
+    ?participation sbol2:participant ?functionalComponent .
+    ?functionalComponent sbol2:definition <$uri> .
+    ?interaction sbol2:participation ?participation .
+    ?module sbol2:interaction ?interaction .
+}
+
+

@@ -1,0 +1,40 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
+
+CONSTRUCT  
+{
+  
+  ?ComponentDefinition a sbol2:ComponentDefinition ;
+      sbol2:type ?Type ;
+      dcterms:title ?Name ;
+      sbol2:displayId ?DisplayId ;
+      sbol2:role ?Role ;
+      ncbi:taxid ?TaxonomyId.
+}
+WHERE
+{
+  ?ComponentDefinition a sbol2:ComponentDefinition ;
+            sbol2:type ?Type .
+  OPTIONAL {?ComponentDefinition  dcterms:title ?Name }
+  OPTIONAL {?ComponentDefinition sbol2:role ?Role }
+  OPTIONAL {?ComponentDefinition ncbi:taxid ?TaxonomyId}
+  OPTIONAL {?ComponentDefinition sbol2:displayId ?DisplayId}
+  
+  
+  {
+  	SELECT ?ComponentDefinition WHERE
+    {
+      ?ComponentDefinition a sbol2:ComponentDefinition ;
+      	sbol2:type ?Type .
+      $criteria
+    }   
+	  LIMIT $limit
+    OFFSET $offset
+  }  
+}
+ 
+
+
+
+

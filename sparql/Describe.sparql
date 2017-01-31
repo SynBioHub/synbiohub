@@ -1,0 +1,9 @@
+
+CONSTRUCT {
+    $iri ?p ?o
+} WHERE {
+    $iri ?p ?o
+}
+
+
+

@@ -1,0 +1,12 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
+
+SELECT ?$type ?name ?description ?displayId ?version WHERE {
+    $criteria
+    ?$type a sbol2:$type .
+    OPTIONAL { ?$type dcterms:title ?name . }
+    OPTIONAL { ?$type sbol2:displayId ?displayId . }
+    OPTIONAL { ?$type dcterms:description ?description . }
+    OPTIONAL { ?$type sbol2:version ?version }
+}

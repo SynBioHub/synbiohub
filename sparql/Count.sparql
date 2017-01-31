@@ -1,0 +1,6 @@
+
+PREFIX sbol2: <http://sbols.org/v2#>
+
+SELECT (COUNT(DISTINCT ?$type) AS ?count) WHERE {
+    ?$type a sbol2:$type
+}

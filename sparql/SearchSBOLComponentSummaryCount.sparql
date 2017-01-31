@@ -1,0 +1,14 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+select (sum(?tempcount) as ?count)
+{
+SELECT  (count(distinct ?ComponentDefinition) as ?tempcount) 	
+WHERE
+{
+?ComponentDefinition a sbol2:ComponentDefinition .
+  
+    $criteria
+}
+
+}
