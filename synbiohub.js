@@ -3,9 +3,15 @@ var config = require('./lib/config')
 
 var App = require('./lib/app')
 
-var app = new App()
+var db = require('./lib/db')
 
-app.listen(parseInt(config.get('port')))
+//db.sequelize.sync({ force: true }).then(() => {
+
+    var app = new App()
+
+    app.listen(parseInt(config.get('port')))
+
+//})
 
 
 
