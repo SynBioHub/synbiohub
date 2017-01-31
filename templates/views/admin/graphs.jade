@@ -2,5 +2,9 @@
 extends ../../layouts/admin.jade
 
 block adminContent
-    div graphs moo
+    ul.list-group
+    each graphUri in graphs
+        li.list-group-item
+            code #{graphUri}
+
 
