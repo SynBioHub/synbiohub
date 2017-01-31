@@ -122,11 +122,11 @@ block content
                                     br
                             td
                                 for module in modules
-                                    a(href=module.url) #{module.definition.displayId}
+                                    a(href=module.url) #{module.defId}
                                     br
                             td
                                 for module in modules
-                                    a(href=module.url) #{module.definition.name}
+                                    a(href=module.url) #{module.defName}
                                     br
                     if functionalComponents.length > 0
                         tr
@@ -140,22 +140,26 @@ block content
                                     br
                             td
                                 for functionalComponent in functionalComponents
-                                    a(href=functionalComponent.url) #{functionalComponent.definition.displayId}
+                                    a(href=functionalComponent.url) #{functionalComponent.defId}
                                     br
                             td
                                 for functionalComponent in functionalComponents
-                                    a(href=functionalComponent.url) #{functionalComponent.definition.name}
+                                    a(href=functionalComponent.url) #{functionalComponent.defName}
                                     br
                     if models.length > 0 
                         tr
                             td Models
                             td
                                 for model in models
-                                    a(href=model.url) #{model.id}
+                                    if (model.url)
+                                        a(href=model.url) #{model.id}
+                                    else
+                                        a(href=model.toString()) #{model.toString()}
                                     br
                             td
                                 for model in models
-                                    != 'Version '+model.version
+                                    if (model.version)
+                                        != 'Version '+model.version
                                     br
 				    
                     if collections.length > 0
