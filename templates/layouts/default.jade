@@ -24,13 +24,13 @@ block body
                                 span.blue-text  Submit
                         li
                             a(href='/about')
-                                span.fa.fa-align-left
+                                span.fa.fa-info-circle
                                 span.blue-text  About
 
                         if locals.user
                             li
                                 a(href='/manage')
-                                    span.fa.fa-cogs
+                                    span.fa.fa-align-left
                                     span.blue-text  Manage Submissions
                             if locals.user.isAdmin
                                 a(href='/admin')
