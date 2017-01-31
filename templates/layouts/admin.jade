@@ -1,0 +1,27 @@
+
+extends ./default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-align-left
+            |  Admin
+
+block content
+
+        div(style='overflow: hidden; display: none;').vert
+        div.facets
+            ul.nav.nav-pills.nav-stacked
+                li(role='presentation',class=(adminSection==='status'?'active':''))
+                    a(href='/admin/') Status
+                li(role='presentation',class=(adminSection==='users'?'active':''))
+                    a(href='/admin/users') Users
+                li(role='presentation',class=(adminSection==='graphs'?'active':''))
+                    a(href='/admin/graphs') Graphs
+                li(role='presentation',class=(adminSection==='integrations'?'active':''))
+                    a(href='/admin/integrations') Integrations
+                li(role='presentation',class=(adminSection==='export'?'active':''))
+                    a(href='/admin/export') Export
+        div(style='float: left;')
+            block adminContent
+

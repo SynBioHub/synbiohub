@@ -1,0 +1,47 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    div
+        table.table.table-striped
+            tr
+                td Platform
+                td #{platform} #{architecture}; #{osRelease}
+            tr
+                td Node Version
+                td #{nodeVersion}
+            tr
+                td Instance Name
+                td #{config.instanceName}
+            tr
+                td Listen Port
+                td #{config.port}
+            tr
+                td SPARQL Endpoint
+                td
+                    code #{config.triplestore.sparqlEndpoint}
+            tr
+                td Graph Store Endpoint
+                td
+                    code #{config.triplestore.graphStoreEndpoint}
+            tr
+                td Default Graph
+                td
+                    code #{config.triplestore.defaultGraph}
+            tr
+                td Graph Prefix
+                td
+                    code #{config.triplestore.graphPrefix}
+            tr
+                td Converter URL
+                td
+                    code #{config.converterURL}
+            tr
+                td Thread Pool Size
+                td #{config.threadPoolSize}
+            tr
+                td Upload Limit
+                td #{config.uploadLimit}
+
+
+
