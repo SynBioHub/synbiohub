@@ -1,0 +1,25 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    table.table.table-striped.sbh-datatable
+        thead
+            tr
+                th Name
+                th E-mail
+                th Affiliation
+                th Graph URI
+                th Admin
+        tbody
+            each user in users
+                tr
+                    td #{user.name}
+                    td
+                        code #{user.email}
+                    td #{user.affiliation}
+                    td
+                        code #{user.graphUri}
+                    td #{user.isAdmin}
+
+
+

@@ -2,9 +2,17 @@
 extends ../../layouts/admin.jade
 
 block adminContent
-    ul.list-group
-    each graphUri in graphs
-        li.list-group-item
-            code #{graphUri}
+    table.table.table-striped.sbh-datatable
+        thead
+            tr
+                th Graph URI
+                th # Triples
+        tbody
+            each graph in graphs
+                tr
+                    td
+                        code #{graph.graphUri}
+                    td #{graph.numTriples}
+
 
 

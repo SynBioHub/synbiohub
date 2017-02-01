@@ -42,3 +42,6 @@ $('.sbh-autocomplete').typeahead({
 
 $('.twitter-typeahead').css('display', 'inline')
 
+$('.sbh-datatable').DataTable()
+
+
