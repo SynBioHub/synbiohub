@@ -1,0 +1,11 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    table.table.table-striped.sbh-datatable
+        select.form-control
+            each graph in graphs
+                option(value=graph.graphUri) #{graph.graphUri}
+
+
+
