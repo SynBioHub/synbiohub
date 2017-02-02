@@ -1,0 +1,13 @@
+
+extends ../layouts/default.jade
+
+block content
+    table.table.table-striped
+        for integration in integrations
+            tr
+                td #{integration.name}
+                td
+                    label
+                        input(type='checkbox')
+                        |  Enable
+
