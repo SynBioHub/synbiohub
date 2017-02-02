@@ -1,0 +1,24 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX synbiohub: <http://synbiohub.org#>
+
+SELECT 
+       ?persistentIdentity
+       ?displayId 
+       ?version
+       ?name
+       ?description
+       ?uploadedBy
+       ?creator
+       ?created
+WHERE { 
+      <$componentDefinition> a sbol2:ComponentDefinition .
+      OPTIONAL { <$componentDefinition> sbol2:persistentIdentity ?persistentIdentity . }
+      OPTIONAL { <$componentDefinition> sbol2:displayId ?displayId . }
+      OPTIONAL { <$componentDefinition> sbol2:version ?version . }
+      OPTIONAL { <$componentDefinition> dcterms:title ?name . }
+      OPTIONAL { <$componentDefinition> dcterms:description ?description . }
+      OPTIONAL { <$componentDefinition> dcterms:creator ?creator . }
+      OPTIONAL { <$componentDefinition> dcterms:created ?created . }
+      OPTIONAL { <$componentDefinition> synbiohub:uploadedBy ?uploadedBy . }
+}

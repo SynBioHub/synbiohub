@@ -34,6 +34,6 @@
   },
   "threadPoolSize": 8,
   "uploadLimit": "150mb",
-  "resolveBatch": 10
-  
+  "resolveBatch": 10,
+  "otherStacks": []
 }
