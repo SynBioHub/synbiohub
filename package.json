@@ -33,7 +33,7 @@
     "trie-search": "^1.0.0",
     "underscore": "^1.8.0",
     "validator": "^4.1.0",
-    "visbol": "^1.2.0",
+    "visbol": "^1.2.1",
     "xml2js": "^0.4.10",
     "xtend": "^4.0.1"
   },
