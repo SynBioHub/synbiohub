@@ -3,9 +3,6 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 
-block js
-    script(src='/js/pathseg.js')
-
 block jsState
     script meta = 
         != JSON.stringify(meta)
