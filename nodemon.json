@@ -1,6 +1,7 @@
 {
     "ignoreRoot": [
         ".git",
-        "config.json"
+        "config.json",
+        "browser"
     ]
 }
