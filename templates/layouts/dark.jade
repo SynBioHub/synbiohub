@@ -39,7 +39,8 @@ block body
                             li
                                 a(href='/jobs')
                                     span.fa.fa-tasks
-                                    span.blue-text  Jobs
+                                    | &nbsp &nbsp;
+                                    span.white-text  Jobs
                             if locals.user.isAdmin
                                 li
                                     a(href='/admin')

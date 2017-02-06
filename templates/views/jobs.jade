@@ -8,6 +8,35 @@ block breadcrumbs
             |  Jobs
 
 block content
-    div.submission-detail
-        p jobs
+    div.container
+        table.table.table-striped
+            thead
+                th ID
+                th Name
+                th Description
+                th Status
+                th Started
+                th
+            tbody
+                each job in jobs
+                    tr(class=statusToRowClass[job.status])
+                        td #{job.id}
+                        td #{job.name}
+                        td #{job.description}
+                        td #{statusToString[job.status]}
+                        td #{job.createdAt}
+                        td
+                            if job.status === Status.CANCELED
+                                form(method='post',action='/actions/job/restart')
+                                    input(type='hidden',name='jobId',value=job.id)
+                                    button.btn.btn-danger(type='submit') Restart Job
+                            else if job.status === Status.RUNNING
+                                form(method='post',action='/actions/job/cancel')
+                                    input(type='hidden',name='jobId',value=job.id)
+                                    button.btn.btn-danger(type='submit') Cancel
+                            else if job.status === Status.FINISHED
+                                form(method='post',action='/actions/job/restart')
+                                    input(type='hidden',name='jobId',value=job.id)
+                                    button.btn.btn-danger(type='submit') Restart Job
+
 

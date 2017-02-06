@@ -3,10 +3,11 @@ var h
 var mainLoop
 
 var clickEvent
+var submitEvent
 
 var state = {
 
-    integrations: [],
+    tasks: [],
     mode: 'list'
 
 }
@@ -15,6 +16,7 @@ if(document.getElementById('sbh-data-integration')) {
 
     h = require('virtual-dom/virtual-hyperscript')
     clickEvent = require('value-event/click')
+    submitEvent = require('value-event/submit')
 
     const MainLoop = require('main-loop')
     const Delegator = require('dom-delegator')
@@ -51,7 +53,7 @@ function renderIntegrationList(state) {
 
     var elems = []
 
-    if(state.integrations.length === 0) {
+    if(state.tasks.length === 0) {
         elems.push(
             h('br'),
             h('div', [
@@ -71,51 +73,81 @@ function renderIntegrationList(state) {
         )
 
         elems = elems.concat(
-            state.integrations.map((integration) => {
-                return h('div', integration.name)
+            state.tasks.map((task) => {
+                return h('div', task.name)
             })
         )
 
         elems.push(h('br'))
     }
 
-    elems.push(
+    var formElems = []
+
+    formElems.push(
         h('button.btn.btn-primary', {
+            type: 'button',
             'ev-click': clickEvent(clickAddStep)
         }, 'Add Step'),
         '  '
     )
 
-    if(state.integrations.length === 0) { 
-        elems.push(
-            h('button.btn.disabled', 'Start Job')
+    if(state.tasks.length === 0) { 
+        formElems.push(
+            h('button.btn.disabled', { type: 'submit', disabled: 'disabled' }, 'Start Job')
         )
     } else {
-        elems.push(
-            h('button.btn.btn-success', 'Start Job')
+        formElems.push(
+            h('button.btn.btn-success', { type: 'submit' }, 'Start Job')
         )
     }
 
-    return h('div.sbh-data-integration-list', elems)
+    formElems.push(h('input', {
+        type: 'hidden',
+        name: 'graphUri',
+        value: graphUri
+    }))
+
+    formElems.push(h('input', {
+        type: 'hidden',
+        name: 'inputUri',
+        value: inputUri
+    }))
+
+    formElems.push(h('input', {
+        type: 'hidden',
+        name: 'tasks',
+        value: JSON.stringify(state.tasks)
+    }))
+
+    elems.push(h('form', {
+
+        method: 'post',
+        action: 'integrate',
+
+        //'ev-submit': submitEvent(submit)
+        
+    }, formElems))
+
+    return h('div.sbh-di', elems)
 
 }
 
 function renderAddIntegration(state) {
 
     return h('div', [
-        h('span.fa.fa-arrow-left', {
+        h('span.fa.fa-arrow-left.sbh-di-back', {
             'ev-click': clickEvent(clickBack)
         }),
-        h('table.table.table-striped', [
+        h('table.table.table-hover.table-striped.sbh-di-list', [
             h('thead', [
             ]),
             h('tbody', [
-                integrations.map((integration) => {
-                    return h('tr', {
-                        'ev-click': clickEvent(clickIntegrationRow, { integration: integration })
+                tasks.map((task) => {
+                    return h('tr.sbh-di-list-row', {
+                        'ev-click': clickEvent(clickIntegrationRow, { task: task })
                     }, [
-                        h('td', integration.name),
-                        h('td', integration.description),
+                        h('td', task.name),
+                        h('td', task.description),
                     ])
                 })
             ])
@@ -143,14 +175,19 @@ function clickBack() {
 
 function clickIntegrationRow(data) {
 
-    const integration = data.integration
+    const task = data.task
 
-    state.integrations.push($.extend({}, integration))
+    state.tasks.push($.extend({}, task))
 
     state.mode = 'list'
 
     update()
 
+}
+
+function submit(data) {
+
+    console.log('submit')
 
 }
 

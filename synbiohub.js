@@ -7,6 +7,8 @@ var db = require('./lib/db')
 
 var fs = require('fs')
 
+var jobUtils = require('./lib/jobs/job-utils')
+
 if(!fs.existsSync('synbiohub.sqlite')) {
 
     db.sequelize.sync({ force: true }).then(startServer)
@@ -19,9 +21,15 @@ if(!fs.existsSync('synbiohub.sqlite')) {
 
 function startServer() {
 
-    var app = new App()
+    return jobUtils.setRunningJobsToQueued()
+                .then(() => jobUtils.resumeAllJobs())
+                .then(() => {
 
-    app.listen(parseInt(config.get('port')))
+        var app = new App()
+
+        app.listen(parseInt(config.get('port')))
+
+    })
 }
 
 
