@@ -30,7 +30,10 @@
         "xmlns:rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "xmlns:ncbi": "http://www.ncbi.nlm.nih.gov#",
         "xmlns:igem": "http://synbiohub.org/terms/igem/",
-        "xmlns:gb": "http://www.ncbi.nlm.nih.gov"
+  	"xmlns:gb": "http://www.ncbi.nlm.nih.gov"
+  },
+  "webOfRegistries" : {
+        "synbiohub.org": "localhost:7777"
   },
   "threadPoolSize": 8,
   "uploadLimit": "150mb",
