@@ -14,11 +14,8 @@ block breadcrumbs
                 span.fa.fa-search
                     |  Search
 
-        if prefix
-            li #{prefix} &gt; #{meta.id}
-        else
-            li
-                a(href=meta.url) #{meta.uri} 
+        li
+            a(href=meta.url) #{meta.uri} 
 
 block content
     div.submission-detail.container-fluid
@@ -127,6 +124,11 @@ block content
                 br
                 br
                 if meta.triplestore != 'public'
+                    a.btn.btn-success(href=share)
+                        span.fa.fa-share
+                            |  Share
+                    br
+                    br
                     a.btn.btn-success(href=meta.url + '/makePublic')
                         span.fa.fa-unlock
                             |  Make Public

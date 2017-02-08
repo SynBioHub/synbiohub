@@ -13,6 +13,7 @@
   "databasePrefix": "http://synbiohub.org/",
   "sessionSecret": "synbiohub_change_me",
   "triplestoreIDSalt": "synbiohub_change_me",
+  "shareLinkSalt": "synbiohub_change_me",
   "passwordSalt": "synbiohub_change_me",
   "converterURL": "http://www.async.ece.utah.edu/validate/",
   "requireCompliant": false,

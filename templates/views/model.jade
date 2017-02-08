@@ -99,17 +99,6 @@ block content
                                     br
                             td
 				    
-                    if collections.length > 0
-                        tr
-                            td In Collections
-                            td
-                                for collection in collections
-                                    a(href=collection.url,title=collection.name) #{collection.name}
-                                    br
-                            td
-                                for collection in collections
-                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
-                                    br
                     tr
                         td Source
                         td
@@ -133,6 +122,18 @@ block content
                         td
                             a(href='/search/framework=<'+encodeURIComponent(meta.framework.uri)+'>&',title=meta.framework.name) #{'Search'}
                             br
+
+                    if collections.length > 0
+                        tr
+                            td In Collections
+                            td
+                                for collection in collections
+                                    a(href=collection.url,title=collection.name) #{collection.name}
+                                    br
+                            td
+                                for collection in collections
+                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
+                                    br
 
             div.col-md-4.entry-actions
                 a.btn.btn-primary(href=sbolUrl)
