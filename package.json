@@ -24,6 +24,8 @@
     "npool": "^1.4.7",
     "pg-escape": "^0.2.0",
     "pug": "^0.1.0",
+    "rdf-ext": "^0.3.0",
+    "rdf-graph-array": "git+https://github.com/udp/rdf-graph-array.git",
     "request": "^2.79.0",
     "sboljs": "^1.7.6",
     "sbolmeta": "^0.1.2",

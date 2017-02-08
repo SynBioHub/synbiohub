@@ -23,20 +23,25 @@ block content
                         td #{job.id}
                         td #{job.name}
                         td #{job.description}
-                        td #{statusToString[job.status]}
+                        td
+                            a(href=job.lastUri) #{statusToString[job.status]}
                         td #{job.createdAt}
                         td
                             if job.status === Status.CANCELED
                                 form(method='post',action='/actions/job/restart')
                                     input(type='hidden',name='jobId',value=job.id)
-                                    button.btn.btn-danger(type='submit') Restart Job
+                                    button.btn.btn-danger(type='submit')
+                                        span.fa.fa-repeat
+                                        |  Restart Job
                             else if job.status === Status.RUNNING
                                 form(method='post',action='/actions/job/cancel')
                                     input(type='hidden',name='jobId',value=job.id)
-                                    button.btn.btn-danger(type='submit') Cancel
+                                    button.btn.btn-info(type='submit') Cancel
                             else if job.status === Status.FINISHED
                                 form(method='post',action='/actions/job/restart')
                                     input(type='hidden',name='jobId',value=job.id)
-                                    button.btn.btn-danger(type='submit') Restart Job
+                                    button.btn.btn-success(type='submit')
+                                        span.fa.fa-repeat
+                                        |  Restart Job
 
 
