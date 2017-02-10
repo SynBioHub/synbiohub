@@ -1,6 +1,7 @@
 {
   "firstLaunch": false,
   "instanceName": "SynBioHub",
+  "instanceUrl": "http://synbiohub.org/",
   "port": 7777,
   "triplestore": {
       "sparqlEndpoint": "http://localhost:8890/sparql",
@@ -39,5 +40,9 @@
   "threadPoolSize": 8,
   "uploadLimit": "150mb",
   "resolveBatch": 10,
-  "otherStacks": []
+  "otherStacks": [],
+  "mail": {
+      "sendgridApiKey": "",
+      "fromEmail": "foo@example.com"
+  }
 }

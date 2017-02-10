@@ -3,6 +3,8 @@ db
 config.json
 public/styles/site.css
 *.sqlite
+config.local.json
+
 
 
 
