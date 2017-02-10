@@ -1,0 +1,18 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    table.table.table-striped.sbh-datatable
+        thead
+            tr
+                th User
+                th Name
+                th Status
+        tbody
+            each job in jobs
+                tr
+                    td #{job.user.email}
+                    td #{job.name}
+                    td #{job.status}
+
+

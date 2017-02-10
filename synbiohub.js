@@ -28,7 +28,6 @@ function startServer() {
         var app = new App()
 
         app.listen(parseInt(config.get('port')))
-
     })
 }
 

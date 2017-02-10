@@ -26,6 +26,7 @@ $('.sbh-datatable').DataTable()
 require('./autocomplete')
 require('./dataIntegration')
 require('./visbol')
+require('./sse')
 
 
 
