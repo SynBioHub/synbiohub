@@ -36,7 +36,7 @@ block content
                         td Identifier
                         td 
                            a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
-                        td 
+                        td(nowrap="nowrap") 
                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
 			
                     if meta.wasDerivedFrom != ''
@@ -85,19 +85,18 @@ block content
                             td
 
                     if annotations && annotations.length > 0
-                        tr
-                            td
-                                for annotation in annotations
+                        for annotation in annotations
+                            tr
+                                td
                                     a(href=annotation.nameDef,title=annotation.nameDef) #{annotation.name}
                                     br
-                            td
-                                for annotation in annotations
+                                td
                                     if (annotation.type === 'uri')
                                         a(href=annotation.uri,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br
-                            td
+                                td
 				    
                     tr
                         td Source
