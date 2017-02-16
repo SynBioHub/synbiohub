@@ -100,7 +100,7 @@ block content
                             td
                                 != meta.modified.description
                             td
-                               a(href='/search/modifiedBefore='+meta.created.description.split(' ')[0]+'&modifiedAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
+                               a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&') #{'Search'}
 
                     if meta.description != ''
                         tr
