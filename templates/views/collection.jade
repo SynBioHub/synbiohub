@@ -98,20 +98,16 @@ block content
                         td Type
                         td Identifier
                         td Name
-                    tr
-                        td
-                            for component in meta.components
-                                if (component.id)
+                    for component in meta.components
+                        if (component.id)
+                            tr
+                                td
                                     a(href=component.typeUrl,title=component.typeUrl) #{component.type}
                                     br
-                        td
-                            for component in meta.components
-                                if (component.id)
+                                td
                                     a(href=component.url) #{component.id}
                                     br
-                        td
-                            for component in meta.components
-                                if (component.id)
+                                td
                                     a(href=component.url) #{component.name}
                                     br
 
