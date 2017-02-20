@@ -9,7 +9,7 @@
       "defaultGraph": "http://synbiohub.org/public",
       "graphPrefix": "http://synbiohub.org/",
       "username": "dba",
-      "password": "moomins"
+      "password": "dba"
   },
   "databasePrefix": "http://synbiohub.org/",
   "sessionSecret": "synbiohub_change_me",
