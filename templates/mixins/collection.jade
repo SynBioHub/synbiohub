@@ -1,0 +1,12 @@
+
+mixin collection-item(collection)
+    div.search-result-item
+
+        a(href=collection.uri) #{collection.name}
+
+        div.keywords
+            if collection.description != ''
+                strong #{collection.description}
+        br
+
+
