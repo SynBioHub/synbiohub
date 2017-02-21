@@ -44,5 +44,9 @@
   "mail": {
       "sendgridApiKey": "",
       "fromEmail": "foo@example.com"
+  },
+  "collectionIcons": {
+      "http://synbiohub.org/public/igem/igem_collection/1": "/local/igem.png",
+      "http://synbiohub.org/public/ekb/ekb_collection/1": "/local/ekb.png"
   }
 }

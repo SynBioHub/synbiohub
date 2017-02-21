@@ -21,10 +21,13 @@ block breadcrumbs
                 a(href=meta.url) #{meta.uri} 
 
 block content
+
+    div.clearfix
+
     div.submission-detail.container-fluid
 
-        div.row
-            div.col-md-12.entry-title
+        div.row.entry-heading
+            div.col-sm-5.entry-title
                 h1 #{meta.name} 
                     if meta.igemFavorite.description == 'true'
                         a(href='http://parts.igem.org/Help:Favorite_Parts',title='Favorite Part')
@@ -58,8 +61,9 @@ block content
                     span
                         a(href=meta.experience) iGEM experience for this part
 
-        p
-        p
+            div.col-sm-3.sbh-collection-icon
+                img(src=collectionIcon)
+
 
         div.row
             div.col-md-8
