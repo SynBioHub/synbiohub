@@ -89,7 +89,7 @@ block content
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
                     tr
-                        td 
+                        td(nowrap="nowrap") 
                             | Members
                             if ((previous >= 0) || (lastNum < memberCount)) 
                                = ' ('
