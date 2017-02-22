@@ -138,13 +138,13 @@ block content
                             td
                                 a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
 
-                    if meta.igemResults.description != ''
+                    if meta.igemExperience.description != ''
                         tr
-                            td Results
+                            td Experience
                             td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemResults.description}
+                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemExperience.description}
                             td
-                                a(href='/search/igem:results=<'+encodeURIComponent(meta.igemResults.uri)+'>&') #{'Search'} 
+                                a(href='/search/igem:experience=<'+encodeURIComponent(meta.igemExperience.uri)+'>&') #{'Search'} 
 
                     if meta.labels.length > 0
                         tr
