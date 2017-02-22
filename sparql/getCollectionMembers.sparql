@@ -13,3 +13,5 @@ OPTIONAL { ?uri sbol2:displayId ?displayId . }
 OPTIONAL { ?uri dcterms:title ?name . }
 OPTIONAL { ?uri dcterms:description ?description . }
 }
+$limit
+$offset

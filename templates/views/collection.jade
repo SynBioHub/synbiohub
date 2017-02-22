@@ -86,12 +86,20 @@ block content
                                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                                     br
                     tr
-                        td Members
+                        td 
+                            | Members
+                            if ((previous >= 0) || (lastNum < memberCount)) 
+                               = ' ('
+                            if (previous >= 0)
+                               a(href=originalUrl + '/?offset='+previous) Previous
+                               if (lastNum < memberCount)
+                                   = ' '
+                            if (lastNum < memberCount)
+                               a(href=originalUrl + '/?offset='+next) Next
+                            if ((previous >= 0) || (lastNum < memberCount)) 
+                               = ')'
                         td
-                            if (meta.numComponents===10000)
-                                | 10000+
-                            else
-                                | #{meta.numComponents} 
+                            | #{firstNum} - #{lastNum} of #{memberCount} 
                         td
                             a(href='/search/collection=<'+encodeURIComponent(meta.uri)+'>&') #{'Search'}
                     tr

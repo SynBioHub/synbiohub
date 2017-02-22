@@ -1,0 +1,5 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+
+SELECT (COUNT(DISTINCT ?uri) AS ?count) WHERE {
+<$collection> sbol2:member ?uri .
+}
