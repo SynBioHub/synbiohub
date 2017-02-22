@@ -57,10 +57,6 @@ block content
                             | 
                             a(href=protein.url) #{protein.name}
 
-                if meta.experience
-                    span
-                        a(href=meta.experience) iGEM experience for this part
-
             div.col-sm-3.sbh-collection-icon
                 img(src=collectionIcon)
 
@@ -114,37 +110,37 @@ block content
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
 
-                    if meta.igemPartStatus.description != ''
-                        tr
-                            td Part Status
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
-                            td
-                                a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&', title) #{'Search'} 
+                    // if meta.igemPartStatus.description != ''
+                    //     tr
+                    //         td Part Status
+                    //         td
+                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
+                    //         td
+                    //             a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&', title) #{'Search'} 
 
-                    if meta.igemSampleStatus.description != ''
-                        tr
-                            td Sample Status
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemSampleStatus.description}
-                            td
-                                a(href='/search/igem:sampleStatus=\''+meta.igemSampleStatus.description+'\'&', title) #{'Search'} 
+                    // if meta.igemSampleStatus.description != ''
+                    //     tr
+                    //         td Sample Status
+                    //         td
+                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemSampleStatus.description}
+                    //         td
+                    //             a(href='/search/igem:sampleStatus=\''+meta.igemSampleStatus.description+'\'&', title) #{'Search'} 
 
-                    if meta.igemStatus.description != ''
-                        tr
-                            td Status
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemStatus.description}
-                            td
-                                a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
+                    // if meta.igemStatus.description != ''
+                    //     tr
+                    //         td Status
+                    //         td
+                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemStatus.description}
+                    //         td
+                    //             a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
 
-                    if meta.igemExperience.description != ''
-                        tr
-                            td Experience
-                            td
-                                a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemExperience.description}
-                            td
-                                a(href='/search/igem:experience=<'+encodeURIComponent(meta.igemExperience.uri)+'>&') #{'Search'} 
+                    // if meta.igemExperience.description != ''
+                    //     tr
+                    //         td Experience
+                    //         td
+                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemExperience.description}
+                    //         td
+                    //             a(href='/search/igem:experience=<'+encodeURIComponent(meta.igemExperience.uri)+'>&') #{'Search'} 
 
                     if meta.labels.length > 0
                         tr
@@ -160,11 +156,15 @@ block content
                                     br
                                 td
                                     if (annotation.type === 'uri')
-                                        a(href=annotation.uri,title=annotation.uri) #{annotation.value}
+                                        a(href=annotation.url,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br
                                 td
+                                    if (annotation.type === 'uri')
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&') #{'Search'}
+                                    else 
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=\'' + encodeURIComponent(annotation.value)+ '\'&') #{'Search'}
 
                     if meta.types.length > 0
                         tr
