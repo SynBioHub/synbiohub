@@ -1,0 +1,12 @@
+
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+DELETE WHERE {
+    <$topLevel> sbh:mutableNotes ?notes .
+}
+;
+INSERT DATA {
+    <$topLevel> sbh:mutableNotes $notes .
+} 
+
+

@@ -2,6 +2,7 @@
 extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
+include ../mixins/mutable-fields.jade
 
 block jsState
     script meta = 
@@ -254,17 +255,8 @@ block content
                         span Find Twins
                     br
 
-        if (meta.mutableDescription != '') 
-            div.row
-                | <h2>!{meta.description}</h2>
-                | !{meta.mutableDescription}
-                br
-
-        if (meta.mutableNotes != '') 
-            div.row
-                | <h3>Notes</h3>
-                | !{meta.mutableNotes}
-                br
+        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
 
         if (meta.source != '') 
             div.row
