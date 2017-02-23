@@ -29,17 +29,17 @@ block content
         div.row.entry-heading
             div.col-sm-5.entry-title
                 h1 #{meta.name} 
-                    if meta.igemFavorite.description == 'true'
-                        a(href='http://parts.igem.org/Help:Favorite_Parts',title='Favorite Part')
+                    if meta.sbhBookmark.description == 'true'
+                        a(href='http://wiki.synbiohub.org/Terms/synbiohub#bookmark',title='Bookmarked Parts')
                             span.fa.fa-bookmark
-                    if meta.igemRating.description == 'true'
-                        a(href='http://parts.igem.org/Help:Part_Status_Box',title='Experience')
+                    if meta.sbhStar.description == 'true'
+                        a(href='http://wiki.synbiohub.org/Terms/synbiohub#star',title='Starred Parts')
                             span.fa.fa-star
                 if meta.igemDiscontinued.description == 'true'
                     h4(style=" color: #FF0000") This part has been discontinued.
-                if meta.igemReplacedBy.uri != ''
+                if meta.isReplacedBy.uri != ''
                     h4(style=" color: #FF0000") Please consider using 
-                        a(href=meta.igemReplacedBy.uri) #{meta.igemReplacedBy.id}
+                        a(href=meta.isReplacedBy.uri) #{meta.isReplacedBy.id}
                         | as a replacement.
 
                 if meta.protein && meta.protein.encodedBy !== undefined
@@ -109,38 +109,6 @@ block content
                                 != meta.description
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
-
-                    // if meta.igemPartStatus.description != ''
-                    //     tr
-                    //         td Part Status
-                    //         td
-                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemPartStatus.description}
-                    //         td
-                    //             a(href='/search/igem:partStatus=\''+meta.igemPartStatus.description+'\'&', title) #{'Search'} 
-
-                    // if meta.igemSampleStatus.description != ''
-                    //     tr
-                    //         td Sample Status
-                    //         td
-                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemSampleStatus.description}
-                    //         td
-                    //             a(href='/search/igem:sampleStatus=\''+meta.igemSampleStatus.description+'\'&', title) #{'Search'} 
-
-                    // if meta.igemStatus.description != ''
-                    //     tr
-                    //         td Status
-                    //         td
-                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemStatus.description}
-                    //         td
-                    //             a(href='/search/igem:status=<'+encodeURIComponent(meta.igemStatus.uri)+'>&') #{'Search'} 
-
-                    // if meta.igemExperience.description != ''
-                    //     tr
-                    //         td Experience
-                    //         td
-                    //             a(href='http://parts.igem.org/Help:Part_Status_Box',title='definition') #{meta.igemExperience.description}
-                    //         td
-                    //             a(href='/search/igem:experience=<'+encodeURIComponent(meta.igemExperience.uri)+'>&') #{'Search'} 
 
                     if meta.labels.length > 0
                         tr
@@ -286,16 +254,16 @@ block content
                         span Find Twins
                     br
 
-        if (meta.igemDescription != '') 
+        if (meta.mutableDescription != '') 
             div.row
                 | <h2>!{meta.description}</h2>
-                | !{meta.igemDescription}
+                | !{meta.mutableDescription}
                 br
 
-        if (meta.igemNotes != '') 
+        if (meta.mutableNotes != '') 
             div.row
                 | <h3>Notes</h3>
-                | !{meta.igemNotes}
+                | !{meta.mutableNotes}
                 br
 
         if (meta.source != '') 
