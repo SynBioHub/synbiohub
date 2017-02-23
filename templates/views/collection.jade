@@ -39,21 +39,36 @@ block content
                            a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
                         td(nowrap="nowrap")  
                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
-                    if meta.creator != ''
-                        tr
-                            td Creator
-                            td
-                                i
-                                    != meta.creator
-                            td
- 
-                    if meta.created != ''
-                        tr
-                            td Created
-                            td
-                                != meta.created
-                            td
-                               a(href='/search/createdBefore='+meta.created.split(' ')[0]+'&createdAfter='+meta.created.split(' ')[0]+'&') #{'Search'}
+                    // if meta.wasDerivedFrom != ''
+                    //     tr
+                    //         td Source
+                    //         td
+                    //            a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                    //         td
+
+                    // if meta.creator.description != ''
+                    //     tr
+                    //         td Creator
+                    //         td
+                    //             != meta.creator.description
+                    //         td
+                    //             a(href='/search/dc:creator=\''+meta.creator.description+'\'&') #{'Search'}
+       
+                    // if meta.created.description != ''
+                    //     tr
+                    //         td Created
+                    //         td
+                    //             != meta.created.description
+                    //         td
+                    //            a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
+
+                    // if meta.modified.description != ''
+                    //     tr
+                    //         td Modified
+                    //         td
+                    //             != meta.modified.description
+                    //         td
+                    //            a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&') #{'Search'}
 
                     if meta.description != ''
                         tr
