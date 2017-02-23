@@ -24,7 +24,7 @@
     "pug": "^0.1.0",
     "request": "^2.79.0",
     "sboljs": "^1.7.6",
-    "sbolmeta": "^0.1.2",
+    "sbolmeta": "^0.2.0",
     "sendgrid": "^4.7.1",
     "sequelize": "^3.30.1",
     "sequence-formatter": "^1.0.0",
