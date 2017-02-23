@@ -255,8 +255,8 @@ block content
                         span Find Twins
                     br
 
-        +mutable-description(meta.description, meta.mutableDescription)
-        +mutable-notes(meta.mutableNotes)
+        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
 
         if (meta.source != '') 
             div.row

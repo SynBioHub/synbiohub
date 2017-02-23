@@ -1,26 +1,34 @@
 
-mixin mutable-description(heading, desc)
-    if (desc == '') 
-        h4
-            a#sbh-add-description(href='#')
-                span.fa.fa-plus
-                i  Add description...
-    else
-        div.row
-            | <h2>!{heading}</h2>
-            | !{desc}
-            br
+mixin mutable-description(heading, src, desc)
+    div#sbh-description(data-src=src)
+        if (desc == '') 
+            h4
+                a#sbh-add-description(href='#')
+                    span.fa.fa-plus
+                    i  Add description...
+        else
+            div.row
+                div.pull-left
+                    a(href='#')
+                        span.fa.fa-pencil#sbh-edit-description
+                | <h2>!{heading}</h2>
+                | !{desc}
+                br
 
-mixin mutable-notes(notes)
-    if (notes == '') 
-        h4
-            a#sbh-add-notes(href='#')
-                span.fa.fa-plus
-                i  Add notes...
-    else
-        div.row
-            | <h3>Notes</h3>
-            | !{notes}
-            br
+mixin mutable-notes(src, notes)
+    div#sbh-notes(data-src=src)
+        if (notes == '') 
+            h4
+                a#sbh-add-notes(href='#')
+                    span.fa.fa-plus
+                    i  Add notes...
+        else
+            div.row
+                div.pull-left
+                    a(href='#')
+                        span.fa.fa-pencil#sbh-edit-notes
+                | <h3>Notes</h3>
+                | !{notes}
+                br
 
-            
+                
