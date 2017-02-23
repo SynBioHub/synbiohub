@@ -257,12 +257,7 @@ block content
 
         +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
-
-        if (meta.source != '') 
-            div.row
-                | <h3>Source</h3>
-                | !{meta.source}
-                br
+        +mutable-source(meta.sourceSource, meta.source)
     
         br
         if meta.displayList

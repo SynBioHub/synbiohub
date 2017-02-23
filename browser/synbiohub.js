@@ -199,3 +199,69 @@ $(document).on('click', '#sbh-edit-notes', function() {
     $textarea.focus()
 })
 
+$(document).on('click', '#sbh-add-source', function() {
+
+    var $textarea = $('<textarea class="form-control"></textarea>')
+    var $saveButton = $('<button class="btn btn-primary">').text('Save Source')
+    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
+
+    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
+
+    var $orig = $(this)
+    $(this).replaceWith($div)
+
+    $cancelButton.click(function() {
+        $div.replaceWith($orig)
+    })
+
+    $saveButton.click(function() {
+
+        var source = $textarea.val()
+
+        $.post('/updateMutableSource', {
+            uri: meta.uri,
+            source: source,
+        }, function(res) {
+            $div.replaceWith($(res))
+        })
+
+    })
+
+
+    $textarea.focus()
+
+})
+
+
+$(document).on('click', '#sbh-edit-source', function() {
+
+    var $textarea = $('<textarea class="form-control"></textarea>').val($('#sbh-source').data('src'))
+    var $saveButton = $('<button class="btn btn-primary">').text('Save Source')
+    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
+
+    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
+
+    var $orig = $('#sbh-source')
+    $('#sbh-source').replaceWith($div)
+
+    $cancelButton.click(function() {
+        $div.replaceWith($orig)
+    })
+
+    $saveButton.click(function() {
+
+        var source = $textarea.val()
+
+        $.post('/updateMutableSource', {
+            uri: meta.uri,
+            source: source,
+        }, function(res) {
+            $div.replaceWith($(res))
+        })
+
+    })
+
+
+    $textarea.focus()
+})
+

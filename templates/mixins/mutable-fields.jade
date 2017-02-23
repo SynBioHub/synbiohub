@@ -31,4 +31,20 @@ mixin mutable-notes(src, notes)
                 | !{notes}
                 br
 
+mixin mutable-source(src, source)
+    div#sbh-source(data-src=src)
+        if (source == '') 
+            h4
+                a#sbh-add-source(href='#')
+                    span.fa.fa-plus
+                    i  Add source...
+        else
+            div.row
+                div.pull-left
+                    a(href='#')
+                        span.fa.fa-pencil#sbh-edit-source
+                | <h3>Source</h3>
+                | !{source}
+                br
+
                 
