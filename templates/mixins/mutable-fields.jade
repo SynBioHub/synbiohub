@@ -1,0 +1,26 @@
+
+mixin mutable-description(heading, desc)
+    if (desc == '') 
+        h4
+            a#sbh-add-description(href='#')
+                span.fa.fa-plus
+                i  Add description...
+    else
+        div.row
+            | <h2>!{heading}</h2>
+            | !{desc}
+            br
+
+mixin mutable-notes(notes)
+    if (notes == '') 
+        h4
+            a#sbh-add-notes(href='#')
+                span.fa.fa-plus
+                i  Add notes...
+    else
+        div.row
+            | <h3>Notes</h3>
+            | !{notes}
+            br
+
+            

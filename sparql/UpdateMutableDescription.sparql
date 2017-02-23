@@ -1,0 +1,12 @@
+
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+DELETE WHERE {
+    <$topLevel> sbh:mutableDescription ?desc .
+}
+;
+INSERT DATA {
+    <$topLevel> sbh:mutableDescription $desc .
+} 
+
+

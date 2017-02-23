@@ -65,3 +65,43 @@ if(document.getElementById('design')
 
 
 
+
+$('#sbh-add-description').click(function() {
+
+    var $textarea = $('<textarea class="form-control"></textarea>')
+    var $saveButton = $('<button class="btn btn-primary">').text('Save Description')
+    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
+
+    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
+
+    var $orig = $(this)
+    $(this).replaceWith($div)
+
+    $cancelButton.click(function() {
+        $div.replaceWith($orig)
+    })
+
+    $saveButton.click(function() {
+
+        var desc = $textarea.val()
+
+        $.post('/updateMutableDescription', {
+            uri: meta.uri,
+            desc: desc,
+            success: function(res) {
+                $div.replaceWith($(res))
+            }
+        })
+
+    })
+
+
+    $textarea.focus()
+
+})
+
+$('#sbh-add-notes').click(function() {
+
+})
+
+
