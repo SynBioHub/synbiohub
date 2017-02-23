@@ -44,6 +44,7 @@ $('.twitter-typeahead').css('display', 'inline')
 
 $('.sbh-datatable').DataTable()
 
+$(".chosen-select").chosen()
 
 
 

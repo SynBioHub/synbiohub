@@ -55,14 +55,14 @@ block content
                 tr
                     td Object Type
                     td
-                       select(name='objectType')
+                       select(name='objectType').chosen-select
                             option #{'Any Object Type'}
                             for objectType in objectTypes
                                 option #{objectType.name}
                 tr
                     td Creator
                     td
-                       select(name='creator')
+                       select(name='creator').chosen-select
                             option #{'Any Creator'}
                             for creator in creators
                                 option #{creator.name}
@@ -89,70 +89,70 @@ block content
                 tr
                     td Type
                     td
-                        select(name='type')
+                        select(name='type').chosen-select
                             option #{'Any Type'}
                             for type in types
                                 option #{type.name}
                 tr
                     td Role
                     td
-                        select(name='role')
+                        select(name='role').chosen-select
                             option #{'Any Role'}
                             for role in roles
                                 option #{role.name}
                 tr
                     td igem#partType
                     td
-                        select(name='partType')
+                        select(name='partType').chosen-select
                             option #{'Any iGEM Part Type'}
                             for igemRole in igemRoles
                                 option #{igemRole.name}
                 tr
                     td igem#partStatus
                     td
-                        select(name='partStatus')
+                        select(name='partStatus').chosen-select
                             option #{'Any iGEM Part Status'}
                             for partStatus in partStatuses
                                 option #{partStatus.name}
                 tr
                     td igem#sampleStatus
                     td
-                        select(name='sampleStatus')
+                        select(name='sampleStatus').chosen-select
                             option #{'Any iGEM Sample Status'}
                             for sampleStatus in sampleStatuses
                                 option #{sampleStatus.name}
                 tr
                     td igem#status
                     td
-                        select(name='status')
+                        select(name='status').chosen-select
                             option #{'Any iGEM Status'}
                             for status in statuses
                                 option #{status.name}
                 tr
                     td igem#experience
                     td
-                        select(name='experience')
+                        select(name='experience').chosen-select
                             option #{'Any iGEM Experience'}
                             for experience in experiences
                                 option #{experience.name}
                 tr
                     td Collection
                     td
-                        select(name='collection1')
+                        select(name='collection1').chosen-select
                             option #{'Any Collection'}
                             for collection in collections
                                 option #{collection.name}
                 tr
                     td Collection
                     td
-                        select(name='collection2')
+                        select(name='collection2').chosen-select
                             option #{'Any Collection'}
                             for collection in collections
                                 option #{collection.name}
                 tr
                     td Collection
                     td
-                        select(name='collection3')
+                        select(name='collection3').chosen-select
                             option #{'Any Collection'}
                             for collection in collections
                                 option #{collection.name}
