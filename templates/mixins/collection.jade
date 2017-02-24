@@ -2,11 +2,17 @@
 mixin collection-item(collection)
     div.search-result-item
 
-        a(href=collection.uri) #{collection.name}
+        if collection.icon
+            img.sbh-collection-box-icon(src=collection.icon)
 
-        div.keywords
-            if collection.description != ''
-                strong #{collection.description}
-        br
+        div(style="margin-right: 100px;")
+            a(href=collection.uri) #{collection.name}
+
+            div.keywords
+                if collection.description != ''
+                    strong #{collection.description}
+            br
+
+        div.clearfix
 
 
