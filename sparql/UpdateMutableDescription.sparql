@@ -3,6 +3,9 @@ PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 
 DELETE WHERE {
     <$topLevel> sbh:mutableDescription ?desc .
+}
+;
+DELETE WHERE {
     <$topLevel> dcterms:modified ?modified .
 }
 ;

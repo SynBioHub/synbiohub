@@ -2,6 +2,7 @@
 extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
+include ../mixins/mutable-fields.jade
 
 block jsState
     script meta = 
@@ -135,11 +136,9 @@ block content
                     span Find Uses
                 br
 
-        if (meta.source != '') 
-            div.row
-                | <h3>Source</h3>
-                | !{meta.source}
-                br
+        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
+        +mutable-source(meta.sourceSource, meta.source)
 
         if meta.elements
             div.row

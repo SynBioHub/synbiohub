@@ -2,6 +2,9 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 
 DELETE WHERE {
     <$topLevel> dcterms:source ?source .
+}
+;
+DELETE WHERE {
     <$topLevel> dcterms:modified ?modified .
 }
 ;
