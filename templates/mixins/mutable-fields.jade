@@ -1,48 +1,54 @@
 
-mixin mutable-description(heading, src, desc)
+mixin mutable-description(heading, src, desc, canEdit)
     div#sbh-description(data-src=src)
         if (desc == '') 
-            h4
-                a#sbh-add-description(href='#')
-                    span.fa.fa-plus
-                    i  Add description...
+            if canEdit
+                h4
+                    a#sbh-add-description(href='#')
+                        span.fa.fa-plus
+                        i  Add description...
         else
             div.row
-                div.pull-left
-                    a(href='#')
-                        span.fa.fa-pencil#sbh-edit-description
+                if canEdit
+                    div.pull-left
+                        a(href='#')
+                            span.fa.fa-pencil#sbh-edit-description
                 | <h2>!{heading}</h2>
                 | !{desc}
                 br
 
-mixin mutable-notes(src, notes)
+mixin mutable-notes(src, notes, canEdit)
     div#sbh-notes(data-src=src)
         if (notes == '') 
-            h4
-                a#sbh-add-notes(href='#')
-                    span.fa.fa-plus
-                    i  Add notes...
+            if canEdit
+                h4
+                    a#sbh-add-notes(href='#')
+                        span.fa.fa-plus
+                        i  Add notes...
         else
             div.row
-                div.pull-left
-                    a(href='#')
-                        span.fa.fa-pencil#sbh-edit-notes
+                if canEdit
+                    div.pull-left
+                        a(href='#')
+                            span.fa.fa-pencil#sbh-edit-notes
                 | <h3>Notes</h3>
                 | !{notes}
                 br
 
-mixin mutable-source(src, source)
+mixin mutable-source(src, source, canEdit)
     div#sbh-source(data-src=src)
         if (source == '') 
-            h4
-                a#sbh-add-source(href='#')
-                    span.fa.fa-plus
-                    i  Add source...
+            if canEdit
+                h4
+                    a#sbh-add-source(href='#')
+                        span.fa.fa-plus
+                        i  Add source...
         else
             div.row
-                div.pull-left
-                    a(href='#')
-                        span.fa.fa-pencil#sbh-edit-source
+                if canEdit
+                    div.pull-left
+                        a(href='#')
+                            span.fa.fa-pencil#sbh-edit-source
                 | <h3>Source</h3>
                 | !{source}
                 br

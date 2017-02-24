@@ -255,9 +255,9 @@ block content
                         span Find Twins
                     br
 
-        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
-        +mutable-source(meta.sourceSource, meta.source)
+        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.sourceSource, meta.source, canEdit)
     
         br
         if meta.displayList
@@ -276,13 +276,4 @@ block content
 
         // br
         br
-
-        if canEdit
-
-            if design.triplestore != 'public'
-                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
-                    span.fa.fa-unlock
-                        |  Make Public
-
-
 
