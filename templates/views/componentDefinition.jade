@@ -254,11 +254,12 @@ block content
                         | 
                         span Find Twins
                     br
-                br
-                a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
-                    span.fa.fa-plus-circle
-                    | 
-                    span Data Integration
+                if config.experimental.dataIntegration
+                    br
+                    a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
+                        span.fa.fa-plus-circle
+                        | 
+                        span Data Integration
 
         +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)

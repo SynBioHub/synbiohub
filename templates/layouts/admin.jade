@@ -16,16 +16,18 @@ block content
                     a(href='/admin/') Status
                 li(role='presentation',class=(adminSection==='users'?'active':''))
                     a(href='/admin/users') Users
-                li(role='presentation',class=(adminSection==='jobs'?'active':''))
-                    a(href='/admin/jobs') Jobs
+                if config.experimental.dataIntegration
+                    li(role='presentation',class=(adminSection==='jobs'?'active':''))
+                        a(href='/admin/jobs') Jobs
                 li(role='presentation',class=(adminSection==='graphs'?'active':''))
                     a(href='/admin/graphs') Graphs
                 li(role='presentation',class=(adminSection==='sparql'?'active':''))
                     a(href='/admin/sparql') SPARQL
                 li(role='presentation',class=(adminSection==='caches'?'active':''))
                     a(href='/admin/caches') Caches
-                li(role='presentation',class=(adminSection==='integrations'?'active':''))
-                    a(href='/admin/integrations') Integrations
+                if config.experimental.dataIntegration
+                    li(role='presentation',class=(adminSection==='integrations'?'active':''))
+                        a(href='/admin/integrations') Integrations
                 li(role='presentation',class=(adminSection==='export'?'active':''))
                     a(href='/admin/export') Export
                 li(role='presentation',class=(adminSection==='update'?'active':''))
