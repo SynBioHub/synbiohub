@@ -1,5 +1,5 @@
 
-mixin mutable-description(heading, src, desc, canEdit)
+mixin mutable-description(src, desc, canEdit)
     div#sbh-description(data-src=src)
         if (desc == '') 
             if canEdit
@@ -13,7 +13,7 @@ mixin mutable-description(heading, src, desc, canEdit)
                     div.pull-left
                         a(href='#')
                             span.fa.fa-pencil#sbh-edit-description
-                | <h2>!{heading}</h2>
+                | <h2>Description</h2>
                 | !{desc}
                 br
 
