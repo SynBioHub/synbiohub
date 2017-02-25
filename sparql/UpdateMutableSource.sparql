@@ -1,7 +1,8 @@
 PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 
 DELETE WHERE {
-    <$topLevel> dcterms:source ?source .
+    <$topLevel> sbh:mutableProvenance ?source .
 }
 ;
 DELETE WHERE {
@@ -9,7 +10,7 @@ DELETE WHERE {
 }
 ;
 INSERT DATA {
-    <$topLevel> dcterms:source $source .
+    <$topLevel> sbh:mutableProvenance $source .
     <$topLevel> dcterms:modified $modified .
 } 
 
