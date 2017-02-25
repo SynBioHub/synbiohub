@@ -58,8 +58,9 @@ block content
                             | 
                             a(href=protein.url) #{protein.name}
 
-            div.col-sm-3.sbh-collection-icon
-                img(src=collectionIcon)
+            if (collectionIcon)
+                div.col-sm-3.sbh-collection-icon
+                    img(src=collectionIcon)
 
 
         div.row
@@ -261,7 +262,7 @@ block content
                         | 
                         span Data Integration
 
-        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
         +mutable-source(meta.sourceSource, meta.source, canEdit)
     
@@ -270,16 +271,4 @@ block content
             div.row
                 div.col-md-12.text-center
                     div#design
-
-
-        // if meta.sequences.length > 0
-        //     div.row
-        //         div.col-md-8
-        //             div.pull-right
-        //                 +blast-button(meta.sequences[0])
-        //             h4 Sequence (#{meta.sequences[0].length} #{meta.sequences[0].lengthUnits})
-        //             pre #{meta.sequences[0].formatted}
-
-        // br
-        br
 

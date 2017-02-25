@@ -151,16 +151,16 @@ block content
                     span Find Uses
                 br
 
-        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
-        +mutable-source(meta.dcTermsSourceSource, meta.dcTermsSource)
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.dcTermsSourceSource, meta.dcTermsSource, canEdit)
 
-        if canEdit
+        // if canEdit
 
-            if design.triplestore != 'public'
-                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
-                    span.fa.fa-unlock
-                        |  Make Public
+        //     if design.triplestore != 'public'
+        //         a.btn.btn-success(href='/actions/makePublic/' + meta.id)
+        //             span.fa.fa-unlock
+        //                 |  Make Public
 
 
 

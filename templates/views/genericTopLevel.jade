@@ -94,11 +94,15 @@ block content
                                     br
                                 td
                                     if (annotation.type === 'uri')
-                                        a(href=annotation.uri,title=annotation.uri) #{annotation.value}
+                                        a(href=annotation.url,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br
                                 td
+                                    if (annotation.type === 'uri')
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&') #{'Search'}
+                                    else 
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&') #{'Search'}
 				    
                     if meta.id != '' && collections.length > 0
                         tr
@@ -126,16 +130,16 @@ block content
                         span Find Uses
                     br
 
-        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
-        +mutable-source(meta.dcTermsSourceSource, meta.dcTermsSource)
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.dcTermsSourceSource, meta.dcTermsSource, canEdit)
 
-        if canEdit
+        // if canEdit
 
-            if design.triplestore != 'public'
-                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
-                    span.fa.fa-unlock
-                        |  Make Public
+        //     if design.triplestore != 'public'
+        //         a.btn.btn-success(href='/actions/makePublic/' + meta.id)
+        //             span.fa.fa-unlock
+        //                 |  Make Public
 
 
 

@@ -28,8 +28,9 @@ block content
         div.row.entry-heading
             div.col-sm-5.entry-title
                 h1 #{meta.name}
-            div.col-sm-3.sbh-collection-icon
-                img(src=collectionIcon)
+            if (collectionIcon)
+                div.col-sm-3.sbh-collection-icon
+                    img(src=collectionIcon)
 
         div.row
             div.col-md-8
@@ -183,9 +184,9 @@ block content
                     span Find Uses
                 br
 
-        +mutable-description(meta.description, meta.mutableDescriptionSource, meta.mutableDescription)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes)
-        +mutable-source(meta.sourceSource, meta.source)
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.sourceSource, meta.source, canEdit)
 
         br
         if meta.displayList
@@ -194,12 +195,12 @@ block content
                     div#design
         br
 
-        if canEdit
+        // if canEdit
 
-            if design.triplestore != 'public'
-                a.btn.btn-success(href='/actions/makePublic/' + meta.id)
-                    span.fa.fa-unlock
-                        |  Make Public
+        //     if design.triplestore != 'public'
+        //         a.btn.btn-success(href='/actions/makePublic/' + meta.id)
+        //             span.fa.fa-unlock
+        //                 |  Make Public
 
 
 
