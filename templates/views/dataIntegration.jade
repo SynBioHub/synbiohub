@@ -1,0 +1,14 @@
+
+extends ../layouts/default.jade
+
+block jsState
+    script graphUri = 
+        != JSON.stringify(graphUri)
+    script inputUri = 
+        != JSON.stringify(inputUri)
+    script tasks = 
+        != JSON.stringify(tasks)
+
+block content
+    div.container#sbh-data-integration
+

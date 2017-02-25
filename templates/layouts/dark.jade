@@ -35,7 +35,12 @@ block body
                                 a(href='/manage')
                                     span.fa.fa-align-left
                                     | &nbsp &nbsp;
-                                    span.white-text Manage Submissions
+                                    span.white-text Submissions
+                            li
+                                a(href='/jobs')
+                                    span.fa.fa-tasks
+                                    | &nbsp &nbsp;
+                                    span.white-text  Jobs
                             if locals.user.isAdmin
                                 li
                                     a(href='/admin')
