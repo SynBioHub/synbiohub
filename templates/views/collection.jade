@@ -2,6 +2,7 @@
 extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
+include ../mixins/mutable-fields.jade
 
 block jsState
     script meta = 
@@ -37,12 +38,12 @@ block content
                            a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
                         td(nowrap="nowrap")  
                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
-                    // if meta.wasDerivedFrom != ''
-                    //     tr
-                    //         td Source
-                    //         td
-                    //            a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
-                    //         td
+                    if meta.wasDerivedFrom != ''
+                         tr
+                             td Source
+                             td
+                                a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                             td
 
                     if meta.creator != ''
                         tr
@@ -76,6 +77,7 @@ block content
                             td
                                 a(href='/search/?q='+meta.description) #{'Search'}
 
+
                     if annotations && annotations.length > 0
                         for annotation in annotations
                             tr
@@ -84,11 +86,15 @@ block content
                                     br
                                 td
                                     if (annotation.type === 'uri')
-                                        a(href=annotation.uri,title=annotation.uri) #{annotation.value}
+                                        a(href=annotation.url,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br
                                 td
+                                    if (annotation.type === 'uri')
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&') #{'Search'}
+                                    else 
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&') #{'Search'}
 
                     if collections.length > 0
                         tr
@@ -151,6 +157,10 @@ block content
                     a.btn.btn-success(href=meta.url + '/makePublic')
                         span.fa.fa-unlock
                             |  Make Public
+
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.mutableProvenanceSource, meta.mutableProvenance, canEdit)
         
         if (submissionCitations.length > 0) 
             div.row

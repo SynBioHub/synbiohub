@@ -96,11 +96,15 @@ block content
                                     br
                                 td
                                     if (annotation.type === 'uri')
-                                        a(href=annotation.uri,title=annotation.uri) #{annotation.value}
+                                        a(href=annotation.url,title=annotation.uri) #{annotation.value}
                                     else 
                                         != annotation.value.toString()
                                     br
                                 td
+                                    if (annotation.type === 'uri')
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&') #{'Search'}
+                                    else 
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&') #{'Search'}
 				    
                     tr
                         td Source
