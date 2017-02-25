@@ -1,6 +1,7 @@
 PREFIX sbol2: <http://sbols.org/v2#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX synbiohub: <http://synbiohub.org#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
 
 SELECT 
        ?persistentIdentity
@@ -11,6 +12,7 @@ SELECT
        ?uploadedBy
        ?creator
        ?created
+       ?modified
 WHERE { 
       <$collection> a sbol2:Collection .
       OPTIONAL { <$collection> sbol2:persistentIdentity ?persistentIdentity . }
@@ -18,7 +20,8 @@ WHERE {
       OPTIONAL { <$collection> sbol2:version ?version . }
       OPTIONAL { <$collection> dcterms:title ?name . }
       OPTIONAL { <$collection> dcterms:description ?description . }
-      OPTIONAL { <$collection> dcterms:creator ?creator . }
+      OPTIONAL { <$collection> dc:creator ?creator . }
       OPTIONAL { <$collection> dcterms:created ?created . }
+      OPTIONAL { <$collection> dcterms:modified ?modified . }
       OPTIONAL { <$collection> synbiohub:uploadedBy ?uploadedBy . }
 }

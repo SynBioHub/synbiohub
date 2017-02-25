@@ -1,5 +1,6 @@
 PREFIX sbol2: <http://sbols.org/v2#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX synbiohub: <http://synbiohub.org#>
 
 SELECT 
@@ -18,7 +19,7 @@ WHERE {
       OPTIONAL { <$componentDefinition> sbol2:version ?version . }
       OPTIONAL { <$componentDefinition> dcterms:title ?name . }
       OPTIONAL { <$componentDefinition> dcterms:description ?description . }
-      OPTIONAL { <$componentDefinition> dcterms:creator ?creator . }
+      OPTIONAL { <$componentDefinition> dc:creator ?creator . }
       OPTIONAL { <$componentDefinition> dcterms:created ?created . }
       OPTIONAL { <$componentDefinition> synbiohub:uploadedBy ?uploadedBy . }
 }
