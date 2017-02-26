@@ -9,4 +9,5 @@ SELECT ?Collection ?name ?description ?displayId ?version WHERE {
     OPTIONAL { ?Collection sbol2:displayId ?displayId . }
     OPTIONAL { ?Collection dcterms:description ?description . }
     OPTIONAL { ?Collection sbol2:version ?version }
+    FILTER NOT EXISTS { $parentCollection sbol2:member ?otherCollection . ?otherCollection sbol2:member ?Collection }
 }
