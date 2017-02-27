@@ -1,0 +1,15 @@
+
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+INSERT {
+    <$topLevel> sbh:attachment <$attachmentURI> .
+
+    <$attachmentURI> a sbh:Upload .
+    <$attachmentURI> dcterms:title $name .
+    <$attachmentURI> dcterms:description $description .
+    <$attachmentURI> sbh:uploadHash $hash .
+    <$attachmentURI> sbh:uploadType <$type> .
+
+}
+

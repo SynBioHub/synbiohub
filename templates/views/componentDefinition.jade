@@ -3,6 +3,7 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
+include ../mixins/attachments.jade
 
 block jsState
     script meta = 
@@ -265,6 +266,7 @@ block content
         +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
         +mutable-source(meta.sourceSource, meta.source, canEdit)
+        +attachments(meta, canEdit)
         
         if (submissionCitations.length > 0) 
             div.row

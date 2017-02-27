@@ -1,0 +1,6 @@
+
+mixin attachments(meta, canEdit)
+    if canEdit
+        form.dropzone(action='/actions/upload')
+            input(type='hidden',name='uri',value=meta.uri)
+
