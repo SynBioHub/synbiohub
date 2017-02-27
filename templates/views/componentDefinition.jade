@@ -265,6 +265,27 @@ block content
         +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
         +mutable-source(meta.sourceSource, meta.source, canEdit)
+        
+        if (submissionCitations.length > 0) 
+            div.row
+                | <h3>References</h3>
+                br
+    
+                for citation in submissionCitations
+                    != citation.publicationAuthors 
+                    != ', "'
+                    != citation.publicationTitle
+                    != '", '
+                    != citation.publicationJournalInfo
+                    != ', '
+                    != citation.publicationYear
+                    != ', PMID: '
+                    != citation.pubmedID
+                    != ', '
+                    a(href='http://dx.doi.org/'+citation.publicationDOI) #{citation.publicationDOI}
+                    != '.'
+                    br
+                    br
     
         br
         if meta.displayList
