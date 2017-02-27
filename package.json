@@ -28,6 +28,7 @@
     "pug": "^0.1.0",
     "rdf-ext": "^0.3.0",
     "rdf-graph-array": "git+https://github.com/udp/rdf-graph-array.git",
+    "rdf-parser-rdfxml": "^0.3.1",
     "request": "^2.79.0",
     "sboljs": "^1.8.2",
     "sbolmeta": "^0.2.1",
