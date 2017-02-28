@@ -232,3 +232,68 @@ $(document).on('click', '#sbh-edit-source', function() {
     $textarea.focus()
 })
 
+
+// https://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3
+//
+$(function() {
+
+  // We can attach the `fileselect` event to all file inputs on the page
+  $(document).on('change', ':file', function() {
+    var input = $(this),
+        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+  });
+
+  // We can watch for our custom `fileselect` event like this
+  $(document).ready( function() {
+      $(':file').on('fileselect', function(event, numFiles, label) {
+
+          var input = $(this).parents('.input-group').find(':text'),
+              log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+          console.log($(this).closest('form').length)
+          console.log($(this).closest('form').find('button').length)
+          $(this).closest('form').find('button[type=submit]').prop('disabled', false).addClass('btn-success')
+
+          if( input.length ) {
+              input.val(log);
+          } else {
+              if( log ) alert(log);
+          }
+
+      });
+  });
+  
+});
+
+$('#sbh-attachment-form').submit(function(e) {
+
+    e.preventDefault()
+
+    var formData = new FormData($(this)[0])
+
+    console.log($(this))
+    console.log($(this)[0])
+    console.log($(this).attr('action'))
+
+    console.log(formData)
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: 'post',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            $('.attachments-table').replaceWith($('<div></div>').html(data).find('.attachments-table'))
+        }
+    })
+
+
+    return false
+
+})
+
+

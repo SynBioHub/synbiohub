@@ -9,6 +9,9 @@ var fs = require('fs')
 
 var jobUtils = require('./lib/jobs/job-utils')
 
+var sliver = require('./lib/sliver')
+
+
 if(!fs.existsSync('synbiohub.sqlite')) {
 
     db.sequelize.sync({ force: true }).then(startServer)
@@ -21,13 +24,26 @@ if(!fs.existsSync('synbiohub.sqlite')) {
 
 function startServer() {
 
-    return jobUtils.setRunningJobsToQueued()
+    return initSliver()
+                .then(() => jobUtils.setRunningJobsToQueued())
                 .then(() => jobUtils.resumeAllJobs())
                 .then(() => {
 
         var app = new App()
 
         app.listen(parseInt(config.get('port')))
+    })
+}
+
+
+function initSliver() {
+
+    return new Promise((resolve, reject) => {
+
+        // TODO
+        resolve()
+
+
     })
 }
 

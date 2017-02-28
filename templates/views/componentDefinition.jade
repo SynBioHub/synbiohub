@@ -3,6 +3,7 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
+include ../mixins/attachments.jade
 
 block jsState
     script meta = 
@@ -262,9 +263,22 @@ block content
                         | 
                         span Data Integration
 
-        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
-        +mutable-source(meta.sourceSource, meta.source, canEdit)
+        if meta.displayList
+            div.row
+                div.col-md-12.text-center
+                div#design
+
+        div.row
+            div.col-md-8
+                +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+
+        div.row
+            div.col-md-8
+                +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+
+        div.row
+            div.col-md-8
+                +mutable-source(meta.sourceSource, meta.source, canEdit)
         
         if (submissionCitations.length > 0) 
             div.row
@@ -287,9 +301,7 @@ block content
                     br
                     br
     
-        br
-        if meta.displayList
-            div.row
-                div.col-md-12.text-center
-                    div#design
+        div.row
+            div.col-md-8
+                +attachments(meta.url, meta.attachments, canEdit)
 
