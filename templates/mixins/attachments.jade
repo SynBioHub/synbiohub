@@ -1,17 +1,28 @@
 
-mixin attachments(meta, canEdit)
-    if canEdit || meta.attachments.length > 0
+mixin attachments(url, attachments, canEdit)
+    if canEdit || attachments.length > 0
         h3 Attachments
-        table.table.table-striped
+        table.attachments-table.table.table-striped
             thead
                 th Type
                 th Name
             tbody
-            for attachment in meta.attachments
+            for attachment in attachments
                 tr
                     td #{attachment.type}
                     td
                         a(href=attachment.url) #{attachment.name}
         if canEdit
-            form.dropzone(action=meta.url + '/attach')
+            div.row
+                form#sbh-attachment-form(method='post',enctype='multipart/form-data',action=url + '/attach')
+                    div.col-xs-6
+                        div.input-group
+                            label.input-group-btn
+                                span.btn.btn-primary
+                                    | Select file(s)&hellip;
+                                    input(type="file",name="file",style="display: none;",multiple)
+                            input(type="text",class="form-control",readonly)
+                    div.col-xs-3
+                    div.col-xs-3
+                        button.btn(disabled,type='submit',style='width:100%;') Attach
 

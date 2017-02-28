@@ -301,9 +301,7 @@ block content
                     br
                     br
     
-        br
-
         div.row
             div.col-md-8
-                +attachments(meta, canEdit)
+                +attachments(meta.url, meta.attachments, canEdit)
 
