@@ -1,6 +1,17 @@
 
 mixin attachments(meta, canEdit)
-    if canEdit
-        form.dropzone(action='/actions/upload')
-            input(type='hidden',name='uri',value=meta.uri)
+    if canEdit || meta.attachments.length > 0
+        h3 Attachments
+        table.table.table-striped
+            thead
+                th Type
+                th Name
+            tbody
+            for attachment in meta.attachments
+                tr
+                    td #{attachment.type}
+                    td
+                        a(href=attachment.url) #{attachment.name}
+        if canEdit
+            form.dropzone(action=meta.url + '/attach')
 

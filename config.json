@@ -53,5 +53,14 @@
   },
   "experimental": {
       "dataIntegration": false
+  },
+  "fileExtensionToAttachmentType": {
+      "png": "http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment"
+  },
+  "attachmentTypeToMimeType": {
+      "http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment": "image/png"
+  },
+  "attachmentTypeToTypeName": {
+      "http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment": "Image"
   }
 }
