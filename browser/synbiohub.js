@@ -302,3 +302,13 @@ $('#sbh-attachment-form').submit(function(e) {
 })
 
 
+
+$('.sbh-sparql-editor').each((i, textarea) => {
+
+    var cm = CodeMirror.fromTextArea(textarea, {
+        lineNumbers: true
+    })
+
+})
+
+
