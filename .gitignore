@@ -5,6 +5,10 @@ public/styles/site.css
 *.sqlite
 config.local.json
 .vscode
+uploads
+public/styles/theme/*.less
+
+
 
 
 

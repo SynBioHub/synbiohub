@@ -1,0 +1,15 @@
+{
+    "title": "Default",
+    "description": "The default SynBioHub theme",
+    "version": "1.0.0",
+    "author": "SynBioHub",
+    "url": "http://github.com/SynBioHub/synbiohub",
+    "parameters": [
+        {
+            "type": "color",
+            "variable": "baseColor",
+            "name": "Base Color",
+            "default": "#D25627"
+        }
+    ]
+}

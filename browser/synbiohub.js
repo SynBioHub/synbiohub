@@ -288,6 +288,11 @@ $('#sbh-attachment-form').submit(function(e) {
         processData: false,
         success: function(data) {
             $('.attachments-table').replaceWith($('<div></div>').html(data).find('.attachments-table'))
+
+            var form = $(':file').val('').closest('form')
+            form.find('button[type=submit]').prop('disabled', true).removeClass('btn-success')
+
+            $(':file').parents('.input-group').find(':text').val('')
         }
     })
 

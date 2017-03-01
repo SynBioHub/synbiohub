@@ -13,6 +13,7 @@ INSERT {
         sbol:persistentIdentity <$persistentIdentity> ;
         sbol:version $version ;
         sbh:attachmentHash $hash ;
+        sbh:attachmentSize $size ;
         sbh:attachmentType <$type> .
 
 }
