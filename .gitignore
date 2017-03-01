@@ -6,6 +6,9 @@ public/styles/site.css
 config.local.json
 .vscode
 uploads
+public/styles/theme/*.less
+
+
 
 
 

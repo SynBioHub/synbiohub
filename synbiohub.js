@@ -11,6 +11,8 @@ var jobUtils = require('./lib/jobs/job-utils')
 
 var sliver = require('./lib/sliver')
 
+var theme = require('./lib/theme')
+
 
 if(!fs.existsSync('synbiohub.sqlite')) {
 
@@ -25,6 +27,7 @@ if(!fs.existsSync('synbiohub.sqlite')) {
 function startServer() {
 
     return initSliver()
+                .then(() => theme.setCurrentThemeFromConfig())
                 .then(() => jobUtils.setRunningJobsToQueued())
                 .then(() => jobUtils.resumeAllJobs())
                 .then(() => {

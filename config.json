@@ -2,6 +2,11 @@
   "firstLaunch": false,
   "instanceName": "SynBioHub",
   "instanceUrl": "http://synbiohub.org/",
+  "theme": "default",
+  "themeParameters": {
+      "default": {
+      }
+  },
   "port": 7777,
   "triplestore": {
       "sparqlEndpoint": "http://localhost:8890/sparql",
