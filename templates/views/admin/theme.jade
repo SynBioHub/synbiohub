@@ -1,0 +1,18 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    div
+        h4 Parameters
+        form(action='/admin/theme',method='POST')
+            table.table.table-striped
+                thead
+                    th Name
+                    th Value
+                tbody
+                    for parameter in themeParameters
+                        tr
+                            td #{parameter.name}
+                            td
+                                input.form-control(type='text',name=parameter.variable,value=parameter.value)
+            button.btn.btn-primary.pull-right Save
