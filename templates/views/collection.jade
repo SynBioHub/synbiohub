@@ -142,12 +142,13 @@ block content
                                     br
 
             div.col-md-4.entry-actions
-                a.btn.btn-primary(href=sbolUrl)
-                    span.fa.fa-download
-                    | 
-                    span Download SBOL File
-                br
-                br
+                if memberCount <= 2000
+                    a.btn.btn-primary(href=sbolUrl)
+                        span.fa.fa-download
+                        | 
+                        span Download SBOL File
+                    br
+                    br
                 if meta.triplestore != 'public'
                     a.btn.btn-success(href=share)
                         span.fa.fa-share
