@@ -7,6 +7,7 @@ mixin attachments(url, attachments, canEdit)
                 th Type
                 th Name
                 th Size
+                th
             tbody
             for attachment in attachments
                 tr
@@ -16,6 +17,11 @@ mixin attachments(url, attachments, canEdit)
                     td
                         if attachment.sizeString
                             | #{attachment.sizeString}
+                    td
+                        a(href=attachment.url + '/download')
+                            button.btn.btn-primary
+                                span.fa.fa-download
+                                |  Download
         if canEdit
             div.row
                 form#sbh-attachment-form(method='post',enctype='multipart/form-data',action=url + '/attach')
