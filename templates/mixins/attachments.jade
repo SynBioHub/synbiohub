@@ -6,12 +6,16 @@ mixin attachments(url, attachments, canEdit)
             thead
                 th Type
                 th Name
+                th Size
             tbody
             for attachment in attachments
                 tr
                     td #{attachment.type}
                     td
                         a(href=attachment.url) #{attachment.name}
+                    td
+                        if attachment.sizeString
+                            | #{attachment.sizeString}
         if canEdit
             div.row
                 form#sbh-attachment-form(method='post',enctype='multipart/form-data',action=url + '/attach')

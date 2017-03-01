@@ -133,7 +133,13 @@ block content
         if attachmentType === 'http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment'
             img(src=attachmentDownloadURL,style='max-width: 1000px;')
         else
-            code #{attachmentType}
+            a(href=attachmentDownloadURL)
+                button.btn.btn-primary.btn-lg
+                    span.fa.fa-download
+                    |  Download attachment
+
+        br
+        br
 
         +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
