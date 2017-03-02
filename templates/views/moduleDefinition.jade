@@ -3,6 +3,7 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
+include ../mixins/attachments.jade
 
 block jsState
     script meta = 
@@ -188,6 +189,13 @@ block content
                     span Find Uses
                 br
 
+        if meta.displayList
+            div.row
+                div.col-md-12.text-center
+                    div#design
+            br
+            br
+
         +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
         +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
         +mutable-source(meta.sourceSource, meta.source, canEdit)
@@ -212,13 +220,10 @@ block content
                     != '.'
                     br
                     br
-
-        br
-        if meta.displayList
-            div.row
-                div.col-md-12.text-center
-                    div#design
-        br
+    
+        div.row
+            div.col-md-8
+                +attachments(meta.url, meta.attachments, canEdit)
 
         // if canEdit
 

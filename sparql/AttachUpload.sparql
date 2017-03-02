@@ -12,6 +12,7 @@ INSERT {
         sbol:displayId $displayId ;
         sbol:persistentIdentity <$persistentIdentity> ;
         sbol:version $version ;
+	sbh:ownedBy $ownedBy ;
         sbh:attachmentHash $hash ;
         sbh:attachmentSize $size ;
         sbh:attachmentType <$type> .

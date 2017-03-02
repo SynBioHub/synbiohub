@@ -3,6 +3,7 @@ extends ../layouts/default.jade
 
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
+include ../mixins/attachments.jade
 
 block jsState
     script meta = 
@@ -178,6 +179,10 @@ block content
 
         br
         br
+    
+        div.row
+            div.col-md-8
+                +attachments(meta.url, meta.attachments, canEdit)
 
         // if canEdit
 
