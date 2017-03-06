@@ -233,6 +233,72 @@ $(document).on('click', '#sbh-edit-source', function() {
 })
 
 
+$(document).on('click', '#sbh-add-citations', function() {
+
+    var $textarea = $('<textarea class="form-control"></textarea>')
+    var $saveButton = $('<button class="btn btn-primary">').text('Save References')
+    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
+
+    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
+
+    var $orig = $(this)
+    $(this).replaceWith($div)
+
+    $cancelButton.click(function() {
+        $div.replaceWith($orig)
+    })
+
+    $saveButton.click(function() {
+
+        var citations = $textarea.val()
+        $.post('/updateCitations', {
+            uri: meta.uri,
+            citations: citations,
+        }, function(res) {
+            $div.replaceWith($(res))
+        })
+
+    })
+
+
+    $textarea.focus()
+
+})
+
+
+$(document).on('click', '#sbh-edit-citations', function() {
+
+    var $textarea = $('<textarea class="form-control"></textarea>').val($('#sbh-citations').data('src'))
+    var $saveButton = $('<button class="btn btn-primary">').text('Save References')
+    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
+
+    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
+
+    var $orig = $('#sbh-citations')
+    $('#sbh-citations').replaceWith($div)
+
+    $cancelButton.click(function() {
+        $div.replaceWith($orig)
+    })
+
+    $saveButton.click(function() {
+
+        var citations = $textarea.val()
+
+        $.post('/updateCitations', {
+            uri: meta.uri,
+            citations: citations,
+        }, function(res) {
+            $div.replaceWith($(res))
+        })
+
+    })
+
+
+    $textarea.focus()
+})
+
+
 // https://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3
 //
 $(function() {

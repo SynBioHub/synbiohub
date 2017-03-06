@@ -1,0 +1,44 @@
+
+mixin citations(src, submissionCitations, canEdit)
+    div#sbh-citations(data-src=src)
+        if (submissionCitations.length == 0) 
+            if canEdit
+                h4
+                    a#sbh-add-citations(href='#')
+                        span.fa.fa-plus
+                        i  Add reference...
+        else
+            if canEdit
+                div.pull-left
+                    a(href='#')
+                        span.fa.fa-pencil#sbh-edit-citations
+            | <h3>References</h3>
+            br
+    
+            for citation in submissionCitations
+                != citation.publicationAuthors 
+                != ', "'
+                != citation.publicationTitle
+                != '", '
+                != citation.publicationJournal
+                != ', '
+                != citation.publicationYear
+                != ', '
+                != citation.publicationMonth
+                != ' '
+                != citation.publicationDay
+                != '; '
+                != citation.publicationVolume
+                != '('
+                != citation.publicationIssue
+                != '): '
+                != citation.publicationPages
+                if (citation.pubmedID != '') 
+                   != ', PMID: '
+                   a(href='https://www.ncbi.nlm.nih.gov/pubmed/'+citation.pubmedID) #{citation.pubmedID}
+                if (citation.publicationDOI != '')
+                   != ', DOI: '
+                   a(href='http://dx.doi.org/'+citation.publicationDOI) #{citation.publicationDOI}
+                != '.'
+                br
+                br

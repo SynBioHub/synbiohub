@@ -4,6 +4,7 @@ extends ../layouts/default.jade
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
 include ../mixins/attachments.jade
+include ../mixins/citations.jade
 
 block jsState
     script meta = 
@@ -144,31 +145,6 @@ block content
                     span Find Uses
                 br
 
-        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
-        +mutable-source(meta.sourceSource, meta.source, canEdit)
-        
-        if (submissionCitations.length > 0) 
-            div.row
-                | <h3>References</h3>
-                br
-    
-                for citation in submissionCitations
-                    != citation.publicationAuthors 
-                    != ', "'
-                    != citation.publicationTitle
-                    != '", '
-                    != citation.publicationJournalInfo
-                    != ', '
-                    != citation.publicationYear
-                    != ', PMID: '
-                    != citation.pubmedID
-                    != ', '
-                    a(href='http://dx.doi.org/'+citation.publicationDOI) #{citation.publicationDOI}
-                    != '.'
-                    br
-                    br
-
         if meta.elements
             div.row
                 div.col-md-8
@@ -179,6 +155,11 @@ block content
 
         br
         br
+
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.sourceSource, meta.source, canEdit)
+        +citations(citationsSource, submissionCitations, canEdit)
     
         div.row
             div.col-md-8

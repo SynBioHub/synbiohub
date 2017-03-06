@@ -1,0 +1,6 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX purl: <http://purl.obolibrary.org/obo/>
+SELECT ?citation
+WHERE {
+	<$uri> purl:OBI_0001617 ?citation 
+}
