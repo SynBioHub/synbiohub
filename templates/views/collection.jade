@@ -161,11 +161,6 @@ block content
                         span.fa.fa-unlock
                             |  Make Public
 
-        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
-        +mutable-source(meta.mutableProvenanceSource, meta.mutableProvenance, canEdit)
-        +citations(citationsSource, submissionCitations, canEdit)
-
         if meta.displayList
             div.row
                 div.col-md-12.text-center
@@ -173,6 +168,15 @@ block content
 
             br
             br
+
+        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+        +mutable-source(meta.mutableProvenanceSource, meta.mutableProvenance, canEdit)
+        +citations(citationsSource, submissionCitations, canEdit)
+    
+        div.row
+            div.col-md-8
+                +attachments(meta.url, meta.attachments, canEdit)
 
 
 
