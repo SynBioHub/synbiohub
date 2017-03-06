@@ -6,6 +6,7 @@
     "async": "^0.9.2",
     "autocomplete": "0.0.1",
     "basic-auth": "^1.0.3",
+    "binary-split": "^1.0.3",
     "body-parser": "^1.15.0",
     "browserify-middleware": "^7.1.0",
     "connect-sequelize": "^2.0.2",

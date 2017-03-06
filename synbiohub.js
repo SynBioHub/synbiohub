@@ -13,6 +13,8 @@ var sliver = require('./lib/sliver')
 
 var theme = require('./lib/theme')
 
+var java = require('./lib/java')
+
 
 if(!fs.existsSync('synbiohub.sqlite')) {
 
@@ -27,6 +29,7 @@ if(!fs.existsSync('synbiohub.sqlite')) {
 function startServer() {
 
     return initSliver()
+                .then(() => java.init())
                 .then(() => theme.setCurrentThemeFromConfig())
                 .then(() => jobUtils.setRunningJobsToQueued())
                 .then(() => jobUtils.resumeAllJobs())
