@@ -6,6 +6,8 @@ PREFIX sbol: <http://sbols.org/v2#>
 INSERT {
     <$topLevel> sbh:attachment <$attachmentURI> .
 
+    <$collectionUri> sbol:member <$attachmentURI> .
+
     <$attachmentURI> a sbh:Attachment ;
         dcterms:title $name ;
         dcterms:description $description ;
