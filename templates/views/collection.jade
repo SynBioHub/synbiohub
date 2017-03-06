@@ -1,183 +1,53 @@
 
-extends ../layouts/default.jade
+extends ../layouts/topLevel.jade
 
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
 include ../mixins/attachments.jade
 include ../mixins/citations.jade
 
-block jsState
-    script meta = 
-        != JSON.stringify(meta)
-
-block breadcrumbs
-    ul
-        li.inactive
-            a(href='/search')
-                span.fa.fa-search
-                    |  Search
-
-        li
-            a(href=meta.url) #{meta.uri} 
-
-block content
-    div.clearfix
-    div.submission-detail.container-fluid
-
-
-        div.row.entry-heading
-            div.col-sm-5.entry-title
-                h1 #{meta.name}
-            div.col-sm-3.sbh-collection-icon
-                img(src=collectionIcon)
-
-        div.row
-            div.col-md-8
-                table.table.table-striped.entry-detail-table
-                    tr
-                        td Identifier
-                        td 
-                           a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
-                        td(nowrap="nowrap")  
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
-                    if meta.wasDerivedFrom != ''
-                         tr
-                             td Source
-                             td
-                                a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
-                             td
-
-                    if meta.creator != ''
-                        tr
-                            td Creator
-                            td
-                                != meta.creator
-                            td
-                                a(href='/search/dc:creator=\''+meta.creator+'\'&') #{'Search'}
-       
-                    if meta.created != ''
-                        tr
-                            td Created
-                            td
-                                != meta.created
-                            td
-                                a(href='/search/createdBefore='+meta.created.split(' ')[0]+'&createdAfter='+meta.created.split(' ')[0]+'&') #{'Search'}
-
-                    if meta.modified != ''
-                        tr
-                           td Modified
-                           td
-                               != meta.modified
-                           td
-                               a(href='/search/modifiedBefore='+meta.modified.split(' ')[0]+'&modifiedAfter='+meta.modified.split(' ')[0]+'&') #{'Search'}
-
-                    if meta.description != ''
-                        tr
-                            td Description
-                            td
-                                != meta.description
-                            td
-                                a(href='/search/?q='+meta.description) #{'Search'}
-
-
-                    if annotations && annotations.length > 0
-                        for annotation in annotations
-                            tr
-                                td
-                                    a(href=annotation.nameDef,title=annotation.nameDef) #{annotation.name}
-                                    br
-                                td
-                                    if (annotation.type === 'uri')
-                                        a(href=annotation.url,title=annotation.uri) #{annotation.value}
-                                    else 
-                                        != annotation.value.toString()
-                                    br
-                                td
-                                    if (annotation.type === 'uri')
-                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&') #{'Search'}
-                                    else 
-                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&') #{'Search'}
-
-                    if collections.length > 0
-                        tr
-                            td In Collections
-                            td
-                                for collection in collections
-                                    a(href=collection.url,title=collection.name) #{collection.name}
-                                    br
-                            td
-                                for collection in collections
-                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
-                                    br
-                    tr
-                        td(nowrap="nowrap") 
-                            | Members
-                            if ((previous >= 0) || (lastNum < memberCount)) 
-                               = ' ('
-                            if (previous >= 0)
-                               a(href=originalUrl + '/?offset='+previous) Previous
-                               if (lastNum < memberCount)
-                                   = ' '
-                            if (lastNum < memberCount)
-                               a(href=originalUrl + '/?offset='+next) Next
-                            if ((previous >= 0) || (lastNum < memberCount)) 
-                               = ')'
-                        td
-                            | #{firstNum} - #{lastNum} of #{memberCount} 
-                        td
-                            a(href='/search/collection=<'+encodeURIComponent(meta.uri)+'>&') #{'Search'}
-                    tr
-                        td Type
-                        td Identifier
-                        td Name
-                    for component in meta.components
-                        if (component.id)
-                            tr
-                                td
-                                    a(href=component.typeUrl,title=component.typeUrl) #{component.type}
-                                    br
-                                td
-                                    a(href=component.url) #{component.id}
-                                    br
-                                td
-                                    a(href=component.url) #{component.name}
-                                    br
-
-            div.col-md-4.entry-actions
-                if memberCount <= 2000
-                    a.btn.btn-primary(href=sbolUrl)
-                        span.fa.fa-download
-                        | 
-                        span Download SBOL File
+block topLevelPropertyTable
+    if collections.length > 0
+        tr
+            td In Collections
+            td
+                for collection in collections
+                    a(href=collection.url,title=collection.name) #{collection.name}
                     br
+            td
+                for collection in collections
+                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                     br
-                if meta.triplestore != 'public'
-                    a.btn.btn-success(href=share)
-                        span.fa.fa-share
-                            |  Share
+    tr
+        td(nowrap="nowrap") 
+            | Members
+            if ((previous >= 0) || (lastNum < memberCount)) 
+               = ' ('
+            if (previous >= 0)
+               a(href=originalUrl + '/?offset='+previous) Previous
+               if (lastNum < memberCount)
+                   = ' '
+            if (lastNum < memberCount)
+               a(href=originalUrl + '/?offset='+next) Next
+            if ((previous >= 0) || (lastNum < memberCount)) 
+               = ')'
+        td
+            | #{firstNum} - #{lastNum} of #{memberCount} 
+        td
+            a(href='/search/collection=<'+encodeURIComponent(meta.uri)+'>&') #{'Search'}
+    tr
+        td Type
+        td Identifier
+        td Name
+    for component in meta.components
+        if (component.id)
+            tr
+                td
+                    a(href=component.typeUrl,title=component.typeUrl) #{component.type}
                     br
+                td
+                    a(href=component.url) #{component.id}
                     br
-                    a.btn.btn-success(href=meta.url + '/makePublic')
-                        span.fa.fa-unlock
-                            |  Make Public
-
-        if meta.displayList
-            div.row
-                div.col-md-12.text-center
-                    div#design
-
-            br
-            br
-
-        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
-        +mutable-source(meta.mutableProvenanceSource, meta.mutableProvenance, canEdit)
-        +citations(citationsSource, submissionCitations, canEdit)
-    
-        div.row
-            div.col-md-8
-                +attachments(meta.url, meta.attachments, canEdit)
-
-
-
-
+                td
+                    a(href=component.url) #{component.name}
+                    br

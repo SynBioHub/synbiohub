@@ -1,0 +1,709 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:sbol="http://sbols.org/v2#">
+  <sbol:ModuleDefinition rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module"/>
+    <sbol:displayId>TetR_exsDA_v2_circuit_module</sbol:displayId>
+    <sbol:role rdf:resource="http://cellocad.org/LogicCircuit"/>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_protein">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_protein"/>
+        <sbol:displayId>exsD_protein</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/exsD_protein"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#out"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA"/>
+        <sbol:displayId>exsA</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/exsA"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/aTc_TetR_protein_Complex">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/aTc_TetR_protein_Complex"/>
+        <sbol:displayId>aTc_TetR_protein_Complex</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/aTc_TetR_protein_Complex"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/aTc">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/aTc"/>
+        <sbol:displayId>aTc</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/aTc"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#in"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR"/>
+        <sbol:displayId>TetR</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/TetR"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/pCONST">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/pCONST"/>
+        <sbol:displayId>pCONST</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/pCONST"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_protein">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_protein"/>
+        <sbol:displayId>exsA_protein</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/exsA_protein"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#out"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD"/>
+        <sbol:displayId>exsD</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/exsD"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/pTet">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/pTet"/>
+        <sbol:displayId>pTet</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/pTet"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:functionalComponent>
+      <sbol:FunctionalComponent rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein"/>
+        <sbol:displayId>TetR_protein</sbol:displayId>
+        <sbol:definition rdf:resource="http://cellocad.org/TetR_protein"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:direction rdf:resource="http://sbols.org/v2#none"/>
+      </sbol:FunctionalComponent>
+    </sbol:functionalComponent>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_represses_pTet">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_represses_pTet"/>
+        <sbol:displayId>TetR_protein_represses_pTet</sbol:displayId>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000500"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_represses_pTet/pTet_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_represses_pTet/pTet_participation"/>
+            <sbol:displayId>pTet_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000598"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/pTet"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_represses_pTet/TetR_protein_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_represses_pTet/TetR_protein_participation"/>
+            <sbol:displayId>TetR_protein_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000020"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_produces_exsA_protein">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_produces_exsA_protein"/>
+        <sbol:displayId>exsA_produces_exsA_protein</sbol:displayId>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000589"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_produces_exsA_protein/exsA_protein_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_produces_exsA_protein/exsA_protein_participation"/>
+            <sbol:displayId>exsA_protein_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_protein"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_produces_exsA_protein/exsA_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsA_produces_exsA_protein/exsA_participation"/>
+            <sbol:displayId>exsA_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000598"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/pTet"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_produces_exsD_protein">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_produces_exsD_protein"/>
+        <sbol:displayId>exsD_produces_exsD_protein</sbol:displayId>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000589"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_produces_exsD_protein/exsD_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_produces_exsD_protein/exsD_participation"/>
+            <sbol:displayId>exsD_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000598"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/pTet"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_produces_exsD_protein/exsD_protein_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_produces_exsD_protein/exsD_protein_participation"/>
+            <sbol:displayId>exsD_protein_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/exsD_protein"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc"/>
+        <sbol:displayId>TetR_protein_binds_aTc</sbol:displayId>
+        <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Complex"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc/TetR_protein_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc/TetR_protein_participation"/>
+            <sbol:displayId>TetR_protein_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000280"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc/aTc_TetR_protein_Complex_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc/aTc_TetR_protein_Complex_participation"/>
+            <sbol:displayId>aTc_TetR_protein_Complex_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000253"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/aTc_TetR_protein_Complex"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc/aTc_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein_binds_aTc/aTc_participation"/>
+            <sbol:displayId>aTc_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000280"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/aTc"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+    <sbol:interaction>
+      <sbol:Interaction rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_produces_TetR_protein">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_produces_TetR_protein"/>
+        <sbol:displayId>TetR_produces_TetR_protein</sbol:displayId>
+        <sbol:type rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000589"/>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_produces_TetR_protein/TetR_protein_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_produces_TetR_protein/TetR_protein_participation"/>
+            <sbol:displayId>TetR_protein_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000011"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_protein"/>
+          </sbol:Participation>
+        </sbol:participation>
+        <sbol:participation>
+          <sbol:Participation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_produces_TetR_protein/TetR_participation">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/TetR_produces_TetR_protein/TetR_participation"/>
+            <sbol:displayId>TetR_participation</sbol:displayId>
+            <sbol:role rdf:resource="http://identifiers.org/biomodels.sbo/SBO:0000598"/>
+            <sbol:participant rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_module/pCONST"/>
+          </sbol:Participation>
+        </sbol:participation>
+      </sbol:Interaction>
+    </sbol:interaction>
+  </sbol:ModuleDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/pTet">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/pTet"/>
+    <sbol:displayId>pTet</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/pTet_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/Escar">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/Escar"/>
+    <sbol:displayId>Escar</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/Escar_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/rbs_exsD">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/rbs_exsD"/>
+    <sbol:displayId>rbs_exsD</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000204"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/rbs_exsD_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/Xscar">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/Xscar"/>
+    <sbol:displayId>Xscar</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/Xscar_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/exsA">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/exsA"/>
+    <sbol:displayId>exsA</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/exsA_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/terminator_exsDA">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/terminator_exsDA"/>
+    <sbol:displayId>terminator_exsDA</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000141"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/terminator_exsDA_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/rbs_TetR">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/rbs_TetR"/>
+    <sbol:displayId>rbs_TetR</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000204"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/rbs_TetR_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/TetR">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR"/>
+    <sbol:displayId>TetR</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/TetR_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/aTc_TetR_protein_Complex">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/aTc_TetR_protein_Complex"/>
+    <sbol:displayId>aTc_TetR_protein_Complex</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Complex"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit"/>
+    <sbol:displayId>TetR_exsDA_v2_circuit</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/Escar_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/Escar_component"/>
+        <sbol:displayId>Escar_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/Escar"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_TetR_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_TetR_component"/>
+        <sbol:displayId>rbs_TetR_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/rbs_TetR"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/pCONST_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/pCONST_component"/>
+        <sbol:displayId>pCONST_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/pCONST"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/Cscar_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/Cscar_component"/>
+        <sbol:displayId>Cscar_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/Cscar"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/terminator_TetR_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/terminator_TetR_component"/>
+        <sbol:displayId>terminator_TetR_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/terminator_TetR"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/TetR_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/TetR_component"/>
+        <sbol:displayId>TetR_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/TetR"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/pTet_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/pTet_component"/>
+        <sbol:displayId>pTet_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/pTet"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_exsD_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_exsD_component"/>
+        <sbol:displayId>rbs_exsD_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/rbs_exsD"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_exsD_component2">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_exsD_component2"/>
+        <sbol:displayId>rbs_exsD_component2</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/rbs_exsD"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/Xscar_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/Xscar_component"/>
+        <sbol:displayId>Xscar_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/Xscar"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/exsD_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/exsD_component"/>
+        <sbol:displayId>exsD_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/exsD"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/exsA_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/exsA_component"/>
+        <sbol:displayId>exsA_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/exsA"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/terminator_exsDA_component">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/terminator_exsDA_component"/>
+        <sbol:displayId>terminator_exsDA_component</sbol:displayId>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+        <sbol:definition rdf:resource="http://cellocad.org/terminator_exsDA"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Escar_component_1">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Escar_component_1"/>
+        <sbol:displayId>sequence_annotation_Escar_component_1</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Escar_component_1/locationID1">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Escar_component_1/locationID1"/>
+            <sbol:displayId>locationID1</sbol:displayId>
+            <sbol:start>1</sbol:start>
+            <sbol:end>5</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/Escar_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Cscar_component_13">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Cscar_component_13"/>
+        <sbol:displayId>sequence_annotation_Cscar_component_13</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Cscar_component_13/locationID13">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Cscar_component_13/locationID13"/>
+            <sbol:displayId>locationID13</sbol:displayId>
+            <sbol:start>2458</sbol:start>
+            <sbol:end>2462</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/Cscar_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_8">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_8"/>
+        <sbol:displayId>sequence_annotation_rbs_exsD_component_8</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_8/locationID8">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_8/locationID8"/>
+            <sbol:displayId>locationID8</sbol:displayId>
+            <sbol:start>837</sbol:start>
+            <sbol:end>881</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_exsD_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsD_component_9">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsD_component_9"/>
+        <sbol:displayId>sequence_annotation_exsD_component_9</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsD_component_9/locationID9">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsD_component_9/locationID9"/>
+            <sbol:displayId>locationID9</sbol:displayId>
+            <sbol:start>882</sbol:start>
+            <sbol:end>1713</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/exsD_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_TetR_component_3">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_TetR_component_3"/>
+        <sbol:displayId>sequence_annotation_rbs_TetR_component_3</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_TetR_component_3/locationID3">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_TetR_component_3/locationID3"/>
+            <sbol:displayId>locationID3</sbol:displayId>
+            <sbol:start>57</sbol:start>
+            <sbol:end>69</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_TetR_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_10">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_10"/>
+        <sbol:displayId>sequence_annotation_rbs_exsD_component_10</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_10/locationID10">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_rbs_exsD_component_10/locationID10"/>
+            <sbol:displayId>locationID10</sbol:displayId>
+            <sbol:start>1714</sbol:start>
+            <sbol:end>1758</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/rbs_exsD_component2"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Xscar_component_6">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Xscar_component_6"/>
+        <sbol:displayId>sequence_annotation_Xscar_component_6</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Xscar_component_6/locationID6">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_Xscar_component_6/locationID6"/>
+            <sbol:displayId>locationID6</sbol:displayId>
+            <sbol:start>757</sbol:start>
+            <sbol:end>761</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/Xscar_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_TetR_component_5">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_TetR_component_5"/>
+        <sbol:displayId>sequence_annotation_terminator_TetR_component_5</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_TetR_component_5/locationID5">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_TetR_component_5/locationID5"/>
+            <sbol:displayId>locationID5</sbol:displayId>
+            <sbol:start>695</sbol:start>
+            <sbol:end>756</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/terminator_TetR_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pTet_component_7">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pTet_component_7"/>
+        <sbol:displayId>sequence_annotation_pTet_component_7</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pTet_component_7/locationID7">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pTet_component_7/locationID7"/>
+            <sbol:displayId>locationID7</sbol:displayId>
+            <sbol:start>762</sbol:start>
+            <sbol:end>836</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/pTet_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_exsDA_component_12">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_exsDA_component_12"/>
+        <sbol:displayId>sequence_annotation_terminator_exsDA_component_12</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_exsDA_component_12/locationID12">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_terminator_exsDA_component_12/locationID12"/>
+            <sbol:displayId>locationID12</sbol:displayId>
+            <sbol:start>2368</sbol:start>
+            <sbol:end>2457</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/terminator_exsDA_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsA_component_11">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsA_component_11"/>
+        <sbol:displayId>sequence_annotation_exsA_component_11</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsA_component_11/locationID11">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_exsA_component_11/locationID11"/>
+            <sbol:displayId>locationID11</sbol:displayId>
+            <sbol:start>1759</sbol:start>
+            <sbol:end>2367</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/exsA_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_TetR_component_4">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_TetR_component_4"/>
+        <sbol:displayId>sequence_annotation_TetR_component_4</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_TetR_component_4/locationID4">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_TetR_component_4/locationID4"/>
+            <sbol:displayId>locationID4</sbol:displayId>
+            <sbol:start>70</sbol:start>
+            <sbol:end>694</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/TetR_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pCONST_component_2">
+        <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pCONST_component_2"/>
+        <sbol:displayId>sequence_annotation_pCONST_component_2</sbol:displayId>
+        <sbol:location>
+          <sbol:Range rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pCONST_component_2/locationID2">
+            <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/sequence_annotation_pCONST_component_2/locationID2"/>
+            <sbol:displayId>locationID2</sbol:displayId>
+            <sbol:start>6</sbol:start>
+            <sbol:end>56</sbol:end>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit/pCONST_component"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/TetR_protein">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_protein"/>
+    <sbol:displayId>TetR_protein</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/aTc">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/aTc"/>
+    <sbol:displayId>aTc</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#SmallMolecule"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/exsD">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/exsD"/>
+    <sbol:displayId>exsD</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000316"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/exsD_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/terminator_TetR">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/terminator_TetR"/>
+    <sbol:displayId>terminator_TetR</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000141"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/terminator_TetR_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/exsA_protein">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/exsA_protein"/>
+    <sbol:displayId>exsA_protein</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/Cscar">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/Cscar"/>
+    <sbol:displayId>Cscar</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/Cscar_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/exsD_protein">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/exsD_protein"/>
+    <sbol:displayId>exsD_protein</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#Protein"/>
+  </sbol:ComponentDefinition>
+  <sbol:ComponentDefinition rdf:about="http://cellocad.org/pCONST">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/pCONST"/>
+    <sbol:displayId>pCONST</sbol:displayId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000167"/>
+    <sbol:sequence rdf:resource="http://cellocad.org/pCONST_sequence"/>
+  </sbol:ComponentDefinition>
+  <sbol:Sequence rdf:about="http://cellocad.org/pTet_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/pTet_sequence"/>
+    <sbol:displayId>pTet_sequence</sbol:displayId>
+    <sbol:elements>TACTCCACCGTTGGCTTTTTTCCCTATCAGTGATAGAGATTGACATCCCTATCAGTGATAGAGATAATGAGCAC</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/TetR_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_sequence"/>
+    <sbol:displayId>TetR_sequence</sbol:displayId>
+    <sbol:elements>atgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtcctaa</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/pCONST_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/pCONST_sequence"/>
+    <sbol:displayId>pCONST_sequence</sbol:displayId>
+    <sbol:elements>GATAAGTCCCTAACTTTTACAGCTAGCTCAGTCCTAGGTATTATGCTAGC</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/exsD_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/exsD_sequence"/>
+    <sbol:displayId>exsD_sequence</sbol:displayId>
+    <sbol:elements>atggagcaggaagacgataagcagtactcccgagaagcggtgttcgctggcaggcgggtatccgtggtgggctcggacgcccgctcgcggggtcgggtgccgggttacgcatcgagcagtttgtatcgtgagtccggaatcatcagtgcgcggcaactggcgttgctgcagcggatgctgccgcgcctgcggctggagcaactgttccgctgcgagtggttgcagcagcgcctggcgcgcggcctggcgctggggcgcgaagaggtgcggcagattctcctctgcgcggcgcaggacgacgacggctggtgctccgaactgggcgaccgggtcaacctcgccgtgccgcagtcgatgatcgactgggtcctgctgccggtctatggctggtgggaaagcctgctcgaccaggcgatccccggctggcgcctgtcgctggtggagctggagacccagtcccggcaactgcgagtcaagtccgaattctggtcccgcgtggccgagctggagccggagcaggcccgcgaggaactggccagggtcgccaagtgccaggcgcgcacccaggaacaggtggccgaactggccggcaagctggagacggcttcggcactggcgaagagcgcctggccgaactggcagcggggcatggcgacgctgctcgccagcggcgggctggccggcttcgagccgatccccgaggtcctcgaatgcctctggcaacctctctgccggctggacgacgacgtcggcgcggcggacgccgtccaggcctggctgcacgaacgcaacctgtgccaggcacaggatcacttctactggcagagctga</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/rbs_TetR_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/rbs_TetR_sequence"/>
+    <sbol:displayId>rbs_TetR_sequence</sbol:displayId>
+    <sbol:elements>aaagaggagaaa</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/TetR_exsDA_v2_circuit_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/TetR_exsDA_v2_circuit_sequence"/>
+    <sbol:displayId>TetR_exsDA_v2_circuit_sequence</sbol:displayId>
+    <sbol:elements>gcttGATAAGTCCCTAACTTTTACAGCTAGCTCAGTCCTAGGTATTATGCTAGCaaagaggagaaaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtcctaaCTCGGTACCAAATTCCAGAAAAGAGGCCTCCCGAAAGGGGGGCCTTTTTTCGTTTTGGTCCtgtcTACTCCACCGTTGGCTTTTTTCCCTATCAGTGATAGAGATTGACATCCCTATCAGTGATAGAGATAATGAGCACacatatataaagcgcgcaatgtagtgaggaagccaaggcagagaatggagcaggaagacgataagcagtactcccgagaagcggtgttcgctggcaggcgggtatccgtggtgggctcggacgcccgctcgcggggtcgggtgccgggttacgcatcgagcagtttgtatcgtgagtccggaatcatcagtgcgcggcaactggcgttgctgcagcggatgctgccgcgcctgcggctggagcaactgttccgctgcgagtggttgcagcagcgcctggcgcgcggcctggcgctggggcgcgaagaggtgcggcagattctcctctgcgcggcgcaggacgacgacggctggtgctccgaactgggcgaccgggtcaacctcgccgtgccgcagtcgatgatcgactgggtcctgctgccggtctatggctggtgggaaagcctgctcgaccaggcgatccccggctggcgcctgtcgctggtggagctggagacccagtcccggcaactgcgagtcaagtccgaattctggtcccgcgtggccgagctggagccggagcaggcccgcgaggaactggccagggtcgccaagtgccaggcgcgcacccaggaacaggtggccgaactggccggcaagctggagacggcttcggcactggcgaagagcgcctggccgaactggcagcggggcatggcgacgctgctcgccagcggcgggctggccggcttcgagccgatccccgaggtcctcgaatgcctctggcaacctctctgccggctggacgacgacgtcggcgcggcggacgccgtccaggcctggctgcacgaacgcaacctgtgccaggcacaggatcacttctactggcagagctgaacatatataaagcgcgcaatgtagtgaggaagccaaggcagagaatgcaaggagccaaatctcttggccgaaagcagataacgtcttgtcattggaacattccaactttcgaatacagggtaaacaaggaagagggcgtatatgttctgctcgagggcgaactgaccgtccaggacatcgattccactttttgcctggcgcctggcgagttgcttttcgtccgccgcggaagctatgtcgtaagtaccaagggaaaggacagccgaatactctggattccattatctgcccagtttctacaaggcttcgtccagcgcttcggcgcgctgttgagtgaagtcgagcgttgcgacgagcccgtgccgggcatcatcgcgttcgctgccacgcctctgctggccggttgcgtcaaggggttgaaggaattgcttgtgcatgagcatccgccgatgctcgcctgcctgaagatcgaggagttgctgatgctcttcgcgttcagtccgcaggggccgctgctgatgtcggtcctgcggcaactgagcaaccggcatgtcgagcgtctgcagctattcatggagaagcactacctcaacgagtggaagctgtccgacttctcccgcgagttcggcatggggctgaccaccttcaaggaTAGAGATCAAGCCTTAACGAACTAAGACCCCCGCACCGAAAGGTCCGGGGGTTTTTTTTGACCTTAAAAACATAACCGAGGAGCAGACAaatg</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/terminator_exsDA_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/terminator_exsDA_sequence"/>
+    <sbol:displayId>terminator_exsDA_sequence</sbol:displayId>
+    <sbol:elements>TAGAGATCAAGCCTTAACGAACTAAGACCCCCGCACCGAAAGGTCCGGGGGTTTTTTTTGACCTTAAAAACATAACCGAGGAGCAGACA</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/rbs_exsD_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/rbs_exsD_sequence"/>
+    <sbol:displayId>rbs_exsD_sequence</sbol:displayId>
+    <sbol:elements>acatatataaagcgcgcaatgtagtgaggaagccaaggcagaga</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/terminator_TetR_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/terminator_TetR_sequence"/>
+    <sbol:displayId>terminator_TetR_sequence</sbol:displayId>
+    <sbol:elements>CTCGGTACCAAATTCCAGAAAAGAGGCCTCCCGAAAGGGGGGCCTTTTTTCGTTTTGGTCC</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/Escar_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/Escar_sequence"/>
+    <sbol:displayId>Escar_sequence</sbol:displayId>
+    <sbol:elements>gctt</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/exsA_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/exsA_sequence"/>
+    <sbol:displayId>exsA_sequence</sbol:displayId>
+    <sbol:elements>atgcaaggagccaaatctcttggccgaaagcagataacgtcttgtcattggaacattccaactttcgaatacagggtaaacaaggaagagggcgtatatgttctgctcgagggcgaactgaccgtccaggacatcgattccactttttgcctggcgcctggcgagttgcttttcgtccgccgcggaagctatgtcgtaagtaccaagggaaaggacagccgaatactctggattccattatctgcccagtttctacaaggcttcgtccagcgcttcggcgcgctgttgagtgaagtcgagcgttgcgacgagcccgtgccgggcatcatcgcgttcgctgccacgcctctgctggccggttgcgtcaaggggttgaaggaattgcttgtgcatgagcatccgccgatgctcgcctgcctgaagatcgaggagttgctgatgctcttcgcgttcagtccgcaggggccgctgctgatgtcggtcctgcggcaactgagcaaccggcatgtcgagcgtctgcagctattcatggagaagcactacctcaacgagtggaagctgtccgacttctcccgcgagttcggcatggggctgaccaccttcaagga</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/Xscar_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/Xscar_sequence"/>
+    <sbol:displayId>Xscar_sequence</sbol:displayId>
+    <sbol:elements>tgtc</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+  <sbol:Sequence rdf:about="http://cellocad.org/Cscar_sequence">
+    <sbol:persistentIdentity rdf:resource="http://cellocad.org/Cscar_sequence"/>
+    <sbol:displayId>Cscar_sequence</sbol:displayId>
+    <sbol:elements>aatg</sbol:elements>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+</rdf:RDF>

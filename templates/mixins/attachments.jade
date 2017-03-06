@@ -1,6 +1,6 @@
 
 mixin attachments(url, attachments, canEdit)
-    if canEdit || attachments.length > 0
+    if typeof(attachments) !== 'undefined' && (canEdit || attachments.length > 0)
         h3 Attachments
         table.attachments-table.table.table-striped
             thead

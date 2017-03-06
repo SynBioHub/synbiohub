@@ -1,177 +1,19 @@
 
-extends ../layouts/default.jade
+extends ../layouts/topLevel.jade
 
-include ../mixins/blast-button.jade
-include ../mixins/mutable-fields.jade
-include ../mixins/attachments.jade
-include ../mixins/citations.jade
-
-block jsState
-    script meta = 
-        != JSON.stringify(meta)
-
-block breadcrumbs
-    ul
-        li.inactive
-            a(href='/search')
-                span.fa.fa-search
-                    |  Search
-
-        if prefix
-            li #{prefix} &gt; #{meta.id}
-        else
-            li
-                a(href=meta.url) #{meta.uri} 
-
-block content
-
-    div.clearfix
-
-    div.submission-detail.container-fluid
-
-        div.row.entry-heading
-            div.col-sm-5.entry-title
-                h1 #{meta.name}
-            div.col-sm-3.sbh-collection-icon
-                img(src=collectionIcon)
-
-        div.row
-            div.col-md-8
-                table.table.table-striped.entry-detail-table
-                    tr
-                        td Identifier
-                        td 
-                           a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') #{meta.id}
-                        td(nowrap="nowrap") 
-                           a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
-			
-                    if meta.wasDerivedFrom != ''
-                        tr
-                            td Source
-                            td
-                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
-                            td
-
-                    if meta.creator.description != ''
-                        tr
-                            td Creator
-                            td
-                                != meta.creator.description
-                            td
-                                a(href='/search/dc:creator=\''+meta.creator.description+'\'&') #{'Search'}
-       
-                    if meta.created.description != ''
-                        tr
-                            td Created
-                            td
-                                != meta.created.description
-                            td
-                               a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
-
-                    if meta.modified.description != ''
-                        tr
-                            td Modified
-                            td
-                                != meta.modified.description
-                            td
-                               a(href='/search/modifiedBefore='+meta.created.description.split(' ')[0]+'&modifiedAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
-
-                    if meta.description != ''
-                        tr
-                            td Description
-                            td
-                                != meta.description
-                            td
-                                a(href='/search/?q='+meta.description) #{'Search'}
-
-                    if meta.labels.length > 0
-                        tr
-                            td Labels
-                            td #{meta.labels.join(', ')}
-                            td
-
-                    if annotations && annotations.length > 0
-                        for annotation in annotations
-                            tr
-                                td
-                                    a(href=annotation.nameDef,title=annotation.nameDef) #{annotation.name}
-                                    br
-                                td
-                                    if (annotation.type === 'uri')
-                                        a(href=annotation.url,title=annotation.uri) #{annotation.value}
-                                    else 
-                                        != annotation.value.toString()
-                                    br
-                                td
-                                    if (annotation.type === 'uri')
-                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&') #{'Search'}
-                                    else 
-                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&') #{'Search'}
-				    
-                    tr
-                        td Source
-                        td
-                            a(href=meta.source.toString(),title=meta.source) #{meta.source.toString()}
-                            br
-                        td
-
-                    tr
-                        td Language
-                        td
-                            a(href=meta.language.uri.toString(),title=meta.language.name) #{meta.language.name}
-                            br
-                        td
-                            a(href='/search/language=<'+encodeURIComponent(meta.language.uri)+'>&',title=meta.language.name) #{'Search'}
-                            br
-                    tr  
-                        td Framework
-                        td
-                            a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
-                            br
-                        td
-                            a(href='/search/framework=<'+encodeURIComponent(meta.framework.uri)+'>&',title=meta.framework.name) #{'Search'}
-                            br
-
-                    if collections.length > 0
-                        tr
-                            td In Collections
-                            td
-                                for collection in collections
-                                    a(href=collection.url,title=collection.name) #{collection.name}
-                                    br
-                            td
-                                for collection in collections
-                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
-                                    br
-
-            div.col-md-4.entry-actions
-                a.btn.btn-primary(href=sbolUrl)
-                    span.fa.fa-download
-                    | 
-                    span Download SBOL File
-                br
-                br
-                a.btn.btn-primary(href=searchUsesUrl)
-                    span.fa.fa-search
-                    | 
-                    span Find Uses
-                br
-
-        +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
-        +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
-        +mutable-source(meta.dcTermsSourceSource, meta.dcTermsSource, canEdit)
-        +citations(citationsSource, submissionCitations, canEdit)
-    
-        div.row
-            div.col-md-8
-                +attachments(meta.url, meta.attachments, canEdit)
-
-        // if canEdit
-
-        //     if design.triplestore != 'public'
-        //         a.btn.btn-success(href='/actions/makePublic/' + meta.id)
-        //             span.fa.fa-unlock
-        //                 |  Make Public
-
-
+block topLevelPropertyTable
+    tr
+        td Language
+        td
+            a(href=meta.language.uri.toString(),title=meta.language.name) #{meta.language.name}
+            br
+        td
+            a(href='/search/language=<'+encodeURIComponent(meta.language.uri)+'>&',title=meta.language.name) #{'Search'}
+            br
+    tr  
+        td Framework
+        td
+            a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
+            br
+        td
 

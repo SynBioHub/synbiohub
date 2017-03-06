@@ -2,6 +2,7 @@
   "firstLaunch": false,
   "instanceName": "SynBioHub",
   "instanceUrl": "http://synbiohub.org/",
+  "javaPath": "java",
   "theme": "default",
   "themeParameters": {
       "default": {
