@@ -1,0 +1,12 @@
+/home/james/synbiohub/java/src/main/java/org/synbiohub/ConvertValidateResult.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/ErrorResult.java
+/home/james/synbiohub/java/src/main/java/org/sbolstandard/core2/SBOLValidateSilent.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/JobAlreadyFinishedException.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/Job.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/Result.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/InitializeResult.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/InitializeJob.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/UnknownJobTypeException.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/ConvertValidateJob.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/ProcessBridge.java
+/home/james/synbiohub/java/src/main/java/org/synbiohub/Main.java

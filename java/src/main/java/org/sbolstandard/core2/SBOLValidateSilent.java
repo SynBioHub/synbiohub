@@ -1566,7 +1566,7 @@ public class SBOLValidateSilent {
 	 * @param showDetail - Set boolean variable to true to display detailed error trace. False otherwise. 
 	 * @param noOutput - Set boolean variable to true to indicate no output file to be generated from validation
 	 */
-	public static void validate(PrintStream outputStream, PrintStream errorStream, String fileName, String URIPrefix, boolean complete, 
+	public static SBOLDocument validate(PrintStream outputStream, PrintStream errorStream, String fileName, String URIPrefix, boolean complete,
 			boolean compliant, boolean bestPractice, boolean typesInURI, String version, 
 			boolean keepGoing, String compareFile, String compareFileName, 
 			String mainFileName, String topLevelURIStr, boolean genBankOut, 
@@ -1609,7 +1609,7 @@ public class SBOLValidateSilent {
 				TopLevel topLevel = doc.getTopLevel(URI.create(topLevelURIStr));
 				if (topLevel==null) {
 					errorStream.println("TopLevel " + topLevelURIStr + " not found.");
-					return;
+					return null;
 				}
 				if (complete) {
 					doc = doc.createRecursiveCopy(topLevel);
@@ -1682,6 +1682,7 @@ public class SBOLValidateSilent {
 				}
 				errorStream.println("Validation failed.\n");
 			}
+			return doc;
 		}
 		catch (SBOLValidationException e) {
 			if (showDetail) {
@@ -1709,6 +1710,7 @@ public class SBOLValidateSilent {
 			errorStream.println(e.getMessage()+"\nI/O exception.");
 			e.printStackTrace(errorStream);
 		}
+		return null;
 	}
 
 	/**

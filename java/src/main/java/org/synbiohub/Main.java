@@ -26,7 +26,11 @@ public class Main
 				
 					public void run()
 					{
-						job.execute();
+						try {
+							job.execute();
+						} catch(Exception e) {
+							job.finish(new ErrorResult(job, e));
+						}
 					}
 					
 				});			

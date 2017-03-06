@@ -19,9 +19,9 @@ public class Job
 		{
 			return gson.fromJson(json, InitializeJob.class);
 		}
-		else if(job.type.equals("convertValidate"))
+		else if(job.type.equals("prepareSubmission"))
 		{
-			return gson.fromJson(json, ConvertValidateJob.class);
+			return gson.fromJson(json, PrepareSubmissionJob.class);
 		}
 		else
 		{
@@ -37,7 +37,7 @@ public class Job
 		ProcessBridge.sendResult(result);
 	}
 	
-	public void execute()
+	public void execute() throws Exception
 	{
 	}
 }

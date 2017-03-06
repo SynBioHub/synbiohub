@@ -1,0 +1,13 @@
+org/synbiohub/Main$1.class
+org/synbiohub/ConvertValidateResult.class
+org/synbiohub/JobAlreadyFinishedException.class
+org/synbiohub/InitializeJob.class
+org/synbiohub/ErrorResult.class
+org/synbiohub/Job.class
+org/synbiohub/Main.class
+org/sbolstandard/core2/SBOLValidateSilent.class
+org/synbiohub/UnknownJobTypeException.class
+org/synbiohub/InitializeResult.class
+org/synbiohub/ProcessBridge.class
+org/synbiohub/ConvertValidateJob.class
+org/synbiohub/Result.class

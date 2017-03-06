@@ -1,14 +1,20 @@
 package org.synbiohub;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 public class ErrorResult extends Result
 {
-	String message;
+	String error;
 	
-	ErrorResult(Job job, Exception error)
+	public ErrorResult(Job job, Exception e)
 	{
 		super(job);
-		
-		message = error.toString();
+
+		StringWriter stringWriter = new StringWriter();
+		e.printStackTrace(new PrintWriter(stringWriter));
+
+		error = stringWriter.toString();
 	}
 
 }

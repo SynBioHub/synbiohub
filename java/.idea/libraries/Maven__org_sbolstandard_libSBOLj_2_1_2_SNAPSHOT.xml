@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.sbolstandard:libSBOLj:2.1.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/sbolstandard/libSBOLj/2.1.2-SNAPSHOT/libSBOLj-2.1.2-20170306.200958-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/sbolstandard/libSBOLj/2.1.2-SNAPSHOT/libSBOLj-2.1.2-20170306.200958-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/sbolstandard/libSBOLj/2.1.2-SNAPSHOT/libSBOLj-2.1.2-20170306.200958-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
