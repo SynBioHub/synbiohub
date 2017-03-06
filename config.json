@@ -30,10 +30,12 @@
         "xmlns:rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "xmlns:dcterms": "http://purl.org/dc/terms/",
         "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+	"xmlns:sbh": "http://wiki.synbiohub.org/wiki/Terms/synbiohub#",
         "xmlns:prov": "http://www.w3.org/ns/prov#",
         "xmlns:sbol": "http://sbols.org/v2#",
         "xmlns:xsd": "http://www.w3.org/2001/XMLSchema#",
-        "xmlns:rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+        "xmlns:rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+	"xmlns:purl": "http://purl.obolibrary.org/obo/"
   },
   "webOfRegistries" : {
         "synbiohub.org": "localhost:7777"
@@ -49,7 +51,7 @@
   "collectionIcons": {
       "http://synbiohub.org/public/igem/igem_collection/1": "/local/igem.png",
       "http://synbiohub.org/public/ekb/ekb_collection/1": "/local/ekb.png",
-      "http://synbiohub.org/public/vpr/vpr_collection/1": "/local/vpr.png"
+      "http://synbiohub.org/public/bsu/bsubtilis_collection/1": "/local/bsu.png"
   },
   "experimental": {
       "dataIntegration": false
