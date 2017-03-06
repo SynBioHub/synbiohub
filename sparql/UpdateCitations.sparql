@@ -10,7 +10,7 @@ DELETE WHERE {
 }
 ;
 INSERT DATA {
-    <$topLevel> $citations .
+    $citations
     <$topLevel> dcterms:modified $modified .
 } 
 

@@ -10,7 +10,7 @@ DELETE WHERE {
 }
 ;
 INSERT DATA {
-    <$topLevel> sbh:mutableDescription $desc .
+    $desc
     <$topLevel> dcterms:modified $modified .
 } 
 

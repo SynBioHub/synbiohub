@@ -10,7 +10,7 @@ DELETE WHERE {
 }
 ;
 INSERT DATA {
-    <$topLevel> sbh:mutableProvenance $source .
+    $source
     <$topLevel> dcterms:modified $modified .
 } 
 
