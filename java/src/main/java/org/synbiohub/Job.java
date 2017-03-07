@@ -19,6 +19,10 @@ public class Job
 		{
 			return gson.fromJson(json, InitializeJob.class);
 		}
+		else if(job.type.equals("shutdown"))
+		{
+			return gson.fromJson(json, ShutdownJob.class);
+		}
 		else if(job.type.equals("prepareSubmission"))
 		{
 			return gson.fromJson(json, PrepareSubmissionJob.class);
