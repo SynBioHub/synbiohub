@@ -79,7 +79,7 @@ public class PrepareSubmissionJob extends Job
 				new URI(ownedByURI));
 
 		submissionCollection.createAnnotation(
-				new QName("http://purl.org/dc/elements/1.1/", "creator", "dcterms"),
+				new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
 				creatorName);
 
 		submissionCollection.createAnnotation(
