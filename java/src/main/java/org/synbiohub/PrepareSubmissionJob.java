@@ -71,7 +71,7 @@ public class PrepareSubmissionJob extends Job
 			return;
 		}
 
-		Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId);
+		Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
 		System.err.println("New collection: " + submissionCollection.getIdentity().toString());
 
 		submissionCollection.createAnnotation(
