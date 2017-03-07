@@ -30,10 +30,82 @@ require('./dataIntegration')
 require('./visbol')
 require('./sse')
 
-
-
-
 function createWikiEditor($el, saveButtonText, updateEndpoint) {
+
+    var $buttons = {
+        bold: $('<button class="btn"><span class="fa fa-bold"></span></button>').click(function() {
+            $textarea.val($textarea.val() + '<b></b>').focus()
+            return false
+        }),
+        italic: $('<button class="btn"><span class="fa fa-italic"></span></button>').click(function() {
+            $textarea.val($textarea.val() + '<i></i>').focus()
+            return false
+        }),
+        underline: $('<button class="btn"><span class="fa fa-underline"></span></button>').click(function() {
+            $textarea.val($textarea.val() + '<u></u>').focus()
+            return false
+        }),
+        image: $('<button class="btn sbh-wiki-add-image-button"><span class="fa fa-picture-o"></span></button>').click(insertImage),
+        link: $('<button class="btn"><span class="fa fa-globe"></span></button>')
+    }
+
+    /* TODO hackkk
+     */
+    function getImageAttachments() {
+
+        return $('.attachments-table tr').filter(function(i, tr) {
+            return $(tr).children('td').first().text() === 'Image'
+        }).map(function(i, tr) {
+            return {
+                name: $($(tr).children('td')[1]).text(),
+                url: $(tr).find('a').attr('href') + '/download'
+            }
+        })
+    }
+
+    function insertImage() {
+
+        var $dropdown = $('<div class="dropdown"></div>')
+        var $dropdownMenu = $('<div class="dropdown-menu"></div>')
+        $dropdown.append($dropdownMenu)
+
+        getImageAttachments().each(function(i, attachment) {
+
+            var $menuItem = $('<a class="dropdown-item"></a>')
+
+            $menuItem.click(function() {
+                $textarea.val($textarea.val() + '<img src="' + attachment.url + '"></img>').focus()
+                $dropdown.detach()
+                return false
+            })
+
+            $menuItem.text(attachment.name)
+            $menuItem.attr('href', attachment.url)
+
+            $dropdownMenu.append($menuItem)
+            $dropdownMenu.append('<br/>')
+
+        })
+
+        $dropdownMenu.show()
+
+        $('body').append($dropdown)
+        $dropdown.offset($buttons.image.offset())
+
+        setTimeout(function() {
+            $('body').click(function()  {
+                $dropdown.detach()
+            })
+        }, 50)
+
+    }
+
+    var $topbar = $('<div></div>')
+                    .append($buttons.bold)
+                    .append($buttons.italic)
+                    .append($buttons.underline)
+                    .append($buttons.image)
+                    .append($buttons.link)
 
     var $textarea = $('<textarea class="form-control"></textarea>')
     var $saveButton = $('<button class="btn btn-primary">').text(saveButtonText)
@@ -41,7 +113,11 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
     $textarea.val($el.attr('data-src'))
 
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
+    var $div = $('<div></div>')
+                    .append($topbar)
+                    .append($textarea)
+                    .append($saveButton)
+                    .append($cancelButton)
 
     var $orig = $el
     $el.replaceWith($div)
@@ -52,11 +128,11 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
     $saveButton.click(function() {
 
-        var desc = $textarea.val()
+        var value = $textarea.val()
 
         $.post(updateEndpoint, {
             uri: meta.uri,
-            desc: desc,
+            value: value,
         }, function(res) {
             $div.replaceWith($(res))
         })
