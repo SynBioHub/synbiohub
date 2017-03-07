@@ -65,6 +65,8 @@ $(document).on('click', '#sbh-add-description', function() {
 
     $textarea.focus()
 
+    return false
+
 })
 
 
@@ -96,8 +98,9 @@ $(document).on('click', '#sbh-edit-description', function() {
 
     })
 
-
     $textarea.focus()
+
+    return false
 })
 
 $(document).on('click', '#sbh-add-notes', function() {
@@ -131,6 +134,7 @@ $(document).on('click', '#sbh-add-notes', function() {
 
     $textarea.focus()
 
+    return false
 })
 
 
@@ -164,6 +168,8 @@ $(document).on('click', '#sbh-edit-notes', function() {
 
 
     $textarea.focus()
+
+    return false
 })
 
 $(document).on('click', '#sbh-add-source', function() {
@@ -197,6 +203,7 @@ $(document).on('click', '#sbh-add-source', function() {
 
     $textarea.focus()
 
+    return false
 })
 
 
@@ -230,6 +237,8 @@ $(document).on('click', '#sbh-edit-source', function() {
 
 
     $textarea.focus()
+
+    return false
 })
 
 
@@ -263,6 +272,7 @@ $(document).on('click', '#sbh-add-citations', function() {
 
     $textarea.focus()
 
+    return false
 })
 
 
@@ -296,6 +306,8 @@ $(document).on('click', '#sbh-edit-citations', function() {
 
 
     $textarea.focus()
+
+    return false
 })
 
 
