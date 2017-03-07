@@ -89,16 +89,19 @@ block topLevelButtons
             | 
             span Find Twins
         br
+        br
     else
         a.btn.btn-primary(href=searchTwinsUrl,title='This is NOT a dominant twin')
             span.fa.fa-search
             | 
             span Find Twins
         br
+        br
     if config.experimental.dataIntegration
         a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
             span.fa.fa-plus-circle
             | 
             span Data Integration
+        br
         br
 
