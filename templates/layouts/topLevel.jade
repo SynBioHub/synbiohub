@@ -62,14 +62,14 @@ block content
                         td(nowrap="nowrap") 
                             a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') #{'Version '+meta.version}
 			
-                    if meta.wasDerivedFrom
+                    if meta.wasDerivedFrom && meta.wasDerivedFrom != ''
                         tr
                             td Source
                             td
                                a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
                             td
 
-                    if meta.creator.description
+                    if meta.creator.description && meta.creator.description != ''
                         tr
                             td Creator
                             td
@@ -77,7 +77,7 @@ block content
                             td
                                 a(href='/search/dc:creator=\''+meta.creator.description+'\'&') #{'Search'}
        
-                    if meta.created.description
+                    if meta.created.description && meta.created.description != ''
                         tr
                             td Created
                             td
@@ -85,7 +85,7 @@ block content
                             td
                                a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') #{'Search'}
 
-                    if meta.modified.description
+                    if meta.modified.description && meta.modified.description != ''
                         tr
                             td Modified
                             td
@@ -93,7 +93,7 @@ block content
                             td
                                a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&') #{'Search'}
 
-                    if meta.description
+                    if meta.description && meta.description != ''
                         tr
                             td Description
                             td
@@ -173,55 +173,7 @@ block content
                     block topLevelPropertyTable
 
             div.col-md-4.entry-actions
-                if typeof(memberCount) == 'undefined' || memberCount < 2000
-                    a.btn.btn-primary(href=sbolUrl)
-                        span.fa.fa-download
-                        | 
-                        span Download SBOL File
-                    br
-                    br
-                a.btn.btn-primary(href=genBankUrl)
-                    span.fa.fa-download
-                    | 
-                    span Download GenBank
-                br
-                br
-                // a.btn.btn-primary(href=fastaUrl)
-                //     span.fa.fa-download
-                //     | 
-                //     span Download FASTA
-                // br
-                // br
-                a.btn.btn-primary.sbh-download-picture
-                    span.fa.fa-picture-o
-                    | 
-                    span Download Image
-                br
-                br
-                a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
-                    span.fa.fa-search
-                    | 
-                    span Find Uses
-                br
-                br
-                if meta.igemDominant && meta.igemDominant.description == 'true'
-                    a.btn.btn-success(href=searchTwinsUrl,title='This is a dominant twin')
-                        span.fa.fa-search
-                        | 
-                        span Find Twins
-                    br
-                else
-                    a.btn.btn-primary(href=searchTwinsUrl,title='This is NOT a dominant twin')
-                        span.fa.fa-search
-                        | 
-                        span Find Twins
-                    br
-                if config.experimental.dataIntegration
-                    br
-                    a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
-                        span.fa.fa-plus-circle
-                        | 
-                        span Data Integration
+                block topLevelButtons
 
         block topLevelPreview
 
