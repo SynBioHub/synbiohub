@@ -33,17 +33,18 @@ require('./sse')
 
 
 
-
-$(document).on('click', '#sbh-add-description', function() {
+function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
     var $textarea = $('<textarea class="form-control"></textarea>')
-    var $saveButton = $('<button class="btn btn-primary">').text('Save Description')
+    var $saveButton = $('<button class="btn btn-primary">').text(saveButtonText)
     var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
+
+    $textarea.val($el.attr('data-src'))
 
     var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
 
-    var $orig = $(this)
-    $(this).replaceWith($div)
+    var $orig = $el
+    $el.replaceWith($div)
 
     $cancelButton.click(function() {
         $div.replaceWith($orig)
@@ -53,7 +54,7 @@ $(document).on('click', '#sbh-add-description', function() {
 
         var desc = $textarea.val()
 
-        $.post('/updateMutableDescription', {
+        $.post(updateEndpoint, {
             uri: meta.uri,
             desc: desc,
         }, function(res) {
@@ -62,251 +63,53 @@ $(document).on('click', '#sbh-add-description', function() {
 
     })
 
-
     $textarea.focus()
+}
 
+
+
+$(document).on('click', '#sbh-add-description', function() {
+    createWikiEditor($(this), 'Save Description', '/updateMutableDescription')
     return false
-
 })
 
 
 $(document).on('click', '#sbh-edit-description', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>').val($('#sbh-description').data('src'))
-    var $saveButton = $('<button class="btn btn-primary">').text('Save Description')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $('#sbh-description')
-    $('#sbh-description').replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var desc = $textarea.val()
-
-        $.post('/updateMutableDescription', {
-            uri: meta.uri,
-            desc: desc,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-    $textarea.focus()
-
+    createWikiEditor($('#sbh-description'), 'Save Description', '/updateMutableDescription')
     return false
 })
 
 $(document).on('click', '#sbh-add-notes', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>')
-    var $saveButton = $('<button class="btn btn-primary">').text('Save Notes')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $(this)
-    $(this).replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var notes = $textarea.val()
-
-        $.post('/updateMutableNotes', {
-            uri: meta.uri,
-            notes: notes,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-
-    $textarea.focus()
-
+    createWikiEditor($(this), 'Save Notes', '/updateMutableNotes')
     return false
 })
 
 
 $(document).on('click', '#sbh-edit-notes', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>').val($('#sbh-notes').data('src'))
-    var $saveButton = $('<button class="btn btn-primary">').text('Save Notes')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $('#sbh-notes')
-    $('#sbh-notes').replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var notes = $textarea.val()
-
-        $.post('/updateMutableNotes', {
-            uri: meta.uri,
-            notes: notes,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-
-    $textarea.focus()
-
+    createWikiEditor($('#sbh-notes'), 'Save Notes', '/updateMutableNotes')
     return false
 })
 
 $(document).on('click', '#sbh-add-source', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>')
-    var $saveButton = $('<button class="btn btn-primary">').text('Save Source')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $(this)
-    $(this).replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var source = $textarea.val()
-
-        $.post('/updateMutableSource', {
-            uri: meta.uri,
-            source: source,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-
-    $textarea.focus()
-
+    createWikiEditor($(this), 'Save Source', '/updateMutableSource')
     return false
 })
 
 
 $(document).on('click', '#sbh-edit-source', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>').val($('#sbh-source').data('src'))
-    var $saveButton = $('<button class="btn btn-primary">').text('Save Source')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $('#sbh-source')
-    $('#sbh-source').replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var source = $textarea.val()
-
-        $.post('/updateMutableSource', {
-            uri: meta.uri,
-            source: source,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-
-    $textarea.focus()
-
+    createWikiEditor($('#sbh-source'), 'Save Source', '/updateMutableSource')
     return false
 })
 
 
 $(document).on('click', '#sbh-add-citations', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>')
-    var $saveButton = $('<button class="btn btn-primary">').text('Save References')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $(this)
-    $(this).replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var citations = $textarea.val()
-        $.post('/updateCitations', {
-            uri: meta.uri,
-            citations: citations,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-
-    $textarea.focus()
-
+    createWikiEditor($(this), 'Save Citations', '/updateCitations')
     return false
 })
 
 
 $(document).on('click', '#sbh-edit-citations', function() {
-
-    var $textarea = $('<textarea class="form-control"></textarea>').val($('#sbh-citations').data('src'))
-    var $saveButton = $('<button class="btn btn-primary">').text('Save References')
-    var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
-
-    var $div = $('<div></div>').append($textarea).append($saveButton).append($cancelButton)
-
-    var $orig = $('#sbh-citations')
-    $('#sbh-citations').replaceWith($div)
-
-    $cancelButton.click(function() {
-        $div.replaceWith($orig)
-    })
-
-    $saveButton.click(function() {
-
-        var citations = $textarea.val()
-
-        $.post('/updateCitations', {
-            uri: meta.uri,
-            citations: citations,
-        }, function(res) {
-            $div.replaceWith($(res))
-        })
-
-    })
-
-
-    $textarea.focus()
-
+    createWikiEditor($('#sbh-citations'), 'Save Citations', '/updateCitations')
     return false
 })
 
@@ -337,7 +140,7 @@ $(function() {
           if( input.length ) {
               input.val(log);
           } else {
-              if( log ) alert(log);
+              //if( log ) alert(log);
           }
 
       });
