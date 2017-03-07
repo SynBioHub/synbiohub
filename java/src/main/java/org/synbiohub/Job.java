@@ -23,6 +23,10 @@ public class Job
 		{
 			return gson.fromJson(json, PrepareSubmissionJob.class);
 		}
+		else if(job.type.equals("changeURIPrefix"))
+		{
+			return gson.fromJson(json, ChangeURIPrefixJob.class);
+		}
 		else
 		{
 			throw new UnknownJobTypeException();

@@ -71,7 +71,7 @@ public class PrepareSubmissionJob extends Job
 			return;
 		}
 
-		Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
+		final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
 		System.err.println("New collection: " + submissionCollection.getIdentity().toString());
 
 		submissionCollection.createAnnotation(
@@ -99,7 +99,7 @@ public class PrepareSubmissionJob extends Job
 		for(int pubmedID : citationPubmedIDs)
 		{
 			submissionCollection.createAnnotation(
-					new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "purl"),
+					new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
 					Integer.toString(pubmedID));
 		}
 
@@ -113,6 +113,25 @@ public class PrepareSubmissionJob extends Job
 				submissionCollection.addMember(topLevel.getIdentity());
 		}
 
+		(new IdentifiedVisitor() {
+
+			@Override
+			public void visit(Identified identified) {
+
+				try {
+				
+					identified.createAnnotation(
+							new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
+							submissionCollection.getIdentity());
+				
+				} catch (SBOLValidationException e) {
+					
+					
+				}
+				
+			}
+			
+		}).visitDocument(doc);
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 
