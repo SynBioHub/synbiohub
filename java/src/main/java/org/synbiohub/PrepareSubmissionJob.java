@@ -2,7 +2,6 @@ package org.synbiohub;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -116,8 +115,7 @@ public class PrepareSubmissionJob extends Job
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 
-		SBOLWriter writer = new SBOLWriter();
-		writer.write(doc, resultFile);
+		SBOLWriter.write(doc, resultFile);
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 

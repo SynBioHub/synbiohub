@@ -1,7 +1,7 @@
 
 mixin mutable-description(src, desc, canEdit)
     div#sbh-description(data-src=src)
-        if (desc === '') 
+        if (desc == '') 
             if canEdit
                 h4
                     a#sbh-add-description(href='#')
@@ -18,7 +18,7 @@ mixin mutable-description(src, desc, canEdit)
 
 mixin mutable-notes(src, notes, canEdit)
     div#sbh-notes(data-src=src)
-        if (notes === '') 
+        if (notes == '') 
             if canEdit
                 h4
                     a#sbh-add-notes(href='#')
@@ -35,7 +35,7 @@ mixin mutable-notes(src, notes, canEdit)
 
 mixin mutable-source(src, source, canEdit)
     div#sbh-source(data-src=src)
-        if (source === '') 
+        if (source == '') 
             if canEdit
                 h4
                     a#sbh-add-source(href='#')
