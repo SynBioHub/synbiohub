@@ -128,11 +128,11 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
     $saveButton.click(function() {
 
-        var desc = $textarea.val()
+        var value = $textarea.val()
 
         $.post(updateEndpoint, {
             uri: meta.uri,
-            desc: desc,
+            value: value,
         }, function(res) {
             $div.replaceWith($(res))
         })
