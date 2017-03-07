@@ -4,10 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.sbolstandard.core2.*;
 
@@ -33,6 +35,7 @@ public class PrepareSubmissionJob extends Job
 	public String description;
 	public ArrayList<Integer> citationPubmedIDs;
 	public ArrayList<String> keywords;
+	public HashMap<String,String> webOfRegistries;
 
 	public void execute() throws Exception
 	{
@@ -43,12 +46,12 @@ public class PrepareSubmissionJob extends Job
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
-				uriPrefix,
+				"",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,
 				typesInURI,
-				version,
+				null,
 				keepGoing,
 				"",
 				"",
@@ -69,13 +72,21 @@ public class PrepareSubmissionJob extends Job
 			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 			return;
 		}
+		
+		for(TopLevel topLevel : doc.getTopLevels())
+		{	
+			for (String registry : webOfRegistries.keySet()) {
+				if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
+					doc.removeTopLevel(topLevel);
+					break;
+				}	
+			}
+		}
+		
+		doc = doc.changeURIPrefixVersion(uriPrefix, version);
 
 		final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
 		System.err.println("New collection: " + submissionCollection.getIdentity().toString());
-
-		submissionCollection.createAnnotation(
-				new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
-				new URI(ownedByURI));
 
 		submissionCollection.createAnnotation(
 				new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
@@ -94,22 +105,12 @@ public class PrepareSubmissionJob extends Job
 					new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "keyword", "sbh"),
 					keyword);
 		}
-
-		for(int pubmedID : citationPubmedIDs)
-		{
-			submissionCollection.createAnnotation(
-					new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
-					Integer.toString(pubmedID));
-		}
-
+		
 		for(TopLevel topLevel : doc.getTopLevels())
-		{
-			topLevel.createAnnotation(
-					new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
-					new URI(ownedByURI));
-
-			if(topLevel != submissionCollection)
+		{	
+			if(topLevel != submissionCollection) {
 				submissionCollection.addMember(topLevel.getIdentity());
+			}
 		}
 
 		(new IdentifiedVisitor() {
@@ -118,12 +119,22 @@ public class PrepareSubmissionJob extends Job
 			public void visit(Identified identified) {
 
 				try {
-				
+					for(int pubmedID : citationPubmedIDs)
+					{
+						identified.createAnnotation(
+								new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
+								Integer.toString(pubmedID));
+					}
+					
+					identified.createAnnotation(
+							new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
+							new URI(ownedByURI));
+					
 					identified.createAnnotation(
 							new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
 							submissionCollection.getIdentity());
 				
-				} catch (SBOLValidationException e) {
+				} catch (SBOLValidationException | URISyntaxException e) {
 					
 					
 				}
