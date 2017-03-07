@@ -8,6 +8,7 @@ config.local.json
 uploads
 public/styles/theme/*.less
 *.class
+java/target
 
 
 

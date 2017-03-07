@@ -53,4 +53,10 @@ function initSliver() {
     })
 }
 
+process.on('SIGINT', function() {
+
+    java.shutdown().then(() => process.exit())
+    
+})
+
 
