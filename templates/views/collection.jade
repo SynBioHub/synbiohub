@@ -51,3 +51,21 @@ block topLevelPropertyTable
                 td
                     a(href=component.url) #{component.name}
                     br
+
+block topLevelButtons
+    if memberCount <= 2000
+        a.btn.btn-primary(href=sbolUrl)
+            span.fa.fa-download
+            | 
+            span Download SBOL File
+        br
+        br
+    if meta.triplestore != 'public'
+        a.btn.btn-success(href=share)
+            span.fa.fa-share
+                |  Share
+        br
+        br
+        a.btn.btn-success(href=meta.url + '/makePublic')
+            span.fa.fa-unlock
+                |  Make Public

@@ -52,5 +52,53 @@ block topLevelBelowTitle
                 | 
                 a(href=protein.url) #{protein.name}
 
-
+block topLevelButtons
+    a.btn.btn-primary(href=sbolUrl)
+        span.fa.fa-download
+        | 
+        span Download SBOL File
+    br
+    br
+    a.btn.btn-primary(href=genBankUrl)
+        span.fa.fa-download
+        | 
+        span Download GenBank
+    br
+    br
+    // a.btn.btn-primary(href=fastaUrl)
+    //     span.fa.fa-download
+    //     | 
+    //     span Download FASTA
+    // br
+    // br
+    a.btn.btn-primary.sbh-download-picture
+        span.fa.fa-picture-o
+        | 
+        span Download Image
+    br
+    br
+    a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
+        span.fa.fa-search
+        | 
+        span Find Uses
+    br
+    br
+    if meta.igemDominant.description == 'true'
+        a.btn.btn-success(href=searchTwinsUrl,title='This is a dominant twin')
+            span.fa.fa-search
+            | 
+            span Find Twins
+        br
+    else
+        a.btn.btn-primary(href=searchTwinsUrl,title='This is NOT a dominant twin')
+            span.fa.fa-search
+            | 
+            span Find Twins
+        br
+    if config.experimental.dataIntegration
+        a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
+            span.fa.fa-plus-circle
+            | 
+            span Data Integration
+        br
 

@@ -12,3 +12,21 @@ block topLevelPreview
                 h4 Sequence (#{meta.length} #{meta.lengthUnits})
                 pre #{meta.formatted}
 
+block topLevelButtons
+    a.btn.btn-primary(href=sbolUrl)
+        span.fa.fa-download
+        | 
+        span Download SBOL File
+    br
+    br
+    a.btn.btn-primary(href=fastaUrl)
+        span.fa.fa-download
+        | 
+        span Download FASTA
+    br
+    br
+    a.btn.btn-primary(href=searchUsesUrl)
+        span.fa.fa-search
+        | 
+        span Find Uses
+    br
