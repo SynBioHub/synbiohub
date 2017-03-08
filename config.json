@@ -44,6 +44,7 @@
   "threadPoolSize": 8,
   "uploadLimit": "150mb",
   "resolveBatch": 50,
+  "staggeredQueryLimit": 10000,
   "otherStacks": [],
   "mail": {
       "sendgridApiKey": "",
