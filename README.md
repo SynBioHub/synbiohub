@@ -5,13 +5,20 @@ To learn more about the SynBioHub, including installation instructions and docum
 To access a sample instance of SynBioHub containing enriched _Bacillus subtilis_ data, features from the _Escherichia coli_ genome, and the complete [iGEM Registry of Standard Biological Parts](http://parts.igem.org/Main_Page), visit [synbiohub.org](http://synbiohub.org).
 
 
-Building
---------
+Installation
+------------
+
+The recommended way to install SynBioHub is via the Docker image.  See [Installation](http://wiki.synbiohub.org/wiki/Installation) for more information.
+
+
+Manual Installation
+-------------------
 
 SynBioHub has both JavaScript (node.js) and Java components.
 
 Prequisites:
 
+* Linux (only tested with Ubuntu 16.04) or macOS
 * A JDK
 * [Apache Maven](https://maven.apache.org/)
 * [node.js](https://nodejs.org/en/) >= 6.10
