@@ -22,7 +22,17 @@ Prequisites:
 * A JDK
 * [Apache Maven](https://maven.apache.org/)
 * [node.js](https://nodejs.org/en/) >= 6.10
+* [OpenLink Virtuoso](https://github.com/openlink/virtuoso-opensource) 7.x.x
 * [rapper](http://librdf.org/raptor/rapper.html) (apt install `raptor2-utils`)
+
+For Ubuntu 16.04:
+
+    echo 'deb http://packages.comsode.eu/debian jessie main' >> /etc/apt/sources.list
+    wget http://packages.comsode.eu/key/odn.gpg.key
+    apt-key add odn.gpg.key
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+    apt update
+    apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource
 
 First, build the Java parts with Maven:
 
