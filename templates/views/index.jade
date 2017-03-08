@@ -3,18 +3,41 @@ extends ../layouts/dark.jade
 
 block content
 
-    div(align='center').search-main
-        div.sbol-logo-white
-        p A design repository for synthetic biology
-        br
+    div.container.container-fluid
+        div.row
+            div.col-md-12(style='text-align: center;')
+                img(src='/images/sbolhub_logo_sl_white.svg').sbh-frontpage-logo
+            div.col-md-12(style='text-align: center;')
+                h2
+                    i
+                        | A design repository for synthetic biology
+                br
+                br
+        div.row.sbh-main-page-row
+            div.col-md-6.sbh-main-page-search-col
+                div
+                    form(action='search').main-search-form
+                        input.sbh-autocomplete(type='text',name='q',placeholder='Search SynBioHub')
+                        button(type='submit').submit Search
+                    br
+                    a(href='/browse').search-examples Browse all parts
 
-        form(action='search').main-search-form
-            input.sbh-autocomplete(type='text',name='q',placeholder='Search SynBioHub')
-            button(type='submit').submit Search
-
-        br
-
-        a(href='/browse').search-examples Browse all entries
-
+            div.col-md-6.sbh-main-page-other-col
+                table.sbh-frontpage-pictures(style='text-align: left;')
+                    tr
+                        td
+                            span.fa.fa-search
+                        td
+                            h4 #[b Search] for useful DNA or protein parts
+                    tr
+                        td
+                            span.fa.fa-upload
+                        td
+                            h4 #[b Upload] your designed constructs for safekeeping
+                    tr
+                        td
+                            span.fa.fa-share-alt
+                        td
+                            h4 #[b Share] designs for publication or collaboration
 
 
