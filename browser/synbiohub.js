@@ -145,7 +145,7 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
 
 $(document).on('click', '#sbh-add-description', function() {
-    createWikiEditor($(this), 'Save Description', '/updateMutableDescription')
+    createWikiEditor($('#sbh-description'), 'Save Description', '/updateMutableDescription')
     return false
 })
 
@@ -156,7 +156,7 @@ $(document).on('click', '#sbh-edit-description', function() {
 })
 
 $(document).on('click', '#sbh-add-notes', function() {
-    createWikiEditor($(this), 'Save Notes', '/updateMutableNotes')
+    createWikiEditor($('#sbh-notes'), 'Save Notes', '/updateMutableNotes')
     return false
 })
 
@@ -167,7 +167,7 @@ $(document).on('click', '#sbh-edit-notes', function() {
 })
 
 $(document).on('click', '#sbh-add-source', function() {
-    createWikiEditor($(this), 'Save Source', '/updateMutableSource')
+    createWikiEditor($('#sbh-source'), 'Save Source', '/updateMutableSource')
     return false
 })
 
@@ -179,7 +179,7 @@ $(document).on('click', '#sbh-edit-source', function() {
 
 
 $(document).on('click', '#sbh-add-citations', function() {
-    createWikiEditor($(this), 'Save Citations', '/updateCitations')
+    createWikiEditor($('#sbh-citations'), 'Save Citations', '/updateCitations')
     return false
 })
 
