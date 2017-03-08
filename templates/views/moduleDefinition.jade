@@ -22,7 +22,8 @@ block topLevelPropertyTable
                     br
     if functionalComponents.length > 0
         tr
-            td FunctionalComponents
+            td 
+                a(href='http://sbols.org/v2#FunctionalComponent', title='http://sbols.org/v2#FunctionalComponent') FunctionalComponent
             td Identifier
             td Name
         tr
@@ -38,9 +39,29 @@ block topLevelPropertyTable
                 for functionalComponent in functionalComponents
                     a(href=functionalComponent.url) #{functionalComponent.defName}
                     br
+    if interactions.length > 0
+        for interaction in interactions
+            tr
+                td 
+                    a(href='http://sbols.org/v2#Interaction', title='http://sbols.org/v2#Interaction') Interaction
+                td
+                    != interaction.defName
+                td
+                    a(href=interaction.typeURL, title=interaction.typeURL) #{interaction.typeStr}
+            if interaction.participations.length > 0
+                for participation in interaction.participations
+                    tr
+                        td 
+                            a(href='http://sbols.org/v2#Participation', title='http://sbols.org/v2#Participation') &nbsp; Participation
+                        td 
+                            a(href=participation.participant.url, title=participation.participant.url) #{participation.participant.defName}
+                        td 
+                            a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
+            
     if models.length > 0 
         tr
-            td Models
+            td 
+                a(href='http://sbols.org/v2#Model', title='http://sbols.org/v2#Model') Model
             td
                 for model in models
                     if (model.url)
@@ -53,17 +74,6 @@ block topLevelPropertyTable
                     if (model.version)
                         != 'Version '+model.version
                     br
-                    if collections.length > 0
-                        tr
-                            td In Collections
-                            td
-                                for collection in collections
-                                    a(href=collection.url,title=collection.name) #{collection.name}
-                                    br
-                            td
-                                for collection in collections
-                                    a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
-                                    br
 
 block topLevelPreview
     if meta.displayList
