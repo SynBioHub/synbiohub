@@ -1632,9 +1632,32 @@ ul, li {
     display: block;
 }
 
+.sbh-frontpage-container {
+    display: inline-block;
+}
+
 .sbh-frontpage-pictures {
+    white-space: nowrap;
+}
+
+.sbh-frontpage-pictures tr {
+    height: 180px;
+}
+
+.sbh-frontpage-pictures td > .fa {
     font-size: 80pt;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.sbh-frontpage-pictures td {
+    vertical-align: middle;
+}
+
+.sbh-frontpage-pictures h4 {
+    display: block;
+}
+
+.sbh-frontpage-pictures > div {
     display: inline;
 }
 
@@ -1642,23 +1665,17 @@ ul, li {
     padding-right: 20px;
 }
 
-
-.sbh-main-page-row {
-    display:table;
+.sbh-frontpage-pictures input {
+    font-size: .9em;
+    border: 1px solid white;
+    color: #2C3E50;
+    border-radius: 4px 0 0px 4px;
+    padding: 6px;
+    display: inline;
+    width: 300px;
 }
 
-.sbh-main-page-row [class*="col-"] {
-    float: none;
-    display: table-cell;
-    text-align: center;
+.sbh-frontpage-blurb {
+    font-size: 14pt;
 }
-
-.sbh-main-page-search-col {
-    vertical-align: center;
-}
-
-.sbh-main-page-search-col > div {
-}
-
-
 

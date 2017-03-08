@@ -7,37 +7,35 @@ block content
         div.row
             div.col-md-12(style='text-align: center;')
                 img(src='/images/sbolhub_logo_sl_white.svg').sbh-frontpage-logo
-            div.col-md-12(style='text-align: center;')
-                h2
-                    i
-                        | A design repository for synthetic biology
-                br
-                br
-        div.row.sbh-main-page-row
-            div.col-md-6.sbh-main-page-search-col
-                div
-                    form(action='search').main-search-form
-                        input.sbh-autocomplete(type='text',name='q',placeholder='Search SynBioHub')
-                        button(type='submit').submit Search
-                    br
-                    a(href='/browse').search-examples Browse all parts
 
-            div.col-md-6.sbh-main-page-other-col
-                table.sbh-frontpage-pictures(style='text-align: left;')
-                    tr
-                        td
-                            span.fa.fa-search
-                        td
-                            h4 #[b Search] for useful DNA or protein parts
-                    tr
-                        td
-                            span.fa.fa-upload
-                        td
-                            h4 #[b Upload] your designed constructs for safekeeping
-                    tr
-                        td
-                            span.fa.fa-share-alt
-                        td
-                            h4 #[b Share] designs for publication or collaboration
+        div.row
+            div.col-md-12.sbh-frontpage-blurb
+                p SynBioHub is a #[i design repository] for people designing biological constructs.  It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them.  SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.
+        div.row.sbh-main-page-row
+            div.col-md-12(style='text-align: center;')
+                div.sbh-frontpage-container
+                    table.sbh-frontpage-pictures(style='text-align: left;')
+                        tr
+                            td
+                                span.fa.fa-search
+                            td
+                                h3 #[b Search] for useful parts and designs
+                                input.sbh-autocomplete(type='text',name='q',placeholder='Gene or protein name')
+                                button(type='submit').btn.btn-primary
+                                    span.fa.fa-chevron-right
+                                br
+                                a(href='/browse').search-examples Browse all parts
+                        tr
+                            td
+                                span.fa.fa-upload
+                            td
+                                h3 #[b Upload] your designed constructs for safekeeping
+                                button.btn.btn-primary Submit a Part
+                        tr
+                            td
+                                span.fa.fa-share-alt
+                            td
+                                h3 #[b Share] designs for publication or collaboration
+                                button.btn.btn-primary Manage Submissions
 
 
