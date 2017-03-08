@@ -15,6 +15,7 @@ Prequisites:
 * A JDK
 * [Apache Maven](https://maven.apache.org/)
 * [node.js](https://nodejs.org/en/) >= 6.10
+* [rapper](http://librdf.org/raptor/rapper.html) (apt install `raptor2-utils`)
 
 First, build the Java parts with Maven:
 
