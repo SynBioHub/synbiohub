@@ -16,6 +16,12 @@ block topLevelPropertyTable
             a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
             br
         td
+    tr
+        td Model File
+        td
+            a(href=meta.modelSource.toString(),title=meta.modelSource) #{meta.modelSource.toString()}
+            br
+        td
 
 block topLevelButtons
     a.btn.btn-primary(href=sbolUrl)
