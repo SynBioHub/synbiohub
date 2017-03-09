@@ -16,6 +16,8 @@ block topLevelPropertyTable
             a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
             br
         td
+            a(href='/search/framework=<'+encodeURIComponent(meta.framework.uri)+'>&',title=meta.framework.name) #{'Search'}
+            br
     tr
         td Model File
         td
