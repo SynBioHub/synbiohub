@@ -82,6 +82,13 @@ public class PrepareSubmissionJob extends Job
 				}	
 			}
 		}
+
+		if(doc.getTopLevels().size() == 0)
+		{
+			errorLog = "Submission terminated.  There is nothing new to add to the repository.";
+			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
+			return;
+		}
 		
 		doc = doc.changeURIPrefixVersion(uriPrefix, version);
 
