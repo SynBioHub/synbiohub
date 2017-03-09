@@ -5,12 +5,16 @@ block content
 
     div.container.container-fluid
         div.row
-            div.col-md-12(style='text-align: center;')
+            div.col-md-2
+            div.col-md-8(style='text-align: center;')
                 img(src='/images/sbolhub_logo_sl_white.svg').sbh-frontpage-logo
 
         div.row
-            div.col-md-12.sbh-frontpage-blurb
-                p SynBioHub is a #[i design repository] for people designing biological constructs.  It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them.  SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.
+            div.col-md-2
+            div.col-md-8.sbh-frontpage-blurb
+                p 
+                    a(href='/About') #{'SynBioHub'} 
+                    | is a #[i design repository] for people designing biological constructs.  It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them.  SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.
         div.row.sbh-main-page-row
             div.col-md-12(style='text-align: center;')
                 div.sbh-frontpage-container
@@ -24,18 +28,18 @@ block content
                                 button(type='submit').btn.btn-primary
                                     span.fa.fa-chevron-right
                                 br
-                                a(href='/browse').search-examples Browse all parts
+                                a.button.btn.btn-primary(href='/browse') Browse Public Designs
                         tr
                             td
                                 span.fa.fa-upload
                             td
-                                h3 #[b Upload] your designed constructs for safekeeping
-                                button.btn.btn-primary Submit a Part
+                                h3 #[b Upload] your design for safekeeping
+                                a.button.btn.btn-primary(href='/submit') Submit a Design
                         tr
                             td
                                 span.fa.fa-share-alt
                             td
                                 h3 #[b Share] designs for publication or collaboration
-                                button.btn.btn-primary Manage Submissions
+                                a.button.btn.btn-primary(href='/manage') Manage Submissions
 
 
