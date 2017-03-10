@@ -13,3 +13,10 @@ block topLevelButtons
         | 
         span Find Uses
     br
+    br
+    if meta.triplestore != 'public'
+        a.btn.btn-success(href=meta.url + '/remove')
+            span.fa.fa-unlock
+                |  Remove
+        br
+        br

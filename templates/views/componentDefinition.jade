@@ -97,6 +97,12 @@ block topLevelButtons
             span Find Twins
         br
         br
+    if meta.triplestore === 'private'
+        a.btn.btn-success(href=meta.url + '/remove')
+            span.fa.fa-unlock
+                |  Remove
+        br
+        br
     if config.experimental.dataIntegration
         a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
             span.fa.fa-plus-circle
