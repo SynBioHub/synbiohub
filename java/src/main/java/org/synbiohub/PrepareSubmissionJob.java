@@ -2,6 +2,7 @@ package org.synbiohub;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,7 +12,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.sbolstandard.core2.*;
+import org.synbiohub.frontend.SynBioHubException;
+import org.synbiohub.frontend.SynBioHubFrontend;
 
 import javax.xml.namespace.QName;
 
@@ -36,8 +40,9 @@ public class PrepareSubmissionJob extends Job
 	public ArrayList<Integer> citationPubmedIDs;
 	public ArrayList<String> keywords;
 	public HashMap<String,String> webOfRegistries;
+	public String shareLinkSalt;
 
-	public void execute() throws Exception
+	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
 		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
@@ -85,7 +90,7 @@ public class PrepareSubmissionJob extends Job
 
 		if(doc.getTopLevels().size() == 0)
 		{
-			errorLog = "Submission terminated.  There is nothing new to add to the repository.";
+			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
 			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 			return;
 		}
@@ -111,13 +116,6 @@ public class PrepareSubmissionJob extends Job
 			submissionCollection.createAnnotation(
 					new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "keyword", "sbh"),
 					keyword);
-		}
-		
-		for(TopLevel topLevel : doc.getTopLevels())
-		{	
-			if(topLevel != submissionCollection) {
-				submissionCollection.addMember(topLevel.getIdentity());
-			}
 		}
 
 		(new IdentifiedVisitor() {
@@ -149,6 +147,59 @@ public class PrepareSubmissionJob extends Job
 			}
 			
 		}).visitDocument(doc);
+				
+		for(TopLevel topLevel : doc.getTopLevels())
+		{	
+			for (String registry : webOfRegistries.keySet()) {
+				SynBioHubFrontend sbh = new SynBioHubFrontend("http://"+webOfRegistries.get(registry),
+						"http://"+registry);
+				if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
+					String topLevelUri = topLevel.getIdentity().toString() + '/' + 
+								DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
+								"/share";
+					//System.err.println("URI Lookup:"+topLevel.getIdentity().toString());
+					//System.err.println("Share Lookup:"+topLevelUri);
+					SBOLDocument tlDoc;
+					try {
+						tlDoc = sbh.getSBOL(URI.create(topLevelUri));
+					}
+					catch (SynBioHubException e) {
+						tlDoc = null;
+					}
+					if (tlDoc != null) {
+						TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
+						if (tl != null) {
+							if (!topLevel.equals(tl)) {
+								System.err.println("top:"+topLevel.toString());
+								System.err.println("tl: "+tl.toString());
+								errorLog = "Submission terminated.\nA submission with this id already exists, "
+										+ " and it includes an object:\n" + topLevel.getIdentity() + "\nthat is already "
+										+ " in this repository and has different content";
+								finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
+								return;
+							} else {
+								doc.removeTopLevel(topLevel);
+							}	
+						}
+					}
+					break;
+				}	
+			}
+		}
+		
+		for(TopLevel topLevel : doc.getTopLevels())
+		{	
+			if(topLevel != submissionCollection) {
+				submissionCollection.addMember(topLevel.getIdentity());
+			}
+		}
+
+		if (submissionCollection.getMembers().size() == 0) 
+		{
+			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
+			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
+			return;
+		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 
