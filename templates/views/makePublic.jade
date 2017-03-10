@@ -47,13 +47,10 @@ block content
                 br
                 label.radio.inline
                     input(type="radio", name="overwrite_merge", value="0", checked=true)
-                    | Prevent making public
-                label.radio.inline
-                    input(id="om", type="radio", name="overwrite_merge", value="1", checked=overwrite=="Overwrite")
-                    | Overwrite
+                    | Prevent submission
                 label.radio.inline
                     input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
-                    | Merge
+                    | Merge and prevent, if member of collection exists
 
             div.clearfix
 
