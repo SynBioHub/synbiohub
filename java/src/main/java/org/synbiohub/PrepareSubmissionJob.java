@@ -78,17 +78,20 @@ public class PrepareSubmissionJob extends Job
 			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 			return;
 		}
+
+		if (!newRootCollectionDisplayId.equals("")) {
 		
-		for(TopLevel topLevel : doc.getTopLevels())
-		{	
-			for (String registry : webOfRegistries.keySet()) {
-				if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
-					doc.removeTopLevel(topLevel);
-					break;
-				}	
+			for(TopLevel topLevel : doc.getTopLevels())
+			{	
+				for (String registry : webOfRegistries.keySet()) {
+					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
+						doc.removeTopLevel(topLevel);
+						break;
+					}	
+				}
 			}
 		}
-
+		
 		if(doc.getTopLevels().size() == 0)
 		{
 			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
@@ -98,69 +101,79 @@ public class PrepareSubmissionJob extends Job
 		
 		doc = doc.changeURIPrefixVersion(uriPrefix, version);
 
-		final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
-		System.err.println("New collection: " + submissionCollection.getIdentity().toString());
-
-		submissionCollection.createAnnotation(
-				new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
-				creatorName);
-
-		submissionCollection.createAnnotation(
-				new QName("http://purl.org/dc/terms/", "created", "dcterms"),
-				ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
-
-		submissionCollection.setName(name);
-		submissionCollection.setDescription(description);
-
-		for(String keyword : keywords)
-		{
-			submissionCollection.createAnnotation(
-					new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "keyword", "sbh"),
-					keyword);
-		}
-
-		(new IdentifiedVisitor() {
-
-			@Override
-			public void visit(Identified identified) {
-
-				try {
-					for(int pubmedID : citationPubmedIDs)
-					{
-						identified.createAnnotation(
-								new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
-								Integer.toString(pubmedID));
-					}
-					
-					identified.createAnnotation(
-							new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
-							new URI(ownedByURI));
-					
-					identified.createAnnotation(
-							new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
-							submissionCollection.getIdentity());
+		Collection rootCollection = null;
 				
-				} catch (SBOLValidationException | URISyntaxException e) {
-					
-					
-				}
-				
-			}
+		if (!newRootCollectionDisplayId.equals("")) {
+
+			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
+			System.err.println("New collection: " + submissionCollection.getIdentity().toString());
+			rootCollection = submissionCollection;
 			
-		}).visitDocument(doc);
-				
+			submissionCollection.createAnnotation(
+					new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
+					creatorName);
+
+			submissionCollection.createAnnotation(
+					new QName("http://purl.org/dc/terms/", "created", "dcterms"),
+					ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+
+			submissionCollection.setName(name);
+			submissionCollection.setDescription(description);
+
+			for(String keyword : keywords)
+			{
+				submissionCollection.createAnnotation(
+						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "keyword", "sbh"),
+						keyword);
+			}
+
+			(new IdentifiedVisitor() {
+
+				@Override
+				public void visit(Identified identified) {
+
+					try {
+						for(int pubmedID : citationPubmedIDs)
+						{
+							identified.createAnnotation(
+									new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
+									Integer.toString(pubmedID));
+						}
+
+						identified.createAnnotation(
+								new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
+								new URI(ownedByURI));
+
+						identified.createAnnotation(
+								new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
+								submissionCollection.getIdentity());
+
+					} catch (SBOLValidationException | URISyntaxException e) {
+
+
+					}
+
+				}
+
+			}).visitDocument(doc);
+		}
+		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
+				if(topLevel == rootCollection) continue;
 				for (String registry : webOfRegistries.keySet()) {
 					SynBioHubFrontend sbh = new SynBioHubFrontend("http://"+webOfRegistries.get(registry),
 							"http://"+registry);
 					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
-						String topLevelUri = topLevel.getIdentity().toString() + '/' + 
-								DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
-								"/share";
-						//System.err.println("URI Lookup:"+topLevel.getIdentity().toString());
-						//System.err.println("Share Lookup:"+topLevelUri);
+						String topLevelUri = topLevel.getIdentity().toString();
+						if (topLevelUri.startsWith("http://"+registry+"/user/")) {
+							topLevelUri = topLevel.getIdentity().toString() + '/' + 
+									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
+									"/share";
+						}
+						System.err.println("URI Lookup:"+topLevel.getIdentity().toString());
+						System.err.println("Share Lookup:"+topLevelUri);
 						SBOLDocument tlDoc;
 						try {
 							tlDoc = sbh.getSBOL(URI.create(topLevelUri));
@@ -169,9 +182,12 @@ public class PrepareSubmissionJob extends Job
 							tlDoc = null;
 						}
 						if (tlDoc != null) {
+							System.err.println("found it");
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
+								System.err.println("yes, found it");
 								if (!topLevel.equals(tl)) {
+									System.err.println("oops");
 									if (overwrite_merge.equals("3")) {
 										try {
 											System.err.println("Replacing " + topLevel.getIdentity());
@@ -200,18 +216,20 @@ public class PrepareSubmissionJob extends Job
 			}
 		}
 		
-		for(TopLevel topLevel : doc.getTopLevels())
-		{	
-			if(topLevel != submissionCollection) {
-				submissionCollection.addMember(topLevel.getIdentity());
+		if (rootCollection != null) {
+			for(TopLevel topLevel : doc.getTopLevels())
+			{		
+				if(topLevel != rootCollection) {
+					rootCollection.addMember(topLevel.getIdentity());
+				}	
 			}
-		}
 
-		if (submissionCollection.getMembers().size() == 0) 
-		{
-			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
-			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
-			return;
+			if (rootCollection.getMembers().size() == 0) 
+			{
+				errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
+				finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
+				return;
+			}
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
