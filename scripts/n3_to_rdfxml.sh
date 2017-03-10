@@ -15,13 +15,16 @@
 # declarations in the opening rdf tag.
 #
 # stdin: n3 triples in no particular order
-# stdout: "clean" rdf+xml
+# stdout: filename of a temporary file containing "clean" rdf+xml
 #
 
-TEMPFILE=$(mktemp)
+N3_TEMP=$(mktemp)
+XML_TEMP=$(mktemp)
 
 sort - > $TEMPFILE && \
-node sorted-n3-to-rdfxml $TEMPFILE
+node sorted-n3-to-rdfxml $TEMPFILE > $XML_TEMP
 
 rm -f $TEMPFILE
+
+echo $XML_TEMP
 

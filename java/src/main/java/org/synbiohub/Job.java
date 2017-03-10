@@ -31,6 +31,10 @@ public class Job
 		{
 			return gson.fromJson(json, ChangeURIPrefixJob.class);
 		}
+		else if(job.type.equals("rdfToSBOL"))
+		{
+			return gson.fromJson(json, RDFToSBOLJob.class);
+		}
 		else
 		{
 			throw new UnknownJobTypeException();
