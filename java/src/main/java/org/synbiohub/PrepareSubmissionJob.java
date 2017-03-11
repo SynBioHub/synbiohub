@@ -32,6 +32,7 @@ public class PrepareSubmissionJob extends Job
 	public String topLevelURI;
 
 
+	public String rootCollectionIdentity;
 	public String newRootCollectionDisplayId;
 	public String ownedByURI;
 	public String creatorName;
@@ -161,7 +162,14 @@ public class PrepareSubmissionJob extends Job
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
-				if(topLevel == rootCollection) continue;
+				if(topLevel.getIdentity().toString().equals(rootCollectionIdentity)) {
+					topLevel.unsetDescription();
+					topLevel.unsetName();
+					topLevel.unsetWasDerivedFrom();
+					Annotation annotation = topLevel.getAnnotation(new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"));
+					topLevel.removeAnnotation(annotation);
+					continue;
+				}
 				for (String registry : webOfRegistries.keySet()) {
 					SynBioHubFrontend sbh = new SynBioHubFrontend("http://"+webOfRegistries.get(registry),
 							"http://"+registry);
