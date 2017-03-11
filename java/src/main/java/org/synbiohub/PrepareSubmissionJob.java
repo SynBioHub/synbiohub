@@ -115,13 +115,15 @@ public class PrepareSubmissionJob extends Job
 					new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
 					creatorName);
 
-			submissionCollection.createAnnotation(
-					new QName("http://purl.org/dc/terms/", "created", "dcterms"),
-					ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+			if (newRootCollectionVersion.equals(version)) {
+				submissionCollection.createAnnotation(
+						new QName("http://purl.org/dc/terms/", "created", "dcterms"),
+						ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
 
-			submissionCollection.setName(name);
-			submissionCollection.setDescription(description);
-
+				submissionCollection.setName(name);
+				submissionCollection.setDescription(description);
+			}
+			
 			for(String keyword : keywords)
 			{
 				submissionCollection.createAnnotation(
@@ -181,8 +183,6 @@ public class PrepareSubmissionJob extends Job
 									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
 									"/share";
 						}
-						System.err.println("URI Lookup:"+topLevel.getIdentity().toString());
-						System.err.println("Share Lookup:"+topLevelUri);
 						SBOLDocument tlDoc;
 						try {
 							tlDoc = sbh.getSBOL(URI.create(topLevelUri));
@@ -191,23 +191,17 @@ public class PrepareSubmissionJob extends Job
 							tlDoc = null;
 						}
 						if (tlDoc != null) {
-							System.err.println("found it");
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
-								System.err.println("yes, found it");
 								if (!topLevel.equals(tl)) {
-									System.err.println("oops");
 									if (overwrite_merge.equals("3")) {
 										try {
-											System.err.println("Replacing " + topLevel.getIdentity());
 											sbh.removeSBOL(URI.create(topLevelUri));
 										}
 										catch (SynBioHubException e) {
 											e.printStackTrace();
 										}
 									} else {
-										System.err.println("top:"+topLevel.toString());
-										System.err.println("tl: "+tl.toString());
 										errorLog = "Submission terminated.\nA submission with this id already exists, "
 												+ " and it includes an object:\n" + topLevel.getIdentity() + "\nthat is already "
 												+ " in this repository and has different content";
