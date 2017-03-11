@@ -34,6 +34,7 @@ public class PrepareSubmissionJob extends Job
 
 	public String rootCollectionIdentity;
 	public String newRootCollectionDisplayId;
+	public String newRootCollectionVersion;
 	public String ownedByURI;
 	public String creatorName;
 	public String name;
@@ -80,7 +81,7 @@ public class PrepareSubmissionJob extends Job
 			return;
 		}
 
-		if (!newRootCollectionDisplayId.equals("")) {
+		if (!newRootCollectionDisplayId.equals("") && !uriPrefix.contains("/public/")) {
 		
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
@@ -106,7 +107,7 @@ public class PrepareSubmissionJob extends Job
 				
 		if (!newRootCollectionDisplayId.equals("")) {
 
-			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
+			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
 			System.err.println("New collection: " + submissionCollection.getIdentity().toString());
 			rootCollection = submissionCollection;
 			
