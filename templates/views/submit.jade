@@ -64,11 +64,11 @@ block content
                         value=submission.citations)
 
             div.form-group-100
-                label Keywords
+                label Collections
                 br
-                input(name='keywords'
-                        placeholder='Comma separated descriptors'
-                        value=submission.keywords)
+                select(name='collectionChoices' id='collectionChoices' multiple data-placeholder='Select Some Collections').chosen-select
+                    for collection in collections
+                        option #{collection.name}
 
             div.form-group-100.required
                 label SBOL/GenBank/FASTA File

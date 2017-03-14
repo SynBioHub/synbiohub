@@ -40,7 +40,7 @@ public class PrepareSubmissionJob extends Job
 	public String name;
 	public String description;
 	public ArrayList<Integer> citationPubmedIDs;
-	public ArrayList<String> keywords;
+	public ArrayList<String> collectionChoices;
 	public HashMap<String,String> webOfRegistries;
 	public String shareLinkSalt;
 	public String overwrite_merge;
@@ -122,14 +122,7 @@ public class PrepareSubmissionJob extends Job
 
 				submissionCollection.setName(name);
 				submissionCollection.setDescription(description);
-			}
-			
-			for(String keyword : keywords)
-			{
-				submissionCollection.createAnnotation(
-						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "keyword", "sbh"),
-						keyword);
-			}
+			}			
 
 			(new IdentifiedVisitor() {
 
@@ -233,6 +226,32 @@ public class PrepareSubmissionJob extends Job
 				finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 				return;
 			}
+			
+			for(String collectionChoice : collectionChoices)
+			{
+				String prefix = uriPrefix.substring(0, uriPrefix.lastIndexOf("/")+1);
+				String displayId = collectionChoice + "_collection";
+				if (displayId.indexOf("/")!=-1) {
+					prefix += displayId.substring(0, displayId.lastIndexOf("/")+1);
+					displayId = displayId.substring(displayId.lastIndexOf("/")+1);
+				}
+				Collection updateCollection = doc.getCollection(URI.create(prefix + displayId + '/' + newRootCollectionVersion));
+				if (updateCollection == null) {
+					updateCollection = doc.createCollection(prefix,displayId,newRootCollectionVersion);
+					for (TopLevel topLevel : doc.getTopLevels()) {
+						if (topLevel instanceof Collection) continue;
+						updateCollection.addMember(topLevel.getIdentity());
+					}
+				}
+				updateCollection.createAnnotation(
+						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
+						URI.create(ownedByURI));
+				updateCollection.createAnnotation(
+						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
+						updateCollection.getIdentity());
+				rootCollection.addMember(updateCollection.getIdentity());
+			}
+
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
