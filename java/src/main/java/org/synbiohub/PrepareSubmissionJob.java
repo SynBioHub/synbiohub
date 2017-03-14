@@ -32,7 +32,9 @@ public class PrepareSubmissionJob extends Job
 	public String topLevelURI;
 
 
+	public String rootCollectionIdentity;
 	public String newRootCollectionDisplayId;
+	public String newRootCollectionVersion;
 	public String ownedByURI;
 	public String creatorName;
 	public String name;
@@ -79,7 +81,7 @@ public class PrepareSubmissionJob extends Job
 			return;
 		}
 
-		if (!newRootCollectionDisplayId.equals("")) {
+		if (!newRootCollectionDisplayId.equals("") && !uriPrefix.contains("/public/")) {
 		
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
@@ -105,7 +107,7 @@ public class PrepareSubmissionJob extends Job
 				
 		if (!newRootCollectionDisplayId.equals("")) {
 
-			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,version);
+			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
 			System.err.println("New collection: " + submissionCollection.getIdentity().toString());
 			rootCollection = submissionCollection;
 			
@@ -113,13 +115,15 @@ public class PrepareSubmissionJob extends Job
 					new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
 					creatorName);
 
-			submissionCollection.createAnnotation(
-					new QName("http://purl.org/dc/terms/", "created", "dcterms"),
-					ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+			if (newRootCollectionVersion.equals(version)) {
+				submissionCollection.createAnnotation(
+						new QName("http://purl.org/dc/terms/", "created", "dcterms"),
+						ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
 
-			submissionCollection.setName(name);
-			submissionCollection.setDescription(description);
-
+				submissionCollection.setName(name);
+				submissionCollection.setDescription(description);
+			}
+			
 			for(String keyword : keywords)
 			{
 				submissionCollection.createAnnotation(
@@ -161,7 +165,14 @@ public class PrepareSubmissionJob extends Job
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
-				if(topLevel == rootCollection) continue;
+				if(topLevel.getIdentity().toString().equals(rootCollectionIdentity)) {
+					topLevel.unsetDescription();
+					topLevel.unsetName();
+					topLevel.unsetWasDerivedFrom();
+					Annotation annotation = topLevel.getAnnotation(new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"));
+					topLevel.removeAnnotation(annotation);
+					continue;
+				}
 				for (String registry : webOfRegistries.keySet()) {
 					SynBioHubFrontend sbh = new SynBioHubFrontend("http://"+webOfRegistries.get(registry),
 							"http://"+registry);
@@ -172,8 +183,6 @@ public class PrepareSubmissionJob extends Job
 									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
 									"/share";
 						}
-						System.err.println("URI Lookup:"+topLevel.getIdentity().toString());
-						System.err.println("Share Lookup:"+topLevelUri);
 						SBOLDocument tlDoc;
 						try {
 							tlDoc = sbh.getSBOL(URI.create(topLevelUri));
@@ -182,23 +191,17 @@ public class PrepareSubmissionJob extends Job
 							tlDoc = null;
 						}
 						if (tlDoc != null) {
-							System.err.println("found it");
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
-								System.err.println("yes, found it");
 								if (!topLevel.equals(tl)) {
-									System.err.println("oops");
 									if (overwrite_merge.equals("3")) {
 										try {
-											System.err.println("Replacing " + topLevel.getIdentity());
 											sbh.removeSBOL(URI.create(topLevelUri));
 										}
 										catch (SynBioHubException e) {
 											e.printStackTrace();
 										}
 									} else {
-										System.err.println("top:"+topLevel.toString());
-										System.err.println("tl: "+tl.toString());
 										errorLog = "Submission terminated.\nA submission with this id already exists, "
 												+ " and it includes an object:\n" + topLevel.getIdentity() + "\nthat is already "
 												+ " in this repository and has different content";

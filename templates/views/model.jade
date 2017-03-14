@@ -39,6 +39,11 @@ block topLevelButtons
     br
     br
     if meta.triplestore != 'public'
+        a.btn.btn-success(href=meta.url + '/makeTopLevelPublic')
+            span.fa.fa-unlock
+                |  Make Public
+        br
+        br
         a.btn.btn-success(href=meta.url + '/remove')
             span.fa.fa-unlock
                 |  Remove
