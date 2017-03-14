@@ -8,10 +8,12 @@
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/ProcessBridge.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/ShutdownResult.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/Job.java
+/Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/RDFToSBOLJob.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/Result.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/JobAlreadyFinishedException.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/PrepareSubmissionResult.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/ChangeURIPrefixResult.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/PrepareSubmissionJob.java
 /Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/InitializeJob.java
+/Users/myers/git/synbiohub/java/src/main/java/org/synbiohub/RDFToSBOLResult.java
 /Users/myers/git/synbiohub/java/src/main/java/org/sbolstandard/core2/SBOLValidateSilent.java

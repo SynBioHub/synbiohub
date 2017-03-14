@@ -11,4 +11,5 @@ org/synbiohub/UnknownJobTypeException.class
 org/synbiohub/InitializeResult.class
 org/synbiohub/ProcessBridge.class
 org/synbiohub/PrepareSubmissionResult.class
+org/synbiohub/RDFToSBOLJob.class
 org/synbiohub/Result.class
