@@ -1625,7 +1625,7 @@ public class SBOLValidateSilent {
 					outputStream.println("Updating Version to: " + version);
 				}
 				doc = doc.changeURIPrefixVersion(URIPrefix,version);
-			} else if (version != null) {
+			} else if (version != null && !version.equals("")) {
 				outputStream.println("Updating Version to: " + version);
 				doc = doc.changeURIPrefixVersion(null,version);
 			}

@@ -4,11 +4,15 @@
 fs = require('mz/fs')
 byline = require('byline')
 
+const filename = process.argv[2]
+
+process.stderr.write('Sorted n3: ' + filename + '\n')
+
 function readFile(parseTriple) {
 
     return new Promise((resolve, reject) => {
 
-        readStream = byline(fs.createReadStream('sorted.n3'))
+        readStream = byline(fs.createReadStream(filename))
 
         readStream.on('data', (line) => {
 
@@ -33,9 +37,9 @@ function createPrefixes() {
 
 }
 
-const uriTripleRegex = /<(.*)>[ ]+<(.*)>[ ]+<(.*)>[ ]+\.[ ]*$/
-const literalTripleRegex = /<(.*)>[ ]+<(.*)>[ ]+(.*)[ ]*\.[ ]*$/
-const predicateRegex = /^<[^>]*>[ ]+<([^>]*)>.*$/
+const uriTripleRegex = /<(.*)>[ \t]+<(.*)>[ \t]+<(.*)>[ \t]+\.[ \t]*$/
+const literalTripleRegex = /<(.*)>[ \t]+<(.*)>[ \t]+(.*)[ \t]*\.[ \t]*$/
+const predicateRegex = /^<[^>]*>[ \t]+<([^>]*)>.*$/
 
 function createPrefixFromTripleLine(line) {
 
@@ -89,7 +93,7 @@ currentSubject = null
 
 createPrefixes().then(() => {
 
-    //console.log(JSON.stringify(prefixList))
+    process.stderr.write(JSON.stringify(prefixList))
 
     return writeXML()
 
