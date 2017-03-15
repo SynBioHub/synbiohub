@@ -1619,16 +1619,16 @@ public class SBOLValidateSilent {
 					doc = newDoc;
 				}
 			}
-			if (!URIPrefix.equals("")) {
-				outputStream.println("Updating URI prefix to: " + URIPrefix);
-				if (version != null) {
-					outputStream.println("Updating Version to: " + version);
-				}
-				doc = doc.changeURIPrefixVersion(URIPrefix,version);
-			} else if (version != null && !version.equals("")) {
-				outputStream.println("Updating Version to: " + version);
-				doc = doc.changeURIPrefixVersion(null,version);
-			}
+//			if (!URIPrefix.equals("")) {
+//				outputStream.println("Updating URI prefix to: " + URIPrefix);
+//				if (version != null) {
+//					outputStream.println("Updating Version to: " + version);
+//				}
+//				doc = doc.changeURIPrefixVersion(URIPrefix,version);
+//			} else if (version != null && !version.equals("")) {
+//				outputStream.println("Updating Version to: " + version);
+//				doc = doc.changeURIPrefixVersion(null,version);
+//			}
 			validateSBOL(doc, complete, compliant, bestPractice);
 			if (getNumErrors()==0 && SBOLReader.getNumErrors()==0) {
 				if (noOutput) {

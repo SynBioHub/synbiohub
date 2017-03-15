@@ -54,7 +54,7 @@ public class PrepareSubmissionJob extends Job
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
-				"",
+				"http://dummy.org/",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,
