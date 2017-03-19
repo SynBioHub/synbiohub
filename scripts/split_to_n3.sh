@@ -7,6 +7,10 @@
 # Output: a set of n3 triple files named upload_* 
 # 
 
+(>&2 echo "split_to_n3 $@")
+(>&2 echo "rapper: $(which rapper)")
+(>&2 echo "cwd: $(pwd)")
+
 rapper -o ntriples $@ > ntriples.n3 && split -l 5000 ntriples.n3 upload_
 
 

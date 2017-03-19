@@ -69,6 +69,8 @@
   "attachmentTypeToTypeName": {
       "http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment": "Image"
   },
+  "iceMaxRetries": 10,
+  "iceRetryDelay": 500,
   "remotes": {
       "jbei": {
           "id": "jbei",
@@ -80,7 +82,6 @@
           "folderPrefix": "ice_folder_",
           "rootCollection": {
               "displayId": "jbei_collection",
-              "version": "1",
               "name": "JBEI Public Registry",
               "description": ""
           }
@@ -95,7 +96,6 @@
           "folderPrefix": "ice_folder_",
           "rootCollection": {
               "displayId": "acs_collection",
-              "version": "1",
               "name": "ACS Synthetic Biology",
               "description": ""
           }

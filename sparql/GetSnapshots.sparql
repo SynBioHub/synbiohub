@@ -1,0 +1,7 @@
+
+PREFIX sbol2: <http://sbols.org/v2#>
+
+SELECT ?snapshot WHERE {
+    ?snapshot <http://wiki.synbiohub.org/wiki/Terms/synbiohub#snapshotOf> <$uri>
+}
+
