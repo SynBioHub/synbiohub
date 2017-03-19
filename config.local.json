@@ -1,18 +1,2 @@
 {
-    "remotes": {
-        "jbei": {
-            "id": "jbei",
-            "type": "ice",
-            "url": "https://public-registry.jbei.org",
-            "clientID": "synbiohub.org",
-            "token": "R0sHbSqZbeI7PDDcS47gZHKI1iswBM6CpaCX2/9E04c=",
-            "iceCollection": "FEATURED",
-            "rootCollection": {
-                "displayId": "jbei_collection",
-                "version": "1",
-                "name": "JBEI Public Registry",
-                "description": ""
-            }
-        }
-    }
 }
