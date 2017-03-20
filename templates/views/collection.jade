@@ -18,39 +18,27 @@ block topLevelPropertyTable
                 for collection in collections
                     a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&') #{'Search'}
                     br
-    tr
-        td(nowrap="nowrap") 
-            | Members
-            if ((previous >= 0) || (lastNum < memberCount)) 
-               = ' ('
-            if (previous >= 0)
-               a(href=originalUrl + '/?offset='+previous) Previous
-               if (lastNum < memberCount)
-                   = ' '
-            if (lastNum < memberCount)
-               a(href=originalUrl + '/?offset='+next) Next
-            if ((previous >= 0) || (lastNum < memberCount)) 
-               = ')'
-        td
-            | #{firstNum} - #{lastNum} of #{memberCount} 
-        td
-            a(href='/search/collection=<'+encodeURIComponent(meta.uri)+'>&') #{'Search'}
-    tr
-        td Type
-        td Identifier
-        td Name
-    for component in meta.components
-        if (component.id)
-            tr
-                td
-                    a(href=component.typeUrl,title=component.typeUrl) #{component.type}
-                    br
-                td
-                    a(href=component.url) #{component.id}
-                    br
-                td
-                    a(href=component.url) #{component.name}
-                    br
+
+
+block topLevelBelowPropertyTable
+    h3 Members
+    table.table.table-striped.entry-detail-table.sbh-collection-members-datatable
+        thead
+            th Type
+            th Identifier
+            th Name
+            th Description
+        tbody
+            for member in meta.members
+                if (member.id)
+                    tr
+                        td
+                            a(href=member.typeUrl,title=member.typeUrl) #{member.type}
+                        td
+                            a(href=member.url) #{member.id}
+                        td
+                            a(href=member.url) #{member.name}
+                        td #{member.description}
 
 block topLevelButtons
     if memberCount <= 2000

@@ -54,8 +54,8 @@
       "http://synbiohub.org/public/igem/igem_collection/1": "/local/igem.png",
       "http://synbiohub.org/public/ekb/ekb_collection/1": "/local/ekb.png",
       "http://synbiohub.org/public/bsu/bsubtilis_collection/1": "/local/bsu.png",
-      "http://synbiohub.org/public/jbei/jbei_collection/1": "/local/jbeir_public.png",
-      "http://synbiohub.org/public/acs/acs_collection/1": "/local/acs.png"
+      "http://synbiohub.org/public/jbei/jbei_collection/current": "/local/jbeir_public.png",
+      "http://synbiohub.org/public/acs/acs_collection/current": "/local/acs.png"
   },
   "experimental": {
       "dataIntegration": false
@@ -100,5 +100,6 @@
               "description": ""
           }
       }
-  }
+  },
+  "defaultLimit": 10
 }
