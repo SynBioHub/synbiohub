@@ -23,6 +23,20 @@ $('.sbh-download-picture').click(function() {
 
 $('.sbh-datatable').DataTable()
 
+$('.sbh-collection-members-datatable').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: {
+        url: '/api/datatables',
+        type: 'GET',
+        data: function(d) {
+            d.type = 'collectionMembers'
+            d.collectionUri = meta.uri
+        }
+    }
+
+})
+
 $(".chosen-select").chosen()
 
 require('./autocomplete')
