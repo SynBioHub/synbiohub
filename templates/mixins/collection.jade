@@ -8,7 +8,7 @@ mixin collection-item(collection)
         div(style="margin-right: 100px;")
             if collection.remote
                 span.fa.fa-globe.sbh-remote-icon
-            a(href=collection.uri) #{collection.name?collection.name:collection.displayId}
+            a(href=collection.url) #{collection.name?collection.name:collection.displayId}
 
             p version #{collection.version}
 

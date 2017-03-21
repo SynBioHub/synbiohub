@@ -101,11 +101,13 @@ function renderIntegrationList(state) {
         )
     }
 
-    formElems.push(h('input', {
-        type: 'hidden',
-        name: 'graphUri',
-        value: graphUri
-    }))
+    if(typeof(graphUri) !== 'undefined') {
+        formElems.push(h('input', {
+            type: 'hidden',
+            name: 'graphUri',
+            value: graphUri
+        }))
+    }
 
     formElems.push(h('input', {
         type: 'hidden',
