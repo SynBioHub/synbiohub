@@ -80,6 +80,7 @@
           "token": "R0sHbSqZbeI7PDDcS47gZHKI1iswBM6CpaCX2/9E04c=",
           "iceCollection": "FEATURED",
           "folderPrefix": "ice_folder_",
+          "sequenceSuffix": "_sequence",
           "rootCollection": {
               "displayId": "jbei_collection",
               "name": "JBEI Public Registry",
@@ -94,6 +95,7 @@
           "token": "IVLMnfxkSTDn/vZ44K4PVnNJvtUX7uAsphucb/iaoww=",
           "iceCollection": "FEATURED",
           "folderPrefix": "ice_folder_",
+          "sequenceSuffix": "_sequence",
           "rootCollection": {
               "displayId": "acs_collection",
               "name": "ACS Synthetic Biology",
