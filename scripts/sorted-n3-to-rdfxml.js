@@ -55,7 +55,27 @@ prefixList = [
     {
         prefix: 'rdf',
         uri: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
-    }
+    },
+
+
+    /* libSBOLj prefix bug workaround
+     * https://github.com/SynBioDex/libSBOLj/issues/442
+     *
+     * Any namespaces we use that libSBOLj also uses have to have exactly
+     * the same prefix in loaded RDF files.
+     */
+    {
+        prefix: 'dc',
+        uri: 'http://purl.org/dc/elements/1.1/'
+    },
+    {
+        prefix: 'dcterms',
+        uri: 'http://purl.org/dc/terms/'
+    },
+    {
+        prefix: 'prov',
+        uri: 'http://www.w3.org/ns/prov#'
+    },
 ]
 
 prefixNum = 0
