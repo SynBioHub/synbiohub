@@ -31,7 +31,7 @@ public class PrepareSubmissionJob extends Job
 	public boolean keepGoing;
 	public String topLevelURI;
 
-
+	public boolean submit;
 	public String rootCollectionIdentity;
 	public String newRootCollectionDisplayId;
 	public String newRootCollectionVersion;
@@ -81,7 +81,7 @@ public class PrepareSubmissionJob extends Job
 			return;
 		}
 
-		if (!newRootCollectionDisplayId.equals("") && !uriPrefix.contains("/public/")) {
+		if (submit && !uriPrefix.contains("/public/")) {
 		
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
@@ -105,7 +105,7 @@ public class PrepareSubmissionJob extends Job
 
 		Collection rootCollection = null;
 				
-		if (!newRootCollectionDisplayId.equals("")) {
+		if (submit) {
 
 			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
 			System.err.println("New collection: " + submissionCollection.getIdentity().toString());
@@ -153,6 +153,10 @@ public class PrepareSubmissionJob extends Job
 				}
 
 			}).visitDocument(doc);
+		} else {
+			Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
+			doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
+			doc.removeCollection(originalRootCollection);
 		}
 		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
