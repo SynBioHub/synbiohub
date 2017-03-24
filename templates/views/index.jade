@@ -24,10 +24,11 @@ block content
                                 span.fa.fa-search
                             td
                                 h3 #[b Search] for useful parts and designs
-                                input.sbh-autocomplete(type='text',name='q',placeholder='Gene or protein name')
-                                button(type='submit').btn.btn-primary
-                                    span.fa.fa-chevron-right
-                                br
+                                form(action='search').main-search-form
+                                    input.sbh-autocomplete(type='text',name='q',placeholder='      Gene or protein name')
+                                    button(type='submit').btn.btn-primary
+                                        span.fa.fa-chevron-right
+                                    br
                                 a.button.btn.btn-primary(href='/browse') Browse Public Designs
                         tr
                             td
