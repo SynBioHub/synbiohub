@@ -57,6 +57,7 @@
     "tmp-promise": "^1.0.3",
     "trie-search": "^1.0.0",
     "underscore": "^1.8.0",
+    "uuid": "^3.0.1",
     "validator": "^4.1.0",
     "value-event": "^5.1.1",
     "virtual-dom": "^2.1.1",
