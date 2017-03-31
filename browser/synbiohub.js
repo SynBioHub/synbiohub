@@ -60,7 +60,10 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
             return false
         }),
         image: $('<button class="btn sbh-wiki-add-image-button"><span class="fa fa-picture-o"></span></button>').click(insertImage),
-        link: $('<button class="btn"><span class="fa fa-globe"></span></button>')
+        link: $('<button class="btn"><span class="fa fa-globe"></span></button>').click(function() {
+            $textarea.val($textarea.val() + '<a href="http://example.com">link text</a>').focus()
+            return false
+        })
     }
 
     /* TODO hackkk
