@@ -26,6 +26,15 @@ $('.sbh-datatable').DataTable()
 $('.sbh-collection-members-datatable').DataTable({
     processing: true,
     serverSide: true,
+
+
+
+    // TODO
+    //
+    searching: false,
+    ordering: false,
+    //
+
     ajax: {
         url: '/api/datatables',
         type: 'GET',
