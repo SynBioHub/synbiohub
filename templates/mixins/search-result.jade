@@ -8,7 +8,7 @@ mixin search-result-component-definition(submission)
             else
                 div.ribbon-private Private
 
-        if submission.name
+        if submission.name && submission.name != submission.displayId
             a(href=submission.url) #{submission.displayId} (#{submission.name})
         else
             a(href=submission.url) #{submission.displayId}
