@@ -62,13 +62,13 @@ block content
                 input(name='citations'
                         placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
                         value=submission.citations)
-            if config.experimental.submitCollections
-                div.form-group-100
-                    label Collections
-                    br
-                    select(name='collectionChoices' id='collectionChoices' multiple data-placeholder='Select Some Collections').chosen-select
-                        for collection in collections
-                            option #{collection.name}
+
+            div.form-group-100
+                label Collections
+                br
+                select(name='collectionChoices' id='collectionChoices' multiple data-placeholder='Select Some Collections').chosen-select
+                    for collection in collections
+                        option #{collection.name}
 
             div.form-group-100.required
                 label SBOL/GenBank/FASTA File

@@ -22,6 +22,7 @@ import javax.xml.namespace.QName;
 public class PrepareSubmissionJob extends Job
 {
 	public String sbolFilename;
+	public String databasePrefix;
 	public String uriPrefix;
 	public boolean requireComplete;
 	public boolean requireCompliant;
@@ -154,9 +155,9 @@ public class PrepareSubmissionJob extends Job
 
 			}).visitDocument(doc);
 		} else {
-			Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
-			doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
-			doc.removeCollection(originalRootCollection);
+			//Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
+			//doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
+			//doc.removeCollection(originalRootCollection);
 		}
 		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
@@ -221,6 +222,16 @@ public class PrepareSubmissionJob extends Job
 			{		
 				if(topLevel != rootCollection) {
 					rootCollection.addMember(topLevel.getIdentity());
+					for(String collectionChoice : collectionChoices) {
+						try {
+							topLevel.createAnnotation(
+										new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "isMemberOf", "sbh"),
+									new URI(databasePrefix + "public/" + collectionChoice));
+						}
+						catch (URISyntaxException e) {
+
+						}
+					}
 				}	
 			}
 
@@ -231,31 +242,6 @@ public class PrepareSubmissionJob extends Job
 				return;
 			}
 			
-			for(String collectionChoice : collectionChoices)
-			{
-				String prefix = uriPrefix.substring(0, uriPrefix.lastIndexOf("/")+1);
-				String displayId = collectionChoice + "_collection";
-				if (displayId.indexOf("/")!=-1) {
-					prefix += displayId.substring(0, displayId.lastIndexOf("/")+1);
-					displayId = displayId.substring(displayId.lastIndexOf("/")+1);
-				}
-				Collection updateCollection = doc.getCollection(URI.create(prefix + displayId + '/' + newRootCollectionVersion));
-				if (updateCollection == null) {
-					updateCollection = doc.createCollection(prefix,displayId,newRootCollectionVersion);
-					for (TopLevel topLevel : doc.getTopLevels()) {
-						if (topLevel instanceof Collection) continue;
-						updateCollection.addMember(topLevel.getIdentity());
-					}
-				}
-				updateCollection.createAnnotation(
-						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
-						URI.create(ownedByURI));
-				updateCollection.createAnnotation(
-						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
-						updateCollection.getIdentity());
-				rootCollection.addMember(updateCollection.getIdentity());
-			}
-
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");

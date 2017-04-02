@@ -1,0 +1,15 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol: <http://sbols.org/v2#>
+
+DELETE {
+    ?topLevel sbh:isMemberOf ?c .
+    ?c dcterms:modified ?modified .
+}
+INSERT {
+    ?c sbol:member ?topLevel .
+    ?c dcterms:modified $modified .
+} 
+WHERE {
+    ?topLevel sbh:isMemberOf ?c .
+}

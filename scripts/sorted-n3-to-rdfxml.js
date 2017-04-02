@@ -76,6 +76,10 @@ prefixList = [
         prefix: 'prov',
         uri: 'http://www.w3.org/ns/prov#'
     },
+    {
+        prefix: 'sbh',
+        uri: 'http://wiki.synbiohub.org/wiki/Terms/synbiohub#'
+    },
 ]
 
 prefixNum = 0
