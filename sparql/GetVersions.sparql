@@ -1,0 +1,7 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+
+SELECT ?version WHERE {
+    ?s sbol2:persistentIdentity <$uri> .
+    ?s sbol2:version ?version .
+}
+
