@@ -37,8 +37,8 @@ function createPrefixes() {
 
 }
 
-const uriTripleRegex = /<(.*)>[ \t]+<(.*)>[ \t]+<(.*)>[ \t]+\.[ \t]*$/
-const literalTripleRegex = /<(.*)>[ \t]+<(.*)>[ \t]+(.*)[ \t]*\.[ \t]*$/
+const uriTripleRegex = /<([^><]*)>[ \t]+<([^><]*)>[ \t]+<([^><]*)>[ \t]+\.[ \t]*$/
+const literalTripleRegex = /<([^><]*)>[ \t]+<([^>]*)>[ \t]+(.*)[ \t]*\.[ \t]*$/
 const predicateRegex = /^<[^>]*>[ \t]+<([^>]*)>.*$/
 
 function createPrefixFromTripleLine(line) {
@@ -75,6 +75,10 @@ prefixList = [
     {
         prefix: 'prov',
         uri: 'http://www.w3.org/ns/prov#'
+    },
+    {
+        prefix: 'sbol',
+        uri: 'http://sbols.org/v2#'
     },
     {
         prefix: 'sbh',
@@ -187,9 +191,24 @@ function writeLiteralTriple(s, p, v) {
     updateSubject(s)
 
     const tagName = predicateUriToTagName(p) 
-    const value = JSON.parse(v)
 
-    console.log('    <' + tagName + '>' + value + '</' + tagName + '>')
+    const hatIndex = v.lastIndexOf('^^')
+    const quoteIndex = v.lastIndexOf('"')
+
+    if(hatIndex !== -1 && quoteIndex !== -1 && hatIndex > quoteIndex) {
+
+        const type = v.slice(hatIndex).match(/<(.*)>/)[1]
+        const value = JSON.parse(v.substring(0, quoteIndex + 1))
+
+        console.log('    <' + tagName + ' rdf:datatype="' + type + '">' + escapeText(value) + '</' + tagName + '>')
+
+    } else {
+     
+        const value = JSON.parse(v)
+
+        console.log('    <' + tagName + '>' + escapeText(value) + '</' + tagName + '>')
+
+    }
 
 }
 
@@ -204,5 +223,37 @@ function predicateUriToTagName(uri) {
         }
     }
 }
+
+function escapeText(v) {
+
+    var v2 = ''
+
+    for(var i = 0; i < v.length; ++ i) {
+
+        switch(v[i]) {
+            case '"':
+                v2 += '&quot;'
+                break
+            case '>':
+                v2 += '&gt;'
+                break
+            case '<':
+                v2 += '&lt;'
+                break
+            case '&':
+                v2 += '&amp;'
+                break
+            case '\'':
+                v2 += '&apos;'
+                break
+            default:
+                v2 += v[i]
+                break
+        }
+    }
+
+    return v2
+}
+
 
 
