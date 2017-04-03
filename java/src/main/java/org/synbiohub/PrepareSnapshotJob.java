@@ -68,7 +68,7 @@ public class PrepareSnapshotJob extends Job
         (new IdentifiedVisitor() {
 
             @Override
-            public void visit(Identified identified) {
+            public void visit(Identified identified,TopLevel topLevel) {
 
                 try {
 
