@@ -128,7 +128,7 @@ public class PrepareSubmissionJob extends Job
 			(new IdentifiedVisitor() {
 
 				@Override
-				public void visit(Identified identified) {
+				public void visit(Identified identified,TopLevel topLevel) {
 
 					try {
 						for(int pubmedID : citationPubmedIDs)
@@ -143,9 +143,9 @@ public class PrepareSubmissionJob extends Job
 								new URI(ownedByURI));
 
 						identified.createAnnotation(
-								new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "rootCollection", "sbh"),
-								submissionCollection.getIdentity());
-
+								new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
+								topLevel.getIdentity());
+						
 					} catch (SBOLValidationException | URISyntaxException e) {
 
 
