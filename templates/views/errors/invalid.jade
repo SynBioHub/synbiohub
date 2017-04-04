@@ -3,7 +3,8 @@ extends ../../layouts/default.jade
 
 block content
     .container
-        h1 Validation Error
+        h1 Validation Errors
         for error in errors
-            p #{error}
+            pre
+                p #{error}
 
