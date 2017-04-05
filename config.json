@@ -48,7 +48,7 @@
   "otherStacks": [],
   "mail": {
       "sendgridApiKey": "",
-      "fromEmail": "foo@example.com"
+      "fromAddress": "foo@example.com"
   },
   "collectionIcons": {
       "http://synbiohub.org/public/igem/igem_collection/1": "/local/igem.png",
