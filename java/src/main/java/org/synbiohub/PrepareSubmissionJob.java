@@ -78,7 +78,6 @@ public class PrepareSubmissionJob extends Job
 
 		if(errorLog.length() > 0)
 		{
-			System.err.println("Validation Error");
 			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 			return;
 		}

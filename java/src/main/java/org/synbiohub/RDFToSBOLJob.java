@@ -55,7 +55,7 @@ public class RDFToSBOLJob extends Job
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 
-		if(doc == null)
+		if(errorLog.length() > 0)
 		{
 			finish(new RDFToSBOLResult(this, false, "", log, errorLog));
 			return;
