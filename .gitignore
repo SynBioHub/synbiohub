@@ -9,6 +9,7 @@ uploads
 public/styles/theme/*.less
 *.class
 java/target
+backup/*.bp
 
 
 
