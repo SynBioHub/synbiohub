@@ -27,7 +27,7 @@ $NODE sorted-n3-to-rdfxml $N3_TEMP > $XML_TEMP
 (>&2 echo "Sorted N3 temp file: $N3_TEMP")
 (>&2 echo "XML temp file: $XML_TEMP")
 
-#rm -f $N3_TEMP
+rm -f $N3_TEMP
 
 printf $XML_TEMP
 
