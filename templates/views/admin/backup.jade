@@ -2,19 +2,19 @@
 extends ../../layouts/admin.jade
 
 block adminContent
+    table.table.table-striped
+        thead
+            th Date
+            th # Files
+            th Total Size
+        tbody
+            for backup in backups
+                tr
+                    td #{backup.date}
+                    td #{backup.files.length}
+                    td #{backup.size}
     form(method='post',action='/admin/backup')
-        table.table.table-striped
-            thead
-                th Date
-                th Filename
-            tbody
-                for backup in backups
-                    tr
-                        td #{backup.date}
-                        td #{backup.filename}
-
-
-        button.btn.btn-primary(type='submit') Start Backup
+        button.btn.btn-primary(type='submit') Create Backup
 
 
     
