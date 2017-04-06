@@ -39,6 +39,10 @@ public class Job
 		{
 			return gson.fromJson(json, RDFToSBOLJob.class);
 		}
+		else if(job.type.equals("convertToGenBank"))
+		{
+			return gson.fromJson(json, ConvertToGenBankJob.class);
+		}
 		else
 		{
 			throw new UnknownJobTypeException();

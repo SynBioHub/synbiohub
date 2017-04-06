@@ -1635,7 +1635,7 @@ public class SBOLValidateSilent {
 					outputStream.println("Validation successful, no errors.");
 				} else if (genBankOut) {
 					if (outputFile.equals("")) {
-						SBOLWriter.write(doc, (System.out), SBOLDocument.GENBANK);
+						SBOLWriter.write(doc, outputStream, SBOLDocument.GENBANK);
 					} else {
 						outputStream.println("Validation successful, no errors.");
 						SBOLWriter.write(doc, outputFile, SBOLDocument.GENBANK);
