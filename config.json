@@ -15,7 +15,8 @@
       "defaultGraph": "http://synbiohub.org/public",
       "graphPrefix": "http://synbiohub.org/",
       "username": "dba",
-      "password": "dba"
+      "password": "dba",
+      "isql": "isql-vt"
   },
   "databasePrefix": "http://synbiohub.org/",
   "sessionSecret": "synbiohub_change_me",
