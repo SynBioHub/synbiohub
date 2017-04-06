@@ -1,0 +1,4 @@
+myuser ALL = NOPASSWD: /usr/sbin/service virtuoso-opensource-7 *
+myuser ALL = NOPASSWD: /usr/bin/virtuoso-t *
+myuser ALL = NOPASSWD: /bin/rm -f /var/lib/virtuoso-opensource-7/db/virtuoso.db
+

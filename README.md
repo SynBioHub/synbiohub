@@ -24,6 +24,7 @@ Prequisites:
 * [node.js](https://nodejs.org/en/) >= 6.10
 * [OpenLink Virtuoso](https://github.com/openlink/virtuoso-opensource) 7.x.x
 * [rapper](http://librdf.org/raptor/rapper.html) (apt install `raptor2-utils`)
+* [jq](https://stedolan.github.io/jq/) (apt install `jq`)
 
 For Ubuntu 16.04:
 
@@ -32,7 +33,7 @@ For Ubuntu 16.04:
     apt-key add odn.gpg.key
     curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
     apt update
-    apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource
+    apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource jq
 
 First, build the Java parts with Maven:
 
