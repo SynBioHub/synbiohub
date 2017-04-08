@@ -40,7 +40,7 @@ public class PrepareSubmissionJob extends Job
 	public String creatorName;
 	public String name;
 	public String description;
-	public ArrayList<Integer> citationPubmedIDs;
+	public ArrayList<String> citationPubmedIDs;
 	public ArrayList<String> collectionChoices;
 	public HashMap<String,String> webOfRegistries;
 	public String shareLinkSalt;
@@ -131,11 +131,11 @@ public class PrepareSubmissionJob extends Job
 				public void visit(Identified identified,TopLevel topLevel) {
 
 					try {
-						for(int pubmedID : citationPubmedIDs)
+						for(String pubmedID : citationPubmedIDs)
 						{
 							identified.createAnnotation(
 									new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
-									Integer.toString(pubmedID));
+									pubmedID);
 						}
 
 						identified.createAnnotation(

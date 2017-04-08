@@ -16,29 +16,31 @@ mixin citations(src, submissionCitations, canEdit)
             br
     
             for citation in submissionCitations
+                != typeof(citation)=='string'?citation:''
                 != citation.publicationAuthors 
-                != ', "'
+                != citation.publicationAuthors?', "':''
                 != citation.publicationTitle
-                != '", '
+                != citation.publicationTitle?'", ':''
                 != citation.publicationJournal
-                != ', '
+                != citation.publicationJournal?', ':''
                 != citation.publicationYear
-                != ', '
+                != citation.publicationYear?', ':''
                 != citation.publicationMonth
-                != ' '
+                != citation.publicationMonth?' ':''
                 != citation.publicationDay
-                != '; '
+                != citation.publicationDay?'; ':''
                 != citation.publicationVolume
-                != '('
+                != citation.publicationIssue?'(':''
                 != citation.publicationIssue
-                != '): '
+                != citation.publicationIssue?'): ':''
                 != citation.publicationPages
-                if (citation.pubmedID != '') 
+                if (citation.pubmedID && citation.pubmedID != '') 
                    != ', PMID: '
                    a(href='https://www.ncbi.nlm.nih.gov/pubmed/'+citation.pubmedID) #{citation.pubmedID}
-                if (citation.publicationDOI != '')
+                   != '.'
+                if (citation.publicationDOI && citation.publicationDOI != '')
                    != ', DOI: '
                    a(href='http://dx.doi.org/'+citation.publicationDOI) #{citation.publicationDOI}
-                != '.'
+                   != '.'
                 br
                 br
