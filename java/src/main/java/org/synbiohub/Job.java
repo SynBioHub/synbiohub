@@ -43,6 +43,10 @@ public class Job
 		{
 			return gson.fromJson(json, ConvertToGenBankJob.class);
 		}
+		else if(job.type.equals("cloneSubmission"))
+		{
+			return gson.fromJson(json, CloneSubmissionJob.class);
+		}
 		else
 		{
 			throw new UnknownJobTypeException();

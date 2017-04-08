@@ -42,15 +42,17 @@ block content
                 br
                 input(type='text', name='version',placeholder='Version',value=submission.version)
 
-            div.form-group-50.required
+            div.form-group-100.required(style='text-align: left;')
                 label If Existing:
                 br
-                label.radio.inline
-                    input(type="radio", name="overwrite_merge", value="0", checked=true)
-                    | Prevent submission
-                label.radio.inline
-                    input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
-                    | Merge and prevent, if member of collection exists
+                div.row
+                    div.col-sm-2
+                        input(type="radio", name="overwrite_merge", value="0", checked=true)
+                    div.col-sm-10 Prevent submission
+                div.row
+                    div.col-sm-2
+                        input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
+                    div.col-sm-10 Merge and prevent, if member of collection exists
 
             div.clearfix
 
