@@ -226,7 +226,7 @@ public class PrepareSubmissionJob extends Job
 						try {
 							topLevel.createAnnotation(
 										new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "isMemberOf", "sbh"),
-									new URI(databasePrefix + "public/" + collectionChoice));
+									new URI(collectionChoice));
 						}
 						catch (URISyntaxException e) {
 
