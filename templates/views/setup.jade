@@ -19,39 +19,31 @@ block body
 
         form(action='/setup',method='post',enctype='application/x-www-form-urlencoded')
 
-            h2 1. Name your Hub
+            h2 1. Name your SynBioHub
             div.form-group
                 input.form-control(name='instanceName',value=settings.instanceName)
                 p
-                    i Try to choose something descriptive to identify the kind of parts your Hub will store.  Don't worry, you can change this later.
+                    i Try to choose something descriptive to identify the kind of parts your SynBioHub instance will store.  Don't worry, you can change this later.
+                label Pick a Color
+                    input.form-control(type='color',name='color',value=settings.color)#setupColor
 
             br
-
-            h2 2. Connect to an SBOL Stack
+            h2 2. Some technical details
             div.form-group
                 p
-                    i For more information, see the 
-                        a(href='http://sbolstack.org/docs.html') SBOL Stack documentation
-
-                label URL
-                    input.form-control(name='stackURL',value=settings.stackURL)
-                br
-
-                label Stack Username
-                    input.form-control(name='stackUsername',value=settings.stackUsername)
-
-                br
-
-                label Stack Password
-                    input.form-control(type='password',name='stackPassword',value=settings.stackPassword,autocomplete='new-password')
-
-
+                    | We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
+                    b  #{settings.instanceUrl}
+                    |, but if this is incorrect, please change it here.
+                label Instance URL
+                    input.form-control(name='instanceURL',value=settings.instanceUrl)
             br
-
             h2 3. Create your first user account
             div.form-group
-                label Name
-                    input.form-control(name='userName',value=settings.userName,placeholder='John Doe')
+                label Username
+                    input.form-control(name='userName',value=settings.userName,placeholder='john')
+                br
+                label Full Name
+                    input.form-control(name='userFullName',value=settings.userFullName,placeholder='John Doe')
                 br
                 label E-mail address
                     input.form-control(name='userEmail',value=settings.userEmail,placeholder='john@example.com')
@@ -64,4 +56,5 @@ block body
 
             div.text-center
                 input(type='submit',value='Continue').btn.btn-primary.setup-done
+
 

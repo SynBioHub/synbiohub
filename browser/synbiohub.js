@@ -52,6 +52,7 @@ require('./autocomplete')
 require('./dataIntegration')
 require('./visbol')
 require('./sse')
+require('./setup')
 
 function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
@@ -293,5 +294,6 @@ $('.sbh-sparql-editor').each((i, textarea) => {
     })
 
 })
+
 
 
