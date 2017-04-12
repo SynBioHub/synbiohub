@@ -3,6 +3,14 @@ extends ../../layouts/admin.jade
 
 block adminContent
     div
+        h4 Logo
+        form(action='/admin/uploadLogo',method='POST',enctype='multipart/form-data')
+            input(type='file',name='file')
+            br
+            button.btn.btn-primary(type='submit') Upload Logo
+
+        br
+
         h4 Parameters
         form(action='/admin/theme',method='POST')
             table.table.table-striped
