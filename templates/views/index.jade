@@ -1,5 +1,5 @@
 
-extends ../layouts/dark.jade
+extends ../layouts/default.jade
 
 block head
     style.
@@ -41,13 +41,17 @@ block head
             text-align: center;
         }
 
+        .sbol-breadcrumbs, .navbar {
+            background-color: transparent;
+        }
+
 block content
 
     div.container.container-fluid
         div.row
             div.col-md-2
             div.col-md-8(style='text-align: center;')
-                img(src='/images/sbolhub_logo_sl_white.svg').sbh-frontpage-logo
+                img(src='/images/sbolhub_logo_sl_dark.svg').sbh-frontpage-logo
 
         div.row
             div.col-md-2
