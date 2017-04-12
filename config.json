@@ -1,5 +1,5 @@
 {
-  "firstLaunch": false,
+  "firstLaunch": true,
   "instanceName": "SynBioHub",
   "instanceUrl": "http://synbiohub.org/",
   "javaPath": "java",
