@@ -45,13 +45,17 @@ block head
             background-color: transparent;
         }
 
+        .sbol-logo-dark-single-line {
+            display: none;
+        }
+
 block content
 
     div.container.container-fluid
         div.row
             div.col-md-2
             div.col-md-8(style='text-align: center;')
-                img(src='/images/sbolhub_logo_sl_dark.svg').sbh-frontpage-logo
+                img(src=config.instanceLogo).sbh-frontpage-logo
 
         div.row
             div.col-md-2

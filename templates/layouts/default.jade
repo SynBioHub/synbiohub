@@ -15,7 +15,7 @@ block body
                 if section != 'search'
                     div.pull-left
                         form(action='search').top-search-form
-                            input.sbh-autocomplete(type='text',name='q',placeholder='Search SynBioHub' value=(searchQuery || ''))
+                            input.sbh-autocomplete(type='text',name='q',placeholder=('Search ' + config.instanceName) value=(searchQuery || ''))
                             button(type='submit').submit Search
 
                 div.pull-right.menu
