@@ -1,6 +1,5 @@
 node_modules
 db
-config.json
 public/styles/site.css
 *.sqlite
 config.local.json
@@ -10,6 +9,7 @@ public/styles/theme/*.less
 *.class
 java/target
 backup/*.bp
+public/logo_uploaded*
 
 
 

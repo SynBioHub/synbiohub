@@ -17,15 +17,25 @@ block body
                     p #{error}
                     br
 
-        form(action='/setup',method='post',enctype='application/x-www-form-urlencoded')
+        form(action='/setup',method='post',enctype='multipart/form-data')
 
-            h2 1. Name your SynBioHub
+            h2 1. Brand your SynBioHub
             div.form-group
-                input.form-control(name='instanceName',value=settings.instanceName)
+                label Instance Name
+                    input.form-control(name='instanceName',value=settings.instanceName)
                 p
                     i Try to choose something descriptive to identify the kind of parts your SynBioHub instance will store.  Don't worry, you can change this later.
+                br
                 label Pick a Color
                     input.form-control(type='color',name='color',value=settings.color)#setupColor
+                p
+                    i This color will be used to theme your SynBioHub instance.
+                br
+                br
+                label Upload a Logo
+                    input(type='file',name='logo')
+                p
+                    i For best results, upload an SVG or high resolution PNG.
 
             br
             h2 2. Some technical details
