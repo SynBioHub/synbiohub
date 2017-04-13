@@ -103,6 +103,7 @@ public class PrepareSubmissionJob extends Job
 		}
 		
 		doc = doc.changeURIPrefixVersion(uriPrefix, version);
+		doc.setDefaultURIprefix(uriPrefix);
 
 		Collection rootCollection = null;
 				
