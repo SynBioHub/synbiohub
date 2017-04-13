@@ -23,6 +23,33 @@ $('.sbh-download-picture').click(function() {
 
 $('.sbh-datatable').DataTable()
 
+$('.sbh-datatable input').on('input', function() {
+    $(this).closest('tr').find('.save').addClass('btn-success').prop('disabled', false)
+})
+
+$('.sbh-datatable .save').click(function() {
+
+    const $row = $(this).closest('tr')
+ 
+    const inputs = $row.find('input')
+
+    const userInfo = {
+        id: parseInt($(inputs[0]).val()),
+        username: $(inputs[1]).val(),
+        name: $(inputs[2]).val(),
+        email: $(inputs[3]).val(),
+        affiliation: $(inputs[4]).val(),
+        isAdmin: $(inputs[5]).prop('checked')
+    }
+
+    $.post('/admin/updateUser', userInfo, function() {
+
+        $(this).removeClass('btn-success').prop('disabled', true)
+
+    })
+
+})
+
 $('.sbh-collection-members-datatable').DataTable({
     processing: true,
     serverSide: true,
