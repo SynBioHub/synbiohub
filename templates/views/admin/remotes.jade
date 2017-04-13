@@ -2,13 +2,16 @@
 extends ../../layouts/admin.jade
 
 block adminContent
-    for remote in remotes
-        div
-            p ID: #{remote.id}
-            p Type: #{remote.type}
-            p URL: #{remote.url}
-            p Root Collection: #{remote.rootCollectionUri}
-            p Snapshots: #{remote.snapshots}
-            form(method='post',action=remote.rootCollectionUrl + '/createSnapshot')
-                button.btn(type='submit') Create Snapshot
+    if remotes.length === 0
+        div No remotes configured.
+    else
+        for remote in remotes
+            div
+                p ID: #{remote.id}
+                p Type: #{remote.type}
+                p URL: #{remote.url}
+                p Root Collection: #{remote.rootCollectionUri}
+                p Snapshots: #{remote.snapshots}
+                form(method='post',action=remote.rootCollectionUrl + '/createSnapshot')
+                    button.btn(type='submit') Create Snapshot
 
