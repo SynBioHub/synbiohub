@@ -55,7 +55,12 @@ block content
         div.row
             div.col-md-2
             div.col-md-8(style='text-align: center;')
-                img(src=config.instanceLogo).sbh-frontpage-logo
+                if config.instanceLogo
+                    img(src=config.instanceLogo).sbh-frontpage-logo
+                else
+                    h1 #{config.instanceName}
+                    br
+                    br
 
         div.row
             div.col-md-2
