@@ -16,6 +16,12 @@ var theme = require('./lib/theme')
 var java = require('./lib/java')
 
 
+if(config.get('firstLaunch') === true) {
+    fs.unlinkSync('synbiohub.sqlite')
+}
+
+
+
 if(!fs.existsSync('synbiohub.sqlite')) {
 
     db.sequelize.sync({ force: true }).then(startServer)
