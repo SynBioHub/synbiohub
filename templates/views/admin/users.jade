@@ -5,21 +5,34 @@ block adminContent
     table.table.table-striped.sbh-datatable
         thead
             tr
+                th ID
+                th Username
                 th Name
                 th E-mail
                 th Affiliation
-                th Graph URI
                 th Admin
+                th
+                th
         tbody
             each user in users
                 tr
-                    td #{user.name}
                     td
-                        code #{user.email}
-                    td #{user.affiliation}
+                        input(type='hidden',value=user.id)
+                        |#{user.id}
                     td
-                        code #{user.graphUri}
-                    td #{user.isAdmin}
+                        input.form-control(type='text',value=user.username)
+                    td
+                        input.form-control(type='text',value=user.name)
+                    td
+                        input.form-control(type='text',value=user.email)
+                    td
+                        input.form-control(type='text',value=user.affiliation)
+                    td
+                        input(type='checkbox',checked=user.isAdmin)
+                    td
+                        button.btn.save(disabled) Save
+                    td
+                        button.btn.btn-danger.delete Delete
 
 
 

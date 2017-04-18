@@ -10,7 +10,11 @@ block body
         nav.navbar.navbar-fixed-top
             div.content
                 a(href='/')
-                    img.pull-left.sbol-logo-dark-single-line(src=config.instanceLogo)
+                    if config.instanceLogo
+                        img.pull-left.sbol-logo-dark-single-line(src=config.instanceLogo)
+                    else
+                        div.pull-left
+                            h1 #{config.instanceName}
 
                 if section != 'search'
                     div.pull-left
