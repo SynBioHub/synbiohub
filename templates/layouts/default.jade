@@ -11,7 +11,7 @@ block body
             div.content
                 a(href='/')
                     if config.instanceLogo
-                        img.pull-left.sbol-logo-dark-single-line(src=config.instanceLogo)
+                        img.pull-left(src=config.instanceLogo,width=300)
                     else
                         div.pull-left
                             h1 #{config.instanceName}
