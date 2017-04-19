@@ -24,7 +24,7 @@ fi
 
 echo $OUTPUT_PREFIX Removing database file...
 
-sudo -n rm -f /var/lib/virtuoso-opensource-7/db/virtuoso.db
+sudo -n rm -f $VIRTUOSO_DB/virtuoso.db
 
 if [[ $? -ne 0 ]]; then
     echo $OUTPUT_PREFIX Cannot remove virtuoso.db as user $(whoami).  Is sudoers configured correctly?
