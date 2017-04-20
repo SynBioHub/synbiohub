@@ -27,7 +27,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/libSBOLj-2.1.2-SNAPSHOT-withDependencies.jar"/>
+	<classpathentry kind="lib" path="lib/libSBOLj-2.2.0-withDependencies.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.8.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
