@@ -56,7 +56,8 @@
       "http://synbiohub.org/public/eco/eco_collection/1": "/local/ekb.png",
       "http://synbiohub.org/public/bsu/bsu_collection/1": "/local/bsu.png",
       "http://synbiohub.org/public/jbei/jbei_collection/current": "/local/jbeir_public.png",
-      "http://synbiohub.org/public/acs/acs_collection/current": "/local/acs.png"
+      "http://synbiohub.org/public/acs/acs_collection/current": "/local/acs.png",
+      "http://synbiohub.org/public/cidar_ice/cidar_ice_collection/current": "/local/cidar.png"
   },
   "experimental": {
       "dataIntegration": false
