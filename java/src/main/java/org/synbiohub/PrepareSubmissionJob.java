@@ -76,7 +76,10 @@ public class PrepareSubmissionJob extends Job
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 
-		if(errorLog.length() > 0)
+		if(errorLog.startsWith("File is empty")) {
+			doc = new SBOLDocument();
+			errorLog = "";
+		} else if(errorLog.length() > 0)
 		{
 			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 			return;
@@ -97,14 +100,18 @@ public class PrepareSubmissionJob extends Job
 		
 		if(doc.getTopLevels().size() == 0)
 		{
-			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
-			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
-			return;
+//			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
+//			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
+//			return;
+			doc.setDefaultURIprefix(uriPrefix);
+			
+		} else {
+
+			doc = doc.changeURIPrefixVersion(uriPrefix, version);
+			doc.setDefaultURIprefix(uriPrefix);
+
 		}
 		
-		doc = doc.changeURIPrefixVersion(uriPrefix, version);
-		doc.setDefaultURIprefix(uriPrefix);
-
 		Collection rootCollection = null;
 				
 		if (submit) {
@@ -236,12 +243,12 @@ public class PrepareSubmissionJob extends Job
 				}	
 			}
 
-			if (rootCollection.getMembers().size() == 0) 
-			{
-				errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
-				finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
-				return;
-			}
+//			if (rootCollection.getMembers().size() == 0) 
+//			{
+//				errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
+//				finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
+//				return;
+//			}
 			
 		}
 
