@@ -16,7 +16,7 @@ var theme = require('./lib/theme')
 var java = require('./lib/java')
 
 
-if(config.get('firstLaunch') === true) {
+if(fs.existsSync('synbiohub.sqlite') && config.get('firstLaunch') === true) {
     fs.unlinkSync('synbiohub.sqlite')
 }
 
