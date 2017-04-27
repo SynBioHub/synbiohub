@@ -63,19 +63,23 @@ public class CloneSubmissionJob extends Job
 				null,
 				false,
 				true);
-		
-		doc = doc.changeURIPrefixVersion(uriPrefix, version);
 
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 
-		if(errorLog.length() > 0)
+		if(errorLog.startsWith("File is empty")) {
+			doc = new SBOLDocument();
+			errorLog = "";
+		} else if(errorLog.length() > 0)
 		{
 			finish(new CloneSubmissionResult(this, false, "", log, errorLog));
 			return;
 		}
 
+		doc = doc.changeURIPrefixVersion(uriPrefix, version);
+
 		Collection originalRootCollection = doc.getCollection(originalCollectionDisplayId,version);
+		doc.removeCollection(originalRootCollection);
 		Collection rootCollection = (Collection)doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
 		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
