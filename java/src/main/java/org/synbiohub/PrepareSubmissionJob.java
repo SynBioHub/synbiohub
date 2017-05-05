@@ -163,6 +163,18 @@ public class PrepareSubmissionJob extends Job
 
 			}).visitDocument(doc);
 		} else {
+			System.err.println("rootCollectionIdentity="+rootCollectionIdentity);
+			Collection submissionCollection = doc.getCollection(URI.create(rootCollectionIdentity));
+			if (submissionCollection==null) {
+				submissionCollection = doc.createCollection(uriPrefix,newRootCollectionDisplayId,newRootCollectionVersion);
+				submissionCollection.createAnnotation(
+						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
+						URI.create(ownedByURI));
+				System.err.println("New collection: " + submissionCollection.getIdentity().toString());
+				rootCollection = submissionCollection;
+			} else {
+				System.err.println("Foundit");
+			}
 			//Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
 			//doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
 			//doc.removeCollection(originalRootCollection);
@@ -253,7 +265,7 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
-
+		System.err.println("File:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
