@@ -109,6 +109,12 @@ block topLevelButtons
                 |  Remove
         br
         br
+    if defaultBenchlingInstance
+        a.btn.btn-success(href=benchling)
+            span.fa.fa-send
+                |  Send to Benchling
+        br
+        br
     if config.experimental.dataIntegration
         a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
             span.fa.fa-plus-circle
