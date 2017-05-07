@@ -115,6 +115,12 @@ block topLevelButtons
                 |  Send to Benchling
         br
         br
+    if defaultICEInstance
+        a.btn.btn-success(href=ice)
+            span.fa.fa-send
+                |  Send to ICE
+        br
+        br
     if config.experimental.dataIntegration
         a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
             span.fa.fa-plus-circle
