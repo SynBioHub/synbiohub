@@ -118,8 +118,11 @@ public class PrepareSubmissionJob extends Job
 				
 		if (submit || copy) {
 
-			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
-			System.err.println("New collection: " + submissionCollection.getIdentity().toString());
+			Collection submissionCollection = doc.getCollection(newRootCollectionDisplayId,newRootCollectionVersion);
+			if (submissionCollection==null) {
+				submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
+				System.err.println("New collection: " + submissionCollection.getIdentity().toString());
+			}
 			rootCollection = submissionCollection;
 			
 			submissionCollection.createAnnotation(
