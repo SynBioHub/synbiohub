@@ -2,6 +2,12 @@
 mixin collection-item(collection)
     div.search-result-item
 
+        div.ribbon-wrapper
+            if collection.public
+                div.ribbon-public Public
+            else
+                div.ribbon-private Private
+
         if collection.icon
             img.sbh-collection-box-icon(src=collection.icon)
 

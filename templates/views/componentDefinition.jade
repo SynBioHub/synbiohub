@@ -98,14 +98,33 @@ block topLevelButtons
         br
         br
     if meta.triplestore != 'public'
-        a.btn.btn-success(href=meta.url + '/makeTopLevelPublic')
+        a.btn.btn-success(href=makePublic)
             span.fa.fa-unlock
                 |  Make Public
         br
         br
-        a.btn.btn-success(href=meta.url + '/remove')
+    if meta.triplestore != 'public'
+        a.btn.btn-success(href=remove)
             span.fa.fa-unlock
                 |  Remove
+        br
+        br
+    if meta.remote
+        a.btn.btn-success(href=copyTopLevelFromRemote)
+            span.fa.fa-share-alt
+                |  Copy to SynBioHub
+        br
+        br
+    if defaultBenchlingInstance
+        a.btn.btn-success(href=benchling)
+            span.fa.fa-send
+                |  Send to Benchling
+        br
+        br
+    if defaultICEInstance
+        a.btn.btn-success(href=ice)
+            span.fa.fa-send
+                |  Send to ICE
         br
         br
     if config.experimental.dataIntegration

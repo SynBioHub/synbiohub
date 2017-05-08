@@ -40,9 +40,14 @@ block topLevelButtons
             |  Share
         br
         br
-        a.btn.btn-success(href=meta.url + '/makePublic')
+    if meta.triplestore != 'public'
+        a.btn.btn-success(href=makePublic)
             span.fa.fa-unlock
             |  Make Public
+    if meta.remote
+        a.btn.btn-success(href=copyFromRemote)
+            span.fa.fa-share-alt
+            |  Copy to SynBioHub
 
             
 

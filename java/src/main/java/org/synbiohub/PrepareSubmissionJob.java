@@ -33,6 +33,7 @@ public class PrepareSubmissionJob extends Job
 	public String topLevelURI;
 
 	public boolean submit;
+	public boolean copy;
 	public String rootCollectionIdentity;
 	public String newRootCollectionDisplayId;
 	public String newRootCollectionVersion;
@@ -91,6 +92,7 @@ public class PrepareSubmissionJob extends Job
 			{	
 				for (String registry : webOfRegistries.keySet()) {
 					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
+						System.err.println("Found and removed:"+topLevel.getIdentity());
 						doc.removeTopLevel(topLevel);
 						break;
 					}	
@@ -114,10 +116,13 @@ public class PrepareSubmissionJob extends Job
 		
 		Collection rootCollection = null;
 				
-		if (submit) {
+		if (submit || copy) {
 
-			final Collection submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
-			System.err.println("New collection: " + submissionCollection.getIdentity().toString());
+			Collection submissionCollection = doc.getCollection(newRootCollectionDisplayId,newRootCollectionVersion);
+			if (submissionCollection==null) {
+				submissionCollection = doc.createCollection(newRootCollectionDisplayId,newRootCollectionVersion);
+				System.err.println("New collection: " + submissionCollection.getIdentity().toString());
+			}
 			rootCollection = submissionCollection;
 			
 			submissionCollection.createAnnotation(
@@ -163,6 +168,14 @@ public class PrepareSubmissionJob extends Job
 
 			}).visitDocument(doc);
 		} else {
+			Collection submissionCollection = doc.getCollection(URI.create(rootCollectionIdentity));
+			if (submissionCollection==null) {
+				submissionCollection = doc.createCollection(uriPrefix,newRootCollectionDisplayId,newRootCollectionVersion);
+				submissionCollection.createAnnotation(
+						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
+						URI.create(ownedByURI));
+				rootCollection = submissionCollection;
+			} 
 			//Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
 			//doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
 			//doc.removeCollection(originalRootCollection);
@@ -215,6 +228,7 @@ public class PrepareSubmissionJob extends Job
 										return;
 									}
 								} else {
+									System.err.println("Found and removed:"+topLevelUri);
 									doc.removeTopLevel(topLevel);
 								}	
 							}
@@ -253,7 +267,7 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
-
+		System.err.println("File:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
