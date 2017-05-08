@@ -13,9 +13,7 @@ mixin search-result-component-definition(submission)
         else
             a(href=submission.url) #{submission.displayId}
 
-        if submission.prefix
-            br
-            | #{submission.prefix}
+        p version #{submission.version}
 
         div.keywords
             if submission.description != ''
@@ -49,9 +47,7 @@ mixin search-result-collection(submission,removePublicEnabled)
         else
             a(href=submission.url) #{submission.displayId}
 
-        if submission.prefix
-            br
-            | #{submission.prefix}
+        p version #{submission.version}
 
         div.keywords
             if submission.description != ''
