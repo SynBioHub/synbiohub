@@ -77,20 +77,21 @@ block topLevelButtons
         span Download Image
     br
     br
-    a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
-        span.fa.fa-search
-        | 
-        span Find Uses
-    br
-    br
-    if meta.igemDominant.description == 'true'
+    if !meta.remote && meta.triplestore === 'public'
+        a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
+            span.fa.fa-search
+            | 
+            span Find Uses
+        br
+        br
+    if meta.igemDominant.description == 'true' && !meta.remote && meta.triplestore === 'public'
         a.btn.btn-success(href=searchTwinsUrl,title='This is a dominant twin')
             span.fa.fa-search
             | 
             span Find Twins
         br
         br
-    else
+    else if !meta.remote && meta.triplestore === 'public'
         a.btn.btn-primary(href=searchTwinsUrl,title='This is NOT a dominant twin')
             span.fa.fa-search
             | 
