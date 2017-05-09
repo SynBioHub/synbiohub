@@ -31,7 +31,7 @@ block content
 
         div.row.entry-heading
             div.col-sm-5.entry-title
-                h1 #{meta.name} 
+                h1 #{meta.name?meta.name:meta.id} 
                     if meta.sbhBookmark && meta.sbhBookmark.description == 'true'
                         a(href='http://wiki.synbiohub.org/Terms/synbiohub#bookmark',title='Bookmarked Parts')
                             span.fa.fa-bookmark

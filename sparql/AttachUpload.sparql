@@ -14,7 +14,8 @@ INSERT {
         sbol:displayId $displayId ;
         sbol:persistentIdentity <$persistentIdentity> ;
         sbol:version $version ;
-	sbh:ownedBy $ownedBy ;
+	sbh:ownedBy <$ownedBy> ;
+	sbh:topLevel <$attachmentURI> ;
         sbh:attachmentHash $hash ;
         sbh:attachmentSize $size ;
         sbh:attachmentType <$type> .

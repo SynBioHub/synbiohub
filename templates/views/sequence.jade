@@ -25,12 +25,13 @@ block topLevelButtons
         span Download FASTA
     br
     br
-    a.btn.btn-primary(href=searchUsesUrl)
-        span.fa.fa-search
-        | 
-        span Find Uses
-    br
-    br
+    if meta.triplestore === 'public'
+        a.btn.btn-primary(href=searchUsesUrl)
+            span.fa.fa-search
+            | 
+            span Find Uses
+        br
+        br
     if meta.triplestore != 'public'
         a.btn.btn-success(href=meta.url + '/makeTopLevelPublic')
             span.fa.fa-unlock
