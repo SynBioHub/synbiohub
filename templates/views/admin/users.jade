@@ -32,7 +32,8 @@ block adminContent
                     td
                         button.btn.save(disabled) Save
                     td
-                        button.btn.btn-danger.delete Delete
+                        if(user.id != currentUser.id)
+                            button.btn.btn-danger.delete Delete
 
 
 
