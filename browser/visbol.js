@@ -12,8 +12,4 @@ if(document.getElementById('design')
     });
 
     design.setDisplayList(meta.displayList);
-
 }
-
-
-
