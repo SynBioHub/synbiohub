@@ -11,6 +11,14 @@ block adminContent
 
         br
 
+        h4 Instance Name
+        form(action='/admin/updateInstanceName', method='POST')
+            input.form-control(type='text', name='instanceName', value=instanceName)
+            br
+            button.btn.btn-primary Update Name
+        
+        br
+
         h4 Parameters
         form(action='/admin/theme',method='POST')
             table.table.table-striped
@@ -22,5 +30,5 @@ block adminContent
                         tr
                             td #{parameter.name}
                             td
-                                input.form-control(type='text',name=parameter.variable,value=parameter.value)
+                                input.form-control(type='text', name=parameter.variable, value=parameter.value)
             button.btn.btn-primary.pull-right Save
