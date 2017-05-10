@@ -95,7 +95,11 @@ public class PrepareSubmissionJob extends Job
 						System.err.println("Found and removed:"+topLevel.getIdentity());
 						doc.removeTopLevel(topLevel);
 						break;
-					}	
+					} else if (topLevel.getIdentity().toString().startsWith("https://"+registry)) {
+						System.err.println("Found and removed:"+topLevel.getIdentity());
+						doc.removeTopLevel(topLevel);
+						break;
+					} 
 				}
 			}
 		}
