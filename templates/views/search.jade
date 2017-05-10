@@ -72,14 +72,14 @@ block content
                 = ' '
             - var start = (firstResultNum - (limit*5+1)) < 0               ? 0                     : (firstResultNum - (limit*5+1)) / limit 
             - var last  = (firstResultNum + (limit*4+1)) > numResultsTotal ? numResultsTotal/limit : (firstResultNum + (limit*4+1)) / limit
-            - var current = firstResultNum / limit 
+            - var current = (firstResultNum % 10 == 0 ? firstResultNum : firstResultNum - 1) / limit 
             if (previous >= 0 || lastResultNum < numResultsTotal)
                 - for (var i=start; i<last; i++)
                     - var offset = i * limit
-                    if(i + 1 != current)
+                    if(i != current)
                         a(href=originalUrl + '/?offset='+offset) #{i+1}
                     else
-                        b #{i+1}
+                         b #{i+1}
                     = ' '
                     
             if (lastResultNum < numResultsTotal)
