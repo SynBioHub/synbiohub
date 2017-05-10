@@ -70,13 +70,18 @@ block content
             if (previous >= 0)
                 a(href=originalUrl + '/?offset='+previous) Previous
                 = ' '
-            - var start = (firstResultNum - (limit*5+1))<0 ? 0 : (firstResultNum - (limit*5+1))/limit 
-            - var last = (firstResultNum + (limit*4+1))>numResultsTotal ? numResultsTotal/limit : (firstResultNum + (limit*4+1))/limit 
+            - var start = (firstResultNum - (limit*5+1)) < 0               ? 0                     : (firstResultNum - (limit*5+1)) / limit 
+            - var last  = (firstResultNum + (limit*4+1)) > numResultsTotal ? numResultsTotal/limit : (firstResultNum + (limit*4+1)) / limit
+            - var current = firstResultNum / limit 
             if (previous >= 0 || lastResultNum < numResultsTotal)
                 - for (var i=start; i<last; i++)
                     - var offset = i * limit
-                    a(href=originalUrl + '/?offset='+offset) #{i+1}
+                    if(i + 1 != current)
+                        a(href=originalUrl + '/?offset='+offset) #{i+1}
+                    else
+                        b #{i+1}
                     = ' '
+                    
             if (lastResultNum < numResultsTotal)
                 a(href=originalUrl + '/?offset='+lastResultNum) Next
 
