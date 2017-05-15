@@ -66,7 +66,7 @@ block content
                         tr
                             td Source
                             td
-                               a(href=meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
+                               a(href=meta.wasDerivedFrom.toString().startsWith(config.databasePrefix)?'/'+meta.wasDerivedFrom.toString().replace(config.databasePrefix,''):meta.wasDerivedFrom.toString()) #{meta.wasDerivedFrom}
                             td
 
                     if meta.creator.description && meta.creator.description != ''
