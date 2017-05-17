@@ -267,7 +267,7 @@ public class PrepareSubmissionJob extends Job
 				topLevel.createAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableProvenance", "sbh"), sourceStr);
 			}
 		}
-		
+
 		if (rootCollection != null) {
 			for(TopLevel topLevel : doc.getTopLevels())
 			{		

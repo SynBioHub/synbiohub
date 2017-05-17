@@ -66,9 +66,9 @@ block content
             div.form-group-100
                 label Collections
                 br
-                select(name='collectionChoices' id='collectionChoices' multiple data-placeholder='Select Some Collections').chosen-select
+                select(name='collectionChoices' style="width:675px;" id='collectionChoices' multiple data-placeholder='Select Some Collections').chosen-select
                     for collection in collections
-                        option #{collection.name}
+                        option(value=collection.uri) #{collection.name}
 
             div.form-group-100.required
                 label SBOL/GenBank/FASTA File
