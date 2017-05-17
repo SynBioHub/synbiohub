@@ -14,25 +14,25 @@ block adminContent
                 th
                 th
         tbody
-            each user in users
+            each u in users
                 tr
                     td
-                        input(type='hidden',value=user.id)
-                        |#{user.id}
+                        input(type='hidden',value=u.id)
+                        |#{u.id}
                     td
-                        input.form-control(type='text',value=user.username)
+                        input.form-control(type='text',value=u.username)
                     td
-                        input.form-control(type='text',value=user.name)
+                        input.form-control(type='text',value=u.name)
                     td
-                        input.form-control(type='text',value=user.email)
+                        input.form-control(type='text',value=u.email)
                     td
-                        input.form-control(type='text',value=user.affiliation)
+                        input.form-control(type='text',value=u.affiliation)
                     td
-                        input(type='checkbox',checked=user.isAdmin)
+                        input(type='checkbox',checked=u.isAdmin)
                     td
                         button.btn.save(disabled) Save
                     td
-                        if(user.id != currentUser.id)
+                        if(u.id != user.id)
                             button.btn.btn-danger.delete Delete
 
 
