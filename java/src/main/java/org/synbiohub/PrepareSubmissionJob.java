@@ -226,7 +226,7 @@ public class PrepareSubmissionJob extends Job
 										}
 									} else {
 										errorLog = "Submission terminated.\nA submission with this id already exists, "
-												+ " and it includes an object:\n" + topLevel.getIdentity() + "\nthat is already "
+												+ " and it includes an object: " + topLevel.getIdentity() + " that is already "
 												+ " in this repository and has different content";
 										finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 										return;

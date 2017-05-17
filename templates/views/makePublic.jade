@@ -13,7 +13,7 @@ block content
         div.submission-header
             span(style='font-size: 3.3em').fa.fa-unlock
             p(style='font-size: 1.7em; font-weight: bolder')
-                | Provide New Id and/or Version
+                | Make Public
             p
                 | #[span(style='font-weight: bolder;') Bold fields] are required
         
@@ -24,13 +24,44 @@ block content
                     each error in errors
                         p #{error}
                         br
-
-            if submission.type == 'acs'
-                div(style='margin: 0 auto').form-group-100.required
-                    label ACS submission ID
-                    input(name='acs',type='text',value=submission.acs)
         
             div.clearfix
+
+            div.form-group-100.required(style='text-align: left;')
+                label Add to an Existing Collection
+                br
+                div.row
+                    div.col-sm-2
+                        input(type="radio", name="overwrite_merge", value="2", checked=true)
+
+            div.clearfix
+
+            br
+            br
+
+            div.form-group-200.required
+                label Collections
+                br
+                select(name='collections' style="width:650px;" id='collections' data-placeholder='Select Some Collections').chosen-select
+                    for collection in collections
+                        option(value=collection.uri) #{collection.name}
+
+            div.clearfix
+
+            br
+            br
+
+            div.form-group-100.required(style='text-align: left;')
+                label Create a New Collection
+                br
+                div.row
+                    div.col-sm-2
+                        input(type="radio", name="overwrite_merge", value="0")
+
+            div.clearfix
+
+            br
+            br
 
             div.form-group-50.required
                 label Id
@@ -42,22 +73,6 @@ block content
                 br
                 input(type='text', name='version',placeholder='Version',value=submission.version)
 
-            div.form-group-100.required(style='text-align: left;')
-                label If Existing:
-                br
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="0", checked=true)
-                    div.col-sm-10 Prevent submission
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
-                    div.col-sm-10 Merge and prevent, if member of collection exists
-
-            div.clearfix
-
-            br
-            br
 
             button(type='submit').btn.btn-primary.btn-lg
                 | Make Public
