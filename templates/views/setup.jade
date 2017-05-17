@@ -32,6 +32,10 @@ block body
                 p
                     i This color will be used to theme your SynBioHub instance.
                 br
+                label Write a Welcome Message
+                textarea.form-control(name='frontPageText', form-id='themeForm', rows='6') #{config.frontPageText}
+                p
+                    i This message will be displayed on the home page of your SynBioHub instance.
                 br
                 label Upload a Logo
                     input(type='file',name='logo')
