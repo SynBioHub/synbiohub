@@ -2,33 +2,37 @@
 extends ../../layouts/admin.jade
 
 block adminContent
-    div
-        h4 Logo
-        form(action='/admin/uploadLogo',method='POST',enctype='multipart/form-data')
-            input(type='file',name='file')
-            br
-            button.btn.btn-primary(type='submit') Upload Logo
+    form(action='/admin/theme', method='POST', id="themeForm", enctype='multipart/form-data')
+        div.row
+            div.col-md-4
+                div.form-group
+                    label(for='logo') Logo
+                    input.form-control(type='file',name='logo')
+            
+            div.col-md-8
+                div.form-group
+                    label(for='instanceName') Instance Name
+                    input.form-control(type='text', name='instanceName', value=instanceName)
 
-        br
+        div.row
+            div.col-md-12
+                div.form-group
+                    label(for='frontPageText') Front Page Text
+                    textarea.form-control(name='frontPageText', form-id='themeForm', rows='6') #{frontPageText}    
 
-        h4 Instance Name
-        form(action='/admin/updateInstanceName', method='POST')
-            input.form-control(type='text', name='instanceName', value=instanceName)
-            br
-            button.btn.btn-primary Update Name
-        
-        br
-
-        h4 Parameters
-        form(action='/admin/theme',method='POST')
-            table.table.table-striped
-                thead
-                    th Name
-                    th Value
-                tbody
-                    for parameter in themeParameters
-                        tr
-                            td #{parameter.name}
-                            td
-                                input.form-control(type='text', name=parameter.variable, value=parameter.value)
-            button.btn.btn-primary.pull-right Save
+        div.row
+            div.col-md-12
+                label Instance Settings
+                table.table.table-striped
+                    thead
+                        th Name
+                        th Value
+                    tbody
+                        for parameter in themeParameters
+                            tr
+                                td #{parameter.name}
+                                td
+                                    input.form-control(type='text', name=parameter.variable, value=parameter.value)
+        div.row
+            div.col-md-1.col-md-offset-11
+                button.btn.btn-primary(type='submit') Save
