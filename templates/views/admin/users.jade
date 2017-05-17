@@ -20,7 +20,8 @@ block adminContent
                         input(type='hidden',value=u.id)
                         |#{u.id}
                     td
-                        input.form-control(type='text',value=u.username)
+                        input.form-control(type='hidden',value=u.username)
+                        |#{u.username}
                     td
                         input.form-control(type='text',value=u.name)
                     td
