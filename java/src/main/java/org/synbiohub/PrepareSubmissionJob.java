@@ -175,9 +175,28 @@ public class PrepareSubmissionJob extends Job
 			Collection submissionCollection = doc.getCollection(URI.create(rootCollectionIdentity));
 			if (submissionCollection==null) {
 				submissionCollection = doc.createCollection(uriPrefix,newRootCollectionDisplayId,newRootCollectionVersion);
+				submissionCollection.setName(name);
+				submissionCollection.setDescription(description);
+				submissionCollection.createAnnotation(
+						new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"),
+						creatorName);
+				submissionCollection.createAnnotation(
+						new QName("http://purl.org/dc/terms/", "created", "dcterms"),
+						ZonedDateTime.now().format(DateTimeFormatter.ISO_INSTANT));
+				for(String pubmedID : citationPubmedIDs)
+				{
+					submissionCollection.createAnnotation(
+							new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"),
+							pubmedID);
+				}
+
 				submissionCollection.createAnnotation(
 						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
 						URI.create(ownedByURI));
+
+				submissionCollection.createAnnotation(
+						new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
+						submissionCollection.getIdentity());
 				rootCollection = submissionCollection;
 			} 
 			//Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
@@ -225,9 +244,9 @@ public class PrepareSubmissionJob extends Job
 											e.printStackTrace();
 										}
 									} else {
-										errorLog = "Submission terminated.\nA submission with this id already exists, "
-												+ " and it includes an object: " + topLevel.getIdentity() + " that is already "
-												+ " in this repository and has different content";
+										errorLog = "Submission terminated.\nA submission with this id already exists,"
+												+ " and it includes an object: " + topLevel.getIdentity()
+												+ " that is already in this repository and has different content";
 										finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
 										return;
 									}

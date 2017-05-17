@@ -24,11 +24,6 @@ block content
                     each error in errors
                         p #{error}
                         br
-
-            if submission.type == 'acs'
-                div(style='margin: 0 auto').form-group-100.required
-                    label ACS submission ID
-                    input(name='acs',type='text',value=submission.acs)
         
             div.clearfix
 

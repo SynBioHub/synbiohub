@@ -36,9 +36,6 @@ block content
 
             div.clearfix
 
-            br
-            br
-
             div.form-group-200.required
                 label Collections
                 br
@@ -60,9 +57,6 @@ block content
 
             div.clearfix
 
-            br
-            br
-
             div.form-group-50.required
                 label Id
                 br
@@ -73,6 +67,31 @@ block content
                 br
                 input(type='text', name='version',placeholder='Version',value=submission.version)
 
+            div.form-group-100.required
+                label Name
+                br
+                input(name='name',placeholder='Name',value=submission.name)
+
+            div.form-group-100.required
+                label Description
+                br
+                textarea(name='description'
+                    placeholder='The more you say, the easier it will be to find your design...')
+                        | #{submission.description}
+
+            div.clearfix
+
+            div.form-group-100
+                label Citations
+                br
+                input(name='citations'
+                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                        value=submission.citations)
+
+            div.clearfix
+
+            br
+            br
 
             button(type='submit').btn.btn-primary.btn-lg
                 | Make Public
