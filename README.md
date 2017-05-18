@@ -33,7 +33,7 @@ For Ubuntu 16.04:
     apt-key add odn.gpg.key
     curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
     apt update
-    apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource jq
+    apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource jq build-essential python
 
 First, build the Java parts with Maven:
 
