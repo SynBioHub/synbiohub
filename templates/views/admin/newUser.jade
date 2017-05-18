@@ -1,0 +1,44 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    div.row
+        div.col-md-12
+            h1 Create an Account
+    
+    div.row
+        div.col-md-12
+            p The user will be emailed their login details upon account creation.
+
+    div.row
+        div.col-md-12
+            if registerAlert
+                div.alert.alert-danger #{registerAlert}
+
+            form(accept-charset='UTF-8',action='newUser',method='post')
+                
+                input.text(name='utf8',type='hidden',value='✓')
+
+                div.form-group
+                    label(for='name') Full Name
+                    input.form-control(name='name', id='name', type='text', autocomplete='off', value=form.name)
+
+                div.form-group
+                    label(for='affiliation') Affiliation (optional)
+                    input.form-control(name='affiliation', id='affiliation', autocomplete='off', value=form.affiliation)
+
+                div.form-group
+                    label(for='email') Email
+                    input.form-control(name='email', id='email', type='email', autocomplete='off', value=form.email)
+
+                div.form-group
+                    label(for='username') Username
+                    input.form-control(name='username', id='username', type='username', autocomplete='off', value=form.username)
+
+                div.checkbox
+                    label.form-check-label
+                        input(name='isAdmin', type='checkbox', value=form.isAdmin)
+                        | Grant Administrative Privileges
+
+                div
+                    input(type='submit',class='btn btn-primary',value='Create')
