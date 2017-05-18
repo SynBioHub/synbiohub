@@ -24,22 +24,22 @@ block content
                 input.text(name='utf8',type='hidden',value='✓')
 
                 div.control-group(style='margin-top: 4px')
-                    input.sbol-login-text.username-text(name='name',size='25',type='text',placeholder='Full name',autocomplete='off',value=name)
+                    input.sbol-login-text.username-text(name='name',size='25',type='text',placeholder='Full name',autocomplete='off',value=form.name)
 
                 div.clearfix
 
                 div.control-group(style='margin-top: 4px')
-                    input(class='sbol-login-text username-text',name='affiliation',size='25',placeholder='Affiliation (optional)',autocomplete='off',value=affiliation)
+                    input(class='sbol-login-text username-text',name='affiliation',size='25',placeholder='Affiliation (optional)',autocomplete='off',value=form.affiliation)
 
                 div.clearfix
 
                 div.control-group(style='margin-top: 4px')
-                    input#email.sbol-login-text.email-text(name='email',size='25',type='email',placeholder='E-mail address',autocomplete='off',value=email)
+                    input#email.sbol-login-text.email-text(name='email',size='25',type='email',placeholder='E-mail address',autocomplete='off',value=form.email)
 
                 div.clearfix
 
                 div.control-group(style='margin-top: 4px')
-                    input#username.sbol-login-text.username-text(name='username',size='25',type='username',placeholder='Username',autocomplete='off',value=username)
+                    input#username.sbol-login-text.username-text(name='username',size='25',type='username',placeholder='Username',autocomplete='off',value=form.username)
 
                 div.clearfix
 
