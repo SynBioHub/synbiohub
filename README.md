@@ -46,7 +46,7 @@ Then install the SynBioHub dependencies with npm:
 
 Then run synbiohub:
 
-    node synbiohub.js
+    npm start
 
 
 
