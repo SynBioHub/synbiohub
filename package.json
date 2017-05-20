@@ -71,8 +71,7 @@
     "npm": ">=1.3.14"
   },
   "scripts": {
-     "start": "nodemon synbiohub.js | tee synbiohub.log",
-     "start-forever": "forever synbiohub.js | tee synbiohub.log"
+     "start": "forever synbiohub.js | tee synbiohub.log"
   },
   "main": "synbiohub.js"
 }
