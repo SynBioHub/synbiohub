@@ -5,16 +5,16 @@ module.exports = {
         return Promise.all([
             query.addColumn('user', 'isMember', {
                 type: DataTypes.BOOLEAN,
-                allowNull: false
-            }).then(() => {
-                return query.sequelize.query(`UPDATE "user" SET "isMember" = "isAdmin"`, {raw: true})
+                allowNull: false,
+                defaultValue: false
             }),
+            query.sequelize.query(`UPDATE "user" SET "isMember" = "isAdmin"`, {raw: true}),
             query.addColumn('user', 'isCurator', {
                 type: DataTypes.BOOLEAN,
-                allowNull: false
-            }).then(() => {
-                return query.sequelize.query(`UPDATE "user" SET "isCurator" = "isAdmin"`, {raw: true})
+                allowNull: false,
+                defaultValue: false
             }),
+            query.sequelize.query(`UPDATE "user" SET "isCurator" = "isAdmin"`, {raw: true})
         ])
     },
 
