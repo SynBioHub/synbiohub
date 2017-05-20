@@ -14,6 +14,8 @@ block adminContent
                 th Name
                 th E-mail
                 th Affiliation
+                th Member
+                th Curator
                 th Admin
                 th
                 th
@@ -32,6 +34,10 @@ block adminContent
                         input.form-control(type='text',value=u.email)
                     td
                         input.form-control(type='text',value=u.affiliation)
+                    td
+                        input(type='checkbox',checked=u.isMember)
+                    td
+                        input(type='checkbox',checked=u.isCurator)
                     td
                         input(type='checkbox',checked=u.isAdmin)
                     td

@@ -57,9 +57,10 @@ mixin search-result-collection(submission,removePublicEnabled)
         //button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal
 
         if submission.triplestore != 'public'
-            a(href=submission.url + '/makePublic')
-                button(type='button').btn.btn-success.public-btn Make Public
-            | 
+            if locals.user && locals.user.isCurator
+                a(href=submission.url + '/makePublic')
+                    button(type='button').btn.btn-success.public-btn Make Public
+                | 
             a(href=submission.url + '/removeSubmission')
                 button(type='button').btn.btn-success.remove-btn Remove
             | 

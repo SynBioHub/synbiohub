@@ -39,7 +39,9 @@ $('.sbh-datatable .save').click(function() {
         name: $(inputs[2]).val(),
         email: $(inputs[3]).val(),
         affiliation: $(inputs[4]).val(),
-        isAdmin: $(inputs[5]).prop('checked')
+        isMember: $(inputs[5]).prop('checked'),
+        isCurator: $(inputs[6]).prop('checked'),
+        isAdmin: $(inputs[7]).prop('checked')
     }
 
     $.post('/admin/updateUser', userInfo, function() {
@@ -61,7 +63,9 @@ $('.sbh-datatable .delete').click(function() {
         name: $(inputs[2]).val(),
         email: $(inputs[3]).val(),
         affiliation: $(inputs[4]).val(),
-        isAdmin: $(inputs[5]).prop('checked')
+        isMember: $(inputs[5]).prop('checked'),
+        isCurator: $(inputs[6]).prop('checked'),
+        isAdmin: $(inputs[7]).prop('checked')
     }
 
     $.post('/admin/deleteUser', userInfo, function() {
@@ -89,6 +93,7 @@ $('.sbh-collection-members-datatable').DataTable({
         data: function(d) {
             d.type = 'collectionMembers'
             d.collectionUri = meta.uri
+	    d.graphUri = meta.graphUri
         }
     }
 
