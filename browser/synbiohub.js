@@ -93,6 +93,7 @@ $('.sbh-collection-members-datatable').DataTable({
         data: function(d) {
             d.type = 'collectionMembers'
             d.collectionUri = meta.uri
+	    d.graphUri = meta.graphUri
         }
     }
 
