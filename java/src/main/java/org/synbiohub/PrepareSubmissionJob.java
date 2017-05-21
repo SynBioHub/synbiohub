@@ -74,6 +74,8 @@ public class PrepareSubmissionJob extends Job
 				false,
 				true);
 		
+		//doc.write(System.err);
+		
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 
