@@ -8,6 +8,24 @@ block topLevelPreview
             div#design
 
 block topLevelPropertyTable
+
+    script.
+        function popup() {
+            popupS.confirm({
+                content: 'Do you want to delete #{user.userName}?',
+                labelOk: 'Yes',
+                labelCancel: 'No',
+                onSubmit: function() {
+                    window.location.href = "/users/removeUser/#{user._id}"
+                },
+                onClose: function() {
+                    console.log(':(');
+                }
+            });
+         }
+    td
+    button(onclick="popup()") Delete with conf
+
     if meta.sequences.length > 0
         tr
             td Sequences
