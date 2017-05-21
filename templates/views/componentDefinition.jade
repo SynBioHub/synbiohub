@@ -117,12 +117,18 @@ block topLevelButtons
         br
         br
     if meta.triplestore != 'public'
+        a.btn.btn-success(href=share)
+            span.fa.fa-share
+            |  Share
+        br
+        br
+    if meta.triplestore != 'public' && locals.user && locals.user.isCurator
         a.btn.btn-success(href=makePublic)
             span.fa.fa-unlock
                 |  Make Public
         br
         br
-    if meta.triplestore != 'public'
+    if meta.triplestore != 'public' 
         a.btn.btn-success(href=remove)
             span.fa.fa-remove
                 |  Remove

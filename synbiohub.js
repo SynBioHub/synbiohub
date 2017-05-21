@@ -23,13 +23,11 @@ if(fs.existsSync('synbiohub.sqlite') && config.get('firstLaunch') === true) {
 
 
 if(!fs.existsSync('synbiohub.sqlite')) {
-
     db.sequelize.sync({ force: true }).then(startServer)
-
 } else {
-
-    startServer()
-
+    db.umzug.up().then(() => {
+        startServer()
+    })
 }
 
 function startServer() {
