@@ -10,6 +10,7 @@ public/styles/theme/*.less
 java/target
 backup/*.bp
 public/logo_uploaded*
+synbiohub.log
 
 
 

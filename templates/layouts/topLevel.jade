@@ -10,6 +10,19 @@ block jsState
     script meta = 
         != JSON.stringify(meta)
 
+    script.
+        function popup() {
+            popupS.alert({
+                content: '<a href=#{share}>#{share}</a>',
+                labelOk: 'Ok',
+                labelCancel: 'No',
+                onSubmit: function() {
+                },
+                onClose: function() {
+                }
+            });
+        }
+
 block breadcrumbs
     ul
         li.inactive
