@@ -1,0 +1,112 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-cloud-upload
+            |  Copy
+
+
+block content
+    div.submission-container(align='center')
+        div.submission-header
+            span(style='font-size: 3.3em').fa.fa-copy
+            p(style='font-size: 1.7em; font-weight: bolder')
+                | Copy From Remote
+            p
+                | #[span(style='font-weight: bolder;') Bold fields] are required
+        
+        form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
+        
+            if errors.length > 0
+                div.alert.alert-danger
+                    each error in errors
+                        p #{error}
+                        br
+        
+            div.clearfix
+
+            div.form-group-100.required(style='text-align: left;')
+                div.row
+                    div.col-sm-6
+                        label Add to an Existing Collection
+                    div.col-sm-6
+                        label Overwrite Existing Objects
+                br
+                div.row
+                    div.col-sm-6
+                        input(type="radio", name="overwrite_merge", value="2", checked=true)
+                    div.col-sm-6
+                        input(type="checkbox", name="overwrite_objects", value=false, checked=false)
+
+            div.clearfix
+
+            div.form-group-200.required
+                label Collections
+                br
+                select(name='collections' style="width:650px;" id='collections' data-placeholder='Select Some Collections').chosen-select
+                    for collection in collections
+                        option(value=collection.uri) #{collection.name}
+
+            div.clearfix
+
+            br
+            br
+
+            div.form-group-100.required(style='text-align: left;')
+                div.row
+                    div.col-sm-6
+                        label Create a New Collection
+                    div.col-sm-6
+                        label Overwrite If Collection Exists
+                br
+                div.row
+                    div.col-sm-6
+                        input(type="radio", name="overwrite_merge", value="0")
+                    div.col-sm-6
+                        input(type="checkbox", name="overwrite_collection", value=false, checked=false)
+
+            div.clearfix
+
+            div.form-group-50.required
+                label Id
+                br
+                input(type='text', name='id',placeholder='Submission Id',value=submission.id)
+
+            div.form-group-50.required
+                label Version
+                br
+                input(type='text', name='version',placeholder='Version',value=submission.version)
+
+            div.form-group-100.required
+                label Name
+                br
+                input(name='name',placeholder='Name',value=submission.name)
+
+            div.form-group-100.required
+                label Description
+                br
+                textarea(name='description'
+                    placeholder='The more you say, the easier it will be to find your design...')
+                        | #{submission.description}
+
+            div.clearfix
+
+            div.form-group-100
+                label Citations
+                br
+                input(name='citations'
+                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                        value=submission.citations)
+
+            div.clearfix
+
+            br
+            br
+
+            button(type='submit').btn.btn-primary.btn-lg
+                | Copy
+
+                
+
