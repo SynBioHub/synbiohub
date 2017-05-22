@@ -58,7 +58,7 @@ block content
         br
         a(href='/advancedSearch') Advanced Search
         |  |  
-        if (locals.user && locals.user.isCurator)
+        if (locals.user)
             a(href='/createCollection') Create Collection
             |  |  
         a(href='/sparql') SPARQL
