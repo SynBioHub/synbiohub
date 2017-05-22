@@ -40,5 +40,15 @@ block adminContent
                         input(name='isAdmin', type='checkbox', value=form.isAdmin)
                         | Grant Administrative Privileges
 
+                div.checkbox
+                    label.form-check-label
+                        input(name='isMember', type='checkbox', value=form.isMember)
+                        | Grant Member Privileges
+
+                div.checkbox
+                    label.form-check-label
+                        input(name='isCurator', type='checkbox', value=form.isCurator)
+                        | Grant Curator Privileges
+
                 div
                     input(type='submit',class='btn btn-primary',value='Create')
