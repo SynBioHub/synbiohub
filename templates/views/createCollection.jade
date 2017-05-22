@@ -1,0 +1,188 @@
+
+extends ../layouts/default.jade
+
+block head
+    style.
+        body {
+            background-color: #f6f6f6;
+        }
+
+        .grey-page-mark {
+            background-color: #f6f6f6;
+        }
+
+        .top-search-form {
+            display: none;
+        }
+
+        .main-search-form input {
+            width: 60%;
+            margin-left: 0;
+            background-color: white;
+            padding: 14px 16px 13px 32px;
+        }
+
+        .main-search-form .submit {
+            padding: 12px 21px;
+        }
+
+        .main-search-form label {
+            color: #7F8C8D;
+        }
+
+        .search-section {
+            height: 60px;
+            padding: 20px;
+            margin: 0 auto;
+            width: 60%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-search
+            |  Advanced Search
+
+block content
+  div.submission-container(align='center')
+    form(name="advancedSearch", method="post")
+
+        if errors.length > 0
+            div.alert.alert-danger
+                each error in errors
+                    p #{error}
+                    br
+        
+        div.clearfix
+
+        div.form-group-50.required
+            label Id
+            br
+            input(name='metaId',placeholder='Collection Id',value=collectionMeta.id)
+
+        div.form-group-50.required
+            label Version
+            br
+            input(name='metaVersion',placeholder='Version',value=collectionMeta.version)
+
+        div.form-group-100.required
+            label Name
+            br
+            input(name='metaName',placeholder='Collection Name',value=collectionMeta.name)
+
+        div.form-group-100.required
+            label Description
+            br
+            textarea(name='metaDescription'
+                placeholder='Describe your collection')
+                    | #{collectionMeta.description}
+
+        div.clearfix
+
+        div.form-group-50.required
+            table.table.advanced-search-table
+                th Property
+                th Value
+                tr
+                    td Object Type
+                    td
+                       select(name='objectType' style='width: 260px;').chosen-select
+                            option #{'Any Object Type'}
+                            for objectType in objectTypes
+                                option #{objectType.name}
+                tr
+                    td Creator
+                    td
+                       select(name='creator' style='width: 260px;').chosen-select
+                            option #{'Any Creator'}
+                            for creator in creators
+                                option #{creator.name}
+                tr
+                    td CreatedAfter
+                    td
+                        input(type='text',name='createdAfter',placeholder='YYYY-MM-DD',value=createdAfter)
+                tr
+                    td CreatedBefore
+                    td
+                        input(type='text',name='createdBefore',placeholder='YYYY-MM-DD',value=createdBefore)
+                tr
+                    td ModifiedAfter
+                    td
+                        input(type='text',name='modifiedAfter',placeholder='YYYY-MM-DD',value=modifiedAfter)
+                tr
+                    td ModifiedBefore
+                    td
+                        input(type='text',name='modifiedBefore',placeholder='YYYY-MM-DD',value=modifiedBefore)
+                tr
+                    td Id/Name/Description
+                    td
+                        input(type='text',name='description',placeholder='Search terms',value=description,style="width: 550px;")
+                tr
+                    td Type
+                    td
+                        select(name='type' style='width: 260px;').chosen-select
+                            option #{'Any Type'}
+                            for type in types
+                                option #{type.name}
+                tr
+                    td Role
+                    td
+                        select(name='role' style='width: 260px;').chosen-select
+                            option #{'Any Role'}
+                            for role in roles
+                                option #{role.name}
+                tr
+                    td igem#partType
+                    td
+                        select(name='partType' style='width: 260px;').chosen-select
+                            option #{'Any iGEM Part Type'}
+                            for igemRole in igemRoles
+                                option #{igemRole.name}
+                tr
+                    td igem#partStatus
+                    td
+                        select(name='partStatus' style='width: 260px;').chosen-select
+                            option #{'Any iGEM Part Status'}
+                            for partStatus in partStatuses
+                                option #{partStatus.name}
+                tr
+                    td igem#sampleStatus
+                    td
+                        select(name='sampleStatus' style='width: 260px;').chosen-select
+                            option #{'Any iGEM Sample Status'}
+                            for sampleStatus in sampleStatuses
+                                option #{sampleStatus.name}
+                tr
+                    td igem#status
+                    td
+                        select(name='status' style='width: 260px;').chosen-select
+                            option #{'Any iGEM Status'}
+                            for status in statuses
+                                option #{status.name}
+                tr
+                    td igem#experience
+                    td
+                        select(name='experience' style='width: 260px;').chosen-select
+                            option #{'Any iGEM Experience'}
+                            for experience in experiences
+                                option #{experience.name}
+                tr
+                    td Collections
+                    td
+                        select(name='collection1' id='collection1' multiple data-placeholder='Select Some Collections').chosen-select
+                            for collection in collections
+                                option #{collection.name}
+
+        div.clearfix
+
+        br
+        br
+
+        button(type='submit').btn.btn-primary.btn-lg
+            | Search
+
+
+
+

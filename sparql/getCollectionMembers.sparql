@@ -5,6 +5,7 @@ SELECT ?uri
        ?name
        ?description
        ?type
+$graphs
 WHERE { 
 <$collection> a sbol2:Collection .
 <$collection> sbol2:member ?uri .
