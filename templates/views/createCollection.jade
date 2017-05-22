@@ -43,7 +43,7 @@ block breadcrumbs
     ul
         li
             span.fa.fa-search
-            |  Advanced Search
+            |  Create Collection
 
 block content
   div.submission-container(align='center')
@@ -60,23 +60,22 @@ block content
         div.form-group-50.required
             label Id
             br
-            input(name='metaId',placeholder='Collection Id',value=collectionMeta.id)
+            input(name='metaId',placeholder='Collection Id',value=collectionMeta.id,style="width: 350px;")
 
         div.form-group-50.required
             label Version
             br
-            input(name='metaVersion',placeholder='Version',value=collectionMeta.version)
+            input(name='metaVersion',placeholder='Version',value=collectionMeta.version,style="width: 350px;")
 
         div.form-group-100.required
             label Name
             br
-            input(name='metaName',placeholder='Collection Name',value=collectionMeta.name)
+            input(name='metaName',placeholder='Collection Name',value=collectionMeta.name,style="width: 700px;")
 
         div.form-group-100.required
             label Description
             br
-            textarea(name='metaDescription'
-                placeholder='Describe your collection')
+            textarea(name='metaDescription',placeholder='Describe your collection',style="width: 700px;")
                     | #{collectionMeta.description}
 
         div.clearfix
