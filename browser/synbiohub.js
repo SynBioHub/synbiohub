@@ -23,10 +23,6 @@ $('.sbh-download-picture').click(function() {
 
 $('.sbh-datatable').DataTable()
 
-$('.sbh-datatable input').on('input', function() {
-    $(this).closest('tr').find('.save').addClass('btn-success').prop('disabled', false)
-})
-
 $('.sbh-datatable .save').click(function() {
 
     const $row = $(this).closest('tr')
@@ -46,7 +42,7 @@ $('.sbh-datatable .save').click(function() {
 
     $.post('/admin/updateUser', userInfo, function() {
 
-        $(this).removeClass('btn-success').prop('disabled', true)
+        location.reload()
 
     })
 
