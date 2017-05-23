@@ -1,0 +1,38 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-cloud-upload
+            |  Select Benchling Remote Instance
+
+
+block content
+    div.submission-container(align='center')
+        div.submission-header
+            span(style='font-size: 3.3em').fa.fa-send
+            p(style='font-size: 1.7em; font-weight: bolder')
+                | Select Benchling Remote Instance
+            p
+                | #[span(style='font-weight: bolder;') Bold fields] are required
+        
+        form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
+
+            div.form-group-200.required
+                label Benchling Remote Instances
+                br
+                select(name='benchlingRemote' style="width:650px;" id='benchlingRemote' data-placeholder='Select an Benchling Remote Instance').chosen-select
+                    for benchlingRemote in benchlingRemotes
+                        option(value=benchlingRemote.id) #{benchlingRemote.rootCollection.name}
+
+            div.clearfix
+
+            br
+            br
+
+            button(type='submit').btn.btn-primary.btn-lg
+                | Select Benchling Remote Instance
+
+                
+
