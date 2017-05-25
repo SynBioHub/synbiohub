@@ -23,7 +23,7 @@ $('.sbh-download-picture').click(function() {
 
 $('.sbh-datatable').DataTable()
 
-$('.sbh-datatable .save').click(function() {
+$(document).on('click', '.sbh-datatable .save', function() {
 
     const $row = $(this).closest('tr')
  
@@ -40,15 +40,11 @@ $('.sbh-datatable .save').click(function() {
         isAdmin: $(inputs[7]).prop('checked')
     }
 
-    $.post('/admin/updateUser', userInfo, function() {
-
-        location.reload()
-
-    })
+    $.post('/admin/updateUser', userInfo)
 
 })
 
-$('.sbh-datatable .delete').click(function() {
+$(document).on('click', '.sbh-datatable .delete', function() {
     const $row = $(this).closest('tr')
  
     const inputs = $row.find('input')
@@ -64,9 +60,11 @@ $('.sbh-datatable .delete').click(function() {
         isAdmin: $(inputs[7]).prop('checked')
     }
 
+    var dt = $(this).closest('.sbh-datatable').DataTable()
+
     $.post('/admin/deleteUser', userInfo, function() {
 
-        location.reload()
+        dt.row($row).remove().draw()
 
     })
 })
@@ -89,7 +87,7 @@ $('.sbh-collection-members-datatable').DataTable({
         data: function(d) {
             d.type = 'collectionMembers'
             d.collectionUri = meta.uri
-	    d.graphUri = meta.graphUri
+	        d.graphUri = meta.graphUri
         }
     }
 
