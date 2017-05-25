@@ -77,8 +77,8 @@ $('.sbh-collection-members-datatable').DataTable({
 
     // TODO
     //
-    searching: false,
-    ordering: false,
+    searching: true,
+    ordering: true,
     //
 
     ajax: {
