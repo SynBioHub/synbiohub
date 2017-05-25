@@ -88,7 +88,7 @@ public class PrepareSubmissionJob extends Job
 			return;
 		}
 
-		//if (submit && !uriPrefix.contains("/public/")) {
+		if (submit && !uriPrefix.contains("/public/")) {
 		
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
@@ -104,7 +104,7 @@ public class PrepareSubmissionJob extends Job
 					} 
 				}
 			}
-		//}
+		}
 		
 		if(doc.getTopLevels().size() == 0)
 		{
