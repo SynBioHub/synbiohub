@@ -73,12 +73,9 @@ $('.sbh-collection-members-datatable').DataTable({
     processing: true,
     serverSide: true,
 
-
-
     // TODO
-    //
-    searching: true,
-    ordering: true,
+    searching: !meta.remote,
+    ordering: !meta.remote,
     //
 
     ajax: {
