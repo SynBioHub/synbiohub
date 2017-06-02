@@ -93,11 +93,7 @@ public class PrepareSubmissionJob extends Job
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
 				for (String registry : webOfRegistries.keySet()) {
-					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
-						System.err.println("Found and removed:"+topLevel.getIdentity());
-						doc.removeTopLevel(topLevel);
-						break;
-					} else if (topLevel.getIdentity().toString().startsWith("https://"+registry)) {
+					if (topLevel.getIdentity().toString().startsWith(registry)) {
 						System.err.println("Found and removed:"+topLevel.getIdentity());
 						doc.removeTopLevel(topLevel);
 						break;
@@ -218,11 +214,11 @@ public class PrepareSubmissionJob extends Job
 					continue;
 				}
 				for (String registry : webOfRegistries.keySet()) {
-					SynBioHubFrontend sbh = new SynBioHubFrontend("http://"+webOfRegistries.get(registry),
-							"http://"+registry);
-					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
+					SynBioHubFrontend sbh = new SynBioHubFrontend(webOfRegistries.get(registry),
+							registry);
+					if (topLevel.getIdentity().toString().startsWith(registry)) {
 						String topLevelUri = topLevel.getIdentity().toString();
-						if (topLevelUri.startsWith("http://"+registry+"/user/")) {
+						if (topLevelUri.startsWith(registry+"/user/")) {
 							topLevelUri = topLevel.getIdentity().toString() + '/' + 
 									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
 									"/share";

@@ -41,7 +41,6 @@
 	"xmlns:purl": "http://purl.obolibrary.org/obo/"
   },
   "webOfRegistries" : {
-        "synbiohub.org": "localhost:7777"
   },
   "threadPoolSize": 8,
   "uploadLimit": "150mb",
