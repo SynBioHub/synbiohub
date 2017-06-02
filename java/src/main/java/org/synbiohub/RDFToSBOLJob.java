@@ -82,8 +82,12 @@ public class RDFToSBOLJob extends Job
 	
 	private void completeDocument(SBOLDocument document) {
 		completed = new HashSet<URI>();
+		int size = document.getTopLevels().size();
+		int count = 0;
 		for (TopLevel topLevel : document.getTopLevels()) {
 			completeDocument(document,topLevel);
+			count++;
+			System.err.println(count + " out of " + size);
 		}	
 	}
 	
@@ -105,7 +109,9 @@ public class RDFToSBOLJob extends Job
 	 * @throws SBOLValidationException if an SBOL validation rule violation occurred in {@link SBOLDocument#createCopy(TopLevel)}.
 	 */
 	private void completeDocument(SBOLDocument document, TopLevel topLevel) {
+	    if (topLevel==null) return;
 		if (completed.contains(topLevel.getIdentity())) return;
+		System.err.println("Completing:"+topLevel.getIdentity());
 		completed.add(topLevel.getIdentity());
 		if (topLevel instanceof GenericTopLevel || topLevel instanceof Sequence || topLevel instanceof Model) {
 			// Do nothing
