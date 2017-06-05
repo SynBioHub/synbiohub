@@ -57,14 +57,10 @@ block topLevelButtons
         span.fa.fa-download
         | 
         span Download SBOL File
-    br
-    br
     a.btn.btn-primary(href=genBankUrl)
         span.fa.fa-download
         | 
         span Download GenBank
-    br
-    br
     // a.btn.btn-primary(href=fastaUrl)
     //     span.fa.fa-download
     //     | 
@@ -75,70 +71,46 @@ block topLevelButtons
         span.fa.fa-picture-o
         | 
         span Download Image
-    br
-    br
     if !meta.remote && meta.triplestore === 'public'
         a.btn.btn-primary(href=searchUsesUrl,title='Find all uses of this part')
             span.fa.fa-search
             | 
             span Find Uses
-        br
-        br
     if meta.igemDominant.description == 'true' && !meta.remote && meta.triplestore === 'public'
         a.btn.btn-success(href=searchTwinsUrl,title='This is a dominant twin')
             span.fa.fa-search
             | 
             span Find Twins
-        br
-        br
     else if !meta.remote && meta.triplestore === 'public'
         a.btn.btn-primary(href=searchTwinsUrl,title='This is NOT a dominant twin')
             span.fa.fa-search
             | 
             span Find Twins
-        br
-        br
     if meta.triplestore != 'public'
         a.btn.btn-success(onclick="popup()")
             span.fa.fa-share
             |  Share
-        br
-        br
     if meta.triplestore != 'public' && locals.user && locals.user.isCurator
         a.btn.btn-success(href=makePublic)
             span.fa.fa-unlock
-                |  Make Public
-        br
-        br
+            |  Make Public
     if meta.triplestore != 'public' 
         a.btn.btn-success(href=remove)
             span.fa.fa-remove
-                |  Remove
-        br
-        br
+            |  Remove
     if meta.remote
         a.btn.btn-success(href=copyFromRemote)
             span.fa.fa-share-alt
-                |  Copy to SynBioHub
-        br
-        br
+            |  Copy to SynBioHub
     if BenchlingRemotes
         a.btn.btn-success(href=benchling)
             span.fa.fa-send
-                |  Send to Benchling
-        br
-        br
+            |  Send to Benchling
     if ICERemotes
         a.btn.btn-success(href=ice)
             span.fa.fa-send
-                |  Send to ICE
-        br
-        br
+            |  Send to ICE
     if config.experimental.dataIntegration
         a.btn.btn-primary(href=dataIntegrationUrl,title='Integrate data from an integration pipeline')
             span.fa.fa-plus-circle
-            | 
-            span Data Integration
-        br
-        br
-
+            | Data Integration

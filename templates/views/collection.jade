@@ -19,7 +19,7 @@ block modal
                         div.col-sm-6
                             if (collectionIcon)
                                 h5 Current Icon
-                                img(src=collectionIcon)
+                                img(src=collectionIcon, style="width: 100%")
                             else
                                 h5 No Icon Set!
                         div.col-sm-6
@@ -54,34 +54,24 @@ block topLevelBelowPropertyTable
                         td #{member.description}
 
 block topLevelButtons
-    if memberCount <= 10000
-        a.btn.btn-primary(href=sbolUrl)
-            span.fa.fa-download
-            | 
-            span Download SBOL File
-        br
-        br
-    if locals.user && (locals.user.isCurator || locals.user.isAdmin || meta.triplestore != 'public')
-        a.btn.btn-success(data-toggle="modal", data-target="#iconModal")
-            span.fa.fa-file-image-o
-            |  Change Collection Icon
-    if meta.triplestore != 'public'
-        a.btn.btn-success(onclick="popup()")
-            span.fa.fa-share
-            |  Share
-        br
-        br
-    if meta.triplestore != 'public' && locals.user && locals.user.isCurator
-        a.btn.btn-success(href=makePublic)
-            span.fa.fa-unlock
-            |  Make Public
-        br
-        br
-    if meta.remote
-        a.btn.btn-success(href=copyFromRemote)
-            span.fa.fa-share-alt
-            |  Copy to SynBioHub
-
-            
-
-
+        if memberCount <= 10000
+            a.btn.btn-primary.btn-lg(href=sbolUrl)
+                span.fa.fa-download
+                | 
+                span Download SBOL File
+        if locals.user && (locals.user.isCurator || locals.user.isAdmin || meta.triplestore != 'public')
+            a.btn.btn-success.btn-lg(data-toggle="modal", data-target="#iconModal")
+                span.fa.fa-file-image-o
+                |  Change Collection Icon
+        if meta.triplestore != 'public'
+            a.btn.btn-success.btn-lg(onclick="popup()")
+                span.fa.fa-share
+                |  Share
+        if meta.triplestore != 'public' && locals.user && locals.user.isCurator
+            a.btn.btn-success.btn-lg(href=makePublic)
+                span.fa.fa-unlock
+                |  Make Public
+        if meta.remote
+            a.btn.btn-success.btn-lg(href=copyFromRemote)
+                span.fa.fa-share-alt
+                |  Copy to SynBioHub

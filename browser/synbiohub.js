@@ -1,5 +1,5 @@
 
-$(document).on('click', '[data-uri]', function() {
+$(document).on('click', '[data-uri]', function () {
 
     window.location = $(this).attr('data-uri')
 
@@ -12,7 +12,7 @@ $("body").tooltip({
     container: 'body'
 })
 
-$('.sbh-download-picture').click(function() {
+$('.sbh-download-picture').click(function () {
 
     var element = document.getElementById('design').childNodes[0]
 
@@ -23,10 +23,10 @@ $('.sbh-download-picture').click(function() {
 
 $('.sbh-datatable').DataTable()
 
-$(document).on('click', '.sbh-datatable .save', function() {
+$(document).on('click', '.sbh-datatable .save', function () {
 
     const $row = $(this).closest('tr')
- 
+
     const inputs = $row.find('input')
 
     const userInfo = {
@@ -44,9 +44,10 @@ $(document).on('click', '.sbh-datatable .save', function() {
 
 })
 
-$(document).on('click', '.sbh-datatable .delete', function() {
+
+$(document).on('click', '.sbh-datatable .delete', function () {
     const $row = $(this).closest('tr')
- 
+
     const inputs = $row.find('input')
 
     const userInfo = {
@@ -62,33 +63,33 @@ $(document).on('click', '.sbh-datatable .delete', function() {
 
     var dt = $(this).closest('.sbh-datatable').DataTable()
 
-    $.post('/admin/deleteUser', userInfo, function() {
+    $.post('/admin/deleteUser', userInfo, function () {
 
         dt.row($row).remove().draw()
 
     })
 })
 
-$('.sbh-collection-members-datatable').DataTable({
-    processing: true,
-    serverSide: true,
+if (typeof meta !== 'undefined') {
+    $('.sbh-collection-members-datatable').DataTable({
+        processing: true,
+        serverSide: true,
 
-    // TODO
-    searching: !meta.remote,
-    ordering: !meta.remote,
-    //
+        searching: !meta.remote,
+        ordering: !meta.remote,
 
-    ajax: {
-        url: '/api/datatables',
-        type: 'GET',
-        data: function(d) {
-            d.type = 'collectionMembers'
-            d.collectionUri = meta.uri
-	        d.graphUri = meta.graphUri
+        ajax: {
+            url: '/api/datatables',
+            type: 'GET',
+            data: function (d) {
+                d.type = 'collectionMembers'
+                d.collectionUri = meta.uri
+                d.graphUri = meta.graphUri
+            }
         }
-    }
 
-})
+    })
+}
 
 $(".chosen-select").chosen()
 
@@ -101,20 +102,20 @@ require('./setup')
 function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
     var $buttons = {
-        bold: $('<button class="btn"><span class="fa fa-bold"></span></button>').click(function() {
+        bold: $('<button class="btn"><span class="fa fa-bold"></span></button>').click(function () {
             $textarea.val($textarea.val() + '<b></b>').focus()
             return false
         }),
-        italic: $('<button class="btn"><span class="fa fa-italic"></span></button>').click(function() {
+        italic: $('<button class="btn"><span class="fa fa-italic"></span></button>').click(function () {
             $textarea.val($textarea.val() + '<i></i>').focus()
             return false
         }),
-        underline: $('<button class="btn"><span class="fa fa-underline"></span></button>').click(function() {
+        underline: $('<button class="btn"><span class="fa fa-underline"></span></button>').click(function () {
             $textarea.val($textarea.val() + '<u></u>').focus()
             return false
         }),
         image: $('<button class="btn sbh-wiki-add-image-button"><span class="fa fa-picture-o"></span></button>').click(insertImage),
-        link: $('<button class="btn"><span class="fa fa-globe"></span></button>').click(function() {
+        link: $('<button class="btn"><span class="fa fa-globe"></span></button>').click(function () {
             $textarea.val($textarea.val() + '<a href="http://example.com">link text</a>').focus()
             return false
         })
@@ -124,9 +125,9 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
      */
     function getImageAttachments() {
 
-        return $('.attachments-table tr').filter(function(i, tr) {
+        return $('.attachments-table tr').filter(function (i, tr) {
             return $(tr).children('td').first().text() === 'Image'
-        }).map(function(i, tr) {
+        }).map(function (i, tr) {
             return {
                 name: $($(tr).children('td')[1]).text(),
                 url: $(tr).find('a').attr('href') + '/download'
@@ -140,11 +141,11 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
         var $dropdownMenu = $('<div class="dropdown-menu"></div>')
         $dropdown.append($dropdownMenu)
 
-        getImageAttachments().each(function(i, attachment) {
+        getImageAttachments().each(function (i, attachment) {
 
             var $menuItem = $('<a class="dropdown-item"></a>')
 
-            $menuItem.click(function() {
+            $menuItem.click(function () {
                 $textarea.val($textarea.val() + '<img src="' + attachment.url + '"></img>').focus()
                 $dropdown.detach()
                 return false
@@ -163,8 +164,8 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
         $('body').append($dropdown)
         $dropdown.offset($buttons.image.offset())
 
-        setTimeout(function() {
-            $('body').click(function()  {
+        setTimeout(function () {
+            $('body').click(function () {
                 $dropdown.detach()
             })
         }, 50)
@@ -172,11 +173,11 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
     }
 
     var $topbar = $('<div></div>')
-                    .append($buttons.bold)
-                    .append($buttons.italic)
-                    .append($buttons.underline)
-                    .append($buttons.image)
-                    .append($buttons.link)
+        .append($buttons.bold)
+        .append($buttons.italic)
+        .append($buttons.underline)
+        .append($buttons.image)
+        .append($buttons.link)
 
     var $textarea = $('<textarea class="form-control"></textarea>')
     var $saveButton = $('<button class="btn btn-primary">').text(saveButtonText)
@@ -185,26 +186,26 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
     $textarea.val($el.attr('data-src'))
 
     var $div = $('<div></div>')
-                    .append($topbar)
-                    .append($textarea)
-                    .append($saveButton)
-                    .append($cancelButton)
+        .append($topbar)
+        .append($textarea)
+        .append($saveButton)
+        .append($cancelButton)
 
     var $orig = $el
     $el.replaceWith($div)
 
-    $cancelButton.click(function() {
+    $cancelButton.click(function () {
         $div.replaceWith($orig)
     })
 
-    $saveButton.click(function() {
+    $saveButton.click(function () {
 
         var value = $textarea.val()
 
         $.post(updateEndpoint, {
             uri: meta.uri,
             value: value,
-        }, function(res) {
+        }, function (res) {
             $div.replaceWith($(res))
         })
 
@@ -215,47 +216,47 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
 
 
-$(document).on('click', '#sbh-add-description', function() {
+$(document).on('click', '#sbh-add-description', function () {
     createWikiEditor($('#sbh-description'), 'Save Description', '/updateMutableDescription')
     return false
 })
 
 
-$(document).on('click', '#sbh-edit-description', function() {
+$(document).on('click', '#sbh-edit-description', function () {
     createWikiEditor($('#sbh-description'), 'Save Description', '/updateMutableDescription')
     return false
 })
 
-$(document).on('click', '#sbh-add-notes', function() {
+$(document).on('click', '#sbh-add-notes', function () {
     createWikiEditor($('#sbh-notes'), 'Save Notes', '/updateMutableNotes')
     return false
 })
 
 
-$(document).on('click', '#sbh-edit-notes', function() {
+$(document).on('click', '#sbh-edit-notes', function () {
     createWikiEditor($('#sbh-notes'), 'Save Notes', '/updateMutableNotes')
     return false
 })
 
-$(document).on('click', '#sbh-add-source', function() {
+$(document).on('click', '#sbh-add-source', function () {
     createWikiEditor($('#sbh-source'), 'Save Source', '/updateMutableSource')
     return false
 })
 
 
-$(document).on('click', '#sbh-edit-source', function() {
+$(document).on('click', '#sbh-edit-source', function () {
     createWikiEditor($('#sbh-source'), 'Save Source', '/updateMutableSource')
     return false
 })
 
 
-$(document).on('click', '#sbh-add-citations', function() {
+$(document).on('click', '#sbh-add-citations', function () {
     createWikiEditor($('#sbh-citations'), 'Save Citations', '/updateCitations')
     return false
 })
 
 
-$(document).on('click', '#sbh-edit-citations', function() {
+$(document).on('click', '#sbh-edit-citations', function () {
     createWikiEditor($('#sbh-citations'), 'Save Citations', '/updateCitations')
     return false
 })
@@ -263,39 +264,39 @@ $(document).on('click', '#sbh-edit-citations', function() {
 
 // https://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3
 //
-$(function() {
+$(function () {
 
-  // We can attach the `fileselect` event to all file inputs on the page
-  $(document).on('change', ':file', function() {
-    var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.trigger('fileselect', [numFiles, label]);
-  });
+    // We can attach the `fileselect` event to all file inputs on the page
+    $(document).on('change', ':file', function () {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
 
-  // We can watch for our custom `fileselect` event like this
-  $(document).ready( function() {
-      $(':file').on('fileselect', function(event, numFiles, label) {
+    // We can watch for our custom `fileselect` event like this
+    $(document).ready(function () {
+        $(':file').on('fileselect', function (event, numFiles, label) {
 
-          var input = $(this).parents('.input-group').find(':text'),
-              log = numFiles > 1 ? numFiles + ' files selected' : label;
+            var input = $(this).parents('.input-group').find(':text'),
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
 
-          console.log($(this).closest('form').length)
-          console.log($(this).closest('form').find('button').length)
-          $(this).closest('form').find('button[type=submit]').prop('disabled', false).addClass('btn-success')
+            console.log($(this).closest('form').length)
+            console.log($(this).closest('form').find('button').length)
+            $(this).closest('form').find('button[type=submit]').prop('disabled', false).addClass('btn-success')
 
-          if( input.length ) {
-              input.val(log);
-          } else {
-              //if( log ) alert(log);
-          }
+            if (input.length) {
+                input.val(log);
+            } else {
+                //if( log ) alert(log);
+            }
 
-      });
-  });
-  
+        });
+    });
+
 });
 
-$('#sbh-attachment-form').submit(function(e) {
+$('#sbh-attachment-form').submit(function (e) {
 
     e.preventDefault()
 
@@ -314,7 +315,7 @@ $('#sbh-attachment-form').submit(function(e) {
         cache: false,
         contentType: false,
         processData: false,
-        success: function(data) {
+        success: function (data) {
             $('.attachments-table').replaceWith($('<div></div>').html(data).find('.attachments-table'))
 
             var form = $(':file').val('').closest('form')
@@ -339,5 +340,163 @@ $('.sbh-sparql-editor').each((i, textarea) => {
 
 })
 
+const extend = require('xtend')
+
+function getFields(type) {
+    var fields = {
+        id: {
+            type: 'text',
+            default: '',
+            name: 'ID'
+        },
+        type: {
+            type: 'value',
+            default: '',
+            name: 'Type'
+        },
+        url: {
+            type: 'text',
+            default: '',
+            name: 'URL'
+        },
+        folderPrefix: {
+            type: 'text',
+            default: '',
+            name: 'Folder Prefix'
+        },
+        sequenceSuffix: {
+            type: 'text',
+            default: '_sequence',
+            name: 'Sequence Suffix'
+        },
+        defaultFolderId: {
+            type: 'text',
+            default: '',
+            name: 'Default Folder ID'
+        },
+        rootCollectionDisplayId: {
+            type: 'text',
+            default: '',
+            name: 'Root Collection Display ID'
+        },
+        rootCollectionName: {
+            type: 'text',
+            default: '',
+            name: 'Root Collection Name'
+        },
+        rootCollectionDescription: {
+            type: 'textarea',
+            default: '',
+            name: 'Root Collection Description'
+        },
+        public: {
+            type: 'checkbox',
+            default: true,
+            name: 'Public'
+        },
+        rejectUnauthorized: {
+            type: 'checkbox',
+            default: true,
+            name: 'Reject Unauthorized'
+        }
+    }
+
+    var specificFields = {
+        ice: {
+            iceApiToken: {
+                type: 'text',
+                default: '',
+                name: 'ICE API Token'
+            },
+            iceApiTokenClient: {
+                type: 'text',
+                default: '',
+                name: 'ICE API Token Client'
+            },
+            iceApiTokenOwner: {
+                type: 'text',
+                default: '',
+                name: 'ICE API Token Owner'
+            },
+            iceCollection: {
+                type: 'text',
+                default: '',
+                name: 'ICE API Collection'
+            },
+            groupId: {
+                type: 'text',
+                default: '',
+                name: 'Group ID'
+            },
+            pi: {
+                type: 'text',
+                default: '',
+                name: 'PI'
+            },
+            piEmail: {
+                type: 'text',
+                default: '',
+                name: 'PI Email'
+            },
+        },
+        benchling: {
+            benchlingApiToken: {
+                type: 'text',
+                default: '',
+                name: 'Benchling API Token'
+            },
+            defaultFolderId: {
+                type: 'text',
+                default: '',
+                name: 'Default Folder ID'
+            }
+        }
+    }
+
+    return extend(fields, specificFields[type])
+}
+
+function clearForm() {
+    $form = $('#remoteForm').empty();
+}
+
+function populateForm(type, data) {
+    $form = $('#remoteForm');
+
+    const fields = getFields(type);
+
+    Object.keys(fields).forEach(key => {
+        fieldInfo = fields[key];
+
+        $label = $("<label />").attr("for", key).text(fieldInfo.name);
+        $input = {
+            "text": $("<input />").attr("type", "text").val(fieldInfo.default),
+            "checkbox": $("<input />").attr("type", "checkbox").prop("checked", fieldInfo.default),
+            "textarea": $("<textarea />").val(fieldInfo.default),
+            "value": $("<input />").attr("type", "text").attr('readonly', 'readonly').val(fieldInfo.default),
+        }[fieldInfo.type].attr("name", key).addClass("form-control")
+
+        if(data[key]) {
+            $input.val(data[key]);
+        }
+
+        $group = $("<div />").addClass('form-group').append($label, $input)
+
+        $('#remoteForm').append($group)
+    })
 
 
+}
+
+$(document).on('click', '#remoteTypeSelect', function () {
+    var type = $(this).val()
+
+    if (type != "") {
+        clearForm();
+        $('#addRemote').attr('disabled', false);
+        populateForm(type, {"type": type})
+    } else {
+        $('#addRemote').attr('disabled', true);
+        clearForm();
+    }
+})

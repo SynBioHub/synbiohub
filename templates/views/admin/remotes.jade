@@ -1,12 +1,24 @@
 
 extends ../../layouts/admin.jade
 
+block modal
+    div.modal.fade#remoteModal(tabindex="-1", role="dialog")
+        div.modal-dialog(role="document")
+            div.modal-content
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="close")
+                    h4.modal-title Remote Auth Information
+                div.modal-body
+                    form.form#remoteForm(method="POST", action="/admin/saveRemote")
+                div.modal-footer
+                    button.btn.btn-primary(type="submit", form="remoteForm") Submit
+
 block adminContent
     if remotes.length === 0
         div No remotes configured
     else
         for remote in remotes
-            div.col-md-4
+            div.col-md-3
                 table.table.table-striped
                     tr
                         td
@@ -29,13 +41,30 @@ block adminContent
                         td
                             a(href=remote.rootCollectionUrl) #{remote.rootCollectionUri}
                     tr
-                        td(colspan=2)
-                            div.pull-right
-                                div.btn-group
-                                    a.btn.btn-danger(href=remote.rootCollectionUrl + '/removeRemote/')
-                                        span.fa.fa-trash
-                                        |  Remove Remote
-                                    a.btn.btn-success(href=remote.rootCollectionUrl + '/copyFromRemote/')
-                                        span.fa.fa-share-alt
-                                        |  Copy to SynBioHub
+                        td.text-center(colspan=2)
+                            div.btn-group
+                                a.btn.btn-danger(href=remote.rootCollectionUrl + '/removeRemote/')
+                                    span.fa.fa-trash
+                                    |  Remove
+                                a.btn.btn-info#editRemote(data-toggle="modal", data-target="#remoteModal") 
+                                    span.fa.fa-pencil
+                                    |  Edit
+                                a.btn.btn-primary(href=remote.rootCollectionUrl + '/copyFromRemote/')
+                                    span.fa.fa-cloud-download
+                                    |  Snapshot
             div.col-md-1
+        div.col-md-3
+            table.table.table-striped
+                tr
+                    td
+                        b Type: 
+                    td
+                        select.form-control#remoteTypeSelect
+                            option(value="") -----
+                            for remoteType in remoteTypes
+                                option(value=remoteType) #{remoteType}
+                tr
+                    td(colspan=2)
+                        a.btn-block.btn.btn-success#addRemote(data-toggle="modal", data-target="#remoteModal", disabled="true") 
+                            span.fa.fa-plus
+                            |  Add Remote
