@@ -359,11 +359,6 @@ function getFields(type) {
             default: '',
             name: 'URL'
         },
-        folderPrefix: {
-            type: 'text',
-            default: '',
-            name: 'Folder Prefix'
-        },
         sequenceSuffix: {
             type: 'text',
             default: '_sequence',
@@ -405,8 +400,8 @@ function getFields(type) {
             },
             iceCollection: {
                 type: 'text',
-                default: '',
-                name: 'ICE API Collection'
+                default: 'FEATURED',
+                name: 'ICE Collection'
             },
             groupId: {
                 type: 'text',
@@ -423,6 +418,11 @@ function getFields(type) {
                 default: '',
                 name: 'PI Email'
             },
+            folderPrefix: {
+                type: 'text',
+                default: 'ice_folder_',
+                name: 'Folder Prefix'
+            }
         },
         benchling: {
             benchlingApiToken: {
@@ -434,6 +434,11 @@ function getFields(type) {
                 type: 'text',
                 default: '',
                 name: 'Default Folder ID'
+            },
+            folderPrefix: {
+                type: 'text',
+                default: '',
+                name: 'Folder Prefix'
             }
         }
     }
