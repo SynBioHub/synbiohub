@@ -7,10 +7,12 @@ block modal
             div.modal-content
                 div.modal-header
                     button.close(type="button", data-dismiss="modal", arial-label="close")
-                    h4.modal-title Remote Auth Information
+                        span(aria-hidden="true") &times;
+                    h4.modal-title Remote Information
                 div.modal-body
                     form.form#remoteForm(method="POST", action="/admin/saveRemote")
                 div.modal-footer
+                    button.btn.btn-danger(data-dismiss="modal") Close
                     button.btn.btn-primary(type="submit", form="remoteForm") Submit
 
 block adminContent
@@ -18,7 +20,7 @@ block adminContent
         div No remotes configured
     else
         for remote in remotes
-            div.col-md-3.col-sm-5
+            div.col-md-4
                 table.table.table-striped
                     tr
                         td
@@ -36,11 +38,6 @@ block adminContent
                         td
                             p #{remote.url}
                     tr
-                        td
-                            b Root Collection:
-                        td
-                            a(href=remote.rootCollectionUrl) #{remote.rootCollectionUri}
-                    tr
                         td.text-center(colspan=2)
                             div.btn-group
                                 a.btn.btn-danger(href=remote.rootCollectionUrl + '/removeRemote/')
@@ -53,7 +50,7 @@ block adminContent
                                     span.fa.fa-cloud-download
                                     |  Snapshot
             div.col-md-1
-        div.col-md-3.col-sm-5
+        div.col-md-4
             table.table.table-striped
                 tr
                     td

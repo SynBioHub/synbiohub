@@ -359,11 +359,6 @@ function getFields(type) {
             default: '',
             name: 'URL'
         },
-        folderPrefix: {
-            type: 'text',
-            default: '',
-            name: 'Folder Prefix'
-        },
         sequenceSuffix: {
             type: 'text',
             default: '_sequence',
@@ -374,21 +369,6 @@ function getFields(type) {
             default: '',
             name: 'Default Folder ID'
         },
-        rootCollectionDisplayId: {
-            type: 'text',
-            default: '',
-            name: 'Root Collection Display ID'
-        },
-        rootCollectionName: {
-            type: 'text',
-            default: '',
-            name: 'Root Collection Name'
-        },
-        rootCollectionDescription: {
-            type: 'textarea',
-            default: '',
-            name: 'Root Collection Description'
-        },
         public: {
             type: 'checkbox',
             default: true,
@@ -398,6 +378,11 @@ function getFields(type) {
             type: 'checkbox',
             default: true,
             name: 'Reject Unauthorized'
+        },
+        folderPrefix: {
+            type: 'text',
+            default: 'folder_',
+            name: 'Folder Prefix'
         }
     }
 
@@ -420,8 +405,8 @@ function getFields(type) {
             },
             iceCollection: {
                 type: 'text',
-                default: '',
-                name: 'ICE API Collection'
+                default: 'FEATURED',
+                name: 'ICE Collection'
             },
             groupId: {
                 type: 'text',
@@ -438,6 +423,21 @@ function getFields(type) {
                 default: '',
                 name: 'PI Email'
             },
+            rootCollectionDisplayId: {
+                type: 'text',
+                default: '',
+                name: 'Root Collection Display ID'
+            },
+            rootCollectionName: {
+                type: 'text',
+                default: '',
+                name: 'Root Collection Name'
+            },
+            rootCollectionDescription: {
+                type: 'textarea',
+                default: '',
+                name: 'Root Collection Description'
+        }
         },
         benchling: {
             benchlingApiToken: {
@@ -449,7 +449,7 @@ function getFields(type) {
                 type: 'text',
                 default: '',
                 name: 'Default Folder ID'
-            }
+            },
         }
     }
 
