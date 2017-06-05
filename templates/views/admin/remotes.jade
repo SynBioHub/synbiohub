@@ -7,10 +7,12 @@ block modal
             div.modal-content
                 div.modal-header
                     button.close(type="button", data-dismiss="modal", arial-label="close")
+                        span(aria-hidden="true") &times;
                     h4.modal-title Remote Auth Information
                 div.modal-body
                     form.form#remoteForm(method="POST", action="/admin/saveRemote")
                 div.modal-footer
+                    button.btn.btn-danger(data-dismiss="modal") Close
                     button.btn.btn-primary(type="submit", form="remoteForm") Submit
 
 block adminContent
