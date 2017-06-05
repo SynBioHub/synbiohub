@@ -378,6 +378,11 @@ function getFields(type) {
             type: 'checkbox',
             default: true,
             name: 'Reject Unauthorized'
+        },
+        folderPrefix: {
+            type: 'text',
+            default: 'folder_',
+            name: 'Folder Prefix'
         }
     }
 
@@ -417,11 +422,6 @@ function getFields(type) {
                 type: 'text',
                 default: '',
                 name: 'PI Email'
-            },
-            folderPrefix: {
-                type: 'text',
-                default: 'ice_folder_',
-                name: 'Folder Prefix'
             }
         },
         benchling: {
@@ -435,11 +435,6 @@ function getFields(type) {
                 default: '',
                 name: 'Default Folder ID'
             },
-            folderPrefix: {
-                type: 'text',
-                default: '',
-                name: 'Folder Prefix'
-            }
         }
     }
 
