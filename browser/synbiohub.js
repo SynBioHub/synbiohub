@@ -374,21 +374,6 @@ function getFields(type) {
             default: '',
             name: 'Default Folder ID'
         },
-        rootCollectionDisplayId: {
-            type: 'text',
-            default: '',
-            name: 'Root Collection Display ID'
-        },
-        rootCollectionName: {
-            type: 'text',
-            default: '',
-            name: 'Root Collection Name'
-        },
-        rootCollectionDescription: {
-            type: 'textarea',
-            default: '',
-            name: 'Root Collection Description'
-        },
         public: {
             type: 'checkbox',
             default: true,

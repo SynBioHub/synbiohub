@@ -18,7 +18,7 @@ block adminContent
         div No remotes configured
     else
         for remote in remotes
-            div.col-md-3.col-sm-5
+            div.col-md-4
                 table.table.table-striped
                     tr
                         td
@@ -36,11 +36,6 @@ block adminContent
                         td
                             p #{remote.url}
                     tr
-                        td
-                            b Root Collection:
-                        td
-                            a(href=remote.rootCollectionUrl) #{remote.rootCollectionUri}
-                    tr
                         td.text-center(colspan=2)
                             div.btn-group
                                 a.btn.btn-danger(href=remote.rootCollectionUrl + '/removeRemote/')
@@ -53,7 +48,7 @@ block adminContent
                                     span.fa.fa-cloud-download
                                     |  Snapshot
             div.col-md-1
-        div.col-md-3.col-sm-5
+        div.col-md-4
             table.table.table-striped
                 tr
                     td
