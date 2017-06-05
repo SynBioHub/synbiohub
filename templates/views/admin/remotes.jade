@@ -1,6 +1,10 @@
 
 extends ../../layouts/admin.jade
 
+block jsState
+    script remotes = 
+        != JSON.stringify(remotes)
+
 block modal
     div.modal.fade#remoteModal(tabindex="-1", role="dialog")
         div.modal-dialog(role="document")
@@ -26,7 +30,7 @@ block adminContent
                         td
                             b ID:
                         td
-                            p #{remote.id}
+                            p#remote-id #{remote.id}
                     tr
                         td
                             b Type: 
@@ -39,11 +43,13 @@ block adminContent
                             p #{remote.url}
                     tr
                         td.text-center(colspan=2)
+                            form(method="POST", action='deleteRemote', id=remote.id + '-form')
+                                input(type="hidden", value=remote.id, name="id")
                             div.btn-group
-                                a.btn.btn-danger(href=remote.rootCollectionUrl + '/removeRemote/')
+                                button.btn.btn-danger(type="submit", form=remote.id + "-form")
                                     span.fa.fa-trash
                                     |  Remove
-                                a.btn.btn-info#editRemote(data-toggle="modal", data-target="#remoteModal") 
+                                a.btn.btn-info#remoteEdit(data-toggle="modal", data-target="#remoteModal") 
                                     span.fa.fa-pencil
                                     |  Edit
                                 a.btn.btn-primary(href=remote.rootCollectionUrl + '/copyFromRemote/')

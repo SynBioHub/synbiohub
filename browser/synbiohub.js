@@ -383,6 +383,21 @@ function getFields(type) {
             type: 'text',
             default: 'folder_',
             name: 'Folder Prefix'
+        },
+        rootCollectionDisplayId: {
+            type: 'text',
+            default: '',
+            name: 'Root Collection Display ID'
+        },
+        rootCollectionName: {
+            type: 'text',
+            default: '',
+            name: 'Root Collection Name'
+        },
+        rootCollectionDescription: {
+            type: 'textarea',
+            default: '',
+            name: 'Root Collection Description'
         }
     }
 
@@ -423,21 +438,6 @@ function getFields(type) {
                 default: '',
                 name: 'PI Email'
             },
-            rootCollectionDisplayId: {
-                type: 'text',
-                default: '',
-                name: 'Root Collection Display ID'
-            },
-            rootCollectionName: {
-                type: 'text',
-                default: '',
-                name: 'Root Collection Name'
-            },
-            rootCollectionDescription: {
-                type: 'textarea',
-                default: '',
-                name: 'Root Collection Description'
-        }
         },
         benchling: {
             benchlingApiToken: {
@@ -499,4 +499,52 @@ $(document).on('click', '#remoteTypeSelect', function () {
         $('#addRemote').attr('disabled', true);
         clearForm();
     }
+})
+
+
+$(document).on('click', '#remoteEdit', function () {
+    clearForm();
+    var id = $(this).closest('table').find('#remote-id').text();
+
+    var remote = remotes.find((remote) => {
+        return remote.id == id;
+    })
+
+    var data = {
+        "ice": {
+            id: remote["id"],
+            type: "ice",
+            url: remote["url"],
+            rejectUnauthorized: remote["rejectUnauthorized"],
+            folderPrefix: remote["folderPrefix"],
+            sequenceSuffix: remote["sequenceSuffix"],
+            defaultFolderId: remote["defaultFolderId"],
+            rootCollectionDisplayId: remote.rootCollection["displayId"],
+            rootCollectionName: remote.rootCollection["name"],
+            rootCollectionDescription: remote.rootCollection["description"],
+            iceApiToken: remote["X-ICE-API-Token"],
+            iceApiTokenClient: remote["X-ICE-API-Token-Client"],
+            iceApiTokenOwner: remote["X-ICE-API-Token-Owner"],
+            iceCollection: remote["iceCollection"],
+            groupId: remote["groupId"],
+            pi: remote["PI"],
+            piEmail: remote["PIemail"],
+        },
+        "benchling": {
+            id: remote["id"],
+            type: "benchling",
+            url: remote["url"],
+            rejectUnauthorized: remote["rejectUnauthorized"],
+            folderPrefix: remote["folderPrefix"],
+            sequenceSuffix: remote["sequenceSuffix"],
+            defaultFolderId: remote["defaultFolderId"],
+            rootCollectionDisplayId: remote.rootCollection["displayId"],
+            rootCollectionName: remote.rootCollection["name"],
+            rootCollectionDescription: remote.rootCollection["description"],
+            benchlingApiToken: remote["X-BENCHLING-API-Token"],
+            defaultFolderId: remote["defaultFolderId"],
+        }
+    }[remote.type]
+    
+    populateForm(remote.type, data)
 })
