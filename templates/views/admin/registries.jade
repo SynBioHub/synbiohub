@@ -1,0 +1,49 @@
+
+extends ../../layouts/admin.jade
+
+block modal
+ div.modal.fade#registryModal(tabindex="-1", role="dialog")
+        div.modal-dialog(role="document")
+            div.modal-content
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="close")
+                        span(aria-hidden="true") &times;
+                    h4.modal-title Add Registry
+                div.modal-body
+                    form.form#registryForm(method="POST", action="/admin/saveRegistry")
+                        input.form-control(type="text", name="uri", placeholder="Registry URI Prefix")
+                        br
+                        input.form-control(type="text", name="url", placeholder="Registry URL")
+                div.modal-footer
+                    button.btn.btn-danger(data-dismiss="modal") Close
+                    button.btn.btn-primary(type="submit", form="registryForm") Submit
+
+
+
+block adminContent
+    a.btn.btn-primary.pull-right(data-toggle="modal", data-target="#registryModal") 
+                            span.fa.fa-plus
+                            |  Add Registry
+    br
+    br
+    table.table.table-striped.sbh-registries-datatable
+        thead
+            tr
+                th URI Prefix
+                th SynBioHub URL
+                th
+                th
+        tbody
+            for registry in registries
+                tr
+                    td
+                        input.form-control#uri(type='text',value=registry.uri)
+                    td
+                        input.form-control#url(type='text',value=registry.url)
+                    td
+                        button.btn.btn-success.btn-block.save-registry Save
+                    td
+                        button.btn.btn-danger.btn-block.delete-registry Delete
+
+
+
