@@ -18,75 +18,65 @@ block content
                 | #[span(style='font-weight: bolder;') Bold fields] are required
         
         form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
-        
+            input(type="hidden", name="tabState", id="tabState", value="existing")
             if errors.length > 0
-                div.alert.alert-danger
-                    each error in errors
+                each error in errors
+                    div.alert.alert-danger
                         p #{error}
-                        br
+                    br
         
             div.clearfix
 
-            div.form-group-100.required(style='text-align: left;')
-                label Add to an Existing Collection
-                br
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="2", checked=true)
+            ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing", onclick="$('#tabState').val('existing')") Copy to Existing Collection
+                li(role="presentation")
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new", onclick="$('#tabState').val('new')") Copy to New Collection
 
-            div.clearfix
 
-            div.form-group-200.required
-                label Collections
-                br
-                select(name='collections' style="width:650px;" id='collections' data-placeholder='Select Some Collections').chosen-select
-                    for collection in collections
-                        option(value=collection.uri) #{collection.name}
+            div.tab-content
+                div.tab-pane.active#existing(role="tabpanel")
+                    br
+                    div.form-group-200.required
+                        label Collections
+                        br
+                        select.form-control(name='collections' style="width:650px;" id='collections' data-placeholder='Select Some Collections')
+                            option(value="") Choose a collection...
+                            for collection in collections
+                                option(value=collection.uri) #{collection.name}
 
-            div.clearfix
+                div.tab-pane#new(role="tabpanel")
+                    br
+                    div.form-group-50.required
+                        label Id
+                        br
+                        input(type='text', name='id',placeholder='Submission Id',value=submission.id)
 
-            br
-            br
+                    div.form-group-50.required
+                        label Version
+                        br
+                        input(type='text', name='version',placeholder='Version',value=submission.version)
 
-            div.form-group-100.required(style='text-align: left;')
-                label Create a New Collection
-                br
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="0")
+                    div.form-group-100.required
+                        label Name
+                        br
+                        input(name='name',placeholder='Name',value=submission.name)
 
-            div.clearfix
+                    div.form-group-100.required
+                        label Description
+                        br
+                        textarea(name='description'
+                            placeholder='The more you say, the easier it will be to find your design...')
+                                | #{submission.description}
 
-            div.form-group-50.required
-                label Id
-                br
-                input(type='text', name='id',placeholder='Submission Id',value=submission.id)
+                    div.clearfix
 
-            div.form-group-50.required
-                label Version
-                br
-                input(type='text', name='version',placeholder='Version',value=submission.version)
-
-            div.form-group-100.required
-                label Name
-                br
-                input(name='name',placeholder='Name',value=submission.name)
-
-            div.form-group-100.required
-                label Description
-                br
-                textarea(name='description'
-                    placeholder='The more you say, the easier it will be to find your design...')
-                        | #{submission.description}
-
-            div.clearfix
-
-            div.form-group-100
-                label Citations
-                br
-                input(name='citations'
-                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
-                        value=submission.citations)
+                    div.form-group-100
+                        label Citations
+                        br
+                        input(name='citations'
+                                placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                                value=submission.citations)
 
             div.clearfix
 
