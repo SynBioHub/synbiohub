@@ -19,7 +19,7 @@ block modal
                         div.col-sm-6
                             if (collectionIcon)
                                 h5 Current Icon
-                                img(src=collectionIcon)
+                                img(src=collectionIcon, style="width: 100%")
                             else
                                 h5 No Icon Set!
                         div.col-sm-6
@@ -83,7 +83,3 @@ block topLevelButtons
         a.btn.btn-success(href=copyFromRemote)
             span.fa.fa-share-alt
             |  Copy to SynBioHub
-
-            
-
-
