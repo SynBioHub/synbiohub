@@ -515,6 +515,10 @@ function populateForm(type, data) {
 
         if(data[key]) {
             $input.val(data[key]);
+
+            if(key == "id") {
+                $input.attr('readonly', 'readonly')
+            }
         }
 
         $group = $("<div />").addClass('form-group').append($label, $input)
