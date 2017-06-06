@@ -1,0 +1,13 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    div
+        form.form(method="POST", action="/admin/mail")
+            div.form-group
+                label(for="key") SendGrid API Key
+                input.form-control#key(name="key", placeholder="Key", value=sendGridApiKey)
+            div.form-group
+                label(for="fromEmail") SendGrid From Email
+                input.form-control#fromEmail(name="fromEmail", placeholder="From Email", value=sendGridFromEmail)
+            button.btn.btn-primary.pull-right(type="Submit") Submit
