@@ -20,6 +20,8 @@ block content
                             a(href='/admin/') Status
                         li(role='presentation',class=(adminSection==='users'?'active':''))
                             a(href='/admin/users') Users
+                        li(role='presentation',class=(adminSection==='mail'?'active':''))
+                            a(href='/admin/mail') Mail
                         if config.experimental.dataIntegration
                             li(role='presentation',class=(adminSection==='jobs'?'active':''))
                                 a(href='/admin/jobs') Jobs
