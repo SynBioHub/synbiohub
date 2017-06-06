@@ -5,6 +5,13 @@ SELECT ?uri
        ?name
        ?description
        ?type
+$graphs 
+WHERE { {
+SELECT ?uri 
+       ?displayId
+       ?name
+       ?description
+       ?type
 $graphs
 WHERE { 
 <$collection> a sbol2:Collection .
@@ -16,5 +23,6 @@ OPTIONAL { ?uri dcterms:description ?description . }
 $search
 }
 $sort
+}}
 $limit
 $offset
