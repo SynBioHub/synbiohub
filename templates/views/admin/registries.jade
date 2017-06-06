@@ -37,7 +37,7 @@ block adminContent
             for registry in registries
                 tr
                     td
-                        input.form-control#uri(type='text',value=registry.uri)
+                        input.form-control#uri(type='text',value=registry.uri,readonly="readonly")
                     td
                         input.form-control#url(type='text',value=registry.url)
                     td
