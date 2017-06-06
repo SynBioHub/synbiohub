@@ -91,6 +91,43 @@ if (typeof meta !== 'undefined') {
     })
 }
 
+$('.sbh-registries-datatable').DataTable({
+    processing: false,
+    serverSide: false,
+
+    searching: false,
+    ordering: false,
+
+})
+
+$(document).on('click', '.save-registry', function () {
+    $row = $(this).closest('tr')
+
+    var registryInfo = {
+        uri: $row.find('#uri').val(),
+        url: $row.find('#url').val()
+    }
+
+    $.post('/admin/saveRegistry', registryInfo, function() { })
+})
+
+$(document).on('click', '.delete-registry', function () {
+    $row = $(this).closest('tr')
+
+     var registryInfo = {
+        uri: $row.find('#uri').val(),
+        url: $row.find('#url').val()
+    }
+
+    var dt = $(this).closest('.sbh-registries-datatable').DataTable()
+
+    $.post('/admin/deleteRegistry', registryInfo, function() {
+
+        dt.row($row).remove().draw()
+
+    })
+})
+
 $(".chosen-select").chosen()
 
 require('./autocomplete')
