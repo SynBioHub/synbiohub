@@ -89,7 +89,7 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		if (submit && !uriPrefix.contains("/public/")) {
-		
+
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
 				for (String registry : webOfRegistries.keySet()) {
@@ -111,7 +111,9 @@ public class PrepareSubmissionJob extends Job
 			
 		} else {
 
+			System.err.println("Changing URI prefix: start");
 			doc = doc.changeURIPrefixVersion(uriPrefix, version);
+			System.err.println("Changing URI prefix: done");
 			doc.setDefaultURIprefix(uriPrefix);
 
 		}
@@ -170,6 +172,7 @@ public class PrepareSubmissionJob extends Job
 
 			}).visitDocument(doc);
 		} else {
+
 			Collection submissionCollection = doc.getCollection(URI.create(rootCollectionIdentity));
 			if (submissionCollection==null) {
 				submissionCollection = doc.createCollection(uriPrefix,newRootCollectionDisplayId,newRootCollectionVersion);
@@ -203,6 +206,7 @@ public class PrepareSubmissionJob extends Job
 		}
 		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
+
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
 				if(topLevel.getIdentity().toString().equals(rootCollectionIdentity)) {
@@ -286,6 +290,7 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		if (rootCollection != null) {
+
 			for(TopLevel topLevel : doc.getTopLevels())
 			{		
 				if(topLevel != rootCollection) {
@@ -313,7 +318,7 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
-		System.err.println("File:"+resultFile.getAbsolutePath());
+		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
