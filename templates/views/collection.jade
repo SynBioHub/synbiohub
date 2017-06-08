@@ -61,7 +61,7 @@ block topLevelButtons
             span Download SBOL File
         br
         br
-    if locals.user && (locals.user.isCurator || locals.user.isAdmin || meta.triplestore != 'public')
+    if locals.user && (locals.user.isCurator || locals.user.isAdmin) && meta.triplestore === 'public'
         a.btn.btn-success(data-toggle="modal", data-target="#iconModal")
             span.fa.fa-file-image-o
             |  Change Collection Icon
