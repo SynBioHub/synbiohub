@@ -23,12 +23,8 @@ block breadcrumbs
             a(href='/search')
                 span.fa.fa-search
                 |  Search
-
-        if prefix
-            li #{prefix} &gt; #{meta.id}
-        else
-            li
-                a(href=meta.url) #{meta.uri} 
+        li
+            a(href=meta.url) #{meta.uri} 
 
 block content
 

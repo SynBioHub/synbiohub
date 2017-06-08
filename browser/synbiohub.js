@@ -406,14 +406,14 @@ function getFields(type) {
             default: '',
             name: 'Default Folder ID'
         },
-        public: {
+        isPublic: {
             type: 'checkbox',
-            default: true,
+            default: false,
             name: 'Public'
         },
         rejectUnauthorized: {
             type: 'checkbox',
-            default: true,
+            default: false,
             name: 'Reject Unauthorized'
         },
         folderPrefix: {
@@ -514,12 +514,16 @@ function populateForm(type, data) {
         }[fieldInfo.type].attr("name", key).addClass("form-control")
 
         if(data[key]) {
-            $input.val(data[key]);
+	    if (fieldInfo.type === "checkbox") {
+		$input.prop("checked", data[key])
+	    } else {
+		$input.val(data[key]);
+	    }
 
             if(key == "id") {
                 $input.attr('readonly', 'readonly')
             }
-        }
+        } 
 
         $group = $("<div />").addClass('form-group').append($label, $input)
 
@@ -557,6 +561,7 @@ $(document).on('click', '#remoteEdit', function () {
             type: "ice",
             url: remote["url"],
             rejectUnauthorized: remote["rejectUnauthorized"],
+            isPublic: remote["public"] || false,
             folderPrefix: remote["folderPrefix"],
             sequenceSuffix: remote["sequenceSuffix"],
             defaultFolderId: remote["defaultFolderId"],
@@ -576,6 +581,7 @@ $(document).on('click', '#remoteEdit', function () {
             type: "benchling",
             url: remote["url"],
             rejectUnauthorized: remote["rejectUnauthorized"],
+            isPublic: remote["public"] || false,
             folderPrefix: remote["folderPrefix"],
             sequenceSuffix: remote["sequenceSuffix"],
             defaultFolderId: remote["defaultFolderId"],
