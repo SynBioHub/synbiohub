@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.sbolstandard.core2.*;
@@ -152,6 +153,9 @@ public class PrepareSubmissionJob extends Job
 				public void visit(Identified identified,TopLevel topLevel) {
 
 					try {
+
+						addTopLevelToNestedAnnotations(topLevel, identified.getAnnotations());
+
 						for(String pubmedID : citationPubmedIDs)
 						{
 							identified.createAnnotation(
@@ -327,5 +331,18 @@ public class PrepareSubmissionJob extends Job
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 
+	}
+	
+	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations) {
+		for (Annotation annotation : annotations) {
+			if (annotation.isNestedAnnotations()) {
+				List<Annotation> nestedAnnotations = annotation.getAnnotations();
+				addTopLevelToNestedAnnotations(topLevel, nestedAnnotations);
+				nestedAnnotations.add(new Annotation(
+				new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
+				topLevel.getIdentity()));
+				annotation.setAnnotations(nestedAnnotations);
+			}
+		}		
 	}
 }
