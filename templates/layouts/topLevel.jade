@@ -12,14 +12,8 @@ block jsState
 
     script.
         function popup() {
-            popupS.alert({
-                content: '<a href=#{share}>#{share}</a>',
-                labelOk: 'Ok',
-                labelCancel: 'No',
-                onSubmit: function() {
-                },
-                onClose: function() {
-                }
+            popupS.modal({
+                content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="#{share}"/></div>',
             });
         }
 
@@ -29,12 +23,8 @@ block breadcrumbs
             a(href='/search')
                 span.fa.fa-search
                 |  Search
-
-        if prefix
-            li #{prefix} &gt; #{meta.id}
-        else
-            li
-                a(href=meta.url) #{meta.uri} 
+        li
+            a(href=meta.url) #{meta.uri} 
 
 block content
 

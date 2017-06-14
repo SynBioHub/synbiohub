@@ -84,15 +84,13 @@ block topLevelPreview
 block topLevelButtons
     a.btn.btn-primary(href=sbolUrl)
         span.fa.fa-download
-        | 
-        span Download SBOL File
+        |  Download SBOL File
     br
     br
     if meta.triplestore === 'public'
         a.btn.btn-primary(href=searchUsesUrl)
             span.fa.fa-search
-            | 
-            span Find Uses
+            |  Find Uses
         br
         br
     if meta.triplestore != 'public'
@@ -110,6 +108,4 @@ block topLevelButtons
     if meta.triplestore != 'public'
         a.btn.btn-success(href=meta.url + '/remove')
             span.fa.fa-remove
-                |  Remove
-        br
-        br
+            |  Remove

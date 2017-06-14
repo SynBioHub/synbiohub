@@ -16,97 +16,88 @@ block content
                 | Copy From Remote
             p
                 | #[span(style='font-weight: bolder;') Bold fields] are required
-        
-        form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
-        
-            if errors.length > 0
-                div.alert.alert-danger
-                    each error in errors
-                        p #{error}
+
+            ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Copy to Existing Collection
+                li(role="presentation")
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Copy to New Collection
+            
+            div.tab-content
+                div.tab-pane.active#existing(role="tabpanel")
+                    form.form(action=submission.actionURI,method='post',enctype='multipart/form-data')
+                        if errors.length > 0
+                            each error in errors
+                                div.alert.alert-danger
+                                    p #{error}
+                                br
+                        
                         br
-        
-            div.clearfix
+                        input(type="hidden", name="copyType", value="existing")
+                        div.row
+                            div.col-sm-12
+                                div.form-group
+                                    label(for="collections") Destination Collection
+                                    select.form-control(name='collections' id='collections')
+                                        option(value="") Choose a collection...
+                                        for collection in collections
+                                            option(value=collection.uri) #{collection.name}
+                        div.row
+                            div.col-sm-12
+                                div.checkbox(style="margin-left:20px")
+                                    label 
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Copy
 
-            div.form-group-100.required(style='text-align: left;')
-                div.row
-                    div.col-sm-6
-                        label Add to an Existing Collection
-                    div.col-sm-6
-                        label Overwrite Existing Objects
-                br
-                div.row
-                    div.col-sm-6
-                        input(type="radio", name="overwrite_merge", value="2", checked=true)
-                    div.col-sm-6
-                        input(type="checkbox", name="overwrite_objects", value=false, checked=false)
 
-            div.clearfix
+                div.tab-pane#new(role="tabpanel")
+                    form.form(action=submission.actionURI,method='post',enctype='multipart/form-data')
+                        if errors.length > 0
+                            each error in errors
+                                div.alert.alert-danger
+                                    p #{error}
+                                br
+                        br
+                        input(type="hidden", name="copyType", value="new")
+                        div.row
+                            div.col-md-6
+                                div.form-group
+                                    label(for="id") Collection ID
+                                    input.form-control(type='text', id="id", name='id',placeholder='Collection ID',value=submission.id)
+                            div.col-md-6
+                                div.form-group
+                                    label(for='version') Version
+                                    input.form-control(type='text', id='version', name='version',placeholder='Version',value=submission.version)
+                        div.row
+                            div.col-md-12
+                                div.form-group
+                                    label(for="name") Name
+                                    input.form-control(name='name',id="name",placeholder='Name',value=submission.name)
 
-            div.form-group-200.required
-                label Collections
-                br
-                select(name='collections' style="width:650px;" id='collections' data-placeholder='Select Some Collections').chosen-select
-                    for collection in collections
-                        option(value=collection.uri) #{collection.name}
+                        div.row
+                            div.col-md-12
+                                div.form-group
+                                    label(for="description") Description
+                                    textarea.form-control(name='description', id="description"
+                                            placeholder='The more you say, the easier it will be to find your design...')
+                                            | #{submission.description}
+                        div.row
+                            div.col-md-12
+                                div.form-group
+                                    label(for="citations") Citations
+                                    input.form-control(name='citations', id="citations"
+                                                       placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                                                       value=submission.citations)
 
-            div.clearfix
-
-            br
-            br
-
-            div.form-group-100.required(style='text-align: left;')
-                div.row
-                    div.col-sm-6
-                        label Create a New Collection
-                    div.col-sm-6
-                        label Overwrite If Collection Exists
-                br
-                div.row
-                    div.col-sm-6
-                        input(type="radio", name="overwrite_merge", value="0")
-                    div.col-sm-6
-                        input(type="checkbox", name="overwrite_collection", value=false, checked=false)
-
-            div.clearfix
-
-            div.form-group-50.required
-                label Id
-                br
-                input(type='text', name='id',placeholder='Submission Id',value=submission.id)
-
-            div.form-group-50.required
-                label Version
-                br
-                input(type='text', name='version',placeholder='Version',value=submission.version)
-
-            div.form-group-100.required
-                label Name
-                br
-                input(name='name',placeholder='Name',value=submission.name)
-
-            div.form-group-100.required
-                label Description
-                br
-                textarea(name='description'
-                    placeholder='The more you say, the easier it will be to find your design...')
-                        | #{submission.description}
-
-            div.clearfix
-
-            div.form-group-100
-                label Citations
-                br
-                input(name='citations'
-                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
-                        value=submission.citations)
-
-            div.clearfix
-
-            br
-            br
-
-            button(type='submit').btn.btn-primary.btn-lg
-                | Copy
-
-                
-
+                        div.row
+                            div.col-md-12
+                                div.checkbox(style="margin-left:20px")
+                                    label 
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Copy

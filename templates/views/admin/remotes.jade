@@ -1,17 +1,73 @@
 
 extends ../../layouts/admin.jade
 
+block jsState
+    script remotes = 
+        != JSON.stringify(remotes)
+
+block modal
+    div.modal.fade#remoteModal(tabindex="-1", role="dialog")
+        div.modal-dialog(role="document")
+            div.modal-content
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="close")
+                        span(aria-hidden="true") &times;
+                    h4.modal-title Remote Information
+                div.modal-body
+                    form.form#remoteForm(method="POST", action="/admin/saveRemote")
+                div.modal-footer
+                    button.btn.btn-danger(data-dismiss="modal") Close
+                    button.btn.btn-primary(type="submit", form="remoteForm") Submit
+
 block adminContent
     if remotes.length === 0
-        div No remotes configured.
+        div No remotes configured
     else
         for remote in remotes
-            div
-                p ID: #{remote.id}
-                p Type: #{remote.type}
-                p URL: #{remote.url}
-                p Root Collection: #{remote.rootCollectionUri}
-                p Snapshots: #{remote.snapshots}
-                form(method='post',action=remote.rootCollectionUrl + '/createSnapshot')
-                    button.btn(type='submit') Create Snapshot
-
+            div.col-md-3
+                table.table.table-striped
+                    tr
+                        td
+                            b ID:
+                        td
+                            p#remote-id #{remote.id}
+                    tr
+                        td
+                            b Type: 
+                        td
+                            p #{remote.type}
+                    tr
+                        td
+                            b URL:
+                        td
+                            p #{remote.url}
+                    tr
+                        td.text-center(colspan=2)
+                            form(method="POST", action='deleteRemote', id=remote.id + '-form')
+                                input(type="hidden", value=remote.id, name="id")
+                            div.btn-group.btn-group-sm
+                                button.btn.btn-danger(type="submit", form=remote.id + "-form")
+                                    span.fa.fa-trash
+                                    |  Remove
+                                a.btn.btn-info#remoteEdit(data-toggle="modal", data-target="#remoteModal") 
+                                    span.fa.fa-pencil
+                                    |  Edit
+                                a.btn.btn-primary(href=remote.rootCollectionUrl + '/copyFromRemote/')
+                                    span.fa.fa-cloud-download
+                                    |  Snapshot
+            div.col-md-1
+        div.col-md-3
+            table.table.table-striped
+                tr
+                    td
+                        b Type: 
+                    td
+                        select.form-control#remoteTypeSelect
+                            option(value="") -----
+                            for remoteType in remoteTypes
+                                option(value=remoteType) #{remoteType}
+                tr
+                    td(colspan=2)
+                        a.btn-block.btn.btn-success#addRemote(data-toggle="modal", data-target="#remoteModal", disabled="true") 
+                            span.fa.fa-plus
+                            |  Add Remote

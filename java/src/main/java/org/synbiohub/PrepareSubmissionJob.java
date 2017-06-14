@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.sbolstandard.core2.*;
@@ -89,15 +90,11 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		if (submit && !uriPrefix.contains("/public/")) {
-		
+
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
 				for (String registry : webOfRegistries.keySet()) {
-					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
-						System.err.println("Found and removed:"+topLevel.getIdentity());
-						doc.removeTopLevel(topLevel);
-						break;
-					} else if (topLevel.getIdentity().toString().startsWith("https://"+registry)) {
+					if (topLevel.getIdentity().toString().startsWith(registry)) {
 						System.err.println("Found and removed:"+topLevel.getIdentity());
 						doc.removeTopLevel(topLevel);
 						break;
@@ -115,7 +112,13 @@ public class PrepareSubmissionJob extends Job
 			
 		} else {
 
-			doc = doc.changeURIPrefixVersion(uriPrefix, version);
+			System.err.println("Changing URI prefix: start");
+			if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
+				doc = doc.changeURIPrefixVersion(uriPrefix, null);
+			} else {
+				doc = doc.changeURIPrefixVersion(uriPrefix, version);
+			}
+			System.err.println("Changing URI prefix: done");
 			doc.setDefaultURIprefix(uriPrefix);
 
 		}
@@ -150,6 +153,9 @@ public class PrepareSubmissionJob extends Job
 				public void visit(Identified identified,TopLevel topLevel) {
 
 					try {
+
+						addTopLevelToNestedAnnotations(topLevel, identified.getAnnotations());
+
 						for(String pubmedID : citationPubmedIDs)
 						{
 							identified.createAnnotation(
@@ -174,6 +180,7 @@ public class PrepareSubmissionJob extends Job
 
 			}).visitDocument(doc);
 		} else {
+
 			Collection submissionCollection = doc.getCollection(URI.create(rootCollectionIdentity));
 			if (submissionCollection==null) {
 				submissionCollection = doc.createCollection(uriPrefix,newRootCollectionDisplayId,newRootCollectionVersion);
@@ -207,6 +214,7 @@ public class PrepareSubmissionJob extends Job
 		}
 		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
+
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
 				if(topLevel.getIdentity().toString().equals(rootCollectionIdentity)) {
@@ -218,11 +226,11 @@ public class PrepareSubmissionJob extends Job
 					continue;
 				}
 				for (String registry : webOfRegistries.keySet()) {
-					SynBioHubFrontend sbh = new SynBioHubFrontend("http://"+webOfRegistries.get(registry),
-							"http://"+registry);
-					if (topLevel.getIdentity().toString().startsWith("http://"+registry)) {
+					SynBioHubFrontend sbh = new SynBioHubFrontend(webOfRegistries.get(registry),
+							registry);
+					if (topLevel.getIdentity().toString().startsWith(registry)) {
 						String topLevelUri = topLevel.getIdentity().toString();
-						if (topLevelUri.startsWith("http://"+registry+"/user/")) {
+						if (topLevelUri.startsWith(registry+"/user/")) {
 							topLevelUri = topLevel.getIdentity().toString() + '/' + 
 									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
 									"/share";
@@ -290,6 +298,7 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		if (rootCollection != null) {
+
 			for(TopLevel topLevel : doc.getTopLevels())
 			{		
 				if(topLevel != rootCollection) {
@@ -317,10 +326,23 @@ public class PrepareSubmissionJob extends Job
 		}
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
-		System.err.println("File:"+resultFile.getAbsolutePath());
+		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 
+	}
+	
+	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations) {
+		for (Annotation annotation : annotations) {
+			if (annotation.isNestedAnnotations()) {
+				List<Annotation> nestedAnnotations = annotation.getAnnotations();
+				addTopLevelToNestedAnnotations(topLevel, nestedAnnotations);
+				nestedAnnotations.add(new Annotation(
+				new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
+				topLevel.getIdentity()));
+				annotation.setAnnotations(nestedAnnotations);
+			}
+		}		
 	}
 }

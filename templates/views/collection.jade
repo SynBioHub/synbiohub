@@ -6,6 +6,33 @@ include ../mixins/mutable-fields.jade
 include ../mixins/attachments.jade
 include ../mixins/citations.jade
 
+block modal
+    div.modal.fade#iconModal(tabindex="-1", role="dialog")
+        div.modal-dialog(role="document")
+            div.modal-content
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="close")
+                        span(aria-hidden="true") &times;
+                    h4.modal-title Change Collection Icon
+                div.modal-body
+                    div.row
+                        div.col-sm-6
+                            if (collectionIcon)
+                                h5 Current Icon
+                                img(src=collectionIcon, style="width: 100%")
+                            else
+                                h5 No Icon Set!
+                        div.col-sm-6
+                            h5 Upload New Icon
+                            form#iconForm.form(method="POST", enctype="multipart/form-data", action=url + '/icon')
+                                input(type="hidden", value=meta.url, name="collectionUrl")
+                                input(type="hidden", value=meta.uri, name="collectionUri")
+                                input.form-control(type="file", name="collectionIcon")
+
+                div.modal-footer
+                    button.btn.btn-danger(data-dismiss="modal") Close
+                    button.btn.btn-primary(type="submit", form="iconForm") Save changes
+
 block topLevelBelowPropertyTable
     h3 Members
     table.table.table-striped.entry-detail-table.sbh-collection-members-datatable
@@ -34,6 +61,12 @@ block topLevelButtons
             span Download SBOL File
         br
         br
+    if locals.user && (locals.user.isCurator || locals.user.isAdmin) && meta.triplestore === 'public'
+        a.btn.btn-success(data-toggle="modal", data-target="#iconModal")
+            span.fa.fa-file-image-o
+            |  Change Collection Icon
+        br
+        br
     if meta.triplestore != 'public'
         a.btn.btn-success(onclick="popup()")
             span.fa.fa-share
@@ -43,14 +76,10 @@ block topLevelButtons
     if meta.triplestore != 'public' && locals.user && locals.user.isCurator
         a.btn.btn-success(href=makePublic)
             span.fa.fa-unlock
-                |  Make Public
+            |  Make Public
         br
         br
     if meta.remote
         a.btn.btn-success(href=copyFromRemote)
             span.fa.fa-share-alt
             |  Copy to SynBioHub
-
-            
-
-
