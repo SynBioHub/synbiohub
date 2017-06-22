@@ -277,21 +277,21 @@ public class PrepareSubmissionJob extends Job
 			Annotation desc = topLevel.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableDescription", "sbh"));
 			if (desc != null && desc.isStringValue()) {
 				String descStr = desc.getStringValue();
-				descStr = descStr.replaceAll("img src=\\\"/user/[^/]*/", "img src=\"/public/");
+				descStr = descStr.replaceAll("img src=\\\"/user/[^/]*/[^/]*/", "img src=\"/public/"+newRootCollectionDisplayId.replace("_collection", "")+"/");
 				topLevel.removeAnnotation(desc);
 				topLevel.createAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableDescription", "sbh"), descStr);
 			}
 			Annotation notes = topLevel.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableNotes", "sbh"));
 			if (notes != null && notes.isStringValue()) {
 				String notesStr = notes.getStringValue();
-				notesStr = notesStr.replaceAll("img src=\\\"/user/[^/]*/", "img src=\"/public/");
+				notesStr = notesStr.replaceAll("img src=\\\"/user/[^/]*/[^/]*/", "img src=\"/public/"+newRootCollectionDisplayId.replace("_collection", "")+"/");
 				topLevel.removeAnnotation(notes);
 				topLevel.createAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableNotes", "sbh"), notesStr);
 			}
 			Annotation source = topLevel.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableProvenance", "sbh"));
 			if (source != null && source.isStringValue()) {
 				String sourceStr = source.getStringValue();
-				sourceStr = sourceStr.replaceAll("img src=\\\"/user/[^/]*/", "img src=\"/public/");
+				sourceStr = sourceStr.replaceAll("img src=\\\"/user/[^/]*/[^/]*/", "img src=\"/public/"+newRootCollectionDisplayId.replace("_collection", "")+"/");
 				topLevel.removeAnnotation(source);
 				topLevel.createAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableProvenance", "sbh"), sourceStr);
 			}
