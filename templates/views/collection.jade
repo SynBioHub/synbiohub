@@ -46,7 +46,14 @@ block topLevelBelowPropertyTable
                 if (member.id)
                     tr
                         td
-                            a(href=member.typeUrl,title=member.typeUrl) #{member.type}
+                            if member.type === 'Collection'
+                                Collection
+                            else if member.type === 'ComponentDefinition'
+                                Part
+                            else if member.type === 'ModuleDefinition'
+                                Device
+                            else
+                                a(href=member.typeUrl,title=member.typeUrl) #{member.type}
                         td
                             a(href=member.url) #{member.id}
                         td
