@@ -7,5 +7,6 @@ WHERE {
 OPTIONAL { ?uri sbol2:displayId ?displayId . }
 OPTIONAL { ?uri dcterms:title ?name . }
 OPTIONAL { ?uri dcterms:description ?description . }
+FILTER NOT EXISTS { <$collection> sbol2:member ?otherMember . ?otherMember ?ref ?uri . FILTER(?otherMember != ?uri)}
 $search
 }
