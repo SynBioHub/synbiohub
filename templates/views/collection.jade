@@ -46,20 +46,7 @@ block topLevelBelowPropertyTable
                 if (member.id)
                     tr
                         td
-                            if member.type === 'Collection'
-                                Collection
-                            else if member.type === 'ComponentDefinition'
-                                Part
-                            else if member.type === 'ModuleDefinition'
-                                Device
-                            else if member.type === 'Sequence'
-                                Sequence
-                            else if member.type === 'Model'
-                                Model
-                            else if member.type === 'Attachment'
-                                Attachment
-                            else
-                                a(href=member.typeUrl,title=member.typeUrl) #{member.type}
+                            a(href=member.typeUrl,title=member.typeUrl) #{member.type}
                         td
                             a(href=member.url) #{member.id}
                         td
