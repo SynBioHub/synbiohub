@@ -108,13 +108,13 @@ block content
                                     if type.description 
                                        != type.description.name
                                        a(href=type.term,title='definition') 
-                                           span.fa.fa-info
+                                           span.fa.fa-info-circle
                                        a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) 
                                            span.fa.fa-search
                                     else 
                                        != type.uri 
                                        a(href=type.uri,title='definition') 
-                                           span.fa.fa-info
+                                           span.fa.fa-info-circle
                                        a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.uri) 
                                            span.fa.fa-search
                                     br
@@ -127,13 +127,13 @@ block content
                                     if role.description
                                         != role.description.name
                                         a(href=role.term,title='definition') 
-                                            span.fa.fa-info
+                                            span.fa.fa-info-circle
                                         a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') 
                                             span.fa.fa-search
                                     else 
                                         != role.term 
                                         a(href=role.uri,title=role.uri) 
-                                            span.fa.fa-info
+                                            span.fa.fa-info-circle
                                         a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') 
                                             span.fa.fa-search
                                     br
@@ -165,7 +165,7 @@ block content
                                 for collection in collections
                                     a(href=collection.url,title=collection.name) #{collection.name} &nbsp;
                                         a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&')
-                                            span.fa.fa-info
+                                            span.fa.fa-info-circle
                                     br
 
         if annotations && annotations.length > 0
@@ -180,11 +180,11 @@ block content
                             tr
                                 td #{annotation.name}
                                     a(href=annotation.nameDef,title=annotation.nameDef) 
-                                       span.fa.fa-info
+                                       span.fa.fa-info-circle
                                 if (annotation.type === 'uri')
                                     td #{annotation.value}
                                         a(href=annotation.url,title=annotation.uri) 
-                                            span.fa.fa-info &nbsp;
+                                            span.fa.fa-info-circle &nbsp;
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&')
                                             span.fa.fa-search
                                 else 
