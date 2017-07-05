@@ -70,25 +70,25 @@ block content
                 if meta.creator.description && meta.creator.description != ''
                     h5 Created by: 
                         != meta.creator.description
-                        a(href='/search/dc:creator=\''+meta.creator.description+'\'&') 
+                        a(href='/search/dc:creator=\''+meta.creator.description+'\'&',title='Find all records created by this person') 
                             span.fa.fa-search
        
                 if meta.created.description && meta.created.description != ''
                     h5 Date created: 
                         != meta.created.description
-                        a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&') 
+                        a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&',title='Find all records created on this date') 
                             span.fa.fa-search
 
                 if meta.modified.description && meta.modified.description != ''
                     h5 Date modified: 
                         != meta.modified.description
-                        a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&') 
+                        a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date') 
                             span.fa.fa-search
 
                 if meta.description && meta.description != ''
                     h4
                         != meta.description 
-                        a(href='/search/?q='+meta.description)
+                        a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
                            span.fa.fa-search
 
                 block topLevelBelowTitle
@@ -107,15 +107,15 @@ block content
                                 for type in meta.types
                                     if type.description 
                                        != type.description.name
-                                       a(href=type.term,title='definition') 
+                                       a(href=type.term,title='Learn more about this type') 
                                            span.fa.fa-info-circle
-                                       a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.description) 
+                                       a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
                                            span.fa.fa-search
                                     else 
                                        != type.uri 
-                                       a(href=type.uri,title='definition') 
+                                       a(href=type.uri,title='Learn more about this type') 
                                            span.fa.fa-info-circle
-                                       a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title=type.uri) 
+                                       a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
                                            span.fa.fa-search
                                     br
 
@@ -126,15 +126,15 @@ block content
                                 for role in meta.roles
                                     if role.description
                                         != role.description.name
-                                        a(href=role.term,title='definition') 
+                                        a(href=role.term,title='Learn more about this role') 
                                             span.fa.fa-info-circle
-                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') 
+                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                             span.fa.fa-search
                                     else 
                                         != role.term 
-                                        a(href=role.uri,title=role.uri) 
+                                        a(href=role.uri,title='Learn more about this role') 
                                             span.fa.fa-info-circle
-                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&') 
+                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                             span.fa.fa-search
                                     br
 
@@ -164,8 +164,8 @@ block content
                             td
                                 for collection in collections
                                     a(href=collection.url,title=collection.name) #{collection.name} &nbsp;
-                                        a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&')
-                                            span.fa.fa-info-circle
+                                        a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&',title='Find all records in this collection')
+                                            span.fa.fa-search
                                     br
 
         if annotations && annotations.length > 0
@@ -179,17 +179,17 @@ block content
                         for annotation in annotations
                             tr
                                 td #{annotation.name}
-                                    a(href=annotation.nameDef,title=annotation.nameDef) 
+                                    a(href=annotation.nameDef,title='Learn more about this annotation type') 
                                        span.fa.fa-info-circle
                                 if (annotation.type === 'uri')
                                     td #{annotation.value}
-                                        a(href=annotation.url,title=annotation.uri) 
+                                        a(href=annotation.url,title='Learn more about this annotation value') 
                                             span.fa.fa-info-circle &nbsp;
-                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri)+ '>&')
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
                                             span.fa.fa-search
                                 else 
                                     td #{annotation.value.toString()} &nbsp;
-                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&')
+                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
                                             span.fa.fa-search
  
         div.row
