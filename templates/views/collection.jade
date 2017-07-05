@@ -45,9 +45,9 @@ block topLevelBelowPropertyTable
             for member in meta.members
                 if (member.id)
                     tr
-                        td #{member.type}
-                            a(href=member.typeUrl,title=member.typeUrl) 
-                                span.fa.fa-question-circle-o
+                        td #{member.type}&nbsp
+                            a(href=member.typeUrl,title=member.typeUrl)
+                                span.fa.fa-info
                         td
                             a(href=member.url) #{member.id}
                         td

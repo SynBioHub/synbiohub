@@ -13,13 +13,12 @@ block topLevelPropertyTable
             td Sequences
             td
                 for sequence in meta.sequences
-                    a(href=sequence.url) #{sequence.id}
+                    a(href=sequence.url) 
+                        != sequence.id   
+                        if (sequence.version)
+                            != ' (Version '+sequence.version+')'
                     br
-            td(nowrap="nowrap") 
-                for sequence in meta.sequences
-                    if (sequence.version)
-                        != 'Version '+sequence.version
-                        br
+
     if meta.protein !== undefined
         if meta.protein.pI !== undefined
             tr
