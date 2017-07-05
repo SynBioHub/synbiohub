@@ -86,7 +86,8 @@ block content
                             span.fa.fa-search
 
                 if meta.description && meta.description != ''
-                    h4 #{meta.description} 
+                    h4
+                        != meta.description 
                         a(href='/search/?q='+meta.description)
                            span.fa.fa-search
 
