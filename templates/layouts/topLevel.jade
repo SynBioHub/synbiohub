@@ -41,13 +41,15 @@ block content
                     if meta.sbhStar && meta.sbhStar.description == 'true'
                         a(href='http://wiki.synbiohub.org/Terms/synbiohub#star',title='Starred Parts')
                             span.fa.fa-star
-
-                h4 #{meta.id}
-                    a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') 
-                        span.fa.fa-search 
-                    != 'Version '+meta.version
-                    a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') 
-                        span.fa.fa-search
+                
+                if meta.id && meta.id != ''
+                    h4 #{meta.id}
+                        a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') 
+                            span.fa.fa-search 
+                        if meta.version && meta.version != ''
+                            != 'Version '+meta.version
+                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') 
+                                span.fa.fa-search
 
                 if meta.igemDiscontinued && meta.igemDiscontinued.description == 'true'
                     h4(style=" color: #FF0000") This part has been discontinued.
