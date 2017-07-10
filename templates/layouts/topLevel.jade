@@ -49,7 +49,16 @@ block content
                         if meta.version && meta.version != ''
                             != 'Version '+meta.version
                             a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') 
-                                span.fa.fa-search
+                                span.fa.fa-search 
+                        if rdfType
+                            != ' (' + rdfType.name + ') '
+                            a(href=rdfType.url,title='Learn more about this RDF type')
+                                span.fa.fa-info-circle
+                else 
+                        if rdfType
+                            h4 #{rdfType.name} 
+                                a(href=rdfType.url,title='Learn more about this RDF type')
+                                    span.fa.fa-info-circle
 
                 if meta.igemDiscontinued && meta.igemDiscontinued.description == 'true'
                     h4(style=" color: #FF0000") This part has been discontinued.
