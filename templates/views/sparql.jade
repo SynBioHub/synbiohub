@@ -9,25 +9,35 @@ block content
     div.container
         br
         form(action='/sparql',method='post')
-                div.form-group.row
-                    label.col-sm-2.col-form-label Graph
-                    div.col-sm-10
-                        select.form-control(name='graph')
-                            option(value='public',selected=(graph==='public')) Public
-                            option(value='user',selected=(graph==='user')) My Submissions
+            div.form-group.row
+                label.col-sm-2.col-form-label Graph
+                div.col-sm-10
+                    select.form-control(name='graph')
+                        option(value='public',selected=(graph==='public')) Public
+                        option(value='user',selected=(graph==='user')) My Submissions
 
-                div.form-group.row
-                    label.col-sm-2.col-form-label Query
-                    div.col-sm-10
-                        textarea(name='query').sbh-sparql-editor.form-control #{query}
+            div.form-group.row
+                label.col-sm-2.col-form-label Query
+                div.col-sm-10
+                    textarea(name='query').sbh-sparql-editor.form-control #{query}
 
-                div.form-group.row
-                    button.pull-right.btn.btn-primary(type='submit') Submit Query
+            div.form-group.row
+                button.pull-right.btn.btn-primary(type='submit') Submit Query
 
-                if errors.length > 0
-                    for error in errors
-                        div.alert.alert-danger #{error}
+            if errors.length > 0
+                for error in errors
+                    div.alert.alert-danger #{error}
 
-                if results.length > 0
-                    pre #{results}
-
+            if results.length > 0
+                table.table
+                    thead
+                        for header in headers
+                            th #{header}
+                    for result in results
+                        tr
+                            for header in headers
+                                td 
+                                    if result[header] !== null && result[header].startsWith('http')
+                                        a(href=result[header]) #{result[header]}
+                                    else
+                                        p #{result[header]}
