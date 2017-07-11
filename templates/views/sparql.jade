@@ -36,4 +36,8 @@ block content
                     for result in results
                         tr
                             for header in headers
-                                td #{result[header]}
+                                td 
+                                    if result[header].startsWith('http')
+                                        a(href=result[header]) #{result[header]}
+                                    else
+                                        p result[header]
