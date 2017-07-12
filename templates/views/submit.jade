@@ -25,7 +25,7 @@ block content
 
             div.tab-content
                 div.tab-pane.active#existing(role="tabpanel")
-                    form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
+                    form(action=submission.actionURI,method='post',enctype='multipart/form-data')
                         if errors.length > 0
                             each error in errors
                                 div.alert.alert-danger
@@ -35,17 +35,16 @@ block content
                         input(type="hidden", name="submitType", value="existing")
                         div.row
                             div.col-sm-12
-                                div.form-group
-                                    label(for="collections") Destination Collection
-                                    select(name='collections' style="width:700px;" id='collections' multiple data-placeholder='Choose a collection...').chosen-select
-                                        for collection in collections
+                                div.form-group.required
+                                    label(for="rootCollections") Destination Collection
+                                    select(name='rootCollections' style="width:700px;" id='rootCollections' multiple data-placeholder='Choose a collection...').chosen-select
+                                        for collection in rootCollections
                                             option(value=collection.uri) #{collection.name}
 
                         div.row
                             div.col-md-12
-                                div.form-group
+                                div.form-group.required
                                    label SBOL/GenBank/FASTA File
-                                   br
                                    input(type='file',name='file',value=submission.file)
             
                         div.row
@@ -54,6 +53,7 @@ block content
                                     label 
                                         input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
                                         |    Overwrite Existing Objects
+
                         div.row
                             div.col-md-12
                                 button(type='submit').btn.btn-primary.btn-lg Submit
@@ -66,25 +66,25 @@ block content
                                     p #{error}
                                 br
                         br
-                        input(type="hidden", name="copyType", value="new")
+                        input(type="hidden", name="submitType", value="new")
                         div.row
                             div.col-md-6
-                                div.form-group
+                                div.form-group.required
                                     label(for="id") Collection ID
                                     input.form-control(type='text', id="id", name='id',placeholder='Collection ID',value=submission.id)
                             div.col-md-6
-                                div.form-group
+                                div.form-group.required
                                     label(for='version') Version
                                     input.form-control(type='text', id='version', name='version',placeholder='Version',value=submission.version)
                         div.row
                             div.col-md-12
-                                div.form-group
+                                div.form-group.required
                                     label(for="name") Name
                                     input.form-control(name='name',id="name",placeholder='Name',value=submission.name)
 
                         div.row
                             div.col-md-12
-                                div.form-group
+                                div.form-group.required
                                     label(for="description") Description
                                     textarea.form-control(name='description', id="description"
                                             placeholder='The more you say, the easier it will be to find your design...')
@@ -114,20 +114,10 @@ block content
 
                         div.row
                             div.col-sm-12
-                                input(type="radio", name="overwrite_merge", value="0", checked=true)
-                                |    Prevent submission, if collection exists
-                        div.row
-                            div.col-sm-12
-                                input(id="om", type="radio", name="overwrite_merge", value="1", checked=overwrite=="Overwrite")
-                                |    Overwrite submission, if collection exists
-                        div.row
-                            div.col-sm-12
-                                input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
-                                |    Merge and prevent, if member of collection exists
-                        div.row
-                            div.col-sm-12
-                                input(type="radio", name="overwrite_merge", value="3", checked=overwrite=="Merge")
-                                |    Merge and replace, if member of collection exists.
+                                div.checkbox(style="margin-left:20px")
+                                    label 
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
                         br
 
                         div.row
