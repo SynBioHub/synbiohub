@@ -37,7 +37,7 @@ block content
                             div.col-sm-12
                                 div.form-group.required
                                     label(for="rootCollections") Destination Collection
-                                    select(name='rootCollections' style="width:700px;" id='rootCollections' multiple data-placeholder='Choose a collection...').chosen-select
+                                    select(name='rootCollections' style="width:700px;" id='rootCollections' data-placeholder='Choose a collection...').chosen-select
                                         for collection in rootCollections
                                             option(value=collection.uri) #{collection.name}
 
@@ -96,14 +96,6 @@ block content
                                     input.form-control(name='citations', id="citations"
                                                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
                                                        value=submission.citations)
-
-                        div.row
-                            div.col-md-12
-                                div.form-group
-                                    label(for="collections") Collection
-                                    select(name='collections' style="width:700px;" id='collections' multiple data-placeholder='Select Some Public Collections').chosen-select
-                                        for collection in collections
-                                            option(value=collection.uri) #{collection.name}
 
                         div.row
                             div.col-md-12
