@@ -36,11 +36,15 @@ block content
                         div.row
                             div.col-md-6
                                 div.form-group-100.required
-                                    label(for="id") Collection ID
+                                    label(for="id") Collection Id  
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id",title='An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.')
+                                            span.fa.fa-info-circle
                                     input.form-control(type='text', id="id", name='id',placeholder='Collection ID',value=submission.id)
                             div.col-md-6
                                 div.form-group-100.required
-                                    label(for='version') Version
+                                    label(for='version') Version 
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version",title='A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.')
+                                            span.fa.fa-info-circle
                                     input.form-control(type='text', id='version', name='version',placeholder='Version',value=submission.version)
                         div.row
                             div.col-md-12
