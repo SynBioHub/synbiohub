@@ -62,7 +62,7 @@ public class PrepareSubmissionJob extends Job
 				requireCompliant, 
 				enforceBestPractices,
 				typesInURI,
-				null,
+				"1",
 				keepGoing,
 				"",
 				"",

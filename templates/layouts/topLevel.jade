@@ -92,7 +92,7 @@ block content
 
                 if meta.modified.description && meta.modified.description != ''
                     h5 Date modified: 
-                        != meta.modified.description
+                        != meta.modified.description 
                         a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date') 
                             span.fa.fa-search
 
@@ -100,7 +100,7 @@ block content
                     h4
                         != meta.description 
                         a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
-                           span.fa.fa-search
+                            span.fa.fa-search
 
                 block topLevelBelowTitle
 

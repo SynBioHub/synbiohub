@@ -16,87 +16,119 @@ block content
                 | Tell us about your submission
             p
                 | #[span(style='font-weight: bolder;') Bold fields] are required
-        
-        form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
-        
-            if errors.length > 0
-                div.alert.alert-danger
-                    each error in errors
-                        p #{error}
+
+            ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Collection
+                li(role="presentation")
+                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Collection
+
+            div.tab-content
+                div.tab-pane.active#new(role="tabpanel")
+                    form.form(action=submission.actionURI,method='post',enctype='multipart/form-data').submission-form
+                        if errors.length > 0
+                            each error in errors
+                                div.alert.alert-danger
+                                    p #{error}
+                                br
                         br
-        
-            div.clearfix
+                        input(type="hidden", name="submitType", value="new")
+                        div.row
+                            div.col-md-6
+                                div.form-group-100.required
+                                    label(for="id") Collection Id  
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id",title='An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.')
+                                            span.fa.fa-info-circle
+                                    input.form-control(type='text', id="id", name='id',placeholder='Collection ID',value=submission.id)
+                            div.col-md-6
+                                div.form-group-100.required
+                                    label(for='version') Version 
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version",title='A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.')
+                                            span.fa.fa-info-circle
+                                    input.form-control(type='text', id='version', name='version',placeholder='Version',value=submission.version)
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="name") Name
+                                    input.form-control(name='name',id="name",placeholder='Name',value=submission.name)
 
-            div.form-group-50.required
-                label Id
-                br
-                input(name='id',placeholder='Submission Id',value=submission.id)
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="description") Description
+                                    textarea.form-control(name='description', id="description"
+                                            placeholder='The more you say, the easier it will be to find your design...')
+                                            | #{submission.description}
+                        div.row
+                            div.col-md-12
+                                div.form-group-100
+                                    label(for="citations") Citations
+                                    input.form-control(name='citations', id="citations"
+                                                       placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                                                       value=submission.citations)
 
-            div.form-group-50.required
-                label Version
-                br
-                input(name='version',placeholder='Version',value=submission.version)
+                        div.row
+                            div.col-md-12
+                                div.form-group-100
+                                    label(for="collections") Collection
+                                    select(name='collections' style="width:675px;" id='collections' multiple data-placeholder='Select Some Public Collections').chosen-select
+                                        for collection in collections
+                                            option(value=collection.uri) #{collection.name}
 
-            div.form-group-100.required
-                label Name
-                br
-                input(name='name',placeholder='Submission Name',value=submission.name)
+                        div.row
+                            div.col-md-12
+                                div.form-group-100
+                                   label SBOL/GenBank/FASTA File
+                                   br
+                                   input(type='file',name='file',value=submission.file)
 
-            div.form-group-100.required
-                label Description
-                br
-                textarea(name='description'
-                    placeholder='The more you say, the easier it will be to find your design...')
-                        | #{submission.description}
+                        div.row
+                            div.col-sm-12
+                                div.checkbox(style="margin-left:20px")
+                                    label 
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
+                        br
 
-            div.clearfix
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Submit
 
-            div.form-group-100
-                label Citations
-                br
-                input(name='citations'
-                        placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
-                        value=submission.citations)
+                div.tab-pane#existing(role="tabpanel")
+                    form(action=submission.actionURI,method='post',enctype='multipart/form-data')
+                        if errors.length > 0
+                            each error in errors
+                                div.alert.alert-danger
+                                    p #{error}
+                                br
+                        br
+                        input(type="hidden", name="submitType", value="existing")
+                        div.row
+                            div.col-sm-12
+                                div.form-group.required
+                                    label(for="rootCollections") Destination Collection
+                                    select.form-control(name='rootCollections' id='rootCollections')
+                                        option(value="") Choose a collection...
+                                        for collection in rootCollections
+                                            option(value=collection.uri) #{collection.name}
 
-            div.form-group-100
-                label Collections
-                br
-                select(name='collectionChoices' style="width:675px;" id='collectionChoices' multiple data-placeholder='Select Some Collections').chosen-select
-                    for collection in collections
-                        option(value=collection.uri) #{collection.name}
+                        div.row
+                            div.col-md-12
+                                div.form-group.required
+                                   label SBOL/GenBank/FASTA File
+                                   input(type='file',name='file',value=submission.file)
+            
+                        div.row
+                            div.col-sm-12
+                                div.checkbox(style="margin-left:20px")
+                                    label 
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
 
-            div.form-group-100.required
-                label SBOL/GenBank/FASTA File
-                br
-                input(type='file',name='file',value=submission.file)
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Submit
 
-            div.form-group-100.required(style='text-align: left;')
-                label If Existing:
-                br
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="0", checked=true)
-                    div.col-sm-10 Prevent submission
-                div.row
-                    div.col-sm-2
-                        input(id="om", type="radio", name="overwrite_merge", value="1", checked=overwrite=="Overwrite")
-                    div.col-sm-10 Overwrite submission
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
-                    div.col-sm-10 Merge and prevent, if member of collection exists
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="3", checked=overwrite=="Merge")
-                    div.col-sm-10 Merge and replace, if member of collection exists.
-
-            div.clearfix
-
-            br
-            br
-
-            button(type='submit').btn.btn-primary.btn-lg
-                | Submit
 
 
 
