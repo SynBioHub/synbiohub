@@ -21,6 +21,21 @@ block modal
 
 
 block adminContent
+    div.row
+        if(registered)
+            h4 Your SynBioHub instance has already been registered
+        else
+            form(method="POST", action="federate")
+                div.col-sm-6
+                    input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL")
+                div.col-sm-6
+                    input.form-control(type="text", name="administratorEmail", placeholder="Administrator Email")
+                div.col-sm-12
+                    br
+                    input.btn.btn-primary.pull-right(type="submit", value="Federate") 
+    hr
+    br
+
     a.btn.btn-primary.pull-right(data-toggle="modal", data-target="#registryModal") 
                             span.fa.fa-plus
                             |  Add Registry
