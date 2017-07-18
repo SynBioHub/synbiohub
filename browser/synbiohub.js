@@ -37,7 +37,8 @@ $(document).on('click', '.sbh-datatable .save', function () {
         affiliation: $(inputs[4]).val(),
         isMember: $(inputs[5]).prop('checked'),
         isCurator: $(inputs[6]).prop('checked'),
-        isAdmin: $(inputs[7]).prop('checked')
+        isAdmin: $(inputs[7]).prop('checked'),
+        isMaintainer: $(inputs[8]).prop('checked')
     }
 
     $.post('/admin/updateUser', userInfo)
