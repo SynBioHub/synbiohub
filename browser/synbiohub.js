@@ -486,6 +486,11 @@ function getFields(type) {
                 default: '',
                 name: 'PI Email'
             },
+            partNumberPrefix: {
+                type: 'text',
+                default: '',
+                name: 'Part Number Prefix'
+            }
         },
         benchling: {
             benchlingApiToken: {
@@ -585,6 +590,7 @@ $(document).on('click', '#remoteEdit', function () {
             iceCollection: remote["iceCollection"],
             groupId: remote["groupId"],
             pi: remote["PI"],
+            partNumberPrefix: remote["partNumberPrefix"],
             piEmail: remote["PIemail"],
         },
         "benchling": {
