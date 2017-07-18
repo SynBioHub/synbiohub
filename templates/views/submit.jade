@@ -19,9 +19,9 @@ block content
 
             ul.nav.nav-tabs(role="tablist")
                 li.active(role="presentation")
-                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Collection
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Private Collection
                 li(role="presentation")
-                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Collection
+                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Private Collection
 
             div.tab-content
                 div.tab-pane.active#new(role="tabpanel")
@@ -42,20 +42,20 @@ block content
                                     input.form-control(type='text', id="id", name='id',placeholder='Collection ID',value=submission.id)
                             div.col-md-6
                                 div.form-group-100.required
-                                    label(for='version') Version 
+                                    label(for='version') Collection Version 
                                         a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version",title='A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.')
                                             span.fa.fa-info-circle
                                     input.form-control(type='text', id='version', name='version',placeholder='Version',value=submission.version)
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
-                                    label(for="name") Name
+                                    label(for="name") Collection Name
                                     input.form-control(name='name',id="name",placeholder='Name',value=submission.name)
 
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
-                                    label(for="description") Description
+                                    label(for="description") Collection Description
                                     textarea.form-control(name='description', id="description"
                                             placeholder='The more you say, the easier it will be to find your design...')
                                             | #{submission.description}
@@ -71,7 +71,7 @@ block content
                             div.col-md-12
                                 div.form-group-100
                                     label(for="collections") Collection
-                                    select(name='collections' style="width:675px;" id='collections' multiple data-placeholder='Select Some Public Collections').chosen-select
+                                    select(name='collections' style="width:675px;" id='collections' multiple data-placeholder='Select Some Collections').chosen-select
                                         for collection in collections
                                             option(value=collection.uri) #{collection.name}
 
