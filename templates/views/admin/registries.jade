@@ -41,9 +41,9 @@ block adminContent
         else
             form(method="POST", action="federate")
                 div.col-sm-8
-                    input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL")
+                    input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL", value=config.webOfRegistriesUrl)
                 div.col-sm-4
-                    input.btn.btn-primary.btn-block(type="submit", value="Federate") 
+                    input.btn.btn-primary.btn-block(type="submit", value="Submit") 
     hr
     br
 
