@@ -46,6 +46,16 @@ $(document).on('click', '.sbh-datatable .save', function () {
 })
 
 
+$(document).on('blur', '#user_edit #email', function() {
+    $username = $('#username');
+    $email = $(this).closest('#email');
+
+    let email = $email.val();
+    let username = email.split('@')[0].replace(/\W/g, '');
+
+    $username.val(username);
+})
+
 $(document).on('click', '.sbh-datatable .delete', function () {
     const $row = $(this).closest('tr')
 
