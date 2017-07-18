@@ -41,7 +41,11 @@ block content
                     if meta.sbhStar && meta.sbhStar.description == 'true'
                         a(href='http://wiki.synbiohub.org/Terms/synbiohub#star',title='Starred Parts')
                             span.fa.fa-star
-                
+
+                if locals.remote 
+                    h4 #{'Mirrored from '}
+                        a(href=locals.remote.url,title='Edit in ' + locals.remote.name) #{locals.remote.name}
+
                 if meta.id && meta.id != ''
                     h4 #{meta.id}
                         a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier') 
@@ -182,7 +186,7 @@ block content
         if annotations && annotations.length > 0
             div.row.entry-heading
                 div.col-sm-5.entry-title
-                    | <h3>Annotations</h3>
+                    | <h3>Other Properties</h3>
 
             div.row
                 div.col-md-8
