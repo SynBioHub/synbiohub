@@ -45,6 +45,24 @@ $(document).on('click', '.sbh-datatable .save', function () {
 
 })
 
+$(document).on('click', '.removeFromWoR', function() {
+    let worSecret = $('#worSecret').val();
+    let worUrl = $('#worUrl').val();
+    let worId = $('#worId').val();
+
+    let completeUrl = worUrl + '/instances/' + worId + '/';
+
+    $.ajax({
+        beforeSend: function(request) {
+            request.setRequestHeader('updateSecret', worSecret)
+        },
+        method: 'DELETE',
+        url: completeUrl,
+        complete: (data, status, jqXHR) => {
+            window.location.reload(true);
+        }
+    })
+})
 
 $(document).on('blur', '#user_edit #email', function() {
     $username = $('#username');

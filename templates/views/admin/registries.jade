@@ -22,26 +22,36 @@ block modal
 
 block adminContent
     div.row
+        div.col-sm-12
+            h4 Web of Registries
+    div.row
         if(registered)
             if(approved) 
-                div.col-sm-6
+                div.col-sm-4
                     div.alert.alert-success
                         span.fa.fa-check-circle-o
-                        span &nbsp; Your SynBioHub instance has been approved by the Web of Registries Administrator
+                        span &nbsp; #{config.instanceName} is part of the Web of Registries
             else
-                div.col-sm-6
+                div.col-sm-4
                     div.alert.alert-info
                         span.fa.fa-clock-o
-                        span &nbsp; Your SynBioHub instance is pending approval by the Web of Registries Administrator
-            div.col-sm-6
+                        span &nbsp; #{config.instanceName} pending approval by the Web of Registries Administrator
+            div.col-sm-4
                 if(updateWorking)
                     div.alert.alert-success
                         span.fa.fa-globe
-                        span &nbsp; The Web of Registries is succesfully connected to your SynBioHub instance
+                        span &nbsp; The Web of Registries can update #{config.instanceName}
                 else
                     div.alert.alert-danger
                         span.fa.fa-ban
-                        span &nbsp; The Web of Registries cannot connect to your SynBioHub instance
+                        span &nbsp; The Web of Registries cannot update #{config.instanceName}
+            div.col-sm-4
+                input#worUrl(type="hidden", value=wor)
+                input#worId(type="hidden", value=worId)
+                input#worSecret(type="hidden", value=secret)
+                button.removeFromWoR.btn.btn-block.btn-lg.btn-danger 
+                    span.fa.fa-trash
+                    span &nbsp; Delete Entry
                     
         else
             if(errors.length > 0)
@@ -58,10 +68,11 @@ block adminContent
                     div.col-sm-4
                         input.btn.btn-primary.btn-block(type="submit", value="Submit") 
     hr
-    br
 
     div.row
-        div.col-12.pull-right
+        div.col-sm-8
+            h4 Local Web of Registries
+        div.col-4.pull-right
             form.form.form-inline(method="POST", action="retrieveFromWebOfRegistries")
                 if(!updateWorking)
                     button.btn.btn-info(type="submit", style="margin-right: 20px;")
