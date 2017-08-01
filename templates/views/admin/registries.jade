@@ -30,23 +30,31 @@ block adminContent
                 div.col-sm-12
                     h4 Your SynBioHub instance is pending approval by the Web of Registries Administrator
         else
-            form(method="POST", action="retrieveFromWebOfRegistries")
-                div.col.sm-12
-                    input.btn.btn-primary.btn-block(type="submit", value="Retrieve registries from the Web of Registries")
-            hr
-            form(method="POST", action="federate")
-                div.col-sm-8
-                    input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL", value=config.webOfRegistriesUrl)
-                div.col-sm-4
-                    input.btn.btn-primary.btn-block(type="submit", value="Submit") 
+            if(errors.length > 0)
+                div.col-12
+                    h4 There are errors preventing your registration with the Web of Registries:
+                each error in errors
+                    div.alert.alert-danger
+                        span.fa.fa-exclamation-circle
+                        span &nbsp;&nbsp; #{error}
+            else 
+                form(method="POST", action="federate")
+                    div.col-sm-8
+                        input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL", value=config.webOfRegistriesUrl)
+                    div.col-sm-4
+                        input.btn.btn-primary.btn-block(type="submit", value="Submit") 
     hr
     br
 
-    a.btn.btn-primary.pull-right(data-toggle="modal", data-target="#registryModal") 
-                            span.fa.fa-plus
-                            |  Add Registry
-    br
-    br
+    div.row
+        div.col-12.pull-right
+            form.form.form-inline(method="POST", action="retrieveFromWebOfRegistries")
+                button.btn.btn-info(type="submit", style="margin-right: 20px;")
+                    span.fa.fa-cloud-download
+                    |  Retrieve from Web of Registries
+                a.btn.btn-primary(data-toggle="modal", data-target="#registryModal") 
+                    span.fa.fa-plus
+                    |  Add Registry
     table.table.table-striped.sbh-registries-datatable
         thead
             tr

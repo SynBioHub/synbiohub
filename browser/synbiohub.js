@@ -108,7 +108,7 @@ $('.sbh-registries-datatable').DataTable({
 
     searching: false,
     ordering: false,
-
+    paging: false
 })
 
 $(document).on('click', '.save-registry', function () {
