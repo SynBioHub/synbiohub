@@ -29,16 +29,11 @@ block adminContent
             else
                 div.col-sm-12
                     h4 Your SynBioHub instance is pending approval by the Web of Registries Administrator
-            //- form(method="PATCH", action=wor + "instances/" + worId, enctype="application/json")
-            //-     input(type='hidden',value=secret)
-            //-     div.col-sm-6
-            //-         input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL", value=wor, readonly=readonly)
-            //-     div.col-sm-6
-            //-         input.form-control(type="text", name="administratorEmail", placeholder="Administrator Email", value=adminEmail)
-            //-     div.col-sm-12
-            //-         br
-            //-         input.btn.btn-primary.pull-right(type="submit", value="Update") 
         else
+            form(method="POST", action="retrieveFromWebOfRegistries")
+                div.col.sm-12
+                    input.btn.btn-primary.btn-block(type="submit", value="Retrieve registries from the Web of Registries")
+            hr
             form(method="POST", action="federate")
                 div.col-sm-8
                     input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL", value=config.webOfRegistriesUrl)
