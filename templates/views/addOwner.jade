@@ -1,0 +1,24 @@
+
+extends ../layouts/default.jade
+
+block content
+    div.container
+        div.submission-container(align='center')
+            div.submission-header
+                span(style='font-size: 3.3em').fa.fa-id-card
+                p(style='font-size: 1.7em; font-weight: bolder')
+                    | Add owner
+                p
+                    | #[span.text-danger(style='font-weight: bolder;') Warning:] this will give another user complete control over this object.
+            form.form(method="POST")
+                input(type="hidden", name="uri", value=uri)
+                div.row
+                    div.col-sm-12
+                            select(name='user' style='width: 260px;').chosen-select
+                                for u in users
+                                    if u.id != user.id
+                                        option(value=config.databasePrefix + 'user/' + u.username) #{u.username}
+                br
+                div.row
+                    div.col-sm-12
+                        input.btn.btn-info(type="submit", value="Grant ownership")

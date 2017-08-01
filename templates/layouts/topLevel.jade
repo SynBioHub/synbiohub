@@ -159,6 +159,12 @@ block content
 
             div.col-md-4.entry-actions
                 block topLevelButtons
+                if meta.triplestore != 'public'
+                    a.btn.btn-info(href=meta.url + "/addOwner")
+                        span.fa.fa-id-card
+                        |  Add owner
+                    br
+                    br
 
         block topLevelPreview
 

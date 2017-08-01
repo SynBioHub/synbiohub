@@ -1,0 +1,13 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+DELETE WHERE {
+    <$topLevel> dcterms:modified ?modified .
+}
+;
+INSERT DATA {
+    <$topLevel> sbh:ownedBy <$user> .
+    <$topLevel> dcterms:modified $modified .
+} 
+
+
