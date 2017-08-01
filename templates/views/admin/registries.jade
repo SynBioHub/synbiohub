@@ -24,11 +24,25 @@ block adminContent
     div.row
         if(registered)
             if(approved) 
-                div.col-sm-12
-                    h4 Your SynBioHub instance has been approved by the Web of Registries Administrator
+                div.col-sm-6
+                    div.alert.alert-success
+                        span.fa.fa-check-circle-o
+                        span &nbsp; Your SynBioHub instance has been approved by the Web of Registries Administrator
             else
-                div.col-sm-12
-                    h4 Your SynBioHub instance is pending approval by the Web of Registries Administrator
+                div.col-sm-6
+                    div.alert.alert-info
+                        span.fa.fa-clock-o
+                        span &nbsp; Your SynBioHub instance is pending approval by the Web of Registries Administrator
+            div.col-sm-6
+                if(updateWorking)
+                    div.alert.alert-success
+                        span.fa.fa-globe
+                        span &nbsp; The Web of Registries is succesfully connected to your SynBioHub instance
+                else
+                    div.alert.alert-danger
+                        span.fa.fa-ban
+                        span &nbsp; The Web of Registries cannot connect to your SynBioHub instance
+                    
         else
             if(errors.length > 0)
                 div.col-12
@@ -49,9 +63,10 @@ block adminContent
     div.row
         div.col-12.pull-right
             form.form.form-inline(method="POST", action="retrieveFromWebOfRegistries")
-                button.btn.btn-info(type="submit", style="margin-right: 20px;")
-                    span.fa.fa-cloud-download
-                    |  Retrieve from Web of Registries
+                if(!updateWorking)
+                    button.btn.btn-info(type="submit", style="margin-right: 20px;")
+                        span.fa.fa-cloud-download
+                        |  Retrieve from Web of Registries
                 a.btn.btn-primary(data-toggle="modal", data-target="#registryModal") 
                     span.fa.fa-plus
                     |  Add Registry
