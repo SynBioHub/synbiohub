@@ -83,7 +83,7 @@ block content
                     td
                         input(type='text',name='modifiedBefore',placeholder='YYYY-MM-DD',value=modifiedBefore)
                 tr
-                    td Id/Name/Description
+                    td SBOL Document ID/Name/Description
                     td
                         input(type='text',name='description',placeholder='Search terms',value=description,style="width: 550px;")
                 tr
@@ -91,8 +91,8 @@ block content
                     td
                         select(name='type' style='width: 260px;').chosen-select
                             option #{'Any Type'}
-                            for type in types
-                                option #{type.name}
+                            for t in types
+                                option #{t.name}
                 tr
                     td Role
                     td
