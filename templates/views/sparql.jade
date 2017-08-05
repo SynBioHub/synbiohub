@@ -37,7 +37,7 @@ block content
                         tr
                             for header in headers
                                 td 
-                                    if result[header] !== null && result[header].startsWith('http')
+                                    if result[header] !== null && result[header].startsWith !== undefined && result[header].startsWith('http')
                                         a(href=result[header]) #{result[header]}
                                     else
                                         p #{result[header]}
