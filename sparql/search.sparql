@@ -17,13 +17,18 @@ SELECT DISTINCT
     ?type
     (COUNT(DISTINCT ?user) as ?uses)
 WHERE {
-    { ?use sbol2:definition ?subject .    
-        { ?user sbol2:module ?use } UNION 
-        { ?user sbol2:component ?use } UNION 
-        { ?user sbol2:functionalComponent ?use } 
-    } UNION 
-    { ?user sbol2:model ?subject} UNION 
-    { ?user sbol2:sequence ?subject } .
+    $criteria
+
+    OPTIONAL { 
+        { 
+            ?use sbol2:definition ?subject .    
+            { ?user sbol2:module ?use } UNION 
+            { ?user sbol2:component ?use } UNION 
+            { ?user sbol2:functionalComponent ?use } 
+        } UNION 
+        { ?user sbol2:model ?subject} UNION 
+        { ?user sbol2:sequence ?subject } . 
+    }
 
     { ?subject a sbol2:ComponentDefinition } UNION 
     { ?subject a sbol2:ModuleDefinition } UNION 
@@ -38,4 +43,5 @@ WHERE {
     OPTIONAL { ?subject dcterms:description ?description . }
 } ORDER BY DESC(?uses)
 
-LIMIT 50
+$limit
+$offset
