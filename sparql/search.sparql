@@ -13,6 +13,7 @@ SELECT DISTINCT
     ?name
     ?description
     ?type
+    (COUNT(DISTINCT ?other) AS ?uses)
 WHERE {
     $criteria
     { ?subject a sbol2:ComponentDefinition } UNION 
@@ -28,5 +29,3 @@ WHERE {
 }
 $limit
 $offset
-
-
