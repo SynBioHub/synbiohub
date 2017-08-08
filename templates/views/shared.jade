@@ -1,4 +1,5 @@
 extends ../layouts/default.jade
+include ../mixins/search-result.jade
 
 block breadcrumbs
     ul
@@ -7,3 +8,17 @@ block breadcrumbs
             |  Shared with Me
 
 block content
+    br
+    br
+    br
+    div.search-results-area
+        div(style='overflow: hidden; display: none;').vert
+
+        div.facets
+
+        div.search-results-scroll-area
+            div.clearfix
+            div.search-results
+
+                each submission in searchResults
+                    +search-result-collection(submission)
