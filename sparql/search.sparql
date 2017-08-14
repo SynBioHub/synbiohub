@@ -13,6 +13,7 @@ SELECT DISTINCT
     ?name
     ?description
     ?type
+    (COUNT(DISTINCT ?user) as ?uses)
 WHERE {
     $criteria
 
