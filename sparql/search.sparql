@@ -17,7 +17,8 @@ SELECT DISTINCT
 WHERE {
     $criteria
 
-    ?subject a ?type
+    ?subject a ?type .
+    ?subject sbh:topLevel ?subject
     OPTIONAL { ?use ?p ?subject . }
     OPTIONAL { ?subject sbol2:displayId ?displayId . }
     OPTIONAL { ?subject sbol2:version ?version . }
