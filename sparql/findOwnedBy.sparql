@@ -15,11 +15,7 @@ SELECT DISTINCT
     ?type
 WHERE {
     ?subject sbh:ownedBy <$userUri> . 
-    { ?subject a sbol2:ComponentDefinition } UNION 
-    { ?subject a sbol2:ModuleDefinition } UNION 
-    { ?subject a sbol2:Collection } UNION 
-    { ?subject a sbol2:Sequence } UNION 
-    { ?subject a sbol2:Model } .
+    ?subject sbh:topLevel ?subject .
     ?subject a ?type
     OPTIONAL { ?subject sbol2:displayId ?displayId . }
     OPTIONAL { ?subject sbol2:version ?version . }
