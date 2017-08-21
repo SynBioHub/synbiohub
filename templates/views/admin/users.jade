@@ -17,7 +17,6 @@ block adminContent
                 th Member
                 th Curator
                 th Admin
-                th Maintainer
                 th
                 th
         tbody
@@ -41,8 +40,6 @@ block adminContent
                         input(type='checkbox',checked=u.isCurator)
                     td
                         input(type='checkbox',checked=u.isAdmin)
-                    td
-                        input(type='checkbox',checked=(u.email==config.administratorEmail))
                     td
                         button.btn.btn-success.save Save
                     td

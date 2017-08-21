@@ -27,16 +27,16 @@ block adminContent
     div.row
         if(registered)
             if(approved) 
-                div.col-sm-4
+                div.col-sm-6
                     div.alert.alert-success
                         span.fa.fa-check-circle-o
                         span &nbsp; #{config.instanceName} is part of the Web of Registries
             else
-                div.col-sm-4
+                div.col-sm-6
                     div.alert.alert-info
                         span.fa.fa-clock-o
                         span &nbsp; #{config.instanceName} pending approval by the Web of Registries Administrator
-            div.col-sm-4
+            div.col-sm-6
                 if(updateWorking)
                     div.alert.alert-success
                         span.fa.fa-globe
@@ -45,11 +45,19 @@ block adminContent
                     div.alert.alert-danger
                         span.fa.fa-ban
                         span &nbsp; The Web of Registries cannot update #{config.instanceName}
+
+            form.form(action="setAdministratorEmail", method="POST")
+                div.col-sm-4
+                    input.form-control(type="text", name="administratorEmail", placeholder="Administrator Email", value=config.administratorEmail)
+                div.col-sm-4
+                    button.btn.btn-block.btn-info(type="submit")
+                        span.fa.fa-pencil
+                        span &nbsp; Edit Entry
             div.col-sm-4
                 input#worUrl(type="hidden", value=wor)
                 input#worId(type="hidden", value=worId)
                 input#worSecret(type="hidden", value=secret)
-                button.removeFromWoR.btn.btn-block.btn-lg.btn-danger 
+                button.removeFromWoR.btn.btn-block.btn-danger 
                     span.fa.fa-trash
                     span &nbsp; Delete Entry
                     
@@ -63,8 +71,10 @@ block adminContent
                         span &nbsp;&nbsp; #{error}
             else 
                 form(method="POST", action="federate")
-                    div.col-sm-8
+                    div.col-sm-4
                         input.form-control(type="text", name="webOfRegistries", placeholder="Web of Registries URL", value=config.webOfRegistriesUrl)
+                    div.col-sm-4
+                        input.form-control(type="text", name="administratorEmail", placeholder="Administrator Email", value=config.administratorEmail)
                     div.col-sm-4
                         input.btn.btn-primary.btn-block(type="submit", value="Submit") 
     hr
