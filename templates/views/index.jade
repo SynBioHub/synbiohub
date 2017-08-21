@@ -51,6 +51,11 @@ block head
             display: none;
         }
 
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
 block breadcrumbs
     ul
         li
@@ -67,8 +72,6 @@ block content
                     img.about-logo(src=config.instanceLogo,width='100%')
                 else
                     h1 #{config.instanceName}
-                    br
-                    br
 
         div.row
             div.col-md-2
