@@ -208,6 +208,9 @@ block content
                                             span.fa.fa-info-circle &nbsp;
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
                                             span.fa.fa-search
+                                        if(annotation.removeOwner)
+                                            a(href=annotation.removeOwner)
+                                                span.fa.fa-trash
                                 else 
                                     td #{annotation.value.toString()} &nbsp;
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
