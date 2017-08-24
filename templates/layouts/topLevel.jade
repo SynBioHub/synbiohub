@@ -209,8 +209,10 @@ block content
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
                                             span.fa.fa-search
                                         if(annotation.removeOwner)
-                                            a(href=annotation.removeOwner)
-                                                span.fa.fa-trash
+                                            form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
+                                                input(type='hidden' name='userUri' value=config.databasePrefix + annotation.value)
+                                                button.btn.btn-link(type='submit')
+                                                    span.fa.fa-trash
                                 else 
                                     td #{annotation.value.toString()} &nbsp;
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
