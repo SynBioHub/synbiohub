@@ -1,8 +1,9 @@
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol: <http://sbols.org/v2#>
 
-INSERT DATA {
-    $uris
-} 
-
-
+SELECT 
+    ?object
+WHERE {
+    $uriFragments
+}
