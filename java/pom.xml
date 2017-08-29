@@ -21,7 +21,7 @@
       <dependency>
           <groupId>org.sbolstandard</groupId>
           <artifactId>libSBOLj</artifactId>
-          <version>2.2.2-SNAPSHOT</version>
+          <version>2.2.1</version>
       </dependency>
       <dependency>
           <groupId>com.google.code.gson</groupId>
