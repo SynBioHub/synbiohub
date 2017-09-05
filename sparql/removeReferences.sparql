@@ -1,0 +1,17 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+DELETE WHERE {
+       ?s sbh:attachment <$uri>  
+}
+;
+DELETE WHERE {
+       ?s sbol2:member <$uri>  
+}
+;
+DELETE WHERE {
+       ?s sbol2:sequence <$uri>  
+}
+;
+DELETE WHERE {
+       ?s sbol2:model <$uri>  
+}
