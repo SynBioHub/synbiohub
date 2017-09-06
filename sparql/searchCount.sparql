@@ -9,16 +9,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 select (sum(?tempcount) as ?count) WHERE {
 {
     SELECT (count(distinct ?subject) as ?tempcount)
+    $from
     WHERE {
-        { ?subject a sbol2:ModuleDefinition } UNION 
-        { ?subject a sbol2:Model } UNION 
-        { ?subject a sbol2:ComponentDefinition } UNION 
-        { ?subject a sbol2:Sequence } UNION 
-        { ?subject a sbol2:Collection } .
         $criteria
-        OPTIONAL { ?subject sbol2:displayId ?displayId . }
-        OPTIONAL { ?subject dcterms:title ?name . }
-        OPTIONAL { ?subject dcterms:description ?description . }
+
+        ?subject sbh:topLevel ?subject .
+        OPTIONAL { ?subject sbol2:displayId ?displayId . }		 
+        OPTIONAL { ?subject dcterms:title ?name . }		 
+        OPTIONAL { ?subject dcterms:description ?description . }	
     }
 }
 }

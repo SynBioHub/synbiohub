@@ -9,6 +9,7 @@
       "default": {
       }
   },
+  "webOfRegistriesUrl" : "https://wor.synbiohub.org",
   "port": 7777,
   "triplestore": {
       "sparqlEndpoint": "http://localhost:8890/sparql",

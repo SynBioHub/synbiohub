@@ -305,9 +305,11 @@ public class PrepareSubmissionJob extends Job
 					rootCollection.addMember(topLevel.getIdentity());
 					for(String collectionChoice : collectionChoices) {
 						try {
-							topLevel.createAnnotation(
+							if (collectionChoice.startsWith("http")) {
+								topLevel.createAnnotation(
 										new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "isMemberOf", "sbh"),
-									new URI(collectionChoice));
+										new URI(collectionChoice));
+							}
 						}
 						catch (URISyntaxException e) {
 

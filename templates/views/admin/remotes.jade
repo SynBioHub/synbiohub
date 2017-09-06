@@ -56,18 +56,18 @@ block adminContent
                                     span.fa.fa-cloud-download
                                     |  Snapshot
             div.col-md-1
-        div.col-md-3
-            table.table.table-striped
-                tr
-                    td
-                        b Type: 
-                    td
-                        select.form-control#remoteTypeSelect
-                            option(value="") -----
-                            for remoteType in remoteTypes
-                                option(value=remoteType) #{remoteType}
-                tr
-                    td(colspan=2)
-                        a.btn-block.btn.btn-success#addRemote(data-toggle="modal", data-target="#remoteModal", disabled="true") 
-                            span.fa.fa-plus
-                            |  Add Remote
+    div.col-md-3
+        table.table.table-striped
+            tr
+                td
+                    b Type: 
+                td
+                    select.form-control#remoteTypeSelect
+                        option(value="") -----
+                        for remoteType in remoteTypes
+                            option(value=remoteType) #{remoteType}
+            tr
+                td(colspan=2)
+                    a.btn-block.btn.btn-success#addRemote(data-toggle="modal", data-target="#remoteModal", disabled="true") 
+                        span.fa.fa-plus
+                        |  Add Remote
