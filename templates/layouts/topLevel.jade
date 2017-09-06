@@ -159,6 +159,12 @@ block content
 
             div.col-md-4.entry-actions
                 block topLevelButtons
+                if meta.triplestore != 'public'
+                    a.btn.btn-info(href=meta.url + "/addOwner")
+                        span.fa.fa-id-card
+                        |  Add owner
+                    br
+                    br
 
         block topLevelPreview
 
@@ -202,6 +208,11 @@ block content
                                             span.fa.fa-info-circle &nbsp;
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
                                             span.fa.fa-search
+                                        if(annotation.removeOwner)
+                                            form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
+                                                input(type='hidden' name='userUri' value=config.databasePrefix + annotation.value)
+                                                button.btn.btn-link(type='submit')
+                                                    span.fa.fa-trash
                                 else 
                                     td #{annotation.value.toString()} &nbsp;
                                         a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')

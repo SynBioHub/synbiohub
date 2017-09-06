@@ -1,0 +1,24 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
+PREFIX synbiohub: <http://synbiohub.org#>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX igem: <http://wiki.synbiohub.org/wiki/Terms/igem#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT
+    ?subject
+    ?displayId
+    ?version
+    ?name
+    ?description
+    ?type
+WHERE {
+    ?subject sbh:ownedBy <$userUri> . 
+    ?subject sbh:topLevel ?subject .
+    ?subject a ?type
+    OPTIONAL { ?subject sbol2:displayId ?displayId . }
+    OPTIONAL { ?subject sbol2:version ?version . }
+    OPTIONAL { ?subject dcterms:title ?name . }
+    OPTIONAL { ?subject dcterms:description ?description . }
+}
