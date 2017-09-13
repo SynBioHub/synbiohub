@@ -24,13 +24,13 @@ block topLevelButtons
     if meta.triplestore != 'public' && locals.user && locals.user.isCurator
         a.btn.btn-success(href=makePublic)
             span.fa.fa-unlock
-                |  Make Public
+            |  Make Public
         br
         br
     if meta.triplestore != 'public'
         a.btn.btn-success(href=meta.url + '/remove')
             span.fa.fa-remove
-                |  Remove
+            |  Remove
         br
         br
 
