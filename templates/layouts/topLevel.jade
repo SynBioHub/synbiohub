@@ -158,13 +158,13 @@ block content
                 block topLevelBelowPropertyTable
 
             div.col-md-4.entry-actions
-                block topLevelButtons
                 if meta.triplestore != 'public' && canEdit
                     a.btn.btn-info(href=meta.url + "/addOwner")
                         span.fa.fa-id-card
                         |  Add owner
                     br
                     br
+                block topLevelButtons
 
         block topLevelPreview
 
