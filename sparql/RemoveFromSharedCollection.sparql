@@ -2,7 +2,7 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 
 DELETE DATA {
-    <$userUri> sbh:canView ?object .
+    <$userUri> sbh:canView <$uri> .
 } 
 
 
