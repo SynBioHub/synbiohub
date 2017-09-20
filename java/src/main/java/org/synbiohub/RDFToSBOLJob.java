@@ -2,13 +2,9 @@ package org.synbiohub;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -80,7 +76,7 @@ public class RDFToSBOLJob extends Job
 	
 	private Set<URI> completed;
 	
-	private void completeDocument(SBOLDocument document) {
+	private void completeDocument(SBOLDocument document) throws SBOLValidationException {
 		completed = new HashSet<URI>();
 		int size = document.getTopLevels().size();
 		int count = 0;
@@ -91,7 +87,7 @@ public class RDFToSBOLJob extends Job
 		}	
 	}
 	
-	private void completeDocument(SBOLDocument document, Annotation annotation) {
+	private void completeDocument(SBOLDocument document, Annotation annotation) throws SBOLValidationException {
 		if (annotation.isURIValue()) {
 			TopLevel gtl = document.getTopLevel(annotation.getURIValue());
 			if (gtl != null) 
@@ -108,7 +104,7 @@ public class RDFToSBOLJob extends Job
 	 * @param topLevel
 	 * @throws SBOLValidationException if an SBOL validation rule violation occurred in {@link SBOLDocument#createCopy(TopLevel)}.
 	 */
-	private void completeDocument(SBOLDocument document, TopLevel topLevel) {
+	private void completeDocument(SBOLDocument document, TopLevel topLevel) throws SBOLValidationException {
 	    if (topLevel==null) return;
 		if (completed.contains(topLevel.getIdentity())) return;
 		System.err.println("Completing:"+topLevel.getIdentity());
@@ -145,9 +141,21 @@ public class RDFToSBOLJob extends Job
 		}
 		for (Annotation annotation : topLevel.getAnnotations()) {
 			if (annotation.isURIValue()) {
-				TopLevel gtl = document.getTopLevel(annotation.getURIValue());
-				if (gtl != null) 
-					completeDocument(document,gtl);
+				TopLevel tl = document.getTopLevel(annotation.getURIValue());
+				if (tl != null) {
+					completeDocument(document,tl);
+					if (tl instanceof GenericTopLevel) {
+						GenericTopLevel gtl = (GenericTopLevel)tl;
+						Annotation topLevelAnnot = gtl.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#","topLevel","sbh"));
+						if (topLevelAnnot!=null && topLevelAnnot.isURIValue() && 
+								topLevelAnnot.getURIValue().equals(topLevel.getIdentity())) {
+							annotation.setNestedQName(gtl.getRDFType());
+							annotation.setNestedIdentity(gtl.getIdentity());
+							annotation.setAnnotations(gtl.getAnnotations());
+							document.removeGenericTopLevel(gtl);
+						}
+					}
+				}
 			} else if (annotation.isNestedAnnotations()) {
 				for (Annotation nestedAnnotation : annotation.getAnnotations()) {
 					completeDocument(document,nestedAnnotation);
