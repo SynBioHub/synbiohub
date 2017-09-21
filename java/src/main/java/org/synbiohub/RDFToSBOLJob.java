@@ -142,7 +142,7 @@ public class RDFToSBOLJob extends Job
 		for (Annotation annotation : topLevel.getAnnotations()) {
 			if (annotation.isURIValue()) {
 				TopLevel tl = document.getTopLevel(annotation.getURIValue());
-				if (tl != null) {
+				if (tl != null && !tl.getIdentity().equals(topLevel.getIdentity())) {
 					completeDocument(document,tl);
 					if (tl instanceof GenericTopLevel) {
 						GenericTopLevel gtl = (GenericTopLevel)tl;
