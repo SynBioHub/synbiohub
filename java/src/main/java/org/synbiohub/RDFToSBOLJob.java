@@ -52,11 +52,6 @@ public class RDFToSBOLJob extends Job
 				false,
 				true);
 		
-		for (String registry : webOfRegistries.keySet()) {
-			doc.addRegistry(webOfRegistries.get(registry),registry);
-		}
-		completeDocument(doc);
-		
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 
@@ -65,6 +60,11 @@ public class RDFToSBOLJob extends Job
 			finish(new RDFToSBOLResult(this, false, "", log, errorLog));
 			return;
 		}
+		
+		for (String registry : webOfRegistries.keySet()) {
+			doc.addRegistry(webOfRegistries.get(registry),registry);
+		}
+		completeDocument(doc);
 
 		File resultFile = File.createTempFile("sbh_rdf_to_sbol", ".xml");
 
