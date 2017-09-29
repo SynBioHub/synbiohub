@@ -13,19 +13,17 @@ SELECT DISTINCT
     ?name
     ?description
     ?type
-    (COUNT(DISTINCT ?use) as ?uses)
 $from
 WHERE {
     $criteria
 
     ?subject a ?type .
     ?subject sbh:topLevel ?subject
-    OPTIONAL { ?use ?p ?subject . }
     OPTIONAL { ?subject sbol2:displayId ?displayId . }
     OPTIONAL { ?subject sbol2:version ?version . }
     OPTIONAL { ?subject dcterms:title ?name . }
     OPTIONAL { ?subject dcterms:description ?description . }
-} ORDER BY DESC(?uses)
+} 
 
 $limit
 $offset
