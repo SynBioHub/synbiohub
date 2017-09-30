@@ -45,7 +45,7 @@
   },
   "threadPoolSize": 8,
   "uploadLimit": "150mb",
-  "resolveBatch": 50,
+  "resolveBatch": 20,
   "staggeredQueryLimit": 10000,
   "mail": {
       "sendgridApiKey": "",
