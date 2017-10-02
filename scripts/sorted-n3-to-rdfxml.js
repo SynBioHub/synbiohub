@@ -183,7 +183,7 @@ function writeUriTriple(s, p, o) {
 
     const tagName = predicateUriToTagName(p) 
 
-    console.log('    <' + tagName + ' rdf:resource="' + o +  '" />')
+    console.log('    <' + tagName + ' rdf:resource="' + escapeUri(o) +  '" />')
 }
 
 function writeLiteralTriple(s, p, v) {
@@ -244,7 +244,7 @@ function escapeText(v) {
                 v2 += '&amp;'
                 break
             case '\'':
-                v2 += '&apos;'
+                v2 += '&quot;'
                 break
             default:
                 v2 += v[i]
@@ -253,6 +253,16 @@ function escapeText(v) {
     }
 
     return v2
+}
+
+function escapeUri(v) {
+
+    var r = /\\u([\d\w]{4})/gi;
+    v = v.replace(r, function (match, grp) {
+	return String.fromCharCode(parseInt(grp, 16));
+    });
+
+    return v
 }
 
 
