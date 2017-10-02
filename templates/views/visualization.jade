@@ -1,0 +1,12 @@
+
+extends ../layouts/base.jade
+
+block body
+    script meta = 
+        != JSON.stringify(meta)
+
+    if meta.displayList
+        div.container
+            div.row
+                div.col-md-12.text-center
+                div#design
