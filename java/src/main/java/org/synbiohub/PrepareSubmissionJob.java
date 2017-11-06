@@ -54,12 +54,13 @@ public class PrepareSubmissionJob extends Job
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
 		ArrayList<String> filenames = new ArrayList<>();
-		ArrayList<String> attachments = new ArrayList<>();
+		ArrayList<String> attachmentFiles = new ArrayList<>();
 		String log, errorLog = new String();
 		log = "";
 		errorLog = "";
 
 		SBOLDocument doc = new SBOLDocument();
+		
 		try {
 			ZipFile zip = new ZipFile(sbolFilename);
 
@@ -77,8 +78,6 @@ public class PrepareSubmissionJob extends Job
 		} catch(ZipException e) {
 			filenames.add(sbolFilename);
 		}
-		
-
 
 		for(String filename : filenames) {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
@@ -87,7 +86,7 @@ public class PrepareSubmissionJob extends Job
 			SBOLDocument individual = SBOLValidateSilent.validate(
 					new PrintStream(logOutputStream),
 					new PrintStream(errorOutputStream),
-					sbolFilename,
+					filename,
 					"http://dummy.org/",
 					requireComplete,
 					requireCompliant, 
@@ -106,27 +105,23 @@ public class PrepareSubmissionJob extends Job
 					false,
 					true);
 			
-					
-			log += new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8) + '\n';
+			String fileLog = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 			errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
+			log += "[" + filename + " log] \n" + fileLog + "\n";
 			
 			if(errorLog.startsWith("File is empty")) {
 				individual = new SBOLDocument();
 				errorLog = "";
-				System.err.println(filename + " empty!");
 			} else if(errorLog.startsWith("sbol-10105")) {
 				individual = new SBOLDocument();
 				errorLog = "";
-				System.err.println(filename + " not SBOL!");
-				attachments.add(filename);
+				attachmentFiles.add(filename);
 			} else if(errorLog.length() > 0) {
-				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachments));
-				System.err.println(filename + " broken!");
+				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 				return;
 			}
 
 			doc.createCopy(individual);
-			System.err.println(filename + " processed!");
 
 		}
 
@@ -298,7 +293,7 @@ public class PrepareSubmissionJob extends Job
 										errorLog = "Submission terminated.\nA submission with this id already exists,"
 												+ " and it includes an object: " + topLevel.getIdentity()
 												+ " that is already in this repository and has different content";
-										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachments));
+										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 										return;
 									}
 								} else {
@@ -372,7 +367,7 @@ public class PrepareSubmissionJob extends Job
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
-		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachments));
+		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles));
 
 	}
 	

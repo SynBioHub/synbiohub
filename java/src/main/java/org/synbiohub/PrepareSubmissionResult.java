@@ -7,7 +7,7 @@ public class PrepareSubmissionResult extends Result
 	private String log;
 	private String errorLog;
 	private String resultFilename;
-	private ArrayList<String> attachments;
+	private ArrayList<String> attachmentFiles;
 	
 	public PrepareSubmissionResult(
 			PrepareSubmissionJob job,
@@ -15,7 +15,7 @@ public class PrepareSubmissionResult extends Result
 			String resultFilename,
 			String log,
 			String errorLog,
-			ArrayList<String> attachments)
+			ArrayList<String> attachmentFiles)
 	{
 		super(job);
 		
@@ -23,6 +23,6 @@ public class PrepareSubmissionResult extends Result
 		this.resultFilename = resultFilename;
 		this.log = log;
 		this.errorLog = errorLog;
-		this.attachments = attachments;
+		this.attachmentFiles = attachmentFiles;
 	}
 }
