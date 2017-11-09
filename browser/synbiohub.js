@@ -74,6 +74,16 @@ $(document).on('blur', '#user_edit #email', function() {
     $username.val(username);
 })
 
+$(document).on('blur', '#new #name', function() {
+    $id = $('input#id');
+    $name = $(this).closest('input#name');
+
+    let name = $name.val();
+    let id = name.replace(/^[a-zA-Z_]+[a-zA-Z0-9_]*$'/g, '');
+
+    $id.val(id);
+})
+
 $(document).on('click', '.sbh-datatable .delete', function () {
     const $row = $(this).closest('tr')
 
