@@ -14,14 +14,16 @@ block content
             span(style='font-size: 3.3em').fa.fa-cloud-upload
             p(style='font-size: 1.7em; font-weight: bolder')
                 | Tell us about your submission
+            p(style='text-align:center;') 
+                | SynBioHub organizes your uploads into #[b collections].  Parts can be uploaded into a new or existing collection.
             p
                 | #[span(style='font-weight: bolder;') Bold fields] are required
 
             ul.nav.nav-tabs(role="tablist")
                 li.active(role="presentation")
-                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Private Collection
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Collection
                 li(role="presentation")
-                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Private Collection
+                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Collection
 
             div.tab-content
                 div.tab-pane.active#new(role="tabpanel")
