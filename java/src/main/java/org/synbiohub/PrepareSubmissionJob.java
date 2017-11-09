@@ -116,12 +116,15 @@ public class PrepareSubmissionJob extends Job
 				individual = new SBOLDocument();
 				errorLog = "";
 				attachmentFiles.add(filename);
+				continue;
 			} else if(errorLog.length() > 0) {
 				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 				return;
 			}
 
 			doc.createCopy(individual);
+			File file = new File(filename);
+			file.delete();
 
 		}
 
