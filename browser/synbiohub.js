@@ -79,7 +79,17 @@ $(document).on('blur', '#new #name', function() {
     $name = $(this).closest('input#name');
 
     let name = $name.val();
-    let id = name.replace(/^[a-zA-Z_]+[a-zA-Z0-9_]*$'/g, '');
+    let id = "";
+
+    for(let idx = 0; idx < name.length; idx++) {
+        let c = name.charAt(idx);
+
+        if(id.length > 0 && c.match(/[A-Za-z_0-9]/g)) {
+               id = id + name.charAt(idx);
+        } else if(id.length == 0 && c.match(/[A-Za-z_]/g)) {
+            id = id + name.charAt(idx);
+        }
+    }
 
     $id.val(id);
 })
@@ -567,7 +577,7 @@ function populateForm(type, data) {
             if(key == "id") {
                 $input.attr('readonly', 'readonly')
             }
-        } 
+        }
 
         $group = $("<div />").addClass('form-group').append($label, $input)
 
@@ -637,6 +647,6 @@ $(document).on('click', '#remoteEdit', function () {
             defaultFolderId: remote["defaultFolderId"],
         }
     }[remote.type]
-    
+
     populateForm(remote.type, data)
 })
