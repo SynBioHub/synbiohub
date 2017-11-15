@@ -41,10 +41,12 @@ block adminContent
                     td
                         input(type='checkbox',checked=u.isAdmin)
                     td
-                        button.btn.btn-success.save Save
+                        button.btn.btn-success.save 
+                            span.fa.fa-save
                     td
                         if(u.id != user.id)
-                            button.btn.btn-danger.delete Delete
+                            button.btn.btn-danger.delete
+                                span.fa.fa-trash
 
 
 
