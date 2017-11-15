@@ -84,10 +84,9 @@ block adminContent
             h4 Local Web of Registries
         div.col-4.pull-right
             form.form.form-inline(method="POST", action="retrieveFromWebOfRegistries")
-                if(!updateWorking)
-                    button.btn.btn-info(type="submit", style="margin-right: 20px;")
-                        span.fa.fa-cloud-download
-                        |  Retrieve from Web of Registries
+                button.btn.btn-info(type="submit", style="margin-right: 20px;")
+                    span.fa.fa-cloud-download
+                    |  Retrieve from Web of Registries
                 a.btn.btn-primary(data-toggle="modal", data-target="#registryModal") 
                     span.fa.fa-plus
                     |  Add Registry
