@@ -27,9 +27,7 @@ public class Main
 					public void run()
 					{
 						try {
-							System.err.println("Executing job");
 							job.execute();
-							System.err.println("Executed!");
 						} catch(Exception e) {
 							job.finish(new ErrorResult(job, e));
 						}

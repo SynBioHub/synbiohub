@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,14 +15,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.jdom2.JDOMException;
 import org.sbolstandard.core2.*;
 import org.synbiohub.frontend.SynBioHubException;
 import org.synbiohub.frontend.SynBioHubFrontend;
+
+import de.unirostock.sems.cbarchive.ArchiveEntry;
+import de.unirostock.sems.cbarchive.CombineArchive;
+import de.unirostock.sems.cbarchive.CombineArchiveException;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
-
-import org.sbml.libcombine.*;
 
 import javax.xml.namespace.QName;
 
@@ -53,9 +57,78 @@ public class PrepareSubmissionJob extends Job
 	public String shareLinkSalt;
 	public String overwrite_merge;
 
+	private boolean readCOMBINEArchive(String initialFilename, List<String> sbolFiles, List<String> attachments) {
+		CombineArchive combine;
+		try {
+			combine = new CombineArchive(new File(initialFilename));
+		} catch(CombineArchiveException | IOException | JDOMException | ParseException e) {
+			return false;
+		}
+		
+		for(ArchiveEntry entry : combine.getEntries()) {
+			String format = entry.getFormat().toString();
+			
+			if(format.startsWith("http://identifiers.org/combine.specifications/sbol")) {
+				sbolFiles.add("unzipped/" + entry.getFileName());
+			} else {
+				attachments.add("unzipped/" + entry.getFileName());
+			}
+		}
+		
+		try {
+			File cwd = new File("./unzipped");
+			combine.extractTo(cwd);
+			combine.close();
+		} catch(IOException e) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private boolean readZIPFile(String initialFilename, List<String> sbolFiles, List<String> attachments) {
+		ZipFile zip;
+		
+		try {
+			zip = new ZipFile(initialFilename);
+		} catch (ZipException e) {
+			return false;
+		}
+		
+		if(zip.isValidZipFile()) {
+			try {
+				List<FileHeader> headers = zip.getFileHeaders();
+				
+				for(FileHeader header : headers) {
+					sbolFiles.add("unzipped/" + header.getFileName());
+				}
+	
+				zip.extractAll("./unzipped");
+			} catch (ZipException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private boolean getFilenames(String initialFilename, List<String> sbolFiles, List<String> attachments) {
+		if(readCOMBINEArchive(initialFilename, sbolFiles, attachments)) {
+			return true;
+		}
+		
+		if(readZIPFile(initialFilename, sbolFiles, attachments)) {
+			return false;
+		}
+		
+		sbolFiles.add(initialFilename);
+		return false;
+	}
+	
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
-		System.err.println("Entering prepareSumbission");
 		ArrayList<String> filenames = new ArrayList<>();
 		ArrayList<String> attachmentFiles = new ArrayList<>();
 		String log, errorLog = new String();
@@ -64,37 +137,7 @@ public class PrepareSubmissionJob extends Job
 
 		SBOLDocument doc = new SBOLDocument();
 		
-		System.err.println("We're doing the prepare sumbission");
-		
-		try {
-			CombineArchive archive = new CombineArchive();
-			ZipFile zip = new ZipFile(sbolFilename);
-			
-			System.err.println("Checking fileType");
-
-			if(archive.initializeFromArchive(sbolFilename)) {
-				System.err.println("It's a COMBINE archive with " + archive.getNumEntries() + " entries");
-				for(int i = 0; i < archive.getNumEntries(); i++) {
-					CaContent entry = archive.getEntry(i);
-
-					System.err.println(entry.getFormat());
-				}
-			} else if(zip.isValidZipFile()) {
-				System.err.println("It's a ZIP file!");
-				List<FileHeader> headers = zip.getFileHeaders();
-	
-				for(FileHeader header : headers) {
-					filenames.add(header.getFileName());
-				}
-	
-					zip.extractAll(".");
-			} else {
-				filenames.add(sbolFilename);
-			}
-		} catch(ZipException e) {
-			System.err.println("It's not a zip at all!");
-			filenames.add(sbolFilename);
-		}
+		boolean isCombineArchive = getFilenames(sbolFilename, filenames, attachmentFiles);
 
 		for(String filename : filenames) {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
@@ -129,7 +172,7 @@ public class PrepareSubmissionJob extends Job
 			if(errorLog.startsWith("File is empty")) {
 				individual = new SBOLDocument();
 				errorLog = "";
-			} else if(errorLog.startsWith("sbol-10105")) {
+			} else if(errorLog.startsWith("sbol-10105") && !isCombineArchive) {
 				individual = new SBOLDocument();
 				errorLog = "";
 				attachmentFiles.add(filename);
