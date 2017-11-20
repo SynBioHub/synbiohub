@@ -21,6 +21,8 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
 
+import org.sbml.libcombine.*;
+
 import javax.xml.namespace.QName;
 
 public class PrepareSubmissionJob extends Job
@@ -53,6 +55,7 @@ public class PrepareSubmissionJob extends Job
 
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
+		System.err.println("Entering prepareSumbission");
 		ArrayList<String> filenames = new ArrayList<>();
 		ArrayList<String> attachmentFiles = new ArrayList<>();
 		String log, errorLog = new String();
@@ -61,21 +64,35 @@ public class PrepareSubmissionJob extends Job
 
 		SBOLDocument doc = new SBOLDocument();
 		
+		System.err.println("We're doing the prepare sumbission");
+		
 		try {
+			CombineArchive archive = new CombineArchive();
 			ZipFile zip = new ZipFile(sbolFilename);
+			
+			System.err.println("Checking fileType");
 
-			if(zip.isValidZipFile()) {
+			if(archive.initializeFromArchive(sbolFilename)) {
+				System.err.println("It's a COMBINE archive with " + archive.getNumEntries() + " entries");
+				for(int i = 0; i < archive.getNumEntries(); i++) {
+					CaContent entry = archive.getEntry(i);
+
+					System.err.println(entry.getFormat());
+				}
+			} else if(zip.isValidZipFile()) {
+				System.err.println("It's a ZIP file!");
 				List<FileHeader> headers = zip.getFileHeaders();
 	
 				for(FileHeader header : headers) {
 					filenames.add(header.getFileName());
 				}
 	
-				zip.extractAll(".");
+					zip.extractAll(".");
 			} else {
 				filenames.add(sbolFilename);
 			}
 		} catch(ZipException e) {
+			System.err.println("It's not a zip at all!");
 			filenames.add(sbolFilename);
 		}
 
