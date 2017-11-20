@@ -1,0 +1,16 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbolnext: <http://sbols.org/next#>
+PREFIX sbol: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+INSERT DATA {
+    $uri a sbolnext:Implementation ;
+    	sbol:displayId $displayId ;
+    	sbol:persistentIdentity $persistentIdentity ;
+    	sbol:version $version ;
+    	dcterms:title $displayId ;
+    	sbolnext:built $implementationOf .
+} 
+
+

@@ -1,0 +1,8 @@
+
+PREFIX sbolnext: <http://sbols.org/next#>
+PREFIX sbol: <http://sbols.org/v2#>
+
+SELECT ?impl WHERE {
+	?impl sbolnext:built $uri . 
+}
+

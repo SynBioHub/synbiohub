@@ -8,6 +8,15 @@ block topLevelPreview
             div#design
 
 block topLevelPropertyTable
+
+    if meta.builds.length > 0
+            tr
+            td Implementations
+            td
+                for impl in meta.builds
+                    a(href=impl) 
+                        != impl
+
     if meta.sequences.length > 0
         tr
             td Sequences
@@ -113,6 +122,12 @@ block topLevelButtons
         a.btn.btn-success(href=remove)
             span.fa.fa-remove
             |  Remove
+        br
+        br
+    if meta.triplestore != 'public' 
+        a.btn.btn-success(href=createImplementation)
+            span.fa.fa-cubes
+            |  Create Implementation
         br
         br
     if meta.remote
