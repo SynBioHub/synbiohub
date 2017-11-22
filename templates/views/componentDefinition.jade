@@ -124,12 +124,11 @@ block topLevelButtons
             |  Remove
         br
         br
-    if meta.triplestore != 'public' 
-        a.btn.btn-success(href=createImplementation)
-            span.fa.fa-cubes
-            |  Create Implementation
-        br
-        br
+    a.btn.btn-success(href=createImplementation)
+        span.fa.fa-cubes
+        |  Create Implementation
+    br
+    br
     if meta.remote
         a.btn.btn-success(href=copyFromRemote)
             span.fa.fa-share-alt

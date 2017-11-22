@@ -5,13 +5,13 @@ PREFIX sbol: <http://sbols.org/v2#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
 INSERT DATA {
-    $uri a intbio:Implementation ;
+    $uri a intbio:Test ;
     	sbol:displayId $displayId ;
     	sbol:persistentIdentity $persistentIdentity ;
     	sbol:version $version ;
     	dcterms:title $displayId ;
     	sbh:ownedBy <$ownedBy> ;
-    	intbio:built $implementationOf .
+    	intbio:testFor $testFor .
 } 
 
 

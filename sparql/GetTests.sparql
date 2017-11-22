@@ -2,7 +2,7 @@
 PREFIX intbio: <http://intbio.ncl.ac.uk#>
 PREFIX sbol: <http://sbols.org/v2#>
 
-SELECT ?impl WHERE {
-	?impl intbio:built $uri . 
+SELECT ?test WHERE {
+	?test intbio:testFor $uri . 
 }
 
