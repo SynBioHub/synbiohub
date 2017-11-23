@@ -61,7 +61,7 @@ public class PrepareSubmissionJob extends Job
 		CombineArchive combine;
 		try {
 			combine = new CombineArchive(new File(initialFilename));
-		} catch(CombineArchiveException | IOException | JDOMException | ParseException e) {
+		} catch(UnsupportedOperationException | CombineArchiveException | IOException | JDOMException | ParseException e) {
 			return false;
 		}
 		
