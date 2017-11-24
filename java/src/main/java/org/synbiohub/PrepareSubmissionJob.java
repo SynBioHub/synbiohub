@@ -200,13 +200,26 @@ public class PrepareSubmissionJob extends Job
 					} 
 				}
 			}
+			
+		} else if (!submit) {
+
+			for(TopLevel topLevel : doc.getTopLevels())
+			{	
+				if (topLevel.getIdentity().toString().startsWith(ownedByURI)) continue;
+				for (String registry : webOfRegistries.keySet()) {
+					if (topLevel.getIdentity().toString().startsWith(registry)) {
+						System.err.println("Found and removed:"+topLevel.getIdentity());
+						doc.removeTopLevel(topLevel);
+						break;
+					} 
+				}
+			}
+			
 		}
 		
 		if(doc.getTopLevels().size() == 0)
 		{
-//			errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
-//			finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
-//			return;
+
 			doc.setDefaultURIprefix(uriPrefix);
 			
 		} else {
