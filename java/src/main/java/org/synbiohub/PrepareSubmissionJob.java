@@ -188,24 +188,13 @@ public class PrepareSubmissionJob extends Job
 
 		}
 
-		if (submit && !uriPrefix.contains("/public/")) {
+		//if (submit && !uriPrefix.contains("/public/")) {
+
+		if (!copy) {
 
 			for(TopLevel topLevel : doc.getTopLevels())
 			{	
-				for (String registry : webOfRegistries.keySet()) {
-					if (topLevel.getIdentity().toString().startsWith(registry)) {
-						System.err.println("Found and removed:"+topLevel.getIdentity());
-						doc.removeTopLevel(topLevel);
-						break;
-					} 
-				}
-			}
-			
-		} else if (!submit) {
-
-			for(TopLevel topLevel : doc.getTopLevels())
-			{	
-				if (topLevel.getIdentity().toString().startsWith(ownedByURI)) continue;
+				if (!submit && topLevel.getIdentity().toString().startsWith(ownedByURI)) continue;
 				for (String registry : webOfRegistries.keySet()) {
 					if (topLevel.getIdentity().toString().startsWith(registry)) {
 						System.err.println("Found and removed:"+topLevel.getIdentity());

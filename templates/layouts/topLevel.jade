@@ -158,7 +158,55 @@ block content
                 block topLevelBelowPropertyTable
 
             div.col-md-4.entry-actions
+                if (rdfType.name != 'Collection' || memberCount <= 10000)
+                    a.btn.btn-primary(href=meta.url + '/' + meta.id + '.xml')
+                        span.fa.fa-download
+                        |  Download SBOL File
+                    br
+                    br
+                if rdfType.name == 'Component'
+                    a.btn.btn-primary(href=meta.url + '/' + meta.id + '.gb')
+                        span.fa.fa-download
+                        |  Download GenBank
+                    br
+                    br
+                if rdfType.name == 'Component' || rdfType.name == 'Sequence'
+                    a.btn.btn-primary(href=meta.url + '/' + meta.id + '.fasta')
+                        span.fa.fa-download
+                        |  Download FASTA
+                    br
+                    br
+                if rdfType.name == 'Component'
+                    a.btn.btn-primary.sbh-download-picture
+                        span.fa.fa-picture-o
+                        |  Download Image
+                    br
+                    br
+                if !meta.remote && rdfType.name != 'Collection'
+                    a.btn.btn-primary(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name)
+                        span.fa.fa-search
+                        |  Find Uses
+                    br
+                    br
                 block topLevelButtons
+                if meta.triplestore != 'public'
+                    a.btn.btn-success(onclick="popup()")
+                        span.fa.fa-share
+                        |  Share
+                    br
+                    br
+                if meta.triplestore != 'public' && locals.user && locals.user.isCurator
+                    a.btn.btn-success(href=meta.url + '/makePublic')
+                        span.fa.fa-unlock
+                        |  Make Public
+                    br
+                    br
+                if canEdit && meta.triplestore != 'public' && (rdfType.name != 'Collection')
+                    a.btn.btn-success(href=meta.url + '/remove')
+                        span.fa.fa-remove
+                        |  Remove
+                    br
+                    br
                 if canEdit
                     a.btn.btn-info(href=meta.url + "/addOwner")
                         span.fa.fa-id-card
