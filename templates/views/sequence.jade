@@ -3,10 +3,10 @@ extends ../layouts/topLevel.jade
 
 include ../mixins/blast-button.jade
 
-block topLevelPreview
+block topLevelBelowPropertyTable
     if meta.elements
         div.row
-            div.col-md-8
+            div.col-md-12
                 div.pull-right
                     +blast-button(meta)
                 h4 Sequence (#{meta.length} #{meta.lengthUnits})

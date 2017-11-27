@@ -61,46 +61,48 @@ block topLevelBelowTitle
                 a(href=protein.url) #{protein.name}
 
 block topLevelButtons
-    if meta.igemDominant.description == 'true' && !meta.remote
-        a.btn.btn-success(href=meta.url + '/twins',title='This is a dominant twin')
-            span.fa.fa-search
-            | 
-            span Find Twins
-        br
-        br
-    else if !meta.remote
-        a.btn.btn-primary(href=meta.url + '/twins',title='This is NOT a dominant twin')
-            span.fa.fa-search
-            | 
-            span Find Twins
-        br
-        br
-    a.btn.btn-success(href=meta.url + '/createImplementation')
-        span.fa.fa-cubes
-        |  Create Implementation
-    br
-    br
+    li.dropdown.btn.btn-primary
+        span.fa.fa-search
+            |  
+            span.caret
+        ul.dropdown-menu.dropdown-toggle
+            li
+                a(href=href=meta.url + '/uses',title='Find all uses of this '+rdfType.name) Find Uses
+            li
+                if meta.igemDominant.description == 'true' && !meta.remote
+                    a.btn.btn-success(href=meta.url + '/twins',title='This is a dominant twin') Find Twins
+                else if !meta.remote
+                    a(href=meta.url + '/twins',title='This is NOT a dominant twin') Twins
+    li.dropdown.btn.btn-success
+        a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
+            span.fa.fa-cubes
     if meta.remote
-        a.btn.btn-success(href=meta.url + '/copyFromRemote')
-            span.fa.fa-share-alt
-            |  Copy to SynBioHub
-        br
-        br
-    if BenchlingRemotes
-        a.btn.btn-success(href=meta.url + '/createBenchlingSequence')
+        li.dropdown.btn.btn-primary
+            a.btn.btn-success(href=meta.url + '/copyFromRemote')
+                span.fa.fa-share-alt
+                |  Copy to SynBioHub
+    if BenchlingRemotes && ICERemotes
+        li.dropdown.btn.btn-success
             span.fa.fa-send
-            |  Send to Benchling
-        br
-        br
-    if ICERemotes
-        a.btn.btn-success(href=meta.url + '/createICEPart')
-            span.fa.fa-send
-            |  Send to ICE
-        br
-        br
+                |  
+                span.caret
+            ul.dropdown-menu.dropdown-toggle
+                li
+                    a(href=meta.url + '/createBenchlingSequence') Send to Benchling
+                li
+                    a(href=meta.url + '/createICEPart') Send to ICE
+    else if BenchlingRemotes
+        li.dropdown.btn.btn-success
+            a(href=meta.url + '/createBenchlingSequence',style="color:white")
+                span.fa.fa-send
+                |  Send to Benchling
+    else if ICERemotes
+        li.dropdown.btn.btn-success
+            a(href=meta.url + '/createICEPart',style="color:white")
+                span.fa.fa-send
+                |  Send to ICE
     if config.experimental.dataIntegration
-        a.btn.btn-primary(href=meta.url + '/integrate',title='Integrate data from an integration pipeline')
-            span.fa.fa-plus-circle
-            | Data Integration
-        br
-        br
+        li.dropdown.btn.btn-primary
+            a(href=meta.url + '/integrate',title='Integrate data from an integration pipeline',style="color:white")
+                span.fa.fa-plus-circle
+                | Data Integration
