@@ -436,7 +436,7 @@ public class PrepareSubmissionJob extends Job
 
 	}
 	
-	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations) {
+	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations) throws SBOLValidationException {
 		for (Annotation annotation : annotations) {
 			if (annotation.isNestedAnnotations()) {
 				List<Annotation> nestedAnnotations = annotation.getAnnotations();
