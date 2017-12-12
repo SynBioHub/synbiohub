@@ -4,8 +4,3 @@ extends ../layouts/topLevel.jade
 block topLevelPreview
     if attachmentType === 'http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment'
         img(src=attachmentDownloadURL,style='max-width: 1000px;')
-    else
-        a(href=attachmentDownloadURL)
-            button.btn.btn-primary
-                span.fa.fa-download
-                |  Download attachment

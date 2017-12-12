@@ -33,7 +33,7 @@ block modal
                     button.btn.btn-danger(data-dismiss="modal") Close
                     button.btn.btn-primary(type="submit", form="iconForm") Save changes
 
-block topLevelBelowPropertyTable
+block topLevelPreview
     h3 Members
     table.table.table-striped.entry-detail-table.sbh-collection-members-datatable
         thead
@@ -56,14 +56,11 @@ block topLevelBelowPropertyTable
 
 block topLevelButtons
     if locals.user && (locals.user.isCurator || locals.user.isAdmin) && meta.triplestore === 'public'
-        a.btn.btn-success(data-toggle="modal", data-target="#iconModal")
-            span.fa.fa-file-image-o
-            |  Change Collection Icon
-        br
-        br
+        li.btn.btn-success
+            a(data-toggle="modal", data-target="#iconModal", title='Change Collection Icon',style="color:white")
+                span.fa.fa-file-image-o
     if meta.remote
-        a.btn.btn-success(href=copyFromRemote)
-            span.fa.fa-share-alt
-            |  Copy to SynBioHub
-        br
-        br
+        li.btn.btn-success
+            a(href=copyFromRemote, title='Copy to SynBioHub',style="color:white")
+               span.fa.fa-share-alt
+
