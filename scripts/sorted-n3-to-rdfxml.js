@@ -244,7 +244,7 @@ function escapeText(v) {
                 v2 += '&amp;'
                 break
             case '\'':
-                v2 += '&quot;'
+                v2 += '&apos;'
                 break
             default:
                 v2 += v[i]
