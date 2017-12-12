@@ -136,6 +136,7 @@ public class PrepareSubmissionJob extends Job
 		errorLog = "";
 
 		SBOLDocument doc = new SBOLDocument();
+		doc.setDefaultURIprefix("http://dummy.org/");
 		
 		boolean isCombineArchive = getFilenames(sbolFilename, filenames, attachmentFiles);
 
