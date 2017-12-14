@@ -136,7 +136,7 @@ public class PrepareSubmissionJob extends Job
 		errorLog = "";
 
 		SBOLDocument doc = new SBOLDocument();
-		doc.setDefaultURIprefix("http://dummy.org/");
+		doc.setDefaultURIprefix(uriPrefix);
 		
 		boolean isCombineArchive = getFilenames(sbolFilename, filenames, attachmentFiles);
 
@@ -182,49 +182,48 @@ public class PrepareSubmissionJob extends Job
 				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 				return;
 			}
+			
+			if (!copy) {
+
+				for(TopLevel topLevel : individual.getTopLevels())
+				{	
+					if (!submit && topLevel.getIdentity().toString().startsWith(ownedByURI)) continue;
+					for (String registry : webOfRegistries.keySet()) {
+						if (topLevel.getIdentity().toString().startsWith(registry)) {
+							System.err.println("Found and removed:"+topLevel.getIdentity());
+							individual.removeTopLevel(topLevel);
+							break;
+						} 
+					}
+				}
+				
+			}
+			
+			individual.setDefaultURIprefix("http://dummy.org/");
+			if(individual.getTopLevels().size() == 0)
+			{
+
+				individual.setDefaultURIprefix(uriPrefix);
+				
+			} else {
+
+				System.err.println("Changing URI prefix: start (" + filename + ")");
+				if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
+					individual = individual.changeURIPrefixVersion(uriPrefix, null);
+				} else {
+					individual = individual.changeURIPrefixVersion(uriPrefix, version);
+				}
+				System.err.println("Changing URI prefix: done (" + filename + ")");
+				individual.setDefaultURIprefix(uriPrefix);
+
+			}
 
 			doc.createCopy(individual);
 			File file = new File(filename);
 			file.delete();
 
 		}
-
-		//if (submit && !uriPrefix.contains("/public/")) {
-
-		if (!copy) {
-
-			for(TopLevel topLevel : doc.getTopLevels())
-			{	
-				if (!submit && topLevel.getIdentity().toString().startsWith(ownedByURI)) continue;
-				for (String registry : webOfRegistries.keySet()) {
-					if (topLevel.getIdentity().toString().startsWith(registry)) {
-						System.err.println("Found and removed:"+topLevel.getIdentity());
-						doc.removeTopLevel(topLevel);
-						break;
-					} 
-				}
-			}
-			
-		}
-		
-		if(doc.getTopLevels().size() == 0)
-		{
-
-			doc.setDefaultURIprefix(uriPrefix);
-			
-		} else {
-
-			System.err.println("Changing URI prefix: start");
-			if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
-				doc = doc.changeURIPrefixVersion(uriPrefix, null);
-			} else {
-				doc = doc.changeURIPrefixVersion(uriPrefix, version);
-			}
-			System.err.println("Changing URI prefix: done");
-			doc.setDefaultURIprefix(uriPrefix);
-
-		}
-		
+	
 		Collection rootCollection = null;
 				
 		if (submit || copy) {
