@@ -13,9 +13,11 @@ select (sum(?tempcount) as ?count) WHERE {
     WHERE {
         $criteria
 
+	?subject a ?type .
         ?subject sbh:topLevel ?subject .
-        OPTIONAL { ?subject sbol2:displayId ?displayId . }		 
-        OPTIONAL { ?subject dcterms:title ?name . }		 
+        OPTIONAL { ?subject sbol2:displayId ?displayId . }
+	OPTIONAL { ?subject sbol2:version ?version . }
+	OPTIONAL { ?subject dcterms:title ?name . }		 
         OPTIONAL { ?subject dcterms:description ?description . }	
     }
 }
