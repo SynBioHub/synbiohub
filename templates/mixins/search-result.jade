@@ -61,12 +61,12 @@ mixin search-result-collection(submission,removePublicEnabled)
                 a(href=submission.url + '/makePublic')
                     button(type='button').btn.btn-success.public-btn Make Public
                 | 
-            a(href=submission.url + '/removeSubmission')
+            a(href=submission.url + '/removeCollection')
                 button(type='button').btn.btn-success.remove-btn Remove
             | 
             a(href=submission.url + '/cloneSubmission')
                 button(type='button').btn.btn-success.clone-btn Copy
         else if removePublicEnabled
-            a(href=submission.url + '/removeSubmission')
+            a(href=submission.url + '/removeCollection')
                 button(type='button').btn.btn-success.remove-btn Remove
 

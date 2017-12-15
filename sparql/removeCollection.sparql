@@ -1,0 +1,17 @@
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol2: <http://sbols.org/v2#>
+DELETE {
+?s ?p ?o
+} WHERE {
+?s ?p ?o .
+{
+?s sbh:topLevel <$collection> .
+}
+UNION
+{
+<$collection> sbol2:member ?member .
+?s sbh:topLevel ?member .
+}
+FILTER(STRSTARTS(str(?s),'$uriPrefix'))
+FILTER(STRENDS(str(?s),'/$version'))
+}

@@ -144,10 +144,15 @@ block content
                     li.btn.btn-success
                             a(href=meta.url + '/makePublic',title='Make Public',style="color:white")
                                 span.fa.fa-unlock
-                if canEdit && meta.triplestore != 'public' && (rdfType.name != 'Collection')
-                    li.btn.btn-success
-                            a(href=meta.url + '/remove',title='Remove',style="color:white")
-                                span.fa.fa-remove
+                if canEdit && meta.triplestore != 'public' 
+                    if rdfType.name == 'Collection'
+                        li.btn.btn-success
+                                a(href=meta.url + '/removeCollection',title='Remove Collection',style="color:white")
+                                    span.fa.fa-remove
+                    else 
+                        li.btn.btn-success
+                                a(href=meta.url + '/remove',title='Remove',style="color:white")
+                                    span.fa.fa-remove
                 if canEdit
                     li.btn.btn-info
                             a(href=meta.url + "/addOwner",title='Add Owner',style="color:white")

@@ -1,8 +1,0 @@
-PREFIX sbol2: <http://sbols.org/v2#>
-DELETE {
-?s ?p ?o
-} WHERE {
-?s ?p ?o .
-FILTER(STRSTARTS(str(?s),'$uriPrefix'))
-FILTER(STRENDS(str(?s),'/$version'))
-}
