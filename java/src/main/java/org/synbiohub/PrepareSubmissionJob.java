@@ -144,7 +144,7 @@ public class PrepareSubmissionJob extends Job
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 			ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 
-			SBOLDocument individual = SBOLValidateSilent.validate(
+			SBOLDocument individual = SBOLValidate.validate(
 					new PrintStream(logOutputStream),
 					new PrintStream(errorOutputStream),
 					filename,
@@ -164,7 +164,8 @@ public class PrepareSubmissionJob extends Job
 					false,
 					null,
 					false,
-					true);
+					true,
+					false);
 			
 			String fileLog = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 			errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
@@ -321,7 +322,7 @@ public class PrepareSubmissionJob extends Job
 				if(topLevel.getIdentity().toString().equals(rootCollectionIdentity)) {
 					topLevel.unsetDescription();
 					topLevel.unsetName();
-					topLevel.unsetWasDerivedFrom();
+					topLevel.clearWasDerivedFroms();
 					Annotation annotation = topLevel.getAnnotation(new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"));
 					topLevel.removeAnnotation(annotation);
 					continue;

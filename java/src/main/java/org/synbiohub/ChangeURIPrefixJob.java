@@ -2,17 +2,12 @@ package org.synbiohub;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
-import org.sbolstandard.core2.*;
-
-import javax.xml.namespace.QName;
+import org.sbolstandard.core2.SBOLDocument;
+import org.sbolstandard.core2.SBOLValidate;
+import org.sbolstandard.core2.SBOLWriter;
 
 public class ChangeURIPrefixJob extends Job
 {
@@ -31,7 +26,7 @@ public class ChangeURIPrefixJob extends Job
 		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 		
-		SBOLDocument doc = SBOLValidateSilent.validate(
+		SBOLDocument doc = SBOLValidate.validate(
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
@@ -51,7 +46,8 @@ public class ChangeURIPrefixJob extends Job
 				false,
 				null,
 				false,
-				true);
+				true,
+				false);
 		
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
@@ -64,8 +60,7 @@ public class ChangeURIPrefixJob extends Job
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 
-		SBOLWriter writer = new SBOLWriter();
-		writer.write(doc, resultFile);
+		SBOLWriter.write(doc, resultFile);
 
 		finish(new ChangeURIPrefixResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 

@@ -30,7 +30,7 @@ public class RDFToSBOLJob extends Job
 		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 		
-		SBOLDocument doc = SBOLValidateSilent.validate(
+		SBOLDocument doc = SBOLValidate.validate(
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
@@ -50,13 +50,15 @@ public class RDFToSBOLJob extends Job
 				false,
 				null,
 				false,
-				true);
+				true,
+				false);
 		
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 
 		if(errorLog.length() > 0)
 		{
+			System.err.println("ERROR: " + errorLog);
 			finish(new RDFToSBOLResult(this, false, "", log, errorLog));
 			return;
 		}

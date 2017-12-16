@@ -42,7 +42,7 @@ public class CloneSubmissionJob extends Job
 		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 		
-		SBOLDocument doc = SBOLValidateSilent.validate(
+		SBOLDocument doc = SBOLValidate.validate(
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
@@ -62,7 +62,8 @@ public class CloneSubmissionJob extends Job
 				false,
 				null,
 				false,
-				true);
+				true,
+				false);
 
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
@@ -88,7 +89,7 @@ public class CloneSubmissionJob extends Job
 				if(rootCollection!=null && topLevel.getIdentity().equals(rootCollection.getIdentity())) {
 					topLevel.unsetDescription();
 					topLevel.unsetName();
-					topLevel.unsetWasDerivedFrom();
+					topLevel.clearWasDerivedFroms();
 					Annotation annotation = topLevel.getAnnotation(new QName("http://purl.org/dc/elements/1.1/", "creator", "dc"));
 					topLevel.removeAnnotation(annotation);
 					continue;
