@@ -93,14 +93,20 @@ block topLevelButtons
                     a(href=meta.url + '/createICEPart') Send to ICE
     else if BenchlingRemotes
         li.dropdown.btn.btn-success
-            a(href=meta.url + '/createBenchlingSequence',style="color:white")
-                span.fa.fa-send
-                |  Send to Benchling
+            span.fa.fa-send
+                |  
+                span.caret
+            ul.dropdown-menu.dropdown-toggle
+                li
+                    a(href=meta.url + '/createBenchlingSequence') Send to Benchling
     else if ICERemotes
         li.dropdown.btn.btn-success
-            a(href=meta.url + '/createICEPart',style="color:white")
-                span.fa.fa-send
-                |  Send to ICE
+            span.fa.fa-send
+                |  
+                span.caret
+            ul.dropdown-menu.dropdown-toggle
+                li
+                    a(href=meta.url + '/createICEPart') Send to ICE
     if config.experimental.dataIntegration
         li.dropdown.btn.btn-primary
             a(href=meta.url + '/integrate',title='Integrate data from an integration pipeline',style="color:white")
