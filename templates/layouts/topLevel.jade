@@ -263,7 +263,7 @@ block content
                                                                 span.fa.fa-info-circle &nbsp;
                                                             a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
                                                                 span.fa.fa-search
-                                                            if(annotation.removeOwner)
+                                                            if(canEdit && annotation.removeOwner)
                                                                 form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
                                                                     input(type='hidden' name='userUri' value=config.databasePrefix + annotation.value)
                                                                     button.fakelink(type='submit')
