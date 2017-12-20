@@ -126,6 +126,7 @@ if (typeof meta !== 'undefined') {
 
         searching: !meta.remote,
         ordering: !meta.remote,
+        order: [[2, "asc"]],
 
         ajax: {
             url: '/api/datatables',
