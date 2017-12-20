@@ -1,18 +1,10 @@
 package org.synbiohub;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import org.sbolstandard.core2.*;
-
-import javax.xml.namespace.QName;
 
 public class ConvertToGenBankJob extends Job
 {
@@ -29,7 +21,7 @@ public class ConvertToGenBankJob extends Job
 		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 		
-		SBOLDocument doc = SBOLValidateSilent.validate(
+		SBOLDocument doc = SBOLValidate.validate(
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
@@ -48,6 +40,7 @@ public class ConvertToGenBankJob extends Job
 				false,
 				false,
 				"",
+				false,
 				false,
 				false);
 		

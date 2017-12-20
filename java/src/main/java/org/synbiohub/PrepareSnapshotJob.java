@@ -2,14 +2,10 @@ package org.synbiohub;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import org.sbolstandard.core2.*;
 
@@ -32,7 +28,7 @@ public class PrepareSnapshotJob extends Job
 		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 		
-		SBOLDocument doc = SBOLValidateSilent.validate(
+		SBOLDocument doc = SBOLValidate.validate(
 				new PrintStream(logOutputStream),
 				new PrintStream(errorOutputStream),
 				sbolFilename,
@@ -52,7 +48,8 @@ public class PrepareSnapshotJob extends Job
 				false,
 				null,
 				false,
-				true);
+				true,
+				false);
 		
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
@@ -87,8 +84,7 @@ public class PrepareSnapshotJob extends Job
 
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 
-		SBOLWriter writer = new SBOLWriter();
-		writer.write(doc, resultFile);
+		SBOLWriter.write(doc, resultFile);
 
 		finish(new PrepareSnapshotResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 
