@@ -3,7 +3,6 @@ package org.synbiohub;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -15,12 +14,16 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.xml.namespace.QName;
+import javax.xml.stream.XMLStreamException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jdom2.JDOMException;
+import org.sbml.jsbml.SBMLDocument;
+import org.sbml.jsbml.SBMLReader;
 import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.Collection;
 import org.sbolstandard.core2.Identified;
@@ -37,6 +40,8 @@ import org.synbiohub.frontend.SynBioHubFrontend;
 import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
+import edu.utah.ece.async.ibiosim.conversion.SBML2SBOL;
+import edu.utah.ece.async.ibiosim.dataModels.biomodel.util.SBMLutilities;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
@@ -82,7 +87,7 @@ public class PrepareSubmissionJob extends Job
 			
 			if(format.startsWith("http://identifiers.org/combine.specifications/sbol")) {
 				sbolFiles.add("unzipped/" + entry.getFileName());
-			} else if(format.startsWith("http://identifiers.org/combine.specifications/sbol")) {
+			} else if(format.startsWith("http://identifiers.org/combine.specifications/sbml")) {
 				sbmlFiles.add("unzipped/" + entry.getFileName());
 			} else {
 				attachments.add("unzipped/" + entry.getFileName());
@@ -205,7 +210,7 @@ public class PrepareSubmissionJob extends Job
 				attachmentFiles.add(filename);
 				continue;
 			} else if(errorLog.length() > 0) {
-				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
+				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles, sbmlFiles));
 				return;
 			}
 			
@@ -245,14 +250,32 @@ public class PrepareSubmissionJob extends Job
 			}
 
 			doc.createCopy(individual);
-			File file = new File(filename);
-			file.delete();
 		}
 		
 		for(Model model : doc.getModels() ) {
 			URI source = model.getSource();
 			TopLevel attachment = doc.getGenericTopLevel(source);
 			toConvert.remove(attachment.getAnnotation(new QName("source")).getStringValue());
+		}
+		
+		System.err.println(toConvert);
+		System.err.println(sbmlFiles);
+		
+		for(String sbmlFilename : toConvert) {
+			SBOLDocument sbolDoc = new SBOLDocument();
+			SBMLDocument sbmlDoc;
+
+			try {
+				SBMLReader reader = new SBMLReader();
+				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
+				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, new HashSet<String>(filenames),
+						uriPrefix);
+				sbolDoc.write(System.err);
+			} catch (XMLStreamException e) {
+				e.printStackTrace();
+			}
+			
+			doc.createCopy(sbolDoc);
 		}
 	
 		Collection rootCollection = null;
@@ -389,7 +412,7 @@ public class PrepareSubmissionJob extends Job
 										errorLog = "Submission terminated.\nA submission with this id already exists,"
 												+ " and it includes an object: " + topLevel.getIdentity()
 												+ " that is already in this repository and has different content";
-										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
+										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles, sbmlFiles));
 										return;
 									}
 								} else {
@@ -463,7 +486,7 @@ public class PrepareSubmissionJob extends Job
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
-		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles));
+		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, sbmlFiles));
 
 	}
 	
