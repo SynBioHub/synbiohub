@@ -334,7 +334,7 @@ public class PrepareSubmissionJob extends Job
 						String topLevelUri = topLevel.getIdentity().toString();
 						if (topLevelUri.startsWith(registry+"/user/")) {
 							topLevelUri = topLevel.getIdentity().toString() + '/' + 
-									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()) + shareLinkSalt) + 
+									DigestUtils.sha1Hex("synbiohub_" + DigestUtils.sha1Hex(topLevel.getIdentity().toString()+"/edit") + shareLinkSalt) + 
 									"/share";
 						}
 						SBOLDocument tlDoc;
@@ -345,6 +345,7 @@ public class PrepareSubmissionJob extends Job
 							tlDoc = null;
 						}
 						if (tlDoc != null) {
+							System.err.println("Looking up:"+topLevel.getIdentity());
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
 								if (!topLevel.equals(tl)) {
@@ -353,7 +354,8 @@ public class PrepareSubmissionJob extends Job
 											sbh.removeSBOL(URI.create(topLevelUri));
 										}
 										catch (SynBioHubException e) {
-											e.printStackTrace();
+											System.err.println("Remove fail for:"+topLevel.getIdentity());
+											//e.printStackTrace(System.err);
 										}
 									} else {
 										errorLog = "Submission terminated.\nA submission with this id already exists,"
@@ -363,7 +365,7 @@ public class PrepareSubmissionJob extends Job
 										return;
 									}
 								} else {
-									System.err.println("Found and removed:"+topLevelUri);
+									System.err.println("Found and removed:"+topLevel.getIdentity());
 									doc.removeTopLevel(topLevel);
 								}	
 							}
