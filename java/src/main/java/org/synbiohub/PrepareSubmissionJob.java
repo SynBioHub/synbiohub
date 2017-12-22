@@ -434,7 +434,7 @@ public class PrepareSubmissionJob extends Job
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
-
+		System.err.println("attachmentFiles="+attachmentFiles.toString());
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles));
 
 	}
