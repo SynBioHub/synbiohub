@@ -174,8 +174,6 @@ public class PrepareSubmissionJob extends Job
 		
 		boolean isCombineArchive = getFilenames(sbolFilename, filenames, sbmlFiles, attachmentFiles);
 		ArrayList<String> toConvert = new ArrayList<>(sbmlFiles);
-		
-		System.err.println(filenames);
 
 		for(String filename : filenames) {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
@@ -277,7 +275,6 @@ public class PrepareSubmissionJob extends Job
 		for(String sbmlFilename : toConvert) {
 			SBOLDocument sbolDoc = new SBOLDocument();
 			SBMLDocument sbmlDoc;
-			System.err.println("Converting " + sbmlFilename);
 
 			try {
 				SBMLReader reader = new SBMLReader();
@@ -500,6 +497,10 @@ public class PrepareSubmissionJob extends Job
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
+<<<<<<< HEAD
+=======
+
+>>>>>>> a63c811e4396f0f20f8b9fa61f5b899ccd8bec36
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, sbmlFiles));
 
 	}
