@@ -255,9 +255,13 @@ public class PrepareSubmissionJob extends Job
 		}
 		
 		for(Model model : doc.getModels() ) {
-			URI source = model.getSource();
-			System.err.println("Source: " + source);
-			//toConvert.remove(attachment.getAnnotation(new QName("source")).getStringValue());
+			String source = model.getSource().toString();
+			
+			if(sbmlFiles.contains(source)) {
+				toConvert.remove(source);
+			} else {
+				System.err.println("Source not in uploaded files, tragic!");
+			}
 		}
 		
 		System.err.println(toConvert);
@@ -266,6 +270,7 @@ public class PrepareSubmissionJob extends Job
 		for(String sbmlFilename : toConvert) {
 			SBOLDocument sbolDoc = new SBOLDocument();
 			SBMLDocument sbmlDoc;
+			System.err.println("Converting " + sbmlFilename);
 
 			try {
 				SBMLReader reader = new SBMLReader();
