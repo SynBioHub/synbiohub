@@ -91,6 +91,7 @@ public class PrepareSubmissionJob extends Job
 				sbolFiles.add("unzipped/" + entry.getFileName());
 			} else if(format.startsWith("http://identifiers.org/combine.specifications/sbml")) {
 				sbmlFiles.add("unzipped/" + entry.getFileName());
+				attachments.add("unzipped/" + entry.getFileName());
 			} else {
 				attachments.add("unzipped/" + entry.getFileName());
 			}
@@ -133,6 +134,7 @@ public class PrepareSubmissionJob extends Job
 						sbolFiles.add(filename);
 					} else if(firstLine.contains("sbml")) {
 						sbmlFiles.add(filename);
+						attachments.add(filename);
 					} else {
 						attachments.add(filename);
 					}
@@ -162,6 +164,7 @@ public class PrepareSubmissionJob extends Job
 	
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
+		System.err.println("In execute");
 		ArrayList<String> filenames = new ArrayList<>();
 		ArrayList<String> attachmentFiles = new ArrayList<>();
 		ArrayList<String> sbmlFiles = new ArrayList<>();
@@ -256,6 +259,8 @@ public class PrepareSubmissionJob extends Job
 
 			doc.createCopy(individual);
 		}
+		
+		System.err.println(doc.getModels());
 		
 		for(Model model : doc.getModels() ) {
 			String source = model.getSource().toString();
@@ -497,10 +502,7 @@ public class PrepareSubmissionJob extends Job
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
-<<<<<<< HEAD
-=======
 
->>>>>>> a63c811e4396f0f20f8b9fa61f5b899ccd8bec36
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, sbmlFiles));
 
 	}
