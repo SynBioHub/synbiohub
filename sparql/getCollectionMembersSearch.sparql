@@ -7,7 +7,7 @@ SELECT ?uri
        ?type
 $graphs 
 WHERE { {
-SELECT ?uri 
+SELECT DISTINCT ?uri 
        ?displayId
        ?name
        ?description
