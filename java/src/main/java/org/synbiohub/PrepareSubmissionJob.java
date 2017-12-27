@@ -256,18 +256,6 @@ public class PrepareSubmissionJob extends Job
 
 			doc.createCopy(individual);
 		}
-//		
-//		for(Model model : doc.getModels() ) {
-//			String source = model.getSource().toString();
-//			
-//			System.err.println("Looking for: unzipped/" + source);
-//			
-//			if(sbmlFiles.contains("unzipped/" + source)) {
-//				toConvert.remove("unzipped/" + source);
-//			} else {
-//				System.err.println("Source not in uploaded files, tragic!");
-//			}
-//		}
 		
 		System.err.println(toConvert);
 		System.err.println(sbmlFiles);
