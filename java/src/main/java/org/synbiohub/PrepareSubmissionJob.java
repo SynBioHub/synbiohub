@@ -256,8 +256,8 @@ public class PrepareSubmissionJob extends Job
 		
 		for(Model model : doc.getModels() ) {
 			URI source = model.getSource();
-			TopLevel attachment = doc.getGenericTopLevel(source);
-			toConvert.remove(attachment.getAnnotation(new QName("source")).getStringValue());
+			System.err.println("Source: " + source);
+			//toConvert.remove(attachment.getAnnotation(new QName("source")).getStringValue());
 		}
 		
 		System.err.println(toConvert);
@@ -272,7 +272,6 @@ public class PrepareSubmissionJob extends Job
 				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
 				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, new HashSet<String>(filenames),
 						uriPrefix);
-				sbolDoc.write(System.err);
 			} catch (XMLStreamException e) {
 				e.printStackTrace();
 			}
