@@ -12,6 +12,7 @@ backup/*.bp
 public/logo_uploaded*
 synbiohub.log
 public/local/*
+unzipped/*
 
 
 
