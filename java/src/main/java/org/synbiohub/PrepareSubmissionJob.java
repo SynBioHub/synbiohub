@@ -256,31 +256,45 @@ public class PrepareSubmissionJob extends Job
 
 			doc.createCopy(individual);
 		}
-		
-		for(Model model : doc.getModels() ) {
-			String source = model.getSource().toString();
-			
-			System.err.println("Looking for: unzipped/" + source);
-			
-			if(sbmlFiles.contains("unzipped/" + source)) {
-				toConvert.remove("unzipped/" + source);
-			} else {
-				System.err.println("Source not in uploaded files, tragic!");
-			}
-		}
+//		
+//		for(Model model : doc.getModels() ) {
+//			String source = model.getSource().toString();
+//			
+//			System.err.println("Looking for: unzipped/" + source);
+//			
+//			if(sbmlFiles.contains("unzipped/" + source)) {
+//				toConvert.remove("unzipped/" + source);
+//			} else {
+//				System.err.println("Source not in uploaded files, tragic!");
+//			}
+//		}
 		
 		System.err.println(toConvert);
 		System.err.println(sbmlFiles);
 		
 		for(String sbmlFilename : toConvert) {
+			sbmlFilename = sbmlFilename.replace("unzipped/", "");
 			SBOLDocument sbolDoc = new SBOLDocument();
 			SBMLDocument sbmlDoc;
 
+			boolean foundIt = false;
+			for(Model model : doc.getModels() ) {
+				String source = model.getSource().toString();
+				System.err.println("Source="+source);
+				if (sbmlFilename.equals(source)) {
+					foundIt = true;
+					break;
+				}
+			}
+			if (foundIt) continue;
+
 			try {
 				SBMLReader reader = new SBMLReader();
-				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
+				sbmlDoc = reader.readSBMLFromFile("unzipped/"+sbmlFilename);
+				System.err.println("Converting to SBOL:"+sbmlFilename);
 				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, new HashSet<String>(filenames),
 						uriPrefix);
+				System.err.println("Finished converting to SBOL:"+sbmlFilename);
 			} catch (XMLStreamException e) {
 				e.printStackTrace();
 			}
@@ -497,10 +511,6 @@ public class PrepareSubmissionJob extends Job
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
-<<<<<<< HEAD
-=======
-
->>>>>>> a63c811e4396f0f20f8b9fa61f5b899ccd8bec36
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, sbmlFiles));
 
 	}
