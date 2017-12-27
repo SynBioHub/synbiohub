@@ -1,10 +1,7 @@
 package org.synbiohub;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
@@ -15,38 +12,22 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jdom2.JDOMException;
-import org.sbml.jsbml.SBMLDocument;
-import org.sbml.jsbml.SBMLReader;
-import org.sbolstandard.core2.Annotation;
-import org.sbolstandard.core2.Collection;
-import org.sbolstandard.core2.Identified;
-import org.sbolstandard.core2.IdentifiedVisitor;
-import org.sbolstandard.core2.Model;
-import org.sbolstandard.core2.SBOLConversionException;
-import org.sbolstandard.core2.SBOLDocument;
-import org.sbolstandard.core2.SBOLValidate;
-import org.sbolstandard.core2.SBOLValidationException;
-import org.sbolstandard.core2.SBOLWriter;
-import org.sbolstandard.core2.TopLevel;
+import org.sbolstandard.core2.*;
 import org.synbiohub.frontend.SynBioHubException;
 import org.synbiohub.frontend.SynBioHubFrontend;
 
 import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
-import edu.utah.ece.async.ibiosim.conversion.SBML2SBOL;
-import edu.utah.ece.async.ibiosim.dataModels.biomodel.util.SBMLutilities;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
+
+import javax.xml.namespace.QName;
 
 public class PrepareSubmissionJob extends Job
 {
@@ -76,7 +57,7 @@ public class PrepareSubmissionJob extends Job
 	public String shareLinkSalt;
 	public String overwrite_merge;
 
-	private boolean readCOMBINEArchive(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
+	private boolean readCOMBINEArchive(String initialFilename, List<String> sbolFiles, List<String> attachments) {
 		CombineArchive combine;
 		try {
 			combine = new CombineArchive(new File(initialFilename));
@@ -89,9 +70,6 @@ public class PrepareSubmissionJob extends Job
 			
 			if(format.startsWith("http://identifiers.org/combine.specifications/sbol")) {
 				sbolFiles.add("unzipped/" + entry.getFileName());
-			} else if(format.startsWith("http://identifiers.org/combine.specifications/sbml")) {
-				sbmlFiles.add("unzipped/" + entry.getFileName());
-				attachments.add("unzipped/" + entry.getFileName());
 			} else {
 				attachments.add("unzipped/" + entry.getFileName());
 			}
@@ -108,7 +86,7 @@ public class PrepareSubmissionJob extends Job
 		return true;
 	}
 	
-	private boolean readZIPFile(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
+	private boolean readZIPFile(String initialFilename, List<String> sbolFiles, List<String> attachments) {
 		ZipFile zip;
 		
 		try {
@@ -121,25 +99,12 @@ public class PrepareSubmissionJob extends Job
 			try {
 				List<FileHeader> headers = zip.getFileHeaders();
 				
-				zip.extractAll("./unzipped");
-				
 				for(FileHeader header : headers) {
-					String filename = "unzipped/" + header.getFileName();
-					
-					BufferedReader reader = new BufferedReader(new FileReader(filename));
-					reader.readLine();
-					String firstLine = reader.readLine();
-					
-					if(firstLine.contains("sbol")) {
-						sbolFiles.add(filename);
-					} else if(firstLine.contains("sbml")) {
-						sbmlFiles.add(filename);
-						attachments.add(filename);
-					} else {
-						attachments.add(filename);
-					}
-				}				
-			} catch (ZipException | IOException e) {
+					sbolFiles.add("unzipped/" + header.getFileName());
+				}
+	
+				zip.extractAll("./unzipped");
+			} catch (ZipException e) {
 				return false;
 			}
 		} else {
@@ -149,12 +114,12 @@ public class PrepareSubmissionJob extends Job
 		return true;
 	}
 	
-	private boolean getFilenames(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
-		if(readCOMBINEArchive(initialFilename, sbolFiles, sbmlFiles, attachments)) {
+	private boolean getFilenames(String initialFilename, List<String> sbolFiles, List<String> attachments) {
+		if(readCOMBINEArchive(initialFilename, sbolFiles, attachments)) {
 			return true;
 		}
 		
-		if(readZIPFile(initialFilename, sbolFiles, sbmlFiles, attachments)) {
+		if(readZIPFile(initialFilename, sbolFiles, attachments)) {
 			return false;
 		}
 		
@@ -164,10 +129,8 @@ public class PrepareSubmissionJob extends Job
 	
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
-		System.err.println("In execute");
 		ArrayList<String> filenames = new ArrayList<>();
 		ArrayList<String> attachmentFiles = new ArrayList<>();
-		ArrayList<String> sbmlFiles = new ArrayList<>();
 		String log, errorLog = new String();
 		log = "";
 		errorLog = "";
@@ -175,8 +138,7 @@ public class PrepareSubmissionJob extends Job
 		SBOLDocument doc = new SBOLDocument();
 		doc.setDefaultURIprefix(uriPrefix);
 		
-		boolean isCombineArchive = getFilenames(sbolFilename, filenames, sbmlFiles, attachmentFiles);
-		ArrayList<String> toConvert = new ArrayList<>(sbmlFiles);
+		boolean isCombineArchive = getFilenames(sbolFilename, filenames, attachmentFiles);
 
 		for(String filename : filenames) {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
@@ -218,7 +180,7 @@ public class PrepareSubmissionJob extends Job
 				attachmentFiles.add(filename);
 				continue;
 			} else if(errorLog.length() > 0) {
-				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles, sbmlFiles));
+				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 				return;
 			}
 			
@@ -258,39 +220,9 @@ public class PrepareSubmissionJob extends Job
 			}
 
 			doc.createCopy(individual);
-		}
-		
-		System.err.println(toConvert);
-		System.err.println(sbmlFiles);
-		
-		for(String sbmlFilename : toConvert) {
-			sbmlFilename = sbmlFilename.replace("unzipped/", "");
-			SBOLDocument sbolDoc = new SBOLDocument();
-			SBMLDocument sbmlDoc;
+			File file = new File(filename);
+			file.delete();
 
-			boolean foundIt = false;
-			for(Model model : doc.getModels() ) {
-				String source = model.getSource().toString();
-				System.err.println("Source="+source);
-				if (sbmlFilename.equals(source)) {
-					foundIt = true;
-					break;
-				}
-			}
-			if (foundIt) continue;
-
-			try {
-				SBMLReader reader = new SBMLReader();
-				sbmlDoc = reader.readSBMLFromFile("unzipped/"+sbmlFilename);
-				System.err.println("Converting to SBOL:"+sbmlFilename);
-				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, new HashSet<String>(filenames),
-						uriPrefix);
-				System.err.println("Finished converting to SBOL:"+sbmlFilename);
-			} catch (XMLStreamException e) {
-				e.printStackTrace();
-			}
-			
-			doc.createCopy(sbolDoc);
 		}
 	
 		Collection rootCollection = null;
@@ -429,7 +361,7 @@ public class PrepareSubmissionJob extends Job
 										errorLog = "Submission terminated.\nA submission with this id already exists,"
 												+ " and it includes an object: " + topLevel.getIdentity()
 												+ " that is already in this repository and has different content";
-										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles, sbmlFiles));
+										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 										return;
 									}
 								} else {
@@ -502,8 +434,8 @@ public class PrepareSubmissionJob extends Job
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
-
-		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, sbmlFiles));
+		System.err.println("attachmentFiles="+attachmentFiles.toString());
+		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles));
 
 	}
 	
