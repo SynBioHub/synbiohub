@@ -1,9 +1,0 @@
-PREFIX sbol: <http://sbols.org/v2#>
-
-DELETE WHERE {
-    <$modelUri> sbol:source ?oldAttachment
-}
-;
-INSERT DATA {
-    <$modelUri> sbol:source <$attachmentUri>
-}
