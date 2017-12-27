@@ -1,7 +1,7 @@
 PREFIX sbol: <http://sbols.org/v2#>
 
 INSERT {
-    $modelUri sbol:source $attachmentUri
+    <$modelUri> sbol:source <$attachmentUri>
 } WHERE {
-    $modelUri sbol:source ?oldAttachment
+    <$modelUri> sbol:source ?oldAttachment
 }

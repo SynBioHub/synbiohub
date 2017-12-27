@@ -2,6 +2,7 @@ package org.synbiohub;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -125,13 +126,15 @@ public class PrepareSubmissionJob extends Job
 					String filename = "unzipped/" + header.getFileName();
 					
 					BufferedReader reader = new BufferedReader(new FileReader(filename));
+					reader.readLine();
+					String firstLine = reader.readLine();
 					
-					if(reader.readLine().contains("sbol")) {
+					if(firstLine.contains("sbol")) {
 						sbolFiles.add(filename);
-					} else if(reader.readLine().contains("sbml")) {
+					} else if(firstLine.contains("sbml")) {
 						sbmlFiles.add(filename);
 					} else {
-						
+						attachments.add(filename);
 					}
 				}				
 			} catch (ZipException | IOException e) {
@@ -171,6 +174,8 @@ public class PrepareSubmissionJob extends Job
 		
 		boolean isCombineArchive = getFilenames(sbolFilename, filenames, sbmlFiles, attachmentFiles);
 		ArrayList<String> toConvert = new ArrayList<>(sbmlFiles);
+		
+		System.err.println(filenames);
 
 		for(String filename : filenames) {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
@@ -257,8 +262,10 @@ public class PrepareSubmissionJob extends Job
 		for(Model model : doc.getModels() ) {
 			String source = model.getSource().toString();
 			
-			if(sbmlFiles.contains(source)) {
-				toConvert.remove(source);
+			System.err.println("Looking for: unzipped/" + source);
+			
+			if(sbmlFiles.contains("unzipped/" + source)) {
+				toConvert.remove("unzipped/" + source);
 			} else {
 				System.err.println("Source not in uploaded files, tragic!");
 			}
