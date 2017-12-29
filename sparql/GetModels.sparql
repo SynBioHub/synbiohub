@@ -1,0 +1,10 @@
+PREFIX sbol: <http://sbols.org/v2#>
+
+SELECT
+    ?modelUri
+    ?source
+WHERE {
+    <$collectionUri> sbol:member ?modelUri . 
+    ?modelUri a sbol:Model .
+    ?modelUri sbol:source ?source 
+}
