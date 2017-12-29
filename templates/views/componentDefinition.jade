@@ -73,9 +73,10 @@ block topLevelButtons
                     a.btn.btn-success(href=meta.url + '/twins',title='This is a dominant twin') Find Twins
                 else if !meta.remote
                     a(href=meta.url + '/twins',title='This is NOT a dominant twin') Twins
-    li.dropdown.btn.btn-success
-        a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
-            span.fa.fa-cubes
+    if createImplementation
+        li.dropdown.btn.btn-success
+            a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
+                span.fa.fa-cubes
     if meta.remote
         li.dropdown.btn.btn-primary
             a.btn.btn-success(href=meta.url + '/copyFromRemote')
