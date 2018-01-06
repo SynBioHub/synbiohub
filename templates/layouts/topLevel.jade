@@ -123,13 +123,13 @@ block content
                                         a(href=meta.url + '/' + meta.id + '.gb') Download GenBank
                                 if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                                     li 
-                                        a(href=meta.url + '/' + meta.id + '.fasta') Downloand FASTA
+                                        a(href=meta.url + '/' + meta.id + '.fasta') Download FASTA
                                 if rdfType.name == 'Component'
                                     li 
                                         a.sbh-download-picture Download Image
                                 if rdfType.name == 'Attachment'
                                     li 
-                                        a(href=meta.url + '/download') Downloand Attachment
+                                        a(href=meta.url + '/download') Download Attachment
                 if !meta.remote && rdfType.name != 'Collection' && rdfType.name != 'Component'
                     li.dropdown.btn.btn-primary
                             a(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name,style="color:white")
