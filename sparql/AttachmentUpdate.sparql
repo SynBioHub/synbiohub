@@ -1,9 +1,9 @@
-PREFIX sbol: <http://sbols.org/v2#>
-
-DELETE WHERE {
-    <$modelUri> sbol:source ?oldAttachment
+DELETE {
+    ?s ?p <$oldUri>
 }
-;
-INSERT DATA {
-    <$modelUri> sbol:source <$attachmentUri>
+INSERT {
+    ?s ?p <$newUri>
+}
+WHERE {
+    ?s ?p <$oldUri>
 }
