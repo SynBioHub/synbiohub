@@ -19,6 +19,7 @@ SELECT
        ?created
        ?modified
        ?wasDerivedFrom
+       ?wasGeneratedBy
 WHERE { 
       <$collection> a sbol2:Collection .
       OPTIONAL { <$collection> sbol2:persistentIdentity ?persistentIdentity . }
@@ -35,4 +36,5 @@ WHERE {
       OPTIONAL { <$collection> sbh:mutableNotes ?mutableNotes . }
       OPTIONAL { <$collection> sbh:mutableProvenance ?mutableProvenance . }
       OPTIONAL { <$collection> prov:wasDerivedFrom ?wasDerivedFrom . }
+      OPTIONAL { <$collection> prov:wasGeneratedBy ?wasGeneratedBy . }
 }
