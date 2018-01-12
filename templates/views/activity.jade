@@ -1,0 +1,53 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPropertyTable
+    if usages.length > 0
+        tr
+            td 
+                a(href='http://sbols.org/v2#Usage', title='http://sbols.org/v2#Usage') Usage
+            td Identifier
+            td Name
+        tr
+            td
+                for usage in usages
+                    != usage.typeStr
+                    br
+            td
+                for usage in usages
+                    a(href=usage.url) #{usage.defId}
+                    br
+            td
+                for usage in usages
+                    a(href=usage.url) #{usage.defName}
+                    br
+    if associations.length > 0
+        tr
+            td 
+                a(href='http://sbols.org/v2#Association', title='http://sbols.org/v2#Association') Association
+            td Identifier
+            td Name
+        tr
+            td
+                for association in associations
+                    != association.typeStr
+                    br
+            td
+                for association in associations
+                    a(href=association.agent.url) #{association.agent.defId}
+                    br
+            td
+                for association in associations
+                    a(href=association.agent.url) #{association.agent.defName}
+                    br
+        if association.plan
+            tr
+                td
+                td
+                    for association in associations
+                        a(href=association.plan.url) #{association.plan.defId}
+                        br
+                td
+                    for association in associations
+                        a(href=association.plan.url) #{association.plan.defName}
+                        br

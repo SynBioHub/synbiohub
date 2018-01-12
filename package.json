@@ -38,7 +38,7 @@
     "rdf-ext": "^0.3.0",
     "rdf-graph-abstract": "^0.3.0",
     "rdf-graph-array": "git+https://github.com/udp/rdf-graph-array.git",
-    "rdf-parser-rdfxml": "^0.3.1",
+    "rdf-parser-rdfxml": "^0.3.0-rc1",
     "request": "^2.79.0",
     "sboljs": "^1.9.2",
     "sbolmeta": "^0.3.0",
