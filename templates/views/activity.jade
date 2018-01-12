@@ -5,7 +5,7 @@ block topLevelPropertyTable
     if usages.length > 0
         tr
             td 
-                a(href='http://sbols.org/v2#Usage', title='http://sbols.org/v2#Usage') Usage
+                a(href='http://www.w3.org/ns/prov#Usage', title='http://www.w3.org/ns/prov#Usage') Usage
             td Identifier
             td Name
         tr
@@ -24,7 +24,7 @@ block topLevelPropertyTable
     if associations.length > 0
         tr
             td 
-                a(href='http://sbols.org/v2#Association', title='http://sbols.org/v2#Association') Association
+                a(href='http://www.w3.org/ns/prov#Association', title='http://www.w3.org/ns/prov#Association') Association
             td Identifier
             td Name
         tr
@@ -42,7 +42,8 @@ block topLevelPropertyTable
                     br
         if association.plan
             tr
-                td
+                td 
+                    a(href='http://www.w3.org/ns/prov#Plan', title='http://www.w3.org/ns/prov#Plan') Plan
                 td
                     for association in associations
                         a(href=association.plan.url) #{association.plan.defId}
