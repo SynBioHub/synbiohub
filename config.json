@@ -43,7 +43,6 @@
   },
   "webOfRegistries" : {
   },
-  "threadPoolSize": 8,
   "uploadLimit": "150mb",
   "resolveBatch": 20,
   "staggeredQueryLimit": 10000,
