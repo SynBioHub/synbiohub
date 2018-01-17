@@ -41,6 +41,11 @@
     </plugins>
   </build>
   <repositories>
+               <repository>
+             <id>ossrh</id>
+             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+         </repository>
+
   <repository>
     <id>sems-maven-repository-releases</id>
     <name>SEMS Maven Repo</name>
