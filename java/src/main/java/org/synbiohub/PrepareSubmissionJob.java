@@ -396,6 +396,7 @@ public class PrepareSubmissionJob extends Job
 					continue;
 				}
 				for (String registry : webOfRegistries.keySet()) {
+					System.err.println("registry="+registry);
 					SynBioHubFrontend sbh = new SynBioHubFrontend(webOfRegistries.get(registry),
 							registry);
 					if (topLevel.getIdentity().toString().startsWith(registry)) {
@@ -407,6 +408,7 @@ public class PrepareSubmissionJob extends Job
 						}
 						SBOLDocument tlDoc;
 						try {
+							System.err.println("Fetching:"+topLevelUri);
 							tlDoc = sbh.getSBOL(URI.create(topLevelUri));
 						}
 						catch (SynBioHubException e) {
@@ -437,6 +439,8 @@ public class PrepareSubmissionJob extends Job
 									doc.removeTopLevel(topLevel);
 								}	
 							}
+						} else {
+							System.err.println("NOT FOUND");
 						}
 						break;
 					}	
