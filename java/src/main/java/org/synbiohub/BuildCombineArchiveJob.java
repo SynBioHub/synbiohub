@@ -61,7 +61,7 @@ public class BuildCombineArchiveJob extends Job {
 		URI sbolUri;		
 
 		try {
-			sbolUri = new URI("http://identifiers.org/combine.specifications/sbol");
+			sbolUri = new URI("http://identifiers.org/combine.specifications/sbol.version-2");
 		} catch (URISyntaxException e) {
 			return;
 		}
