@@ -47,6 +47,10 @@ public class Job
 		{
 			return gson.fromJson(json, CloneSubmissionJob.class);
 		}
+		else if(job.type.equals("buildCombineArchive"))
+		{
+			return gson.fromJson(json, BuildCombineArchiveJob.class);
+		}
 		else
 		{
 			throw new UnknownJobTypeException();

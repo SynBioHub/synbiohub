@@ -97,20 +97,27 @@ public class BuildCombineArchiveJob extends Job {
 	}
 
 	public void execute() {
+		System.err.println("Beginning build!");
 		List<VCard> creators = createCreators(creatorInfo);
 		CombineArchive archive = createCombineArchive();
 		
 		if(archive == null) {
 			return;
 		}
+
+		System.err.println("Adding files");
 		
 		addSBOLFile(archive);
 		addAttachments(archive);
 		addCreators(archive, creators);
+
+		System.err.println("Files added, packing");
 	
 		try {
 			archive.pack();
 			archive.close();
+
+			System.err.println("Packed!");
 			
 			finish(new BuildCombineArchiveResult(this, true, archive.getZipLocation().getAbsolutePath(), ""));
 			return;
