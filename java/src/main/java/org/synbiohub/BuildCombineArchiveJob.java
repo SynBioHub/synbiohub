@@ -3,19 +3,24 @@ package org.synbiohub;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Date;
 
 import javax.xml.transform.TransformerException;
 
 import org.jdom2.JDOMException;
 
-import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
+import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
+import de.unirostock.sems.cbarchive.meta.OmexMetaDataObject;
+import de.unirostock.sems.cbarchive.meta.omex.OmexDescription;
 import de.unirostock.sems.cbarchive.meta.omex.VCard;
+import de.unirostock.sems.cbext.Formatizer;
 
 public class BuildCombineArchiveJob extends Job {
 	public String sbolFilename;
@@ -23,7 +28,7 @@ public class BuildCombineArchiveJob extends Job {
 	public List<HashMap<String, String>> creatorInfo;
 	
 	private URI determineFiletype(File file) {
-		return null;
+		return Formatizer.guessFormat(file);
 	}
 	
 	private List<VCard> createCreators(List<HashMap<String, String>> creatorInfo) {
@@ -50,14 +55,44 @@ public class BuildCombineArchiveJob extends Job {
 			return null;
 		}	
 	}
-	
+
+	private void addSBOLFile(CombineArchive archive) {
+		File file = new File(this.sbolFilename);
+		URI sbolUri;		
+
+		try {
+			sbolUri = new URI("http://identifiers.org/combine.specifications/sbol");
+		} catch (URISyntaxException e) {
+			return;
+		}
+
+		try {
+			archive.addEntry(file, this.sbolFilename, sbolUri, true);
+		} catch (IOException e) {
+			finish(new BuildCombineArchiveResult(this, false, "", e.getMessage()));
+			return;
+		}
+	}
+
 	private void addAttachments(CombineArchive archive) {
 		for (String attachmentName : attachments) {
 			File attachment = new File(attachmentName);
 			URI filetype = determineFiletype(attachment);
-			
-			// TODO
-			// ArchiveEntry entry = archive.addEntry()
+
+			try {
+				archive.addEntry(attachment, attachmentName, filetype);
+			} catch (IOException e) {
+				return;
+			}
+		}
+	}
+
+	private void addCreators(CombineArchive archive, List<VCard> creators) {
+		OmexMetaDataObject description = new OmexMetaDataObject(new OmexDescription(creators, new Date()));
+		archive.addDescription(description);
+
+		for(ArchiveEntry entry : archive.getEntries()) {
+			entry.addDescription(description);
 		}
 	}
 
@@ -69,7 +104,9 @@ public class BuildCombineArchiveJob extends Job {
 			return;
 		}
 		
+		addSBOLFile(archive);
 		addAttachments(archive);
+		addCreators(archive, creators);
 	
 		try {
 			archive.pack();
