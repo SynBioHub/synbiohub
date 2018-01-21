@@ -64,12 +64,27 @@
       <enabled>false</enabled>
     </releases>
   </repository>
+  <repository>
+    <id>biojava-legacy-repo</id>
+    <name>BioJava's Git based legacy maven repo</name>
+    <url>https://github.com/biojava/maven-repo/raw/master/</url>
+</repository>
 </repositories>
   <dependencies>
+      <dependency>
+        <groupId>org.biojava</groupId>
+        <artifactId>biojava3-ontology</artifactId>
+        <version>3.1.0</version>
+      </dependency>
 	  <dependency>
 	    <groupId>de.unirostock.sems</groupId>
 	    <artifactId>CombineArchive</artifactId>
 	    <version>1.3.0</version>
+	  </dependency>
+	  <dependency>
+	    <groupId>de.unirostock.sems</groupId>
+	    <artifactId>CombineExt</artifactId>
+	    <version>1.2.4</version>
 	  </dependency>
       <dependency>
           <groupId>org.sbolstandard</groupId>
