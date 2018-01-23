@@ -66,7 +66,10 @@ public class RDFToSBOLJob extends Job
 		for (String registry : webOfRegistries.keySet()) {
 			doc.addRegistry(webOfRegistries.get(registry),registry);
 		}
-		completeDocument(doc);
+		//completeDocument(doc);
+		for (TopLevel topLevel : doc.getTopLevels()) {
+			doc.createRecursiveCopy(doc,topLevel);
+		}
 
 		File resultFile = File.createTempFile("sbh_rdf_to_sbol", ".xml");
 
@@ -111,8 +114,42 @@ public class RDFToSBOLJob extends Job
 		if (completed.contains(topLevel.getIdentity())) return;
 		System.err.println("Completing:"+topLevel.getIdentity());
 		completed.add(topLevel.getIdentity());
-		if (topLevel instanceof GenericTopLevel || topLevel instanceof Sequence || topLevel instanceof Model) {
+		if (topLevel instanceof GenericTopLevel || topLevel instanceof Sequence || topLevel instanceof Model
+				|| topLevel instanceof Plan || topLevel instanceof Agent || topLevel instanceof Attachment) {
 			// Do nothing
+		} else if (topLevel instanceof Implementation) {
+			if (((Implementation)topLevel).getBuilt()!=null) {
+				completeDocument(document,((Implementation)topLevel).getBuilt());
+			}
+		} else if (topLevel instanceof Activity) {
+			Activity activity = (Activity)topLevel;
+			for (Activity wasInformedBy : activity.getWasInformedBys()) {
+				completeDocument(document,wasInformedBy);
+			}
+			for (Association association : activity.getAssociations()) {
+				if (association.getPlan()!=null) {
+					completeDocument(document,association.getPlan());
+				}
+				if (association.getAgent()!=null) {
+					completeDocument(document,association.getAgent());
+				}
+			}
+		} else if (topLevel instanceof CombinatorialDerivation) {
+			CombinatorialDerivation combinatorialDerivation = (CombinatorialDerivation)topLevel;
+			if (combinatorialDerivation.getTemplate()!=null) {
+				completeDocument(document,combinatorialDerivation.getTemplate());
+			}
+			for (VariableComponent variableComponent : combinatorialDerivation.getVariableComponents()) {
+				for (ComponentDefinition cd : variableComponent.getVariants()) {
+					completeDocument(document,cd);
+				}
+				for (Collection c : variableComponent.getVariantCollections()) {
+					completeDocument(document,c);
+				}
+				for (CombinatorialDerivation d : variableComponent.getVariantDerivations()) {
+					completeDocument(document,d);
+				}
+			}
 		} else if (topLevel instanceof Collection) {
 			for (TopLevel member : ((Collection)topLevel).getMembers()) {
 				completeDocument(document,member);
