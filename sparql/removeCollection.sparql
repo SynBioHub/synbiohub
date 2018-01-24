@@ -13,5 +13,4 @@ UNION
 ?s sbh:topLevel ?member .
 }
 FILTER(STRSTARTS(str(?s),'$uriPrefix'))
-FILTER(STRENDS(str(?s),'/$version'))
 }

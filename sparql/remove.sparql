@@ -1,8 +1,7 @@
-PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 DELETE {
 ?s ?p ?o
 } WHERE {
 ?s ?p ?o .
-FILTER(STRSTARTS(str(?s),'$uriPrefix'))
-FILTER(STRENDS(str(?s),'/$version'))
+?s sbh:topLevel <$uri>
 }
