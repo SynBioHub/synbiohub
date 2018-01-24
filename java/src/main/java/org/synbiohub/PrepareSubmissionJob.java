@@ -247,11 +247,7 @@ public class PrepareSubmissionJob extends Job
 			} else {
 
 				System.err.println("Changing URI prefix: start (" + filename + ")");
-				if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
-					individual = individual.changeURIPrefixVersion(uriPrefix, null);
-				} else {
-					individual = individual.changeURIPrefixVersion(uriPrefix, version);
-				}
+				individual = individual.changeURIPrefixVersion(uriPrefix, null, version);
 				System.err.println("Changing URI prefix: done (" + filename + ")");
 				individual.setDefaultURIprefix(uriPrefix);
 

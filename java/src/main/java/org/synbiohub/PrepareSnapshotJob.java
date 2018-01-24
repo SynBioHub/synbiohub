@@ -60,7 +60,7 @@ public class PrepareSnapshotJob extends Job
 			return;
 		}
 
-        doc = doc.changeURIPrefixVersion(uriPrefix, version);
+        doc = doc.changeURIPrefixVersion(uriPrefix, null, version);
 
         (new IdentifiedVisitor() {
 
