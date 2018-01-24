@@ -2,6 +2,8 @@ package org.synbiohub;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
@@ -10,8 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Date;
 
+import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
+import org.sbolstandard.core2.SBOLReader;
+import org.sbolstandard.core2.SBOLDocument;
+import org.sbolstandard.core2.GenericTopLevel;
+import org.sbolstandard.core2.SBOLValidationException;
+import org.sbolstandard.core2.SBOLConversionException;
 import org.jdom2.JDOMException;
 
 import de.unirostock.sems.cbarchive.CombineArchive;
@@ -24,7 +32,6 @@ import de.unirostock.sems.cbext.Formatizer;
 
 public class BuildCombineArchiveJob extends Job {
 	public String sbolFilename;
-	public List<String> attachments;
 	public List<HashMap<String, String>> creatorInfo;
 	
 	private URI determineFiletype(File file) {
@@ -74,15 +81,44 @@ public class BuildCombineArchiveJob extends Job {
 		}
 	}
 
-	private void addAttachments(CombineArchive archive) {
-		for (String attachmentName : attachments) {
-			File attachment = new File(attachmentName);
+	private List<Path> findAttachmentFiles() {
+		ArrayList<Path> attachmentPaths = new ArrayList<>();
+		SBOLDocument document;
+
+		try {
+			document = SBOLReader.read(sbolFilename);
+		} catch (SBOLValidationException | SBOLConversionException | IOException e) {
+			finish(new BuildCombineArchiveResult(this, false, "", e.getMessage()));
+			return null;
+		}
+
+		for(GenericTopLevel genericTopLevel : document.getGenericTopLevels()) {
+			QName rdfType = genericTopLevel.getRDFType();
+
+			if(rdfType.getLocalPart() == "Attachment") {
+				String hash = genericTopLevel.getAnnotation(new QName(rdfType.getNamespaceURI(), "attachmentHash")).getStringValue();
+				String directory = hash.substring(0, 2);
+				String filename = hash.substring(2) + ".gz";
+
+				Path filepath = Paths.get(".", "uploads", directory, filename);
+				attachmentPaths.add(filepath);
+			}
+		}
+
+		return attachmentPaths;
+	}
+
+	private void addAttachments(CombineArchive archive, List<Path> attachmentFilePaths) {
+		for (Path attachmentFilePath : attachmentFilePaths) {
+			File attachment = attachmentFilePath.toFile(); 
 			URI filetype = determineFiletype(attachment);
 
 			try {
-				archive.addEntry(attachment, attachmentName, filetype);
+				archive.addEntry(attachment, attachmentFilePath.getFileName().toString(), filetype);
 			} catch (IOException e) {
-				return;
+				System.err.print("Error adding file named ");
+				System.err.println(attachmentFilePath.getFileName().toString());
+				continue;
 			}
 		}
 	}
@@ -97,7 +133,6 @@ public class BuildCombineArchiveJob extends Job {
 	}
 
 	public void execute() {
-		System.err.println("Beginning build!");
 		List<VCard> creators = createCreators(creatorInfo);
 		CombineArchive archive = createCombineArchive();
 		
@@ -105,20 +140,17 @@ public class BuildCombineArchiveJob extends Job {
 			return;
 		}
 
-		System.err.println("Adding files");
-		
+		List<Path> attachmentFilenames = findAttachmentFiles();
+		System.err.println(attachmentFilenames);
+
 		addSBOLFile(archive);
-		addAttachments(archive);
+		addAttachments(archive, attachmentFilenames);
 		addCreators(archive, creators);
 
-		System.err.println("Files added, packing");
-	
 		try {
 			archive.pack();
 			archive.close();
 
-			System.err.println("Packed!");
-			
 			finish(new BuildCombineArchiveResult(this, true, archive.getZipLocation().getAbsolutePath(), ""));
 			return;
 		} catch (IOException | TransformerException e) {
