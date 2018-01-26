@@ -72,6 +72,7 @@ public class RDFToSBOLJob extends Job
 			doc.createRecursiveCopy(doc,topLevel);
 		}
 		
+		doc.clearRegistries();
 		// Restores nested annotations
 		for (TopLevel topLevel : doc.getTopLevels()) {
 			inlineNestedAnnotations(doc,topLevel,topLevel.getAnnotations());
