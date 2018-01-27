@@ -39,7 +39,7 @@
     "rdf-graph-array": "git+https://github.com/udp/rdf-graph-array.git",
     "rdf-parser-rdfxml": "^0.3.0-rc1",
     "request": "^2.79.0",
-    "sboljs": "^1.9.2",
+    "sboljs": "^2.0.0",
     "sbolmeta": "^0.3.0",
     "sendgrid": "^4.7.1",
     "sequelize": "^3.30.1",
