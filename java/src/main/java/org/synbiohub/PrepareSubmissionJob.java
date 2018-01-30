@@ -269,6 +269,7 @@ public class PrepareSubmissionJob extends Job
 				String source = model.getSource().toString();
 				System.err.println("Source="+source);
 				if (sbmlFilename.equals(source)) {
+					model.setSource(URI.create("file:"+source));
 					foundIt = true;
 					break;
 				}
