@@ -79,9 +79,12 @@ block topLevelButtons
                 span.fa.fa-cubes
     if meta.remote
         li.dropdown.btn.btn-primary
-            a.btn.btn-success(href=meta.url + '/copyFromRemote')
-                span.fa.fa-share-alt
-                |  Copy to SynBioHub
+	    span.fa.fa-send
+                |  
+                span.caret
+            ul.dropdown-menu.dropdown-toggle
+                li
+                    a(href=meta.url + '/copyFromRemote') Copy to SynBioHub
     if BenchlingRemotes && ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
