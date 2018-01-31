@@ -250,6 +250,14 @@ public class PrepareSubmissionJob extends Job
 				individual = individual.changeURIPrefixVersion(uriPrefix, null, version);
 				System.err.println("Changing URI prefix: done (" + filename + ")");
 				individual.setDefaultURIprefix(uriPrefix);
+				// TODO: this should be done in libSBOLj, but done here for quick fix
+				for (Model model : individual.getModels()) {
+					if (model.getSource().toString().startsWith(ownedByURI)) {
+						String newSource = model.getSource().toString();
+						newSource = newSource.replace(ownedByURI, databasePrefix + "public");
+						model.setSource(URI.create(newSource));
+					}
+				}
 
 			}
 
