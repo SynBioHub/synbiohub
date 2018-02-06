@@ -58,7 +58,7 @@ RUN mkdir /mnt/data && \
     mkdir /mnt/config && \
     mkdir /mnt/data/backup
 
-COPY config.local.json /mnt/config/
+COPY docker/config.local.json /mnt/config/
 COPY docker/virtuoso.ini /mnt/config/
 
 RUN ln -s /mnt/config/virtuoso.ini /etc/virtuoso-opensource-7/virtuoso.ini && \
