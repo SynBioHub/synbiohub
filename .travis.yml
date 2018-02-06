@@ -3,8 +3,7 @@ sudo: required
 services:
     - docker
 
-
-after_success:
+script:
     - if [ "$TRAVIS_BRANCH" == "autodocker" ]; then
       docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
       docker build -t synbiohub/synbiohub:latest -f docker/Dockerfile .;
