@@ -37,7 +37,7 @@ RUN useradd synbiohub -p synbiohub -m -s /bin/bash && \
     cd /opt && \
     git clone https://github.com/ICO2S/synbiohub.git --depth 1 && \
     cd /opt/synbiohub && \
-    git checkout tags/v1.2.0 && \
+    git checkout && \
     rm -f config.local.json && \
     rm -rf backup && \
     chown -R synbiohub:synbiohub /opt/synbiohub
