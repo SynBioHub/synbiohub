@@ -41,6 +41,7 @@ Prequisites:
  3. Install the necessary packages `apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource jq build-essential python`
  4. Clone the SynBioHub repository `git clone https://github.com/SynBioHub/synbiohub`
  5. Change to the SynBioHub directory `cd synbiohub`
- 6. Build the Java components with Maven `cd java && mvn compile`
+ 6. Build the Java components with Maven `cd java && mvn package`
  7. Return to the root directory and install the Node dependencies with NPM `cd ../ && npm install`
- 8. Start the SynBioHub process `npm start`
+ 8. Update the necessary libraries **twice** `npm update && npm update`
+ 9. Start the SynBioHub process `npm start`
