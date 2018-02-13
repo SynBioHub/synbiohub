@@ -440,6 +440,9 @@ public class PrepareSubmissionJob extends Job
 								} else {
 									System.err.println("Found and removed:"+topLevel.getIdentity());
 									doc.removeTopLevel(topLevel);
+									if (rootCollection != null) {
+										rootCollection.addMember(topLevel.getIdentity());
+									}
 								}	
 							}
 						}
