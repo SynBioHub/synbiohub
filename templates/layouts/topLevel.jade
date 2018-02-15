@@ -228,28 +228,41 @@ block content
                             +mutable-source(meta.sourceSource, meta.source, canEdit)
                             +citations(citationsSource, submissionCitations, canEdit)
 			    
-                if meta.iGemMainPage || meta.iGemDesign || meta.iGemExperience
+                if meta.iGemMainPage
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
                                 a.accordion-toggle(data-toggle='collapse', href='#collapseOne')
-                                    | <b>iGEM Wiki</b>
+                                    | <b>iGEM Wiki Main Page</b>
                         #collapseOne.panel-collapse.collapse
                             .panel-body
-                                | <h3>Main Page</h3>
                                 | !{meta.iGemMainPage}
-                                | <h3>Design</h3>
+                if meta.iGemDesign
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseTwo')
+                                    | <b>iGEM Wiki Design Page</b>
+                        #collapseTwo.panel-collapse.collapse
+                            .panel-body
                                 | !{meta.iGemDesign}
-                                | <h3>Experience</h3>
+                if meta.iGemExperience
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseThree')
+                                    | <b>iGEM Wiki Experience Page</b>
+                        #collapseThree.panel-collapse.collapse
+                            .panel-body
                                 | !{meta.iGemExperience}
 		
                 if collections.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseOne')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseFour')
                                     | <b>Member of these Collections</b>
-                        #collapseOne.panel-collapse.collapse
+                        #collapseFour.panel-collapse.collapse
                             .panel-body
                                 div.row
                                     div.col-md-12
@@ -265,9 +278,9 @@ block content
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseTwo')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseFive')
                                     | <b>Other Properties</b>
-                        #collapseTwo.panel-collapse.collapse
+                        #collapseFive.panel-collapse.collapse
                             .panel-body
                                 div.row
                                     div.col-md-12
@@ -297,9 +310,9 @@ block content
                 .panel.panel-default
                     .panel-heading
                         h4.panel-title
-                            a.accordion-toggle(data-toggle='collapse', href='#collapseThree')
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseSix')
                                 | <b>Attachments</b>
-                    #collapseThree.panel-collapse.collapse
+                    #collapseSix.panel-collapse.collapse
                         .panel-body
                             div.row
                                 div.col-md-12
