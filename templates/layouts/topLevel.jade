@@ -226,7 +226,23 @@ block content
                             +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
                             +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
                             +mutable-source(meta.sourceSource, meta.source, canEdit)
-                            +citations(citationsSource, submissionCitations, canEdit) 
+                            +citations(citationsSource, submissionCitations, canEdit)
+			    
+                if meta.iGemMainPage || meta.iGemDesign || meta.iGemExperience
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseOne')
+                                    | <b>iGEM Wiki</b>
+                        #collapseOne.panel-collapse.collapse
+                            .panel-body
+                                | <h3>Main Page</h3>
+                                | !{meta.iGemMainPage}
+                                | <h3>Design</h3>
+                                | !{meta.iGemDesign}
+                                | <h3>Experience</h3>
+                                | !{meta.iGemExperience}
+		
                 if collections.length > 0
                     .panel.panel-default
                         .panel-heading
