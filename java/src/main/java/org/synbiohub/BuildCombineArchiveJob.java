@@ -102,9 +102,6 @@ public class BuildCombineArchiveJob extends Job {
 			QName rdfType = genericTopLevel.getRDFType();
 
 			if(rdfType.getLocalPart() == "Attachment") {
-				for(Annotation annotation : genericTopLevel.getAnnotations()) {
-					System.err.println(annotation);
-				}
 				String hash = genericTopLevel.getAnnotation(new QName(rdfType.getNamespaceURI(), "attachmentHash")).getStringValue();
 				String directory = hash.substring(0, 2);
 				String filename = hash.substring(2) + ".gz";
