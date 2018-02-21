@@ -2,8 +2,50 @@
 extends ../layouts/default.jade
 
 block content
-    div.container-fluid
-        div.row
-            div.col-md-12
-                h1 #{user.username}
+    div.account-container
+        div(align='center')
+            span.fa.fa-id-card(style='font-size: 3.5em;')
+            p(style='font-size: 1.5em') Edit Profile
+            br
 
+        div(align='center')
+
+            if registerAlert
+                div.alert.alert-danger #{registerAlert}
+
+            form#user_edit.formbody.span7(accept-charset='UTF-8',method='post')
+                 
+                input.text(name='utf8',type='hidden',value='✓')
+
+                div.control-group(style='margin-top: 4px')
+                    input.sbol-login-text.username-text(name='name',size='25',type='text',placeholder='Full name',autocomplete='off',value=user.name)
+
+                div.clearfix
+
+                div.control-group(style='margin-top: 4px')
+                    input(class='sbol-login-text username-text',name='affiliation',size='25',placeholder='Affiliation (optional)',autocomplete='off',value=user.affiliation)
+
+                div.clearfix
+
+                div.control-group(style='margin-top: 4px')
+                    input#email.sbol-login-text.email-text(name='email',size='25',type='email',placeholder='E-mail address',autocomplete='off',value=user.email)
+
+                div.clearfix
+
+                div.control-group(style='margin-top: 4px')
+                    input#password1.sbol-login-text.password-text(name='password1',size='25',type='password',placeholder='Password',autocomplete='off')
+
+                div.clearfix
+
+                div.control-group(style='margin-top: 4px')
+                    input#password2.sbol-login-text.password-text(name='password2',size='25',type='password',placeholder='Confirm password',autocomplete='off')
+
+                div.clearfix
+
+                br
+                br
+
+                div
+                    input(type='submit',class='btn btn-primary',value='Register')
+
+    br
