@@ -16,6 +16,7 @@ import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
 import org.sbolstandard.core2.SBOLReader;
+import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.SBOLDocument;
 import org.sbolstandard.core2.GenericTopLevel;
 import org.sbolstandard.core2.SBOLValidationException;
@@ -28,15 +29,20 @@ import de.unirostock.sems.cbarchive.CombineArchiveException;
 import de.unirostock.sems.cbarchive.meta.OmexMetaDataObject;
 import de.unirostock.sems.cbarchive.meta.omex.OmexDescription;
 import de.unirostock.sems.cbarchive.meta.omex.VCard;
-import de.unirostock.sems.cbext.Formatizer;
 
 public class BuildCombineArchiveJob extends Job {
 	public String sbolFilename;
 	public List<HashMap<String, String>> creatorInfo;
-	
-	private URI determineFiletype(File file) {
-		return Formatizer.guessFormat(file);
-	}
+
+	private class FileInfo {
+		public String fileName;
+		public URI fileType;
+
+		public FileInfo(String fileName, URI fileType) {
+			this.fileName = fileName;
+			this.fileType = fileType;
+		}
+	} 
 	
 	private List<VCard> createCreators(List<HashMap<String, String>> creatorInfo) {
 		List<VCard> creators = new ArrayList<>();
@@ -74,15 +80,15 @@ public class BuildCombineArchiveJob extends Job {
 		}
 
 		try {
-			archive.addEntry(file, this.sbolFilename, sbolUri, true);
+			archive.addEntry(file, "sbol.rdf", sbolUri, true);
 		} catch (IOException e) {
 			finish(new BuildCombineArchiveResult(this, false, "", e.getMessage()));
 			return;
 		}
 	}
 
-	private List<Path> findAttachmentFiles() {
-		ArrayList<Path> attachmentPaths = new ArrayList<>();
+	private HashMap<Path, FileInfo> findAttachmentFiles() {
+		HashMap<Path, FileInfo> attachmentPaths = new HashMap<>();
 		SBOLDocument document;
 
 		try {
@@ -96,25 +102,32 @@ public class BuildCombineArchiveJob extends Job {
 			QName rdfType = genericTopLevel.getRDFType();
 
 			if(rdfType.getLocalPart() == "Attachment") {
+				for(Annotation annotation : genericTopLevel.getAnnotations()) {
+					System.err.println(annotation);
+				}
 				String hash = genericTopLevel.getAnnotation(new QName(rdfType.getNamespaceURI(), "attachmentHash")).getStringValue();
 				String directory = hash.substring(0, 2);
 				String filename = hash.substring(2) + ".gz";
+				URI type = genericTopLevel.getAnnotation(new QName(rdfType.getNamespaceURI(), "attachmentType")).getURIValue();
+				String actualName = genericTopLevel.getName();
+
+				FileInfo fileInfo = new FileInfo(actualName, type);
 
 				Path filepath = Paths.get(".", "uploads", directory, filename);
-				attachmentPaths.add(filepath);
+				attachmentPaths.put(filepath, fileInfo);
 			}
 		}
 
 		return attachmentPaths;
 	}
 
-	private void addAttachments(CombineArchive archive, List<Path> attachmentFilePaths) {
-		for (Path attachmentFilePath : attachmentFilePaths) {
+	private void addAttachments(CombineArchive archive, HashMap<Path, FileInfo> attachments) {
+		for (Path attachmentFilePath : attachments.keySet()) {
 			File attachment = attachmentFilePath.toFile(); 
-			URI filetype = determineFiletype(attachment);
+			FileInfo fileInfo = attachments.get(attachmentFilePath);
 
 			try {
-				archive.addEntry(attachment, attachmentFilePath.getFileName().toString(), filetype);
+				archive.addEntry(attachment, fileInfo.fileName, fileInfo.fileType);
 			} catch (IOException e) {
 				System.err.print("Error adding file named ");
 				System.err.println(attachmentFilePath.getFileName().toString());
@@ -140,11 +153,11 @@ public class BuildCombineArchiveJob extends Job {
 			return;
 		}
 
-		List<Path> attachmentFilenames = findAttachmentFiles();
-		System.err.println(attachmentFilenames);
+		HashMap<Path, FileInfo> attachments = findAttachmentFiles();
 
+		
 		addSBOLFile(archive);
-		addAttachments(archive, attachmentFilenames);
+		addAttachments(archive, attachments);
 		addCreators(archive, creators);
 
 		try {
