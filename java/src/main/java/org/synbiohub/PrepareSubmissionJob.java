@@ -247,13 +247,17 @@ public class PrepareSubmissionJob extends Job
 			} else {
 
 				System.err.println("Changing URI prefix: start (" + filename + ")");
-				if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
-					individual = individual.changeURIPrefixVersion(uriPrefix, null);
-				} else {
-					individual = individual.changeURIPrefixVersion(uriPrefix, version);
-				}
+				individual = individual.changeURIPrefixVersion(uriPrefix, null, version);
 				System.err.println("Changing URI prefix: done (" + filename + ")");
 				individual.setDefaultURIprefix(uriPrefix);
+				// TODO: this should be done in libSBOLj, but done here for quick fix
+				for (Model model : individual.getModels()) {
+					if (model.getSource().toString().startsWith(ownedByURI)) {
+						String newSource = model.getSource().toString();
+						newSource = newSource.replace(ownedByURI, databasePrefix + "public");
+						model.setSource(URI.create(newSource));
+					}
+				}
 
 			}
 
@@ -273,6 +277,7 @@ public class PrepareSubmissionJob extends Job
 				String source = model.getSource().toString();
 				System.err.println("Source="+source);
 				if (sbmlFilename.equals(source)) {
+					model.setSource(URI.create("file:"+source));
 					foundIt = true;
 					break;
 				}
@@ -435,6 +440,9 @@ public class PrepareSubmissionJob extends Job
 								} else {
 									System.err.println("Found and removed:"+topLevel.getIdentity());
 									doc.removeTopLevel(topLevel);
+									if (rootCollection != null) {
+										rootCollection.addMember(topLevel.getIdentity());
+									}
 								}	
 							}
 						}

@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+    - docker
+
+script:
+    - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      docker build -t synbiohub/synbiohub:snapshot -f docker/Dockerfile .;
+      docker push synbiohub/synbiohub:snapshot;
+      fi

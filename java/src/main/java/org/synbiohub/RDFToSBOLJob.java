@@ -7,6 +7,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.sbolstandard.core2.*;
@@ -66,7 +67,16 @@ public class RDFToSBOLJob extends Job
 		for (String registry : webOfRegistries.keySet()) {
 			doc.addRegistry(webOfRegistries.get(registry),registry);
 		}
-		completeDocument(doc);
+		//completeDocument(doc);
+		for (TopLevel topLevel : doc.getTopLevels()) {
+			doc.createRecursiveCopy(doc,topLevel);
+		}
+		
+		doc.clearRegistries();
+		// Restores nested annotations
+		for (TopLevel topLevel : doc.getTopLevels()) {
+			inlineNestedAnnotations(doc,topLevel,topLevel.getAnnotations());
+		}
 
 		File resultFile = File.createTempFile("sbh_rdf_to_sbol", ".xml");
 
@@ -74,6 +84,32 @@ public class RDFToSBOLJob extends Job
 
 		finish(new RDFToSBOLResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 
+	}
+	
+	private static void inlineNestedAnnotations(SBOLDocument doc, TopLevel topLevel, List<Annotation> annotations) throws SBOLValidationException {
+		for (Annotation annotation : annotations) {
+			if (annotation.isURIValue()) {
+				URI genericTopLevelURI = annotation.getURIValue();
+				GenericTopLevel genericTopLevel = doc.getGenericTopLevel(genericTopLevelURI);
+				if (genericTopLevel != null && !genericTopLevelURI.equals(topLevel.getIdentity())) {
+					URI topLevelURI = null;
+					for (Annotation annotation2 : genericTopLevel.getAnnotations()) {
+						if (annotation2.getQName().getNamespaceURI().equals("http://wiki.synbiohub.org/wiki/Terms/synbiohub#") &&
+								annotation2.getQName().getLocalPart().equals("topLevel")) {
+							topLevelURI = annotation2.getURIValue();
+							break;
+						}
+					}
+					if (topLevelURI!=null && topLevelURI.equals(topLevel.getIdentity())) {
+						annotation.setAnnotations(genericTopLevel.getAnnotations());
+						annotation.setNestedIdentity(genericTopLevel.getIdentity());
+						annotation.setNestedQName(genericTopLevel.getRDFType());
+						doc.removeGenericTopLevel(genericTopLevel);
+						inlineNestedAnnotations(doc,topLevel,annotation.getAnnotations());
+					}
+				}
+			}
+		}	
 	}
 	
 	private Set<URI> completed;
@@ -111,8 +147,42 @@ public class RDFToSBOLJob extends Job
 		if (completed.contains(topLevel.getIdentity())) return;
 		System.err.println("Completing:"+topLevel.getIdentity());
 		completed.add(topLevel.getIdentity());
-		if (topLevel instanceof GenericTopLevel || topLevel instanceof Sequence || topLevel instanceof Model) {
+		if (topLevel instanceof GenericTopLevel || topLevel instanceof Sequence || topLevel instanceof Model
+				|| topLevel instanceof Plan || topLevel instanceof Agent || topLevel instanceof Attachment) {
 			// Do nothing
+		} else if (topLevel instanceof Implementation) {
+			if (((Implementation)topLevel).getBuilt()!=null) {
+				completeDocument(document,((Implementation)topLevel).getBuilt());
+			}
+		} else if (topLevel instanceof Activity) {
+			Activity activity = (Activity)topLevel;
+			for (Activity wasInformedBy : activity.getWasInformedBys()) {
+				completeDocument(document,wasInformedBy);
+			}
+			for (Association association : activity.getAssociations()) {
+				if (association.getPlan()!=null) {
+					completeDocument(document,association.getPlan());
+				}
+				if (association.getAgent()!=null) {
+					completeDocument(document,association.getAgent());
+				}
+			}
+		} else if (topLevel instanceof CombinatorialDerivation) {
+			CombinatorialDerivation combinatorialDerivation = (CombinatorialDerivation)topLevel;
+			if (combinatorialDerivation.getTemplate()!=null) {
+				completeDocument(document,combinatorialDerivation.getTemplate());
+			}
+			for (VariableComponent variableComponent : combinatorialDerivation.getVariableComponents()) {
+				for (ComponentDefinition cd : variableComponent.getVariants()) {
+					completeDocument(document,cd);
+				}
+				for (Collection c : variableComponent.getVariantCollections()) {
+					completeDocument(document,c);
+				}
+				for (CombinatorialDerivation d : variableComponent.getVariantDerivations()) {
+					completeDocument(document,d);
+				}
+			}
 		} else if (topLevel instanceof Collection) {
 			for (TopLevel member : ((Collection)topLevel).getMembers()) {
 				completeDocument(document,member);

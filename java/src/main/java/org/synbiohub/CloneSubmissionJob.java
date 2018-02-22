@@ -77,7 +77,7 @@ public class CloneSubmissionJob extends Job
 			return;
 		}
 
-		doc = doc.changeURIPrefixVersion(uriPrefix, version);
+		doc = doc.changeURIPrefixVersion(uriPrefix, null, version);
 
 		Collection originalRootCollection = doc.getCollection(originalCollectionDisplayId,version);
 		doc.removeCollection(originalRootCollection);

@@ -1,17 +1,26 @@
-PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX sbol: <http://sbols.org/v2#>
 PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 DELETE WHERE {
        ?s sbh:attachment <$uri>  
 }
 ;
 DELETE WHERE {
-       ?s sbol2:member <$uri>  
+       ?s sbol:member <$uri>  
 }
 ;
 DELETE WHERE {
-       ?s sbol2:sequence <$uri>  
+       ?s sbol:sequence <$uri>  
 }
 ;
 DELETE WHERE {
-       ?s sbol2:model <$uri>  
+       ?s sbol:model <$uri>  
+}
+;
+DELETE WHERE {
+       ?s sbol:wasDerivedFrom <$uri>  
+}
+;
+DELETE WHERE {
+       ?s sbol:wasGeneratedBy <$uri>  
 }

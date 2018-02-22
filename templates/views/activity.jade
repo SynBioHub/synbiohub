@@ -1,0 +1,54 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPropertyTable
+    if usages.length > 0
+        tr
+            td 
+                a(href='http://www.w3.org/ns/prov#Usage', title='http://www.w3.org/ns/prov#Usage') Usage
+            td Identifier
+            td Name
+        tr
+            td
+                for usage in usages
+                    != usage.typeStr
+                    br
+            td
+                for usage in usages
+                    a(href=usage.url) #{usage.defId}
+                    br
+            td
+                for usage in usages
+                    a(href=usage.url) #{usage.defName}
+                    br
+    if associations.length > 0
+        tr
+            td 
+                a(href='http://www.w3.org/ns/prov#Association', title='http://www.w3.org/ns/prov#Association') Association
+            td Identifier
+            td Name
+        tr
+            td
+                for association in associations
+                    != association.typeStr
+                    br
+            td
+                for association in associations
+                    a(href=association.agent.url) #{association.agent.defId}
+                    br
+            td
+                for association in associations
+                    a(href=association.agent.url) #{association.agent.defName}
+                    br
+        if association.plan
+            tr
+                td 
+                    a(href='http://www.w3.org/ns/prov#Plan', title='http://www.w3.org/ns/prov#Plan') Plan
+                td
+                    for association in associations
+                        a(href=association.plan.url) #{association.plan.defId}
+                        br
+                td
+                    for association in associations
+                        a(href=association.plan.url) #{association.plan.defName}
+                        br
