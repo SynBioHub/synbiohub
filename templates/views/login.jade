@@ -49,9 +49,9 @@ block content
                         p Forgot your password? Reset it #[a(href='resetPassword') here].
     
                 br
-
-        div(align='center')
-            a.btn.btn-primary(href='register') I need an account
+        if(config.allowPublicSignup)
+            div(align='center')
+                a.btn.btn-primary(href='register') I need an account
 
         div.clearfix
 

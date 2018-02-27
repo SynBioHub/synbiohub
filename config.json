@@ -75,5 +75,6 @@
   "remotes": {
   },
   "defaultLimit": 10,
-  "frontPageText": "<a href=\"/About\">SynBioHub</a> is a <i>design repository</i> for people designing biological constructs. It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them. SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources."
+  "frontPageText": "<a href=\"/About\">SynBioHub</a> is a <i>design repository</i> for people designing biological constructs. It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them. SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.",
+  "allowPublicSignup": true
 }

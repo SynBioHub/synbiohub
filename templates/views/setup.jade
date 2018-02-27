@@ -41,6 +41,11 @@ block body
                     input(type='file',name='logo')
                 p
                     i For best results, upload an SVG or high resolution PNG.
+            
+            div.checkbox 
+                label
+                    input(type="checkbox", name="allowPublicSignup", checked=config.allowPublicSignup)
+                    | Allow public account creation
 
             br
             h2 2. Some technical details

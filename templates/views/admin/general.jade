@@ -12,6 +12,12 @@ block adminContent
                 div.form-group
                     label(for='databasePrefix') Database Prefix
                     input.form-control(type='text', name='databasePrefix', value=config.databasePrefix)
+        div.row 
+            div.col-md-12 
+                div.checkbox
+                    label
+                        input(type='checkbox', name="allowPublicSignup", checked=config.allowPublicSignup) 
+                        | Allow Public Account Creation
         div.row
             div.col-md-1.col-md-offset-11
                 button.btn.btn-primary(type='submit') Save
