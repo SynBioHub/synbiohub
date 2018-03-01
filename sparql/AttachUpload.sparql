@@ -18,8 +18,8 @@ INSERT {
 	sbh:topLevel <$attachmentURI> ;
         sbol:source <$attachmentSource> ;
         sbol:hash $hash ;
-        sbh:size $size ;
-        sbh:format <$type> .
+        sbol:size $size ;
+        sbol:format <$type> .
 
 }
 
