@@ -1,0 +1,25 @@
+PREFIX sbol: <http://sbols.org/v2#>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+DELETE {
+    ?topLevel sbh:attachment ?attachment .
+
+    ?attachment a sbh:Attachment ;
+        sbh:atttachmentHash ?hash ;
+        sbh:attachmentSize ?size ;
+        sbh:attachmentType ?type .
+} INSERT {
+    ?topLevel sbol:attachment ?attachment .
+
+    ?attachment a sbol:Attachment ;
+        sbol:hash ?hash ;
+        sbol:size ?size ;
+        sbol:format ?type .
+} WHERE {
+    ?topLevel sbh:attachment ?attachment . 
+
+    ?attachment a sbh:Attachment ;
+        sbh:atttachmentHash ?hash ;
+        sbh:attachmentSize ?size ;
+        sbh:attachmentType ?type .
+}
