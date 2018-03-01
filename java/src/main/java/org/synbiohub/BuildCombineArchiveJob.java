@@ -18,6 +18,7 @@ import javax.xml.transform.TransformerException;
 import org.sbolstandard.core2.SBOLReader;
 import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.SBOLDocument;
+import org.sbolstandard.core2.Attachment;
 import org.sbolstandard.core2.GenericTopLevel;
 import org.sbolstandard.core2.SBOLValidationException;
 import org.sbolstandard.core2.SBOLConversionException;
@@ -113,6 +114,22 @@ public class BuildCombineArchiveJob extends Job {
 				Path filepath = Paths.get(".", "uploads", directory, filename);
 				attachmentPaths.put(filepath, fileInfo);
 			}
+		}
+
+		for(Attachment attachment : document.getAttachments()) {
+			String directory = attachment.getHash().substring(0, 2);
+			String filename = attachment.getHash().substring(2) + ".gz";
+			URI type = attachment.getFormat();
+			String name = attachment.getName();
+
+			if(name == null) {
+				name = attachment.getDisplayId();
+			}
+
+			FileInfo fileInfo = new FileInfo(name, type);
+			Path filePath = Paths.get(".", "uploads", directory, filename);
+
+			attachmentPaths.put(filePath, fileInfo);
 		}
 
 		return attachmentPaths;
