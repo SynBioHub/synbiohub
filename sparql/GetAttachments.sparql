@@ -1,6 +1,8 @@
-PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX sbol: <http://sbols.org/v2#>
 PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+
 SELECT ?attachment
 WHERE {
-	<$uri> sbh:attachment ?attachment
+	<$uri> sbh:attachment|sbol:attachment ?attachment
 }
