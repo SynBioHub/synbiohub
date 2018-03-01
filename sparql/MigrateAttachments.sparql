@@ -14,7 +14,8 @@ DELETE {
     ?attachment a sbol:Attachment ;
         sbol:hash ?hash ;
         sbol:size ?size ;
-        sbol:format ?type .
+        sbol:format ?type ;
+        sbol:source ENCODE_FOR_URI(CONCAT(?attachment, "/download")) .
 } WHERE {
     ?topLevel sbh:attachment ?attachment . 
 
