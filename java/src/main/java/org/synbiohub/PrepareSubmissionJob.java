@@ -26,6 +26,7 @@ import org.jdom2.JDOMException;
 import org.sbml.jsbml.SBMLDocument;
 import org.sbml.jsbml.SBMLReader;
 import org.sbolstandard.core2.Annotation;
+import org.sbolstandard.core2.Attachment;
 import org.sbolstandard.core2.Collection;
 import org.sbolstandard.core2.Identified;
 import org.sbolstandard.core2.IdentifiedVisitor;
@@ -256,6 +257,13 @@ public class PrepareSubmissionJob extends Job
 						String newSource = model.getSource().toString();
 						newSource = newSource.replace(ownedByURI, databasePrefix + "public");
 						model.setSource(URI.create(newSource));
+					}
+				}
+				for (Attachment attachment : individual.getAttachments()) {
+					if (attachment.getSource().toString().startsWith(ownedByURI)) {
+						String newSource = attachment.getSource().toString();
+						newSource = newSource.replace(ownedByURI, databasePrefix + "public");
+						attachment.setSource(URI.create(newSource));
 					}
 				}
 
