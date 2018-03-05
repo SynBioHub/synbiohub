@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.List;
 
 import javax.xml.namespace.QName;
@@ -77,7 +78,7 @@ public class PrepareSubmissionJob extends Job
 	public String shareLinkSalt;
 	public String overwrite_merge;
 
-	private boolean readCOMBINEArchive(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
+	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
 		CombineArchive combine;
 		try {
 			combine = new CombineArchive(new File(initialFilename));
@@ -86,16 +87,7 @@ public class PrepareSubmissionJob extends Job
 		}
 		
 		for(ArchiveEntry entry : combine.getEntries()) {
-			String format = entry.getFormat().toString();
-			
-			if(format.startsWith("http://identifiers.org/combine.specifications/sbol")) {
-				sbolFiles.add("unzipped/" + entry.getFileName());
-			} else if(format.startsWith("http://identifiers.org/combine.specifications/sbml")) {
-				sbmlFiles.add("unzipped/" + entry.getFileName());
-				attachments.add("unzipped/" + entry.getFileName());
-			} else {
-				attachments.add("unzipped/" + entry.getFileName());
-			}
+			attachments.put("./unzipped/" + entry.getFileName(), entry.getFormat().toString());
 		}
 		
 		try {
@@ -109,7 +101,7 @@ public class PrepareSubmissionJob extends Job
 		return true;
 	}
 	
-	private boolean readZIPFile(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
+	private boolean readZIPFile(String initialFilename, Map<String, String> attachments) {
 		ZipFile zip;
 		
 		try {
@@ -130,15 +122,17 @@ public class PrepareSubmissionJob extends Job
 					BufferedReader reader = new BufferedReader(new FileReader(filename));
 					reader.readLine();
 					String firstLine = reader.readLine();
+					String format = "";
 					
 					if(firstLine.contains("sbol")) {
-						sbolFiles.add(filename);
+						format = "http://identifiers.org/combine.specifications/sbol";
 					} else if(firstLine.contains("sbml")) {
-						sbmlFiles.add(filename);
-						attachments.add(filename);
-					} else {
-						attachments.add(filename);
-					}
+						format = "http://identifiers.org/combine.specifications/sbml";
+					} else if(firstLine.contains("sedml")) {
+						format = "http://identifiers.org/combine.specifications/sedml";
+					} 
+
+					attachments.put(filename, format);
 				}				
 			} catch (ZipException | IOException e) {
 				return false;
@@ -150,25 +144,22 @@ public class PrepareSubmissionJob extends Job
 		return true;
 	}
 	
-	private boolean getFilenames(String initialFilename, List<String> sbolFiles, List<String> sbmlFiles, List<String> attachments) {
-		if(readCOMBINEArchive(initialFilename, sbolFiles, sbmlFiles, attachments)) {
+	private boolean getFilenames(String initialFilename,  Map<String, String> attachments) {
+		if(readCOMBINEArchive(initialFilename, attachments)) {
 			return true;
 		}
 		
-		if(readZIPFile(initialFilename, sbolFiles, sbmlFiles, attachments)) {
+		if(readZIPFile(initialFilename, attachments)) {
 			return false;
 		}
 		
-		sbolFiles.add(initialFilename);
 		return false;
 	}
 	
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException 
 	{
 		System.err.println("In execute");
-		ArrayList<String> filenames = new ArrayList<>();
-		ArrayList<String> attachmentFiles = new ArrayList<>();
-		ArrayList<String> sbmlFiles = new ArrayList<>();
+		HashMap<String, String> attachmentFiles = new HashMap<>();
 		String log, errorLog = new String();
 		log = "";
 		errorLog = "";
@@ -176,10 +167,20 @@ public class PrepareSubmissionJob extends Job
 		SBOLDocument doc = new SBOLDocument();
 		doc.setDefaultURIprefix(uriPrefix);
 		
-		boolean isCombineArchive = getFilenames(sbolFilename, filenames, sbmlFiles, attachmentFiles);
-		ArrayList<String> toConvert = new ArrayList<>(sbmlFiles);
+		boolean isCombineArchive = getFilenames(sbolFilename, attachmentFiles);
+		ArrayList<String> toConvert = new ArrayList<>();
 
-		for(String filename : filenames) {
+		for(String filename : attachmentFiles.keySet()) {
+			if(attachmentFiles.get(filename).equals("http://identifiers.org/combine.specifications/sbml"))
+				toConvert.add(filename);
+		}
+
+
+		for(String filename : attachmentFiles.keySet()) {
+			if(!attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
+				continue;
+			}
+
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 			ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 
@@ -216,10 +217,9 @@ public class PrepareSubmissionJob extends Job
 			} else if(errorLog.startsWith("sbol-10105") && !isCombineArchive) {
 				individual = new SBOLDocument();
 				errorLog = "";
-				attachmentFiles.add(filename);
 				continue;
 			} else if(errorLog.length() > 0) {
-				finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles, sbmlFiles));
+				finish(new PrepareSubmissionResult(this, false, "", log, "[" + filename +"] " + errorLog, attachmentFiles));
 				return;
 			}
 			
@@ -273,7 +273,6 @@ public class PrepareSubmissionJob extends Job
 		}
 		
 		System.err.println(toConvert);
-		System.err.println(sbmlFiles);
 		
 		for(String sbmlFilename : toConvert) {
 			sbmlFilename = sbmlFilename.replace("unzipped/", "");
@@ -296,7 +295,7 @@ public class PrepareSubmissionJob extends Job
 				SBMLReader reader = new SBMLReader();
 				sbmlDoc = reader.readSBMLFromFile("unzipped/"+sbmlFilename);
 				System.err.println("Converting to SBOL:"+sbmlFilename);
-				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, new HashSet<String>(filenames),
+				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, (HashSet<String>)attachmentFiles.keySet(),
 						uriPrefix);
 				System.err.println("Finished converting to SBOL:"+sbmlFilename);
 			} catch (XMLStreamException e) {
@@ -442,7 +441,7 @@ public class PrepareSubmissionJob extends Job
 										errorLog = "Submission terminated.\nA submission with this id already exists,"
 												+ " and it includes an object: " + topLevel.getIdentity()
 												+ " that is already in this repository and has different content";
-										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles, sbmlFiles));
+										finish(new PrepareSubmissionResult(this, false, "", log, errorLog, attachmentFiles));
 										return;
 									}
 								} else {
@@ -519,7 +518,7 @@ public class PrepareSubmissionJob extends Job
 		System.err.println("Writing file:"+resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
-		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, sbmlFiles));
+		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles));
 
 	}
 	
