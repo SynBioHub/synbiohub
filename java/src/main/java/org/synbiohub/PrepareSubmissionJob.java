@@ -295,7 +295,6 @@ public class PrepareSubmissionJob extends Job
 				SBMLReader reader = new SBMLReader();
 				sbmlDoc = reader.readSBMLFromFile("unzipped/"+sbmlFilename);
 				System.err.println("Converting to SBOL:"+sbmlFilename);
-				System.err.println(attachmentFiles);
 				SBML2SBOL.convert_SBML2SBOL(sbolDoc, "unzipped", sbmlDoc, sbmlFilename, new HashSet<String>(attachmentFiles.keySet()),
 						uriPrefix);
 				System.err.println("Finished converting to SBOL:"+sbmlFilename);
