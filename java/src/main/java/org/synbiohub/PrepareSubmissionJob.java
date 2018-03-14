@@ -152,7 +152,8 @@ public class PrepareSubmissionJob extends Job
 		if(readZIPFile(initialFilename, attachments)) {
 			return false;
 		}
-		
+	
+		attachments.put(initialFilename, "http://identifiers.org/combine.specifications/sbol");
 		return false;
 	}
 	
@@ -271,7 +272,7 @@ public class PrepareSubmissionJob extends Job
 
 			doc.createCopy(individual);
 		}
-		
+
 		System.err.println(toConvert);
 		
 		for(String sbmlFilename : toConvert) {
