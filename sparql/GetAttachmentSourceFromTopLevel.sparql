@@ -1,0 +1,11 @@
+PREFIX sbol: <http://sbols.org/v2#>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
+SELECT 
+    ?source
+    ?attachment
+WHERE {
+	<$uri> sbol:member ?attachment . 
+    ?attachment a sbol:Attachment . 
+    ?attachment sbol:source ?source .
+}
