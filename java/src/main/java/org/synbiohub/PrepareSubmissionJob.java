@@ -37,6 +37,7 @@ import org.sbolstandard.core2.SBOLDocument;
 import org.sbolstandard.core2.SBOLValidate;
 import org.sbolstandard.core2.SBOLValidationException;
 import org.sbolstandard.core2.SBOLWriter;
+import org.sbolstandard.core2.SBOLReader;
 import org.sbolstandard.core2.TopLevel;
 import org.synbiohub.frontend.SynBioHubException;
 import org.synbiohub.frontend.SynBioHubFrontend;
@@ -130,7 +131,9 @@ public class PrepareSubmissionJob extends Job
 						format = "http://identifiers.org/combine.specifications/sbml";
 					} else if(firstLine.contains("sedml")) {
 						format = "http://identifiers.org/combine.specifications/sedml";
-					} 
+					} else if(SBOLReader.isGenBankFile(filename) || SBOLReader.isFastaFile(filename)) {
+						format = "http://identifiers.org/combine.specifications/sbol";
+					}
 
 					attachments.put(filename, format);
 				}				
