@@ -2,7 +2,7 @@
 extends ../layouts/topLevel.jade
 
 block topLevelPreview
-    if attachmentType === 'http://wiki.synbiohub.org/wiki/Terms/synbiohub#imageAttachment'
+    if attachmentIsImage 
         img(src=attachmentDownloadURL,style='max-width: 1000px;')
 
 block topLevelPropertyTable
