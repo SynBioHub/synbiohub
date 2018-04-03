@@ -146,16 +146,18 @@ public class PrepareSubmissionJob extends Job {
 				String firstLine = reader.readLine();
 				String format = "";
 
-				if (firstLine.contains("sbol")) {
-					format = "http://identifiers.org/combine.specifications/sbol";
-				} else if (firstLine.contains("sbml")) {
-					format = "http://identifiers.org/combine.specifications/sbml";
-				} else if (firstLine.contains("sedml")) {
-					format = "http://identifiers.org/combine.specifications/sedml";
-				} else if (SBOLReader.isGenBankFile(filename) || SBOLReader.isFastaFile(filename)) {
-					format = "http://identifiers.org/combine.specifications/sbol";
+				if (firstLine != null) {
+					if (firstLine.contains("sbol")) {
+						format = "http://identifiers.org/combine.specifications/sbol";
+					} else if (firstLine.contains("sbml")) {
+						format = "http://identifiers.org/combine.specifications/sbml";
+					} else if (firstLine.contains("sedml")) {
+						format = "http://identifiers.org/combine.specifications/sedml";
+					} else if (SBOLReader.isGenBankFile(filename) || SBOLReader.isFastaFile(filename)) {
+						format = "http://identifiers.org/combine.specifications/sbol";
+					}
 				}
-
+				
 				attachments.put(extracted.toAbsolutePath().toString(), format);
 			}
 		} catch (IOException e) {
