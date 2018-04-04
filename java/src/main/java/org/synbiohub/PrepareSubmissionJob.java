@@ -117,6 +117,8 @@ public class PrepareSubmissionJob extends Job {
 
 	private boolean readZIPFile(String initialFilename, Map<String, String> attachments) {
 		ZipFile zip;
+		Enumeration<? extends ZipEntry> manifest;
+		Path extractDir;
 
 		try {
 			zip = new ZipFile(initialFilename);
@@ -125,26 +127,44 @@ public class PrepareSubmissionJob extends Job {
 		}
 
 		try {
-			Enumeration<? extends ZipEntry> manifest = zip.entries();
-			Path extractDir = Files.createTempDirectory("extract");
+			manifest = zip.entries();
+			extractDir = Files.createTempDirectory("extract");
+		} catch (IOException e) {
+			return false;
+		}
 
-			while (manifest.hasMoreElements()) {
-				ZipEntry entry = manifest.nextElement();
+		while (manifest.hasMoreElements()) {
+			ZipEntry entry = manifest.nextElement();
 
-				if (entry.isDirectory()) {
-					continue;
-				}
+			if (entry.isDirectory()) {
+				continue;
+			}
 
+			if(entry.getName().contains("__MACOSX") || entry.getName().contains(".DS_Store")) {
+				continue; // fuck a resource fork
+			}
+
+			String filename = entry.getName();
+			Path extracted;
+
+			try {
 				InputStream entryStream = zip.getInputStream(entry);
-				String filename = FileSystems.getDefault().getPath(entry.getName()).getFileName().toString();
-				Path extracted = FileSystems.getDefault().getPath(extractDir.toString(), filename);
+				filename = FileSystems.getDefault().getPath(entry.getName()).getFileName().toString();
+				extracted = FileSystems.getDefault().getPath(extractDir.toString(), filename);
 
 				Files.copy(entryStream, extracted);
+			} catch (IOException e) {
+				System.err.println("Error extracting file " + entry.getName());
+				continue;
+			}
 
-				BufferedReader reader = new BufferedReader(new InputStreamReader(zip.getInputStream(entry)));
+			try {
+				String filePath = extracted.toAbsolutePath().toString();
+				BufferedReader reader = new BufferedReader(new FileReader(filePath));
 				reader.readLine();
 				String firstLine = reader.readLine();
 				String format = "";
+				reader.close();
 
 				if (firstLine != null) {
 					if (firstLine.contains("sbol")) {
@@ -153,15 +173,16 @@ public class PrepareSubmissionJob extends Job {
 						format = "http://identifiers.org/combine.specifications/sbml";
 					} else if (firstLine.contains("sedml")) {
 						format = "http://identifiers.org/combine.specifications/sedml";
-					} else if (SBOLReader.isGenBankFile(filename) || SBOLReader.isFastaFile(filename)) {
+					} else if (SBOLReader.isGenBankFile(filePath) || SBOLReader.isFastaFile(filePath)) {
 						format = "http://identifiers.org/combine.specifications/sbol";
 					}
 				}
-				
+
 				attachments.put(extracted.toAbsolutePath().toString(), format);
+			} catch (IOException e) {
+				System.err.println("Error classifying file " + entry.getName());
+				continue;
 			}
-		} catch (IOException e) {
-			return false;
 		}
 
 		return true;
@@ -206,28 +227,10 @@ public class PrepareSubmissionJob extends Job {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 			ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 
-			SBOLDocument individual = SBOLValidate.validate(
-				new PrintStream(logOutputStream),
-					new PrintStream(errorOutputStream), 
-					filename, 
-					"http://dummy.org/", 
-					requireComplete,
-					requireCompliant, 
-					enforceBestPractices, 
-					typesInURI, 
-					"1", 
-					keepGoing, 
-					"", 
-					"", 
-					filename, 
-					topLevelURI,
-					false, 
-					false, 
-					false, 
-					null, 
-					false, 
-					true, 
-					false);
+			SBOLDocument individual = SBOLValidate.validate(new PrintStream(logOutputStream),
+					new PrintStream(errorOutputStream), filename, "http://dummy.org/", requireComplete,
+					requireCompliant, enforceBestPractices, typesInURI, "1", keepGoing, "", "", filename, topLevelURI,
+					false, false, false, null, false, true, false);
 
 			String fileLog = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 			errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
