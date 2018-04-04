@@ -194,7 +194,7 @@ public class PrepareSubmissionJob extends Job {
 		ArrayList<String> toConvert = new ArrayList<>();
 
 		for (String filename : attachmentFiles.keySet()) {
-			if (attachmentFiles.get(filename).equals("http://identifiers.org/combine.specifications/sbml"))
+			if (attachmentFiles.get(filename).startsWith("http://identifiers.org/combine.specifications/sbml"))
 				toConvert.add(filename);
 		}
 
@@ -293,8 +293,6 @@ public class PrepareSubmissionJob extends Job {
 
 			doc.createCopy(individual);
 		}
-
-		System.err.println(toConvert);
 
 		for (String sbmlFilename : toConvert) {
 			String sbmlFile = FileSystems.getDefault().getPath(sbmlFilename).getFileName().toString();
