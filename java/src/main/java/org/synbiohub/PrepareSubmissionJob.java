@@ -231,15 +231,11 @@ public class PrepareSubmissionJob extends Job {
 		}
 
 		for (String filename : attachmentFiles.keySet()) {
-			if (attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
-				sbolFiles.add(filename);
-			}
-		}
-		
-		for (String filename : attachmentFiles.keySet()) {
 			if (!attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
 				continue;
 			}
+
+			sbolFiles.add(filename);
 
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 			ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
@@ -267,7 +263,6 @@ public class PrepareSubmissionJob extends Job {
 			}
 
 			if (!copy) {
-
 				for (TopLevel topLevel : individual.getTopLevels()) {
 					if (!submit && topLevel.getIdentity().toString().startsWith(ownedByURI))
 						continue;
@@ -279,21 +274,19 @@ public class PrepareSubmissionJob extends Job {
 						}
 					}
 				}
-
 			}
 
 			individual.setDefaultURIprefix("http://dummy.org/");
 			if (individual.getTopLevels().size() == 0) {
-
 				individual.setDefaultURIprefix(uriPrefix);
-
 			} else {
-
 				System.err.println("Changing URI prefix: start (" + filename + ")");
 				individual = individual.changeURIPrefixVersion(uriPrefix, null, version);
 				System.err.println("Changing URI prefix: done (" + filename + ")");
 				individual.setDefaultURIprefix(uriPrefix);
+
 				// TODO: this should be done in libSBOLj, but done here for quick fix
+				// Should only do something when running make-public (leaky assumption)
 				for (Model model : individual.getModels()) {
 					if (model.getSource().toString().startsWith(ownedByURI)) {
 						String newSource = model.getSource().toString();
@@ -301,6 +294,7 @@ public class PrepareSubmissionJob extends Job {
 						model.setSource(URI.create(newSource));
 					}
 				}
+
 				for (Attachment attachment : individual.getAttachments()) {
 					if (attachment.getSource().toString().startsWith(ownedByURI)) {
 						String newSource = attachment.getSource().toString();
@@ -308,7 +302,6 @@ public class PrepareSubmissionJob extends Job {
 						attachment.setSource(URI.create(newSource));
 					}
 				}
-
 			}
 
 			doc.createCopy(individual);
