@@ -2,10 +2,8 @@ package org.synbiohub;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.File;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,7 +51,6 @@ import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
 import edu.utah.ece.async.ibiosim.conversion.SBML2SBOL;
-import edu.utah.ece.async.ibiosim.dataModels.biomodel.util.SBMLutilities;
 
 public class PrepareSubmissionJob extends Job {
 	public String sbolFilename;
@@ -130,6 +127,13 @@ public class PrepareSubmissionJob extends Job {
 			manifest = zip.entries();
 			extractDir = Files.createTempDirectory("extract");
 		} catch (IOException e) {
+			try {
+				zip.close();
+			}
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 
@@ -184,7 +188,13 @@ public class PrepareSubmissionJob extends Job {
 				continue;
 			}
 		}
-
+		try {
+			zip.close();
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 
