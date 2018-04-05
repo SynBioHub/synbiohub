@@ -223,12 +223,19 @@ public class PrepareSubmissionJob extends Job {
 
 		boolean isCombineArchive = getFilenames(sbolFilename, attachmentFiles);
 		ArrayList<String> toConvert = new ArrayList<>();
+		ArrayList<String> sbolFiles = new ArrayList<>();
 
 		for (String filename : attachmentFiles.keySet()) {
 			if (attachmentFiles.get(filename).startsWith("http://identifiers.org/combine.specifications/sbml"))
 				toConvert.add(filename);
 		}
 
+		for (String filename : attachmentFiles.keySet()) {
+			if (attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
+				sbolFiles.add(filename);
+			}
+		}
+		
 		for (String filename : attachmentFiles.keySet()) {
 			if (!attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
 				continue;
@@ -330,8 +337,9 @@ public class PrepareSubmissionJob extends Job {
 			try {
 				SBMLReader reader = new SBMLReader();
 				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
+				sbolDoc.write(System.err);
 				SBML2SBOL.convert_SBML2SBOL(sbolDoc, sbmlDirectory, sbmlDoc, sbmlFile,
-						new HashSet<String>(attachmentFiles.keySet()), uriPrefix);
+						new HashSet<String>(sbolFiles), uriPrefix);
 			} catch (XMLStreamException e) {
 				e.printStackTrace();
 			}
