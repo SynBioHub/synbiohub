@@ -42,8 +42,8 @@ RUN useradd synbiohub -p synbiohub -m -s /bin/bash && \
     rm -rf backup && \
     chown -R synbiohub:synbiohub /opt/synbiohub
     
-RUN apt install -y default-jdk maven && \
-    su synbiohub -c "cd /opt/synbiohub/java && mvn package"
+RUN apt install -y default-jdk maven
+RUN su synbiohub -c "cd /opt/synbiohub/java && mvn package"
 
 # to build libxmljs
 RUN apt install -y python && \
