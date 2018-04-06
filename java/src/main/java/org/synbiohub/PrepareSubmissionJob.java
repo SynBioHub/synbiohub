@@ -314,38 +314,38 @@ public class PrepareSubmissionJob extends Job {
 			doc.createCopy(individual);
 		}
 
-		for (String sbmlFilename : toConvert) {
-			String sbmlFile = FileSystems.getDefault().getPath(sbmlFilename).getFileName().toString();
-			String sbmlDirectory = FileSystems.getDefault().getPath(sbmlFilename).getParent().toString();
-
-			SBOLDocument sbolDoc = new SBOLDocument();
-			SBMLDocument sbmlDoc;
-
-			boolean foundIt = false;
-
-			for (Model model : doc.getModels()) {
-				String source = model.getSource().toString();
-				if (sbmlFilename.equals(source)) {
-					model.setSource(URI.create("file:" + source));
-					foundIt = true;
-					break;
-				}
-			}
-			if (foundIt)
-				continue;
-
-			try {
-				SBMLReader reader = new SBMLReader();
-				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
-				sbolDoc.write(System.err);
-				SBML2SBOL.convert_SBML2SBOL(sbolDoc, sbmlDirectory, sbmlDoc, sbmlFile,
-						new HashSet<String>(sbolFiles), uriPrefix);
-			} catch (XMLStreamException e) {
-				e.printStackTrace();
-			}
-
-			doc.createCopy(sbolDoc);
-		}
+//		for (String sbmlFilename : toConvert) {
+//			String sbmlFile = FileSystems.getDefault().getPath(sbmlFilename).getFileName().toString();
+//			String sbmlDirectory = FileSystems.getDefault().getPath(sbmlFilename).getParent().toString();
+//
+//			SBOLDocument sbolDoc = new SBOLDocument();
+//			SBMLDocument sbmlDoc;
+//
+//			boolean foundIt = false;
+//
+//			for (Model model : doc.getModels()) {
+//				String source = model.getSource().toString();
+//				if (sbmlFilename.equals(source)) {
+//					model.setSource(URI.create("file:" + source));
+//					foundIt = true;
+//					break;
+//				}
+//			}
+//			if (foundIt)
+//				continue;
+//
+//			try {
+//				SBMLReader reader = new SBMLReader();
+//				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
+//				sbolDoc.write(System.err);
+//				SBML2SBOL.convert_SBML2SBOL(sbolDoc, sbmlDirectory, sbmlDoc, sbmlFile,
+//						new HashSet<String>(sbolFiles), uriPrefix);
+//			} catch (XMLStreamException e) {
+//				e.printStackTrace();
+//			}
+//
+//			doc.createCopy(sbolDoc);
+//		}
 
 		Collection rootCollection = null;
 
