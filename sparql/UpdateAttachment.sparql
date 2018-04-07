@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol: <http://sbols.org/v2#>
+
+DELETE WHERE {
+    <$attachmentURI> sbol:source ?source .
+}
+;
+DELETE WHERE {
+    <$attachmentURI> sbol:hash ?hash .
+}
+;
+DELETE WHERE {
+    <$attachmentURI> sbol:size ?size .
+}
+;
+INSERT DATA {
+    <$attachmentURI> sbol:source <$attachmentSource> .
+    <$attachmentURI> sbol:hash $hash .
+    <$attachmentURI> sbol:size $size .
+} 
+
+
