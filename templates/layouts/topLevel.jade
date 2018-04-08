@@ -135,7 +135,7 @@ block content
                                         a.sbh-download-picture Download Image
                                 if rdfType.name == 'Attachment'
                                     li 
-                                        a(href=meta.url + '/download') Download Attachment
+                                        a(href=attachmentDownloadURL) Download Attachment
                 if !meta.remote && rdfType.name != 'Collection' && rdfType.name != 'Component'
                     li.dropdown.btn.btn-primary
                             a(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name,style="color:white")
