@@ -6,7 +6,7 @@ block topLevelPreview
         img(src=attachmentDownloadURL,style='max-width: 1000px;')
 
 block topLevelPropertyTable
-    if size 
+    if size && size >= 0 
         tr
         td Size 
         td #{size}

@@ -285,21 +285,10 @@ public class PrepareSubmissionJob extends Job {
 				System.err.println("Changing URI prefix: done (" + filename + ")");
 				individual.setDefaultURIprefix(uriPrefix);
 
-				// TODO: this should be done in libSBOLj, but done here for quick fix
-				// Should only do something when running make-public (leaky assumption)
-				for (Model model : individual.getModels()) {
-					if (model.getSource().toString().startsWith(ownedByURI)) {
-						String newSource = model.getSource().toString();
-						newSource = newSource.replace(ownedByURI, databasePrefix + "public");
-						model.setSource(URI.create(newSource));
-					}
-				}
-
 				for (Attachment attachment : individual.getAttachments()) {
-					if (attachment.getSource().toString().startsWith(ownedByURI)) {
-						String newSource = attachment.getSource().toString();
-						newSource = newSource.replace(ownedByURI, databasePrefix + "public");
-						attachment.setSource(URI.create(newSource));
+					if (attachment.getSource().toString().startsWith(databasePrefix) &&
+							attachment.getSource().toString().endsWith("/download")) {
+						attachment.setSource(URI.create(attachment.getIdentity().toString()+"/download"));
 					}
 				}
 			}
