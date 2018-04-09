@@ -1,31 +1,34 @@
 package org.synbiohub;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.nio.file.Path;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Date;
+import java.util.zip.GZIPInputStream;
 
 import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
-import org.sbolstandard.core2.SBOLReader;
-import org.sbolstandard.core2.Annotation;
-import org.sbolstandard.core2.SBOLDocument;
+import org.jdom2.JDOMException;
 import org.sbolstandard.core2.Attachment;
 import org.sbolstandard.core2.GenericTopLevel;
-import org.sbolstandard.core2.SBOLValidationException;
 import org.sbolstandard.core2.SBOLConversionException;
-import org.jdom2.JDOMException;
+import org.sbolstandard.core2.SBOLDocument;
+import org.sbolstandard.core2.SBOLReader;
+import org.sbolstandard.core2.SBOLValidationException;
 
-import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.ArchiveEntry;
+import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
 import de.unirostock.sems.cbarchive.meta.OmexMetaDataObject;
 import de.unirostock.sems.cbarchive.meta.omex.OmexDescription;
@@ -135,15 +138,19 @@ public class BuildCombineArchiveJob extends Job {
 		return attachmentPaths;
 	}
 
-	private void addAttachments(CombineArchive archive, HashMap<Path, FileInfo> attachments) {
+	private void addAttachments(CombineArchive archive, HashMap<Path, FileInfo> attachments, Path tempDir) {
 		for (Path attachmentFilePath : attachments.keySet()) {
-			File attachment = attachmentFilePath.toFile(); 
 			FileInfo fileInfo = attachments.get(attachmentFilePath);
 
 			try {
-				archive.addEntry(attachment, fileInfo.fileName, fileInfo.fileType);
+				GZIPInputStream gzipIn = new GZIPInputStream(new FileInputStream(attachmentFilePath.toFile()));
+				Path tempFile = Files.createTempFile(tempDir, "unzipped", "");
+
+				Files.copy(gzipIn, tempFile, StandardCopyOption.REPLACE_EXISTING);
+				archive.addEntry(tempFile.toFile(), fileInfo.fileName, fileInfo.fileType);
 			} catch (IOException e) {
 				System.err.print("Error adding file named ");
+				e.printStackTrace(System.err);
 				System.err.println(attachmentFilePath.getFileName().toString());
 				continue;
 			}
@@ -168,10 +175,18 @@ public class BuildCombineArchiveJob extends Job {
 		}
 
 		HashMap<Path, FileInfo> attachments = findAttachmentFiles();
+		Path tempDirPath;
 
+
+		try {
+			tempDirPath = Files.createTempDirectory("omex-build");
+		} catch (IOException e) {
+			finish(new BuildCombineArchiveResult(this, false, "", e.getMessage()));
+			return;
+		}
 		
 		addSBOLFile(archive);
-		addAttachments(archive, attachments);
+		addAttachments(archive, attachments, tempDirPath);
 		addCreators(archive, creators);
 
 		try {
