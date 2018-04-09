@@ -1,5 +1,7 @@
 package org.synbiohub;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PrepareSubmissionResult extends Result
 {
@@ -7,8 +9,7 @@ public class PrepareSubmissionResult extends Result
 	private String log;
 	private String errorLog;
 	private String resultFilename;
-	private ArrayList<String> attachmentFiles;
-	private ArrayList<String> sbmlFiles;
+	private HashMap<String, String> attachmentFiles;
 	
 	public PrepareSubmissionResult(
 			PrepareSubmissionJob job,
@@ -16,8 +17,7 @@ public class PrepareSubmissionResult extends Result
 			String resultFilename,
 			String log,
 			String errorLog,
-			ArrayList<String> attachmentFiles,
-			ArrayList<String> sbmlFiles)
+			HashMap<String, String> attachmentFiles)
 	{
 		super(job);
 		
@@ -26,6 +26,5 @@ public class PrepareSubmissionResult extends Result
 		this.log = log;
 		this.errorLog = errorLog;
 		this.attachmentFiles = attachmentFiles;
-		this.sbmlFiles = sbmlFiles;
 	}
 }

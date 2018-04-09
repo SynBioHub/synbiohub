@@ -4,11 +4,11 @@ PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 PREFIX sbol: <http://sbols.org/v2#>
 
 INSERT {
-    <$topLevel> sbh:attachment <$attachmentURI> .
+    <$topLevel> sbol:attachment <$attachmentURI> .
 
     <$collectionUri> sbol:member <$attachmentURI> .
 
-    <$attachmentURI> a sbh:Attachment ;
+    <$attachmentURI> a sbol:Attachment ;
         dcterms:title $name ;
         dcterms:description $description ;
         sbol:displayId $displayId ;
@@ -16,9 +16,10 @@ INSERT {
         sbol:version $version ;
 	sbh:ownedBy <$ownedBy> ;
 	sbh:topLevel <$attachmentURI> ;
-        sbh:attachmentHash $hash ;
-        sbh:attachmentSize $size ;
-        sbh:attachmentType <$type> .
+        sbol:source <$attachmentSource> ;
+        sbol:hash $hash ;
+        sbol:size $size ;
+        sbol:format <$type> .
 
 }
 

@@ -6,6 +6,10 @@ DELETE WHERE {
 }
 ;
 DELETE WHERE {
+       ?s sbol:attachment <$uri>  
+}
+;
+DELETE WHERE {
        ?s sbol:member <$uri>  
 }
 ;
