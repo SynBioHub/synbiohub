@@ -2,7 +2,7 @@ package org.synbiohub;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;;
+import java.nio.file.StandardCopyOption;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
