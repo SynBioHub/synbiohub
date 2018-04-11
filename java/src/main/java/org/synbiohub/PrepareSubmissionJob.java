@@ -18,25 +18,20 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
 import java.util.Enumeration;
 import java.util.zip.*;
 
 import javax.xml.namespace.QName;
-import javax.xml.stream.XMLStreamException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jdom2.JDOMException;
-import org.sbml.jsbml.SBMLDocument;
-import org.sbml.jsbml.SBMLReader;
 import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.Attachment;
 import org.sbolstandard.core2.Collection;
 import org.sbolstandard.core2.Identified;
 import org.sbolstandard.core2.IdentifiedVisitor;
-import org.sbolstandard.core2.Model;
 import org.sbolstandard.core2.SBOLConversionException;
 import org.sbolstandard.core2.SBOLDocument;
 import org.sbolstandard.core2.SBOLValidate;
@@ -50,7 +45,6 @@ import org.synbiohub.frontend.SynBioHubFrontend;
 import de.unirostock.sems.cbarchive.ArchiveEntry;
 import de.unirostock.sems.cbarchive.CombineArchive;
 import de.unirostock.sems.cbarchive.CombineArchiveException;
-import edu.utah.ece.async.ibiosim.conversion.SBML2SBOL;
 
 public class PrepareSubmissionJob extends Job {
 	public String sbolFilename;

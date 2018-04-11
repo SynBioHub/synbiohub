@@ -19,6 +19,7 @@ import java.util.zip.GZIPInputStream;
 import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.io.FileUtils;
 import org.jdom2.JDOMException;
 import org.sbolstandard.core2.Attachment;
 import org.sbolstandard.core2.GenericTopLevel;
@@ -192,7 +193,7 @@ public class BuildCombineArchiveJob extends Job {
 		try {
 			archive.pack();
 			archive.close();
-
+			FileUtils.deleteDirectory(tempDirPath.toFile());
 			finish(new BuildCombineArchiveResult(this, true, archive.getZipLocation().getAbsolutePath(), ""));
 			return;
 		} catch (IOException | TransformerException e) {
