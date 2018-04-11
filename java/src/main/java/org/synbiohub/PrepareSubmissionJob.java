@@ -72,6 +72,7 @@ public class PrepareSubmissionJob extends Job {
 	public HashMap<String, String> webOfRegistries;
 	public String shareLinkSalt;
 	public String overwrite_merge;
+	public String tempDirPath;
 
 	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
 		CombineArchive combine;
@@ -79,6 +80,7 @@ public class PrepareSubmissionJob extends Job {
 
 		try {
 			tempDir = Files.createTempDirectory("extract").toFile();
+			tempDirPath = tempDir.getAbsolutePath();
 		} catch (IOException e) {
 			System.err.println("Could not create temporary directory!");
 			return false;
@@ -120,6 +122,7 @@ public class PrepareSubmissionJob extends Job {
 		try {
 			manifest = zip.entries();
 			extractDir = Files.createTempDirectory("extract");
+			tempDirPath = extractDir.toFile().getAbsolutePath();
 		} catch (IOException e) {
 			try {
 				zip.close();
@@ -252,7 +255,7 @@ public class PrepareSubmissionJob extends Job {
 				continue;
 			} else if (errorLog.length() > 0) {
 				finish(new PrepareSubmissionResult(this, false, "", log, "[" + filename + "] " + errorLog,
-						attachmentFiles));
+						attachmentFiles, tempDirPath));
 				return;
 			}
 
@@ -449,7 +452,7 @@ public class PrepareSubmissionJob extends Job {
 												+ " and it includes an object: " + topLevel.getIdentity()
 												+ " that is already in this repository and has different content";
 										finish(new PrepareSubmissionResult(this, false, "", log, errorLog,
-												attachmentFiles));
+												attachmentFiles,tempDirPath));
 										return;
 									}
 								} else {
@@ -533,7 +536,7 @@ public class PrepareSubmissionJob extends Job {
 		System.err.println("Writing file:" + resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
 
-		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles));
+		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, tempDirPath));
 
 	}
 
