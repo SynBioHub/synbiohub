@@ -63,7 +63,9 @@ COPY docker/virtuoso.ini /mnt/config/
 
 RUN ln -s /mnt/config/virtuoso.ini /etc/virtuoso-opensource-7/virtuoso.ini && \
     ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
-    ln -s /mnt/data/backup /opt/synbiohub/backup
+    ln -s /mnt/data/backup /opt/synbiohub/backup && \
+    touch /mnt/data/synbiohub.sqlite && \
+    ln -s /mnt/config/synbiohub.sqlite /opt/synbiohub/synbiohub.sqlite
 
 RUN chown -R synbiohub:synbiohub /mnt
 
