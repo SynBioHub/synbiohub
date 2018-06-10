@@ -3,6 +3,11 @@ extends ../../layouts/admin.jade
 
 block adminContent
     form(action='/admin/general', method='POST', id="generalForm")
+        div.row 
+            div.col-md-12 
+                div.alert.alert-info 
+                    span.fa.fa-check-circle-o 
+                    span &nbsp; Note: the database prefix and instance URL should both end with a '/' character, and should match in almost every case.
         div.row
             div.col-md-6
                 div.form-group
