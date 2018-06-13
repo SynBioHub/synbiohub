@@ -44,4 +44,4 @@ Prequisites:
  6. Build the Java components with Maven `cd java && mvn package`
  7. Return to the root directory and install the Node dependencies with NPM `cd ../ && npm install`
  8. Update the necessary libraries **twice** `npm update && npm update`
- 9. Start the SynBioHub process `npm start`
+ 9. Start the SynBioHub process `npm start` or `npm run-script dev`
