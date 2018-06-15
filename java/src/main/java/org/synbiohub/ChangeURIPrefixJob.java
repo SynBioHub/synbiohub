@@ -44,6 +44,7 @@ public class ChangeURIPrefixJob extends Job
 				false,
 				false,
 				false,
+				false,
 				null,
 				false,
 				true,

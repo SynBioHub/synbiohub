@@ -49,6 +49,7 @@ public class RDFToSBOLJob extends Job
 				false,
 				false,
 				false,
+				false,
 				null,
 				false,
 				true,

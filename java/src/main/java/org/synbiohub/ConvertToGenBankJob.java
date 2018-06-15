@@ -39,6 +39,7 @@ public class ConvertToGenBankJob extends Job
 				true,
 				false,
 				false,
+				false,
 				"",
 				false,
 				false,
