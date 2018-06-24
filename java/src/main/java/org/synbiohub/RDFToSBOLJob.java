@@ -203,7 +203,7 @@ public class RDFToSBOLJob extends Job
 					completeDocument(document,functionalComponent.getDefinition());
 				}
 			}
-			for (Module module : ((ModuleDefinition)topLevel).getModules()) {
+			for (org.sbolstandard.core2.Module module : ((ModuleDefinition)topLevel).getModules()) {
 				if (module.getDefinition()!=null) {
 					completeDocument(document,module.getDefinition());
 				}
