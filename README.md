@@ -44,4 +44,6 @@ Prequisites:
  6. Build the Java components with Maven `cd java && mvn package`
  7. Return to the root directory and install the Node dependencies with NPM `cd ../ && npm install`
  8. Update the necessary libraries **twice** `npm update && npm update`
- 9. Start the SynBioHub process `npm start` or `npm run-script dev`
+ 9. Install nodemon and forever with `npm install nodemon && npm install forever`
+ 10. Start virtuoso process `virtuoso-t +configfile /etc/virtuoso-opensource-7/virtuoso.ini -f`
+ 11. Start the SynBioHub process `npm start` or `npm run-script dev`
