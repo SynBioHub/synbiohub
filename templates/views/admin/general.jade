@@ -24,5 +24,15 @@ block adminContent
                         input(type='checkbox', name="allowPublicSignup", checked=config.allowPublicSignup) 
                         | Allow Public Account Creation
         div.row
+            div.col-md-6
+                div.form-group
+                    label(for='SBOLExplorerEndpoint') SBOLExplorer Endpoint
+                    input.form-control(type='text', name='SBOLExplorerEndpoint', value=config.SBOLExplorerEndpoint)
+            div.col-md-6 
+                div.checkbox
+                    label
+                        input(type='checkbox', name="useSBOLExplorer", checked=config.useSBOLExplorer) 
+                        | Searching Using SBOLExplorer
+        div.row
             div.col-md-1.col-md-offset-11
                 button.btn.btn-primary(type='submit') Save
