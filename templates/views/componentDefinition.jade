@@ -73,6 +73,9 @@ block topLevelButtons
                     a.btn.btn-success(href=meta.url + '/twins',title='This is a dominant twin') Find Twins
                 else if !meta.remote
                     a(href=meta.url + '/twins',title='This is NOT a dominant twin') Twins
+            if config.useSBOLExplorer
+                li
+                    a(href=href=meta.url + '/similar',title='Find all parts similar to '+rdfType.name) Find Similar
     if createImplementation
         li.dropdown.btn.btn-success
             a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
