@@ -72,7 +72,14 @@ block topLevelButtons
                 if meta.igemDominant.description == 'true' && !meta.remote
                     a.btn.btn-success(href=meta.url + '/twins',title='This is a dominant twin') Find Twins
                 else if !meta.remote
+<<<<<<< HEAD
                     a(href=meta.url + '/twins',title='This is NOT a dominant twin') Find Twins
+=======
+                    a(href=meta.url + '/twins',title='This is NOT a dominant twin') Twins
+            if config.useSBOLExplorer
+                li
+                    a(href=href=meta.url + '/similar',title='Find all parts similar to '+rdfType.name) Find Similar
+>>>>>>> 89ce581b541fff5c00ef83ba3d54dd510f6d96f9
     if createImplementation
         li.dropdown.btn.btn-success
             a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
