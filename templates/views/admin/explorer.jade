@@ -1,0 +1,50 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    form(action='/admin/explorer', method='POST', id="explorerForm")
+        div.row 
+            div.col-md-12 
+                div.alert.alert-info 
+                    span.fa.fa-check-circle-o 
+                    span &nbsp; Note: These changes will only propogate if SBOLExplorer is up.  If this page loads, then SBOLExplorer is most likely up.
+        div.row 
+            div.col-md-12 
+                div.checkbox
+                    label
+                        input(type='checkbox', name="manualReindex", checked=False) 
+                        | Update Index Right Now (check the box and click save, will take a couple minutes)
+        div.row 
+            div.col-md-12 
+                div.checkbox
+                    label
+                        input(type='checkbox', name="useDistributedSearch", checked=explorerConfig.distributed_search) 
+                        | Use Distributed Search
+        div.row
+            div.col-md-12
+                div.form-group
+                    label(for='pagerankTolerance') Pagerank Tolerance
+                    input.form-control(type='text', name='pagerankTolerance', value=explorerConfig.pagerank_tolerance)
+        div.row
+            div.col-md-12
+                div.form-group
+                    label(for='uclustIdentity') UClust Clustering Identity
+                    input.form-control(type='text', name='uclustIdentity', value=explorerConfig.uclust_identity)
+        div.row
+            div.col-md-6
+                div.form-group
+                    label(for='elasticsearchEndpoint') Elasticsearch Endpoint
+                    input.form-control(type='text', name='elasticsearchEndpoint', value=explorerConfig.elasticsearch_endpoint)
+            div.col-md-6
+                div.form-group
+                    label(for='elasticsearchIndexName') Elasticsearch Index Name
+                    input.form-control(type='text', name='elasticsearchIndexName', value=explorerConfig.elasticsearch_index_name)
+        div.row
+            div.col-md-12
+                div.form-group
+                    label(for='sparqlEndpoint') SPARQL/Virtuoso Endpoint
+                    input.form-control(type='text', name='sparqlEndpoint', value=explorerConfig.sparql_endpoint)
+        div.row
+            div.col-md-1.col-md-offset-11
+                button.btn.btn-primary(type='submit') Save
+

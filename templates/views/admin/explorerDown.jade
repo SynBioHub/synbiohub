@@ -1,0 +1,10 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    form(action='/admin/explorer', method='POST', id="explorerForm")
+        div.row 
+            div.col-md-12 
+                div.alert.alert-info 
+                    span.fa.fa-check-circle-o 
+                    span &nbsp; Error: It looks like SBOLExplorer is not responding.  Please check that it is up, and that the SBOLExplorer endpoint (specified in Admin -> General -> SBOLExplorer Endpoint) is correct.
