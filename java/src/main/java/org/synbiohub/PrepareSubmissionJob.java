@@ -18,6 +18,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
 import java.util.Enumeration;
@@ -26,6 +27,16 @@ import java.util.zip.*;
 import javax.xml.namespace.QName;
 
 import org.apache.commons.codec.digest.DigestUtils;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import com.google.gson.Gson;
+
 import org.jdom2.JDOMException;
 import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.Attachment;
@@ -73,6 +84,8 @@ public class PrepareSubmissionJob extends Job {
 	public String shareLinkSalt;
 	public String overwrite_merge;
 	public String tempDirPath;
+  public boolean useSBOLExplorer;
+  public String SBOLExplorerEndpoint;
 
 	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
 		CombineArchive combine;
@@ -227,6 +240,8 @@ public class PrepareSubmissionJob extends Job {
 				toConvert.add(filename);
 		}
 
+    HashSet<String> explorerUrisToRemove = new HashSet<>();
+
 		for (String filename : attachmentFiles.keySet()) {
 			if (!attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
 				continue;
@@ -275,6 +290,12 @@ public class PrepareSubmissionJob extends Job {
 					}
 				}
 			}
+
+      if (useSBOLExplorer) {
+        for (TopLevel topLevel : individual.getTopLevels()) {
+          explorerUrisToRemove.add(topLevel.getIdentity().toString());
+        }
+      }
 
 			individual.setDefaultURIprefix("http://dummy.org/");
 			if (individual.getTopLevels().size() == 0) {
@@ -535,6 +556,10 @@ public class PrepareSubmissionJob extends Job {
 
 		}
 
+    if (useSBOLExplorer) {
+      incrementallyUpdateSBOLExplorer(explorerUrisToRemove, doc);
+    }
+
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:" + resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
@@ -542,6 +567,74 @@ public class PrepareSubmissionJob extends Job {
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, tempDirPath));
 
 	}
+
+  class ExplorerTopLevel {
+    String subject;
+    String displayId;
+    String version;
+    String name;
+    String description;
+    String type;
+    String graph;
+  }
+
+  class ExplorerPost {
+    List<String> partsToRemove;
+
+    List<ExplorerTopLevel> partsToAdd;
+  }
+
+  public void incrementallyUpdateSBOLExplorer(HashSet<String> explorerUrisToRemove, SBOLDocument topLevelsToAdd) {
+    ExplorerPost payload = new ExplorerPost();
+
+    // remove parts
+    List<String> partsToRemove = new ArrayList<>();
+    if (!submit && !copy) {
+      partsToRemove.addAll(explorerUrisToRemove);
+    }
+    payload.partsToRemove = partsToRemove;
+
+    // add parts
+    List<ExplorerTopLevel> partsToAdd = new ArrayList<>();
+
+    for (TopLevel topLevel : topLevelsToAdd.getTopLevels()) {
+      ExplorerTopLevel etl = new ExplorerTopLevel();
+
+      etl.subject = topLevel.getIdentity().toString();
+      etl.displayId = topLevel.getDisplayId();
+      etl.version = topLevel.getVersion();
+      etl.name = topLevel.getName();
+      etl.description = topLevel.getDescription();
+      etl.type = "TODO"; // TODO
+
+      if (!submit && !copy) {
+        etl.graph = databasePrefix + "public";
+      } else {
+        etl.graph = ownedByURI;
+      }
+
+      partsToAdd.add(etl);
+    }
+
+    payload.partsToAdd = partsToAdd;
+
+    // send request
+    try {
+      Gson gson = new Gson();
+      HttpPost post = new HttpPost(SBOLExplorerEndpoint + "incrementalupdate");
+      String json = gson.toJson(payload);
+      post.setEntity(new StringEntity(json));
+      post.setHeader("Content-type", "application/json");
+      System.err.println("SBOLExplorer request: " + post.toString());
+
+      HttpClient httpClient = HttpClientBuilder.create().build();
+
+      HttpResponse response = httpClient.execute(post);
+      System.err.println("SBOLExplorer response: " + response.toString());
+    } catch (Exception e) {
+      System.err.println("SBOLExplorer /incrementalupdate failed");
+    } 
+  }
 
 	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations)
 			throws SBOLValidationException {
