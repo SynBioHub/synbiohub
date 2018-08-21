@@ -456,7 +456,7 @@ public class PrepareSubmissionJob extends Job {
 									if (overwrite_merge.equals("3")) {
 										// Overwrite is selected so remove the old object
 										try {
-											sbh.removeSBOL(URI.create(topLevelUri));
+											sbh.replaceSBOL(URI.create(topLevelUri));
 										} catch (SynBioHubException e) {
 											System.err.println("Remove fail for:" + topLevel.getIdentity());
 											//e.printStackTrace(System.err);
