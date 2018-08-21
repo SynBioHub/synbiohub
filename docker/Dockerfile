@@ -56,7 +56,8 @@ RUN apt install -y raptor2-utils
 
 RUN mkdir /mnt/data && \
     mkdir /mnt/config && \
-    mkdir /mnt/data/backup
+    mkdir /mnt/data/backup && \
+    mkdir /mnt/data/uploads
 
 COPY docker/config.local.json /mnt/config/
 COPY docker/virtuoso.ini /mnt/config/
@@ -64,6 +65,7 @@ COPY docker/virtuoso.ini /mnt/config/
 RUN ln -s /mnt/config/virtuoso.ini /etc/virtuoso-opensource-7/virtuoso.ini && \
     ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
     ln -s /mnt/data/backup /opt/synbiohub/backup && \
+    ln -s /mnt/data/uploads /opt/synbiohub/uploads && \
     touch /mnt/data/synbiohub.sqlite && \
     ln -s /mnt/data/synbiohub.sqlite /opt/synbiohub/synbiohub.sqlite
 
