@@ -240,7 +240,7 @@ public class PrepareSubmissionJob extends Job {
 		// Check if CombineArchive and get files
 		boolean isCombineArchive = getFilenames(sbolFilename, attachmentFiles);
 
-		// TODO: obsolete code?
+		// TODO: Zach: is this obsolete code?
 		for (String filename : attachmentFiles.keySet()) {
 			if (attachmentFiles.get(filename).startsWith("http://identifiers.org/combine.specifications/sbml"))
 				toConvert.add(filename);
