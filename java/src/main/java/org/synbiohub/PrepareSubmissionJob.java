@@ -18,6 +18,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
 import java.util.Enumeration;
@@ -26,6 +27,16 @@ import java.util.zip.*;
 import javax.xml.namespace.QName;
 
 import org.apache.commons.codec.digest.DigestUtils;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import com.google.gson.Gson;
+
 import org.jdom2.JDOMException;
 import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.Attachment;
@@ -73,6 +84,8 @@ public class PrepareSubmissionJob extends Job {
 	public String shareLinkSalt;
 	public String overwrite_merge;
 	public String tempDirPath;
+  public boolean useSBOLExplorer;
+  public String SBOLExplorerEndpoint;
 
 	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
 		CombineArchive combine;
@@ -210,7 +223,13 @@ public class PrepareSubmissionJob extends Job {
 
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException {
 		System.err.println("In execute");
+
 		HashMap<String, String> attachmentFiles = new HashMap<>();
+		ArrayList<String> toConvert = new ArrayList<>();
+		ArrayList<String> sbolFiles = new ArrayList<>();
+		HashSet<String> explorerUrisToRemove = new HashSet<>();
+		HashSet<URI> urisFoundInSynBioHub = new HashSet<>();
+		
 		String log, errorLog = new String();
 		log = "";
 		errorLog = "";
@@ -218,15 +237,16 @@ public class PrepareSubmissionJob extends Job {
 		SBOLDocument doc = new SBOLDocument();
 		doc.setDefaultURIprefix(uriPrefix);
 
+		// Check if CombineArchive and get files
 		boolean isCombineArchive = getFilenames(sbolFilename, attachmentFiles);
-		ArrayList<String> toConvert = new ArrayList<>();
-		ArrayList<String> sbolFiles = new ArrayList<>();
 
+		// TODO: Zach: is this obsolete code?
 		for (String filename : attachmentFiles.keySet()) {
 			if (attachmentFiles.get(filename).startsWith("http://identifiers.org/combine.specifications/sbml"))
 				toConvert.add(filename);
 		}
 
+		// Process SBOL files
 		for (String filename : attachmentFiles.keySet()) {
 			if (!attachmentFiles.get(filename).toLowerCase().contains("sbol")) {
 				continue;
@@ -237,6 +257,7 @@ public class PrepareSubmissionJob extends Job {
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 			ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 
+			// Validate and convert file, if necessary
 			SBOLDocument individual = SBOLValidate.validate(new PrintStream(logOutputStream),
 					new PrintStream(errorOutputStream), filename, "http://dummy.org/", requireComplete,
 					requireCompliant, enforceBestPractices, typesInURI, "1", keepGoing, "", "", filename, topLevelURI,
@@ -248,7 +269,7 @@ public class PrepareSubmissionJob extends Job {
 
 			System.err.println(log);
 			System.err.println(errorLog);
-			
+
 			if (errorLog.startsWith("File is empty")) {
 				individual = new SBOLDocument();
 				errorLog = "";
@@ -262,6 +283,7 @@ public class PrepareSubmissionJob extends Job {
 				return;
 			}
 
+			// Remove files already stored in SynBioHub repositories
 			if (!copy) {
 				for (TopLevel topLevel : individual.getTopLevels()) {
 					if (!submit && topLevel.getIdentity().toString().startsWith(ownedByURI))
@@ -269,6 +291,7 @@ public class PrepareSubmissionJob extends Job {
 					for (String registry : webOfRegistries.keySet()) {
 						if (topLevel.getIdentity().toString().startsWith(registry)) {
 							System.err.println("Found and removed:" + topLevel.getIdentity());
+							urisFoundInSynBioHub.add(topLevel.getIdentity());
 							individual.removeTopLevel(topLevel);
 							break;
 						}
@@ -276,6 +299,15 @@ public class PrepareSubmissionJob extends Job {
 				}
 			}
 
+			// Remove index information for private objects being made public
+			// TODO: MICHAEL - this should only be done on make public
+			if (useSBOLExplorer) {
+				for (TopLevel topLevel : individual.getTopLevels()) {
+					explorerUrisToRemove.add(topLevel.getIdentity().toString());
+				}
+			}
+
+			// Update URI prefix and version of all objects
 			individual.setDefaultURIprefix("http://dummy.org/");
 			if (individual.getTopLevels().size() == 0) {
 				individual.setDefaultURIprefix(uriPrefix);
@@ -293,46 +325,15 @@ public class PrepareSubmissionJob extends Job {
 				}
 			}
 
+			// Copy SBOL for individual file into composite document
 			doc.createCopy(individual);
 		}
-
-//		for (String sbmlFilename : toConvert) {
-//			String sbmlFile = FileSystems.getDefault().getPath(sbmlFilename).getFileName().toString();
-//			String sbmlDirectory = FileSystems.getDefault().getPath(sbmlFilename).getParent().toString();
-//
-//			SBOLDocument sbolDoc = new SBOLDocument();
-//			SBMLDocument sbmlDoc;
-//
-//			boolean foundIt = false;
-//
-//			for (Model model : doc.getModels()) {
-//				String source = model.getSource().toString();
-//				if (sbmlFilename.equals(source)) {
-//					model.setSource(URI.create("file:" + source));
-//					foundIt = true;
-//					break;
-//				}
-//			}
-//			if (foundIt)
-//				continue;
-//
-//			try {
-//				SBMLReader reader = new SBMLReader();
-//				sbmlDoc = reader.readSBMLFromFile(sbmlFilename);
-//				sbolDoc.write(System.err);
-//				SBML2SBOL.convert_SBML2SBOL(sbolDoc, sbmlDirectory, sbmlDoc, sbmlFile,
-//						new HashSet<String>(sbolFiles), uriPrefix);
-//			} catch (XMLStreamException e) {
-//				e.printStackTrace();
-//			}
-//
-//			doc.createCopy(sbolDoc);
-//		}
 
 		Collection rootCollection = null;
 
 		if (submit || copy) {
 
+			// Create the submission collection
 			Collection submissionCollection = doc.getCollection(newRootCollectionDisplayId, newRootCollectionVersion);
 			if (submissionCollection == null) {
 				submissionCollection = doc.createCollection(newRootCollectionDisplayId, newRootCollectionVersion);
@@ -351,6 +352,7 @@ public class PrepareSubmissionJob extends Job {
 				submissionCollection.setDescription(description);
 			}
 
+			// Update ownedBy, topLevel, and PubMedId annotations
 			(new IdentifiedVisitor() {
 
 				@Override
@@ -382,6 +384,7 @@ public class PrepareSubmissionJob extends Job {
 			}).visitDocument(doc);
 		} else {
 
+			// Update submission collection if being renamed on make public
 			Collection submissionCollection = doc.getCollection(URI.create(rootCollectionIdentity));
 			if (submissionCollection == null) {
 				submissionCollection = doc.createCollection(uriPrefix, newRootCollectionDisplayId,
@@ -406,14 +409,14 @@ public class PrepareSubmissionJob extends Job {
 						submissionCollection.getIdentity());
 				rootCollection = submissionCollection;
 			}
-			//Collection originalRootCollection = doc.getCollection(URI.create(rootCollectionIdentity));
-			//doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
-			//doc.removeCollection(originalRootCollection);
 		}
 
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
 
+			// Merge into an existing collection
 			for (TopLevel topLevel : doc.getTopLevels()) {
+				
+				// Update root collection
 				if (topLevel.getIdentity().toString().equals(rootCollectionIdentity)) {
 					topLevel.unsetDescription();
 					topLevel.unsetName();
@@ -423,14 +426,18 @@ public class PrepareSubmissionJob extends Job {
 					topLevel.removeAnnotation(annotation);
 					continue;
 				}
+				
+				// Check if the object is already in the collection
 				for (String registry : webOfRegistries.keySet()) {
 					SynBioHubFrontend sbh = new SynBioHubFrontend(webOfRegistries.get(registry), registry);
 					if (topLevel.getIdentity().toString().startsWith(registry)) {
+						
+						// Fetch the object from SynBioHub
 						String topLevelUri = topLevel.getIdentity().toString();
 						if (topLevelUri.startsWith(registry + "/user/")) {
 							topLevelUri = topLevel.getIdentity().toString() + '/' + DigestUtils.sha1Hex("synbiohub_"
 									+ DigestUtils.sha1Hex(topLevel.getIdentity().toString() + "/edit") + shareLinkSalt)
-									+ "/share";
+							+ "/share";
 						}
 						SBOLDocument tlDoc;
 						try {
@@ -438,19 +445,24 @@ public class PrepareSubmissionJob extends Job {
 						} catch (SynBioHubException e) {
 							tlDoc = null;
 						}
+						
 						if (tlDoc != null) {
 							System.err.println("Looking up:" + topLevel.getIdentity());
 							TopLevel tl = tlDoc.getTopLevel(topLevel.getIdentity());
 							if (tl != null) {
+								// The object has been found
 								if (!topLevel.equals(tl)) {
+									// The object is different
 									if (overwrite_merge.equals("3")) {
+										// Overwrite is selected so remove the old object
 										try {
-											sbh.removeSBOL(URI.create(topLevelUri));
+											sbh.replaceSBOL(URI.create(topLevelUri));
 										} catch (SynBioHubException e) {
 											System.err.println("Remove fail for:" + topLevel.getIdentity());
 											//e.printStackTrace(System.err);
 										}
 									} else {
+										// Overwrite is not selected so fail
 										errorLog = "Submission terminated.\nA submission with this id already exists,"
 												+ " and it includes an object: " + topLevel.getIdentity()
 												+ " that is already in this repository and has different content";
@@ -459,6 +471,7 @@ public class PrepareSubmissionJob extends Job {
 										return;
 									}
 								} else {
+									// The object is the same, so do not add again, but keep in collection
 									System.err.println("Found and removed:" + topLevel.getIdentity());
 									doc.removeTopLevel(topLevel);
 									if (rootCollection != null) {
@@ -473,6 +486,7 @@ public class PrepareSubmissionJob extends Job {
 			}
 		}
 
+		// Update mutable annotations
 		for (TopLevel topLevel : doc.getTopLevels()) {
 			Annotation desc = topLevel.getAnnotation(
 					new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "mutableDescription", "sbh"));
@@ -508,11 +522,12 @@ public class PrepareSubmissionJob extends Job {
 			}
 		}
 
+		// Add objects as members of the root submission collection
 		if (rootCollection != null) {
-
 			for (TopLevel topLevel : doc.getTopLevels()) {
 				if (topLevel != rootCollection) {
 					rootCollection.addMember(topLevel.getIdentity());
+					// TODO: this code is obsolete
 					for (String collectionChoice : collectionChoices) {
 						try {
 							if (collectionChoice.startsWith("http")) {
@@ -525,16 +540,17 @@ public class PrepareSubmissionJob extends Job {
 					}
 				}
 			}
-
-			//			if (rootCollection.getMembers().size() == 0) 
-			//			{
-			//				errorLog = "Submission terminated.\nThere is nothing new to add to the repository.";
-			//				finish(new PrepareSubmissionResult(this, false, "", log, errorLog));
-			//				return;
-			//			}
-
+			for (URI identity : urisFoundInSynBioHub) {
+				rootCollection.addMember(identity);
+			}
 		}
 
+		// Update SBOLExplorer index
+		if (useSBOLExplorer) {
+			incrementallyUpdateSBOLExplorer(explorerUrisToRemove, doc);
+		}
+
+		// Return SBOL document and attachment files
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:" + resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
@@ -542,6 +558,74 @@ public class PrepareSubmissionJob extends Job {
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, tempDirPath));
 
 	}
+
+  class ExplorerTopLevel {
+    String subject;
+    String displayId;
+    String version;
+    String name;
+    String description;
+    String type;
+    String graph;
+  }
+
+  class ExplorerPost {
+    List<String> partsToRemove;
+
+    List<ExplorerTopLevel> partsToAdd;
+  }
+
+  public void incrementallyUpdateSBOLExplorer(HashSet<String> explorerUrisToRemove, SBOLDocument topLevelsToAdd) {
+    ExplorerPost payload = new ExplorerPost();
+
+    // remove parts
+    List<String> partsToRemove = new ArrayList<>();
+    if (!submit && !copy) {
+      partsToRemove.addAll(explorerUrisToRemove);
+    }
+    payload.partsToRemove = partsToRemove;
+
+    // add parts
+    List<ExplorerTopLevel> partsToAdd = new ArrayList<>();
+
+    for (TopLevel topLevel : topLevelsToAdd.getTopLevels()) {
+      ExplorerTopLevel etl = new ExplorerTopLevel();
+
+      etl.subject = topLevel.getIdentity().toString();
+      etl.displayId = topLevel.getDisplayId();
+      etl.version = topLevel.getVersion();
+      etl.name = topLevel.getName();
+      etl.description = topLevel.getDescription();
+      etl.type = "TODO"; // TODO
+
+      if (!submit && !copy) {
+        etl.graph = databasePrefix + "public";
+      } else {
+        etl.graph = ownedByURI;
+      }
+
+      partsToAdd.add(etl);
+    }
+
+    payload.partsToAdd = partsToAdd;
+
+    // send request
+    try {
+      Gson gson = new Gson();
+      HttpPost post = new HttpPost(SBOLExplorerEndpoint + "incrementalupdate");
+      String json = gson.toJson(payload);
+      post.setEntity(new StringEntity(json));
+      post.setHeader("Content-type", "application/json");
+      System.err.println("SBOLExplorer request: " + post.toString());
+
+      HttpClient httpClient = HttpClientBuilder.create().build();
+
+      HttpResponse response = httpClient.execute(post);
+      System.err.println("SBOLExplorer response: " + response.toString());
+    } catch (Exception e) {
+      System.err.println("SBOLExplorer /incrementalupdate failed");
+    } 
+  }
 
 	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations)
 			throws SBOLValidationException {
