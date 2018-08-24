@@ -45,10 +45,8 @@ RUN mkdir /mnt/data && \
     mkdir /mnt/config
 
 COPY docker/config.local.json /mnt/config/
-COPY docker/virtuoso.ini /mnt/config/
 
-RUN ln -s /mnt/config/virtuoso.ini /etc/virtuoso-opensource-7/virtuoso.ini && \
-    ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
+RUN ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
     touch /mnt/data/synbiohub.sqlite && \
     ln -s /mnt/config/synbiohub.sqlite /opt/synbiohub/synbiohub.sqlite
 
@@ -59,6 +57,5 @@ RUN chmod +x /startup.sh
 
 EXPOSE 8890 7777 1111
 
-ENTRYPOINT ["/startup.sh"]
-
+ENTRYPOINT ["npm", "start"]
 
