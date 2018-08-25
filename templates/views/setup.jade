@@ -57,6 +57,10 @@ block body
                 label Instance URL
                     input.form-control(name='instanceURL',value=settings.instanceUrl)
                 p
+                    | We need to know how to prefix URIs of objects stored in this SynBioHub. Its default is the same as the URL, and should only be changed if you are shadowing another instance.
+                label URI Prefix   
+                    input.form-control(name='uriPrefix',value=settings.uriPrefix)
+                p
                     | We need to know where the Virtuoso INI is stored. We have guessed it to be
                     b  #{config.triplestore.virtuosoINI}
                     |, but if this is incorrect, please change it here.
