@@ -130,7 +130,7 @@ block content
                                 if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                                     li 
                                         a(href=meta.url + '/' + meta.id + '.fasta') Download FASTA
-                                if rdfType.name == 'Component'
+                                if rdfType.name == 'Component' || rdfType.name == 'Module'
                                     li 
                                         a.sbh-download-picture Download Image
                                 if rdfType.name == 'Attachment'
