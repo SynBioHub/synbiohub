@@ -69,11 +69,12 @@ public class RDFToSBOLJob extends Job
 			doc.addRegistry(webOfRegistries.get(registry),registry);
 		}
 		//completeDocument(doc);
-		SBOLDocument newDoc = new SBOLDocument();
 		for (TopLevel topLevel : doc.getTopLevels()) {
-			doc.createRecursiveCopy(newDoc,topLevel);
+			if (topLevel instanceof Collection) {
+				((Collection) topLevel).getMembers();
+			}
+			//doc.createRecursiveCopy(newDoc,topLevel);
 		}
-		doc = newDoc;
 		
 		doc.clearRegistries();
 		// Restores nested annotations
