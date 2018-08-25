@@ -9,14 +9,10 @@ block adminContent
                     span.fa.fa-check-circle-o 
                     span &nbsp; Note: the database prefix and instance URL should both end with a '/' character, and should match in almost every case.
         div.row
-            div.col-md-6
+            div.col-md-12
                 div.form-group
                     label(for='instanceName') Instance URL
                     input.form-control(type='text', name='instanceUrl', value=config.instanceUrl)
-            div.col-md-6
-                div.form-group
-                    label(for='databasePrefix') Database Prefix
-                    input.form-control(type='text', name='databasePrefix', value=config.databasePrefix)
         div.row 
             div.col-md-12 
                 div.checkbox
