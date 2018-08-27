@@ -11,6 +11,7 @@ SELECT DISTINCT
        ?version
        ?name
        ?description
+       ?type
 WHERE { 
       <$uri> a ?type .
       OPTIONAL { <$uri> sbol2:persistentIdentity ?persistentIdentity . }
