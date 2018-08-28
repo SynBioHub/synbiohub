@@ -16,7 +16,7 @@ $graphs
 WHERE { 
 <$collection> a sbol2:Collection .
 <$collection> sbol2:member ?uri .
-?uri a ?type .
+OPTIONAL { ?uri a ?type . }
 OPTIONAL { ?uri sbol2:displayId ?displayId . }
 OPTIONAL { ?uri dcterms:title ?name . }
 OPTIONAL { ?uri dcterms:description ?description . }
