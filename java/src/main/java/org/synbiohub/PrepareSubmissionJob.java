@@ -299,10 +299,11 @@ public class PrepareSubmissionJob extends Job {
 			}
 
 			// Remove index information for private objects being made public
-			// TODO: MICHAEL - this should only be done on make public
-			if (useSBOLExplorer) {
+			if (useSBOLExplorer && (!submit && !copy)) {
 				for (TopLevel topLevel : individual.getTopLevels()) {
-					explorerUrisToRemove.add(topLevel.getIdentity().toString());
+          if (topLevel.getIdentity().toString().startsWith(ownedByURI)) {
+            explorerUrisToRemove.add(topLevel.getIdentity().toString());
+          }
 				}
 			}
 
