@@ -1,19 +1,12 @@
-
 var config = require('./lib/config')
-
 var App = require('./lib/app')
-
 var db = require('./lib/db')
-
 var fs = require('fs')
-
 var jobUtils = require('./lib/jobs/job-utils')
-
 var sliver = require('./lib/sliver')
-
 var theme = require('./lib/theme')
-
 var java = require('./lib/java')
+var gitRev = require('./lib/gitRevision')
 
 
 if(fs.existsSync('synbiohub.sqlite') && config.get('firstLaunch') === true) {
@@ -29,6 +22,8 @@ if(!fs.existsSync('synbiohub.sqlite')) {
         startServer()
     })
 }
+
+config.set('revision', gitRev())
 
 function startServer() {
 
