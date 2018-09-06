@@ -18,8 +18,6 @@ block content
                     ul.nav.nav-pills.nav-stacked
                         li(role='presentation',class=(adminSection==='status'?'active':''))
                             a(href='/admin/') Status
-                        li(role='presentation',class=(adminSection==='general'?'active':''))
-                            a(href='/admin/general') General
                         li(role='presentation',class=(adminSection==='explorer'?'active':''))
                             a(href='/admin/explorer') SBOLExplorer
                         li(role='presentation',class=(adminSection==='users'?'active':''))
@@ -46,8 +44,8 @@ block content
                                 a(href='/admin/integrations') Integrations
                         li(role='presentation',class=(adminSection==='backup'?'active':''))
                             a(href='/admin/backup') Backup
-                        //li(role='presentation',class=(adminSection==='update'?'active':''))
-                            a(href='/admin/update') Update 
+                        li(role='presentation')
+                            a(href='/admin/log') Download Log
                 div.col-md-8
                     block adminContent
                 div.col-md-1
