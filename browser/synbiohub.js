@@ -14,9 +14,17 @@ $("body").tooltip({
 
 $('.sbh-download-picture').click(function () {
 
-    var element = document.getElementById('design').childNodes[0]
+    var element = $(document.getElementById('design').childNodes[0])
+    var clone = element.clone()
 
-    saveSvgAsPng(element, 'figure.png')
+    element.find('*').each(function(i, elem) {
+        $(elem).removeAttr('title')
+        $(elem).removeData()
+    })
+
+    saveSvgAsPng(element[0], 'figure.png')
+
+    element.replaceWith(clone)
 
 })
 
