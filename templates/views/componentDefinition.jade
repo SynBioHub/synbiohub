@@ -70,7 +70,7 @@ block topLevelButtons
                 a(href=href=meta.url + '/uses',title='Find all uses of this '+rdfType.name) Find Uses
             li
                 if meta.igemDominant.description == 'true' && !meta.remote
-                    a.btn.btn-success(href=meta.url + '/twins',title='This is a dominant twin') Find Twins
+                    a.bg-success(href=meta.url + '/twins',title='This is a dominant twin') Find Twins
                 else if !meta.remote
                     a(href=meta.url + '/twins',title='This is NOT a dominant twin') Find Twins
             if config.useSBOLExplorer
