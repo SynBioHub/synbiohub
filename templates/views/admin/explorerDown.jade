@@ -7,4 +7,17 @@ block adminContent
             div.col-md-12 
                 div.alert.alert-info 
                     span.fa.fa-check-circle-o 
-                    span &nbsp; Error: It looks like SBOLExplorer is not responding.  Please check that it is up, and that the SBOLExplorer endpoint (specified in Admin -> General -> SBOLExplorer Endpoint) is correct.
+                    span &nbsp; Error: It looks like SBOLExplorer is not responding.  Please check that it is up, and that the SBOLExplorer endpoint is correct.
+        div.row
+            div.col-md-6
+                div.form-group
+                    label(for='SBOLExplorerEndpoint') SBOLExplorer Endpoint
+                    input.form-control(type='text', name='SBOLExplorerEndpoint', value=config.SBOLExplorerEndpoint)
+            div.col-md-6
+                div.checkbox
+                    label
+                        input(type='checkbox', name="useSBOLExplorer", checked=config.useSBOLExplorer) 
+                        | Searching Using SBOLExplorer
+        div.row
+            div.col-md-1.col-md-offset-11
+                button.btn.btn-primary(type='submit') Save
