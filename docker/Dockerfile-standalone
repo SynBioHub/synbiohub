@@ -57,5 +57,6 @@ RUN chmod +x /startup.sh
 
 EXPOSE 8890 7777 1111
 
+WORKDIR /opt/synbiohub
 ENTRYPOINT ["npm", "start"]
 
