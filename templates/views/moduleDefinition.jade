@@ -1,6 +1,12 @@
 
 extends ../layouts/topLevel.jade
 
+block topLevelPreview
+    if meta.displayList
+        div.row
+            div.col-md-12.text-center
+            div#design
+
 block topLevelPropertyTable
     if modules.length > 0 
         tr
@@ -20,10 +26,9 @@ block topLevelPropertyTable
                 for module in modules
                     a(href=module.url) #{module.defName}
                     br
-    if functionalComponents.length > 0
+    if !meta.displayList && functionalComponents.length > 0
         tr
-            td 
-                a(href='http://sbols.org/v2#FunctionalComponent', title='http://sbols.org/v2#FunctionalComponent') FunctionalComponent
+            td FunctionalComponent
             td Identifier
             td Name
         tr
@@ -39,11 +44,10 @@ block topLevelPropertyTable
                 for functionalComponent in functionalComponents
                     a(href=functionalComponent.url) #{functionalComponent.defName}
                     br
-    if interactions.length > 0
+    if !meta.displayList && interactions.length > 0
         for interaction in interactions
             tr
-                td 
-                    a(href='http://sbols.org/v2#Interaction', title='http://sbols.org/v2#Interaction') Interaction
+                td Interaction
                 td
                     != interaction.defName
                 td
@@ -51,8 +55,7 @@ block topLevelPropertyTable
             if interaction.participations.length > 0
                 for participation in interaction.participations
                     tr
-                        td 
-                            a(href='http://sbols.org/v2#Participation', title='http://sbols.org/v2#Participation') &nbsp; Participation
+                        td Participation
                         td 
                             a(href=participation.participant.url, title=participation.participant.url) #{participation.participant.defName}
                         td 
@@ -60,8 +63,7 @@ block topLevelPropertyTable
             
     if models.length > 0 
         tr
-            td 
-                a(href='http://sbols.org/v2#Model', title='http://sbols.org/v2#Model') Model
+            td Model
             td
                 for model in models
                     if (model.url)
