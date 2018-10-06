@@ -1,9 +1,8 @@
 
 extends ../layouts/topLevel.jade
 
-block topLevelButtons
-    a.btn.btn-success(href=createTest)
-        span.fa.fa-cubes
-        |  Create Test
-    br
-    br
+block topLevelBelowTitle
+    span
+    if meta.built 
+        h5 Built: 
+            a(href=meta.built.url.startsWith(config.databasePrefix)?'/'+meta.built.url.toString().replace(config.databasePrefix,''):meta.built.url.toString()) #{meta.built.name}
