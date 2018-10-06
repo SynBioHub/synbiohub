@@ -1,0 +1,62 @@
+
+FROM ubuntu:16.04
+MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
+
+
+### node
+
+ADD docker/setup_6.x /
+
+RUN chmod +x /setup_6.x && \
+    sync && \
+    /setup_6.x && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    npm install -g forever
+
+
+### synbiohub
+
+COPY docker/sudoers /etc/sudoers
+
+RUN useradd synbiohub -p synbiohub -m -s /bin/bash && \
+    apt install -y git && \
+    cd /opt && \
+    git clone https://github.com/ICO2S/synbiohub.git --depth 1 && \
+    cd /opt/synbiohub && \
+    git checkout && \
+    rm -f config.local.json && \
+    rm -rf backup && \
+    chown -R synbiohub:synbiohub /opt/synbiohub
+    
+RUN apt install -y default-jdk maven
+RUN su synbiohub -c "cd /opt/synbiohub/java && mvn package"
+
+# to build libxmljs
+RUN apt install -y python && \
+    apt install -y build-essential && \
+    cd /opt/synbiohub && \
+    su synbiohub -c "npm install" && \
+    su synbiohub -c "npm install"
+
+RUN apt install -y raptor2-utils
+
+RUN mkdir /mnt/data && \
+    mkdir /mnt/config
+
+COPY docker/config.local.json /mnt/config/
+
+RUN ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
+    touch /mnt/data/synbiohub.sqlite && \
+    ln -s /mnt/config/synbiohub.sqlite /opt/synbiohub/synbiohub.sqlite
+
+RUN chown -R synbiohub:synbiohub /mnt
+
+COPY docker/startup.sh /
+RUN chmod +x /startup.sh
+
+EXPOSE 8890 7777 1111
+
+WORKDIR /opt/synbiohub
+ENTRYPOINT ["npm", "start"]
+

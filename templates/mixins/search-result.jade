@@ -5,8 +5,10 @@ mixin search-result-component-definition(submission)
         div.ribbon-wrapper
             if submission.triplestore == 'public'
                 div.ribbon-public Public
-            else
+            else if submission.triplestore == 'private'
                 div.ribbon-private Private
+            else
+                div.ribbon-remote Remote
 
         if submission.name && submission.name != submission.displayId
             a(href=submission.url) #{submission.displayId} (#{submission.name})
@@ -39,9 +41,10 @@ mixin search-result-collection(submission,removePublicEnabled)
         div.ribbon-wrapper
             if submission.triplestore == 'public'
                 div.ribbon-public Public
-            else
+            else if submission.triplestore == 'private'
                 div.ribbon-private Private
-
+            else
+                div.ribbon-remote Remote
         if submission.name
             a(href=submission.url) #{submission.displayId} (#{submission.name})
         else
