@@ -5,8 +5,6 @@ MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
 ### virtuoso
 
-ADD http://packages.comsode.eu/key/odn.gpg.key /tmp/odn.gpg.key
-
 RUN echo 'deb http://packages.comsode.eu/debian jessie main' >> /etc/apt/sources.list && \
     apt-key add /tmp/odn.gpg.key && \
     apt update && \

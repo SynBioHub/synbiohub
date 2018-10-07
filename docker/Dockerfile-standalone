@@ -5,7 +5,7 @@ MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
 ### node
 
-ADD docker/setup_6.x /
+ADD setup_6.x /
 
 RUN chmod +x /setup_6.x && \
     sync && \
@@ -17,7 +17,7 @@ RUN chmod +x /setup_6.x && \
 
 ### synbiohub
 
-COPY docker/sudoers /etc/sudoers
+COPY sudoers /etc/sudoers
 
 RUN useradd synbiohub -p synbiohub -m -s /bin/bash && \
     apt install -y git && \
@@ -44,7 +44,7 @@ RUN apt install -y raptor2-utils
 RUN mkdir /mnt/data && \
     mkdir /mnt/config
 
-COPY docker/config.local.json /mnt/config/
+COPY config.local.json.standalone /mnt/config/
 
 RUN ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
     touch /mnt/data/synbiohub.sqlite && \
@@ -52,7 +52,7 @@ RUN ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
 
 RUN chown -R synbiohub:synbiohub /mnt
 
-COPY docker/startup.sh /
+COPY startup.sh /
 RUN chmod +x /startup.sh
 
 EXPOSE 8890 7777 1111
