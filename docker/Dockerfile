@@ -1,3 +1,5 @@
+FROM tenforce/virtuoso:1.3.2-virtuoso7.2.4 as virtuoso
+
 
 FROM ubuntu:16.04
 MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
@@ -5,16 +7,8 @@ MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
 ### virtuoso
 
-ADD http://packages.comsode.eu/key/odn.gpg.key /tmp/odn.gpg.key
-
-RUN echo 'deb http://packages.comsode.eu/debian jessie main' >> /etc/apt/sources.list && \
-    apt-key add /tmp/odn.gpg.key && \
-    apt update && \
-    apt install -y virtuoso-opensource && \
-    rm -f /etc/virtuoso-opensource-7/virtuoso.ini && \
-    rm -f /etc/default/virtuoso-opensource-7
-
 ADD docker/etc/default/virtuoso-opensource-7 /etc/default/virtuoso-opensource-7
+COPY --from=virtuoso /usr/local/virtuoso-opensource /usr/local/virtuoso-opensource
 
 ### node
 
