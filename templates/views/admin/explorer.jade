@@ -3,21 +3,21 @@ extends ../../layouts/admin.jade
 
 block adminContent
     form(action='/admin/explorer', method='POST', id="explorerForm")
+        div.row 
+            div.col-md-12 
+                div.alert.alert-info 
+                    span.fa.fa-check-circle-o 
+                    span &nbsp; Note: Looks like SBOLExplorer is up and running :) Endpoint fields should end with '/', SynBioHub Public Graph should end with '/public', and SPARQL/Virtuoso Endpoint should end with '/sparql?'.
         div.row
             div.col-md-6
                 div.form-group
                     label(for='SBOLExplorerEndpoint') SBOLExplorer Endpoint
                     input.form-control(type='text', name='SBOLExplorerEndpoint', value=config.SBOLExplorerEndpoint)
-            div.col-md-6 
+            div.col-md-6
                 div.checkbox
                     label
                         input(type='checkbox', name="useSBOLExplorer", checked=config.useSBOLExplorer) 
                         | Searching Using SBOLExplorer
-        div.row 
-            div.col-md-12 
-                div.alert.alert-info 
-                    span.fa.fa-check-circle-o 
-                    span &nbsp; Note: Settings below will only save if SBOLExplorer is up.  If this page loads, then SBOLExplorer is most likely up.  Settings above will always save.
         div.row 
             div.col-md-12 
                 div.checkbox
