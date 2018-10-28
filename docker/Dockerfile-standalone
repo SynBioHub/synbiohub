@@ -44,7 +44,7 @@ RUN apt install -y raptor2-utils
 RUN mkdir /mnt/data && \
     mkdir /mnt/config
 
-COPY config.local.json.standalone /mnt/config/
+COPY config.local.json.standalone /mnt/config/config.local.json
 
 RUN ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
     touch /mnt/data/synbiohub.sqlite && \
