@@ -48,7 +48,7 @@ COPY config.local.json.standalone /mnt/config/config.local.json
 
 RUN ln -s /mnt/config/config.local.json /opt/synbiohub/config.local.json && \
     touch /mnt/data/synbiohub.sqlite && \
-    ln -s /mnt/config/synbiohub.sqlite /opt/synbiohub/synbiohub.sqlite
+    ln -s /mnt/data/synbiohub.sqlite /opt/synbiohub/synbiohub.sqlite
 
 RUN chown -R synbiohub:synbiohub /mnt
 
