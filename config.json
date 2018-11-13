@@ -81,7 +81,10 @@
   "prewarmSearch": true,
   "bioschemas":  {
     "DataCatalog": {
-      "@context": "http://schema.org",
+      "@context": {
+        "scheme":"http://schema.org/",
+        "bs":"http://bioschema.org/"
+      },
       "@type": "https://bioschemas.org/DataCatalog",
       "provider": [
           "foo@example.com"
@@ -92,7 +95,10 @@
       ]
     },
     "Dataset": {
-      "@context": "http://schema.org",
+      "@context": {
+        "scheme":"http://schema.org/",
+        "bs":"http://bioschema.org/"
+      },
       "@type": "https://bioschemas.org/Dataset",
       "creator": [
         "SynBioHub"
@@ -100,6 +106,10 @@
       "keywords": "synbiohub"
     },
     "DataRecord": {
+      "@context": {
+        "scheme":"http://schema.org/",
+        "bs":"http://bioschema.org/"
+      },
       "@type": "https://bioschemas.org/DataRecord"
     }
   }
