@@ -82,7 +82,7 @@
   "bioschemas":  {
     "DataCatalog": {
       "@context": "http://schema.org",
-      "@type": "https://bioschemas.org/#DataCatalog",
+      "@type": "https://bioschemas.org/DataCatalog",
       "provider": [
           "foo@example.com"
       ],
@@ -93,14 +93,14 @@
     },
     "Dataset": {
       "@context": "http://schema.org",
-      "@type": "https://bioschemas.org/#Dataset",
+      "@type": "https://bioschemas.org/Dataset",
       "creator": [
         "SynBioHub"
       ],
       "keywords": "synbiohub"
     },
     "DataRecord": {
-      "@type": "https://bioschemas.org/#DataRecord"
+      "@type": "https://bioschemas.org/DataRecord"
     }
   }
 }
