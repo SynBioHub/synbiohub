@@ -9,6 +9,9 @@ html
         if metaDesc
             meta(name="description", content=metaDesc)
 
+        if typeof(bioschemas) !== 'undefined'
+          script(type='application/ld+json') !{JSON.stringify(bioschemas, null, 2)}
+
         title=config.instanceName
         link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
@@ -17,17 +20,17 @@ html
 
         link(rel='stylesheet', href='/css/popupS.min.css')
         script.
-            var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4}; 
-            function $buo_f() { 
-                var e = document.createElement("script"); 
-                e.src = "//browser-update.org/update.min.js"; 
+            var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+            function $buo_f() {
+                var e = document.createElement("script");
+                e.src = "//browser-update.org/update.min.js";
                 document.body.appendChild(e);
             };
 
             try {
                 document.addEventListener("DOMContentLoaded", $buo_f,false)
-            } catch(e) { 
-                window.attachEvent("onload", $buo_f) 
+            } catch(e) {
+                window.attachEvent("onload", $buo_f)
             }
 
 
@@ -55,4 +58,3 @@ html
         script(src='/bundle.js')
 
         block js
-
