@@ -24,7 +24,7 @@ COPY config.local.json.standalone /mnt/config/config.local.json
 
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synibohub.sqlite ./synbiohub.sqlite && \
-    rm -rf backup && ln -s /mnt/data/backup ./backup
+    rm -rf backup && ln -s /mnt/data/backup ./backup && \
     rm -rf uploads && ln -s /mnt/data/uploads ./uploads 
 
 EXPOSE 8890 7777 1111
