@@ -1,0 +1,5 @@
+node_modules
+synbiohub.sqlite
+java/targets
+**/**/*.class
+config.local.json
