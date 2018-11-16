@@ -1,6 +1,0 @@
-
-DBPATH=/mnt/data/db
-DAEMON_OPTS="+wait +configfile /mnt/config/virtuoso.ini"
-
-RUN=yes
-
