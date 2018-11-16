@@ -1,4 +1,3 @@
-
 FROM node:11.1.0-alpine
 MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
@@ -16,6 +15,7 @@ RUN mkdir /mnt/data && \
     mkdir /mnt/config
 
 COPY docker/config.local.json /mnt/config/config.local.json
+COPY docker/healthcheck.js healthcheck.js
 
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synibohub.sqlite ./synbiohub.sqlite && \
