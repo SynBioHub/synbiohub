@@ -1,11 +1,22 @@
 sudo: required
 
+language: node_js
+node_js:
+    - "lts/*"
+
 services:
     - docker
 
-script:
-    - if [ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" = false ]; then
-      docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .;
-      docker push synbiohub/synbiohub:snapshot-standalone;
-      fi
+jobs:
+    include:
+        - stage: test
+          install:
+              - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
+          script: tests/test.sh
+
+        - stage: push
+          install:
+              - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
+          script: docker/push.sh
+          if: branch = master AND type = push
+
