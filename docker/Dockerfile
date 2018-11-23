@@ -18,7 +18,7 @@ COPY docker/config.local.json /mnt/config/config.local.json
 COPY docker/healthcheck.js healthcheck.js
 
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
-    touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synibohub.sqlite ./synbiohub.sqlite && \
+    touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synbiohub.sqlite ./synbiohub.sqlite && \
     ln -s /mnt/data/backup ./backup && \
     ln -s /mnt/data/uploads ./uploads 
 
