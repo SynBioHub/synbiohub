@@ -25,5 +25,5 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
 EXPOSE 8890 7777 1111
 
 HEALTHCHECK --start-period=60s CMD ["node", "healthcheck.js"] 
-ENTRYPOINT ["node", "synbiohub.js"]
+ENTRYPOINT ["node", "synbiohub.js", "|", "tee", "synbiohub.log"]
 
