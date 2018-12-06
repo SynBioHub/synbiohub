@@ -4,3 +4,4 @@ java/targets
 **/**/*.class
 config.local.json
 uploads
+docker/Dockerfile
