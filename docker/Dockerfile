@@ -1,7 +1,7 @@
 FROM node:11.1.0-alpine
 MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
-RUN apk add git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc
+RUN apk add git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash
 
 WORKDIR /synbiohub
 COPY . . 
