@@ -9,12 +9,6 @@ var java = require('./lib/java')
 var gitRev = require('./lib/gitRevision')
 
 
-if(fs.existsSync('synbiohub.sqlite') && config.get('firstLaunch') === true) {
-    fs.unlinkSync('synbiohub.sqlite')
-}
-
-
-
 if(!fs.existsSync('synbiohub.sqlite')) {
     db.sequelize.sync({ force: true }).then(startServer)
 } else {
