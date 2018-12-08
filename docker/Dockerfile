@@ -1,7 +1,7 @@
 FROM node:11.1.0-alpine
 MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
-RUN apk add git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc
+RUN apk add git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
 
 WORKDIR /synbiohub
 COPY . . 
@@ -19,11 +19,11 @@ COPY docker/healthcheck.js healthcheck.js
 
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synbiohub.sqlite ./synbiohub.sqlite && \
-    ln -s /mnt/data/backup ./backup && \
-    ln -s /mnt/data/uploads ./uploads 
+    ln -s /mnt/data/backup . && \
+    ln -s /mnt/data/uploads .
 
 EXPOSE 8890 7777 1111
 
 HEALTHCHECK --start-period=60s CMD ["node", "healthcheck.js"] 
-ENTRYPOINT ["node", "synbiohub.js"]
+ENTRYPOINT ["node", "synbiohub.js", "|", "tee", "synbiohub.log"]
 
