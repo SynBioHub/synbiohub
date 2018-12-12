@@ -16,6 +16,7 @@ RUN mkdir /mnt/data && \
 
 COPY docker/config.local.json /mnt/config/config.local.json
 COPY docker/healthcheck.js healthcheck.js
+COPY docker/entry.sh entry.sh
 
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synbiohub.sqlite ./synbiohub.sqlite && \
@@ -25,5 +26,5 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
 EXPOSE 8890 7777 1111
 
 HEALTHCHECK --start-period=60s CMD ["node", "healthcheck.js"] 
-ENTRYPOINT ["node", "synbiohub.js", "|", "tee", "synbiohub.log"]
+ENTRYPOINT ["./entry.sh"]
 
