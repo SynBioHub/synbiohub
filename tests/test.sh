@@ -1,9 +1,15 @@
 #!/bin/sh
 
+cd tests
+
 source ./testutil.sh
 
 message "Running synbiohub test suite."
-message "This is to be run after building docker containers and after running the testcleanup.sh script"
+message "Cleaning old test containers if they exist"
+
+bash ./testcleanup.sh
+
+
 
 # Clone the necessary repositories
 message "pulling mehersam/SBOLTestRunner"
@@ -35,8 +41,8 @@ mvn package
 cd ..
 
 message "Starting SynBioHub from Containers"
-docker-compose -f ./synbiohub-docker/docker-compose.yml up &
-while [[ "$(docker logs --tail 1 synbiohubdocker_synbiohub_1)" != "Resuming 0 job(s)" ]]
+docker-compose -f ./synbiohub-docker/docker-compose.yml -p testproject up &
+while [[ "$(docker logs --tail 1 testproject_synbiohub_1)" != "Resuming 0 job(s)" ]]
 do
     sleep 5
 done
