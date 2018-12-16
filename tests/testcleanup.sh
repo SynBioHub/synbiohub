@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 docker kill testproject_synbiohub_1
 docker kill testproject_explorer_1
