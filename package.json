@@ -41,7 +41,6 @@
     "read-chunk": "^2.1.0",
     "request": "^2.79.0",
     "sboljs": "^2.0.4",
-    "sbolmeta": "^0.3.1",
     "sendgrid": "^5.2.3",
     "sequelize": "^3.32.1",
     "sequence-formatter": "^1.0.0",

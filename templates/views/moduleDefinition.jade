@@ -15,15 +15,15 @@ block topLevelPropertyTable
             td Name
         tr
             td
-                for module in modules
+                for module in meta.modules
                     | Module
                     br
             td
-                for module in modules
+                for module in meta.modules
                     a(href=module.url) #{module.defId}
                     br
             td
-                for module in modules
+                for module in meta.modules
                     a(href=module.url) #{module.defName}
                     br
     if !meta.displayList && functionalComponents.length > 0
@@ -33,19 +33,19 @@ block topLevelPropertyTable
             td Name
         tr
             td
-                for functionalComponent in functionalComponents
+                for functionalComponent in meta.functionalComponents
                     != functionalComponent.typeStr
                     br
             td
-                for functionalComponent in functionalComponents
+                for functionalComponent in meta.functionalComponents
                     a(href=functionalComponent.url) #{functionalComponent.defId}
                     br
             td
-                for functionalComponent in functionalComponents
+                for functionalComponent in meta.functionalComponents
                     a(href=functionalComponent.url) #{functionalComponent.defName}
                     br
     if !meta.displayList && interactions.length > 0
-        for interaction in interactions
+        for interaction in meta.interactions
             tr
                 td Interaction
                 td
@@ -61,18 +61,18 @@ block topLevelPropertyTable
                         td 
                             a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
             
-    if models.length > 0 
+    if meta.models.length > 0 
         tr
             td Model
             td
-                for model in models
+                for model in meta.models
                     if (model.url)
                         a(href=model.url) #{model.id}
                     else
                         a(href=model.toString()) #{model.toString()}
                     br
             td(nowrap="nowrap") 
-                for model in models
+                for model in meta.models
                     if (model.version)
                         != 'Version '+model.version
                     br

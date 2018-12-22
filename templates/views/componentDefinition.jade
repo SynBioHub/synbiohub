@@ -9,15 +9,18 @@ block topLevelPreview
 
 block topLevelPropertyTable
 
-    if meta.builds.length > 0
+    if builds && builds.length > 0
             tr
             td Implementations
             td
-                for impl in meta.builds
-                    a(href=impl) 
-                        != impl
+                for build in builds
+                    a(href=build.url) 
+                        != build.displayId   
+                        if (build.version)
+                            != ' (Version '+build.version+')'
+                    br
 
-    if meta.sequences.length > 0
+    if meta.sequences && meta.sequences.length > 0
         tr
             td Sequences
             td
@@ -28,7 +31,7 @@ block topLevelPropertyTable
                             != ' (Version '+sequence.version+')'
                     br
 
-    if meta.protein !== undefined
+    if meta.protein && meta.protein !== undefined
         if meta.protein.pI !== undefined
             tr
                 td pI
@@ -53,10 +56,10 @@ block topLevelBelowTitle
             for entity in meta.protein.encodedBy
                 | 
                 a(href=entity.url) #{entity.name}
-    if encodedProteins.length > 0
+    if meta.encodedProteins && meta.encodedProteins.length > 0
         span
             | Encodes
-            for protein in encodedProteins
+            for protein in meta.encodedProteins
                 | 
                 a(href=protein.url) #{protein.name}
 
@@ -88,7 +91,7 @@ block topLevelButtons
             ul.dropdown-menu.dropdown-toggle
                 li
                     a(href=meta.url + '/copyFromRemote') Copy to SynBioHub
-    if BenchlingRemotes && ICERemotes
+    if meta.BenchlingRemotes && meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
                 |  
@@ -98,7 +101,7 @@ block topLevelButtons
                     a(href=meta.url + '/createBenchlingSequence') Send to Benchling
                 li
                     a(href=meta.url + '/createICEPart') Send to ICE
-    else if BenchlingRemotes
+    else if meta.BenchlingRemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
                 |  
@@ -106,7 +109,7 @@ block topLevelButtons
             ul.dropdown-menu.dropdown-toggle
                 li
                     a(href=meta.url + '/createBenchlingSequence') Send to Benchling
-    else if ICERemotes
+    else if meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
                 |  

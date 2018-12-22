@@ -2,27 +2,27 @@
 extends ../layouts/topLevel.jade
 
 block topLevelPreview
-    if attachmentIsImage 
-        img(src=attachmentDownloadURL,style='max-width: 1000px;')
+    if meta.attachmentIsImage 
+        img(src=meta.attachmentDownloadURL,style='max-width: 1000px;')
 
 block topLevelPropertyTable
-    if size && size >= 0 
+    if meta.size && meta.size >= 0 
         tr
         td Size 
-        td #{size}
+        td #{meta.size}
 
-    if attachmentType 
+    if meta.attachmentType 
         tr
         td Format 
-        td #{attachmentType}
+        td #{meta.attachmentType}
 
-    if attachmentDownloadURL 
+    if meta.attachmentDownloadURL 
         tr
         td Source 
         td 
-            a(href=attachmentDownloadURL) #{attachmentName}
+            a(href=meta.attachmentDownloadURL) #{meta.attachmentName}
 
-    if attachmentHash 
+    if meta.attachmentHash 
         tr
         td Hash 
-        td #{attachmentHash}
+        td #{meta.attachmentHash}
