@@ -10,7 +10,6 @@ message "Cleaning old test containers if they exist"
 bash ./testcleanup.sh
 
 
-
 # Clone the necessary repositories
 message "pulling mehersam/SBOLTestRunner"
 if cd SBOLTestRunner; then
@@ -41,16 +40,13 @@ mvn package
 cd ..
 
 message "Starting SynBioHub from Containers"
-docker-compose -f ./synbiohub-docker/docker-compose.yml -p testproject up &
-while [[ "$(docker logs --tail 1 testproject_synbiohub_1)" != "Resuming 0 job(s)" ]]
+docker-compose -f ./synbiohub-docker/docker-compose.yml up -d
+while [[ "$(docker inspect synbiohubdocker_synbiohub_1 | jq .[0].State.Health.Status)" != "healthy" ]]
 do
     sleep 5
 done
 
 message "Started successfully"
-
-# wait for logs of other containers
-sleep 30s
 
 # create a new user
 bash ./createuser.sh
