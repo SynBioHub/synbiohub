@@ -22,7 +22,7 @@ SynBioHub has both JavaScript (node.js) and Java components.
 
 Prequisites:
 
-* Linux (only tested with Ubuntu 16.04) or macOS
+* Linux (only tested with Ubuntu 18.04.01) or macOS
 * A JDK
 * [Apache Maven](https://maven.apache.org/)
 * [node.js](https://nodejs.org/en/) >= 6.10
@@ -30,20 +30,19 @@ Prequisites:
 * [rapper](http://librdf.org/raptor/rapper.html) (apt install `raptor2-utils`)
 * [jq](https://stedolan.github.io/jq/) (apt install `jq`)
 
-### Ubuntu 16.04:
- 1. Add the Comsode source repository to your package manager
-    1. Add the Comsode repository `echo 'deb http://packages.comsode.eu/debian jessie main' >> /etc/apt/sources.list`
-    2. Download the Comsode GPG key for package verification `wget http://packages.comsode.eu/key/odn.gpg.key`
-    3. Add the Comsode key to your keyring `apt-key add odn.gpg.key`
+### Ubuntu 18.04.01:
+ 1. Install Virtuoso from source at
+    <https://github.com/openlink/virtuoso-opensource>
  2. Set up the Node.js repository 
     1. Download the Node setup script `curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -`
     2. Update your package repositories `apt update`
- 3. Install the necessary packages `apt install default-jdk maven raptor2-utils nodejs virtuoso-opensource jq build-essential python`
+ 3. Install the necessary packages `apt install default-jdk maven raptor2-utils nodejs jq build-essential python`
  4. Clone the SynBioHub repository `git clone https://github.com/SynBioHub/synbiohub`
  5. Change to the SynBioHub directory `cd synbiohub`
  6. Build the Java components with Maven `cd java && mvn package`
- 7. Return to the root directory and install the Node dependencies with NPM `cd ../ && npm install`
- 8. Update the necessary libraries **twice** `npm update && npm update`
- 9. Install nodemon and forever with `npm install nodemon && npm install forever`
- 10. Start virtuoso process `virtuoso-t +configfile /etc/virtuoso-opensource-7/virtuoso.ini -f`
- 11. Start the SynBioHub process `npm start` or `npm run-script dev`
+ 7. Return to the root directory and install the Node dependencies with yarn `cd ../ && yarn install`
+    Make sure that yarn is being used, not 'cmdtest'.
+ 8. Install nodemon and forever with `npm install nodemon -g && npm install forever -g`
+ 9. Start virtuoso process `virtuoso-t +configfile /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini -f`
+ 10. Start the SynBioHub process `npm start` or `npm run-script dev`
+
