@@ -465,7 +465,7 @@ binary-split@^1.0.3:
   dependencies:
     through2 "^2.0.3"
 
-bluebird@^3.3.4, bluebird@^3.4.1, bluebird@^3.4.6, bluebird@^3.5.0:
+bluebird@^3.3.4, bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
@@ -1640,10 +1640,10 @@ fd-slicer@1.1.0:
   dependencies:
     pend "~1.2.0"
 
-file-type@^10.4.0:
-  version "10.4.0"
-  resolved "https://registry.yarnpkg.com/file-type/-/file-type-10.4.0.tgz#e730e93ffdf30992c0b7d38fc2f15c4371353d44"
-  integrity sha512-/Ha0T7TRFOFKgj36icy46h93By2tTwHirW9qeNLslo5NYmd7BbITVv2tkcuohmZWsNLqg9/dKNKwRXF3OVgVdA==
+file-type@^10.6.0:
+  version "10.6.0"
+  resolved "https://registry.yarnpkg.com/file-type/-/file-type-10.6.0.tgz#95a94871d26b39f137a03cfd25450f0a56a38143"
+  integrity sha512-GNOg09GC+rZzxetGZFoL7QOnWXRqvWuEdKURIJlr0d6MW107Iwy6voG1PPOrm5meG6ls59WkBmBMAZdVSVajRQ==
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -2499,7 +2499,7 @@ lodash.memoize@~3.0.3:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-3.0.4.tgz#2dcbd2c287cbc0a55cc42328bd0c736150d53e3f"
   integrity sha1-LcvSwofLwKVcxCMovQxzYVDVPj8=
 
-lodash@^4.15.0, lodash@^4.17.0, lodash@^4.17.10, lodash@^4.17.4:
+lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.4:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -3449,7 +3449,7 @@ rdf-ext@^0.3.0:
     rdf-graph-array "^0.3.0"
     rdf-store-inmemory "^0.3.0"
 
-rdf-ext@^1.1.0:
+rdf-ext@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/rdf-ext/-/rdf-ext-1.1.2.tgz#8c7553d2666d884407377c8b6fd43c9b2fdc0cf5"
   integrity sha512-7ZmJpHktw8ZRZHmml4Rylm33k46ixlu79qbJq50a/24+g0Bv7CCeNFJ70X3TXZMTs0+Igv51vN/cZ8M5Qmfasw==
@@ -3704,7 +3704,7 @@ resolve@1.1.7:
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
   integrity sha1-IDEU2CrSxe2ejgQRs5ModeiJ6Xs=
 
-resolve@^1.0.0, resolve@^1.1.4, resolve@^1.1.6, resolve@^1.4.0:
+resolve@^1.1.4, resolve@^1.1.6, resolve@^1.4.0:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.8.1.tgz#82f1ec19a423ac1fbd080b0bab06ba36e84a7a26"
   integrity sha512-AicPrAC7Qu1JxPCZ9ZgCZlY35QgFnNqc+0LtbRNxnVw4TXvjQ72wnuL9JQcEBgXkI9JM8MsT9kaQoHcpCRJOYA==
@@ -3775,7 +3775,7 @@ sax@>=0.6.0, sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-sboljs@^2.0.0, sboljs@^2.0.4:
+sboljs@^2.0.4, sboljs@^2.1.9:
   version "2.1.13"
   resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.1.13.tgz#df38f7339267afefb9e9d8c7297f11ab08ee36c6"
   integrity sha512-5wd2ft7KTxGZ3ifuGAaF3HBtO5ZPRjQS8Jewmntdlax96VPCECRqDy01WgYAMZVXci59L3h8R13603L4MUnQiw==
@@ -3795,7 +3795,7 @@ sbolmeta@^0.1.10:
   resolved "https://registry.yarnpkg.com/sbolmeta/-/sbolmeta-0.1.14.tgz#0c8886f24a357fae5dcd0304f2cacfe0b5f711de"
   integrity sha1-DIiG8ko1f65dzQME8srP4LX3Ed4=
 
-sbolmeta@^0.3.0:
+sbolmeta@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/sbolmeta/-/sbolmeta-0.3.1.tgz#c9f2edf11afced4f6492b0fdb506c3c74a6471b2"
   integrity sha1-yfLt8Rr87U9kkrD9tQbDx0pkcbI=
@@ -4464,15 +4464,13 @@ umd@^3.0.0:
   resolved "https://registry.yarnpkg.com/umd/-/umd-3.0.3.tgz#aa9fe653c42b9097678489c01000acb69f0b26cf"
   integrity sha512-4IcGSufhFshvLNcMCV80UnQVlZ5pMOC8mvNPForqwA4+lzYQuetTESLDQkeLmihq8bRcnpbQa48Wb8Lh16/xow==
 
-umzug@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/umzug/-/umzug-2.1.0.tgz#c49dd71c7c26d082a9c9d3592dc6dc92cf867761"
-  integrity sha512-BgT+ekpItEWaG+3JjLLj6yVTxw2wIH8Cr6JyKYIzukWAx9nzGhC6BGHb/IRMjpobMM1qtIrReATwLUjKpU2iOQ==
+umzug@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/umzug/-/umzug-2.2.0.tgz#6160bdc1817e4a63a625946775063c638623e62e"
+  integrity sha512-xZLW76ax70pND9bx3wqwb8zqkFGzZIK8dIHD9WdNy/CrNfjWcwQgQkGCuUqcuwEBvUm+g07z+qWvY+pxDmMEEw==
   dependencies:
     babel-runtime "^6.23.0"
-    bluebird "^3.4.1"
-    lodash "^4.17.0"
-    resolve "^1.0.0"
+    bluebird "^3.5.3"
 
 undeclared-identifiers@^1.1.2:
   version "1.1.2"
@@ -4632,15 +4630,15 @@ virtual-dom@^2.1.1:
     x-is-array "0.1.0"
     x-is-string "0.1.0"
 
-visbol@^1.4.4:
-  version "1.4.16"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.16.tgz#371dd45870e21b994272a3116241309bf9a94567"
-  integrity sha512-8pPfJC2WzaeuvJADRCPem/cRczThaS23XEKRbRYGZU2AWUFPMWb//c3/BGg5/s534e3M4FLkuaAPxk5eVlCxzw==
+visbol@^1.4.17:
+  version "1.4.17"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.17.tgz#b0e8eab4e2a980339ced0e597b1f0f40b427b16a"
+  integrity sha512-BhfxKd0baHq6c01jeoyyL+XnmE0BH8OgDdAJn50KEIJkAogRamsiok9BeLkWhQl8LDjF5cIF15lpLsAfq6QP2w==
   dependencies:
-    rdf-ext "^1.1.0"
+    rdf-ext "^1.1.2"
     rdf-graph-abstract "^0.3.0"
     rdf-parser-rdfxml "^0.3.0-rc1"
-    sboljs "^2.0.0"
+    sboljs "^2.1.9"
     sbolmeta "^0.1.10"
     sha1 "^1.1.1"
     urijs "^1.16.1"
