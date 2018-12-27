@@ -9,7 +9,7 @@ var java = require('./lib/java')
 var gitRev = require('./lib/gitRevision')
 
 
-if(!fs.existsSync('synbiohub.sqlite')) {
+if(!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size == 0) {
     db.sequelize.sync({ force: true }).then(startServer)
 } else {
     db.umzug.up().then(() => {
