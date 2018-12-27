@@ -8,59 +8,7 @@ block topLevelPreview
             div#design
 
 block topLevelPropertyTable
-    if modules.length > 0 
-        tr
-            td Modules
-            td Identifier
-            td Name
-        tr
-            td
-                for module in meta.modules
-                    | Module
-                    br
-            td
-                for module in meta.modules
-                    a(href=module.url) #{module.defId}
-                    br
-            td
-                for module in meta.modules
-                    a(href=module.url) #{module.defName}
-                    br
-    if !meta.displayList && functionalComponents.length > 0
-        tr
-            td FunctionalComponent
-            td Identifier
-            td Name
-        tr
-            td
-                for functionalComponent in meta.functionalComponents
-                    != functionalComponent.typeStr
-                    br
-            td
-                for functionalComponent in meta.functionalComponents
-                    a(href=functionalComponent.url) #{functionalComponent.defId}
-                    br
-            td
-                for functionalComponent in meta.functionalComponents
-                    a(href=functionalComponent.url) #{functionalComponent.defName}
-                    br
-    if !meta.displayList && interactions.length > 0
-        for interaction in meta.interactions
-            tr
-                td Interaction
-                td
-                    != interaction.defName
-                td
-                    a(href=interaction.typeURL, title=interaction.typeURL) #{interaction.typeStr}
-            if interaction.participations.length > 0
-                for participation in interaction.participations
-                    tr
-                        td Participation
-                        td 
-                            a(href=participation.participant.url, title=participation.participant.url) #{participation.participant.defName}
-                        td 
-                            a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
-            
+
     if meta.models.length > 0 
         tr
             td Model
@@ -77,8 +25,107 @@ block topLevelPropertyTable
                         != 'Version '+model.version
                     br
 
-block topLevelPreview
-    if meta.displayList
-        div.row
-            div.col-md-12.text-center
-            div#design
+block topLevelPanels
+                if modules.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseModules')
+                                    | <b>Modules</b>
+                        #collapseModules.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#Module') Module
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
+                                        td 
+                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                    tr
+                                        td
+                                            for module in meta.modules
+                                                | Module
+                                                br
+                                        td
+                                            for module in meta.modules
+                                                a(href=module.defUrl) #{module.defId}
+                                                a(href=module.url,title='Learn more about this module') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for module in meta.modules
+                                                if module.defName && module.defName != ''
+                                                    a(href=module.defUrl) #{module.defName}
+                                                    a(href=module.url,title='Learn more about this module') 
+                                                        span.fa.fa-info-circle
+                                                br
+
+                if functionalComponents.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseFunctionalComponents')
+                                    | <b>Functional Components</b>
+                        #collapseFunctionalComponents.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#FunctionalComponent') FunctionalComponent
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
+                                        td 
+                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                    tr
+                                        td
+                                            for functionalComponent in meta.functionalComponents
+                                                a(href=functionalComponent.typeUrl) #{functionalComponent.typeStr}
+                                                | 
+                                                | /
+                                                | 
+                                                a(href=functionalComponent.dirUrl) #{functionalComponent.dirStr}
+                                                br
+                                        td
+                                            for functionalComponent in meta.functionalComponents
+                                                a(href=functionalComponent.defUrl) #{functionalComponent.defId}
+                                                a(href=functionalComponent.url,title='Learn more about this functional component') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for functionalComponent in meta.functionalComponents
+                                                if functionalComponent.defName && functionalComponent.defName != ''
+                                                    a(href=functionalComponent.defUrl) #{functionalComponent.defName}
+                                                    a(href=functionalComponent.url,title='Learn more about this functional component') 
+                                                       span.fa.fa-info-circle
+                                                br
+
+                if interactions.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseInteractions')
+                                    | <b>Interactions</b>
+                        #collapseInteractions.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    for interaction in meta.interactions
+                                        tr
+                                            td 
+                                                a(href='http://sbolstandard.org/v2#Interaction') Interaction
+                                            td
+                                                a(href=interaction.url, title=interaction.url) #{interaction.defName}
+                                            td
+                                                a(href=interaction.typeURL, title=interaction.typeURL) #{interaction.typeStr}
+                                        if interaction.participations.length > 0
+                                            for participation in interaction.participations
+                                                tr
+                                                    td
+                                                        a(href='http://sbolstandard.org/v2#Participation') Participation
+                                                    td 
+                                                        a(href=participation.defUrl, title=participation.defUrl) #{participation.defName}
+                                                        a(href=participation.url,title='Learn more about this participation') 
+                                                            span.fa.fa-info-circle
+                                                    td 
+                                                        a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
+            

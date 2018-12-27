@@ -174,9 +174,9 @@ block content
                 .panel.panel-default
                     .panel-heading
                         h4.panel-title
-                            a.accordion-toggle(data-toggle='collapse', href='#collapseZero')
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseDetails')
                                 | <b>Details</b>
-                    #collapseZero.panel-collapse.collapse.in
+                    #collapseDetails.panel-collapse.collapse.in
                         .panel-body
                             table.table.table-striped.entry-detail-table
 
@@ -230,42 +230,15 @@ block content
                             +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, meta.canEdit)
                             +mutable-source(meta.sourceSource, meta.source, meta.canEdit)
                             +citations(citationsSource, submissionCitations, meta.canEdit)
-			    
-                if meta.iGemMainPage
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseOne')
-                                    | <b>iGEM Wiki Main Page</b>
-                        #collapseOne.panel-collapse.collapse
-                            .panel-body
-                                | !{meta.iGemMainPage}
-                if meta.iGemDesign
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseTwo')
-                                    | <b>iGEM Wiki Design Page</b>
-                        #collapseTwo.panel-collapse.collapse
-                            .panel-body
-                                | !{meta.iGemDesign}
-                if meta.iGemExperience
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseThree')
-                                    | <b>iGEM Wiki Experience Page</b>
-                        #collapseThree.panel-collapse.collapse
-                            .panel-body
-                                | !{meta.iGemExperience}
+                block topLevelPanels
 		
                 if collections.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseFour')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseCollections')
                                     | <b>Member of these Collections</b>
-                        #collapseFour.panel-collapse.collapse
+                        #collapseCollections.panel-collapse.collapse
                             .panel-body
                                 div.row
                                     div.col-md-12
@@ -281,9 +254,9 @@ block content
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseFive')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseOther')
                                     | <b>Other Properties</b>
-                        #collapseFive.panel-collapse.collapse
+                        #collapseOther.panel-collapse.collapse
                             .panel-body
                                 div.row
                                     div.col-md-12
@@ -313,9 +286,9 @@ block content
                 .panel.panel-default
                     .panel-heading
                         h4.panel-title
-                            a.accordion-toggle(data-toggle='collapse', href='#collapseSix')
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseAttachments')
                                 | <b>Attachments</b>
-                    #collapseSix.panel-collapse.collapse
+                    #collapseAttachments.panel-collapse.collapse
                         .panel-body
                             div.row
                                 div.col-md-12

@@ -122,3 +122,132 @@ block topLevelButtons
             a(href=meta.url + '/integrate',title='Integrate data from an integration pipeline',style="color:white")
                 span.fa.fa-plus-circle
                 | Data Integration
+
+block topLevelPanels
+                if components.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseComponents')
+                                    | <b>Components</b>
+                        #collapseComponents.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            a(href='http://sbolstandard.org/v2#Component') Component
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
+                                        td 
+                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                    tr
+                                        td
+                                            for component in meta.components
+                                                a(href=component.typeUrl) #{component.typeStr}
+                                                br
+                                        td
+                                            for component in meta.components
+                                                a(href=component.defUrl) #{component.defId}
+                                                a(href=component.url,title='Learn more about this component') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for component in meta.components
+                                                if component.defName && component.defName != ''
+                                                    a(href=component.defUrl) #{component.defName}
+                                                    a(href=component.url,title='Learn more about this component') 
+                                                        span.fa.fa-info-circle
+                                                br
+                if sequenceAnnotations.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceAnnotations')
+                                    | <b>Sequence Annotations</b>
+                        #collapseSequenceAnnotations.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            a(href='http://sbolstandard.org/v2#SequenceAnnotation') Sequence Annotation
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
+                                        td 
+                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                    tr
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                for location in sequenceAnnotation.locations
+                                                    a(href=location.url) #{location.locationStr}
+                                                br
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                a(href=sequenceAnnotation.compUrl) #{sequenceAnnotation.compId}
+                                                a(href=sequenceAnnotation.url,title='Learn more about this sequence annotation') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                if sequenceAnnotation.compName && sequenceAnnotation.compName != ''
+                                                    a(href=sequenceAnnotation.compUrl) #{sequenceAnnotation.compName}
+                                                    a(href=sequenceAnnotation.url,title='Learn more about this sequence annotation') 
+                                                        span.fa.fa-info-circle
+                                                br
+						
+                if sequenceConstraints.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceConstraints')
+                                    | <b>Sequence Constraints</b>
+                        #collapseSequenceConstraints.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            a(href='http://sbolstandard.org/v2#subject') Subject
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#restriction') Predicate
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#object') Object
+                                    tr
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.subjectUrl) #{sequenceConstraint.subjectName}
+                                                br
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.restriction.url) #{sequenceConstraint.restriction.id}
+                                                br
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.objectUrl) #{sequenceConstraint.objectName}
+                                                br
+		    
+                if meta.iGemMainPage
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemMainPage')
+                                    | <b>iGEM Wiki Main Page</b>
+                        #collapseIGemMainPage.panel-collapse.collapse
+                            .panel-body
+                                | !{meta.iGemMainPage}
+                if meta.iGemDesign
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemDesign')
+                                    | <b>iGEM Wiki Design Page</b>
+                        #collapseIGemDesign.panel-collapse.collapse
+                            .panel-body
+                                | !{meta.iGemDesign}
+                if meta.iGemExperience
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemExperience')
+                                    | <b>iGEM Wiki Experience Page</b>
+                        #collapseIGemExperience.panel-collapse.collapse
+                            .panel-body
+                                | !{meta.iGemExperience}
