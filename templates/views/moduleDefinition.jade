@@ -37,28 +37,17 @@ block topLevelPanels
                                 table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            a(href='http://sbolstandard.org/v2#Module') Module
+                                            a(href='http://sbolstandard.org/v2#Module') Instance
                                         td 
-                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
-                                        td 
-                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                            a(href='http://sbolstandard.org/v2#definition') Definition
                                     tr
                                         td
                                             for module in meta.modules
-                                                | Module
+                                                a(href=module.url) #{module.name}
                                                 br
                                         td
                                             for module in meta.modules
-                                                a(href=module.defUrl) #{module.defId}
-                                                a(href=module.url,title='Learn more about this module') 
-                                                    span.fa.fa-info-circle
-                                                br
-                                        td
-                                            for module in meta.modules
-                                                if module.defName && module.defName != ''
-                                                    a(href=module.defUrl) #{module.defName}
-                                                    a(href=module.url,title='Learn more about this module') 
-                                                        span.fa.fa-info-circle
+                                                a(href=module.definition.url) #{module.definition.name}
                                                 br
 
                 if functionalComponents.length > 0
@@ -72,32 +61,31 @@ block topLevelPanels
                                 table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            a(href='http://sbolstandard.org/v2#FunctionalComponent') FunctionalComponent
+                                            a(href='http://sbolstandard.org/v2#access') Access
+                                            | 
+                                            | /
+                                            | 
+                                            a(href='http://sbolstandard.org/v2#direction') Direction
                                         td 
-                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
+                                            a(href='http://sbolstandard.org/v2#FunctionalComponent') Instance
                                         td 
-                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                            a(href='http://sbolstandard.org/v2#definition') Definition
                                     tr
                                         td
                                             for functionalComponent in meta.functionalComponents
-                                                a(href=functionalComponent.typeUrl) #{functionalComponent.typeStr}
+                                                a(href=functionalComponent.accessUrl) #{functionalComponent.accessStr}
                                                 | 
                                                 | /
                                                 | 
-                                                a(href=functionalComponent.dirUrl) #{functionalComponent.dirStr}
+                                                a(href=functionalComponent.directionUrl) #{functionalComponent.directionStr}
                                                 br
                                         td
                                             for functionalComponent in meta.functionalComponents
-                                                a(href=functionalComponent.defUrl) #{functionalComponent.defId}
-                                                a(href=functionalComponent.url,title='Learn more about this functional component') 
-                                                    span.fa.fa-info-circle
+                                                a(href=functionalComponent.url) #{functionalComponent.name}
                                                 br
                                         td
                                             for functionalComponent in meta.functionalComponents
-                                                if functionalComponent.defName && functionalComponent.defName != ''
-                                                    a(href=functionalComponent.defUrl) #{functionalComponent.defName}
-                                                    a(href=functionalComponent.url,title='Learn more about this functional component') 
-                                                       span.fa.fa-info-circle
+                                                a(href=functionalComponent.definition.url) #{functionalComponent.definition.name}
                                                 br
 
                 if interactions.length > 0

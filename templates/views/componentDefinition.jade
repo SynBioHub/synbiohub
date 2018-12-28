@@ -135,11 +135,11 @@ block topLevelPanels
                                table.table.table-striped.entry-detail-table
                                     tr
                                         td
-                                            a(href='http://sbolstandard.org/v2#Component') Component
+                                            a(href='http://sbolstandard.org/v2#access') Access
                                         td 
-                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
+                                            a(href='http://sbolstandard.org/v2#Component') Instance
                                         td 
-                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                            a(href='http://sbolstandard.org/v2#definition') Definition
                                     tr
                                         td
                                             for component in meta.components
@@ -147,16 +147,11 @@ block topLevelPanels
                                                 br
                                         td
                                             for component in meta.components
-                                                a(href=component.defUrl) #{component.defId}
-                                                a(href=component.url,title='Learn more about this component') 
-                                                    span.fa.fa-info-circle
+                                                a(href=component.url) #{component.name}
                                                 br
                                         td
                                             for component in meta.components
-                                                if component.defName && component.defName != ''
-                                                    a(href=component.defUrl) #{component.defName}
-                                                    a(href=component.url,title='Learn more about this component') 
-                                                        span.fa.fa-info-circle
+                                                a(href=component.defUrl) #{component.defName}
                                                 br
                 if sequenceAnnotations.length > 0
                     .panel.panel-default
@@ -168,13 +163,21 @@ block topLevelPanels
                             .panel-body
                                table.table.table-striped.entry-detail-table
                                     tr
-                                        td
-                                            a(href='http://sbolstandard.org/v2#SequenceAnnotation') Sequence Annotation
-                                        td 
-                                            a(href='http://sbolstandard.org/v2#displayId') Identifier
                                         td 
                                             a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                        td
+                                            a(href='http://sbolstandard.org/v2#Location') Location
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#definion') Component
+                                            | 
+                                            | /
+                                            | 
+                                            a(href='http://sbolstandard.org/v2#role') Role(s)
                                     tr
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                a(href=sequenceAnnotation.url) #{sequenceAnnotation.name}
+                                                br
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
                                                 for location in sequenceAnnotation.locations
@@ -182,16 +185,22 @@ block topLevelPanels
                                                 br
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
-                                                a(href=sequenceAnnotation.compUrl) #{sequenceAnnotation.compId}
-                                                a(href=sequenceAnnotation.url,title='Learn more about this sequence annotation') 
-                                                    span.fa.fa-info-circle
-                                                br
-                                        td
-                                            for sequenceAnnotation in meta.sequenceAnnotations
-                                                if sequenceAnnotation.compName && sequenceAnnotation.compName != ''
-                                                    a(href=sequenceAnnotation.compUrl) #{sequenceAnnotation.compName}
-                                                    a(href=sequenceAnnotation.url,title='Learn more about this sequence annotation') 
-                                                        span.fa.fa-info-circle
+                                                if sequenceAnnotation.component
+                                                    a(href=sequenceAnnotation.component.definition.url) #{sequenceAnnotation.component.definition.name}
+                                                else
+                                                    for role in meta.roles
+                                                        if role.description
+                                                            != role.description.name
+                                                            a(href=role.uri,title='Learn more about this role') 
+                                                                span.fa.fa-info-circle
+                                                            a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                                span.fa.fa-search
+                                                        else 
+                                                            != role.term 
+                                                            a(href=role.uri,title='Learn more about this role') 
+                                                                span.fa.fa-info-circle
+                                                            a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                                span.fa.fa-search
                                                 br
 						
                 if sequenceConstraints.length > 0
@@ -205,6 +214,8 @@ block topLevelPanels
                                table.table.table-striped.entry-detail-table
                                     tr
                                         td
+                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
+                                        td
                                             a(href='http://sbolstandard.org/v2#subject') Subject
                                         td 
                                             a(href='http://sbolstandard.org/v2#restriction') Predicate
@@ -213,7 +224,11 @@ block topLevelPanels
                                     tr
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
-                                                a(href=sequenceConstraint.subjectUrl) #{sequenceConstraint.subjectName}
+                                                a(href=sequenceConstraint.name) #{sequenceConstraint.name}
+                                                br
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.subject.definition.url) #{sequenceConstraint.subject.definition.name}
                                                 br
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
@@ -221,7 +236,7 @@ block topLevelPanels
                                                 br
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
-                                                a(href=sequenceConstraint.objectUrl) #{sequenceConstraint.objectName}
+                                                a(href=sequenceConstraint.object.definition.url) #{sequenceConstraint.object.definition.name}
                                                 br
 		    
                 if meta.iGemMainPage
