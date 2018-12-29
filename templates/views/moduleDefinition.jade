@@ -97,23 +97,37 @@ block topLevelPanels
                         #collapseInteractions.panel-collapse.collapse
                             .panel-body
                                 table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#Interaction') Interaction
+                                            | 
+                                            | /
+                                            | 
+                                            a(href='http://sbolstandard.org/v2#Participation') Participation
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#definition') Participant Definiton
+                                        td 
+                                            a(href='http://sbolstandard.org/v2#type') Type
+                                            | 
+                                            | /
+                                            | 
+                                            a(href='http://sbolstandard.org/v2#role') Role
                                     for interaction in meta.interactions
                                         tr
                                             td 
-                                                a(href='http://sbolstandard.org/v2#Interaction') Interaction
+                                                a(href=interaction.url, title=interaction.url) #{interaction.name}
                                             td
-                                                a(href=interaction.url, title=interaction.url) #{interaction.defName}
                                             td
                                                 a(href=interaction.typeURL, title=interaction.typeURL) #{interaction.typeStr}
                                         if interaction.participations.length > 0
                                             for participation in interaction.participations
                                                 tr
                                                     td
-                                                        a(href='http://sbolstandard.org/v2#Participation') Participation
+                                                        | |--> 
+                                                        a(href=participation.url, title=participation.url) #{participation.name}
                                                     td 
-                                                        a(href=participation.defUrl, title=participation.defUrl) #{participation.defName}
-                                                        a(href=participation.url,title='Learn more about this participation') 
-                                                            span.fa.fa-info-circle
+                                                        a(href=participation.participant.definition.url, title=participation.participant.definition.url) #{participation.participant.definition.name}
                                                     td 
                                                         a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
+
             
