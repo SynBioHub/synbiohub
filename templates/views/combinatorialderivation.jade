@@ -1,0 +1,76 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPreview
+    if meta.displayList
+        div.row
+            div.col-md-12.text-center
+            div#design
+
+block topLevelPropertyTable
+    if (meta.strategy)
+        tr
+            td 
+                | Strategy
+                a(href='http://sbolstandard.org/v2#strategy',title='Learn more about strategies') 
+                    span.fa.fa-info-circle
+            td
+                != meta.strategy.name
+                a(href=meta.strategy.url,title='Learn more about this strategy') 
+                    span.fa.fa-info-circle
+                a(href='/search/strategy=<'+encodeURIComponent(meta.strategy.uri)+'>&',title='Find all records with this strategy') 
+                    span.fa.fa-search
+                br
+							
+block topLevelButtons
+
+block topLevelPanels
+                if variableComponents && variableComponents.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseVariableComponents')
+                                    | <b>Variable Components</b>
+                        #collapseVariableComponents.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            | Variable Component
+                                            a(href='http://sbolstandard.org/v2#VariableComponent',title='Learn more about variable components') 
+                                                span.fa.fa-info-circle
+                                        td
+                                            | Variable
+                                            a(href='http://sbolstandard.org/v2#variable',title='Learn more about variable') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Operator
+                                            a(href='http://sbolstandard.org/v2#operator',title='Learn more about operator') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Variant
+                                            a(href='http://sbolstandard.org/v2#variant',title='Learn more about variant') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for variableComponent in meta.variableComponents
+                                                for variant in variableComponent.variants
+                                                    a(href=variableComponent.url) #{variableComponent.name}
+                                                    br
+                                        td
+                                            for variableComponent in meta.variableComponents
+                                                for variant in variableComponent.variants
+                                                    a(href=variableComponent.variable.url) #{variableComponent.variable.name}
+                                                    br
+                                        td
+                                            for variableComponent in meta.variableComponents
+                                                for variant in variableComponent.variants
+                                                    != variableComponent.operator.name
+                                                    a(href=variableComponent.operator.url,title='Learn more about this operator') 
+                                                        span.fa.fa-info-circle
+                                                    br
+                                        td
+                                            for variableComponent in meta.variableComponents
+                                                for variant in variableComponent.variants
+                                                    a(href=variant.url) #{variant.name}
+                                                    br

@@ -8,21 +8,33 @@ block topLevelPreview
 block topLevelPropertyTable
     if meta.size && meta.size >= 0 
         tr
-        td Size 
+        td 
+            | Size
+            a(href='http://sbolstandard.org/v2#size',title='Learn more about size') 
+                span.fa.fa-info-circle
         td #{meta.size}
 
     if meta.attachmentType 
         tr
-        td Format 
+        td 
+            | Format
+            a(href='http://sbolstandard.org/v2#format',title='Learn more about format') 
+                span.fa.fa-info-circle
         td #{meta.attachmentType}
 
     if meta.attachmentDownloadURL 
         tr
-        td Source 
+        td 
+            | Source
+            a(href='http://sbolstandard.org/v2#source',title='Learn more about source') 
+                span.fa.fa-info-circle
         td 
             a(href=meta.attachmentDownloadURL) #{meta.attachmentName}
 
     if meta.attachmentHash 
         tr
-        td Hash 
+        td 
+            | Hash
+            a(href='http://sbolstandard.org/v2#hash',title='Learn more about hash') 
+                span.fa.fa-info-circle
         td #{meta.attachmentHash}

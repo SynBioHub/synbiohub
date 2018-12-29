@@ -11,7 +11,10 @@ block topLevelPropertyTable
 
     if meta.models.length > 0 
         tr
-            td Model
+            td 
+                | Model
+                a(href='http://sbolstandard.org/v2#Model',title='Learn more about Models') 
+                    span.fa.fa-info-circle
             td
                 for model in meta.models
                     if (model.url)
@@ -37,9 +40,13 @@ block topLevelPanels
                                 table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            a(href='http://sbolstandard.org/v2#Module') Instance
+                                            | Instance
+                                            a(href='http://sbolstandard.org/v2#Module',title='Learn more about Modules') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#definition') Definition
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
                                     tr
                                         td
                                             for module in meta.modules
@@ -61,15 +68,23 @@ block topLevelPanels
                                 table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            a(href='http://sbolstandard.org/v2#access') Access
+                                            | Access
+                                            a(href='http://sbolstandard.org/v2#access',title='Learn more about access') 
+                                                span.fa.fa-info-circle
                                             | 
                                             | /
                                             | 
-                                            a(href='http://sbolstandard.org/v2#direction') Direction
+                                            | Direction
+                                            a(href='http://sbolstandard.org/v2#direction',title='Learn more about direction') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#FunctionalComponent') Instance
+                                            | Instance
+                                            a(href='http://sbolstandard.org/v2#FunctionalComponent',title='Learn more about Functional Components') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#definition') Definition
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
                                     tr
                                         td
                                             for functionalComponent in meta.functionalComponents
@@ -99,19 +114,29 @@ block topLevelPanels
                                 table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            a(href='http://sbolstandard.org/v2#Interaction') Interaction
+                                            | Interaction
+                                            a(href='http://sbolstandard.org/v2#Interaction',title='Learn more about Interactions') 
+                                                span.fa.fa-info-circle
                                             | 
                                             | /
                                             | 
-                                            a(href='http://sbolstandard.org/v2#Participation') Participation
+                                            | Participation
+                                            a(href='http://sbolstandard.org/v2#Participation',title='Learn more about Participations') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#definition') Participant Definiton
+                                            | Participant Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about participant definitions') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#type') Type
+                                            | Type
+                                            a(href='http://sbolstandard.org/v2#type',title='Learn more about types') 
+                                                span.fa.fa-info-circle
                                             | 
                                             | /
                                             | 
-                                            a(href='http://sbolstandard.org/v2#role') Role
+                                            | Role
+                                            a(href='http://sbolstandard.org/v2#role',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
                                     for interaction in meta.interactions
                                         tr
                                             td 

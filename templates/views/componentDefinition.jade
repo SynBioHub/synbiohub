@@ -11,7 +11,10 @@ block topLevelPropertyTable
 
     if builds && builds.length > 0
             tr
-            td Implementations
+            td 
+                | Implementations
+                a(href='http://sbolstandard.org/v2#Implementation',title='Learn more about variable implementations') 
+                    span.fa.fa-info-circle
             td
                 for build in builds
                     a(href=build.url) 
@@ -22,7 +25,10 @@ block topLevelPropertyTable
 
     if meta.sequences && meta.sequences.length > 0
         tr
-            td Sequences
+            td 
+                | Sequences
+                a(href='http://sbolstandard.org/v2#Sequence',title='Learn more about variable sequences') 
+                    span.fa.fa-info-circle
             td
                 for sequence in meta.sequences
                     a(href=sequence.url) 
@@ -134,12 +140,18 @@ block topLevelPanels
                             .panel-body
                                table.table.table-striped.entry-detail-table
                                     tr
-                                        td
-                                            a(href='http://sbolstandard.org/v2#access') Access
                                         td 
-                                            a(href='http://sbolstandard.org/v2#Component') Instance
+                                            | Access
+                                            a(href='http://sbolstandard.org/v2#access',title='Learn more about access') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#definition') Definition
+                                            | Instance
+                                            a(href='http://sbolstandard.org/v2#Component',title='Learn more about Components') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
                                     tr
                                         td
                                             for component in meta.components
@@ -164,15 +176,23 @@ block topLevelPanels
                                table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
-                                        td
-                                            a(href='http://sbolstandard.org/v2#Location') Location
+                                            | Sequence Annotation
+                                            a(href='http://sbolstandard.org/v2#SequenceAnnotation',title='Learn more about Sequence Annotations') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#definion') Component
+                                            | Location
+                                            a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
                                             | 
                                             | /
                                             | 
-                                            a(href='http://sbolstandard.org/v2#role') Role(s)
+                                            | Role(s)
+                                            a(href='http://sbolstandard.org/v2#role',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
                                     tr
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
@@ -213,14 +233,22 @@ block topLevelPanels
                             .panel-body
                                table.table.table-striped.entry-detail-table
                                     tr
-                                        td
-                                            a(href='http://dublincore.org/documents/dcmi-terms/#terms-title') Name
-                                        td
-                                            a(href='http://sbolstandard.org/v2#subject') Subject
                                         td 
-                                            a(href='http://sbolstandard.org/v2#restriction') Predicate
+                                            | Sequence Constraint
+                                            a(href='http://sbolstandard.org/v2#SequenceConstraint',title='Learn more about Sequence Constraints') 
+                                                span.fa.fa-info-circle
                                         td 
-                                            a(href='http://sbolstandard.org/v2#object') Object
+                                            | Subject
+                                            a(href='http://sbolstandard.org/v2#subject',title='Learn more about subjects') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Predicate
+                                            a(href='http://sbolstandard.org/v2#restriction',title='Learn more about restrictions') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Object
+                                            a(href='http://sbolstandard.org/v2#object',title='Learn more about objects') 
+                                                span.fa.fa-info-circle
                                     tr
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
