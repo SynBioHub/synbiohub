@@ -13,7 +13,7 @@ block topLevelPropertyTable
             tr
             td 
                 | Implementations
-                a(href='http://sbolstandard.org/v2#Implementation',title='Learn more about variable implementations') 
+                a(href='http://sbolstandard.org/v2#Implementation',title='Learn more about implementations') 
                     span.fa.fa-info-circle
             td
                 for build in builds
@@ -27,7 +27,7 @@ block topLevelPropertyTable
         tr
             td 
                 | Sequences
-                a(href='http://sbolstandard.org/v2#Sequence',title='Learn more about variable sequences') 
+                a(href='http://sbolstandard.org/v2#Sequence',title='Learn more about sequences') 
                     span.fa.fa-info-circle
             td
                 for sequence in meta.sequences
@@ -197,12 +197,13 @@ block topLevelPanels
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
                                                 a(href=sequenceAnnotation.url) #{sequenceAnnotation.name}
-                                                br
+                                                for location in sequenceAnnotation.locations
+                                                    br
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
                                                 for location in sequenceAnnotation.locations
                                                     a(href=location.url) #{location.locationStr}
-                                                br
+                                                    br
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
                                                 if sequenceAnnotation.component
@@ -221,7 +222,8 @@ block topLevelPanels
                                                                 span.fa.fa-info-circle
                                                             a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                                                 span.fa.fa-search
-                                                br
+                                                for location in sequenceAnnotation.locations
+                                                    br
 						
                 if sequenceConstraints.length > 0
                     .panel.panel-default

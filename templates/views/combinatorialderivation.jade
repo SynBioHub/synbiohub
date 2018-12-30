@@ -8,6 +8,15 @@ block topLevelPreview
             div#design
 
 block topLevelPropertyTable
+    if (meta.template)
+        tr
+            td 
+                | Template
+                a(href='http://sbolstandard.org/v2#template',title='Learn more about templates') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.template.url,title=meta.template.name) #{meta.template.name} 
+                br
     if (meta.strategy)
         tr
             td 
@@ -54,20 +63,20 @@ block topLevelPanels
                                     tr
                                         td
                                             for variableComponent in meta.variableComponents
+                                                a(href=variableComponent.url) #{variableComponent.name}
                                                 for variant in variableComponent.variants
-                                                    a(href=variableComponent.url) #{variableComponent.name}
                                                     br
                                         td
                                             for variableComponent in meta.variableComponents
+                                                a(href=variableComponent.variable.url) #{variableComponent.variable.name}
                                                 for variant in variableComponent.variants
-                                                    a(href=variableComponent.variable.url) #{variableComponent.variable.name}
                                                     br
                                         td
                                             for variableComponent in meta.variableComponents
+                                                != variableComponent.operator.name
+                                                a(href=variableComponent.operator.url,title='Learn more about this operator') 
+                                                    span.fa.fa-info-circle
                                                 for variant in variableComponent.variants
-                                                    != variableComponent.operator.name
-                                                    a(href=variableComponent.operator.url,title='Learn more about this operator') 
-                                                        span.fa.fa-info-circle
                                                     br
                                         td
                                             for variableComponent in meta.variableComponents
