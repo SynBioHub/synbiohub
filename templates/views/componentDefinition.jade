@@ -211,7 +211,7 @@ block topLevelPanels
                                                 if sequenceAnnotation.component
                                                     a(href=sequenceAnnotation.component.definition.url) #{sequenceAnnotation.component.definition.name}
                                                 else
-                                                    for role in meta.roles
+                                                    for role in sequenceAnnotation.roles
                                                         if role.description
                                                             != role.description.name
                                                             a(href=role.uri,title='Learn more about this role') 
