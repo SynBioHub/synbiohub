@@ -130,7 +130,7 @@ block topLevelButtons
                 | Data Integration
 
 block topLevelPanels
-                if components.length > 0
+                if meta.components && meta.components.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -155,7 +155,9 @@ block topLevelPanels
                                     tr
                                         td
                                             for component in meta.components
-                                                a(href=component.typeUrl) #{component.typeStr}
+                                                != component.access.id
+                                                a(href=component.access.url,title='Learn more about this access type') 
+                                                    span.fa.fa-info-circle
                                                 br
                                         td
                                             for component in meta.components
@@ -163,9 +165,9 @@ block topLevelPanels
                                                 br
                                         td
                                             for component in meta.components
-                                                a(href=component.defUrl) #{component.defName}
+                                                a(href=component.definition.url) #{component.definition.name}
                                                 br
-                if sequenceAnnotations.length > 0
+                if meta.sequenceAnnotations && meta.sequenceAnnotations.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -225,7 +227,7 @@ block topLevelPanels
                                                 for location in sequenceAnnotation.locations
                                                     br
 						
-                if sequenceConstraints.length > 0
+                if meta.sequenceConstraints && meta.sequenceConstraints.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -254,7 +256,7 @@ block topLevelPanels
                                     tr
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
-                                                a(href=sequenceConstraint.name) #{sequenceConstraint.name}
+                                                a(href=sequenceConstraint.url) #{sequenceConstraint.name}
                                                 br
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
@@ -262,7 +264,9 @@ block topLevelPanels
                                                 br
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints
-                                                a(href=sequenceConstraint.restriction.url) #{sequenceConstraint.restriction.id}
+                                                != sequenceConstraint.restriction.id
+                                                a(href=sequenceConstraint.restriction.url,title='Learn more about this restriction type') 
+                                                    span.fa.fa-info-circle
                                                 br
                                         td
                                             for sequenceConstraint in meta.sequenceConstraints

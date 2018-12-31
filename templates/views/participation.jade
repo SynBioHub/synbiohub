@@ -1,0 +1,14 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPropertyTable
+    
+    if meta.participant
+        tr
+            td 
+                | Participant
+                a(href='http://sbolstandard.org/v2#participant',title='Learn more about particpants') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.participant.url) #{meta.participant.name}
+                br

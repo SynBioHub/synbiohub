@@ -29,7 +29,7 @@ block topLevelPropertyTable
                     br
 
 block topLevelPanels
-                if modules.length > 0
+                if meta.modules.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -57,7 +57,7 @@ block topLevelPanels
                                                 a(href=module.definition.url) #{module.definition.name}
                                                 br
 
-                if functionalComponents.length > 0
+                if meta.functionalComponents.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -88,11 +88,15 @@ block topLevelPanels
                                     tr
                                         td
                                             for functionalComponent in meta.functionalComponents
-                                                a(href=functionalComponent.accessUrl) #{functionalComponent.accessStr}
+                                                != functionalComponent.access.id
+                                                a(href=functionalComponent.access.url,title='Learn more about this access type') 
+                                                    span.fa.fa-info-circle
                                                 | 
                                                 | /
                                                 | 
-                                                a(href=functionalComponent.directionUrl) #{functionalComponent.directionStr}
+                                                != functionalComponent.direction.id
+                                                a(href=functionalComponent.direction.url,title='Learn more about this direction type') 
+                                                    span.fa.fa-info-circle
                                                 br
                                         td
                                             for functionalComponent in meta.functionalComponents
@@ -103,7 +107,7 @@ block topLevelPanels
                                                 a(href=functionalComponent.definition.url) #{functionalComponent.definition.name}
                                                 br
 
-                if interactions.length > 0
+                if meta.interactions.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -143,7 +147,7 @@ block topLevelPanels
                                                 a(href=interaction.url, title=interaction.url) #{interaction.name}
                                             td
                                             td
-                                                a(href=interaction.typeURL, title=interaction.typeURL) #{interaction.typeStr}
+                                                a(href=interaction.type.typeURL, title=interaction.type.typeURL) #{interaction.type.typeStr}
                                         if interaction.participations.length > 0
                                             for participation in interaction.participations
                                                 tr
@@ -153,6 +157,6 @@ block topLevelPanels
                                                     td 
                                                         a(href=participation.participant.definition.url, title=participation.participant.definition.url) #{participation.participant.definition.name}
                                                     td 
-                                                        a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
+                                                        a(href=participation.role.roleURL, title=participation.role.roleURL) #{participation.role.roleStr}
 
             

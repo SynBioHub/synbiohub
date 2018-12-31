@@ -1,0 +1,40 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPreview
+    if meta.displayList
+        div.row
+            div.col-md-12.text-center
+            div#design
+
+block topLevelPropertyTable
+
+    
+    if meta.local
+        tr
+            td 
+                | Local
+                a(href='http://sbolstandard.org/v2#local',title='Learn more about locals') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.local.url) #{meta.local.name}
+                br
+    tr
+        td 
+            | Refinement
+            a(href='http://sbolstandard.org/v2#refinement',title='Learn more about refinement types') 
+                span.fa.fa-info-circle
+        td
+            != meta.refinement.id
+            a(href=meta.refinement.url,title='Learn more about this refinement type') 
+                span.fa.fa-info-circle
+            br
+    if meta.remoteMapsTo
+        tr
+            td 
+                | Remote
+                a(href='http://sbolstandard.org/v2#remote',title='Learn more about remotes') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.remoteMapsTo.url) #{meta.remoteMapsTo.name}
+                br

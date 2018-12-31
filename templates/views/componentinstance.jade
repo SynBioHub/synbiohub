@@ -1,0 +1,94 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPreview
+    if meta.displayList
+        div.row
+            div.col-md-12.text-center
+            div#design
+
+block topLevelPropertyTable
+
+    if meta.roleIntegration && meta.roleIntegration.id != ''
+        tr
+            td 
+                | Role Integration
+                a(href='http://sbolstandard.org/v2#roleIntegration',title='Learn more about role integration') 
+                    span.fa.fa-info-circle
+            td
+                != meta.roleIntegration.id
+                a(href=meta.roleIntegration.url,title='Learn more about access') 
+                    span.fa.fa-info-circle
+                br
+    tr
+        td 
+            | Access
+            a(href='http://sbolstandard.org/v2#access',title='Learn more about access') 
+                span.fa.fa-info-circle
+        td
+            != meta.access.id
+            a(href=meta.access.url,title='Learn more about access') 
+                span.fa.fa-info-circle
+            br
+
+    block topLevelPropertyTableCont
+    
+    if meta.definition
+        tr
+            td 
+                | Definition
+                a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.definition.url) 
+                    != meta.definition.id   
+                    if (meta.definition.version)
+                        != ' (Version '+meta.definition.version+')'
+                br
+
+block topLevelPanels
+                if meta.mapsTos && meta.mapsTos.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseMapsTos')
+                                    | <b>Mappings</b>
+                        #collapseMapsTos.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Mapping
+                                            a(href='http://sbolstandard.org/v2#MapsTo',title='Learn more about MapsTos') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Local
+                                            a(href='http://sbolstandard.org/v2#local',title='Learn more about local') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Refinement
+                                            a(href='http://sbolstandard.org/v2#refinement',title='Learn more about refinement types') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Remote
+                                            a(href='http://sbolstandard.org/v2#remote',title='Learn more about remote') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for mapsTo in meta.mapsTos
+                                                a(href=mapsTo.url) #{mapsTo.name}
+                                                br
+                                        td
+                                            for mapsTo in meta.mapsTos
+                                                a(href=mapsTo.local.url) #{mapsTo.local.name}
+                                                br
+                                        td
+                                            for mapsTo in meta.mapsTos
+                                                != mapsTo.refinement.id
+                                                a(href=mapsTo.refinement.url,title='Learn more about this refinement type') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for mapsTo in meta.mapsTos
+                                                a(href=mapsTo.remote.url) #{mapsTo.remote.name}
+                                                br
