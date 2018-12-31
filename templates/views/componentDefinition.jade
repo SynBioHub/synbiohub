@@ -208,7 +208,7 @@ block topLevelPanels
                                                     br
                                         td
                                             for sequenceAnnotation in meta.sequenceAnnotations
-                                                if sequenceAnnotation.component
+                                                if sequenceAnnotation.component && sequenceAnnotation.component.definition
                                                     a(href=sequenceAnnotation.component.definition.url) #{sequenceAnnotation.component.definition.name}
                                                 else
                                                     for role in sequenceAnnotation.roles
