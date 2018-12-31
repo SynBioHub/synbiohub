@@ -217,7 +217,7 @@ block content
                                             for role in meta.roles
                                                 if role.description
                                                     != role.description.name
-                                                    a(href=role.term,title='Learn more about this role') 
+                                                    a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
                                                     a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                                         span.fa.fa-search
