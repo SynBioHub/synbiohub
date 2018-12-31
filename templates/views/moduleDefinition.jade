@@ -147,7 +147,11 @@ block topLevelPanels
                                                 a(href=interaction.url, title=interaction.url) #{interaction.name}
                                             td
                                             td
-                                                a(href=interaction.type.typeURL, title=interaction.type.typeURL) #{interaction.type.typeStr}
+                                                != interaction.type.typeStr
+                                                | 
+                                                a(href=interaction.type.typeURL,title='Learn more about this type')
+                                                     span.fa.fa-info-circle
+                                                br
                                         if interaction.participations.length > 0
                                             for participation in interaction.participations
                                                 tr
@@ -156,7 +160,11 @@ block topLevelPanels
                                                         a(href=participation.url, title=participation.url) #{participation.name}
                                                     td 
                                                         a(href=participation.participant.definition.url, title=participation.participant.definition.url) #{participation.participant.definition.name}
-                                                    td 
-                                                        a(href=participation.role.roleURL, title=participation.role.roleURL) #{participation.role.roleStr}
-
+                                                    td
+                                                        != participation.role.roleStr 
+                                                        | 
+                                                        a(href=participation.role.roleURL,title='Learn more about this role')
+                                                            span.fa.fa-info-circle
+                                                        br
+     
             

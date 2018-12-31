@@ -33,4 +33,9 @@ block topLevelPanels
                                                 td 
                                                     a(href=participation.participant.definition.url, title=participation.participant.definition.url) #{participation.participant.definition.name}
                                                 td 
-                                                    a(href=participation.role.roleURL, title=participation.role.roleURL) #{participation.role.roleStr}
+                                                    != participation.role.roleStr 
+                                                    | 
+                                                    a(href=participation.role.roleURL,title='Learn more about this role')
+                                                        span.fa.fa-info-circle
+                                                    br
+
