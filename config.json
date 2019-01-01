@@ -46,6 +46,7 @@
   },
   "uploadLimit": "150mb",
   "resolveBatch": 20,
+  "fetchLimit": 1000,
   "staggeredQueryLimit": 10000,
   "mail": {
       "sendgridApiKey": "",
