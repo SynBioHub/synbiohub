@@ -53,7 +53,7 @@ block content
                             a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions') 
                                 span.fa.fa-search 
                         if rdfType
-                            h4 (#{rdfType.name})
+                            h4 #{rdfType.name}
                                 | 
                                 a(href=rdfType.url,title='Learn more about this RDF type')
                                     span.fa.fa-info-circle
