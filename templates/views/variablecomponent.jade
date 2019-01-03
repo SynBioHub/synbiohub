@@ -1,0 +1,47 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPropertyTable
+    if (meta.variable)
+        tr
+            td
+                | Variable
+                a(href='http://sbolstandard.org/v2#variable',title='Learn more about variable') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.variable.url,title=meta.variable.name) #{meta.variable.name} 
+                br
+    if (meta.operator)
+        tr
+            td 
+                | Operator
+                a(href='http://sbolstandard.org/v2#operator',title='Learn more about operator') 
+                    span.fa.fa-info-circle
+            td
+                != meta.operator.name
+                a(href=meta.operator.url,title='Learn more about this operator') 
+                    span.fa.fa-info-circle
+                a(href='/search/operator=<'+encodeURIComponent(meta.operator.uri)+'>&',title='Find all records with this operator') 
+                    span.fa.fa-search
+                br
+
+block topLevelPanels
+                if meta.variants && meta.variants.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseVariants')
+                                    | <b>Variants</b>
+                        #collapseVariants.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Variant
+                                            a(href='http://sbolstandard.org/v2#variant',title='Learn more about variant') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for variant in meta.variants
+                                                a(href=variant.url) #{variant.name}
+                                                br

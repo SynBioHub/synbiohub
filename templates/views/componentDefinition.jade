@@ -9,17 +9,26 @@ block topLevelPreview
 
 block topLevelPropertyTable
 
-    if meta.builds.length > 0
+    if builds && builds.length > 0
             tr
-            td Implementations
+            td 
+                | Implementations
+                a(href='http://sbolstandard.org/v2#Implementation',title='Learn more about implementations') 
+                    span.fa.fa-info-circle
             td
-                for impl in meta.builds
-                    a(href=impl) 
-                        != impl
+                for build in builds
+                    a(href=build.url) 
+                        != build.displayId   
+                        if (build.version)
+                            != ' (Version '+build.version+')'
+                    br
 
-    if meta.sequences.length > 0
+    if meta.sequences && meta.sequences.length > 0
         tr
-            td Sequences
+            td 
+                | Sequences
+                a(href='http://sbolstandard.org/v2#Sequence',title='Learn more about sequences') 
+                    span.fa.fa-info-circle
             td
                 for sequence in meta.sequences
                     a(href=sequence.url) 
@@ -28,7 +37,7 @@ block topLevelPropertyTable
                             != ' (Version '+sequence.version+')'
                     br
 
-    if meta.protein !== undefined
+    if meta.protein && meta.protein !== undefined
         if meta.protein.pI !== undefined
             tr
                 td pI
@@ -53,10 +62,10 @@ block topLevelBelowTitle
             for entity in meta.protein.encodedBy
                 | 
                 a(href=entity.url) #{entity.name}
-    if encodedProteins.length > 0
+    if meta.encodedProteins && meta.encodedProteins.length > 0
         span
             | Encodes
-            for protein in encodedProteins
+            for protein in meta.encodedProteins
                 | 
                 a(href=protein.url) #{protein.name}
 
@@ -88,7 +97,7 @@ block topLevelButtons
             ul.dropdown-menu.dropdown-toggle
                 li
                     a(href=meta.url + '/copyFromRemote') Copy to SynBioHub
-    if BenchlingRemotes && ICERemotes
+    if meta.BenchlingRemotes && meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
                 |  
@@ -98,7 +107,7 @@ block topLevelButtons
                     a(href=meta.url + '/createBenchlingSequence') Send to Benchling
                 li
                     a(href=meta.url + '/createICEPart') Send to ICE
-    else if BenchlingRemotes
+    else if meta.BenchlingRemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
                 |  
@@ -106,7 +115,7 @@ block topLevelButtons
             ul.dropdown-menu.dropdown-toggle
                 li
                     a(href=meta.url + '/createBenchlingSequence') Send to Benchling
-    else if ICERemotes
+    else if meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
                 |  
@@ -119,3 +128,175 @@ block topLevelButtons
             a(href=meta.url + '/integrate',title='Integrate data from an integration pipeline',style="color:white")
                 span.fa.fa-plus-circle
                 | Data Integration
+
+block topLevelPanels
+                if meta.components && meta.components.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseComponents')
+                                    | <b>Components</b>
+                        #collapseComponents.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Access
+                                            a(href='http://sbolstandard.org/v2#access',title='Learn more about access') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Instance
+                                            a(href='http://sbolstandard.org/v2#Component',title='Learn more about Components') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for component in meta.components
+                                                != component.access.id
+                                                a(href=component.access.url,title='Learn more about this access type') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for component in meta.components
+                                                a(href=component.url) #{component.name}
+                                                br
+                                        td
+                                            for component in meta.components
+                                                a(href=component.definition.url) #{component.definition.name}
+                                                br
+                if meta.sequenceAnnotations && meta.sequenceAnnotations.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceAnnotations')
+                                    | <b>Sequence Annotations</b>
+                        #collapseSequenceAnnotations.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Sequence Annotation
+                                            a(href='http://sbolstandard.org/v2#SequenceAnnotation',title='Learn more about Sequence Annotations') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Location
+                                            a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Component
+                                            a(href='http://sbolstandard.org/v2#component',title='Learn more about components') 
+                                                span.fa.fa-info-circle
+                                            | 
+                                            | /
+                                            | 
+                                            | Role(s)
+                                            a(href='http://sbolstandard.org/v2#role',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                a(href=sequenceAnnotation.url) #{sequenceAnnotation.name}
+                                                for location in sequenceAnnotation.locations
+                                                    br
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                for location in sequenceAnnotation.locations
+                                                    a(href=location.url) #{location.locationStr}
+                                                    br
+                                        td
+                                            for sequenceAnnotation in meta.sequenceAnnotations
+                                                if sequenceAnnotation.component && sequenceAnnotation.component.definition
+                                                    a(href=sequenceAnnotation.component.definition.url) #{sequenceAnnotation.component.definition.name}
+                                                else
+                                                    for role in sequenceAnnotation.roles
+                                                        if role.description
+                                                            != role.description.name
+                                                            a(href=role.uri,title='Learn more about this role') 
+                                                                span.fa.fa-info-circle
+                                                            a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                                span.fa.fa-search
+                                                        else 
+                                                            != role.term 
+                                                            a(href=role.uri,title='Learn more about this role') 
+                                                                span.fa.fa-info-circle
+                                                            a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                                span.fa.fa-search
+                                                for location in sequenceAnnotation.locations
+                                                    br
+						
+                if meta.sequenceConstraints && meta.sequenceConstraints.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceConstraints')
+                                    | <b>Sequence Constraints</b>
+                        #collapseSequenceConstraints.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Sequence Constraint
+                                            a(href='http://sbolstandard.org/v2#SequenceConstraint',title='Learn more about Sequence Constraints') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Subject
+                                            a(href='http://sbolstandard.org/v2#subject',title='Learn more about subjects') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Predicate
+                                            a(href='http://sbolstandard.org/v2#restriction',title='Learn more about restrictions') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Object
+                                            a(href='http://sbolstandard.org/v2#object',title='Learn more about objects') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.url) #{sequenceConstraint.name}
+                                                br
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.subject.definition.url) #{sequenceConstraint.subject.definition.name}
+                                                br
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                != sequenceConstraint.restriction.id
+                                                a(href=sequenceConstraint.restriction.url,title='Learn more about this restriction type') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for sequenceConstraint in meta.sequenceConstraints
+                                                a(href=sequenceConstraint.object.definition.url) #{sequenceConstraint.object.definition.name}
+                                                br
+		    
+                if meta.iGemMainPage
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemMainPage')
+                                    | <b>iGEM Wiki Main Page</b>
+                        #collapseIGemMainPage.panel-collapse.collapse
+                            .panel-body
+                                | !{meta.iGemMainPage}
+                if meta.iGemDesign
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemDesign')
+                                    | <b>iGEM Wiki Design Page</b>
+                        #collapseIGemDesign.panel-collapse.collapse
+                            .panel-body
+                                | !{meta.iGemDesign}
+                if meta.iGemExperience
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemExperience')
+                                    | <b>iGEM Wiki Experience Page</b>
+                        #collapseIGemExperience.panel-collapse.collapse
+                            .panel-body
+                                | !{meta.iGemExperience}

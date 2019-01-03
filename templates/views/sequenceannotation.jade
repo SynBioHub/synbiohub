@@ -1,0 +1,33 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPreview
+    if meta.displayList
+        div.row
+            div.col-md-12.text-center
+            div#design
+
+block topLevelPropertyTable
+
+    
+    if meta.component
+        tr
+            td 
+                | Component
+                a(href='http://sbolstandard.org/v2#component',title='Learn more about components') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.component.url) #{meta.component.name}
+                br
+    if meta.locations
+        tr
+            td 
+                | Locations
+                a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                    span.fa.fa-info-circle
+            td
+                for location in meta.locations
+                    a(href=location.url) #{location.locationStr}
+                    | ;
+                    | 
+                br

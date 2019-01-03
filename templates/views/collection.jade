@@ -1,11 +1,6 @@
 
 extends ../layouts/topLevel.jade
 
-include ../mixins/blast-button.jade
-include ../mixins/mutable-fields.jade
-include ../mixins/attachments.jade
-include ../mixins/citations.jade
-
 block modal
     div.modal.fade#iconModal(tabindex="-1", role="dialog")
         div.modal-dialog(role="document")
@@ -42,17 +37,18 @@ block topLevelPreview
             th Type
             th Description
         tbody
-            for member in meta.members
-                if (member.id)
-                    tr
-                        td
-                            a(href=member.url) #{member.name}
-                        td
-                            a(href=member.url) #{member.id}
-                        td #{member.type}&nbsp
-                            a(href=member.typeUrl,title="Learn more about this type of record")
-                                span.fa.fa-info-circle
-                        td #{member.description}
+            if meta.members	
+                for member in meta.members
+                    if (member.id)
+                        tr
+                            td
+                                a(href=member.url) #{member.name}
+                            td
+                                a(href=member.url) #{member.id}
+                            td #{member.type}&nbsp
+                                a(href=member.typeUrl,title="Learn more about this type of record")
+                                    span.fa.fa-info-circle
+                            td #{member.description}
 
 block topLevelButtons
     if locals.user && (locals.user.isCurator || locals.user.isAdmin) && meta.triplestore === 'public'

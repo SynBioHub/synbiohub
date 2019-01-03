@@ -1,0 +1,41 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPanels
+
+                if meta.participations.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseParticipations')
+                                    | <b>Participations</b>
+                        #collapseParticipations.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Participation
+                                            a(href='http://sbolstandard.org/v2#Participation',title='Learn more about Participations') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Participant Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about participant definitions') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Role
+                                            a(href='http://sbolstandard.org/v2#role',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
+                                    if meta.participations.length > 0
+                                        for participation in meta.participations
+                                            tr
+                                                td
+                                                    a(href=participation.url, title=participation.url) #{participation.name}
+                                                td 
+                                                    a(href=participation.participant.definition.url, title=participation.participant.definition.url) #{participation.participant.definition.name}
+                                                td 
+                                                    != participation.role.roleStr 
+                                                    | 
+                                                    a(href=participation.role.roleURL,title='Learn more about this role')
+                                                        span.fa.fa-info-circle
+                                                    br
+
