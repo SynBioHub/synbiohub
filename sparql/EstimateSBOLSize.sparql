@@ -2,9 +2,9 @@ PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 PREFIX sbol: <http://sbols.org/v2#>
 
 SELECT (COUNT(DISTINCT ?s) as ?count)
-$graphs
 WHERE {
-<$uri> ?p ?ref .
+<$uri> sbh:topLevel ?top .
+?top ?p ?ref .
 ?ref ?p2 ?ref2 .
 ?s sbh:topLevel ?ref2
 }
