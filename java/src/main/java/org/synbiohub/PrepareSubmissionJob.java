@@ -83,8 +83,8 @@ public class PrepareSubmissionJob extends Job {
 	public String shareLinkSalt;
 	public String overwrite_merge;
 	public String tempDirPath;
-  public boolean useSBOLExplorer;
-  public String SBOLExplorerEndpoint;
+	public boolean useSBOLExplorer;
+	public String SBOLExplorerEndpoint;
 
 	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
 		CombineArchive combine;
@@ -301,9 +301,9 @@ public class PrepareSubmissionJob extends Job {
 			// Remove index information for private objects being made public
 			if (useSBOLExplorer && (!submit && !copy)) {
 				for (TopLevel topLevel : individual.getTopLevels()) {
-          if (topLevel.getIdentity().toString().startsWith(ownedByURI)) {
-            explorerUrisToRemove.add(topLevel.getIdentity().toString());
-          }
+					if (topLevel.getIdentity().toString().startsWith(ownedByURI)) {
+						explorerUrisToRemove.add(topLevel.getIdentity().toString());
+					}
 				}
 			}
 
