@@ -1,8 +1,10 @@
-
-PREFIX intbio: <http://intbio.ncl.ac.uk#>
 PREFIX sbol: <http://sbols.org/v2#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
 
-SELECT ?impl WHERE {
-	?impl intbio:built $uri . 
+SELECT ?impl ?displayId ?title ?version WHERE {
+ ?impl a sbol:Implementation .
+ ?impl sbol:built <$uri> . 
+ OPTIONAL { ?impl sbol:displayId ?displayId } .
+ OPTIONAL { ?impl dcterms:title ?title } .
+ OPTIONAL { ?impl sbol:version ?version } .
 }
-
