@@ -1,0 +1,14 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPropertyTable
+    
+    if meta.entity
+        tr
+            td 
+                | Entity
+                a(href='http://www.w3.org/ns/prov#entity',title='Learn more about entities') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.entity.url) #{meta.entity.name}
+                br
