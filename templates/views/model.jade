@@ -3,7 +3,10 @@ extends ../layouts/topLevel.jade
 
 block topLevelPropertyTable
     tr
-        td Language
+        td 
+            | Language
+            a(href='http://sbolstandard.org/v2#language',title='Learn more about languages') 
+                span.fa.fa-info-circle
         td
             a(href=meta.language.uri.toString(),title=meta.language.name) #{meta.language.name}
             br
@@ -12,7 +15,10 @@ block topLevelPropertyTable
                 span.fa.fa-search
             br
     tr  
-        td Framework
+        td 
+            | Framework
+            a(href='http://sbolstandard.org/v2#language',title='Learn more about frameworks') 
+                span.fa.fa-info-circle
         td
             a(href=meta.framework.uri.toString(),title=meta.framework.name) #{meta.framework.name}
             br
@@ -21,7 +27,10 @@ block topLevelPropertyTable
                 span.fa.fa-search
             br
     tr
-        td Model File
+        td 
+            | Model File
+            a(href='http://sbolstandard.org/v2#sources',title='Learn more about sources') 
+                span.fa.fa-info-circle
         td
             a(href=meta.modelSource.toString(),title=meta.modelSource) #{meta.modelSourceName.toString()}
             br

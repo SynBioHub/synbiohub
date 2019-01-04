@@ -1,8 +1,12 @@
 
 extends ../layouts/topLevel.jade
 
-block topLevelBelowTitle
-    span
-    if meta.built 
-        h5 Built: 
-            a(href=meta.built.url.startsWith(config.databasePrefix)?'/'+meta.built.url.toString().replace(config.databasePrefix,''):meta.built.url.toString()) #{meta.built.name}
+block topLevelPropertyTable
+    if meta.built
+        tr
+        td 
+            | Built
+            a(href='http://sbolstandard.org/v2#built',title='Learn more about built') 
+                span.fa.fa-info-circle
+        td
+            a(href=meta.built.url) #{meta.built.name}

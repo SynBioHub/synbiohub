@@ -8,77 +8,163 @@ block topLevelPreview
             div#design
 
 block topLevelPropertyTable
-    if modules.length > 0 
+
+    if meta.models.length > 0 
         tr
-            td Modules
-            td Identifier
-            td Name
-        tr
+            td 
+                | Model
+                a(href='http://sbolstandard.org/v2#Model',title='Learn more about Models') 
+                    span.fa.fa-info-circle
             td
-                for module in modules
-                    | Module
-                    br
-            td
-                for module in modules
-                    a(href=module.url) #{module.defId}
-                    br
-            td
-                for module in modules
-                    a(href=module.url) #{module.defName}
-                    br
-    if !meta.displayList && functionalComponents.length > 0
-        tr
-            td FunctionalComponent
-            td Identifier
-            td Name
-        tr
-            td
-                for functionalComponent in functionalComponents
-                    != functionalComponent.typeStr
-                    br
-            td
-                for functionalComponent in functionalComponents
-                    a(href=functionalComponent.url) #{functionalComponent.defId}
-                    br
-            td
-                for functionalComponent in functionalComponents
-                    a(href=functionalComponent.url) #{functionalComponent.defName}
-                    br
-    if !meta.displayList && interactions.length > 0
-        for interaction in interactions
-            tr
-                td Interaction
-                td
-                    != interaction.defName
-                td
-                    a(href=interaction.typeURL, title=interaction.typeURL) #{interaction.typeStr}
-            if interaction.participations.length > 0
-                for participation in interaction.participations
-                    tr
-                        td Participation
-                        td 
-                            a(href=participation.participant.url, title=participation.participant.url) #{participation.participant.defName}
-                        td 
-                            a(href=participation.roleURL, title=participation.roleURL) #{participation.roleStr}
-            
-    if models.length > 0 
-        tr
-            td Model
-            td
-                for model in models
+                for model in meta.models
                     if (model.url)
                         a(href=model.url) #{model.id}
                     else
                         a(href=model.toString()) #{model.toString()}
                     br
             td(nowrap="nowrap") 
-                for model in models
+                for model in meta.models
                     if (model.version)
                         != 'Version '+model.version
                     br
 
-block topLevelPreview
-    if meta.displayList
-        div.row
-            div.col-md-12.text-center
-            div#design
+block topLevelPanels
+                if meta.modules.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseModules')
+                                    | <b>Modules</b>
+                        #collapseModules.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Instance
+                                            a(href='http://sbolstandard.org/v2#Module',title='Learn more about Modules') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for module in meta.modules
+                                                a(href=module.url) #{module.name}
+                                                br
+                                        td
+                                            for module in meta.modules
+                                                a(href=module.definition.url) #{module.definition.name}
+                                                br
+
+                if meta.functionalComponents.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseFunctionalComponents')
+                                    | <b>Functional Components</b>
+                        #collapseFunctionalComponents.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Access
+                                            a(href='http://sbolstandard.org/v2#access',title='Learn more about access') 
+                                                span.fa.fa-info-circle
+                                            | 
+                                            | /
+                                            | 
+                                            | Direction
+                                            a(href='http://sbolstandard.org/v2#direction',title='Learn more about direction') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Instance
+                                            a(href='http://sbolstandard.org/v2#FunctionalComponent',title='Learn more about Functional Components') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for functionalComponent in meta.functionalComponents
+                                                != functionalComponent.access.id
+                                                a(href=functionalComponent.access.url,title='Learn more about this access type') 
+                                                    span.fa.fa-info-circle
+                                                | 
+                                                | /
+                                                | 
+                                                != functionalComponent.direction.id
+                                                a(href=functionalComponent.direction.url,title='Learn more about this direction type') 
+                                                    span.fa.fa-info-circle
+                                                br
+                                        td
+                                            for functionalComponent in meta.functionalComponents
+                                                a(href=functionalComponent.url) #{functionalComponent.name}
+                                                br
+                                        td
+                                            for functionalComponent in meta.functionalComponents
+                                                a(href=functionalComponent.definition.url) #{functionalComponent.definition.name}
+                                                br
+
+                if meta.interactions.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseInteractions')
+                                    | <b>Interactions</b>
+                        #collapseInteractions.panel-collapse.collapse
+                            .panel-body
+                                table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Interaction
+                                            a(href='http://sbolstandard.org/v2#Interaction',title='Learn more about Interactions') 
+                                                span.fa.fa-info-circle
+                                            | 
+                                            | /
+                                            | 
+                                            | Participation
+                                            a(href='http://sbolstandard.org/v2#Participation',title='Learn more about Participations') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Participant Definition
+                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about participant definitions') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Type
+                                            a(href='http://sbolstandard.org/v2#type',title='Learn more about types') 
+                                                span.fa.fa-info-circle
+                                            | 
+                                            | /
+                                            | 
+                                            | Role
+                                            a(href='http://sbolstandard.org/v2#role',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
+                                    for interaction in meta.interactions
+                                        tr
+                                            td 
+                                                a(href=interaction.url, title=interaction.url) #{interaction.name}
+                                            td
+                                            td
+                                                != interaction.type.typeStr
+                                                | 
+                                                a(href=interaction.type.typeURL,title='Learn more about this type')
+                                                     span.fa.fa-info-circle
+                                                br
+                                        if interaction.participations.length > 0
+                                            for participation in interaction.participations
+                                                tr
+                                                    td
+                                                        | |--> 
+                                                        a(href=participation.url, title=participation.url) #{participation.name}
+                                                    td 
+                                                        a(href=participation.participant.definition.url, title=participation.participant.definition.url) #{participation.participant.definition.name}
+                                                    td
+                                                        != participation.role.roleStr 
+                                                        | 
+                                                        a(href=participation.role.roleURL,title='Learn more about this role')
+                                                            span.fa.fa-info-circle
+                                                        br
+     
+            

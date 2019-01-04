@@ -1,0 +1,24 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPropertyTable
+
+    if meta.agent
+        tr
+            td 
+                | Agent
+                a(href='http://www.w3.org/ns/prov#Agent',title='Learn more about agents') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.agent.url) #{meta.agent.name}
+                br
+
+    if meta.plan
+        tr
+            td 
+                | Plan
+                a(href='http://www.w3.org/ns/prov#Plan',title='Learn more about plans') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.plan.url) #{meta.plan.name}
+                br

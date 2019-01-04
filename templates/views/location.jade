@@ -1,0 +1,14 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPropertyTable
+
+    if meta.locationStr
+        tr
+            td 
+                | Location
+                a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                    span.fa.fa-info-circle
+            td
+                | #{meta.locationStr}
+                br

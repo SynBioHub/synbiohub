@@ -2,53 +2,101 @@
 extends ../layouts/topLevel.jade
 
 block topLevelPropertyTable
-    if usages.length > 0
+    if (meta.startedAtTime)
         tr
             td 
-                a(href='http://www.w3.org/ns/prov#Usage', title='http://www.w3.org/ns/prov#Usage') Usage
-            td Identifier
-            td Name
-        tr
+                | Time Started
+                a(href='http://www.w3.org/ns/prov#startedAtTime',title='Learn more about started at time') 
+                    span.fa.fa-info-circle
             td
-                for usage in usages
-                    != usage.typeStr
-                    br
-            td
-                for usage in usages
-                    a(href=usage.url) #{usage.defId}
-                    br
-            td
-                for usage in usages
-                    a(href=usage.url) #{usage.defName}
-                    br
-    if associations.length > 0
+                != meta.startedAtTime
+                br
+    if (meta.endedAtTime)
         tr
             td 
-                a(href='http://www.w3.org/ns/prov#Association', title='http://www.w3.org/ns/prov#Association') Association
-            td Identifier
-            td Name
-        tr
+                | Time Ended
+                a(href='http://www.w3.org/ns/prov#endedAtTime',title='Learn more about ended at time') 
+                    span.fa.fa-info-circle
             td
-                for association in associations
-                    != association.typeStr
-                    br
-            td
-                for association in associations
-                    a(href=association.agent.url) #{association.agent.defId}
-                    br
-            td
-                for association in associations
-                    a(href=association.agent.url) #{association.agent.defName}
-                    br
-        if association.plan
-            tr
-                td 
-                    a(href='http://www.w3.org/ns/prov#Plan', title='http://www.w3.org/ns/prov#Plan') Plan
-                td
-                    for association in associations
-                        a(href=association.plan.url) #{association.plan.defId}
-                        br
-                td
-                    for association in associations
-                        a(href=association.plan.url) #{association.plan.defName}
-                        br
+                != meta.endedAtTime
+                br
+
+block topLevelPanels
+                if meta.usages && meta.usages.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseUsages')
+                                    | <b>Usages</b>
+                        #collapseUsages.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            | Usage
+                                            a(href='http://www.w3.org/ns/prov#Usage',title='Learn more about usages') 
+                                                span.fa.fa-info-circle
+                                        td
+                                            | Entity
+                                            a(href='http://www.w3.org/ns/prov#entity',title='Learn more about entities') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Roles
+                                            a(href='http://www.w3.org/ns/prov#hasRole',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for usage in meta.usages
+                                                a(href=usage.url) #{usage.name}
+                                        td
+                                            for usage in meta.usages
+                                                a(href=usage.entity.url) #{usage.entity.name}
+                                        td
+                                            for usage in meta.usages
+                                                for role in usage.roles
+                                                    != role.term
+                                                    a(href=role.uri,title='Learn more about this role') 
+                                                        span.fa.fa-info-circle
+                if meta.associations && meta.associations.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseAssociations')
+                                    | <b>Associations</b>
+                        #collapseAssociations.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            | Association
+                                            a(href='http://www.w3.org/ns/prov#Association',title='Learn more about associations') 
+                                                span.fa.fa-info-circle
+                                        td
+                                            | Agent
+                                            a(href='http://www.w3.org/ns/prov#Agent',title='Learn more about agents') 
+                                                span.fa.fa-info-circle
+                                        td
+                                            | Plan
+                                            a(href='http://www.w3.org/ns/prov#Plan',title='Learn more about plans') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Roles
+                                            a(href='http://www.w3.org/ns/prov#hasRole',title='Learn more about roles') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for association in meta.associations
+                                                a(href=association.url) #{association.name}
+                                        td
+                                            for association in meta.associations
+                                                a(href=association.agent.url) #{association.agent.name}
+                                        td
+                                            for association in meta.associations
+                                                if association.plan
+                                                    a(href=association.plan.url) #{association.plan.name}
+                                        td
+                                            for association in meta.associations
+                                                for role in association.roles
+                                                    != role.term
+                                                    a(href=role.uri,title='Learn more about this role') 
+                                                        span.fa.fa-info-circle

@@ -10,4 +10,6 @@ block topLevelBelowPropertyTable
                 div.pull-right
                     +blast-button(meta)
                 h4 Sequence (#{meta.length} #{meta.lengthUnits})
+                    a(href=meta.encoding,title=meta.type)
+                        span.fa.fa-info-circle
                 pre #{meta.formatted}
