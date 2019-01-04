@@ -40,8 +40,8 @@ mvn package
 cd ..
 
 message "Starting SynBioHub from Containers"
-docker-compose -f ./synbiohub-docker/docker-compose.yml up -d
-while [[ "$(docker inspect synbiohubdocker_synbiohub_1 | jq .[0].State.Health.Status)" != "\"healthy\"" ]]
+docker-compose -f ./synbiohub-docker/docker-compose.yml -p testsuiteproject up -d
+while [[ "$(docker inspect testsuiteproject_synbiohub_1 | jq .[0].State.Health.Status)" != "\"healthy\"" ]]
 do
     sleep 5
     message "Waiting for synbiohub container to be healthy."
@@ -52,7 +52,12 @@ message "Started successfully"
 # create a new user
 bash ./createuser.sh
 
-# exit gracefully
-kill -INT $!
+# stop the containers
+message "Stopping containers"
+docker stop testsuiteproject_synbiohub_1
+docker stop testsuiteproject_explorer_1
+docker stop testsuiteproject_autoheal_1
+docker stop testsuiteproject_virtuoso_1
+
 
 message "finished running tests"
