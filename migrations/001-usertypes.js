@@ -8,7 +8,6 @@ module.exports = {
         return query.sequelize.query('PRAGMA table_info(user)', { type: DataTypes.QueryTypes.SELECT })
             .then(columns => {
                 columns.forEach(function (column) {
-                    console.log(column.name)
                     if (column.name == "isMember")
                         isMember = true
 
