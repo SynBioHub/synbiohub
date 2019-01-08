@@ -20,7 +20,6 @@ else
 fi
 
 
-
 #message pulling mhersam/SBOLTestRunner
 #if cd SynBioHubRunner
 #git clone --recurse-submodules https://github.com/mehersam/SynBioHubRunner
@@ -49,8 +48,8 @@ done
 
 message "Started successfully"
 
-# create a new user
-bash ./createuser.sh
+# run the set up script
+python3 firsttimesetup.py
 
 # stop the containers
 message "Stopping containers"
