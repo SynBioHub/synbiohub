@@ -48,6 +48,12 @@ done
 
 message "Started successfully"
 
+if [[ "$@" == "-stopafterstart" ]]
+then
+    message "Exiting early."
+    exit 0
+fi
+
 # run the set up script
 python3 firsttimesetup.py
 
