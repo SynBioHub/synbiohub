@@ -14,6 +14,10 @@ setupfiles = {
     'allowPublicSignup': (None, 'true'),
 }
 
-response = requests.post('http://localhost:7777/setup', files=setupfiles)
+response = requests.post('http://localhost:7777/setup', files=setupfiles, verify=False)
 
-print(response)
+
+with open("testoutput.html", "w") as f:
+    f.write(response.text)
+response.raise_for_status()
+

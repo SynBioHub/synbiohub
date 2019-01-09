@@ -7,7 +7,7 @@ RESULT=300
 RESULT=$(curl -X POST \
               --write-out "%{http_code}" \
               --silent \
-              --output /dev/null \
+              --output testoutput.html \
               -F "userName=testuser" \
               -F "userFullName=Test User" \
               -F "userEmail=test@user.synbiohub" \
