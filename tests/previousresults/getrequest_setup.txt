@@ -204,5 +204,4 @@ Password (again)
 <script src="/bundle.js">
 </script>
 </head>
-green beans
 </html>

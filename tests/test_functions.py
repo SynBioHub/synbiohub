@@ -1,9 +1,16 @@
 import requests, difflib, sys
 import re
 
-save_for_testing = False
+command_line_arguments = []
 
 number_of_errors = 0
+
+
+def set_command_line_arguments(arguments):
+    global command_line_arguments
+    command_line_arguments = arguments
+    if "-resetalltests" in command_line_arguments:
+        test_print("resetting all tests by saving every request for future comparisons. You should not have run this unless you are working on the test suite implementation itself and have verified that all tests passed before the reset.")
 
 def test_print(string):
     sys.stdout.write("[synbiohub test] ")
@@ -23,14 +30,20 @@ def format_html(htmlstring):
 
 # perform a get request
 def get_request(request):
-    if request[0] == '/':
-        request = request[1:]
     response = requests.get('http://localhost:7777/' + request)
     
     response.raise_for_status()
     
     content = format_html(response.text)
 
+    return content
+
+# data is the data field for a request
+def post_request(request, data):
+    response = requests.post('http://localhost:7777/' + request, data = data)
+    response.raise_for_status()
+    
+    content = format_html(response.text)
     return content
 
 # perform and save a get request in previous results
@@ -51,7 +64,7 @@ def request_file_path(request, requesttype):
 # requesttype is the type of request performed, either "get request" or "post request"
 def compare_request(requestcontent, request, requesttype):
     # if the global state is to replace all files, do that
-    if save_for_testing:
+    if "-resetalltests" in command_line_arguments:
         with open(request_file_path(request, requesttype), 'w') as rfile:
             rfile.write(requestcontent)
     else:
@@ -63,8 +76,8 @@ def compare_request(requestcontent, request, requesttype):
             with open (filepath, "r") as oldfile:
                 olddata=oldfile.read()
         except IOError as e:
-            raise Exception("Could not open previous result for the " + \
-                            requesttype + " " + request + ". If the saved result has not yet been created because it is a new page, please use TODO to create the file.")
+            raise Exception("\n[synbiohub test] Could not open previous result for the " + \
+                        requesttype + " " + request + ". If the saved result has not yet been created because it is a new page, please use TODO to create the file.") from e
 
         olddata = olddata.splitlines()
         newdata = requestcontent.splitlines()
@@ -88,8 +101,17 @@ def compare_request(requestcontent, request, requesttype):
     
 # request- string, the name of the page being requested
 def compare_get_request(request):
+    if request[0] == '/':
+        request = request[1:]
     compare_request(get_request(request), request, "get request")
 
+# request- string, the name of the page being requested
+# data- data to send in the post request
+def compare_post_request(request, data):
+    if request[0] == '/':
+        request = request[1:]
+    compare_request(post_request(request, data), request, "post request")
+    
 def exit_tests():
     # finally, if there were any errors, raise an Exception
     if number_of_errors > 0:

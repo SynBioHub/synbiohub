@@ -66,12 +66,13 @@ fi
 message "Running test suite."
 
 # run the set up script
-python3 test_suite.py
+
+python3 test_suite.py "$@"
 
 
 message "Running SBOLTestRunner"
 
-#java 
+
 
 # stop the containers
 message "Stopping containers"
