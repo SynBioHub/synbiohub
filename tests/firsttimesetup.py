@@ -1,5 +1,5 @@
-import requests
-from test_functions import compare_get_request
+
+from test_functions import compare_get_request, compare_post_request
 
 
 
@@ -22,9 +22,8 @@ setup = {
     'virtuosoDB': '/var/lib/virtuoso-opensource-7/db',
     'allowPublicSignup': 'true',
 }
-response = requests.post('http://localhost:7777/setup', data=setup)
 
+compare_post_request('setup', setup)
 
-response.raise_for_status()
 
 
