@@ -16,6 +16,14 @@ unzipped/*
 jsbml.log
 
 
+*~
+
+tests/synbiohub-docker/*
+tests/SBOLTestRunner/*
+tests/SynBioHubRunner/*
+
+*.pyc
+*.pyo
 
 
 
