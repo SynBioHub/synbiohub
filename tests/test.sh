@@ -20,6 +20,15 @@ else
 fi
 
 
+message "pulling mehersam/SynBioHubRunner"
+if cd SBOLTestRunner; then
+    git pull;
+    cd ..;
+else
+    git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
+fi
+
+
 #message pulling mhersam/SBOLTestRunner
 #if cd SynBioHubRunner
 #git clone --recurse-submodules https://github.com/mehersam/SynBioHubRunner
@@ -54,8 +63,15 @@ then
     exit 0
 fi
 
+message "Running test suite."
+
 # run the set up script
-python3 firsttimesetup.py
+python3 test_suite.py
+
+
+message "Running SBOLTestRunner"
+
+#java 
 
 # stop the containers
 message "Stopping containers"
