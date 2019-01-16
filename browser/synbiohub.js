@@ -149,6 +149,36 @@ if (typeof meta !== 'undefined') {
     })
 }
 
+$(document).on('click', '.save-rendering-plugin', function () {
+    $row = $(this).closest('tr')
+
+    var pluginInfo = {
+        id: $row.find("#id").text(),
+        name: $row.find('#name').val(),
+        url: $row.find('#url').val(),
+        category: "rendering"
+    }
+
+    $.post('/admin/savePlugin', pluginInfo, function () {
+        location.reload(true)
+    })
+})
+
+$(document).on('click', '.delete-rendering-plugin', function () {
+    $row = $(this).closest('tr')
+
+    var pluginInfo = {
+        id: $row.find("#id").text(),
+        name: $row.find('#name').val(),
+        url: $row.find('#url').val(),
+        category: "rendering"
+    }
+
+    $.post('/admin/deletePlugin', pluginInfo, function() {
+        location.reload(true)
+    })
+})
+
 $('.sbh-registries-datatable').DataTable({
     processing: false,
     serverSide: false,
@@ -193,6 +223,7 @@ require('./dataIntegration')
 require('./visbol')
 require('./sse')
 require('./setup')
+require('./plugin')
 
 function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
