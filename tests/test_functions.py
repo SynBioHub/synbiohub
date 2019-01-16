@@ -1,36 +1,45 @@
 import requests, difflib, sys
 import re
-
-command_line_arguments = []
-
-number_of_errors = 0
-
-
-def set_command_line_arguments(arguments):
-    global command_line_arguments
-    command_line_arguments = arguments
-    if "-resetalltests" in command_line_arguments:
-        test_print("resetting all tests by saving every request for future comparisons. You should not have run this unless you are working on the test suite implementation itself and have verified that all tests passed before the reset.")
+import argparse
+from bs4 import BeautifulSoup
 
 def test_print(string):
     sys.stdout.write("[synbiohub test] ")
     sys.stdout.write(string)
     sys.stdout.write("\n")
 
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--resetalltests", help="reset all tests for requests by saving responses for future comparisons. Should only be run if working on the test suite implementation itself and all tests have passed.",
+                    action = "store_true")
+
+parser.add_argument("--serveraddress",
+                    help="specify the synbiohub server to test.",
+                    default = "http://localhost:7777/")
+
+args = parser.parse_args()
+
+# format it with a slash if the slash is missing
+if args.serveraddress[-1] != '/':
+    args.serveraddress = args.serveraddress + '/'
+
+number_of_errors = 0
+
+
+if args.resetalltests:
+    test_print("resetting all tests by saving every request for future comparisons. You should not have run this unless you are working on the test suite implementation itself and have verified that all tests passed before the reset.")
+
+
 # make html a little more human readable
 def format_html(htmlstring):
-    # for two angle brackets, insert a new line
-    newstring = re.sub('><', '>\n<', htmlstring)
-    # for an ending angle bracket and then something else, enter a new line
-    newstring = re.sub('>(.)', r'>\n\1', newstring)
-    # for something else then an angle bracket, also insert a new line
-    newstring = re.sub('(.)<', r'\1\n<', newstring)
+    soup = BeautifulSoup(htmlstring, 'lxml')
     
-    return newstring
+    return soup.prettify()
 
 # perform a get request
 def get_request(request):
-    response = requests.get('http://localhost:7777/' + request)
+    response = requests.get(args.serveraddress + request)
     
     response.raise_for_status()
     
@@ -40,7 +49,7 @@ def get_request(request):
 
 # data is the data field for a request
 def post_request(request, data):
-    response = requests.post('http://localhost:7777/' + request, data = data)
+    response = requests.post(agrs.serveraddress + request, data = data)
     response.raise_for_status()
     
     content = format_html(response.text)
@@ -50,21 +59,21 @@ def post_request(request, data):
 def save_get_request(request):
     content = get_request(request)
 
-    filepath = 'previousresults/getrequest_' + request + '.txt'
+    filepath = 'previousresults/getrequest_' + request + '.html'
     
     with open(filepath, 'w') as rfile:
         rfile.write(content)
 
 # creates a file path for a given request and request type
 def request_file_path(request, requesttype):
-    return 'previousresults/' + requesttype.replace(" ", "") + "_" + request + ".txt"
+    return 'previousresults/' + requesttype.replace(" ", "") + "_" + request + ".html"
         
 # check a request against previous results
 # request should the page that was requested, such as /setup
 # requesttype is the type of request performed, either "get request" or "post request"
 def compare_request(requestcontent, request, requesttype):
     # if the global state is to replace all files, do that
-    if "-resetalltests" in command_line_arguments:
+    if args.resetalltests:
         with open(request_file_path(request, requesttype), 'w') as rfile:
             rfile.write(requestcontent)
     else:
