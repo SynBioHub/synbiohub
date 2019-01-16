@@ -68,7 +68,11 @@ message "Running test suite."
 # run the set up script
 
 python3 test_suite.py "$@"
-
+exitcode=$?
+if [ $exitcode -ne 0 ]; then
+    message "Exiting with code $exitcode."
+    exit $exitcode
+fi
 
 message "Running SBOLTestRunner"
 
