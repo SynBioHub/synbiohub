@@ -74,7 +74,7 @@ if [ $exitcode -ne 0 ]; then
     exit $exitcode
 fi
 
-message "Running SBOLTestRunner"
+#message "Running SBOLTestRunner"
 
 
 
