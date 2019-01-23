@@ -10,29 +10,6 @@ message "Cleaning old test containers if they exist"
 bash ./testcleanup.sh
 
 
-# Clone the necessary repositories
-message "pulling mehersam/SBOLTestRunner"
-if cd SBOLTestRunner; then
-    git pull;
-    cd ..;
-else
-    git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
-fi
-
-
-message "pulling mehersam/SynBioHubRunner"
-if cd SBOLTestRunner; then
-    git pull;
-    cd ..;
-else
-    git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
-fi
-
-
-#message pulling mhersam/SBOLTestRunner
-#if cd SynBioHubRunner
-#git clone --recurse-submodules https://github.com/mehersam/SynBioHubRunner
-
 message "pulling synbiohub/synbiohub-docker"
 if cd synbiohub-docker; then
     git pull;
@@ -42,10 +19,6 @@ else
     git clone https://github.com/synbiohub/synbiohub-docker;
 fi
 
-message "Building SBOLTestRunner"
-cd SBOLTestRunner
-mvn package
-cd ..
 
 message "Starting SynBioHub from Containers"
 docker-compose -f ./synbiohub-docker/docker-compose.yml -p testsuiteproject up -d
@@ -74,8 +47,8 @@ if [ $exitcode -ne 0 ]; then
     exit $exitcode
 fi
 
-#message "Running SBOLTestRunner"
 
+bash ./run_sboltestrunner.sh
 
 
 # stop the containers
