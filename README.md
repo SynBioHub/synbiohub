@@ -44,5 +44,10 @@ Prequisites:
     Make sure that yarn is being used, not 'cmdtest'.
  8. Install nodemon and forever with `npm install nodemon -g && npm install forever -g`
  9. Start virtuoso process `virtuoso-t +configfile /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini -f`
- 10. Start the SynBioHub process `npm start` or `npm run-script dev`
+ 10. Add SPARQL update rights to the dba user in virtuoso.
+ * Visit localhost:8890, click conductor on the left hand side, and login with user name dba and password dba.
+ * Visit system admin -> user accounts in the menu at the top.
+ * Find the accound labled dba and edit.<br/>Add SPARQL_UPDATE to roles using the menu at the bottom.
+ * If no dba account exists, add one, then add update rights.
+ 11. Start the SynBioHub process `npm start` or `npm run-script dev`
 
