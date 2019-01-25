@@ -10,9 +10,12 @@ services:
 jobs:
     include:
         - stage: test
+          before_install:
+              - sudo apt-get update
+              - sudo apt-get install python3
           install:
               - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
-              - pip3.6 install -r tests/test_requirements.txt
+              - pip3 install -r tests/test_requirements.txt
           script: tests/test.sh
 
         - stage: push
