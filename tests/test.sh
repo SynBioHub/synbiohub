@@ -16,7 +16,7 @@ if cd synbiohub-docker; then
     cd ..;
 else
     # clone the synbiohub docker compose file in order to run docker containers
-    git clone https://github.com/synbiohub/synbiohub-docker;
+    git clone --single-branch --branch snapshot https://github.com/synbiohub/synbiohub-docker
 fi
 
 
