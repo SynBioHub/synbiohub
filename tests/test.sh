@@ -47,7 +47,6 @@ if [ $exitcode -ne 0 ]; then
     exit $exitcode
 fi
 
-
 bash ./run_sboltestrunner.sh
 
 
