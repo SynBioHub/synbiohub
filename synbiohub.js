@@ -8,48 +8,36 @@ var theme = require('./lib/theme')
 var java = require('./lib/java')
 var gitRev = require('./lib/gitRevision')
 
-
-if(!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size == 0) {
-    db.sequelize.sync({ force: true }).then(startServer)
+if (!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size == 0) {
+  db.sequelize.sync({ force: true }).then(startServer)
 } else {
-    db.umzug.up().then(() => {
-        startServer()
-    })
+  db.umzug.up().then(() => {
+    startServer()
+  })
 }
 
 config.set('revision', gitRev())
 
-function startServer() {
+function startServer () {
+  return initSliver()
+    .then(() => java.init())
+    .then(() => theme.setCurrentThemeFromConfig())
+    .then(() => jobUtils.setRunningJobsToQueued())
+    .then(() => jobUtils.resumeAllJobs())
+    .then(() => {
+      var app = new App()
 
-    return initSliver()
-                .then(() => java.init())
-                .then(() => theme.setCurrentThemeFromConfig())
-                .then(() => jobUtils.setRunningJobsToQueued())
-                .then(() => jobUtils.resumeAllJobs())
-                .then(() => {
-
-        var app = new App()
-
-        app.listen(parseInt(config.get('port')))
+      app.listen(parseInt(config.get('port')))
     })
 }
 
-
-function initSliver() {
-
-    return new Promise((resolve, reject) => {
-
-        // TODO
-        resolve()
-
-
-    })
+function initSliver () {
+  return new Promise((resolve, reject) => {
+    // TODO
+    resolve()
+  })
 }
 
-process.on('SIGINT', function() {
-
-    java.shutdown().then(() => process.exit())
-    
+process.on('SIGINT', function () {
+  java.shutdown().then(() => process.exit())
 })
-
-
