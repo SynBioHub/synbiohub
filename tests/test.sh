@@ -20,6 +20,14 @@ else
 fi
 
 
+message "pulling mehersam/SynBioHubRunner"
+if cd SBOLTestRunner; then
+    git pull;
+    cd ..;
+else
+    git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
+fi
+
 
 #message pulling mhersam/SBOLTestRunner
 #if cd SynBioHubRunner
@@ -49,8 +57,26 @@ done
 
 message "Started successfully"
 
-# create a new user
-bash ./createuser.sh
+if [[ "$@" == "-stopafterstart" ]]
+then
+    message "Exiting early."
+    exit 0
+fi
+
+message "Running test suite."
+
+# run the set up script
+
+python3 test_suite.py "$@"
+exitcode=$?
+if [ $exitcode -ne 0 ]; then
+    message "Exiting with code $exitcode."
+    exit $exitcode
+fi
+
+#message "Running SBOLTestRunner"
+
+
 
 # stop the containers
 message "Stopping containers"
