@@ -9,6 +9,10 @@ from test_arguments import args, test_print
 # make html a little more human readable
 def format_html(htmlstring):
     soup = BeautifulSoup(htmlstring, 'lxml')
+
+    # remove elements with class testignore
+    for div in soup.find_all(class_="testignore"):
+        div.decompose()
     
     return soup.prettify()
 
@@ -88,16 +92,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
             changelist.append(c)
             changelist.append("\n")
 
-        # if it was only a one line change, there are 11 lines in the diff
-        if numofchanges == 11:
-            # check if it was only the version number
-            potentialversionchange = changelist[-8]
-            if re.match("[ ]*| v [0-9]+\.[0-9]+\.[0-9]+", potentialversionchange):
-                # it is just the version number
-                pass
-            else:
-                raise ValueError(''.join(changelist))
-        elif numofchanges>0:
+        if numofchanges>0:
             raise ValueError(''.join(changelist))
 
     
