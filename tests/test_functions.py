@@ -73,21 +73,31 @@ requesttype is the type of request performed- either 'get request' or 'post requ
         
         changes = difflib.unified_diff(olddata, newdata)
 
-        # temp variable to detect if we need to print the beginning of the error
-        firstchangep = True
+        
 
         # change list holds the strings to print in an error message
         changelist = [requesttype, " ", request, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
+
+        # temp variable to detect if we need to print the beginning of the error
+        numofchanges = 0
         
         for c in changes:
-            if firstchangep:
-                firstchangep = False
+            numofchanges += 1
 
             # print the diff
             changelist.append(c)
             changelist.append("\n")
 
-        if not firstchangep:
+        # if it was only a one line change, there are 11 lines in the diff
+        if numofchanges == 11:
+            # check if it was only the version number
+            potentialversionchange = changelist[-8]
+            if re.match("[ ]*| v [0-9]+\.[0-9]+\.[0-9]+", potentialversionchange):
+                # it is just the version number
+                pass
+            else:
+                raise ValueError(''.join(changelist))
+        elif numofchanges>0:
             raise ValueError(''.join(changelist))
 
     
