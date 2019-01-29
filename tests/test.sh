@@ -12,6 +12,7 @@ bash ./testcleanup.sh
 
 message "pulling synbiohub/synbiohub-docker"
 if cd synbiohub-docker; then
+    git checkout snapshot;
     git pull;
     cd ..;
 else
