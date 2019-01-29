@@ -1,0 +1,39 @@
+
+# Testing SynBioHub
+
+## Running the test suite
+
+First, install dependencies using the commands
+`sudo apt-get install -y python3 python3-pip`
+`sudo pip3 install -r tests/test_requirements.txt`
+
+Then build a docker image from the local version of synbiohub using
+`docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .`
+
+Finally, run the test suite using
+`bash tests/test.sh`
+
+## Changing tests to reflect changes to SynBioHub
+
+When changing the output of any SynBioHub endpont, tests will fail and reflect the new changes. This is to prevent unintended changes to SynBioHub.
+
+If a change is intended, use the command line options --resetgetrequests and --resetpostrequests. For example, if I were to reset the saved result from the setup page of SynBioHub, I would run
+`bash tests/test.sh --resetgetrequests setup`
+
+For a list of options, perform `bash tests/test.sh --help`
+
+## Writing new tests
+
+Tests are written as unittest test cases. Use the compare_get_request and compare_post_request functions previded by test_functions to test endpoints. If adding a new module with test cases in it, add an import statement to the entry, test_suite.py.
+
+
+The test suite requires that each endpoint in lib/app.js is tested at least once. The tests perform the request and save the result to compare against future requests.
+
+In order to save the new test results, use the --resetgetrequests and --resetpostrequests options.
+
+If making changes to the test suite implementation, use the --resetalltests option to completely refresh all saved results.
+
+
+## Ignoring elements
+
+If you are making a change that should be ignored by the test suite for a very good reason, then use the class testignore. Any html elements and their child elements are ignored by the testing procedure. This is currently used to ignore the version number of synbiohub that apprears on some pages.
