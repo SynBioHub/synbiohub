@@ -35,11 +35,12 @@ fi
 
 message "pulling synbiohub/synbiohub-docker"
 if cd synbiohub-docker; then
+    git checkout snapshot;
     git pull;
     cd ..;
 else
     # clone the synbiohub docker compose file in order to run docker containers
-    git clone https://github.com/synbiohub/synbiohub-docker;
+    git clone --branch snapshot https://github.com/synbiohub/synbiohub-docker;
 fi
 
 message "Building SBOLTestRunner"
