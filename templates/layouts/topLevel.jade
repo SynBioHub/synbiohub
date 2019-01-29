@@ -89,6 +89,21 @@ block topLevelPanelsCont
                             div.row
                                 div.col-md-12
                                     +attachments(meta.url, meta.attachments, meta.canEdit)
+                for plugin in locals.plugins
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapse' + plugin.safeName)
+                                    | <b>#{plugin.name}</b>
+                        panel-collapse.collapse(id='collapse' + plugin.safeName)
+                            .panel-body
+                                div.row
+                                    div.col-md-12
+                                        div.loader-wrapper
+                                            div.stream-id(style="display: none") #{plugin.stream}
+                                        div.loader.center-block
+
+                                        
 
 block topLevelLarge
 

@@ -114,5 +114,8 @@
       },
       "@type": "https://bioschemas.org/DataRecord"
     }
+  },
+  "plugins": {
+      "rendering": []
   }
 }
