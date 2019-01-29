@@ -13,6 +13,7 @@ class TestSetup(TestCase):
         # fill in the form and submit with test info
         setup = {
             'userName' : 'testuser',
+            'userFullName' : 'Test User',
             'userEmail': 'test@user.synbiohub',
             'userPassword': 'test',
             'userPasswordConfirm': 'test',
