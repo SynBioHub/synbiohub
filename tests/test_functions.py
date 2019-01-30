@@ -7,18 +7,24 @@ from test_arguments import args, test_print
 # first create the list of all endpoints that should be checked
 all_get_endpoints = []
 all_post_endpoints = []
+all_all_endpoints = []
 with open("../lib/app.js", 'r') as appfile:
     line = appfile.readline()
     while line:
-        get_search = re.search('.*app\.get\((.*),.*', line)
+        search = re.search('.*app\.get\((.*),.*', line)
 
-        if get_search:
-            all_get_endpoints.append(get_search.group(1))
+        if search:
+            all_get_endpoints.append(search.group(1))
 
-        get_search = re.search('.*app\.post\((.*),.*', line)
+        search = re.search('.*app\.post\((.*),.*', line)
 
-        if get_search:
-            all_post_endpoints.append(get_search.group(1))
+        if search:
+            all_post_endpoints.append(search.group(1))
+
+        search = re.search('.*app\.all\((.*),.*', line)
+
+        if search:
+            all_all_endpoints.append(search.group(1))
         
         line = appfile.readline()
 
