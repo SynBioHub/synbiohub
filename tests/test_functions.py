@@ -9,6 +9,10 @@ from test_arguments import args, test_print
 # make html a little more human readable
 def format_html(htmlstring):
     soup = BeautifulSoup(htmlstring, 'lxml')
+
+    # remove elements with class testignore
+    for div in soup.find_all(class_="testignore"):
+        div.decompose()
     
     return soup.prettify()
 
@@ -73,21 +77,22 @@ requesttype is the type of request performed- either 'get request' or 'post requ
         
         changes = difflib.unified_diff(olddata, newdata)
 
-        # temp variable to detect if we need to print the beginning of the error
-        firstchangep = True
+        
 
         # change list holds the strings to print in an error message
         changelist = [requesttype, " ", request, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
+
+        # temp variable to detect if we need to print the beginning of the error
+        numofchanges = 0
         
         for c in changes:
-            if firstchangep:
-                firstchangep = False
+            numofchanges += 1
 
             # print the diff
             changelist.append(c)
             changelist.append("\n")
 
-        if not firstchangep:
+        if numofchanges>0:
             raise ValueError(''.join(changelist))
 
     

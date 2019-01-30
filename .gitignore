@@ -21,6 +21,10 @@ jsbml.log
 tests/synbiohub-docker/*
 tests/SBOLTestRunner/*
 tests/SynBioHubRunner/*
+tests/Compared/*
+tests/Retrieved/*
+tests/Timing/*
+tests/Emulated/*
 
 *.pyc
 *.pyo
