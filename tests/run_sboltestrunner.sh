@@ -46,6 +46,5 @@ java -jar SBOLTestRunner/target/SBOLTestRunner-0.0.1-SNAPSHOT-withDependencies.j
 
 exitcode=$?
 if [ $exitcode -ne 0 ]; then
-    message "Exiting with code $exitcode."
     exit $exitcode
 fi
