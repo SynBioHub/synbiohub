@@ -4,9 +4,27 @@ from bs4 import BeautifulSoup
 
 from test_arguments import args, test_print
 
+# first create the list of all endpoints that should be checked
+all_get_endpoints = []
+all_post_endpoints = []
+with open("../lib/app.js", 'r') as appfile:
+    line = appfile.readline()
+    while line:
+        get_search = re.search('.*app\.get\((.*),.*', line)
+
+        if get_search:
+            all_get_endpoints.append(get_search.group(1))
+
+        get_search = re.search('.*app\.post\((.*),.*', line)
+
+        if get_search:
+            all_post_endpoints.append(get_search.group(1))
+        
+        line = appfile.readline()
 
 
-# make html a little more human readable
+
+# make html a little more human readable and remove testignore elements
 def format_html(htmlstring):
     soup = BeautifulSoup(htmlstring, 'lxml')
 
