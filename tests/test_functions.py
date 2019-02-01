@@ -8,20 +8,29 @@ from test_arguments import args, test_print
 all_get_endpoints = []
 all_post_endpoints = []
 all_all_endpoints = []
+
+tested_get_endpoints = []
+tested_post_endpoints = []
+
 with open("../lib/app.js", 'r') as appfile:
     line = appfile.readline()
     while line:
-        search = re.search('.*app\.get\((.*),.*', line)
+        # regex parts:
+        # look for any number of any character, then app.get
+        # then loop for an open paren followed by either ' or "
+        # capture what is in between that and another ' or ", and match it non-greedily
+        # then match anything after it
+        search = re.search('.*app\.get\((?:\'|")(.*?)(?:\'|").*', line)
 
         if search:
             all_get_endpoints.append(search.group(1))
 
-        search = re.search('.*app\.post\((.*),.*', line)
+        search = re.search('.*app\.post\((?:\'|")(.*?)(?:\'|").*', line)
 
         if search:
             all_post_endpoints.append(search.group(1))
 
-        search = re.search('.*app\.all\((.*),.*', line)
+        search = re.search('.*app\.all\((?:\'|")(.*?)(?:\'|").*', line)
 
         if search:
             all_all_endpoints.append(search.group(1))
@@ -67,7 +76,8 @@ def request_file_path(request, requesttype):
     return 'previousresults/' + requesttype.replace(" ", "") + "_" + request + ".html"
 
 
-def compare_request(requestcontent, request, requesttype):
+# TODO: add functionality of route_parameters 
+def compare_request(requestcontent, request, requesttype, route_parameters):
     """ Checks a request against previous results or saves the result of a request.
 request is the endpoint requested, such as /setup
 requesttype is the type of request performed- either 'get request' or 'post request'"""
@@ -119,17 +129,62 @@ requesttype is the type of request performed- either 'get request' or 'post requ
         if numofchanges>0:
             raise ValueError(''.join(changelist))
 
-    
-# request- string, the name of the page being requested
-def compare_get_request(request):
-    if request[0] == '/':
-        request = request[1:]
-    compare_request(get_request(request), request, "get request")
 
-# request- string, the name of the page being requested
-# data- data to send in the post request
-def compare_post_request(request, data):
-    if request[0] == '/':
-        request = request[1:]
-    compare_request(post_request(request, data), request, "post request")
+def clip_request(requeststring):
+    if requeststring[0] == '/':
+        return requeststring[1:]
+    else:
+        return requeststring
     
+
+def compare_get_request(request, route_parameters = {}):
+    """Complete a get request and error if it differs from previous results.
+
+    request -- string, the name of the page being requested
+    route_parameters -- a dictionary, with keys as the parameters and values as the values to replace the parameters with"""
+
+    # add to the global list of checked endpoints
+    tested_get_endpoints.append(request)
+
+    # remove any leading forward slashes for consistency
+    request = clip_request(request)
+    compare_request(get_request(request), request, "get request", route_parameters)
+
+
+def compare_post_request(request, data, route_parameters = {}):
+    """Complete a post request and error if it differs from previous results.
+    
+    request-- string, the name of the page being requested
+    data -- data to send in the post request
+    route_parameters -- a dictionary, with keys as the parameters and values as the values to replace the parameters with"""
+
+    # add to the global list of checked endpoints
+    tested_post_endpoints.append(request)
+    
+    # remove any leading forward slashes for consistency
+    request = clip_request(request)
+        
+    compare_request(post_request(request, data), request, "post request", route_parameters)
+    
+
+# TODO: make checking throw an error when all endpoints are not checked, instead of printing a warning.
+def cleanup_check():
+    """Performs final checking after all tests have run.
+    Checks to make sure all endpoints were tested."""
+
+
+    
+    for e in all_get_endpoints:
+        e = clip_request(e)
+        if not e in tested_get_endpoints:
+            sys.stdout.write("[synbiohub test] Warning- get endpoint " + e + " was not tested.\n")
+
+    for e in all_post_endpoints:
+        e = clip_request(e)
+        if not e in tested_post_endpoints:
+            sys.stdout.write("[synbiohub test] Warning- post endpoint " + e + " was not tested.\n")
+
+    for e in all_all_endpoints:
+        e = clip_request(e)
+        if not e in tested_get_endpoints and not e in tested_post_endpoints:
+            sys.stdout.write("[synbiohub test] Warning- all endpoint " + e + " was not tested.\n")

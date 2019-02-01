@@ -4,6 +4,13 @@ cd tests
 
 source ./testutil.sh
 
+# first, if it was run with help, just run the test script with help
+if [[ "$@" == "--help" || "$@" == "-h" ]]
+then
+    python3 test_suite.py "$@"
+    exit 0
+fi
+
 message "Running synbiohub test suite."
 message "Cleaning old test containers if they exist"
 
