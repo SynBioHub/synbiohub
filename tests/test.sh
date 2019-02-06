@@ -38,11 +38,14 @@ done
 
 message "Started successfully"
 
-if [[ "$@" == "-stopafterstart" ]]
-then
-    message "Exiting early."
-    exit 0
-fi
+for var in "$@"
+do
+    if [[ $var == "--stopafterstart" ]]
+    then
+	echo "Exiting after starting up test server."
+	exit 1
+    fi
+done
 
 message "Running test suite."
 
@@ -54,6 +57,15 @@ if [ $exitcode -ne 0 ]; then
     message "Exiting with code $exitcode."
     exit $exitcode
 fi
+
+for var in "$@"
+do
+    if [[ $var == "--stopaftertestsuite" ]]
+    then
+	echo "Stopping after test suite ran."
+	exit 0
+    fi
+done
 
 bash ./run_sboltestrunner.sh
 
