@@ -15,11 +15,17 @@ if __name__ == '__main__':
     # add test modules here
     import first_time_setup
     addTestModule(first_time_setup)
+
+    import test_before_login
+    addTestModule(test_before_login)
+
+    import test_login
+    addTestModule(test_login)
     
 
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
-    print(result)
+
     # do final check after all tests have run
     cleanup_check()
 
