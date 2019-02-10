@@ -20,9 +20,14 @@ block breadcrumbs
         li.inactive
             a(href='/search')
                 span.fa.fa-search
-                |  Search
         li
-            a(href=meta.url) #{meta.uri} 
+            a(href=meta.url) #{meta.uri}
+        if section != 'search'
+    div.pull-right
+        form(action='search').top-search-form
+            input.sbh-autocomplete(type='text',name='q',placeholder=('Search ' + config.instanceName) value=(searchQuery || ''))
+            button(type='submit').submit
+                span.fa.fa-search
 
 block content
 
