@@ -46,7 +46,11 @@ do
 done
 
 bash ./run_sboltestrunner.sh
-
+exitcode=$?
+if [ $exitcode -ne 0 ]; then
+    message "Exiting with code $exitcode."
+    exit $exitcode
+fi
 
 # stop the containers
 message "Stopping containers"
