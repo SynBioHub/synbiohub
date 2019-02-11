@@ -1,11 +1,36 @@
 import unittest
 from sys import argv
+from sys import exit
 
-# run the first time setup script
-from first_time_setup import *
+from test_functions import cleanup_check
 
-from test_arguments import args
 
 if __name__ == '__main__':
-    # pass in just the first arg so unittest doesn't try to use the arguments to find test cases
-    unittest.main(argv = [argv[0]])
+    tests = unittest.TestSuite()
+
+    def addTestModule(m):
+        newtests = unittest.defaultTestLoader.loadTestsFromModule(m)
+        tests.addTests(newtests)
+
+    # add test modules here
+    import first_time_setup
+    addTestModule(first_time_setup)
+
+    import test_before_login
+    addTestModule(test_before_login)
+
+    import test_login
+    addTestModule(test_login)
+
+    import test_after_admin_login
+    addTestModule(test_after_admin_login)
+
+    runner = unittest.TextTestRunner()
+    result = runner.run(tests)
+
+    # do final check after all tests have run
+    cleanup_check()
+
+    # if any tests failed, exit with code one
+    if len(result.failures) != 0 or len(result.errors) != 0:
+        exit(1)

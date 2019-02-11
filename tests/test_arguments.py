@@ -27,6 +27,15 @@ parser.add_argument("--resetpostrequests",
 
 
 
+# the following two arguments are not used in the test_suite itself, but are used by the test.sh script
+parser.add_argument("--stopaftertestsuite",
+                    help = "stop after the test suite has run in order to keep the test server running. This can be used to view the state of the synbiohub instance after the tests have run but before sboltestrunner has been run.",
+                    action = 'store_true')
+parser.add_argument("--stopafterstart",
+                    help = "do not run the test suite, just start up a new test synbiohub instance.",
+                    action = "store_true")
+
+
 args = parser.parse_args()
 
 # format it with a slash if the slash is missing
