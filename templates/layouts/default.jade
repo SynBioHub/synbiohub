@@ -62,8 +62,14 @@ block body
 
         block intro
 
-        div.sbol-breadcrumbs
+        div.sbol-breadcrumbs(style="display: flex")
             block breadcrumbs
+            ul(style="flex-grow: 1")
+                li.inactive(style="width: 100%; height: 100%")
+                    form(action='search').top-search-form
+                        input.sbh-autocomplete(type='text',name='q',placeholder=('Search ' + config.instanceName) value=(searchQuery || ''),style="width: 96%")
+                        button(type='submit').submit
+                            span.fa.fa-search
 
         block content
 
