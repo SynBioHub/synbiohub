@@ -78,12 +78,7 @@ a {
 .login .username {
 }
 
-.top-search-form {
-    margin-left: 50px;
-    margin-top: 1.2em;
-}
-
-.top-search-form input, .main-search-form input {
+.main-search-form input {
     font-size: .9em;
     border: 1px solid white;
     margin-left: -8px;
@@ -91,7 +86,20 @@ a {
     background: #ECF0F1 url("../images/search_icon.svg") no-repeat 5px 50%;
     background-size: 20px;
     border-radius: 4px 0 0px 4px;
-    padding: 5px 6px 5px 25px;
+	padding: 5px 6px 5px 25px;
+}
+
+.top-search-form input {
+    font-size: .9em;
+    border: 1px solid white;
+    color: #2C3E50;
+    border-radius: 4px 0 0px 4px;
+    padding: 5px 6px 5px 9px;
+}
+
+.top-search-form .submit {
+    background-color: #2C3E50;
+	margin-left: 0px;
 }
 
 .entry-detail-table {
@@ -205,7 +213,7 @@ a {
 .sbol_breadcrumbs ul {
     list-style: none;
     margin: 0;
-    height: 40px;
+    height: 100%;
     -webkit-padding-start: 0px;
 }
 
@@ -361,7 +369,7 @@ a {
 
 .sbol-breadcrumbs {
     background-color: @baseColor;
-    height: 55px;
+    height: 66px;
     margin-top: 65px;
 }
 
@@ -378,6 +386,7 @@ a {
 .sbol-breadcrumbs ul li {
     padding: 17px;
     float: left;
+    height: 100%;
 }
 
 .sbol-breadcrumbs ul li a {
