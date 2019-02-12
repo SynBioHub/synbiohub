@@ -69,9 +69,9 @@ def format_html(htmlstring):
     return soup.prettify()
 
 # perform a get request
-def get_request(request):
+def get_request(request, headers):
     
-    response = requests.get(args.serveraddress + request)
+    response = requests.get(args.serveraddress + request, headers = headers)
     
     response.raise_for_status()
     
@@ -80,10 +80,10 @@ def get_request(request):
     return content
 
 # data is the data field for a request
-def post_request(request, data):
+def post_request(request, data, headers):
     address = args.serveraddress + request
 
-    response = requests.post(address, data = data)
+    response = requests.post(address, data = data, headers = headers)
     response.raise_for_status()
     
     content = format_html(response.text)
@@ -151,7 +151,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
 
 
 
-def compare_get_request(request, test_name = "", route_parameters = {}):
+def compare_get_request(request, test_name = "", route_parameters = {}, headers = {}):
     """Complete a get request and error if it differs from previous results.
 
     request -- string, the name of the page being requested
@@ -176,10 +176,10 @@ def compare_get_request(request, test_name = "", route_parameters = {}):
     else:
         all_tested_paths.append(testpath)
         
-    compare_request(get_request(request), request, "get request", route_parameters, testpath)
+    compare_request(get_request(request, headers), request, "get request", route_parameters, testpath)
 
 
-def compare_post_request(request, data, test_name = "", route_parameters = {}):
+def compare_post_request(request, data, test_name = "", route_parameters = {}, headers = {}):
     """Complete a post request and error if it differs from previous results.
     
     request-- string, the name of the page being requested
@@ -205,7 +205,7 @@ def compare_post_request(request, data, test_name = "", route_parameters = {}):
         all_tested_paths.append(testpath)
     
         
-    compare_request(post_request(request, data), request, "post request", route_parameters, testpath)
+    compare_request(post_request(request, data, headers), request, "post request", route_parameters, testpath)
     
 
 # TODO: make checking throw an error when all endpoints are not checked, instead of printing a warning.

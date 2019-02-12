@@ -9,4 +9,8 @@ class TestSetup(TestCase):
                      'password' : 'test'}
         compare_post_request("/login", logininfo)
 
-
+    def test_post_login_token(self):
+        logininfo = {'email' : 'test@user.synbiohub',
+                     'password' : 'test'}
+        header = {'Accept': 'text/plain'}
+        compare_post_request("/login", logininfo, test_name = "admin_token", headers = header)
