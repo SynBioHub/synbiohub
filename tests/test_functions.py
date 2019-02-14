@@ -33,6 +33,11 @@ def format_html(htmlstring):
 # perform a get request
 def get_request(request, headers):
     
+    # get the current token
+    user_token = test_state.get_authentification()
+    if user_token != None:
+        headers["user"] = user_token
+        
     response = requests.get(args.serveraddress + request, headers = headers)
     
     response.raise_for_status()
@@ -43,6 +48,11 @@ def get_request(request, headers):
 
 # data is the data field for a request
 def post_request(request, data, headers):
+    # get the current token
+    user_token = test_state.get_authentification()
+    if user_token != None:
+        headers["user"] = user_token
+    
     address = args.serveraddress + request
 
     response = requests.post(address, data = data, headers = headers)
@@ -111,6 +121,10 @@ requesttype is the type of request performed- either 'get request' or 'post requ
             raise ValueError(''.join(changelist))
 
 
+
+def login_with(data, headers = {'Accept':'text/plain'}):
+    result = post_request("login", data, headers)
+    test_state.save_authentification(result)
 
 
 def compare_get_request(request, test_name = "", route_parameters = {}, headers = {}):

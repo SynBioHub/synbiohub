@@ -1,5 +1,5 @@
 import re
-
+from bs4 import BeautifulSoup
 
 from test_arguments import test_print
 
@@ -46,6 +46,8 @@ class TestState:
         # keep track of the names of the tests to avoid duplicates
         self.all_tested_paths = []
 
+        # keep track of authetification after logging in
+        self.login_authentification = None
 
     def cleanup_check(self):
         nottestedcounter = 0
@@ -96,3 +98,17 @@ class TestState:
             raise Exception("Duplicate test name for get request " + request + " with test name " + test_name + ". When testing an endpoint multiple times, provide the test_name field to compare_get_request.")
         else:
             self.all_tested_paths.append(testpath)
+
+    # saves the result of a login request for future use
+    def save_authentification(self, request_result):
+        soup = BeautifulSoup(request_result, 'lxml')
+        ptag = soup.find_all('p')
+        if len(ptag)!= 1:
+            raise ValueError("Invalid login response received- multiple or no elements in p tag.")
+        content = ptag[0].text
+        self.login_authentification = content.strip()
+        
+        test_print("Logging in with authentification " + str(self.login_authentification))
+
+    def get_authentification(self):
+        return self.login_authentification
