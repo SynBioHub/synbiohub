@@ -36,7 +36,7 @@ def get_request(request, headers):
     # get the current token
     user_token = test_state.get_authentification()
     if user_token != None:
-        headers["user"] = user_token
+        headers["X-authorization"] = user_token
         
     response = requests.get(args.serveraddress + request, headers = headers)
     
@@ -51,7 +51,7 @@ def post_request(request, data, headers):
     # get the current token
     user_token = test_state.get_authentification()
     if user_token != None:
-        headers["user"] = user_token
+        headers["X-authorization"] = user_token
     
     address = args.serveraddress + request
 
@@ -105,7 +105,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
         
 
         # change list holds the strings to print in an error message
-        changelist = [requesttype, " ", request, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
+        changelist = [requesttype, " ", filepath, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
 
         # temp variable to detect if we need to print the beginning of the error
         numofchanges = 0
