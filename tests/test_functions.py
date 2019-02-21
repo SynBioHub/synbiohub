@@ -39,7 +39,7 @@ def get_request(request, headers):
         headers["X-authorization"] = user_token
         
     response = requests.get(args.serveraddress + request, headers = headers)
-    
+    print(response.text)
     response.raise_for_status()
     
     content = format_html(response.text)
@@ -47,7 +47,7 @@ def get_request(request, headers):
     return content
 
 # data is the data field for a request
-def post_request(request, data, headers):
+def post_request(request, data, headers, files):
     # get the current token
     user_token = test_state.get_authentification()
     if user_token != None:
@@ -55,7 +55,7 @@ def post_request(request, data, headers):
     
     address = args.serveraddress + request
 
-    response = requests.post(address, data = data, headers = headers)
+    response = requests.post(address, data = data, headers = headers, files = files)
     response.raise_for_status()
     
     content = format_html(response.text)
@@ -103,9 +103,8 @@ requesttype is the type of request performed- either 'get request' or 'post requ
         changes = difflib.unified_diff(olddata, newdata)
 
         
-
         # change list holds the strings to print in an error message
-        changelist = [requesttype, " ", filepath, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
+        changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
 
         # temp variable to detect if we need to print the beginning of the error
         numofchanges = 0
@@ -123,7 +122,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
 
 
 def login_with(data, headers = {'Accept':'text/plain'}):
-    result = post_request("login", data, headers)
+    result = post_request("login", data, headers, files = None)
     test_state.save_authentification(result)
 
 
@@ -142,7 +141,7 @@ def compare_get_request(request, test_name = "", route_parameters = {}, headers 
     compare_request(get_request(request, headers), request, "get request", route_parameters, testpath)
 
 
-def compare_post_request(request, data, test_name = "", route_parameters = {}, headers = {}):
+def compare_post_request(request, data, test_name = "", route_parameters = {}, headers = {}, files = None):
     """Complete a post request and error if it differs from previous results.
     
     request-- string, the name of the page being requested
@@ -158,7 +157,7 @@ def compare_post_request(request, data, test_name = "", route_parameters = {}, h
     test_state.add_post_request(request, testpath, test_name)
     
         
-    compare_request(post_request(request, data, headers), request, "post request", route_parameters, testpath)
+    compare_request(post_request(request, data, headers, files = files), request, "post request", route_parameters, testpath)
     
 
 # TODO: make checking throw an error when all endpoints are not checked, instead of printing a warning.
