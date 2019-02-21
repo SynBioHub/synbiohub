@@ -3,6 +3,16 @@ from bs4 import BeautifulSoup
 
 from test_arguments import test_print
 
+def clip_request(requeststring):
+    if requeststring[0] == '/' and requeststring[-1] == '/':
+        requeststring = requeststring[1:-1]
+    elif requeststring[0] == '/':
+        requeststring = requeststring[1:]
+    elif requeststring[-1] == '/':
+        requeststring = requeststring[:-1]
+    return requeststring
+    
+
 class TestState:
 
     def __init__(self):
@@ -23,17 +33,17 @@ class TestState:
                 search = re.search('.*app\.get\((?:\'|")(.*?)(?:\'|").*', line)
 
                 if search:
-                    self.all_get_endpoints.append(search.group(1))
+                    self.all_get_endpoints.append(clip_request(search.group(1)))
 
                 search = re.search('.*app\.post\((?:\'|")(.*?)(?:\'|").*', line)
 
                 if search:
-                    self.all_post_endpoints.append(search.group(1))
+                    self.all_post_endpoints.append(clip_request(search.group(1)))
 
                 search = re.search('.*app\.all\((?:\'|")(.*?)(?:\'|").*', line)
 
                 if search:
-                    self.all_all_endpoints.append(search.group(1))
+                    self.all_all_endpoints.append(clip_request(search.group(1)))
 
                 line = appfile.readline()
 
@@ -66,6 +76,15 @@ class TestState:
             if not e in self.tested_get_endpoints and not e in self.tested_post_endpoints:
                 nottestedcounter += 1
                 test_print("Warning- all endpoint " + e + " was not tested.")
+
+        # test that all the endpoints that were tested were real endpoints
+        for e in self.tested_get_endpoints:
+            if not e in self.all_get_endpoints and not e in self.all_all_endpoints:
+                raise Exception("Endpoint " + str(e) + " does not exist")
+
+        for e in self.tested_post_endpoints:
+            if not e in self.all_post_endpoints and not e in self.all_all_endpoints:
+                raise Exception("Endpoint " + str(e) + " does not exist")
 
         if nottestedcounter != 0:
             test_print(str(nottestedcounter) + " endpoints not tested.")

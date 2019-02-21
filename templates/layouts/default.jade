@@ -17,22 +17,12 @@ block body
                         div.pull-left
                             h1(style='margin-left: 15px;') #{config.instanceName}
 
-                if section != 'search'
-                    div.pull-left
-                        form(action='search').top-search-form
-                            input.sbh-autocomplete(type='text',name='q',placeholder=('Search ' + config.instanceName) value=(searchQuery || ''))
-                            button(type='submit').submit Search
-
                 div.pull-right.menu
                     ul
                         li
                             a(href='/submit')
                                 span.fa.fa-cloud-upload
                                 span.blue-text  Submit
-                        li
-                            a(href='/about')
-                                span.fa.fa-info-circle
-                                span.blue-text  About
 
                         if locals.user
                             li
@@ -72,8 +62,14 @@ block body
 
         block intro
 
-        div.sbol-breadcrumbs
+        div.sbol-breadcrumbs(style="display: flex")
             block breadcrumbs
+            ul(style="flex-grow: 1")
+                li(style="width: 100%; height: 100%")
+                    form(action='search').top-search-form
+                        input.sbh-autocomplete(type='text',name='q',placeholder=('Search ' + config.instanceName) value=(searchQuery || ''),style="width: 96%")
+                        button.inactive(type='submit').submit
+                            span.fa.fa-search
 
         block content
 

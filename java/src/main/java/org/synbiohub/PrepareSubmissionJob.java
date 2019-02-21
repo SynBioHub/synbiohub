@@ -272,11 +272,11 @@ public class PrepareSubmissionJob extends Job {
 			if (errorLog.startsWith("File is empty")) {
 				individual = new SBOLDocument();
 				errorLog = "";
-			} else if (errorLog.startsWith("sbol-10105") && !isCombineArchive) {
+			} /* else if (errorLog.startsWith("sbol-10105") && !isCombineArchive) {
 				individual = new SBOLDocument();
 				errorLog = "";
 				continue;
-			} else if (errorLog.length() > 0) {
+			} */ else if (errorLog.length() > 0) {
 				finish(new PrepareSubmissionResult(this, false, "", log, "[" + filename + "] " + errorLog,
 						attachmentFiles, tempDirPath));
 				return;

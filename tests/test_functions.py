@@ -2,15 +2,10 @@ import requests, difflib, sys
 from bs4 import BeautifulSoup
 
 from test_arguments import args, test_print
-from TestState import TestState
+from TestState import TestState, clip_request
 
 test_state = TestState()
 
-def clip_request(requeststring):
-    if requeststring[0] == '/':
-        return requeststring[1:]
-    else:
-        return requeststring
 
 # now clip all the requests in the ones to reset
 for i in range(len(args.resetgetrequests)):
