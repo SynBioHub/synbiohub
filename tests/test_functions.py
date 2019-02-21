@@ -30,16 +30,23 @@ def format_html(htmlstring):
     
     return soup.prettify()
 
+
+# parse the address of the endpoint being tested
+def get_address(request, route_parameters):
+    return args.serveraddress + request
+
 # perform a get request
-def get_request(request, headers):
+def get_request(request, headers, route_parameters):
     
     # get the current token
     user_token = test_state.get_authentification()
     if user_token != None:
         headers["X-authorization"] = user_token
+
+    address = get_address(request, route_parameters)
         
-    response = requests.get(args.serveraddress + request, headers = headers)
-    print(response.text)
+    response = requests.get(address, headers = headers)
+    
     response.raise_for_status()
     
     content = format_html(response.text)
@@ -47,13 +54,13 @@ def get_request(request, headers):
     return content
 
 # data is the data field for a request
-def post_request(request, data, headers, files):
+def post_request(request, data, headers, route_parameters, files):
     # get the current token
     user_token = test_state.get_authentification()
     if user_token != None:
         headers["X-authorization"] = user_token
     
-    address = args.serveraddress + request
+    address = get_address(request, route_parameters)
 
     response = requests.post(address, data = data, headers = headers, files = files)
     response.raise_for_status()
@@ -68,7 +75,7 @@ def request_file_path(request, requesttype, testname):
     return 'previousresults/' + requesttype.replace(" ", "") + "_" + request + "_" + testname + ".html"
 
 
-# TODO: add functionality of route_parameters 
+
 def compare_request(requestcontent, request, requesttype, route_parameters, file_path):
     """ Checks a request against previous results or saves the result of a request.
 request is the endpoint requested, such as /setup
@@ -122,7 +129,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
 
 
 def login_with(data, headers = {'Accept':'text/plain'}):
-    result = post_request("login", data, headers, files = None)
+    result = post_request("login", data, headers, {}, files = None)
     test_state.save_authentification(result)
 
 
@@ -138,7 +145,7 @@ def compare_get_request(request, test_name = "", route_parameters = {}, headers 
     testpath = request_file_path(request, "get request", test_name)
     test_state.add_get_request(request, testpath, test_name)
         
-    compare_request(get_request(request, headers), request, "get request", route_parameters, testpath)
+    compare_request(get_request(request, headers, route_parameters), request, "get request", route_parameters, testpath)
 
 
 def compare_post_request(request, data, test_name = "", route_parameters = {}, headers = {}, files = None):
@@ -157,9 +164,8 @@ def compare_post_request(request, data, test_name = "", route_parameters = {}, h
     test_state.add_post_request(request, testpath, test_name)
     
         
-    compare_request(post_request(request, data, headers, files = files), request, "post request", route_parameters, testpath)
+    compare_request(post_request(request, data, headers, route_parameters, files = files), request, "post request", route_parameters, testpath)
     
-
 # TODO: make checking throw an error when all endpoints are not checked, instead of printing a warning.
 def cleanup_check():
     """Performs final checking after all tests have run.
