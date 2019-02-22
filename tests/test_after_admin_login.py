@@ -36,7 +36,7 @@ class TestSetup(TestCase):
             compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                                  files = files, test_name = "submit_already_in_use")
         
-        self.create_collection_empty()
+        self.create_collection2()
 
         compare_get_request("manage", test_name = "two_submissions")
         compare_get_request("submit", test_name = "two_submissions")
@@ -47,18 +47,20 @@ class TestSetup(TestCase):
         
         
 
-    def create_collection_empty(self):
+    def create_collection2(self):
         data = {'id':(None, 'testid2'),
                 'version' : (None, '1'),
                 'name' : (None, 'testcollection2'),
                 'description':(None, 'testdescription'),
                 'citations':(None, 'none'),
                 'overwrite_merge':(None, '0')}
+
+        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
+                                              open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
         
         compare_post_request("submit", data, headers = {"Accept": "text/plain"},
-                             files = {'file':(None,
-                                              "foo")},
-                             test_name = "create_empty")
+                             files = files,
+                             test_name = "create_2")
 
         # delete collection
         #compare_get_request("/user/testuser/testid2/testid_collection2/1/removeCollection")

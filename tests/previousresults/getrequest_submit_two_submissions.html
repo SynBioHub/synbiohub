@@ -38,14 +38,6 @@ try {
       </h1>
      </div>
     </a>
-    <div class="pull-left">
-     <form action="search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" type="text" value=""/>
-      <button class="submit" type="submit">
-       Search
-      </button>
-     </form>
-    </div>
     <div class="pull-right menu">
      <ul>
       <li>
@@ -54,15 +46,6 @@ try {
         </span>
         <span class="blue-text">
          Submit
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/about">
-        <span class="fa fa-info-circle">
-        </span>
-        <span class="blue-text">
-         About
         </span>
        </a>
       </li>
@@ -117,12 +100,23 @@ try {
   </nav>
   <div class="clearfix">
   </div>
-  <div class="sbol-breadcrumbs">
+  <div class="sbol-breadcrumbs" style="display: flex">
    <ul>
-    <li>
+    <li class="inactive">
      <span class="fa fa-cloud-upload">
      </span>
      Submit
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
     </li>
    </ul>
   </div>
