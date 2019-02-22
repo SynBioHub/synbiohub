@@ -80,8 +80,8 @@
     "npm": ">=1.3.14"
   },
   "scripts": {
-    "start": "forever synbiohub.js 2>&1 | tee synbiohub.log",
-    "dev": "nodemon synbiohub.js 2>&1 | tee synbiohub.log"
+    "start": "forever synbiohub.js 2>&1 | tee --append synbiohub.log",
+    "dev": "nodemon synbiohub.js 2>&1 | tee --append synbiohub.log"
   },
   "husky": {
     "hooks": {
