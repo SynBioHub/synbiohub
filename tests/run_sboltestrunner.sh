@@ -7,14 +7,6 @@ source ./testutil.sh
 
 message "SBOLTestRunner"
 
-# Clone the necessary repositories
-message "pulling mehersam/SBOLTestRunner"
-if cd SBOLTestRunner; then
-    git pull;
-    cd ..;
-else
-    git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
-fi
 
 
 message "pulling mehersam/SynBioHubRunner"
