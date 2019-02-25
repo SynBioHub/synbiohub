@@ -13,6 +13,9 @@ if __name__ == '__main__':
         tests.addTests(newtests)
 
     # add test modules here
+    import test_tests
+    addTestModule(test_tests)
+    
     import first_time_setup
     addTestModule(first_time_setup)
 
@@ -22,8 +25,8 @@ if __name__ == '__main__':
     import test_login
     addTestModule(test_login)
 
-    import test_after_admin_login
-    addTestModule(test_after_admin_login)
+    import test_submit
+    addTestModule(test_submit)
 
     runner = unittest.TextTestRunner()
     result = runner.run(tests)

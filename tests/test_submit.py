@@ -3,14 +3,40 @@ from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
 
-class TestSetup(TestCase):
+class TestSubmit(TestCase):
 
     def test_main_page(self):
         headers = {'Accept':'text/plain'}
         compare_get_request("/", test_name = "after_admin_login", headers = headers)
 
-    # todo: this should be a test once deleting collections works
-    def will_be_a_test_get_submit_submissions_empty(self):
+
+    def test_make_public(self):
+        # create the collection
+        data = {'id':(None, 'testid'),
+                'version' : (None, '1'),
+                'name' : (None, 'testcollection'),
+                'description':(None, 'testdescription'),
+                'citations':(None, 'none'),
+                'overwrite_merge':(None, '0')}
+
+        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
+                                              open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
+        
+        compare_post_request("submit", data, headers = {"Accept": "text/plain"},
+                             files = files, test_name = "submit_test_BBa_2")
+
+        # get the view
+        compare_get_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid", "testid_collection", "1"])
+
+        data['tabState'] = 'new'
+        # make the collection public
+        compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid", "testid_collection", "1"], data = data)
+
+        # delete the collection
+        compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid", "testid_collection", "1"], test_name = 'remove')
+        
+        
+    def test_get_submit_submissions_empty(self):
         compare_get_request("submit")
         compare_get_request("manage")
     
@@ -43,8 +69,12 @@ class TestSetup(TestCase):
         compare_get_request("submit", test_name = "two_submissions")
         
 
-        # delete the collection
-        # compare_get_request("/user/testuser/testid/testid_collection/1/removeCollection")
+        # now remove the collections
+        compare_get_request('/user/:userId/:collectionId/:displayId/:version/removeCollection', route_parameters = ["testuser", "testid", "testid_collection", "1"])
+        compare_get_request('/user/:userId/:collectionId/:displayId/:version/removeCollection', route_parameters = ["testuser", "testid2", "testid2_collection", "1"], test_name = 'remove_second')
+
+        compare_get_request("manage", test_name = "no_submissions")
+        
         
         
 
