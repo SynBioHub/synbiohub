@@ -19,3 +19,8 @@ class TestSetup(TestCase):
         no_email_info = {'password' : 'test'}
         compare_post_request("/login", no_email_info, test_name='no_email_login')
 
+
+    def test_post_login_admin(self):
+        logininfo = {'email' : 'test@user.synbiohub',
+                     'password' : 'test'}
+        compare_post_request("/login", logininfo)

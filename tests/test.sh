@@ -13,6 +13,16 @@ fi
 
 message "Running synbiohub test suite."
 
+# Clone the SBOLTestRunner for necessary files
+message "pulling mehersam/SBOLTestRunner"
+if cd SBOLTestRunner; then
+    git pull;
+    cd ..;
+else
+    git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
+fi
+
+
 bash ./start_containers.sh
 
 for var in "$@"
