@@ -28,6 +28,9 @@ if __name__ == '__main__':
     import test_submit
     addTestModule(test_submit)
 
+    import test_public_collection
+    addTestModule(test_public_collection)
+
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
 
