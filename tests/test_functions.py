@@ -1,11 +1,10 @@
-import requests, difflib, sys
+import requests_html, difflib, sys
 from bs4 import BeautifulSoup
 
 from test_arguments import args, test_print
 from TestState import TestState, clip_request
 
 test_state = TestState()
-
 
 # now clip all the requests in the ones to reset
 for i in range(len(args.resetgetrequests)):
@@ -39,12 +38,15 @@ def get_request(request, headers, route_parameters):
         headers["X-authorization"] = user_token
 
     address = get_address(request, route_parameters)
-        
-    response = requests.get(address, headers = headers)
+
+    session = requests_html.HTMLSession()
+    
+    response = session.get(address, headers = headers)
+    response.html.render()
     
     response.raise_for_status()
     
-    content = format_html(response.text)
+    content = format_html(response.html.html)
 
     return content
 
@@ -57,11 +59,14 @@ def post_request(request, data, headers, route_parameters, files):
     
     address = get_address(request, route_parameters)
 
-    response = requests.post(address, data = data, headers = headers, files = files)
+    session = requests_html.HTMLSession()
+    
+    response = session.post(address, data = data, headers = headers, files = files)
+    response.html.render()
     
     response.raise_for_status()
     
-    content = format_html(response.text)
+    content = format_html(response.html.html)
     return content
 
 

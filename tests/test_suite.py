@@ -25,6 +25,9 @@ if __name__ == '__main__':
     import test_after_admin_login
     addTestModule(test_after_admin_login)
 
+    import test_admin_views
+    addTestModule(test_admin_views)
+    
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
 
