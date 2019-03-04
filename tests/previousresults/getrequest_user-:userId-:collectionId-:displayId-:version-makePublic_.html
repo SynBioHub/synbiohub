@@ -4,31 +4,6 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="A parts repository for synthetic biology." name="description"/>
-  <script type="application/ld+json">
-   {
-  "name": "Test Synbiohub",
-  "description": "text",
-  "url": "http://localhost:7777/",
-  "keywords": "synbiohub",
-  "identifier": [
-    "TestSynbiohub"
-  ],
-  "dataset": [],
-  "@context": {
-    "scheme": "http://schema.org/",
-    "bs": "http://bioschema.org/"
-  },
-  "@type": "https://bioschemas.org/DataCatalog",
-  "provider": [
-    "foo@example.com"
-  ],
-  "publication": "https://pubs.acs.org/doi/abs/10.1021/acssynbio.7b00403",
-  "sourceOrganization": [
-    "Newcastle University"
-  ]
-}
-  </script>
   <title>
    Test Synbiohub
   </title>
@@ -52,60 +27,6 @@ try {
   </script>
   <script src="/js/popupS.min.js">
   </script>
-  <style>
-   body {
-    background-color: #f6f6f6;
-}
-
-.grey-page-mark {
-    background-color: #f6f6f6;
-}
-
-.top-search-form {
-    display: none;
-}
-
-.main-search-form input {
-    width: 60%;
-    margin-left: 0;
-    background-color: white;
-    padding: 14px 16px 13px 32px;
-    height: 40px;
-}
-
-.main-search-form .submit {
-    padding: 12px 21px;
-    height: 40px;
-}
-
-.main-search-form label {
-    color: #7F8C8D;
-}
-
-.search-section {
-    height: 60px;
-    padding: 20px;
-    margin: 0 auto;
-    width: 50%;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.navbar {
-}
-
-.sbol-breadcrumbs {
-}
-
-.sbol-logo-dark-single-line {
-    display: none;
-}
-
-h1 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-  </style>
  </head>
  <body>
   <nav class="navbar navbar-fixed-top">
@@ -181,10 +102,10 @@ h1 {
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
    <ul>
-    <li>
-     <span class="fa fa-home">
+    <li class="inactive">
+     <span class="fa fa-cloud-upload">
      </span>
-     Home
+     Make Public
     </li>
    </ul>
    <ul style="flex-grow: 1">
@@ -199,91 +120,100 @@ h1 {
     </li>
    </ul>
   </div>
-  <div class="container container-fluid">
-   <div class="row">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-8" style="text-align: center">
-     <h1>
-      Test Synbiohub
-     </h1>
-    </div>
+  <div align="center" class="submission-container">
+   <div class="submission-header">
+    <span class="fa fa-unlock" style="font-size: 3.3em">
+    </span>
+    <p style="font-size: 1.7em; font-weight: bolder">
+     Make Public
+    </p>
+    <p>
+     <span style="font-weight: bolder">
+      Bold fields
+     </span>
+     are required
+    </p>
    </div>
-   <div class="row">
-    <div class="col-md-2">
+   <form class="submission-form" enctype="multipart/form-data" method="post">
+    <input id="tabState" name="tabState" type="hidden" value="existing"/>
+    <div class="clearfix">
     </div>
-    <div class="col-md-8 sbh-frontpage-blurb">
-     <p>
-      text
-     </p>
-    </div>
-   </div>
-   <div class="row sbh-main-page-row">
-    <div class="col-md-12" style="text-align: center">
-     <div class="sbh-frontpage-container">
-      <table class="sbh-frontpage-pictures" style="text-align: left">
-       <tr>
-        <td>
-         <span class="fa fa-search">
-         </span>
-        </td>
-        <td>
-         <h3>
-          <b>
-           Search
-          </b>
-          for useful parts and designs
-         </h3>
-         <form action="/search" class="main-search-form">
-          <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
-          <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
-           Search
-          </button>
-         </form>
-         <br/>
-         <a class="button btn btn-primary" href="/browse">
-          Browse Design Collections
-         </a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <span class="fa fa-upload">
-         </span>
-        </td>
-        <td>
-         <h3>
-          <b>
-           Upload
-          </b>
-          your design for safekeeping
-         </h3>
-         <a class="button btn btn-primary" href="/submit">
-          Submit a Design
-         </a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <span class="fa fa-share-alt">
-         </span>
-        </td>
-        <td>
-         <h3>
-          <b>
-           Share
-          </b>
-          designs for publication or collaboration
-         </h3>
-         <a class="button btn btn-primary" href="/manage">
-          Manage Submissions
-         </a>
-        </td>
-       </tr>
-      </table>
+    <ul class="nav nav-tabs" role="tablist">
+     <li class="active" role="presentation">
+      <a aria-controls="existing" data-toggle="tab" href="#existing" onclick="$('#tabState').val('existing')" role="tab">
+       Copy to Existing Collection
+      </a>
+     </li>
+     <li role="presentation">
+      <a aria-controls="new" data-toggle="tab" href="#new" onclick="$('#tabState').val('new')" role="tab">
+       Copy to New Collection
+      </a>
+     </li>
+    </ul>
+    <div class="tab-content">
+     <div class="tab-pane active" id="existing" role="tabpanel">
+      <br/>
+      <div class="form-group-200 required">
+       <label>
+        Collections
+       </label>
+       <br/>
+       <select class="form-control" data-placeholder="Select Some Collections" id="collections" name="collections" style="width:650px">
+        <option value="">
+         Choose a collection...
+        </option>
+       </select>
+      </div>
+     </div>
+     <div class="tab-pane" id="new" role="tabpanel">
+      <br/>
+      <div class="form-group-50 required">
+       <label>
+        Id
+       </label>
+       <br/>
+       <input name="id" placeholder="Submission Id" type="text" value="testid"/>
+      </div>
+      <div class="form-group-50 required">
+       <label>
+        Version
+       </label>
+       <br/>
+       <input name="version" placeholder="Version" type="text" value="1"/>
+      </div>
+      <div class="form-group-100 required">
+       <label>
+        Name
+       </label>
+       <br/>
+       <input name="name" placeholder="Name" value=""/>
+      </div>
+      <div class="form-group-100 required">
+       <label>
+        Description
+       </label>
+       <br/>
+       <textarea name="description" placeholder="The more you say, the easier it will be to find your design..."></textarea>
+      </div>
+      <div class="clearfix">
+      </div>
+      <div class="form-group-100">
+       <label>
+        Citations
+       </label>
+       <br/>
+       <input name="citations" placeholder="Comma separated Pubmed IDs, we'll do the rest!" value=""/>
+      </div>
      </div>
     </div>
-   </div>
+    <div class="clearfix">
+    </div>
+    <br/>
+    <br/>
+    <button class="btn btn-primary btn-lg" type="submit">
+     Make Public
+    </button>
+   </form>
   </div>
   <div class="clearfix">
   </div>
