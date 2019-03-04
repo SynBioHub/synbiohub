@@ -10,16 +10,12 @@ mixin search-result-component-definition(submission)
             else
                 div.ribbon-remote Remote
 
-        if submission.name && submission.name != submission.displayId
-            a(href=submission.url) #{submission.displayId} (#{submission.name})
-        else
-            a(href=submission.url) #{submission.displayId}
-
-        p version #{submission.version}
-
-        div.keywords
-            if submission.description != ''
-                strong #{submission.description}
+        a(href=submission.url) #{submission.name}
+        br
+        strong #{submission.displayId} Version #{submission.version} (#{submission.typeName})
+        br
+        if submission.description != ''
+            | #{submission.description}
         br
 
         //button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal
