@@ -129,47 +129,11 @@ h1 {
        </a>
       </li>
       <li>
-       <a href="/shared">
-        <span class="fa fa-bolt">
+       <a href="/login">
+        <span class="fa fa-sign-in">
         </span>
         <span class="blue-text">
-         Shared with Me
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/manage">
-        <span class="fa fa-align-left">
-        </span>
-        <span class="blue-text">
-         Submissions
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/admin">
-        <span class="fa fa-cogs">
-        </span>
-        <span class="blue-text">
-         Admin
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/profile">
-        <span class="fa fa-id-card">
-        </span>
-        <span class="blue-text">
-         Profile
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/logout">
-        <span class="fa fa-sign-out">
-        </span>
-        <span class="blue-text">
-         Sign Out
+         Login or Register
         </span>
        </a>
       </li>
@@ -190,7 +154,14 @@ h1 {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <span class="twitter-typeahead" style="position: relative; display: inline;">
+       <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Search Test Synbiohub" spellcheck="false" style="width: 96%; position: relative; vertical-align: top;" type="text" value=""/>
+       <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 13.86px; font-style: normal; font-variant: normal; font-weight: 700; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
+       <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+        <div class="tt-dataset tt-dataset-my-dataset">
+        </div>
+       </div>
+      </span>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -222,64 +193,73 @@ h1 {
     <div class="col-md-12" style="text-align: center">
      <div class="sbh-frontpage-container">
       <table class="sbh-frontpage-pictures" style="text-align: left">
-       <tr>
-        <td>
-         <span class="fa fa-search">
-         </span>
-        </td>
-        <td>
-         <h3>
-          <b>
-           Search
-          </b>
-          for useful parts and designs
-         </h3>
-         <form action="/search" class="main-search-form">
-          <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
-          <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
-           Search
-          </button>
-         </form>
-         <br/>
-         <a class="button btn btn-primary" href="/browse">
-          Browse Design Collections
-         </a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <span class="fa fa-upload">
-         </span>
-        </td>
-        <td>
-         <h3>
-          <b>
-           Upload
-          </b>
-          your design for safekeeping
-         </h3>
-         <a class="button btn btn-primary" href="/submit">
-          Submit a Design
-         </a>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <span class="fa fa-share-alt">
-         </span>
-        </td>
-        <td>
-         <h3>
-          <b>
-           Share
-          </b>
-          designs for publication or collaboration
-         </h3>
-         <a class="button btn btn-primary" href="/manage">
-          Manage Submissions
-         </a>
-        </td>
-       </tr>
+       <tbody>
+        <tr>
+         <td>
+          <span class="fa fa-search">
+          </span>
+         </td>
+         <td>
+          <h3>
+           <b>
+            Search
+           </b>
+           for useful parts and designs
+          </h3>
+          <form action="/search" class="main-search-form">
+           <span class="twitter-typeahead" style="position: relative; display: inline;">
+            <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Part name" spellcheck="false" style="position: relative; vertical-align: top;" type="text" value=""/>
+            <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 12.6px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
+            <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+             <div class="tt-dataset tt-dataset-my-dataset">
+             </div>
+            </div>
+           </span>
+           <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
+            Search
+           </button>
+          </form>
+          <br/>
+          <a class="button btn btn-primary" href="/browse">
+           Browse Design Collections
+          </a>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <span class="fa fa-upload">
+          </span>
+         </td>
+         <td>
+          <h3>
+           <b>
+            Upload
+           </b>
+           your design for safekeeping
+          </h3>
+          <a class="button btn btn-primary" href="/submit">
+           Submit a Design
+          </a>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <span class="fa fa-share-alt">
+          </span>
+         </td>
+         <td>
+          <h3>
+           <b>
+            Share
+           </b>
+           designs for publication or collaboration
+          </h3>
+          <a class="button btn btn-primary" href="/manage">
+           Manage Submissions
+          </a>
+         </td>
+        </tr>
+       </tbody>
       </table>
      </div>
     </div>
@@ -314,27 +294,29 @@ h1 {
     </a>
    </span>
   </div>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
+  <script src="//browser-update.org/update.min.js">
+  </script>
  </body>
- <script src="/js/saveSvgAsPng.js">
- </script>
- <script src="/js/jquery/jquery-2.1.3.min.js">
- </script>
- <script src="/js/bootstrap/bootstrap-3.3.4.js">
- </script>
- <script src="/js/typeahead.bundle.js">
- </script>
- <script src="/js/typeahead.jquery.min.js">
- </script>
- <script src="/datatables.min.js">
- </script>
- <script src="/js/pathseg.js">
- </script>
- <script src="/js/chosen.jquery.js">
- </script>
- <script src="/js/dropzone.js">
- </script>
- <script src="/js/BootstrapMenu.js">
- </script>
- <script src="/bundle.js">
- </script>
 </html>
