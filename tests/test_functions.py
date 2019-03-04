@@ -68,9 +68,9 @@ def get_request(request, headers, route_parameters):
     address = get_address(request, route_parameters)
 
     session = requests_html.HTMLSession()
-    
+
     response = session.get(address, headers = headers)
-    #response.html.render()
+    response.html.render()
     
     try:
         response.raise_for_status()

@@ -50,47 +50,11 @@ try {
        </a>
       </li>
       <li>
-       <a href="/shared">
-        <span class="fa fa-bolt">
+       <a href="/login">
+        <span class="fa fa-sign-in">
         </span>
         <span class="blue-text">
-         Shared with Me
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/manage">
-        <span class="fa fa-align-left">
-        </span>
-        <span class="blue-text">
-         Submissions
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/admin">
-        <span class="fa fa-cogs">
-        </span>
-        <span class="blue-text">
-         Admin
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/profile">
-        <span class="fa fa-id-card">
-        </span>
-        <span class="blue-text">
-         Profile
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/logout">
-        <span class="fa fa-sign-out">
-        </span>
-        <span class="blue-text">
-         Sign Out
+         Login or Register
         </span>
        </a>
       </li>
@@ -101,17 +65,17 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cloud-upload">
-     </span>
-     Make Public
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <span class="twitter-typeahead" style="position: relative; display: inline;">
+       <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Search Test Synbiohub" spellcheck="false" style="width: 96%; position: relative; vertical-align: top;" type="text" value=""/>
+       <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 13.86px; font-style: normal; font-variant: normal; font-weight: 700; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
+       <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+        <div class="tt-dataset tt-dataset-my-dataset">
+        </div>
+       </div>
+      </span>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -120,100 +84,51 @@ try {
     </li>
    </ul>
   </div>
-  <div align="center" class="submission-container">
-   <div class="submission-header">
-    <span class="fa fa-unlock" style="font-size: 3.3em">
+  <div class="account-container">
+   <div align="center">
+    <span class="fa fa-lock" style="font-size: 3.5em">
     </span>
-    <p style="font-size: 1.7em; font-weight: bolder">
-     Make Public
-    </p>
-    <p>
-     <span style="font-weight: bolder">
-      Bold fields
-     </span>
-     are required
+    <p style="font-size: 1.5em">
+     Login
     </p>
    </div>
-   <form class="submission-form" enctype="multipart/form-data" method="post">
-    <input id="tabState" name="tabState" type="hidden" value="existing"/>
-    <div class="clearfix">
-    </div>
-    <ul class="nav nav-tabs" role="tablist">
-     <li class="active" role="presentation">
-      <a aria-controls="existing" data-toggle="tab" href="#existing" onclick="$('#tabState').val('existing')" role="tab">
-       Copy to Existing Collection
-      </a>
-     </li>
-     <li role="presentation">
-      <a aria-controls="new" data-toggle="tab" href="#new" onclick="$('#tabState').val('new')" role="tab">
-       Copy to New Collection
-      </a>
-     </li>
-    </ul>
-    <div class="tab-content">
-     <div class="tab-pane active" id="existing" role="tabpanel">
-      <br/>
-      <div class="form-group-200 required">
-       <label>
-        Collections
-       </label>
-       <br/>
-       <select class="form-control" data-placeholder="Select Some Collections" id="collections" name="collections" style="width:650px">
-        <option value="">
-         Choose a collection...
-        </option>
-       </select>
-      </div>
+   <br/>
+   <div align="center">
+    <form accept-charset="UTF-8" action="login" autocomplete="off" class="formbody" id="user_edit" method="post">
+     <input class="text" name="utf8" type="hidden" value="✓"/>
+     <input name="next" type="hidden" value="/user/testuser/testid/testid_collection/1/makePublic"/>
+     <!--input(style='display:none', type='text', name='fakeusernameremembered')-->
+     <!--input(style='display:none', type='password', name='fakepasswordremembered')-->
+     <div class="input-item">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-mail">
+        <input autocomplete="off" class="sbol-login-text username-text" name="email" placeholder="e-mail" type="text"/>
+       </span>
+      </span>
      </div>
-     <div class="tab-pane" id="new" role="tabpanel">
-      <br/>
-      <div class="form-group-50 required">
-       <label>
-        Id
-       </label>
-       <br/>
-       <input name="id" placeholder="Submission Id" type="text" value="testid"/>
-      </div>
-      <div class="form-group-50 required">
-       <label>
-        Version
-       </label>
-       <br/>
-       <input name="version" placeholder="Version" type="text" value="1"/>
-      </div>
-      <div class="form-group-100 required">
-       <label>
-        Name
-       </label>
-       <br/>
-       <input name="name" placeholder="Name" value=""/>
-      </div>
-      <div class="form-group-100 required">
-       <label>
-        Description
-       </label>
-       <br/>
-       <textarea name="description" placeholder="The more you say, the easier it will be to find your design..."></textarea>
-      </div>
-      <div class="clearfix">
-      </div>
-      <div class="form-group-100">
-       <label>
-        Citations
-       </label>
-       <br/>
-       <input name="citations" placeholder="Comma separated Pubmed IDs, we'll do the rest!" value=""/>
-      </div>
+     <div class="input-item" style="margin-top: 4px">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-lock">
+        <input autocomplete="off" class="sbol-login-text password-text" name="password" placeholder="password" type="password"/>
+       </span>
+      </span>
      </div>
-    </div>
-    <div class="clearfix">
-    </div>
-    <br/>
-    <br/>
-    <button class="btn btn-primary btn-lg" type="submit">
-     Make Public
-    </button>
-   </form>
+     <div class="clearfix">
+     </div>
+     <br/>
+     <div>
+      <input class="btn btn-primary" name="commit" type="submit" value="Log in"/>
+     </div>
+     <br/>
+    </form>
+   </div>
+   <div align="center">
+    <a class="btn btn-primary" href="register">
+     I need an account
+    </a>
+   </div>
+   <div class="clearfix">
+   </div>
   </div>
   <div class="clearfix">
   </div>
@@ -244,27 +159,29 @@ try {
     </a>
    </span>
   </div>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
+  <script src="//browser-update.org/update.min.js">
+  </script>
  </body>
- <script src="/js/saveSvgAsPng.js">
- </script>
- <script src="/js/jquery/jquery-2.1.3.min.js">
- </script>
- <script src="/js/bootstrap/bootstrap-3.3.4.js">
- </script>
- <script src="/js/typeahead.bundle.js">
- </script>
- <script src="/js/typeahead.jquery.min.js">
- </script>
- <script src="/datatables.min.js">
- </script>
- <script src="/js/pathseg.js">
- </script>
- <script src="/js/chosen.jquery.js">
- </script>
- <script src="/js/dropzone.js">
- </script>
- <script src="/js/BootstrapMenu.js">
- </script>
- <script src="/bundle.js">
- </script>
 </html>
