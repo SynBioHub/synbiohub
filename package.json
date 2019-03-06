@@ -35,6 +35,7 @@
     "lint-staged": "^8.1.0",
     "main-loop": "^3.4.0",
     "mkdirp-promise": "^5.0.1",
+    "moment": "^2.24.0",
     "multer": "^1.1.0",
     "multimap": "^1.0.2",
     "multiparty": "^4.1.3",
