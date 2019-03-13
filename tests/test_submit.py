@@ -3,14 +3,15 @@ from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
 
-class TestSetup(TestCase):
+class TestSubmit(TestCase):
 
     def test_main_page(self):
         headers = {'Accept':'text/plain'}
         compare_get_request("/", test_name = "after_admin_login", headers = headers)
 
-    # todo: this should be a test once deleting collections works
-    def will_be_a_test_get_submit_submissions_empty(self):
+        
+        
+    def test_get_submit_submissions_empty(self):
         compare_get_request("submit")
         compare_get_request("manage")
     
@@ -43,8 +44,12 @@ class TestSetup(TestCase):
         compare_get_request("submit", test_name = "two_submissions")
         
 
-        # delete the collection
-        # compare_get_request("/user/testuser/testid/testid_collection/1/removeCollection")
+        # now remove the collections
+        compare_get_request('/user/:userId/:collectionId/:displayId/:version/removeCollection', route_parameters = ["testuser", "testid", "testid_collection", "1"])
+        compare_get_request('/user/:userId/:collectionId/:displayId/:version/removeCollection', route_parameters = ["testuser", "testid2", "testid2_collection", "1"], test_name = 'remove_second')
+
+        compare_get_request("manage", test_name = "no_submissions")
+        
         
         
 

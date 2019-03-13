@@ -103,9 +103,9 @@ try {
   <div class="sbol-breadcrumbs" style="display: flex">
    <ul>
     <li class="inactive">
-     <span class="fa fa-align-left">
+     <span class="fa fa-cloud-upload">
      </span>
-     Manage Submissions
+     Make Public
     </li>
    </ul>
    <ul style="flex-grow: 1">
@@ -120,27 +120,100 @@ try {
     </li>
    </ul>
   </div>
-  <div class="clearfix">
-  </div>
-  <div class="container">
-   <div class="row">
-    <div class="col-md-6 submission-list">
-     <h4>
-      Private Submissions
-     </h4>
-     <p>
-      You currently have 0 private submission(s)
-     </p>
-    </div>
-    <div class="col-md-6 submission-list">
-     <h4>
-      Public Submissions
-     </h4>
-     <p>
-      You currently have 0 public submission(s)
-     </p>
-    </div>
+  <div align="center" class="submission-container">
+   <div class="submission-header">
+    <span class="fa fa-unlock" style="font-size: 3.3em">
+    </span>
+    <p style="font-size: 1.7em; font-weight: bolder">
+     Make Public
+    </p>
+    <p>
+     <span style="font-weight: bolder">
+      Bold fields
+     </span>
+     are required
+    </p>
    </div>
+   <form class="submission-form" enctype="multipart/form-data" method="post">
+    <input id="tabState" name="tabState" type="hidden" value="existing"/>
+    <div class="clearfix">
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+     <li class="active" role="presentation">
+      <a aria-controls="existing" data-toggle="tab" href="#existing" onclick="$('#tabState').val('existing')" role="tab">
+       Copy to Existing Collection
+      </a>
+     </li>
+     <li role="presentation">
+      <a aria-controls="new" data-toggle="tab" href="#new" onclick="$('#tabState').val('new')" role="tab">
+       Copy to New Collection
+      </a>
+     </li>
+    </ul>
+    <div class="tab-content">
+     <div class="tab-pane active" id="existing" role="tabpanel">
+      <br/>
+      <div class="form-group-200 required">
+       <label>
+        Collections
+       </label>
+       <br/>
+       <select class="form-control" data-placeholder="Select Some Collections" id="collections" name="collections" style="width:650px">
+        <option value="">
+         Choose a collection...
+        </option>
+       </select>
+      </div>
+     </div>
+     <div class="tab-pane" id="new" role="tabpanel">
+      <br/>
+      <div class="form-group-50 required">
+       <label>
+        Id
+       </label>
+       <br/>
+       <input name="id" placeholder="Submission Id" type="text" value="testid"/>
+      </div>
+      <div class="form-group-50 required">
+       <label>
+        Version
+       </label>
+       <br/>
+       <input name="version" placeholder="Version" type="text" value="1"/>
+      </div>
+      <div class="form-group-100 required">
+       <label>
+        Name
+       </label>
+       <br/>
+       <input name="name" placeholder="Name" value=""/>
+      </div>
+      <div class="form-group-100 required">
+       <label>
+        Description
+       </label>
+       <br/>
+       <textarea name="description" placeholder="The more you say, the easier it will be to find your design..."></textarea>
+      </div>
+      <div class="clearfix">
+      </div>
+      <div class="form-group-100">
+       <label>
+        Citations
+       </label>
+       <br/>
+       <input name="citations" placeholder="Comma separated Pubmed IDs, we'll do the rest!" value=""/>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <br/>
+    <br/>
+    <button class="btn btn-primary btn-lg" type="submit">
+     Make Public
+    </button>
+   </form>
   </div>
   <div class="clearfix">
   </div>

@@ -2,6 +2,7 @@
 extends ../../layouts/admin.jade
 
 block adminContent
+    form(action='explorerUpdateIndex', method='POST', id="explorerButtons")
     form(action='/admin/explorer', method='POST', id="explorerForm")
         div.row 
             div.col-md-12 
@@ -18,12 +19,7 @@ block adminContent
                     label
                         input(type='checkbox', name="useSBOLExplorer", checked=config.useSBOLExplorer) 
                         | Searching Using SBOLExplorer
-        div.row 
-            div.col-md-12 
-                div.checkbox
-                    label
-                        input(type='checkbox', name="manualReindex", checked=False) 
-                        | Update Index Right Now (check the box and click save, will take a couple minutes)
+        button.btn.btn-info(type="submit", style="margin-right: 20px; margin-bottom:20px", form="explorerButtons") Update Index Now
         div.row 
             div.col-md-12 
                 div.checkbox

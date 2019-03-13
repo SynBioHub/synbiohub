@@ -28,7 +28,34 @@ def format_html(htmlstring):
 
 # parse the address of the endpoint being tested
 def get_address(request, route_parameters):
-    return args.serveraddress + request
+    # stores partial strings
+    string_build = [args.serveraddress]
+
+    # find parameters and replace them
+    i = 0 # current position in request string
+    last_i = 0 # the position after the last parameter
+    param_i = 0 # the position in route_parameters list
+    while i < len(request):
+        # loop
+        if request[i] == ':':
+            string_build.append(request[last_i:i]) # append the last fragment
+            while i < len(request) and request[i] != '/':
+                i += 1
+            string_build.append(route_parameters[param_i]) # add the next param
+            param_i += 1
+            last_i = i # update the start of the next fragment
+        i += 1
+
+    # add the final fragment
+    string_build.append(request[last_i:i])
+
+    if param_i < len(route_parameters):
+        raise Exception("found more route_parameters than actual parameters in request string")
+    
+    return ''.join(string_build)
+
+
+
 
 # perform a get request
 def get_request(request, headers, route_parameters):
@@ -42,7 +69,10 @@ def get_request(request, headers, route_parameters):
         
     response = requests.get(address, headers = headers)
     
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError:
+        raise requests.exceptions.HTTPError("Internal server error. Content of response was \n" + response.text)
     
     content = format_html(response.text)
 
@@ -58,8 +88,10 @@ def post_request(request, data, headers, route_parameters, files):
     address = get_address(request, route_parameters)
 
     response = requests.post(address, data = data, headers = headers, files = files)
-    
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError:
+        raise requests.exceptions.HTTPError("Internal server error. Content of response was \n" + response.text)
     
     content = format_html(response.text)
     return content
@@ -68,7 +100,7 @@ def post_request(request, data, headers, route_parameters, files):
 # creates a file path for a given request and request type
 # testname is a name to avoid collisions between tests testing the same endpoint
 def request_file_path(request, requesttype, testname):
-    return 'previousresults/' + requesttype.replace(" ", "") + "_" + request + "_" + testname + ".html"
+    return 'previousresults/' + requesttype.replace(" ", "") + "_" + request.replace("/", "-") + "_" + testname + ".html"
 
 
 
@@ -129,11 +161,11 @@ def login_with(data, headers = {'Accept':'text/plain'}):
     test_state.save_authentification(result)
 
 
-def compare_get_request(request, test_name = "", route_parameters = {}, headers = {}):
+def compare_get_request(request, test_name = "", route_parameters = [], headers = {}):
     """Complete a get request and error if it differs from previous results.
 
     request -- string, the name of the page being requested
-    route_parameters -- a dictionary, with keys as the parameters and values as the values to replace the parameters with"""
+    route_parameters -- a ordered lists of the parameters for the endpoint"""
 
     # remove any leading forward slashes for consistency
     request = clip_request(request)
@@ -144,12 +176,12 @@ def compare_get_request(request, test_name = "", route_parameters = {}, headers 
     compare_request(get_request(request, headers, route_parameters), request, "get request", route_parameters, testpath)
 
 
-def compare_post_request(request, data, test_name = "", route_parameters = {}, headers = {}, files = None):
+def compare_post_request(request, data, test_name = "", route_parameters = [], headers = {}, files = None):
     """Complete a post request and error if it differs from previous results.
     
     request-- string, the name of the page being requested
     data -- data to send in the post request
-    route_parameters -- a dictionary, with keys as the parameters and values as the values to replace the parameters with
+    route_parameters -- a list of parameters for the url endpoint
     test_name -- a name for the test to make multiple tests for the same endpoint unique"""
 
     # remove any leading forward slashes for consistency
