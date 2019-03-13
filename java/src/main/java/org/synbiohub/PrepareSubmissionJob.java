@@ -87,7 +87,7 @@ public class PrepareSubmissionJob extends Job {
 	public String SBOLExplorerEndpoint;
 
 	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
-		CombineArchive combine;
+		CombineArchive combine = null;
 		File tempDir;
 
 		try {
@@ -102,6 +102,15 @@ public class PrepareSubmissionJob extends Job {
 			combine = new CombineArchive(new File(initialFilename));
 		} catch (UnsupportedOperationException | CombineArchiveException | IOException | JDOMException
 				| ParseException e) {
+			if (combine != null) {
+				try {
+					combine.close();
+				}
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					//e1.printStackTrace();
+				}
+			}
 			return false;
 		}
 
@@ -154,7 +163,7 @@ public class PrepareSubmissionJob extends Job {
 			}
 
 			if(entry.getName().contains("__MACOSX") || entry.getName().contains(".DS_Store")) {
-				continue; // fuck a resource fork
+				continue; // a resource fork
 			}
 
 			String filename = entry.getName();
