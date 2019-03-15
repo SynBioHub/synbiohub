@@ -33,6 +33,7 @@ public class PrepareSnapshotJob extends Job
 				new PrintStream(errorOutputStream),
 				sbolFilename,
 				"",
+				"",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,
