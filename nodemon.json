@@ -4,7 +4,8 @@
         "config.json",
         "config.local.json",
         "browser",
-        "public/styles/theme"
+        "public/styles/theme",
+        "node_modules"
     ],
     "signal": "SIGKILL"
 }
