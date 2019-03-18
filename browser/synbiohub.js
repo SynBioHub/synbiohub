@@ -132,8 +132,8 @@ if (typeof meta !== 'undefined') {
         processing: true,
         serverSide: true,
 
-        searching: !meta.remote,
-        ordering: !meta.remote,
+      searching: true, //!meta.remote,
+      ordering: true, // !meta.remote,
 	order: [[2, "asc"]],
         
 	ajax: {
@@ -141,7 +141,7 @@ if (typeof meta !== 'undefined') {
             type: 'GET',
             data: function (d) {
                 d.type = 'collectionMembers'
-                d.collectionUri = meta.remote?meta.uri.toString().replace("/1","/current"):meta.uri
+                d.collectionUri = meta.remote ? meta.uri.toString().replace("/1","/current") : meta.uri
                 d.graphUri = meta.graphUri
             }
         }
