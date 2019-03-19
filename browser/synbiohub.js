@@ -132,8 +132,8 @@ if (typeof meta !== 'undefined') {
         processing: true,
         serverSide: true,
 
-      searching: true, //!meta.remote,
-      ordering: true, // !meta.remote,
+      searching: !meta.remote,
+      ordering: !meta.remote,
 	order: [[2, "asc"]],
         
 	ajax: {
