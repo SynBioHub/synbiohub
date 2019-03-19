@@ -19,7 +19,13 @@ block adminContent
                     label
                         input(type='checkbox', name="useSBOLExplorer", checked=config.useSBOLExplorer) 
                         | Searching Using SBOLExplorer
+
         button.btn.btn-info(type="submit", style="margin-right: 20px; margin-bottom:20px", form="explorerButtons") Update Index Now
+        div.alert.alert-info 
+                    span Start of last index update: #{explorerConfig.last_update_start}
+                         br
+                         | End of last index update: #{explorerConfig.last_update_end}
+
         div.row 
             div.col-md-12 
                 div.checkbox
