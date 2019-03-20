@@ -47,6 +47,7 @@ public class CloneSubmissionJob extends Job
 				new PrintStream(errorOutputStream),
 				sbolFilename,
 				uriPrefix,
+				"",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,

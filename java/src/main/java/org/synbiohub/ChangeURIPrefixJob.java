@@ -31,6 +31,7 @@ public class ChangeURIPrefixJob extends Job
 				new PrintStream(errorOutputStream),
 				sbolFilename,
 				uriPrefix,
+				"",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,
