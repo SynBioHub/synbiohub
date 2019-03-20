@@ -26,6 +26,7 @@ public class ConvertToGenBankJob extends Job
 				new PrintStream(errorOutputStream),
 				sbolFilename,
 				"",
+				"",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,

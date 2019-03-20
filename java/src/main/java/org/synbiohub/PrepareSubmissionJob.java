@@ -228,6 +228,15 @@ public class PrepareSubmissionJob extends Job {
 		attachments.put(initialFilename, "http://identifiers.org/combine.specifications/sbol");
 		return false;
 	}
+	
+	private static String fixDisplayId(String displayId) {
+		displayId = displayId.replaceAll("[^a-zA-Z0-9_]", "_");
+		displayId = displayId.replace(" ", "_");
+		if (Character.isDigit(displayId.charAt(0))) {
+			displayId = "_" + displayId;
+		}
+		return displayId;
+	}
 
 	public void execute() throws SBOLValidationException, IOException, SBOLConversionException {
 		System.err.println("In execute");
@@ -261,13 +270,21 @@ public class PrepareSubmissionJob extends Job {
 			}
 
 			sbolFiles.add(filename);
+			String defaultDisplayId = filename;
+			if (defaultDisplayId.lastIndexOf(".")!=-1) {
+				defaultDisplayId = defaultDisplayId.substring(0,defaultDisplayId.lastIndexOf("."));
+			}
+			if (defaultDisplayId.lastIndexOf("/")!=-1) {
+				defaultDisplayId = defaultDisplayId.substring(defaultDisplayId.lastIndexOf("/")+1);
+			}
+			defaultDisplayId = fixDisplayId(defaultDisplayId);
 
 			ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
 			ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
 
 			// Validate and convert file, if necessary
 			SBOLDocument individual = SBOLValidate.validate(new PrintStream(logOutputStream),
-					new PrintStream(errorOutputStream), filename, "http://dummy.org/", requireComplete,
+					new PrintStream(errorOutputStream), filename, "http://dummy.org/", defaultDisplayId, requireComplete,
 					requireCompliant, enforceBestPractices, typesInURI, "1", keepGoing, "", "", filename, topLevelURI,
 					false, false, false, false, null, false, true, false);
 

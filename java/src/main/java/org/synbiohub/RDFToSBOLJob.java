@@ -36,6 +36,7 @@ public class RDFToSBOLJob extends Job
 				new PrintStream(errorOutputStream),
 				sbolFilename,
 				uriPrefix,
+				"",
 				requireComplete,
 				requireCompliant, 
 				enforceBestPractices,
