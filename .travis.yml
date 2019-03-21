@@ -14,11 +14,9 @@ services:
 jobs:
     include:
         - stage: test
-          before_install:
-              - sudo pip install --upgrade pip
           install:
               - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
-              - sudo pip install -r tests/test_requirements.txt
+              - pip install -r tests/test_requirements.txt
           script: tests/test.sh
 
         - stage: push
