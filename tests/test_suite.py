@@ -31,6 +31,9 @@ if __name__ == '__main__':
     import test_public_collection
     addTestModule(test_public_collection)
 
+    import test_admin_views
+    addTestModule(test_admin_views)
+    
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
 
