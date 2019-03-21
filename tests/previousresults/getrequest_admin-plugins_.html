@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   Test Synbiohub
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
+ </head>
+ <body>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/login">
+        <span class="fa fa-sign-in">
+        </span>
+        <span class="blue-text">
+         Login or Register
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="search" class="top-search-form">
+      <span class="twitter-typeahead" style="position: relative; display: inline;">
+       <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Search Test Synbiohub" spellcheck="false" style="width: 96%; position: relative; vertical-align: top;" type="text" value=""/>
+       <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 13.86px; font-style: normal; font-variant: normal; font-weight: 700; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
+       <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+        <div class="tt-dataset tt-dataset-my-dataset">
+        </div>
+       </div>
+      </span>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <div class="account-container">
+   <div align="center">
+    <span class="fa fa-lock" style="font-size: 3.5em">
+    </span>
+    <p style="font-size: 1.5em">
+     Login
+    </p>
+   </div>
+   <br/>
+   <div align="center">
+    <form accept-charset="UTF-8" action="login" autocomplete="off" class="formbody" id="user_edit" method="post">
+     <input class="text" name="utf8" type="hidden" value="✓"/>
+     <input name="next" type="hidden" value="/admin/plugins"/>
+     <!--input(style='display:none', type='text', name='fakeusernameremembered')-->
+     <!--input(style='display:none', type='password', name='fakepasswordremembered')-->
+     <div class="input-item">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-mail">
+        <input autocomplete="off" class="sbol-login-text username-text" name="email" placeholder="e-mail" type="text"/>
+       </span>
+      </span>
+     </div>
+     <div class="input-item" style="margin-top: 4px">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-lock">
+        <input autocomplete="off" class="sbol-login-text password-text" name="password" placeholder="password" type="password"/>
+       </span>
+      </span>
+     </div>
+     <div class="clearfix">
+     </div>
+     <br/>
+     <div>
+      <input class="btn btn-primary" name="commit" type="submit" value="Log in"/>
+     </div>
+     <br/>
+    </form>
+   </div>
+   <div align="center">
+    <a class="btn btn-primary" href="register">
+     I need an account
+    </a>
+   </div>
+   <div class="clearfix">
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="http://wiki.synbiohub.org">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
+  </div>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
+  <script src="//browser-update.org/update.min.js">
+  </script>
+ </body>
+</html>
