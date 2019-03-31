@@ -46,6 +46,15 @@ if [ $exitcode -ne 0 ]; then
     exit $exitcode
 fi
 
+# now stop containers and run just persistance tests
+message "Persistance test"
+bash ./stop_containers.sh
+bash ./start_containers_persist.sh
+
+python3 test_docker_persist.py "$@"
+
+
+# stop after test suite if the command line option is present
 for var in "$@"
 do
     if [[ $var == "--stopaftertestsuite" ]]
@@ -62,12 +71,7 @@ if [ $exitcode -ne 0 ]; then
     exit $exitcode
 fi
 
-# stop the containers
-message "Stopping containers"
-docker stop testsuiteproject_synbiohub_1
-docker stop testsuiteproject_explorer_1
-docker stop testsuiteproject_autoheal_1
-docker stop testsuiteproject_virtuoso_1
+bash ./stop_containers.sh
 
 
 message "finished running tests"
