@@ -45,6 +45,30 @@ block topLevelPropertyTable
                     if (meta.definition.version)
                         != ' (Version '+meta.definition.version+')'
                 br
+    if meta.locations && meta.locations.length > 0
+        tr
+            td 
+                | Locations
+                a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                    span.fa.fa-info-circle
+            td
+                for location in meta.locations
+                    a(href=location.url) #{location.locationStr}
+                    | ;
+                    | 
+                br
+    if meta.sourceLocations && meta.sourceLocations.length > 0
+        tr
+            td 
+                | Source Locations
+                a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                    span.fa.fa-info-circle
+            td
+                for location in meta.sourceLocations
+                    a(href=location.url) #{location.locationStr}
+                    | ;
+                    | 
+                br
 
 block topLevelPanels
                 if meta.mapsTos && meta.mapsTos.length > 0
