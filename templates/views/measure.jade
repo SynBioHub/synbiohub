@@ -1,0 +1,24 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPropertyTable
+
+    if meta.value
+        tr
+            td 
+                | Value
+                a(href='http://sbolstandard.org/v2#Measure',title='Learn more about Measures') 
+                    span.fa.fa-info-circle
+            td
+                | #{meta.value}
+                br
+
+    if meta.unit
+        tr
+            td 
+                | Unit
+                a(href='http://sbolstandard.org/v2#hasUnit',title='Learn more about Units') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.unit.url) #{meta.unit.name}
+                br
