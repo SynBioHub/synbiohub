@@ -4,9 +4,9 @@ import test_arguments
 
 if __name__ == '__main__':
     # do not overwrite any tests for this pass
-    test_arguments.resetalltests = False
-    test_arguments.resetgetrequests = []
-    test_arguments.resetpostrequests = []
+    test_arguments.args.resetalltests = False
+    test_arguments.args.resetgetrequests = []
+    test_arguments.args.resetpostrequests = []
     
     tests = unittest.TestSuite()
 
