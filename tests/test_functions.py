@@ -70,12 +70,13 @@ def get_request(request, headers, route_parameters):
     session = requests_html.HTMLSession()
 
     response = session.get(address, headers = headers)
-    response.html.render()
-    
     try:
         response.raise_for_status()
     except HTTPError:
         raise HTTPError("Internal server error. Content of response was \n" + response.text)
+
+    response.html.render()
+    
     
     content = format_html(response.html.html)
 
