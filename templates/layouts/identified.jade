@@ -5,7 +5,7 @@ include ../mixins/mutable-fields.jade
 include ../mixins/citations.jade
 
 block jsState
-    script meta = 
+    script.testignore meta = 
         != JSON.stringify(meta)
 
     script.
@@ -91,7 +91,7 @@ block content
                             span.fa.fa-search
        
                 if meta.created.description && meta.created.description != ''
-                    h5 Date created: 
+                    h5.testignore Date created: 
                         != meta.created.description
                         a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&',title='Find all records created on this date') 
                             span.fa.fa-search
