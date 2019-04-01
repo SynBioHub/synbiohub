@@ -1,0 +1,55 @@
+
+extends ../layouts/identified.jade
+
+block topLevelPanelsMeasured
+                if meta.measures && meta.measures.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseMeasures')
+                                    | <b>Measures</b>
+                        #collapseMeasures.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td 
+                                            | Measure
+                                            a(href='http://www.ontology-of-units-of-measure.org/resource/om-2/Measure',title='Learn more about Measure') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Value
+                                            a(href='http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue',title='Learn more about Value') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Unit
+                                            a(href='http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit',title='Learn more about Unit') 
+                                                span.fa.fa-info-circle
+                                        td 
+                                            | Types
+                                            a(href='http://sbolstandard.org/v2#type',title='Learn more about types') 
+                                                span.fa.fa-info-circle
+                                    tr
+                                        td
+                                            for measure in meta.measures
+                                                a(href=measure.url) #{measure.name}
+                                                br
+                                        td
+                                            for measure in meta.measures
+                                                != measure.value
+                                                br
+                                        td
+                                            for measure in meta.measures
+                                                a(href=measure.unit.url) #{measure.unit.name}
+                                                br
+                                        td
+                                            for measure in meta.measures
+                                                if measure.types && measure.types.length > 0
+                                                    for type in measure.types
+                                                        if type.description 
+                                                            != type.description.name  
+                                                        else 
+                                                            != type.uri
+                                                        | 
+                                                        a(href=type.uri,title='Learn more about this type')
+                                                            span.fa.fa-info-circle
+                                                br

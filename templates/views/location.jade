@@ -12,3 +12,16 @@ block topLevelPropertyTable
             td
                 | #{meta.locationStr}
                 br
+
+    if meta.sequence.id
+        tr
+            td 
+                | Sequence
+                a(href='http://sbolstandard.org/v2#Sequence',title='Learn more about sequences') 
+                    span.fa.fa-info-circle
+            td
+                a(href=meta.sequence.url) 
+                    != meta.sequence.id   
+                    if (meta.sequence.version)
+                        != ' (Version '+meta.sequence.version+')'
+                br
