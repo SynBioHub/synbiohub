@@ -1,0 +1,45 @@
+
+extends ../layouts/topLevel.jade
+
+block topLevelPreview
+    if meta.displayList
+        div.row
+            div.col-md-12.text-center
+            div#design
+
+block topLevelPropertyTable
+							
+block topLevelButtons
+
+block topLevelPanels
+                if meta.experimentalData && meta.experimentalData.length > 0
+                    .panel.panel-default
+                        .panel-heading
+                            h4.panel-title
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseExperimentalData')
+                                    | <b>Experimental Data</b>
+                        #collapseExperimentalData.panel-collapse.collapse
+                            .panel-body
+                               table.table.table-striped.entry-detail-table
+                                    tr
+                                        td
+                                            | Experimental Data
+                                            a(href='http://sbolstandard.org/v2#ExperimentalData',title='Learn more about experimental data') 
+                                                span.fa.fa-info-circle
+                                        td
+                                            | Name
+                                        td 
+                                            | Description
+                                    tr
+                                        td
+                                            for experimentalDatum in meta.experimentalData
+                                                a(href=experimentalDatum.url) #{experimentalDatum.id}
+                                                br
+                                        td
+                                            for experimentalDatum in meta.experimentalData
+                                                a(href=experimentalDatum.url) #{experimentalDatum.name}
+                                                br
+                                        td
+                                            for experimentalDatum in meta.experimentalData
+                                                a(href=experimentalDatum.url) #{experimentalDatum.description}
+                                                br
