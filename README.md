@@ -1,6 +1,6 @@
 <img src="https://synbiohub.org/logo_uploaded.svg" width="100%" />
 
-![](https://david-dm.org/synbiohub/synbiohub.svg) 
+![]("https://david-dm.org/synbiohub/synbiohub.svg")
 ![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 
 
@@ -30,9 +30,11 @@ Prequisites:
 * [rapper](http://librdf.org/raptor/rapper.html) (apt install `raptor2-utils`)
 * [jq](https://stedolan.github.io/jq/) (apt install `jq`)
 
-### Ubuntu 18.04.01:
+### Ubuntu 18.04.01
  1. Install Virtuoso from source at
     <https://github.com/openlink/virtuoso-opensource>
+ * Follow the README on installing virtuoso from source. This involves installing all the dependencies and running build commands.
+ * Currently, Virtuoso does not support versions of OpenSSL 1.1.0 and above, or versions of OpenSSL below 1.0.0. When installing the dependency, build from a binary between those versions from <https://www.openssl.org/source/>.
  2. Set up the Node.js repository 
     1. Download the Node setup script `curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -`
     2. Update your package repositories `apt update`
