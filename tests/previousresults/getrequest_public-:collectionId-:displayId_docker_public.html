@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="margin-top: 110px;">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -53,6 +53,32 @@ try {
   </script>
  </head>
  <body>
+  <div class="buorg" id="buorg" style="cursor: pointer;">
+   <div class="buorg-pad">
+    <span class="buorg-icon">
+    </span>
+    <b class="buorg-mainmsg">
+     Your web browser (Chrome 69) is out of date.
+    </b>
+    <span class="buorg-moremsg">
+     Update your browser for more security, speed and the best experience on this site.
+    </span>
+    <span class="buorg-buttons">
+     <a href="https://browser-update.org/update-browser.html#3.2.10:localhost" id="buorgul" rel="noopener" target="_blank">
+      Update browser
+     </a>
+     <a id="buorgig">
+      Ignore
+     </a>
+    </span>
+   </div>
+   <style>
+    .buorg-icon {width: 22px; height: 16px; vertical-align: middle; position: relative; top: -0.05em; display: inline-block; background: no-repeat 0px center url(https://browser-update.org/static/img/small/c.png);}
+   </style>
+   <style>
+    .buorg {position:absolute;position:fixed;z-index:111111; width:100%; top:0px; left:0px; border-bottom:1px solid #A29330; text-align:center;  color:#000; background-color: #fff8ea; font: 18px Calibri,Helvetica,sans-serif; box-shadow: 0 0 5px rgba(0,0,0,0.2);animation: buorgfly 1s ease-out 0s;}.buorg-pad { padding: 9px;  line-height: 1.7em; }.buorg-buttons { display: block; text-align: center; }#buorgig,#buorgul,#buorgpermanent { color: #fff; text-decoration: none; cursor:pointer; box-shadow: 0 0 2px rgba(0,0,0,0.4); padding: 1px 10px; border-radius: 4px; font-weight: normal; background: #5ab400;    white-space: nowrap;    margin: 0 2px; display: inline-block;}#buorgig { background-color: #edbc68;}@media only screen and (max-width: 700px){.buorg div { padding:5px 12px 5px 9px; line-height: 1.3em;}}@keyframes buorgfly {from {opacity:0;transform:translateY(-50px)} to {opacity:1;transform:translateY(0px)}}.buorg-fadeout {transition: visibility 0s 8.5s, opacity 8s ease-out .5s;}
+   </style>
+  </div>
   <div class="modal fade" id="iconModal" role="dialog" tabindex="-1">
    <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -269,49 +295,27 @@ try {
     </div>
     <div class="row">
      <div class="col-sm-12">
-      <table aria-describedby="DataTables_Table_0_info" class="table table-striped entry-detail-table sbh-collection-members-datatable dataTable no-footer" id="DataTables_Table_0" role="grid" style="width: 610px;">
+      <table aria-describedby="DataTables_Table_0_info" class="table table-striped entry-detail-table sbh-collection-members-datatable dataTable no-footer" id="DataTables_Table_0" role="grid">
        <thead>
         <tr role="row">
-         <th aria-controls="DataTables_Table_0" aria-label="Name: activate to sort column ascending" class="sorting" colspan="1" rowspan="1" style="width: 68px;" tabindex="0">
+         <th aria-controls="DataTables_Table_0" class="sorting" colspan="1" rowspan="1" style="width: 92px;" tabindex="0">
           Name
          </th>
-         <th aria-controls="DataTables_Table_0" aria-label="Identifier: activate to sort column ascending" class="sorting" colspan="1" rowspan="1" style="width: 98px;" tabindex="0">
+         <th aria-controls="DataTables_Table_0" class="sorting" colspan="1" rowspan="1" style="width: 127px;" tabindex="0">
           Identifier
          </th>
-         <th aria-controls="DataTables_Table_0" aria-label="Type: activate to sort column descending" aria-sort="ascending" class="sorting_asc" colspan="1" rowspan="1" style="width: 107px;" tabindex="0">
+         <th aria-controls="DataTables_Table_0" class="sorting" colspan="1" rowspan="1" style="width: 80px;" tabindex="0">
           Type
          </th>
-         <th aria-controls="DataTables_Table_0" aria-label="Description: activate to sort column ascending" class="sorting" colspan="1" rowspan="1" style="width: 185px;" tabindex="0">
+         <th aria-controls="DataTables_Table_0" class="sorting" colspan="1" rowspan="1" style="width: 159px;" tabindex="0">
           Description
          </th>
         </tr>
        </thead>
        <tbody>
-        <tr class="odd" role="row">
-         <td>
-          <a href="/public/testid/BBa_I0462/1">
-           I0462
-          </a>
-         </td>
-         <td>
-          <a href="/public/testid/BBa_I0462/1">
-           BBa_I0462
-          </a>
-         </td>
-         <td class="sorting_1">
-          Component
-          <a about="" href="http://sbolstandard.org/v2#ComponentDefinition" more="" of="" record="" this="" type="">
-           <span class="fa fa-info-circle">
-           </span>
-          </a>
-         </td>
-         <td>
-          LuxR protein generator
-         </td>
-        </tr>
        </tbody>
       </table>
-      <div class="dataTables_processing panel panel-default" id="DataTables_Table_0_processing" style="display: none;">
+      <div class="dataTables_processing panel panel-default" id="DataTables_Table_0_processing" style="display: block;">
        Processing...
       </div>
      </div>
@@ -319,28 +323,10 @@ try {
     <div class="row">
      <div class="col-sm-5">
       <div aria-live="polite" class="dataTables_info" id="DataTables_Table_0_info" role="status">
-       Showing 1 to 1 of 1 entries (filtered from 5 total entries)
       </div>
      </div>
      <div class="col-sm-7">
       <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-       <ul class="pagination">
-        <li class="paginate_button previous disabled" id="DataTables_Table_0_previous">
-         <a aria-controls="DataTables_Table_0" data-dt-idx="0" href="#" tabindex="0">
-          Previous
-         </a>
-        </li>
-        <li class="paginate_button active">
-         <a aria-controls="DataTables_Table_0" data-dt-idx="1" href="#" tabindex="0">
-          1
-         </a>
-        </li>
-        <li class="paginate_button next disabled" id="DataTables_Table_0_next">
-         <a aria-controls="DataTables_Table_0" data-dt-idx="2" href="#" tabindex="0">
-          Next
-         </a>
-        </li>
-       </ul>
       </div>
      </div>
     </div>
@@ -516,6 +502,8 @@ try {
   <script src="/bundle.js">
   </script>
   <script src="//browser-update.org/update.min.js">
+  </script>
+  <script src="//browser-update.org/update.show.min.js">
   </script>
  </body>
 </html>

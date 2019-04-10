@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="margin-top: 110px;">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -29,6 +29,32 @@ try {
   </script>
  </head>
  <body>
+  <div class="buorg" id="buorg" style="cursor: pointer;">
+   <div class="buorg-pad">
+    <span class="buorg-icon">
+    </span>
+    <b class="buorg-mainmsg">
+     Your web browser (Chrome 69) is out of date.
+    </b>
+    <span class="buorg-moremsg">
+     Update your browser for more security, speed and the best experience on this site.
+    </span>
+    <span class="buorg-buttons">
+     <a href="https://browser-update.org/update-browser.html#3.2.10:localhost" id="buorgul" rel="noopener" target="_blank">
+      Update browser
+     </a>
+     <a id="buorgig">
+      Ignore
+     </a>
+    </span>
+   </div>
+   <style>
+    .buorg-icon {width: 22px; height: 16px; vertical-align: middle; position: relative; top: -0.05em; display: inline-block; background: no-repeat 0px center url(https://browser-update.org/static/img/small/c.png);}
+   </style>
+   <style>
+    .buorg {position:absolute;position:fixed;z-index:111111; width:100%; top:0px; left:0px; border-bottom:1px solid #A29330; text-align:center;  color:#000; background-color: #fff8ea; font: 18px Calibri,Helvetica,sans-serif; box-shadow: 0 0 5px rgba(0,0,0,0.2);animation: buorgfly 1s ease-out 0s;}.buorg-pad { padding: 9px;  line-height: 1.7em; }.buorg-buttons { display: block; text-align: center; }#buorgig,#buorgul,#buorgpermanent { color: #fff; text-decoration: none; cursor:pointer; box-shadow: 0 0 2px rgba(0,0,0,0.4); padding: 1px 10px; border-radius: 4px; font-weight: normal; background: #5ab400;    white-space: nowrap;    margin: 0 2px; display: inline-block;}#buorgig { background-color: #edbc68;}@media only screen and (max-width: 700px){.buorg div { padding:5px 12px 5px 9px; line-height: 1.3em;}}@keyframes buorgfly {from {opacity:0;transform:translateY(-50px)} to {opacity:1;transform:translateY(0px)}}.buorg-fadeout {transition: visibility 0s 8.5s, opacity 8s ease-out .5s;}
+   </style>
+  </div>
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
@@ -182,6 +208,8 @@ try {
   <script src="/bundle.js">
   </script>
   <script src="//browser-update.org/update.min.js">
+  </script>
+  <script src="//browser-update.org/update.show.min.js">
   </script>
  </body>
 </html>
