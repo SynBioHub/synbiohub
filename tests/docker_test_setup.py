@@ -5,6 +5,10 @@ from test_functions import compare_get_request, compare_post_request, login_with
 
 class TestDockerSetup(TestCase):
 
+
+    def test_get_register(self):
+        compare_get_request('/register')
+    
     def test_create_user_and_upload(self):
         # first, register a new user
         data = {'name' : 'dockertestuser',
@@ -13,7 +17,6 @@ class TestDockerSetup(TestCase):
                 'password1' : 'test',
                 'password2' : 'test'}
 
-        compare_get_request('/register')
         compare_post_request('/register', data)
 
         # login as the user
