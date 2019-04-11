@@ -1,9 +1,33 @@
 <!DOCTYPE html>
-<html style="margin-top: 110px;">
+<html>
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="testdescription" name="description"/>
+  <script type="application/ld+json">
+   {
+  "name": "sequence1",
+  "description": "testdescription<br/>\n",
+  "url": "http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1",
+  "identifier": [
+    null
+  ],
+  "distribution": "/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1",
+  "includedInDataCatalog": [
+    "http://localhost:7777/"
+  ],
+  "@context": {
+    "scheme": "http://schema.org/",
+    "bs": "http://bioschema.org/"
+  },
+  "@type": "https://bioschemas.org/Dataset",
+  "creator": [
+    "SynBioHub"
+  ],
+  "keywords": "synbiohub"
+}
+  </script>
   <title>
    Test Synbiohub
   </title>
@@ -16,6 +40,7 @@
 function $buo_f() {
     var e = document.createElement("script");
     e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
     document.body.appendChild(e);
 };
 
@@ -29,31 +54,48 @@ try {
   </script>
  </head>
  <body>
-  <div class="buorg" id="buorg" style="cursor: pointer;">
-   <div class="buorg-pad">
-    <span class="buorg-icon">
-    </span>
-    <b class="buorg-mainmsg">
-     Your web browser (Chrome 69) is out of date.
-    </b>
-    <span class="buorg-moremsg">
-     Update your browser for more security, speed and the best experience on this site.
-    </span>
-    <span class="buorg-buttons">
-     <a href="https://browser-update.org/update-browser.html#3.2.10:localhost" id="buorgul" rel="noopener" target="_blank">
-      Update browser
-     </a>
-     <a id="buorgig">
-      Ignore
-     </a>
-    </span>
+  <div class="modal fade" id="iconModal" role="dialog" tabindex="-1">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button arial-label="close" class="close" data-dismiss="modal" type="button">
+       <span aria-hidden="true">
+        ×
+       </span>
+      </button>
+      <h4 class="modal-title">
+       Change Collection Icon
+      </h4>
+     </div>
+     <div class="modal-body">
+      <div class="row">
+       <div class="col-sm-6">
+        <h5>
+         No Icon Set!
+        </h5>
+       </div>
+       <div class="col-sm-6">
+        <h5>
+         Upload New Icon
+        </h5>
+        <form action="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/icon" class="form" enctype="multipart/form-data" id="iconForm" method="POST">
+         <input name="collectionUrl" type="hidden" value="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1"/>
+         <input name="collectionUri" type="hidden" value="http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1"/>
+         <input class="form-control" name="collectionIcon" type="file"/>
+        </form>
+       </div>
+      </div>
+     </div>
+     <div class="modal-footer">
+      <button class="btn btn-danger" data-dismiss="modal">
+       Close
+      </button>
+      <button class="btn btn-primary" form="iconForm" type="submit">
+       Save changes
+      </button>
+     </div>
+    </div>
    </div>
-   <style>
-    .buorg-icon {width: 22px; height: 16px; vertical-align: middle; position: relative; top: -0.05em; display: inline-block; background: no-repeat 0px center url(https://browser-update.org/static/img/small/c.png);}
-   </style>
-   <style>
-    .buorg {position:absolute;position:fixed;z-index:111111; width:100%; top:0px; left:0px; border-bottom:1px solid #A29330; text-align:center;  color:#000; background-color: #fff8ea; font: 18px Calibri,Helvetica,sans-serif; box-shadow: 0 0 5px rgba(0,0,0,0.2);animation: buorgfly 1s ease-out 0s;}.buorg-pad { padding: 9px;  line-height: 1.7em; }.buorg-buttons { display: block; text-align: center; }#buorgig,#buorgul,#buorgpermanent { color: #fff; text-decoration: none; cursor:pointer; box-shadow: 0 0 2px rgba(0,0,0,0.4); padding: 1px 10px; border-radius: 4px; font-weight: normal; background: #5ab400;    white-space: nowrap;    margin: 0 2px; display: inline-block;}#buorgig { background-color: #edbc68;}@media only screen and (max-width: 700px){.buorg div { padding:5px 12px 5px 9px; line-height: 1.3em;}}@keyframes buorgfly {from {opacity:0;transform:translateY(-50px)} to {opacity:1;transform:translateY(0px)}}.buorg-fadeout {transition: visibility 0s 8.5s, opacity 8s ease-out .5s;}
-   </style>
   </div>
   <nav class="navbar navbar-fixed-top">
    <div class="content">
@@ -76,11 +118,38 @@ try {
        </a>
       </li>
       <li>
-       <a href="/login">
-        <span class="fa fa-sign-in">
+       <a href="/shared">
+        <span class="fa fa-bolt">
         </span>
         <span class="blue-text">
-         Login or Register
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text">
+         Sign Out
         </span>
        </a>
       </li>
@@ -91,17 +160,17 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-eye">
+     </span>
+     View
+    </li>
+   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="search" class="top-search-form">
-      <span class="twitter-typeahead" style="position: relative; display: inline;">
-       <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Search Test Synbiohub" spellcheck="false" style="width: 96%; position: relative; vertical-align: top;" type="text" value=""/>
-       <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 13.86px; font-style: normal; font-variant: normal; font-weight: 700; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-       <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-        <div class="tt-dataset tt-dataset-my-dataset">
-        </div>
-       </div>
-      </span>
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -110,13 +179,308 @@ try {
     </li>
    </ul>
   </div>
-  <div class="container">
-   <h1>
-    Error
-   </h1>
-   <p style="white-space:pre">
-    http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1 not found
-   </p>
+  <div class="clearfix">
+  </div>
+  <div class="submission-detail container-fluid">
+   <div class="row entry-heading">
+    <div class="col-sm-6 entry-title">
+     <h1>
+      sequence1
+     </h1>
+     <h3>
+      testid_sequence1_collection
+      <a href="/search/displayId='testid_sequence1_collection'&amp;" title="Find all records with the same identifier">
+       <span class="fa fa-search">
+       </span>
+      </a>
+      Version 1
+      <a href="/search/persistentIdentity=&lt;http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection&gt;&amp;" title="Find all versions">
+       <span class="fa fa-search">
+       </span>
+      </a>
+     </h3>
+     <h4>
+      Collection
+      <a href="http://sbolstandard.org/v2#Collection" title="Learn more about this RDF type">
+       <span class="fa fa-info-circle">
+       </span>
+      </a>
+     </h4>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-11">
+     <h5>
+      Created by: dockertestuser
+      <a href="/search/dc:creator='dockertestuser'&amp;" title="Find all records created by this person">
+       <span class="fa fa-search">
+       </span>
+      </a>
+     </h5>
+     <h4>
+      testdescription
+      <br/>
+      <a href="/search/?q=testdescription&lt;br/&gt;
+" title="Find all records with terms in common with this description">
+       <span class="fa fa-search">
+       </span>
+      </a>
+     </h4>
+    </div>
+   </div>
+   <div class="row">
+    <div class="btn-group">
+     <li class="dropdown btn btn-primary">
+      <span class="fa fa-download">
+       <span class="caret">
+       </span>
+      </span>
+      <ul class="dropdown-menu dropdown-toggle">
+       <li>
+        <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/testid_sequence1_collection.xml">
+         Download SBOL File
+        </a>
+       </li>
+       <li>
+        <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/testid_sequence1_collection.omex">
+         Download COMBINE Archive
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="btn btn-success">
+      <a onclick="popup()" style="color:white" title="Share">
+       <span class="fa fa-share">
+       </span>
+      </a>
+     </li>
+     <li class="btn btn-success">
+      <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/removeCollection" onclick="return confirm('Are you sure you want to delete this?')" style="color:white" title="Remove Collection">
+       <span class="fa fa-remove">
+       </span>
+      </a>
+     </li>
+     <li class="btn btn-info">
+      <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/addOwner" style="color:white" title="Add Owner">
+       <span class="fa fa-id-card">
+       </span>
+      </a>
+     </li>
+    </div>
+    <br/>
+    <br/>
+   </div>
+   <h3>
+    Members
+   </h3>
+   <table class="table table-striped entry-detail-table sbh-collection-members-datatable">
+    <thead>
+     <tr>
+      <th>
+       Name
+      </th>
+      <th>
+       Identifier
+      </th>
+      <th>
+       Type
+      </th>
+      <th>
+       Description
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+    </tbody>
+   </table>
+   <div class="container">
+    <div class="panel-group" id="accordion">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseDetails">
+         <b>
+          Details
+         </b>
+        </a>
+       </h4>
+      </div>
+      <div class="panel-collapse collapse in" id="collapseDetails">
+       <div class="panel-body">
+        <table class="table table-striped entry-detail-table">
+        </table>
+        <div data-src="" id="sbh-description">
+         <h4>
+          <a href="#" id="sbh-add-description">
+           <span class="fa fa-plus">
+           </span>
+           <i>
+            Add description...
+           </i>
+          </a>
+         </h4>
+        </div>
+        <div data-src="" id="sbh-notes">
+         <h4>
+          <a href="#" id="sbh-add-notes">
+           <span class="fa fa-plus">
+           </span>
+           <i>
+            Add notes...
+           </i>
+          </a>
+         </h4>
+        </div>
+        <div data-src="" id="sbh-source">
+         <h4>
+          <a href="#" id="sbh-add-source">
+           <span class="fa fa-plus">
+           </span>
+           <i>
+            Add source...
+           </i>
+          </a>
+         </h4>
+        </div>
+        <div data-src="none" id="sbh-citations">
+         <h4>
+          <a href="#" id="sbh-add-citations">
+           <span class="fa fa-plus">
+           </span>
+           <i>
+            Add reference...
+           </i>
+          </a>
+         </h4>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseOther">
+         <b>
+          Other Properties
+         </b>
+        </a>
+       </h4>
+      </div>
+      <div class="panel-collapse collapse" id="collapseOther">
+       <div class="panel-body">
+        <div class="row">
+         <div class="col-md-12">
+          <table class="table table-striped entry-detail-table">
+           <tbody>
+            <tr>
+             <td>
+              synbiohub#ownedBy
+              <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
+               <span class="fa fa-info-circle">
+               </span>
+              </a>
+             </td>
+             <td>
+              user/dockertestuser
+              <a href="/user/dockertestuser" title="Learn more about this annotation value">
+               <span class="fa fa-info-circle">
+               </span>
+              </a>
+              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/dockertestuser&gt;&amp;" title="Find all records with this annotation">
+               <span class="fa fa-search">
+               </span>
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td>
+              synbiohub#topLevel
+              <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" title="Learn more about this annotation type">
+               <span class="fa fa-info-circle">
+               </span>
+              </a>
+             </td>
+             <td>
+              testid_sequence1_collection/1
+              <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1" title="Learn more about this annotation value">
+               <span class="fa fa-info-circle">
+               </span>
+              </a>
+              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel&gt;=&lt;http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1&gt;&amp;" title="Find all records with this annotation">
+               <span class="fa fa-search">
+               </span>
+              </a>
+             </td>
+            </tr>
+           </tbody>
+          </table>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+       <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" href="#collapseAttachments">
+         <b>
+          Attachments
+         </b>
+        </a>
+       </h4>
+      </div>
+      <div class="panel-collapse collapse" id="collapseAttachments">
+       <div class="panel-body">
+        <div class="row">
+         <div class="col-md-12">
+          <table class="attachments-table table table-striped">
+           <thead>
+            <tr>
+             <th>
+              Type
+             </th>
+             <th>
+              Name
+             </th>
+             <th>
+              Size
+             </th>
+             <th>
+             </th>
+            </tr>
+           </thead>
+           <tbody>
+           </tbody>
+          </table>
+          <div class="row">
+           <form action="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/attach" enctype="multipart/form-data" id="sbh-attachment-form" method="post">
+            <div class="col-xs-6">
+             <div class="input-group">
+              <label class="input-group-btn">
+               <span class="btn btn-primary">
+                Select file(s)…
+                <input multiple="multiple" name="file" style="display: none" type="file"/>
+               </span>
+              </label>
+              <input class="form-control" readonly="readonly" type="text"/>
+             </div>
+            </div>
+            <div class="col-xs-3">
+            </div>
+            <div class="col-xs-3">
+             <button class="btn" disabled="disabled" style="width:100%" type="submit">
+              Attach
+             </button>
+            </div>
+           </form>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
   </div>
   <div class="clearfix">
   </div>
@@ -147,6 +511,13 @@ try {
     </a>
    </span>
   </div>
+  <script>
+   function popup() {
+    popupS.modal({
+        content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/adc918b04b59f63f2f0b8d9c3b3703f1f57c6e1f/share"/></div>',
+    });
+}
+  </script>
   <script src="/js/saveSvgAsPng.js">
   </script>
   <script src="/js/jquery/jquery-2.1.3.min.js">
@@ -168,10 +539,6 @@ try {
   <script src="/js/BootstrapMenu.js">
   </script>
   <script src="/bundle.js">
-  </script>
-  <script src="//browser-update.org/update.min.js">
-  </script>
-  <script src="//browser-update.org/update.show.min.js">
   </script>
  </body>
 </html>

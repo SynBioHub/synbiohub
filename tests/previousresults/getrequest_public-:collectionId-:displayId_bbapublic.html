@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="margin-top: 110px;">
+<html>
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -39,6 +39,7 @@
 function $buo_f() {
     var e = document.createElement("script");
     e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
     document.body.appendChild(e);
 };
 
@@ -52,32 +53,6 @@ try {
   </script>
  </head>
  <body>
-  <div class="buorg" id="buorg" style="cursor: pointer;">
-   <div class="buorg-pad">
-    <span class="buorg-icon">
-    </span>
-    <b class="buorg-mainmsg">
-     Your web browser (Chrome 69) is out of date.
-    </b>
-    <span class="buorg-moremsg">
-     Update your browser for more security, speed and the best experience on this site.
-    </span>
-    <span class="buorg-buttons">
-     <a href="https://browser-update.org/update-browser.html#3.2.10:localhost" id="buorgul" rel="noopener" target="_blank">
-      Update browser
-     </a>
-     <a id="buorgig">
-      Ignore
-     </a>
-    </span>
-   </div>
-   <style>
-    .buorg-icon {width: 22px; height: 16px; vertical-align: middle; position: relative; top: -0.05em; display: inline-block; background: no-repeat 0px center url(https://browser-update.org/static/img/small/c.png);}
-   </style>
-   <style>
-    .buorg {position:absolute;position:fixed;z-index:111111; width:100%; top:0px; left:0px; border-bottom:1px solid #A29330; text-align:center;  color:#000; background-color: #fff8ea; font: 18px Calibri,Helvetica,sans-serif; box-shadow: 0 0 5px rgba(0,0,0,0.2);animation: buorgfly 1s ease-out 0s;}.buorg-pad { padding: 9px;  line-height: 1.7em; }.buorg-buttons { display: block; text-align: center; }#buorgig,#buorgul,#buorgpermanent { color: #fff; text-decoration: none; cursor:pointer; box-shadow: 0 0 2px rgba(0,0,0,0.4); padding: 1px 10px; border-radius: 4px; font-weight: normal; background: #5ab400;    white-space: nowrap;    margin: 0 2px; display: inline-block;}#buorgig { background-color: #edbc68;}@media only screen and (max-width: 700px){.buorg div { padding:5px 12px 5px 9px; line-height: 1.3em;}}@keyframes buorgfly {from {opacity:0;transform:translateY(-50px)} to {opacity:1;transform:translateY(0px)}}.buorg-fadeout {transition: visibility 0s 8.5s, opacity 8s ease-out .5s;}
-   </style>
-  </div>
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
@@ -99,11 +74,38 @@ try {
        </a>
       </li>
       <li>
-       <a href="/login">
-        <span class="fa fa-sign-in">
+       <a href="/shared">
+        <span class="fa fa-bolt">
         </span>
         <span class="blue-text">
-         Login or Register
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text">
+         Sign Out
         </span>
        </a>
       </li>
@@ -124,14 +126,7 @@ try {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="search" class="top-search-form">
-      <span class="twitter-typeahead" style="position: relative; display: inline;">
-       <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Search Test Synbiohub" spellcheck="false" style="width: 96%; position: relative; vertical-align: top;" type="text" value=""/>
-       <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 13.86px; font-style: normal; font-variant: normal; font-weight: 700; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-       <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-        <div class="tt-dataset tt-dataset-my-dataset">
-        </div>
-       </div>
-      </span>
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -155,7 +150,7 @@ try {
        </span>
       </a>
       Version 1
-      <a href="/search/persistentIdentity=&lt;http%3A%2F%2Flocalhost%3A7777%2Fpublic%2Ftestid%2FBBa_I0462&gt;&amp;" title="Find all versions">
+      <a href="/search/persistentIdentity=&lt;http://localhost:7777/public/testid/BBa_I0462&gt;&amp;" title="Find all versions">
        <span class="fa fa-search">
        </span>
       </a>
@@ -248,85 +243,7 @@ try {
    <div class="row">
     <div class="col-md-12 text-center">
     </div>
-    <div id="design" style="width: 480.8px; height: 249.697px;">
-     <svg height="100%" id="SvgjsSvg1000" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <g id="SvgjsG1006" transform="matrix(1 0 0 1 16 16)">
-      </g>
-      <g id="SvgjsG1007">
-      </g>
-      <g id="SvgjsG1030" transform="matrix(1 0 0 1 122 -160.703125)">
-       <g id="SvgjsG1028" transform="translate(10 300)">
-        <g id="SvgjsG1023">
-         <line id="SvgjsLine1024" stroke="black" stroke-width="2px" x1="-48" x2="316.8" y1="0" y2="0">
-         </line>
-         <g id="SvgjsG1012">
-          <path d="M0 21.599999999999998L28.799999999999997 21.599999999999998C28.799999999999997 0 0 0 0 21.599999999999998z " data-placement="top" data-toggle="tooltip" data-uri="/public/testid/BBa_B0034/1" fill="#966fd6" id="SvgjsPath1008" stroke="black" title="Component
-Identifier: BBa_B0034
-Name: B0034
-Role: ribosome_entry_site
-Orientation: inline
-1..12
-" transform="matrix(1 0 0 1 0 -21.599999999999998)">
-          </path>
-          <text font-family="Helvetica, Arial, sans-serif" id="SvgjsText1009" text-anchor="middle" transform="matrix(1 0 0 1 14.399999618530273 -37.599999999999994)">
-           <tspan dy="20.8" id="SvgjsTspan1010" x="0">
-           </tspan>
-           <tspan alignment-baseline="middle" id="SvgjsTspan1011">
-            B0034
-           </tspan>
-          </text>
-         </g>
-         <g id="SvgjsG1017">
-          <path d="M0 0L33.6 0L48 14.399999999999999L33.6 28.799999999999997L0 28.799999999999997z " data-placement="top" data-toggle="tooltip" data-uri="/public/testid/BBa_C0062/1" fill="#779ecb" id="SvgjsPath1013" stroke="black" title="Component
-Identifier: BBa_C0062
-Name: luxR
-Role: CDS
-Orientation: inline
-19..774
-" transform="matrix(1 0 0 1 92.8 -14.399999999999999)">
-          </path>
-          <text font-family="Helvetica, Arial, sans-serif" id="SvgjsText1014" text-anchor="middle" transform="matrix(1 0 0 1 116.8 -30.4)">
-           <tspan dy="20.8" id="SvgjsTspan1015" x="0">
-           </tspan>
-           <tspan alignment-baseline="middle" id="SvgjsTspan1016">
-            luxR
-           </tspan>
-          </text>
-         </g>
-         <g id="SvgjsG1022">
-          <path d="M24 28.799999999999997L24 0M0 0L48 0 " data-placement="top" data-toggle="tooltip" data-uri="/public/testid/BBa_B0015/1" fill="none" id="SvgjsPath1018" stroke="#c23b22" stroke-linejoin="round" stroke-width="5px" title="Component
-Identifier: BBa_B0015
-Name: B0015
-Role: terminator
-Orientation: inline
-808..936
-" transform="matrix(1 0 0 1 204.8 -28.799999999999997)">
-          </path>
-          <text font-family="Helvetica, Arial, sans-serif" id="SvgjsText1019" text-anchor="middle" transform="matrix(1 0 0 1 228.8 -44.8)">
-           <tspan dy="20.8" id="SvgjsTspan1020" x="0">
-           </tspan>
-           <tspan alignment-baseline="middle" id="SvgjsTspan1021">
-            B0015
-           </tspan>
-          </text>
-         </g>
-         <text font-family="Helvetica, Arial, sans-serif" id="SvgjsText1025" text-anchor="left" transform="matrix(1 0 0 1 -100 -100)">
-          <tspan dy="20.8" id="SvgjsTspan1026" x="0">
-          </tspan>
-          <tspan alignment-baseline="middle" id="SvgjsTspan1027">
-           BBa_I0462 (I0462)
-          </tspan>
-         </text>
-        </g>
-        <rect fill="none" height="153.69686889648438" id="SvgjsRect1029" rx="8" ry="8" stroke="black" stroke-linejoin="round" stroke-width="2px" transform="matrix(1 0 0 1 -116 -123.296875)" width="448.79998779296875">
-        </rect>
-       </g>
-      </g>
-      <g id="SvgjsG1031">
-      </g>
-      <defs id="SvgjsDefs1001">
-      </defs>
-     </svg>
+    <div id="design">
     </div>
    </div>
    <div class="container">
@@ -354,22 +271,22 @@ Orientation: inline
             </a>
            </td>
            <td>
-            linear
-            <a href="http://identifiers.org/so/SO:0000987" title="Learn more about this type">
-             <span class="fa fa-info-circle">
-             </span>
-            </a>
-            <a href="/search/type=&lt;http%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000987&gt;&amp;" title="Find all records with this type">
-             <span class="fa fa-search">
-             </span>
-            </a>
-            <br/>
             DnaRegion
             <a href="http://www.biopax.org/release/biopax-level3.owl#DnaRegion" title="Learn more about this type">
              <span class="fa fa-info-circle">
              </span>
             </a>
-            <a href="/search/type=&lt;http%3A%2F%2Fwww.biopax.org%2Frelease%2Fbiopax-level3.owl%23DnaRegion&gt;&amp;" title="Find all records with this type">
+            <a href="/search/type=&lt;http://www.biopax.org/release/biopax-level3.owl#DnaRegion&gt;&amp;" title="Find all records with this type">
+             <span class="fa fa-search">
+             </span>
+            </a>
+            <br/>
+            linear
+            <a href="http://identifiers.org/so/SO:0000987" title="Learn more about this type">
+             <span class="fa fa-info-circle">
+             </span>
+            </a>
+            <a href="/search/type=&lt;http://identifiers.org/so/SO:0000987&gt;&amp;" title="Find all records with this type">
              <span class="fa fa-search">
              </span>
             </a>
@@ -390,7 +307,7 @@ Orientation: inline
              <span class="fa fa-info-circle">
              </span>
             </a>
-            <a href="/search/role=&lt;http%3A%2F%2Fidentifiers.org%2Fso%2FSO%3A0000804&gt;&amp;" title="Find all records with this role">
+            <a href="/search/role=&lt;http://identifiers.org/so/SO:0000804&gt;&amp;" title="Find all records with this role">
              <span class="fa fa-search">
              </span>
             </a>
@@ -640,7 +557,7 @@ Role(s)
                <span class="fa fa-info-circle">
                </span>
               </a>
-              <a href="/search/&lt;http%3A%2F%2Fwiki.synbiohub.org%2Fwiki%2FTerms%2Fsynbiohub%23ownedBy&gt;=&lt;http%3A%2F%2Flocalhost%3A7777%2Fuser%2Ftestuser&gt;&amp;" title="Find all records with this annotation">
+              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/testuser&gt;&amp;" title="Find all records with this annotation">
                <span class="fa fa-search">
                </span>
               </a>
@@ -660,7 +577,7 @@ Role(s)
                <span class="fa fa-info-circle">
                </span>
               </a>
-              <a href="/search/&lt;http%3A%2F%2Fwiki.synbiohub.org%2Fwiki%2FTerms%2Fsynbiohub%23topLevel&gt;=&lt;http%3A%2F%2Flocalhost%3A7777%2Fpublic%2Ftestid%2FBBa_I0462%2F1&gt;&amp;" title="Find all records with this annotation">
+              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel&gt;=&lt;http://localhost:7777/public/testid/BBa_I0462/1&gt;&amp;" title="Find all records with this annotation">
                <span class="fa fa-search">
                </span>
               </a>
@@ -694,7 +611,7 @@ Role(s)
               <a href="/public/testid/testid_collection/1" title="testcollection">
                testcollection
               </a>
-              <a href="/search/collection=&lt;http%3A%2F%2Flocalhost%3A7777%2Fpublic%2Ftestid%2Ftestid_collection%2F1&gt;&amp;" title="Find all records in this collection">
+              <a href="/search/collection=&lt;http://localhost:7777/public/testid/testid_collection/1&gt;&amp;" title="Find all records in this collection">
                <span class="fa fa-search">
                </span>
               </a>
@@ -787,18 +704,6 @@ Role(s)
   <script src="/js/BootstrapMenu.js">
   </script>
   <script src="/bundle.js">
-  </script>
-  <svg height="0" id="SvgjsSvg1002" style="opacity: 0; position: fixed; left: 100%; top: 100%; overflow: hidden;" version="1.1" width="2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-   <polyline id="SvgjsPolyline1005" points="0,0">
-   </polyline>
-   <path d="M24,28.799999999999997L24,0M0,0L48,0" id="SvgjsPath1004">
-   </path>
-   <defs id="SvgjsDefs1003">
-   </defs>
-  </svg>
-  <script src="//browser-update.org/update.min.js">
-  </script>
-  <script src="//browser-update.org/update.show.min.js">
   </script>
  </body>
 </html>

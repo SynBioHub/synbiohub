@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="margin-top: 110px;">
+<html>
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -62,6 +62,7 @@
 function $buo_f() {
     var e = document.createElement("script");
     e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
     document.body.appendChild(e);
 };
 
@@ -129,32 +130,6 @@ h1 {
   </style>
  </head>
  <body>
-  <div class="buorg" id="buorg" style="cursor: pointer;">
-   <div class="buorg-pad">
-    <span class="buorg-icon">
-    </span>
-    <b class="buorg-mainmsg">
-     Your web browser (Chrome 69) is out of date.
-    </b>
-    <span class="buorg-moremsg">
-     Update your browser for more security, speed and the best experience on this site.
-    </span>
-    <span class="buorg-buttons">
-     <a href="https://browser-update.org/update-browser.html#3.2.10:localhost" id="buorgul" rel="noopener" target="_blank">
-      Update browser
-     </a>
-     <a id="buorgig">
-      Ignore
-     </a>
-    </span>
-   </div>
-   <style>
-    .buorg-icon {width: 22px; height: 16px; vertical-align: middle; position: relative; top: -0.05em; display: inline-block; background: no-repeat 0px center url(https://browser-update.org/static/img/small/c.png);}
-   </style>
-   <style>
-    .buorg {position:absolute;position:fixed;z-index:111111; width:100%; top:0px; left:0px; border-bottom:1px solid #A29330; text-align:center;  color:#000; background-color: #fff8ea; font: 18px Calibri,Helvetica,sans-serif; box-shadow: 0 0 5px rgba(0,0,0,0.2);animation: buorgfly 1s ease-out 0s;}.buorg-pad { padding: 9px;  line-height: 1.7em; }.buorg-buttons { display: block; text-align: center; }#buorgig,#buorgul,#buorgpermanent { color: #fff; text-decoration: none; cursor:pointer; box-shadow: 0 0 2px rgba(0,0,0,0.4); padding: 1px 10px; border-radius: 4px; font-weight: normal; background: #5ab400;    white-space: nowrap;    margin: 0 2px; display: inline-block;}#buorgig { background-color: #edbc68;}@media only screen and (max-width: 700px){.buorg div { padding:5px 12px 5px 9px; line-height: 1.3em;}}@keyframes buorgfly {from {opacity:0;transform:translateY(-50px)} to {opacity:1;transform:translateY(0px)}}.buorg-fadeout {transition: visibility 0s 8.5s, opacity 8s ease-out .5s;}
-   </style>
-  </div>
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
@@ -176,11 +151,38 @@ h1 {
        </a>
       </li>
       <li>
-       <a href="/login">
-        <span class="fa fa-sign-in">
+       <a href="/shared">
+        <span class="fa fa-bolt">
         </span>
         <span class="blue-text">
-         Login or Register
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text">
+         Sign Out
         </span>
        </a>
       </li>
@@ -201,14 +203,7 @@ h1 {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="search" class="top-search-form">
-      <span class="twitter-typeahead" style="position: relative; display: inline;">
-       <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Search Test Synbiohub" spellcheck="false" style="width: 96%; position: relative; vertical-align: top;" type="text" value=""/>
-       <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 13.86px; font-style: normal; font-variant: normal; font-weight: 700; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-       <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-        <div class="tt-dataset tt-dataset-my-dataset">
-        </div>
-       </div>
-      </span>
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -254,14 +249,7 @@ h1 {
            for useful parts and designs
           </h3>
           <form action="/search" class="main-search-form">
-           <span class="twitter-typeahead" style="position: relative; display: inline;">
-            <input autocomplete="off" class="sbh-autocomplete tt-input" dir="auto" name="q" placeholder="Part name" spellcheck="false" style="position: relative; vertical-align: top;" type="text" value=""/>
-            <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Roboto, sans-serif; font-size: 12.6px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
-            <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-             <div class="tt-dataset tt-dataset-my-dataset">
-             </div>
-            </div>
-           </span>
+           <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
            <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
             Search
            </button>
@@ -362,10 +350,6 @@ h1 {
   <script src="/js/BootstrapMenu.js">
   </script>
   <script src="/bundle.js">
-  </script>
-  <script src="//browser-update.org/update.min.js">
-  </script>
-  <script src="//browser-update.org/update.show.min.js">
   </script>
  </body>
 </html>
