@@ -8,12 +8,12 @@ block jsState
     script.testignore meta = 
         != JSON.stringify(meta)
 
-    script.
-        function popup() {
-            popupS.modal({
-                content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="#{share}"/></div>',
-            });
-        }
+    script.testignore
+        | function popup() {
+        |    popupS.modal({
+        |         content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="#{share}"/></div>',
+        |     });
+        | }
 
 block breadcrumbs
     ul
