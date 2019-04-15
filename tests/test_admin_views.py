@@ -39,6 +39,6 @@ class TestAdminViews(TestCase):
     #def test_admin_backup(self):
     #    compare_get_request("admin/backup")
 
-    def test_admin_log(self):
-        compare_get_request("admin/log")
+    #def test_admin_log(self):
+    #    compare_get_request("admin/log")
     

@@ -4,6 +4,52 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="A parts repository for synthetic biology." name="description"/>
+  <script type="application/ld+json">
+   {
+  "name": "Test Synbiohub",
+  "description": "text",
+  "url": "http://localhost:7777/",
+  "keywords": "synbiohub",
+  "identifier": [
+    "TestSynbiohub"
+  ],
+  "dataset": [
+    {
+      "name": "testcollection",
+      "description": "testdescription",
+      "url": "http://localhost:7777",
+      "identifier": [
+        "testid_collection"
+      ],
+      "includedInDataCatalog": [
+        "http://localhost:7777/"
+      ],
+      "@context": {
+        "scheme": "http://schema.org/",
+        "bs": "http://bioschema.org/"
+      },
+      "@type": "https://bioschemas.org/Dataset",
+      "creator": [
+        "SynBioHub"
+      ],
+      "keywords": "synbiohub"
+    }
+  ],
+  "@context": {
+    "scheme": "http://schema.org/",
+    "bs": "http://bioschema.org/"
+  },
+  "@type": "https://bioschemas.org/DataCatalog",
+  "provider": [
+    "foo@example.com"
+  ],
+  "publication": "https://pubs.acs.org/doi/abs/10.1021/acssynbio.7b00403",
+  "sourceOrganization": [
+    "Newcastle University"
+  ]
+}
+  </script>
   <title>
    Test Synbiohub
   </title>
@@ -28,6 +74,60 @@ try {
   </script>
   <script src="/js/popupS.min.js">
   </script>
+  <style>
+   body {
+    background-color: #f6f6f6;
+}
+
+.grey-page-mark {
+    background-color: #f6f6f6;
+}
+
+.top-search-form {
+    display: none;
+}
+
+.main-search-form input {
+    width: 60%;
+    margin-left: 0;
+    background-color: white;
+    padding: 14px 16px 13px 32px;
+    height: 40px;
+}
+
+.main-search-form .submit {
+    padding: 12px 21px;
+    height: 40px;
+}
+
+.main-search-form label {
+    color: #7F8C8D;
+}
+
+.search-section {
+    height: 60px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.navbar {
+}
+
+.sbol-breadcrumbs {
+}
+
+.sbol-logo-dark-single-line {
+    display: none;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  </style>
  </head>
  <body>
   <nav class="navbar navbar-fixed-top">
@@ -69,15 +169,6 @@ try {
        </a>
       </li>
       <li>
-       <a href="/admin">
-        <span class="fa fa-cogs">
-        </span>
-        <span class="blue-text">
-         Admin
-        </span>
-       </a>
-      </li>
-      <li>
        <a href="/profile">
         <span class="fa fa-id-card">
         </span>
@@ -103,10 +194,10 @@ try {
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
    <ul>
-    <li class="inactive">
-     <span class="fa fa-align-left">
+    <li>
+     <span class="fa fa-home">
      </span>
-     Manage Submissions
+     Home
     </li>
    </ul>
    <ul style="flex-grow: 1">
@@ -121,44 +212,88 @@ try {
     </li>
    </ul>
   </div>
-  <div class="clearfix">
-  </div>
-  <div class="container">
+  <div class="container container-fluid">
    <div class="row">
-    <div class="col-md-6 submission-list">
-     <h4>
-      Private Submissions
-     </h4>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" style="text-align: center">
+     <h1>
+      Test Synbiohub
+     </h1>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 sbh-frontpage-blurb">
      <p>
-      You currently have 0 private submission(s)
+      text
      </p>
     </div>
-    <div class="col-md-6 submission-list">
-     <h4>
-      Public Submissions
-     </h4>
-     <p>
-      You currently have 1 public submission(s)
-     </p>
-     <div class="search-result-item">
-      <div class="ribbon-wrapper">
-       <div class="ribbon-public">
-        Public
-       </div>
-      </div>
-      <a href="/public/testid/testid_collection/1">
-       testid_collection (testcollection)
-      </a>
-      <p>
-       version 1
-      </p>
-      <div class="keywords">
-       <strong>
-        testdescription
-       </strong>
-      </div>
-      <br/>
-      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+   </div>
+   <div class="row sbh-main-page-row">
+    <div class="col-md-12" style="text-align: center">
+     <div class="sbh-frontpage-container">
+      <table class="sbh-frontpage-pictures" style="text-align: left">
+       <tr>
+        <td>
+         <span class="fa fa-search">
+         </span>
+        </td>
+        <td>
+         <h3>
+          <b>
+           Search
+          </b>
+          for useful parts and designs
+         </h3>
+         <form action="/search" class="main-search-form">
+          <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
+          <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
+           Search
+          </button>
+         </form>
+         <br/>
+         <a class="button btn btn-primary" href="/browse">
+          Browse Design Collections
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <span class="fa fa-upload">
+         </span>
+        </td>
+        <td>
+         <h3>
+          <b>
+           Upload
+          </b>
+          your design for safekeeping
+         </h3>
+         <a class="button btn btn-primary" href="/submit">
+          Submit a Design
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <span class="fa fa-share-alt">
+         </span>
+        </td>
+        <td>
+         <h3>
+          <b>
+           Share
+          </b>
+          designs for publication or collaboration
+         </h3>
+         <a class="button btn btn-primary" href="/manage">
+          Manage Submissions
+         </a>
+        </td>
+       </tr>
+      </table>
      </div>
     </div>
    </div>

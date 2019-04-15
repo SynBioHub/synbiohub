@@ -33,6 +33,12 @@ if __name__ == '__main__':
 
     import test_admin_views
     addTestModule(test_admin_views)
+
+    import docker_test_setup
+    addTestModule(docker_test_setup)
+
+    import docker_test
+    addTestModule(docker_test)
     
     runner = unittest.TextTestRunner()
     result = runner.run(tests)

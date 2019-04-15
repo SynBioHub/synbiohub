@@ -1,9 +1,12 @@
+import time
 from requests.exceptions import HTTPError
 import requests_html, difflib, sys
 from bs4 import BeautifulSoup
 
 from test_arguments import args, test_print
 from TestState import TestState, clip_request
+
+IGNORE_CLASSES = ["testignore", "buorg"]
 
 test_state = TestState()
 
@@ -20,8 +23,9 @@ def format_html(htmlstring):
     soup = BeautifulSoup(htmlstring, 'lxml')
 
     # remove elements with class testignore
-    for div in soup.find_all(class_="testignore"):
-        div.decompose()
+    for ignore_class in IGNORE_CLASSES:
+        for div in soup.find_all(class_=ignore_class):
+            div.decompose()
     
     return soup.prettify()
 
@@ -57,8 +61,9 @@ def get_address(request, route_parameters):
 
 
 
-# perform a get request
-def get_request(request, headers, route_parameters):
+# perform a get request, and render the javascript
+# post requests do not render the javascript
+def get_request(request, headers, route_parameters, re_render_time):
     
     # get the current token
     user_token = test_state.get_authentification()
@@ -70,14 +75,23 @@ def get_request(request, headers, route_parameters):
     session = requests_html.HTMLSession()
 
     response = session.get(address, headers = headers)
-    response.html.render()
-    
     try:
         response.raise_for_status()
     except HTTPError:
         raise HTTPError("Internal server error. Content of response was \n" + response.text)
+
+    # format once before rendering to remove ignored elements
+    content_unrendered = format_html(response.html.html)
+
+    content_html = requests_html.HTML(html=content_unrendered)
+
+    content_html.render()
+    if re_render_time != 0:
+        time.sleep(re_render_time/1000)
+        content_html.render()
     
-    content = format_html(response.html.html)
+    # format again after rendering
+    content = format_html(content_html.html)
 
     return content
 
@@ -167,11 +181,14 @@ def login_with(data, headers = {'Accept':'text/plain'}):
     test_state.save_authentification(result)
 
 
-def compare_get_request(request, test_name = "", route_parameters = [], headers = {}):
+def compare_get_request(request, test_name = "", route_parameters = [], headers = {}, re_render_time = 0):
     """Complete a get request and error if it differs from previous results.
 
     request -- string, the name of the page being requested
-    route_parameters -- a ordered lists of the parameters for the endpoint"""
+    route_parameters -- a ordered lists of the parameters for the endpoint
+    test_name -- a name to make the request unique from another test of this endpoint
+    headers -- a dictionary of headers to include in the request
+    re_render_time -- time to wait in milliseconds before rendering javascript again"""
 
     # remove any leading forward slashes for consistency
     request = clip_request(request)
@@ -179,7 +196,7 @@ def compare_get_request(request, test_name = "", route_parameters = [], headers 
     testpath = request_file_path(request, "get request", test_name)
     test_state.add_get_request(request, testpath, test_name)
         
-    compare_request(get_request(request, headers, route_parameters), request, "get request", route_parameters, testpath)
+    compare_request(get_request(request, headers, route_parameters, re_render_time), request, "get request", route_parameters, testpath)
 
 
 def compare_post_request(request, data, test_name = "", route_parameters = [], headers = {}, files = None):
