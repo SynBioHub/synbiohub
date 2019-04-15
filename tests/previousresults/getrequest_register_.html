@@ -4,6 +4,52 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="A parts repository for synthetic biology." name="description"/>
+  <script type="application/ld+json">
+   {
+  "name": "Test Synbiohub",
+  "description": "text",
+  "url": "http://localhost:7777/",
+  "keywords": "synbiohub",
+  "identifier": [
+    "TestSynbiohub"
+  ],
+  "dataset": [
+    {
+      "name": "testcollection",
+      "description": "testdescription",
+      "url": "http://localhost:7777",
+      "identifier": [
+        "testid_collection"
+      ],
+      "includedInDataCatalog": [
+        "http://localhost:7777/"
+      ],
+      "@context": {
+        "scheme": "http://schema.org/",
+        "bs": "http://bioschema.org/"
+      },
+      "@type": "https://bioschemas.org/Dataset",
+      "creator": [
+        "SynBioHub"
+      ],
+      "keywords": "synbiohub"
+    }
+  ],
+  "@context": {
+    "scheme": "http://schema.org/",
+    "bs": "http://bioschema.org/"
+  },
+  "@type": "https://bioschemas.org/DataCatalog",
+  "provider": [
+    "foo@example.com"
+  ],
+  "publication": "https://pubs.acs.org/doi/abs/10.1021/acssynbio.7b00403",
+  "sourceOrganization": [
+    "Newcastle University"
+  ]
+}
+  </script>
   <title>
    Test Synbiohub
   </title>
@@ -28,6 +74,60 @@ try {
   </script>
   <script src="/js/popupS.min.js">
   </script>
+  <style>
+   body {
+    background-color: #f6f6f6;
+}
+
+.grey-page-mark {
+    background-color: #f6f6f6;
+}
+
+.top-search-form {
+    display: none;
+}
+
+.main-search-form input {
+    width: 60%;
+    margin-left: 0;
+    background-color: white;
+    padding: 14px 16px 13px 32px;
+    height: 40px;
+}
+
+.main-search-form .submit {
+    padding: 12px 21px;
+    height: 40px;
+}
+
+.main-search-form label {
+    color: #7F8C8D;
+}
+
+.search-section {
+    height: 60px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.navbar {
+}
+
+.sbol-breadcrumbs {
+}
+
+.sbol-logo-dark-single-line {
+    display: none;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  </style>
  </head>
  <body>
   <nav class="navbar navbar-fixed-top">
@@ -69,15 +169,6 @@ try {
        </a>
       </li>
       <li>
-       <a href="/admin">
-        <span class="fa fa-cogs">
-        </span>
-        <span class="blue-text">
-         Admin
-        </span>
-       </a>
-      </li>
-      <li>
        <a href="/profile">
         <span class="fa fa-id-card">
         </span>
@@ -103,10 +194,10 @@ try {
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
    <ul>
-    <li class="inactive">
-     <span class="fa fa-cogs">
+    <li>
+     <span class="fa fa-home">
      </span>
-     Admin
+     Home
     </li>
    </ul>
    <ul style="flex-grow: 1">
@@ -121,167 +212,91 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
+  <div class="container container-fluid">
    <div class="row">
     <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <!--li(role='presentation',class=(adminSection==='sparql'?'active':''))a(href='/admin/sparql') SPARQL-->
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <!--li(role='presentation',class=(adminSection==='caches'?'active':''))a(href='/admin/caches') Caches-->
-      <li role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/backup">
-        Backup
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Download Log
-       </a>
-      </li>
-     </ul>
     </div>
-    <div class="col-md-8">
-     <table class="table table-striped sbh-datatable">
-      <thead>
-       <tr>
-        <th>
-         ID
-        </th>
-        <th>
-         Username
-        </th>
-        <th>
-         Name
-        </th>
-        <th>
-         E-mail
-        </th>
-        <th>
-         Affiliation
-        </th>
-        <th>
-         Member
-        </th>
-        <th>
-         Curator
-        </th>
-        <th>
-         Admin
-        </th>
-        <th>
-        </th>
-        <th>
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <input type="hidden" value="1"/>
-         1
-        </td>
-        <td>
-         <input class="form-control" type="hidden" value="testuser"/>
-         testuser
-        </td>
-        <td>
-         <input class="form-control" type="text" value="Test User"/>
-        </td>
-        <td>
-         <input class="form-control" type="text" value="test@user.synbiohub"/>
-        </td>
-        <td>
-         <input class="form-control" type="text" value=""/>
-        </td>
-        <td>
-         <input checked="" type="checkbox"/>
-        </td>
-        <td>
-         <input checked="" type="checkbox"/>
-        </td>
-        <td>
-         <input checked="" type="checkbox"/>
-        </td>
-        <td>
-         <button class="btn btn-success save">
-          <span class="fa fa-save">
+    <div class="col-md-8" style="text-align: center">
+     <h1>
+      Test Synbiohub
+     </h1>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 sbh-frontpage-blurb">
+     <p>
+      text
+     </p>
+    </div>
+   </div>
+   <div class="row sbh-main-page-row">
+    <div class="col-md-12" style="text-align: center">
+     <div class="sbh-frontpage-container">
+      <table class="sbh-frontpage-pictures" style="text-align: left">
+       <tbody>
+        <tr>
+         <td>
+          <span class="fa fa-search">
           </span>
-         </button>
-        </td>
-        <td>
-        </td>
-       </tr>
-      </tbody>
-     </table>
-     <br/>
-     <br/>
-     <form action="/admin/users/" method="POST">
-      <div class="row">
-       <div class="col-md-12">
-        <div class="checkbox">
-         <label>
-          <input checked="" name="allowPublicSignup" type="checkbox"/>
-          Allow Public Account Creation
-         </label>
-        </div>
-       </div>
-      </div>
-      <div class="row">
-       <div class="col-md-1 col-md-offset-11">
-        <button class="btn btn-primary" type="submit">
-         Save
-        </button>
-       </div>
-      </div>
-     </form>
-    </div>
-    <div class="col-md-1">
+         </td>
+         <td>
+          <h3>
+           <b>
+            Search
+           </b>
+           for useful parts and designs
+          </h3>
+          <form action="/search" class="main-search-form">
+           <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
+           <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
+            Search
+           </button>
+          </form>
+          <br/>
+          <a class="button btn btn-primary" href="/browse">
+           Browse Design Collections
+          </a>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <span class="fa fa-upload">
+          </span>
+         </td>
+         <td>
+          <h3>
+           <b>
+            Upload
+           </b>
+           your design for safekeeping
+          </h3>
+          <a class="button btn btn-primary" href="/submit">
+           Submit a Design
+          </a>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          <span class="fa fa-share-alt">
+          </span>
+         </td>
+         <td>
+          <h3>
+           <b>
+            Share
+           </b>
+           designs for publication or collaboration
+          </h3>
+          <a class="button btn btn-primary" href="/manage">
+           Manage Submissions
+          </a>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
     </div>
    </div>
   </div>
