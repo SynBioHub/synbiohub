@@ -5,15 +5,15 @@ include ../mixins/mutable-fields.jade
 include ../mixins/citations.jade
 
 block jsState
-    script meta = 
+    script.testignore meta = 
         != JSON.stringify(meta)
 
-    script.
-        function popup() {
-            popupS.modal({
-                content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="#{share}"/></div>',
-            });
-        }
+    script.testignore
+        | function popup() {
+        |    popupS.modal({
+        |         content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="#{share}"/></div>',
+        |     });
+        | }
 
 block breadcrumbs
     ul
@@ -91,7 +91,7 @@ block content
                             span.fa.fa-search
        
                 if meta.created.description && meta.created.description != ''
-                    h5 Date created: 
+                    h5.testignore Date created: 
                         != meta.created.description
                         a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&',title='Find all records created on this date') 
                             span.fa.fa-search
