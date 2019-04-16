@@ -1,0 +1,17 @@
+
+extends ../layouts/default.jade
+
+block content
+    div.container
+        div.submission-container(align='center')
+            div.submission-header
+                span(style='font-size: 3.3em').fa.fa-share
+                p(style='font-size: 1.7em; font-weight: bolder')
+                    | Create share link
+
+                p Your share link is:
+                pre #{shareLink}
+                br
+                div.row
+                    div.col-sm-12
+                        a.btn.btn-info(href=uri) Return to page
