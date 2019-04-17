@@ -16,6 +16,7 @@
 function $buo_f() {
     var e = document.createElement("script");
     e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
     document.body.appendChild(e);
 };
 
@@ -200,8 +201,6 @@ try {
   <script src="/js/BootstrapMenu.js">
   </script>
   <script src="/bundle.js">
-  </script>
-  <script src="//browser-update.org/update.min.js">
   </script>
  </body>
 </html>

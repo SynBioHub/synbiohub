@@ -9,4 +9,4 @@ class TestSetup(TestCase):
                      'password' : 'test'}
         login_with(logininfo)
 
-    
+
