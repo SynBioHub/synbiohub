@@ -1,11 +1,44 @@
-
 extends ../../layouts/admin.jade
 
+block jsBeforeBundle
+    script(src='/js/codemirror.js')
+    script(src='/js/codemirror-mode-sparql.js')
+
 block adminContent
-    table.table.table-striped.sbh-datatable
-        select.form-control
-            each graph in graphs
-                option(value=graph.graphUri) #{graph.graphUri}
+    div.container
+        br
+        form(action='/admin/sparql',method='post')
+            div.form-group.row
+                label.col-sm-2.col-form-label Graph
+            div.form-group.row
+                div.col-sm-10
+                    select.form-control(name='graph')
+                        each g in graphs
+                            option(value=g.graphUri,selected=(graph===g.graphUri)) #{g.graphUri}
 
+            div.form-group.row
+                label.col-sm-2.col-form-label Query
+            div.form-group.row
+                div.col-sm-10
+                    textarea(name='query').sbh-sparql-editor.form-control #{query}
 
+            div.form-group.row
+                button.pull-right.btn.btn-primary(type='submit') Submit Query
 
+            if errors.length > 0
+                for error in errors
+                    div.alert.alert-danger #{error}
+
+            if results.length > 0
+                table.table
+                    thead
+                        for header in headers
+                            th #{header}
+                    for result in results
+                        tr
+                            for header in headers
+                                td 
+                                    if result[header] !== null && result[header].startsWith !== undefined && result[header].startsWith('http')
+                                        a(href=result[header]) #{result[header]}
+                                    else
+                                        p #{result[header]}
