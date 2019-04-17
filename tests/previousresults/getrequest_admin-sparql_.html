@@ -169,12 +169,12 @@ try {
        </a>
       </li>
       <!--li(role='presentation',class=(adminSection==='caches'?'active':''))a(href='/admin/caches') Caches-->
-      <li class="active" role="presentation">
+      <li role="presentation">
        <a href="/admin/explorer">
         SBOLExplorer
        </a>
       </li>
-      <li role="presentation">
+      <li class="active" role="presentation">
        <a href="/admin/sparql">
         SPARQL
        </a>
@@ -192,44 +192,50 @@ try {
      </ul>
     </div>
     <div class="col-md-8">
-     <form action="/admin/explorer" id="explorerForm" method="POST">
-      <div class="row">
-       <div class="col-md-12">
-        <div class="alert alert-info">
-         <span class="fa fa-check-circle-o">
-         </span>
-         <span>
-          Error: It looks like SBOLExplorer is not responding.  Please check that it is up, and that the SBOLExplorer endpoint is correct.  Endpoint fields should end with '/'.
-         </span>
+     <div class="container">
+      <br/>
+      <form action="/admin/sparql" method="post">
+       <div class="form-group row">
+        <label class="col-sm-2 col-form-label">
+         Graph
+        </label>
+       </div>
+       <div class="form-group row">
+        <div class="col-sm-10">
+         <select class="form-control" name="graph">
+          <option value="http://localhost:7777/public">
+           http://localhost:7777/public
+          </option>
+         </select>
         </div>
        </div>
-      </div>
-      <div class="row">
-       <div class="col-md-6">
-        <div class="form-group">
-         <label for="SBOLExplorerEndpoint">
-          SBOLExplorer Endpoint
-         </label>
-         <input class="form-control" name="SBOLExplorerEndpoint" type="text"/>
+       <div class="form-group row">
+        <label class="col-sm-2 col-form-label">
+         Query
+        </label>
+       </div>
+       <div class="form-group row">
+        <div class="col-sm-10">
+         <textarea class="sbh-sparql-editor form-control" name="query">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX sbh: &lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#&gt;
+PREFIX prov: &lt;http://www.w3.org/ns/prov#&gt;
+PREFIX sbol: &lt;http://sbols.org/v2#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX purl: &lt;http://purl.obolibrary.org/obo/&gt;
+
+</textarea>
         </div>
        </div>
-       <div class="col-md-6">
-        <div class="checkbox">
-         <label>
-          <input name="useSBOLExplorer" type="checkbox"/>
-          Searching Using SBOLExplorer
-         </label>
-        </div>
-       </div>
-      </div>
-      <div class="row">
-       <div class="col-md-1 col-md-offset-11">
-        <button class="btn btn-primary" type="submit">
-         Save
+       <div class="form-group row">
+        <button class="pull-right btn btn-primary" type="submit">
+         Submit Query
         </button>
        </div>
-      </div>
-     </form>
+      </form>
+     </div>
     </div>
     <div class="col-md-1">
     </div>
@@ -283,6 +289,10 @@ try {
   <script src="/js/dropzone.js">
   </script>
   <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/js/codemirror.js">
+  </script>
+  <script src="/js/codemirror-mode-sparql.js">
   </script>
   <script src="/bundle.js">
   </script>
