@@ -18,36 +18,38 @@ block content
                     ul.nav.nav-pills.nav-stacked
                         li(role='presentation',class=(adminSection==='status'?'active':''))
                             a(href='/admin/') Status
-                        li(role='presentation',class=(adminSection==='explorer'?'active':''))
-                            a(href='/admin/explorer') SBOLExplorer
-                        li(role='presentation',class=(adminSection==='users'?'active':''))
-                            a(href='/admin/users') Users
-                        li(role='presentation',class=(adminSection==='mail'?'active':''))
-                            a(href='/admin/mail') Mail
-                        if config.experimental.dataIntegration
-                            li(role='presentation',class=(adminSection==='jobs'?'active':''))
-                                a(href='/admin/jobs') Jobs
-                        li(role='presentation',class=(adminSection==='plugins'?'active':''))
-                            a(href='/admin/plugins') Plugins
+                        li(role='presentation',class=(adminSection==='backup'?'active':''))
+                            a(href='/admin/backup') Backup
                         li(role='presentation',class=(adminSection==='graphs'?'active':''))
                             a(href='/admin/graphs') Graphs
-                        //li(role='presentation',class=(adminSection==='sparql'?'active':''))
-                            a(href='/admin/sparql') SPARQL
-                        li(role='presentation',class=(adminSection==='remotes'?'active':''))
-                            a(href='/admin/remotes') Remotes
-                        li(role='presentation',class=(adminSection==='registries'?'active':''))
-                            a(href='/admin/registries') Registries
-                        //li(role='presentation',class=(adminSection==='caches'?'active':''))
-                            a(href='/admin/caches') Caches
-                        li(role='presentation',class=(adminSection==='theme'?'active':''))
-                            a(href='/admin/theme') Theme
                         if config.experimental.dataIntegration
                             li(role='presentation',class=(adminSection==='integrations'?'active':''))
                                 a(href='/admin/integrations') Integrations
-                        li(role='presentation',class=(adminSection==='backup'?'active':''))
-                            a(href='/admin/backup') Backup
+                        if config.experimental.dataIntegration
+                            li(role='presentation',class=(adminSection==='jobs'?'active':''))
+                                a(href='/admin/jobs') Jobs
                         li(role='presentation')
-                            a(href='/admin/log') Download Log
+                            a(href='/admin/log') Log
+                        li(role='presentation',class=(adminSection==='mail'?'active':''))
+                            a(href='/admin/mail') Mail
+                        li(role='presentation',class=(adminSection==='plugins'?'active':''))
+                            a(href='/admin/plugins') Plugins
+                        //li(role='presentation',class=(adminSection==='sparql'?'active':''))
+                            a(href='/admin/sparql') SPARQL
+                        li(role='presentation',class=(adminSection==='registries'?'active':''))
+                            a(href='/admin/registries') Registries
+                        li(role='presentation',class=(adminSection==='remotes'?'active':''))
+                            a(href='/admin/remotes') Remotes
+                        //li(role='presentation',class=(adminSection==='caches'?'active':''))
+                            a(href='/admin/caches') Caches
+                        li(role='presentation',class=(adminSection==='explorer'?'active':''))
+                            a(href='/admin/explorer') SBOLExplorer
+                        li(role='presentation',class=(adminSection==='sparql'?'active':''))
+                            a(href='/admin/sparql') SPARQL
+                        li(role='presentation',class=(adminSection==='theme'?'active':''))
+                            a(href='/admin/theme') Theme
+                        li(role='presentation',class=(adminSection==='users'?'active':''))
+                            a(href='/admin/users') Users
                 div.col-md-8
                     block adminContent
                 div.col-md-1
