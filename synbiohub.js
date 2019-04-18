@@ -9,6 +9,7 @@ const logger = require('./lib/logger')
 const theme = require('./lib/theme')
 
 console.log = logger.info.bind(logger)
+console.debug = logger.debug.bind(logger)
 console.warn = logger.warn.bind(logger)
 console.error = logger.error.bind(logger)
 
