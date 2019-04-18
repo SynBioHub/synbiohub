@@ -31,8 +31,9 @@ Prequisites:
 * [jq](https://stedolan.github.io/jq/) (apt install `jq`)
 
 ### Ubuntu 18.04.01
- 1. Install Virtuoso from source at
+ 1. Install Virtuoso 7 from source at
     <https://github.com/openlink/virtuoso-opensource>
+ * Switch to the branch stable/7 before installing.
  * Follow the README on installing virtuoso from source. This involves installing all the dependencies and running build commands.
  * Currently, Virtuoso does not support versions of OpenSSL 1.1.0 and above, or versions of OpenSSL below 1.0.0. When installing the dependency, build from a binary between those versions from <https://www.openssl.org/source/>.
  2. Set up the Node.js repository 
