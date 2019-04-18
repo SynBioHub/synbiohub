@@ -3,9 +3,12 @@
 
 ## Running the test suite
 
-First, install dependencies using the commands
-`sudo apt-get install -y python3 python3-pip`
-`sudo pip3 install -r tests/test_requirements.txt`
+First, install dependencies. The dependencies are python 3, the python packages in tests/test_requirements.txt, and jq.
+
+Ubuntu:\
+`sudo apt-get install jq`\
+`sudo apt-get install -y python3 python3-pip`\
+`sudo pip3 install -r tests/test_requirements.txt`\
 
 Then build a docker image from the local version of synbiohub using
 `docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .`
