@@ -24,7 +24,7 @@ if (!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size =
 config.set('revision', gitRev())
 
 function startServer () {
-  return initSliver()
+  return init()
     .then(() => java.init())
     .then(() => theme.setCurrentThemeFromConfig())
     .then(() => jobUtils.setRunningJobsToQueued())
@@ -36,7 +36,7 @@ function startServer () {
     })
 }
 
-function initSliver () {
+function init () {
   return new Promise((resolve, reject) => {
     // TODO
     resolve()
