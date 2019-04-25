@@ -247,7 +247,8 @@ def get_end_of_error_log(num_of_lines):
     
 
 def copy_docker_log():
-    shutil.rmtree("./logs_from_test_suite")
+    if os.path.isdir("./logs_from_test_suite"):
+        shutil.rmtree("./logs_from_test_suite")
     
     run_bash("docker cp testsuiteproject_synbiohub_1:/synbiohub/logs .")
     run_bash("mv ./logs ./logs_from_test_suite")
