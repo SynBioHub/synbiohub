@@ -116,6 +116,7 @@
     }
   },
   "plugins": {
-      "rendering": []
+      "rendering": [],
+      "download": []
   }
 }
