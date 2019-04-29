@@ -66,7 +66,7 @@ def get_address(request, route_parameters):
 def get_request(request, headers, route_parameters, re_render_time):
     
     # get the current token
-    user_token = test_state.get_authentification()
+    user_token = test_state.get_authentication()
     if user_token != None:
         headers["X-authorization"] = user_token
 
@@ -98,7 +98,7 @@ def get_request(request, headers, route_parameters, re_render_time):
 # data is the data field for a request
 def post_request(request, data, headers, route_parameters, files):
     # get the current token
-    user_token = test_state.get_authentification()
+    user_token = test_state.get_authentication()
     if user_token != None:
         headers["X-authorization"] = user_token
     
@@ -178,7 +178,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
 
 def login_with(data, headers = {'Accept':'text/plain'}):
     result = post_request("login", data, headers, [], files = None)
-    test_state.save_authentification(result)
+    test_state.save_authentication(result)
 
 
 def compare_get_request(request, test_name = "", route_parameters = [], headers = {}, re_render_time = 0):
