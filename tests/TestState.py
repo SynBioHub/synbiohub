@@ -57,7 +57,7 @@ class TestState:
         self.all_tested_paths = []
 
         # keep track of authetification after logging in
-        self.login_authentification = None
+        self.login_authentication = None
 
     def cleanup_check(self):
         nottestedcounter = 0
@@ -119,15 +119,15 @@ class TestState:
             self.all_tested_paths.append(testpath)
 
     # saves the result of a login request for future use
-    def save_authentification(self, request_result):
+    def save_authentication(self, request_result):
         soup = BeautifulSoup(request_result, 'lxml')
         ptag = soup.find_all('p')
         if len(ptag)!= 1:
             raise ValueError("Invalid login response received- multiple or no elements in p tag.")
         content = ptag[0].text
-        self.login_authentification = content.strip()
+        self.login_authentication = content.strip()
         
-        test_print("Logging in with authentification " + str(self.login_authentification))
+        test_print("Logging in with authentication " + str(self.login_authentication))
 
-    def get_authentification(self):
-        return self.login_authentification
+    def get_authentication(self):
+        return self.login_authentication
