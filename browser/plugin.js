@@ -1,10 +1,25 @@
+function deleteStream(streamId) {
+    $.ajax({
+        type: 'DELETE',
+        url: '/api/stream/' + streamId
+    })
+}
+
 function fetchPluginStream(streamId, $element) {
     // Make the request, retrying if necessary
     $.ajax({
         type: 'GET',
-        url: '/stream/' + streamId,
+        url: '/api/stream/' + streamId,
         success: function(data) {
-            $($element.closest(".col-md-12")).html(data.body)
+            var $contentPanel = $($element.closest(".stream-content"))
+
+
+            if ($contentPanel.length === 0) {
+                window.location.reload(true)
+            } else {
+                $contentPanel.html(data.body)
+                deleteStream(streamId)
+            }
         },
         statusCode: {
             503: function(jqXHR) {
@@ -14,7 +29,14 @@ function fetchPluginStream(streamId, $element) {
                 setTimeout(fetchPluginStream, retry, streamId, $element)
             },
             404: function(jqXHR) {
-                $($element.closest(".panel")).remove()
+                var $panel = $element.closest(".panel")
+               
+                if ($panel.length === 0) {
+                    $(".stream-loader").remove()
+                    $(".stream-loader-wrapper").text("An error has occurred. Please try again later.")
+                } else {
+                    $($element.closest(".panel")).remove()
+                }
             }
         }
     })
