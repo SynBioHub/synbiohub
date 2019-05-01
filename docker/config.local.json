@@ -5,7 +5,7 @@
       "username": "dba",
       "password": "dba",
       "virtuosoINI": "/etc/virtuoso-opensource-7/virtuoso.ini",
-      "virtuosoDB": "/var/lib/virtuoso-opensource-7/db",
+      "virtuosoDB": "/virtuoso",
       "isql": "isql-vt"
   },
   "prewarmSearch": false
