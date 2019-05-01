@@ -28,6 +28,9 @@ block generalTopLevelButtons
                         if rdfType.name == 'Attachment'
                             li 
                                 a(href=meta.attachmentDownloadURL) Download Attachment
+                        for plugin in locals.downloadPlugins
+                            li
+                                a(href='/stream/'+plugin.stream) Download #{plugin.name}
                 if !meta.remote && rdfType.name != 'Collection' && rdfType.name != 'Component'
                     li.dropdown.btn.btn-primary
                             a(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name,style="color:white")
@@ -89,7 +92,7 @@ block topLevelPanelsCont
                             div.row
                                 div.col-md-12
                                     +attachments(meta.url, meta.attachments, meta.canEdit)
-                for plugin in locals.plugins
+                for plugin in locals.renderingPlugins
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
@@ -98,10 +101,9 @@ block topLevelPanelsCont
                         panel-collapse.collapse(id='collapse' + plugin.safeName)
                             .panel-body
                                 div.row
-                                    div.col-md-12
-                                        div.loader-wrapper
-                                            div.stream-id(style="display: none") #{plugin.stream}
-                                        div.loader.center-block
+                                    div.col-md-12.stream-content
+                                        div.stream-id(style="display: none") #{plugin.stream}
+                                        div.stream-loader.center-block
 
                                         
 
