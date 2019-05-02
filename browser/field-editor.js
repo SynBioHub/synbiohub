@@ -43,9 +43,11 @@ function appendEditor(idx, elem) {
 
       let save = () => {
         let newVal = $input.val()
+        $elem.text(newVal)
+
         let $e = $("<h1 class=\"" + classes + "\" />").text(newVal)
-        $input.replaceWith($e)
-        appendEditor(0, $e)
+        $input.replaceWith($elem)
+        appendEditor(0, $elem)
 
         updateSparql(newVal, toEdit)
       }
