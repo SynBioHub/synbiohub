@@ -103,7 +103,7 @@ block content
                             span.fa.fa-search
 
                 if meta.description && meta.description != ''
-                    h4
+                    h4(class=meta.canEdit ? "edit edit-description" : "")
                         != meta.description 
                         a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
                             span.fa.fa-search
