@@ -1,0 +1,3 @@
+DELETE { <$subject> <$predicate> ?o }
+INSERT { <$subject> <$predicate> $object }
+WHERE { <$subject> <$predicate> ?o }
