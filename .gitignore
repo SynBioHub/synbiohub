@@ -25,6 +25,7 @@ tests/Compared/*
 tests/Retrieved/*
 tests/Timing/*
 tests/Emulated/*
+tests/logs_from_test_suite/*
 
 *.pyc
 *.pyo
