@@ -392,10 +392,20 @@ public class PrepareSubmissionJob extends Job {
 							identified.createAnnotation(
 									new QName("http://purl.obolibrary.org/obo/", "OBI_0001617", "obo"), pubmedID);
 						}
+						
+						Annotation annotation = identified.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"));
+						if (annotation != null) {
+							identified.removeAnnotation(annotation);
+						}
 
 						identified.createAnnotation(
 								new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "ownedBy", "sbh"),
 								new URI(ownedByURI));
+						
+						annotation = identified.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"));
+						if (annotation != null) {
+							identified.removeAnnotation(annotation);
+						}
 
 						identified.createAnnotation(
 								new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
@@ -659,6 +669,11 @@ public class PrepareSubmissionJob extends Job {
 			if (annotation.isNestedAnnotations()) {
 				List<Annotation> nestedAnnotations = annotation.getAnnotations();
 				addTopLevelToNestedAnnotations(topLevel, nestedAnnotations);
+				for (Annotation nestedAnnotation : nestedAnnotations) {
+					if (nestedAnnotation.getQName().equals(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"))) {
+						nestedAnnotations.remove(nestedAnnotation);
+					}
+				}
 				nestedAnnotations.add(
 						new Annotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
 								topLevel.getIdentity()));
