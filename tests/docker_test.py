@@ -27,15 +27,15 @@ class TestDocker(TestCase):
         # test public ones while signed in as user
         # also wait 2 seconds for things to load
         compare_get_request("public/:collectionId/:displayId",
-                            route_parameters = ["testid", "testid_collection"],
+                            route_parameters = ["testid0", "testid0_collection"],
                             test_name = "docker_public", re_render_time = 2000)
         
         compare_get_request("public/:collectionId/:displayId(*)/:version/full",
-                            route_parameters = ["testid", "testid_collection", "1"])
+                            route_parameters = ["testid0", "testid0_collection", "1"])
 
         # test the component page
         compare_get_request("public/:collectionId/:displayId",
-                            route_parameters = ["testid", "BBa_I0462"], test_name="bbapublic")
+                            route_parameters = ["testid0", "BBa_I0462"], test_name="bbapublic")
 
     def test_admin_persist(self):
         logininfo = {'email' : 'test@user.synbiohub',

@@ -1,4 +1,4 @@
-import time
+import subprocess, shutil, time, os
 from requests.exceptions import HTTPError
 import requests_html, difflib, sys
 from bs4 import BeautifulSoup
@@ -171,6 +171,9 @@ requesttype is the type of request performed- either 'get request' or 'post requ
             changelist.append(c)
             changelist.append("\n")
 
+        changelist.append("\n Here is the last 50 lines of the synbiohub error log: \n")
+        changelist.append(get_end_of_error_log(50))
+
         if numofchanges>0:
             raise ValueError(''.join(changelist))
 
@@ -223,3 +226,31 @@ def cleanup_check():
     Checks to make sure all endpoints were tested."""
 
     test_state.cleanup_check()
+
+
+def run_bash(command):
+    process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+def file_tail(filename, length):
+    return os.popen('tail -n ' + str(length) +' '+filename).read()
+
+            
+def get_end_of_error_log(num_of_lines):
+    copy_docker_log()
+    directory = os.listdir("./logs_from_test_suite")
+    for filename in directory:
+        if filename[len(filename)-5:] == "error":
+            return file_tail("./logs_from_test_suite/" + filename, num_of_lines)
+
+    raise Exception("Could not find error log")
+    
+
+def copy_docker_log():
+    if os.path.isdir("./logs_from_test_suite"):
+        shutil.rmtree("./logs_from_test_suite")
+    
+    run_bash("docker cp testsuiteproject_synbiohub_1:/synbiohub/logs .")
+    run_bash("mv ./logs ./logs_from_test_suite")
+    
+
