@@ -15,13 +15,13 @@ jobs:
     include:
         - stage: test
           install:
-              - travis_wait 30 docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
+              - docker build --network=host -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
               - pip install -r tests/test_requirements.txt
           script: tests/test.sh
 
         - stage: push
           install:
-              - travis_wait 30 docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
+              - docker build --network=host -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
           script: docker/push.sh
           if: branch = master AND type = push
 
