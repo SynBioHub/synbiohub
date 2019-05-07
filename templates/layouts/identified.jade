@@ -28,8 +28,8 @@ block content
     div.submission-detail.container-fluid
 
         div.row.entry-heading
-            div.col-sm-6.entry-title
-                h1 #{meta.name?meta.name:meta.id} 
+            div.col-sm-8.entry-title
+                h1(class=meta.canEdit ? "edit edit-title" : "" ) #{meta.name ? meta.name : meta.id}
                     if meta.sbhBookmark && meta.sbhBookmark.description == 'true'
                         a(href='http://wiki.synbiohub.org/Terms/synbiohub#bookmark',title='Bookmarked Parts')
                             span.fa.fa-bookmark
@@ -68,7 +68,7 @@ block content
                         | as a replacement.
 
             if (collectionIcon)
-                div.col-sm-6.sbh-collection-icon
+                div.col-sm-4.sbh-collection-icon
                     img(src=collectionIcon)
 
         div.row
@@ -103,7 +103,7 @@ block content
                             span.fa.fa-search
 
                 if meta.description && meta.description != ''
-                    h4
+                    h4(class=meta.canEdit ? "edit edit-description" : "")
                         != meta.description 
                         a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
                             span.fa.fa-search

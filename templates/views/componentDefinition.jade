@@ -272,31 +272,3 @@ block topLevelPanels
                                             for sequenceConstraint in meta.sequenceConstraints
                                                 a(href=sequenceConstraint.object.definition.url) #{sequenceConstraint.object.definition.name}
                                                 br
-		    
-                if meta.iGemMainPage
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemMainPage')
-                                    | <b>iGEM Wiki Main Page</b>
-                        #collapseIGemMainPage.panel-collapse.collapse
-                            .panel-body
-                                | !{meta.iGemMainPage}
-                if meta.iGemDesign
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemDesign')
-                                    | <b>iGEM Wiki Design Page</b>
-                        #collapseIGemDesign.panel-collapse.collapse
-                            .panel-body
-                                | !{meta.iGemDesign}
-                if meta.iGemExperience
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseIGemExperience')
-                                    | <b>iGEM Wiki Experience Page</b>
-                        #collapseIGemExperience.panel-collapse.collapse
-                            .panel-body
-                                | !{meta.iGemExperience}
