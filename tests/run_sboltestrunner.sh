@@ -38,5 +38,7 @@ java -jar SBOLTestRunner/target/SBOLTestRunner-0.0.1-SNAPSHOT-withDependencies.j
 
 exitcode=$?
 if [ $exitcode -ne 0 ]; then
+    python3 print_error_log.py "$@"
+    message "Exiting with code $exitcode."
     exit $exitcode
 fi
