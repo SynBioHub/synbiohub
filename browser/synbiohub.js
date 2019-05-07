@@ -229,6 +229,7 @@ require('./visbol')
 require('./sse')
 require('./setup')
 require('./plugin')
+require('./field-editor')
 
 function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
