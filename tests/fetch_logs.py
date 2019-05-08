@@ -45,7 +45,7 @@ def get_end_of_error_log(num_of_lines):
 
     newest_error_log = possible_error_logs[0]
     for potential_log in possible_error_logs:
-        if newer_error_logp(potential_log, newest_error_log):
+        if newer_logp(potential_log, newest_error_log):
             newest_error_log = potential_log
     
     return file_tail("./logs_from_test_suite/" + newest_error_log, num_of_lines)
