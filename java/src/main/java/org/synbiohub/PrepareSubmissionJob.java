@@ -254,7 +254,12 @@ public class PrepareSubmissionJob extends Job {
 		SBOLDocument doc = new SBOLDocument();
 		doc.setDefaultURIprefix(uriPrefix);
 
+		long startTime;
+		long endTime;
+		double duration;
+
 		// Check if CombineArchive and get files
+		startTime = System.currentTimeMillis();
 		boolean isCombineArchive = getFilenames(sbolFilename, attachmentFiles);
 
 		// TODO: Zach: is this obsolete code?
@@ -590,6 +595,10 @@ public class PrepareSubmissionJob extends Job {
 		File resultFile = File.createTempFile("sbh_convert_validate", ".xml");
 		System.err.println("Writing file:" + resultFile.getAbsolutePath());
 		SBOLWriter.write(doc, resultFile);
+
+		endTime = System.currentTimeMillis();
+		duration = (endTime - startTime) * 1.0 / 1000;
+		System.err.println("Total time in Java (in sec): " + duration);
 
 		finish(new PrepareSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog, attachmentFiles, tempDirPath));
 
