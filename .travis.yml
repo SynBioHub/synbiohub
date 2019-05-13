@@ -17,7 +17,7 @@ jobs:
           install:
               - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
               - pip install -r tests/test_requirements.txt
-          script: tests/test.sh
+          script: travis_retry tests/test.sh
 
         - stage: push
           install:
