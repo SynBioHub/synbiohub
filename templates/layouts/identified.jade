@@ -163,13 +163,15 @@ block content
                                         td
                                             for role in meta.roles
                                                 if role.description
-                                                    != role.description.name
+                                                    div(class=meta.canEdit ? "edit edit-role" : "")
+                                                        != role.description.name
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
                                                     a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                                         span.fa.fa-search
                                                 else 
-                                                    != role.term 
+                                                    div(class=meta.canEdit ? "edit edit-role" : "")
+                                                        != role.term 
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
                                                     a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
