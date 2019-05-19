@@ -1,6 +1,9 @@
 
 mixin attachments(url, attachments, canEdit)
     if typeof(attachments) !== 'undefined' && (canEdit || attachments.length > 0)
+        form#sbh-attachment-upload(method='post',enctype='multipart/form-data',action=url + '/attach')
+        form#sbh-attachment-lookup(method='post', action=url + '/attachUrl')
+
         table.attachments-table.table.table-striped
             thead
                 th Type
@@ -8,30 +11,39 @@ mixin attachments(url, attachments, canEdit)
                 th Size
                 th
             tbody
-            for attachment in attachments
-                tr
-                    td #{attachment.type}
-                    td
-                        a(href=attachment.url) #{attachment.name}
-                    td
-                        if attachment.sizeString
-                            | #{attachment.sizeString}
-                    td
-                        a(href=attachment.url + '/download')
-                            button.btn.btn-primary
-                                span.fa.fa-download
-                                |  Download
-        if canEdit
-            div.row
-                form#sbh-attachment-form(method='post',enctype='multipart/form-data',action=url + '/attach')
-                    div.col-xs-6
-                        div.input-group
-                            label.input-group-btn
-                                span.btn.btn-primary
-                                    | Select file(s)&hellip;
-                                    input(type="file",name="file",style="display: none;",multiple)
-                            input(type="text",class="form-control",readonly)
-                    div.col-xs-3
-                    div.col-xs-3
-                        button.btn(disabled,type='submit',style='width:100%;') Attach
-
+                for attachment in attachments
+                    tr
+                        td #{attachment.type}
+                        td
+                            a(href=attachment.url) #{attachment.name}
+                        td
+                            if attachment.sizeString
+                                | #{attachment.sizeString}
+                        td
+                            a(href=attachment.url + '/download')
+                                button.btn.btn-primary
+                                    span.fa.fa-download
+                                    |  Download
+                if canEdit
+                    tr
+                        td
+                            | Upload attachment
+                        td(colspan=2)
+                            div.input-group
+                                input(type="text",class="form-control",form="sbh-attachment-upload",readonly)
+                                label.input-group-btn
+                                    span.btn.btn-primary
+                                        | Select file(s)&hellip;
+                                        input(type="file",name="file",style="display: none;",multiple,form="sbh-attachment-upload")
+                        td
+                            button.btn.btn-success(type='submit',style='width:100%;',form="sbh-attachment-upload") Attach
+                    div.row
+                    tr
+                        td
+                            | Lookup attachment
+                        td
+                            input(type="text", name="url", class="form-control", placeholder="URL", form="sbh-attachment-lookup")
+                        td
+                            input(type="text", name="type", class="form-control", placeholder="Type", form="sbh-attachment-lookup", readonly)
+                        td
+                            button.btn.btn-success(type='submit',style='width:100%;',form="sbh-attachment-lookup",disabled) Lookup
