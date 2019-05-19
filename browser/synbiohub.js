@@ -409,37 +409,20 @@ $(function () {
     // We can watch for our custom `fileselect` event like this
     $(document).ready(function () {
         $(':file').on('fileselect', function (event, numFiles, label) {
-
-            var input = $(this).parents('.input-group').find(':text'),
-                log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-            console.log($(this).closest('form').length)
-            console.log($(this).closest('form').find('button').length)
-            $(this).closest('form').find('button[type=submit]').prop('disabled', false).addClass('btn-success')
-
-            if (input.length) {
-                input.val(log);
-            } else {
-                //if( log ) alert(log);
-            }
-
+            let id = $(this).attr('form')
+            let input = $(':text[form=' + id + ']')
+            let log = numFiles > 1 ? numFiles + ' files selected' : label
+            input.val(log)
         });
     });
 
 });
 
-$('#sbh-attachment-form').submit(function (e) {
+$('#sbh-attachment-upload').submit(function (e) {
 
     e.preventDefault()
 
     var formData = new FormData($(this)[0])
-
-    console.log($(this))
-    console.log($(this)[0])
-    console.log($(this).attr('action'))
-
-    console.log(formData)
-
     $.ajax({
         url: $(this).attr('action'),
         method: 'post',
@@ -459,10 +442,9 @@ $('#sbh-attachment-form').submit(function (e) {
 
 
     return false
-
 })
 
-
+require('./url-attachments')
 
 $('.sbh-sparql-editor').each((i, textarea) => {
 
