@@ -40,10 +40,15 @@ mixin attachments(url, attachments, canEdit)
                     div.row
                     tr
                         td
-                            | Lookup attachment
+                            | Lookup Attachment
+                        td(colspan=2)
+                            div.row
+                                div.col-md-12
+                                    input.form-control(type="text", name="url", placeholder="URL", form="sbh-attachment-lookup")
+                            div.row(style="margin-top: 10px")
+                                div.col-md-6
+                                    input.form-control(type="text", name="name", placeholder="Name", form="sbh-attachment-lookup")
+                                div.col-md-6
+                                    input.form-control(type="text", name="type", placeholder="Type", form="sbh-attachment-lookup", readonly)
                         td
-                            input(type="text", name="url", class="form-control", placeholder="URL", form="sbh-attachment-lookup")
-                        td
-                            input(type="text", name="type", class="form-control", placeholder="Type", form="sbh-attachment-lookup", readonly)
-                        td
-                            button.btn.btn-success(type='submit',style='width:100%;',form="sbh-attachment-lookup",disabled) Lookup
+                            button.btn.btn-success.btn-block(type='submit',style='width:100%;',form="sbh-attachment-lookup",disabled) Attach

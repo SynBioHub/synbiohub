@@ -1,6 +1,7 @@
 $("input[form=sbh-attachment-lookup][name=url]").on('blur', (event) => {
     let url = $(event.target).val()
     let $type = $("input[form=sbh-attachment-lookup][name=type]")
+    let $name = $("input[form=sbh-attachment-lookup][name=name]")
     let $submit = $(":button[form=sbh-attachment-lookup][type=submit]")
 
     console.log(event.target)
@@ -30,7 +31,10 @@ $("input[form=sbh-attachment-lookup][name=url]").on('blur', (event) => {
         
         if(path.indexOf('.') >= 0) {
             let extension = path.substring(path.lastIndexOf('.')+1)
+            let filename = path.substring(path.lastIndexOf('/'+1), path.lastIndexOf('.'))
+
             $type.val(extension)
+            $name.val(filename)
         } 
     }).finally(() => {
         $type.attr('readonly', false)
