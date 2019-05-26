@@ -374,26 +374,6 @@ try {
            <tbody>
             <tr>
              <td>
-              synbiohub#ownedBy
-              <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
-               <span class="fa fa-info-circle">
-               </span>
-              </a>
-             </td>
-             <td>
-              user/dockertestuser
-              <a href="/user/dockertestuser" title="Learn more about this annotation value">
-               <span class="fa fa-info-circle">
-               </span>
-              </a>
-              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/dockertestuser&gt;&amp;" title="Find all records with this annotation">
-               <span class="fa fa-search">
-               </span>
-              </a>
-             </td>
-            </tr>
-            <tr>
-             <td>
               synbiohub#topLevel
               <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" title="Learn more about this annotation type">
                <span class="fa fa-info-circle">
@@ -407,6 +387,26 @@ try {
                </span>
               </a>
               <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel&gt;=&lt;http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1&gt;&amp;" title="Find all records with this annotation">
+               <span class="fa fa-search">
+               </span>
+              </a>
+             </td>
+            </tr>
+            <tr>
+             <td>
+              synbiohub#ownedBy
+              <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
+               <span class="fa fa-info-circle">
+               </span>
+              </a>
+             </td>
+             <td>
+              user/dockertestuser
+              <a href="/user/dockertestuser" title="Learn more about this annotation value">
+               <span class="fa fa-info-circle">
+               </span>
+              </a>
+              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/dockertestuser&gt;&amp;" title="Find all records with this annotation">
                <span class="fa fa-search">
                </span>
               </a>
@@ -433,6 +433,12 @@ try {
        <div class="panel-body">
         <div class="row">
          <div class="col-md-12">
+          <form action="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/attach" enctype="multipart/form-data" id="sbh-attachment-upload" method="post">
+          </form>
+          <form action="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/attachUrl" id="sbh-attachment-lookup" method="post">
+          </form>
+          <div class="row">
+          </div>
           <table class="attachments-table table table-striped">
            <thead>
             <tr>
@@ -450,30 +456,54 @@ try {
             </tr>
            </thead>
            <tbody>
+            <tr>
+             <td>
+              Upload attachment
+             </td>
+             <td colspan="2">
+              <div class="input-group">
+               <input class="form-control" form="sbh-attachment-upload" readonly="readonly" type="text"/>
+               <label class="input-group-btn">
+                <span class="btn btn-primary">
+                 Select file(s)…
+                 <input form="sbh-attachment-upload" multiple="multiple" name="file" style="display: none" type="file"/>
+                </span>
+               </label>
+              </div>
+             </td>
+             <td>
+              <button class="btn btn-success" form="sbh-attachment-upload" style="width:100%" type="submit">
+               Attach
+              </button>
+             </td>
+            </tr>
+            <tr>
+             <td>
+              Lookup Attachment
+             </td>
+             <td colspan="2">
+              <div class="row">
+               <div class="col-md-12">
+                <input class="form-control" form="sbh-attachment-lookup" name="url" placeholder="URL" type="text"/>
+               </div>
+              </div>
+              <div class="row" style="margin-top: 10px">
+               <div class="col-md-6">
+                <input class="form-control" form="sbh-attachment-lookup" name="name" placeholder="Name" type="text"/>
+               </div>
+               <div class="col-md-6">
+                <input class="form-control" form="sbh-attachment-lookup" name="type" placeholder="Type" readonly="readonly" type="text"/>
+               </div>
+              </div>
+             </td>
+             <td>
+              <button class="btn btn-success btn-block" disabled="disabled" form="sbh-attachment-lookup" style="width:100%" type="submit">
+               Attach
+              </button>
+             </td>
+            </tr>
            </tbody>
           </table>
-          <div class="row">
-           <form action="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/attach" enctype="multipart/form-data" id="sbh-attachment-form" method="post">
-            <div class="col-xs-6">
-             <div class="input-group">
-              <label class="input-group-btn">
-               <span class="btn btn-primary">
-                Select file(s)…
-                <input multiple="multiple" name="file" style="display: none" type="file"/>
-               </span>
-              </label>
-              <input class="form-control" readonly="readonly" type="text"/>
-             </div>
-            </div>
-            <div class="col-xs-3">
-            </div>
-            <div class="col-xs-3">
-             <button class="btn" disabled="disabled" style="width:100%" type="submit">
-              Attach
-             </button>
-            </div>
-           </form>
-          </div>
          </div>
         </div>
        </div>

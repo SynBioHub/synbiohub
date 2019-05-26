@@ -1,0 +1,18 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol: <http://sbols.org/v2#>
+
+INSERT {
+    <$topLevel> sbol:attachment <$uri> .
+
+    <$uri> a sbol:Attachment ;
+        dcterms:title "$name" ;
+        sbol:displayId "$displayId" ;
+        sbol:persistentIdentity <$persistentIdentity> ;
+        sbol:version "$version" ;
+        sbol:ownedBy <$ownedBy> ;
+        sbh:topLevel <$uri> ;
+        sbol:source <$source> ;
+        sbol:format <$type> .
+} 
+
