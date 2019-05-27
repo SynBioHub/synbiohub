@@ -2,7 +2,6 @@
 mixin attachments(url, attachments, canEdit)
     if typeof(attachments) !== 'undefined' && (canEdit || attachments.length > 0)
         form#sbh-attachment-upload(method='post',enctype='multipart/form-data',action=url + '/attach')
-        form#sbh-attachment-lookup(method='post', action=url + '/attachUrl')
 
         table.attachments-table.table.table-striped
             thead
@@ -38,17 +37,21 @@ mixin attachments(url, attachments, canEdit)
                         td
                             button.btn.btn-success(type='submit',style='width:100%;',form="sbh-attachment-upload") Attach
                     div.row
-                    tr
-                        td
-                            | Lookup Attachment
-                        td(colspan=2)
-                            div.row
-                                div.col-md-12
-                                    input.form-control(type="text", name="url", placeholder="URL", form="sbh-attachment-lookup")
-                            div.row(style="margin-top: 10px")
-                                div.col-md-6
-                                    input.form-control(type="text", name="name", placeholder="Name", form="sbh-attachment-lookup")
-                                div.col-md-6
-                                    input.form-control(type="text", name="type", placeholder="Type", form="sbh-attachment-lookup", readonly)
-                        td
-                            button.btn.btn-success.btn-block(type='submit',style='width:100%;',form="sbh-attachment-lookup",disabled) Attach
+                        form#sbh-attachment-lookup(method='post', action=url + '/attachUrl')
+                            tr
+                                td
+                                    | Lookup Attachment
+                                td(colspan=2)
+                                    div.row
+                                        div.col-md-12
+                                            input.form-control(type="text", name="url", placeholder="URL", form="sbh-attachment-lookup")
+                                    div.row(style="margin-top: 10px")
+                                        div.col-md-6
+                                            input.form-control(type="text", name="name", placeholder="Name", form="sbh-attachment-lookup")
+                                        div.col-md-6
+                                            select(name="type", style='width: 100%').chosen-select
+                                                option(selected="true") Pick an attachment type...
+                                                for t in attachmentTypes
+                                                    option(value=t.uri) #{t.name}
+                                td
+                                    button.btn.btn-success.btn-block(type='submit',style='width:100%;',form="sbh-attachment-lookup",disabled) Attach
