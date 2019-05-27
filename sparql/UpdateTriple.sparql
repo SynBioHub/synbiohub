@@ -12,4 +12,7 @@ INSERT {
 
 WHERE {
     <$subject> <$predicate> ?o .
+    OPTIONAL {
+        <$subject> dcterms:modified ?mod
+    }
 }
