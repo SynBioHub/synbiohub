@@ -72,9 +72,9 @@
 </repositories>
   <dependencies>
 	  <dependency>
-	    <groupId>de.unirostock.sems</groupId>
+	    <groupId>de.uni-rostock.sbi</groupId>
 	    <artifactId>CombineArchive</artifactId>
-	    <version>1.3.0</version>
+	    <version>1.3.6</version>
 	  </dependency>
     <dependency>
           <groupId>org.sbolstandard</groupId>
