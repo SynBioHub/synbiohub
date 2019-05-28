@@ -33,3 +33,5 @@ tests/logs_from_test_suite/*
 
 
 /config.local.json~
+yarn-error.log
+**/venv
