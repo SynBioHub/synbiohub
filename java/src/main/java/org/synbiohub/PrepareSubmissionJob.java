@@ -100,8 +100,7 @@ public class PrepareSubmissionJob extends Job {
 
 		try {
 			combine = new CombineArchive(new File(initialFilename));
-		} catch (UnsupportedOperationException | CombineArchiveException | IOException | JDOMException
-				| ParseException e) {
+		} catch (Exception e) {
 			if (combine != null) {
 				try {
 					combine.close();
