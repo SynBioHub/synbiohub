@@ -37,7 +37,7 @@ function appendEditor(idx, elem) {
         return
     }
 
-    let editClass = 'do-edit-' + toEdit
+    let editClass = 'do-edit-' + toEdit + idx
 
     let editLink = document.createElement('a')
     editLink.setAttribute('style', 'margin-left: 10px')
