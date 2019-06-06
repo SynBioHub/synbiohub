@@ -103,7 +103,7 @@ block content
                         a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date') 
                             span.fa.fa-search
 
-                if (meta.description && meta.description != '') || meta.canEdit
+                if meta.description && (meta.description != '' || meta.canEdit)
                     h4(class=meta.canEdit ? "edit edit-description" : "")
                         != meta.description 
                         a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
@@ -155,7 +155,7 @@ block content
                                                        span.fa.fa-search
                                                 br
 
-                                if (meta.roles && meta.roles.length > 0) || meta.canEdit
+                                if meta.roles && (meta.roles.length > 0 || meta.canEdit)
                                     tr
                                         td 
                                             | Roles
