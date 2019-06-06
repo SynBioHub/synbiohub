@@ -1,18 +1,14 @@
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
-DELETE {
-    <$subject> <$predicate> ?o .
+DELETE WHERE {
+    <$subject> <$predicate> ?o
+}
+;
+DELETE WHERE {
     <$subject> dcterms:modified ?mod
 }
-
-INSERT {
+;
+INSERT DATA {
     <$subject> <$predicate> $object .
     <$subject> dcterms:modified $modified
-}
-
-WHERE {
-    <$subject> <$predicate> ?o .
-    OPTIONAL {
-        <$subject> dcterms:modified ?mod
-    }
 }
