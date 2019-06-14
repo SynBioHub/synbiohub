@@ -142,17 +142,19 @@ block content
                                         td 
                                             for type in meta.types
                                                 if type.description 
-                                                   != type.description.name
-                                                   a(href=type.term,title='Learn more about this type') 
-                                                       span.fa.fa-info-circle
-                                                   a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
-                                                       span.fa.fa-search
+                                                    div(class=meta.canEdit ? "edit edit-multiple edit-type" : "", editText=type.uri, style="display: contents")
+                                                        != type.description.name
+                                                    a(href=type.term,title='Learn more about this type') 
+                                                        span.fa.fa-info-circle
+                                                    a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
+                                                        span.fa.fa-search
                                                 else 
-                                                   != type.uri 
-                                                   a(href=type.uri,title='Learn more about this type') 
-                                                       span.fa.fa-info-circle
-                                                   a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
-                                                       span.fa.fa-search
+                                                    div(class = meta.canEdit ? "edit edit-multiple edit-type" : "", editText=type.uri, style="display: contents")
+                                                        != type.uri 
+                                                    a(href=type.uri,title='Learn more about this type') 
+                                                        span.fa.fa-info-circle
+                                                    a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
+                                                        span.fa.fa-search
                                                 br
 
                                 if meta.roles && meta.roles.length > 0
@@ -164,14 +166,14 @@ block content
                                         td
                                             for role in meta.roles
                                                 if role.description
-                                                    div(class=meta.canEdit ? "edit edit-role" : "", editText=role.uri)
+                                                    div(class=meta.canEdit ? "edit edit-multiple edit-role" : "", editText=role.uri, style="display: contents")
                                                         != role.description.name
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
                                                     a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                                         span.fa.fa-search
                                                 else 
-                                                    div(class=meta.canEdit ? "edit edit-role" : "")
+                                                    div(class=meta.canEdit ? "edit edit-multiple edit-role" : "", style="display: contents")
                                                         != role.term 
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
