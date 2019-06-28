@@ -101,12 +101,12 @@ block content
                             for role in roles
                                 option #{role.name}
                 tr
-                    td iGEM Part Type
+                    td Annotations
                     td
-                        select(name='partType' style='width: 260px;').chosen-select
-                            option #{'Any iGEM Part Type'}
-                            for igemRole in igemRoles
-                                option #{igemRole.name}
+                        select(name='annotation' style='width: 260px;').chosen-select
+                            option #{'No Filter'}
+                            for annotation in annotations
+                                option #{annotations.name}
                 tr
                     td iGEM Part Status
                     td
