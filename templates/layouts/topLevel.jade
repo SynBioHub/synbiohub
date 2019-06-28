@@ -37,6 +37,9 @@ block generalTopLevelButtons
                                 span.fa.fa-search
                                 |  
                 block topLevelButtons
+                li.btn.btn-success
+                        a(href=rootCollection,title='Back to root collection',style="color:white")
+                            span.fa.fa-arrow-left
                 if meta.triplestore != 'public'
                     li.btn.btn-success
                             a(onclick="popup()",title='Share',style="color:white")
