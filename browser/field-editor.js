@@ -87,7 +87,7 @@ function appendEditor(idx, elem) {
     $elem.append(editLink)
 
     $("." + editClass).on('click', () => {
-      let text = $elem.attr("editText") || $elem.text()
+      let text = $elem.attr("editText") || $elem.text().trim()
       let $input = $("<input/>").val(text)
 
       $elem.replaceWith($input)
