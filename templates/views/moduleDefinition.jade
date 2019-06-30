@@ -40,21 +40,40 @@ block topLevelPanels
                                 table.table.table-striped.entry-detail-table
                                     tr
                                         td 
-                                            | Instance
+                                            | Instance : 
                                             a(href='http://sbolstandard.org/v2#Module',title='Learn more about Modules') 
                                                 span.fa.fa-info-circle
-                                        td 
-                                            | Definition
+                                            | &nbsp;
+                                            | Definition 
                                             a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
                                                 span.fa.fa-info-circle
+                                            | &nbsp;
+                                            | (
+                                            | MapsTos 
+                                            a(href='http://sbolstandard.org/v2#MapsTo',title='Learn more about MapsTos') 
+                                                span.fa.fa-info-circle
+                                            | &nbsp;
+                                            | )
                                     tr
                                         td
                                             for module in meta.modules
                                                 a(href=module.url) #{module.name}
-                                                br
-                                        td
-                                            for module in meta.modules
+                                                | &nbsp;
+                                                | :
+                                                | &nbsp;
                                                 a(href=module.definition.url) #{module.definition.name}
+                                                if module.mapsTos.length > 0
+                                                  | (
+                                                  - var first = true
+                                                  for mapsTo in module.mapsTos
+                                                    if !first
+                                                      | , 
+                                                    else
+                                                      - first = false
+                                                    a(href=mapsTo.remoteMapsTo.url) #{mapsTo.remoteMapsTo.name}
+                                                    a(href=mapsTo.url) #{' => '}
+                                                    a(href=mapsTo.local.url) #{mapsTo.local.name}
+                                                  | )
                                                 br
 
                 if meta.functionalComponents.length > 0
@@ -77,14 +96,23 @@ block topLevelPanels
                                             | Direction
                                             a(href='http://sbolstandard.org/v2#direction',title='Learn more about direction') 
                                                 span.fa.fa-info-circle
-                                        td 
+                                            | &nbsp;
                                             | Instance
                                             a(href='http://sbolstandard.org/v2#FunctionalComponent',title='Learn more about Functional Components') 
                                                 span.fa.fa-info-circle
-                                        td 
+                                            | &nbsp;
+                                            | :
+                                            | &nbsp;
                                             | Definition
                                             a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
                                                 span.fa.fa-info-circle
+                                            | &nbsp;
+                                            | (
+                                            | MapsTos 
+                                            a(href='http://sbolstandard.org/v2#MapsTo',title='Learn more about MapsTos') 
+                                                span.fa.fa-info-circle
+                                            | &nbsp;
+                                            | )
                                     tr
                                         td
                                             for functionalComponent in meta.functionalComponents
@@ -97,14 +125,24 @@ block topLevelPanels
                                                 != functionalComponent.direction.id
                                                 a(href=functionalComponent.direction.url,title='Learn more about this direction type') 
                                                     span.fa.fa-info-circle
-                                                br
-                                        td
-                                            for functionalComponent in meta.functionalComponents
+                                                | &nbsp;
                                                 a(href=functionalComponent.url) #{functionalComponent.name}
-                                                br
-                                        td
-                                            for functionalComponent in meta.functionalComponents
+                                                | &nbsp;
+                                                | :
+                                                | &nbsp;
                                                 a(href=functionalComponent.definition.url) #{functionalComponent.definition.name}
+                                                if functionalComponent.mapsTos.length > 0
+                                                  | (
+                                                  - var first = true
+                                                  for mapsTo in functionalComponent.mapsTos
+                                                    if !first
+                                                      | , 
+                                                    else
+                                                      - first = false
+                                                    a(href=mapsTo.remoteMapsTo.url) #{mapsTo.remoteMapsTo.name}
+                                                    a(href=mapsTo.url) #{' => '}
+                                                    a(href=mapsTo.local.url) #{mapsTo.local.name}
+                                                  | )
                                                 br
 
                 if meta.interactions.length > 0
