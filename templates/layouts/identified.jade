@@ -29,7 +29,7 @@ block content
 
         div.row.entry-heading
             div.col-sm-8.entry-title
-                h1(class=meta.canEdit ? "edit edit-title" : "" ) #{meta.name ? meta.name : meta.id}
+                h1(class=meta.canUpdate ? "edit edit-title" : "" ) #{meta.name ? meta.name : meta.id}
                     if meta.sbhBookmark && meta.sbhBookmark.description == 'true'
                         a(href='http://wiki.synbiohub.org/Terms/synbiohub#bookmark',title='Bookmarked Parts')
                             span.fa.fa-bookmark
@@ -77,7 +77,7 @@ block content
                 if meta.wasDerivedFroms
                     for wasDerivedFrom in meta.wasDerivedFroms
                         h5 Source: 
-                            div(class=meta.canEdit ? "edit edit-wasDerivedFrom" : "")
+                            div(class=meta.canUpdate ? "edit edit-wasDerivedFrom" : "")
                                 a(href=wasDerivedFrom.url) #{wasDerivedFrom.uri}
 
                 if meta.wasGeneratedBys
@@ -104,7 +104,7 @@ block content
                             span.fa.fa-search
 
                 if meta.description && meta.description != ''
-                    h4(class=meta.canEdit ? "edit edit-description" : "")
+                    h4(class=meta.canUpdate ? "edit edit-description" : "")
                         != meta.description 
                         a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
                             span.fa.fa-search
@@ -142,7 +142,7 @@ block content
                                         td 
                                             for type in meta.types
                                                 if type.description 
-                                                    div(class=meta.canEdit ? "edit edit-multiple edit-type" : "", editText=type.uri, style="display: contents")
+                                                    div(class=meta.canUpdate ? "edit edit-multiple edit-type" : "", editText=type.uri, style="display: contents")
                                                         != type.description.name
                                                     a(href=type.term,title='Learn more about this type') 
                                                         span.fa.fa-info-circle
@@ -166,14 +166,14 @@ block content
                                         td
                                             for role in meta.roles
                                                 if role.description
-                                                    div(class=meta.canEdit ? "edit edit-multiple edit-role" : "", editText=role.uri, style="display: contents")
+                                                    div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", editText=role.uri, style="display: contents")
                                                         != role.description.name
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
                                                     a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                                         span.fa.fa-search
                                                 else 
-                                                    div(class=meta.canEdit ? "edit edit-multiple edit-role" : "", style="display: contents")
+                                                    div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", style="display: contents")
                                                         != role.term 
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
