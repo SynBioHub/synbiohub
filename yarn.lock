@@ -6096,10 +6096,10 @@ virtual-dom@^2.1.1:
     x-is-array "0.1.0"
     x-is-string "0.1.0"
 
-visbol@^1.4.20:
-  version "1.4.23"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.23.tgz#06e4ae9c35c791c37ede6806c3647422f5507a5a"
-  integrity sha512-dL3LmYGD0k+RP+zr0LYr8CpfjAIgAbPuUKZ8rAWFHvi51DIa7olz+d+05X+f+g5ub2gdjmIgSQaZqTUnl5R/YQ==
+visbol@^1.4.24:
+  version "1.4.24"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.24.tgz#2ab6891f05e5b569ec4999e673f3b8ead6a88856"
+  integrity sha512-EGrPwL2Cy77TtWcnCEUyexfQQ9nsBXYdCJNbWj9tspmSX4b6EDyzzowjjwaq4NuFPoxbotZf0gJPikoV4HTuLw==
   dependencies:
     rdf-ext "^1.1.2"
     rdf-graph-abstract "^0.3.0"
