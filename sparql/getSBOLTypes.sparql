@@ -1,0 +1,9 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+SELECT DISTINCT
+       ?object
+$from
+WHERE {
+    ?tl sbol2:type ?object .
+    ?tl sbh:topLevel ?tl
+}

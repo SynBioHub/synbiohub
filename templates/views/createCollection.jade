@@ -88,92 +88,140 @@ block content
                     td Object Type
                     td
                        select(name='objectType' style='width: 260px;').chosen-select
-                            option #{'Any Object Type'}
+                            option #{'No Filter'}
                             for objectType in objectTypes
-                                option #{objectType.name}
+                                option(selected=(objectType.name==initObjectType)) #{objectType.name}
                 tr
                     td Creator
                     td
                        select(name='creator' style='width: 260px;').chosen-select
-                            option #{'Any Creator'}
+                            option #{'No Filter'}
                             for creator in creators
-                                option #{creator.name}
+                                option(selected=(creator.name==initCreator)) #{creator.name}
                 tr
-                    td CreatedAfter
+                    td Created After
                     td
                         input(type='text',name='createdAfter',placeholder='YYYY-MM-DD',value=createdAfter)
                 tr
-                    td CreatedBefore
+                    td Created Before
                     td
                         input(type='text',name='createdBefore',placeholder='YYYY-MM-DD',value=createdBefore)
                 tr
-                    td ModifiedAfter
+                    td Modified After
                     td
                         input(type='text',name='modifiedAfter',placeholder='YYYY-MM-DD',value=modifiedAfter)
                 tr
-                    td ModifiedBefore
+                    td Modified Before
                     td
                         input(type='text',name='modifiedBefore',placeholder='YYYY-MM-DD',value=modifiedBefore)
                 tr
-                    td Id/Name/Description
+                    td ID/Name/Description
                     td
                         input(type='text',name='description',placeholder='Search terms',value=description,style="width: 550px;")
                 tr
                     td Type
                     td
                         select(name='type' style='width: 260px;').chosen-select
-                            option #{'Any Type'}
-                            for type in types
-                                option #{type.name}
+                            option #{'No Filter'}
+                            for t in types
+                                option(selected=(t.name==initType)) #{t.name}
                 tr
                     td Role
                     td
                         select(name='role' style='width: 260px;').chosen-select
-                            option #{'Any Role'}
+                            option #{'No Filter'}
                             for role in roles
-                                option #{role.name}
-                tr
-                    td igem#partType
-                    td
-                        select(name='partType' style='width: 260px;').chosen-select
-                            option #{'Any iGEM Part Type'}
-                            for igemRole in igemRoles
-                                option #{igemRole.name}
-                tr
-                    td igem#partStatus
-                    td
-                        select(name='partStatus' style='width: 260px;').chosen-select
-                            option #{'Any iGEM Part Status'}
-                            for partStatus in partStatuses
-                                option #{partStatus.name}
-                tr
-                    td igem#sampleStatus
-                    td
-                        select(name='sampleStatus' style='width: 260px;').chosen-select
-                            option #{'Any iGEM Sample Status'}
-                            for sampleStatus in sampleStatuses
-                                option #{sampleStatus.name}
-                tr
-                    td igem#status
-                    td
-                        select(name='status' style='width: 260px;').chosen-select
-                            option #{'Any iGEM Status'}
-                            for status in statuses
-                                option #{status.name}
-                tr
-                    td igem#experience
-                    td
-                        select(name='experience' style='width: 260px;').chosen-select
-                            option #{'Any iGEM Experience'}
-                            for experience in experiences
-                                option #{experience.name}
+                                option(selected=(role.name==initRole)) #{role.name}
                 tr
                     td Collections
                     td
-                        select(name='collection1' id='collection1' multiple data-placeholder='Select Some Collections').chosen-select
+                        select(name='collections' id='collections' multiple data-placeholder='Select Some Collections').chosen-select
                             for collection in collections
-                                option #{collection.name}
-
+                                if initCollections && initCollections.includes(collection.name) 
+                                    option(selected=true) #{collection.name}
+                                else 
+                                    option #{collection.name}
+                tr
+                    td
+                        select(name='searchPred1' style='width: 260px;').chosen-select
+                            option #{'No Filter'}
+                            for predicate in predicates
+                                option(selected=(predicate.name==initPred1)) #{predicate.name}
+                    td
+                        button(type='submit',name="adv",value="Filter1").btn.btn-primary.btn-sm
+                            | Filter
+                        if objects1.length > 0
+                            select(name='filterObj1' style='width: 260px;').chosen-select
+                                option #{'No Filter'}
+                                for object in objects1
+                                    option(selected=(object.name==initObj1)) #{object.name}
+                        else
+                            input(type='text',name='searchObj1',placeholder='Search term',value=searchObj1,style="width: 500px;")
+                tr
+                    td
+                        select(name='searchPred2' style='width: 260px;').chosen-select
+                            option #{'No Filter'}
+                            for predicate in predicates
+                                option(selected=(predicate.name==initPred2)) #{predicate.name}
+                    td
+                        button(type='submit',name="adv",value="Filter2").btn.btn-primary.btn-sm
+                            | Filter
+                        if objects2.length > 0
+                            select(name='filterObj2' style='width: 260px;').chosen-select
+                                option #{'No Filter'}
+                                for object in objects2
+                                    option(selected=(object.name==initObj2)) #{object.name}
+                        else
+                            input(type='text',name='searchObj2',placeholder='Search term',value=searchObj2,style="width: 500px;")
+                tr
+                    td
+                        select(name='searchPred3' style='width: 260px;').chosen-select
+                            option #{'No Filter'}
+                            for predicate in predicates
+                                option(selected=(predicate.name==initPred3)) #{predicate.name}
+                    td
+                        button(type='submit',name="adv",value="Filter3").btn.btn-primary.btn-sm
+                            | Filter
+                        if objects3.length > 0
+                            select(name='filterObj3' style='width: 260px;').chosen-select
+                                option #{'No Filter'}
+                                for object in objects3
+                                    option(selected=(object.name==initObj3)) #{object.name}
+                        else
+                            input(type='text',name='searchObj3',placeholder='Search term',value=searchObj3,style="width: 500px;")
+                tr
+                    td
+                        select(name='searchPred4' style='width: 260px;').chosen-select
+                            option #{'No Filter'}
+                            for predicate in predicates
+                                option(selected=(predicate.name==initPred4)) #{predicate.name}
+                    td
+                        button(type='submit',name="adv",value="Filter4").btn.btn-primary.btn-sm
+                            | Filter
+                        if objects4.length > 0
+                            select(name='filterObj4' style='width: 260px;').chosen-select
+                                option #{'No Filter'}
+                                for object in objects4
+                                    option(selected=(object.name==initObj4)) #{object.name}
+                        else
+                           input(type='text',name='searchObj4',placeholder='Search term',value=searchObj4,style="width: 500px;")
+                tr
+                    td
+                        select(name='searchPred5' style='width: 260px;').chosen-select
+                            option #{'No Filter'}
+                            for predicate in predicates
+                                option(selected=(predicate.name==initPred5)) #{predicate.name}
+                    td
+                        button(type='submit',name="adv",value="Filter5").btn.btn-primary.btn-sm
+                            | Filter
+                        if objects5.length > 0
+                            select(name='filterObj5' style='width: 260px;').chosen-select
+                                option #{'No Filter'}
+                                for object in objects5
+                                    option(selected=(object.name==initObj5)) #{object.name}
+                        else
+                            input(type='text',name='searchObj5',placeholder='Search term',value=searchObj5,style="width: 500px;")
+ 
         div.clearfix
 
         br

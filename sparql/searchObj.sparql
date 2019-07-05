@@ -13,23 +13,9 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX purl: <http://purl.obolibrary.org/obo/>
 
 SELECT DISTINCT
-    ?subject
-    ?displayId
-    ?version
-    ?name
-    ?description
-    ?type
+    ?object
 $from
 WHERE {
-    $criteria
-
-    ?subject a ?type .
+    ?subject $predicate ?object .
     ?subject sbh:topLevel ?subject
-    OPTIONAL { ?subject sbol2:displayId ?displayId . }
-    OPTIONAL { ?subject sbol2:version ?version . }
-    OPTIONAL { ?subject dcterms:title ?name . }
-    OPTIONAL { ?subject dcterms:description ?description . }
 } 
-
-$limit
-$offset
