@@ -37,6 +37,9 @@ block generalTopLevelButtons
                                 span.fa.fa-search
                                 |  
                 block topLevelButtons
+                li.btn.btn-success
+                        a(href=rootCollection,title='Back to root collection',style="color:white")
+                            span.fa.fa-arrow-left
                 if meta.triplestore != 'public'
                     li.btn.btn-success
                             a(onclick="popup()",title='Share',style="color:white")
@@ -110,7 +113,7 @@ block topLevelPanelsCont
 block topLevelLarge
 
         if meta.large
-            h4 Record is very large, so only a partial record has been fetched.
+            h4 Record is very large, so only a partial record has been fetched and no VisBol rendering will be provided.
             a(href=meta.url.toString()+'/full')
                 h4 Click here to attempt to fetch the entire record. Note that this operation may be slow and may not be successful.
 
