@@ -141,86 +141,12 @@ block content
                                     option(selected=true) #{collection.name}
                                 else 
                                     option #{collection.name}
-                tr
-                    td
-                        select(name='searchPred1' style='width: 260px;').chosen-select
-                            option #{'No Filter'}
-                            for predicate in predicates
-                                option(selected=(predicate.name==initPred1)) #{predicate.name}
-                    td
-                        button(type='submit',name="adv",value="Filter1").btn.btn-primary.btn-sm
-                            | Filter
-                        if objects1.length > 0
-                            select(name='filterObj1' style='width: 260px;').chosen-select
-                                option #{'No Filter'}
-                                for object in objects1
-                                    option(selected=(object.name==initObj1)) #{object.name}
-                        else
-                            input(type='text',name='searchObj1',placeholder='Search term',value=searchObj1,style="width: 500px;")
-                tr
-                    td
-                        select(name='searchPred2' style='width: 260px;').chosen-select
-                            option #{'No Filter'}
-                            for predicate in predicates
-                                option(selected=(predicate.name==initPred2)) #{predicate.name}
-                    td
-                        button(type='submit',name="adv",value="Filter2").btn.btn-primary.btn-sm
-                            | Filter
-                        if objects2.length > 0
-                            select(name='filterObj2' style='width: 260px;').chosen-select
-                                option #{'No Filter'}
-                                for object in objects2
-                                    option(selected=(object.name==initObj2)) #{object.name}
-                        else
-                            input(type='text',name='searchObj2',placeholder='Search term',value=searchObj2,style="width: 500px;")
-                tr
-                    td
-                        select(name='searchPred3' style='width: 260px;').chosen-select
-                            option #{'No Filter'}
-                            for predicate in predicates
-                                option(selected=(predicate.name==initPred3)) #{predicate.name}
-                    td
-                        button(type='submit',name="adv",value="Filter3").btn.btn-primary.btn-sm
-                            | Filter
-                        if objects3.length > 0
-                            select(name='filterObj3' style='width: 260px;').chosen-select
-                                option #{'No Filter'}
-                                for object in objects3
-                                    option(selected=(object.name==initObj3)) #{object.name}
-                        else
-                            input(type='text',name='searchObj3',placeholder='Search term',value=searchObj3,style="width: 500px;")
-                tr
-                    td
-                        select(name='searchPred4' style='width: 260px;').chosen-select
-                            option #{'No Filter'}
-                            for predicate in predicates
-                                option(selected=(predicate.name==initPred4)) #{predicate.name}
-                    td
-                        button(type='submit',name="adv",value="Filter4").btn.btn-primary.btn-sm
-                            | Filter
-                        if objects4.length > 0
-                            select(name='filterObj4' style='width: 260px;').chosen-select
-                                option #{'No Filter'}
-                                for object in objects4
-                                    option(selected=(object.name==initObj4)) #{object.name}
-                        else
-                           input(type='text',name='searchObj4',placeholder='Search term',value=searchObj4,style="width: 500px;")
-                tr
-                    td
-                        select(name='searchPred5' style='width: 260px;').chosen-select
-                            option #{'No Filter'}
-                            for predicate in predicates
-                                option(selected=(predicate.name==initPred5)) #{predicate.name}
-                    td
-                        button(type='submit',name="adv",value="Filter5").btn.btn-primary.btn-sm
-                            | Filter
-                        if objects5.length > 0
-                            select(name='filterObj5' style='width: 260px;').chosen-select
-                                option #{'No Filter'}
-                                for object in objects5
-                                    option(selected=(object.name==initObj5)) #{object.name}
-                        else
-                            input(type='text',name='searchObj5',placeholder='Search term',value=searchObj5,style="width: 500px;")
+
+                +advanced-search-filter('searchPred1',predicates,initPred1,"Filter1",objects1,'filterObj1',initObj1,'searchObj1',searchObj1)
+                +advanced-search-filter('searchPred2',predicates,initPred2,"Filter2",objects2,'filterObj2',initObj2,'searchObj2',searchObj2)
+                +advanced-search-filter('searchPred3',predicates,initPred3,"Filter3",objects3,'filterObj3',initObj3,'searchObj3',searchObj3)
+                +advanced-search-filter('searchPred4',predicates,initPred4,"Filter4",objects4,'filterObj4',initObj4,'searchObj4',searchObj4)
+                +advanced-search-filter('searchPred5',predicates,initPred5,"Filter5",objects5,'filterObj5',initObj5,'searchObj5',searchObj5)
  
         div.clearfix
 
