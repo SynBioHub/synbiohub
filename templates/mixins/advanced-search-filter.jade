@@ -1,0 +1,17 @@
+mixin advanced-search-filter(searchPred,predicates,initPred,filter,objects,filterObj,initObj,searchObj,searchObjValue)
+    tr
+        td
+            select(name=searchPred style='width: 260px;').chosen-select
+                option #{'No Filter'}
+                for predicate in predicates
+                    option(selected=(predicate.name==initPred)) #{predicate.name}
+        td
+            button(type='submit',name="adv",value=filter).btn.btn-primary.btn-sm
+                | Filter
+            if objects.length > 0
+                select(name=filterObj style='width: 260px;').chosen-select
+                    option #{'No Filter'}
+                    for object in objects
+                        option(selected=(object.name==initObj)) #{object.name}
+            else
+                input(type='text',name=searchObj1,placeholder='Search term',value=searchObjValue,style="width: 500px;")
