@@ -47,7 +47,7 @@ block content
                                 div.form-group-100.required
                                     label(for="description") Collection Description
                                     textarea.form-control(name='description', id="description"
-                                            placeholder='The more you say, the easier it will be to find your design.')
+                                            placeholder='The more you say, the easier it will be to find your design.', value=submission.description)
                                             | #{submission.description}
 
                         div.row
