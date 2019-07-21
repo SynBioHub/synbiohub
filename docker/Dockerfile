@@ -12,7 +12,8 @@ RUN yarn install
 RUN mkdir /mnt/data && \
     mkdir /mnt/data/backup && \
     mkdir /mnt/data/uploads && \
-    mkdir /mnt/config
+    mkdir /mnt/config && \
+    mkdir /mnt/logs
 
 COPY docker/config.local.json /mnt/config/config.local.json
 COPY docker/healthcheck.js healthcheck.js
@@ -21,7 +22,8 @@ COPY docker/entry.sh entry.sh
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synbiohub.sqlite ./synbiohub.sqlite && \
     ln -s /mnt/data/backup . && \
-    ln -s /mnt/data/uploads .
+    ln -s /mnt/data/uploads . && \
+    ln -s /mnt/data/logs .
 
 EXPOSE 8890 7777 1111
 
