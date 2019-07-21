@@ -9,6 +9,7 @@ mixin attachments(url, attachments, canEdit)
                 th Name
                 th Size
                 th
+                th
             tbody
                 for attachment in attachments
                     tr
@@ -23,6 +24,9 @@ mixin attachments(url, attachments, canEdit)
                                 button.btn.btn-primary
                                     span.fa.fa-download
                                     |  Download
+                        td
+                            button.btn.btn-danger.remove-attachment
+                                span.fa.fa-trash
                 if canEdit
                     tr
                         td
@@ -34,7 +38,7 @@ mixin attachments(url, attachments, canEdit)
                                     span.btn.btn-primary
                                         | Select file(s)&hellip;
                                         input(type="file",name="file",style="display: none;",multiple,form="sbh-attachment-upload")
-                        td
+                        td(colspan=2)
                             button.btn.btn-success(type='submit',style='width:100%;',form="sbh-attachment-upload") Attach
                     div.row
                         form#sbh-attachment-lookup(method='post', action=url + '/attachUrl')
@@ -53,5 +57,5 @@ mixin attachments(url, attachments, canEdit)
                                                 option(selected="true") Pick an attachment type...
                                                 for t in attachmentTypes
                                                     option(value=t.uri) #{t.name}
-                                td
+                                td(colspan=2)
                                     button.btn.btn-success.btn-block(type='submit',style='width:100%;',form="sbh-attachment-lookup",disabled) Attach

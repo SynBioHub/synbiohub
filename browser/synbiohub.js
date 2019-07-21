@@ -1,9 +1,6 @@
 
 $(document).on('click', '[data-uri]', function () {
-
     window.location = $(this).attr('data-uri')
-
-
 })
 
 
@@ -677,4 +674,13 @@ $(document).on('click', '#remoteEdit', function () {
     }[remote.type]
 
     populateForm(remote.type, data)
+})
+
+$(document).on('click', '.remove-attachment', function() {
+    let $row = $(this).closest('tr');
+    let attachmentUri = $row.find('a').first().attr('href');
+
+    $.get(attachmentUri + "/remove")
+     .done(() => $row.remove())
+     .error(() => alert("Could not remove attachment!"));
 })
