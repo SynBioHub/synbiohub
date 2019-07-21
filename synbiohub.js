@@ -13,6 +13,9 @@ console.debug = logger.debug.bind(logger)
 console.warn = logger.warn.bind(logger)
 console.error = logger.error.bind(logger)
 
+// Log to error so that it shows up in all logfiles
+console.error('starting SynBioHub server')
+
 if (!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size === 0) {
   db.sequelize.sync({ force: true }).then(startServer)
 } else {
