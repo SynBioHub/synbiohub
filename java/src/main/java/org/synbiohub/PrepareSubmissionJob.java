@@ -194,7 +194,7 @@ public class PrepareSubmissionJob extends Job {
 						format = "http://identifiers.org/combine.specifications/sbml";
 					} else if (firstLine.contains("sedml")) {
 						format = "http://identifiers.org/combine.specifications/sedml";
-					} else if (SBOLReader.isGenBankFile(filePath) || SBOLReader.isFastaFile(filePath)) {
+					} else if (SBOLReader.isGenBankFile(filePath) || SBOLReader.isFastaFile(filePath) || SBOLReader.isGFF3File(filePath)) {
 						format = "http://identifiers.org/combine.specifications/sbol";
 					}
 				}
