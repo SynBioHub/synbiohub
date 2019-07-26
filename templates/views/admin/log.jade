@@ -1,0 +1,24 @@
+
+extends ../../layouts/admin.jade
+
+block adminContent
+    h2 Logs
+    div.row
+        div.col-sm-12
+            div.form-group(style="margin-bottom: 0px")
+                label(for="verbosity") Verbosity
+                input.form-control-range#verbosity(type="range", min="1", max="4")
+    div(style="justify-content:space-between; display:flex")
+        div
+            h4.text-danger(style="margin-top: 0px") Error
+        div
+            h4.text-warning(style="margin-top: 0px") Warn
+        div
+            h4.text-info(style="margin-top: 0px") Info
+        div
+            h4.text-success(style="margin-top: 0px") Debug 
+
+    table.log-table
+        for row in log
+            tr.logline(level=row.level)
+                td  !{row.line}

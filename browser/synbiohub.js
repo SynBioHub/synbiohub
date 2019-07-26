@@ -230,6 +230,7 @@ require('./sse')
 require('./setup')
 require('./plugin')
 require('./field-editor')
+require('./logs')
 
 function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
