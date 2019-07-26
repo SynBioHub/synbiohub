@@ -194,7 +194,7 @@ public class PrepareSubmissionJob extends Job {
 						format = "http://identifiers.org/combine.specifications/sbml";
 					} else if (firstLine.contains("sedml")) {
 						format = "http://identifiers.org/combine.specifications/sedml";
-					} else if (SBOLReader.isGenBankFile(filePath) || SBOLReader.isFastaFile(filePath)) {
+					} else if (SBOLReader.isGenBankFile(filePath) || SBOLReader.isFastaFile(filePath) || SBOLReader.isGFF3File(filePath)) {
 						format = "http://identifiers.org/combine.specifications/sbol";
 					}
 				}
@@ -296,7 +296,7 @@ public class PrepareSubmissionJob extends Job {
 			errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
 			log += "[" + filename + " log] \n" + fileLog + "\n";
 
-			System.err.println(log);
+			//System.err.println(log);
 			System.err.println(errorLog);
 
 			if (errorLog.startsWith("File is empty")) {
@@ -307,7 +307,7 @@ public class PrepareSubmissionJob extends Job {
 				errorLog = "";
 				continue;
 			} */ else if (errorLog.length() > 0) {
-				finish(new PrepareSubmissionResult(this, false, "", log, "[" + filename + "] " + errorLog,
+				finish(new PrepareSubmissionResult(this, false, "", log, errorLog,
 						attachmentFiles, tempDirPath));
 				return;
 			}
