@@ -48,15 +48,18 @@ block topLevelPanels
                                         td
                                             for usage in meta.usages
                                                 a(href=usage.url) #{usage.name}
+                                                br
                                         td
                                             for usage in meta.usages
                                                 a(href=usage.entity.url) #{usage.entity.name}
+                                                br
                                         td
                                             for usage in meta.usages
                                                 for role in usage.roles
                                                     != role.term
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
+                                                    br
                 if meta.associations && meta.associations.length > 0
                     .panel.panel-default
                         .panel-heading
@@ -87,16 +90,20 @@ block topLevelPanels
                                         td
                                             for association in meta.associations
                                                 a(href=association.url) #{association.name}
+                                                br
                                         td
                                             for association in meta.associations
                                                 a(href=association.agent.url) #{association.agent.name}
+                                                br
                                         td
                                             for association in meta.associations
                                                 if association.plan
                                                     a(href=association.plan.url) #{association.plan.name}
+                                                    br
                                         td
                                             for association in meta.associations
                                                 for role in association.roles
                                                     != role.term
                                                     a(href=role.uri,title='Learn more about this role') 
                                                         span.fa.fa-info-circle
+                                                    br
