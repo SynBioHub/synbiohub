@@ -13,7 +13,7 @@ mixin attachments(url, attachments, canEdit)
             tbody
                 for attachment in attachments
                     tr
-                        td #{attachment.type}
+                        td #{attachment.image?'Image':attachment.type}
                         td
                             a(href=attachment.url) #{attachment.name}
                         td
