@@ -142,9 +142,22 @@ if (typeof meta !== 'undefined') {
                 d.graphUri = meta.graphUri
             }
         }
-
     })
 }
+
+$(document).on('click', '.sbh-collection-members-datatable .delete', function () {
+    const $row = $(this).closest('tr')
+    const removeUrl = $row.find('a').first().attr('href') + '/remove'
+    console.log(removeUrl)
+
+    var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
+
+    $.get(removeUrl, function () {
+
+        dt.row($row).remove().draw()
+
+    })
+})
 
 function createPluginFunctions(pluginType) {
     $(document).on('click', '.save-' + pluginType + '-plugin', function () {
