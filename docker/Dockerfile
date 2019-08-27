@@ -12,8 +12,8 @@ RUN yarn install
 RUN mkdir /mnt/data && \
     mkdir /mnt/data/backup && \
     mkdir /mnt/data/uploads && \
-    mkdir /mnt/config && \
-    mkdir /mnt/logs
+    mkdir /mnt/data/logs && \
+    mkdir /mnt/config
 
 COPY docker/config.local.json /mnt/config/config.local.json
 COPY docker/healthcheck.js healthcheck.js
