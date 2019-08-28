@@ -36,7 +36,7 @@ def newer_logp(log1, log2):
 
 # if num_of_lines is negative, returns all lines
 def get_end_of_error_log(num_of_lines):
-#    copy_docker_log()
+    copy_docker_log()
     directory = os.listdir("./logs_from_test_suite")
     possible_error_logs = []
     for filename in directory:
@@ -56,8 +56,8 @@ def get_end_of_error_log(num_of_lines):
 def copy_docker_log():
     if os.path.isdir("./logs_from_test_suite"):
         shutil.rmtree("./logs_from_test_suite")
-    
-    run_bash("docker cp testsuiteproject_synbiohub_1:/synbiohub/logs .")
+            
+    run_bash("docker cp testsuiteproject_synbiohub_1:/mnt/data/logs ./logs")
     run_bash("mv ./logs ./logs_from_test_suite")
     
 
