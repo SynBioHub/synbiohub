@@ -327,6 +327,7 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
     var $cancelButton = $('<button class="btn btn-default">').text('Cancel')
 
     $textarea.val($el.attr('data-src'))
+    $textarea.attr('rows', $el.attr('data-src').split(/\r\n|\r|\n/).length)
 
     var $div = $('<div></div>')
         .append($topbar)
