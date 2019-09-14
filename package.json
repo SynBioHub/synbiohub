@@ -27,7 +27,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
-    "express-sse": "^0.4.1",
+    "express-sse": "^0.5.1",
     "extend": "^3.0.0",
     "fast-sort": "^1.5.6",
     "file-type": "^10.6.0",

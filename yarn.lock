@@ -2083,10 +2083,10 @@ express-session@^1.13.0:
     safe-buffer "5.1.2"
     uid-safe "~2.1.5"
 
-express-sse@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/express-sse/-/express-sse-0.4.1.tgz#21895c9b93f88535b1883ac055e2c22d96c63585"
-  integrity sha1-IYlcm5P4hTWxiDrAVeLCLZbGNYU=
+express-sse@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/express-sse/-/express-sse-0.5.1.tgz#55889e9b7a93eb4a9fd37342352c23d4ce940ac1"
+  integrity sha512-RRSomLMWfaX1DPjF17FsNlLr/RujPKJygLE9Kq7u8usOQA19lvGEOCWqWX5dBvrOSsm7xJ/SPTpMaX7jiUsikg==
 
 express@^4.13.3, express@^4.13.4:
   version "4.17.1"
