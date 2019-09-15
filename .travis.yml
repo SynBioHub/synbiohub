@@ -24,9 +24,9 @@ jobs:
     include:
         - stage: build
           install: 
-              - docker build -t synbiohub/synbiohub:snapshot-$TRAVIS_JOB_ID -f docker/Dockerfile .
+              - docker build -t synbiohub/synbiohub:travis-$TRAVIS_JOB_ID -f docker/Dockerfile .
           script:
-              - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --passwd_stdin
+              - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
               - docker push synbiohub/synbiohub:travis-$TRAVIS_JOB_ID
 
         - stage: test
