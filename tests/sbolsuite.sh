@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd tests
+source ./testutil.sh
 
 message "Running synbiohub test suite."
 
@@ -15,6 +16,8 @@ fi
 
 
 bash ./start_containers.sh
+python3 -c "from first_time_setup import TestSetup; ts = TestSetup(); ts.test_post()"
+
 bash ./run_sboltestrunner.sh
 exitcode=$?
 if [ $exitcode -ne 0 ]; then
