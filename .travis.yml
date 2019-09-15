@@ -34,8 +34,17 @@ jobs:
               - docker pull synbiohub/synbiohub:travis-$TRAVIS_JOB_ID
               - docker tag synbiohub/synbiohub:travis-$TRAVIS_JOB_ID synbiohub/synbiohub:snapshot-standalone 
               - pip install -r tests/test_requirements.txt
-          script: travis_retry tests/test.sh
+          script: travis_retry tests/test.sh --stopaftertestsuite
 
+        - stage: test
+          install: 
+              - docker pull synbiohub/synbiohub:travis-$TRAVIS_JOB_ID
+              - docker tag synbiohub/synbiohub:travis-$TRAVIS_JOB_ID synbiohub/synbiohub:snapshot-standalone 
+              - pip install -r tests/test_requirements.txt
+          script: 
+              - tests/sbolsuite.sh
+
+          
         - stage: push
           install:
               - docker pull synbiohub/synbiohub:travis-$TRAVIS_JOB_ID
