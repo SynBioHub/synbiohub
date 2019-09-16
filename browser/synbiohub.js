@@ -734,4 +734,18 @@ $('form[action="/setup"] select[name="authProvider"]').change(function () {
 
     parentEl.find('div[class^="auth-"]').hide();
     parentEl.find('div.auth-' + providerName).show();
+
+$(document).on('click', '.copyShare', function() {
+    let $row = $(this).closest('tr');
+    let shareLink = $row.find('#link').first().text();
+
+    let textArea = document.createElement("textarea");
+    textArea.value = shareLink;
+    document.body.appendChild(textArea);
+
+    textArea.select()
+    textArea.setSelectionRange(0, 9999999); // for mobile? 
+    document.execCommand('copy');
+
+    textArea.remove();
 })

@@ -8,7 +8,7 @@ block content
                 span(style='font-size: 3.3em').fa.fa-share
                 p(style='font-size: 1.7em; font-weight: bolder')
                     | Create share link
-            form.form(method="POST", action="displayShare")
+            form.form(method="POST", action="displayShareLink")
                 input(type="hidden", name="uri", value=uri)
                 label(for="shareNotes") Optional: what is this share link for?
                 textarea.form-control(name="shareNotes", placeholder='This is to remind you later in case you want to revoke it.')

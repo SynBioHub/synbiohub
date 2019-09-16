@@ -14,10 +14,10 @@ block content
                 input(type="hidden", name="uri", value=uri)
                 div.row
                     div.col-sm-12
-                            select(name='user' style='width: 260px;').chosen-select
+                            select(name='shareUser' style='width: 260px;').chosen-select
                                 for u in users
                                     if u.id != user.id
-                                        option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (" + u.username + ")"}
+                                        option(value=u.id) !{u.name + " (" + u.username + ")"}
                 br
                 div.row
                     div.col-sm-12

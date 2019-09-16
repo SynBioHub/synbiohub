@@ -49,11 +49,11 @@ block generalTopLevelButtons
                         span.caret
                         ul.dropdown-menu.dropdown-toggle
                             li
-                                a(href=meta.url + '/addOwner') Share with another user
+                                a(href=meta.url + '/createShare') Share with another user
                             li
-                                a(href=meta.url + '/createShare') Create share link
+                                a(href=meta.url + '/createShareLink') Create share link
                             li
-                                a(disabled="true") Current sharing settings
+                                a(href=meta.url + '/sharing') Current sharing settings
                 if meta.triplestore != 'public' && locals.user && locals.user.isCurator
                     li.btn.btn-success
                         span.fa.fa-unlock

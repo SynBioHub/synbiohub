@@ -1,0 +1,54 @@
+
+extends ../layouts/default.jade
+
+block content
+    div.container
+        div.submission-container(align='center')
+            div.submission-header
+                span(style='font-size: 3.3em').fa.fa-share
+                p(style='font-size: 1.7em; font-weight: bolder')
+                    | Manage Sharing
+
+            hr
+            if shares.length > 0
+                h4 Shared with Others
+                table.table.table-striped
+                    th User
+                    th privilege
+                    th Delete
+                    each share in shares
+                        tr
+                            td #{share.user.username}
+                            td
+                            td 
+                                a.btn.btn-block.btn-danger.fa.fa-trash(href=share.removeUrl)
+            else
+                h5 You have not shared this part with any users!
+
+            a.btn.btn-success(href="createShare") Share with someone
+
+            hr
+            if shareLinks.length > 0
+                h4 Share links
+                table.table.table-striped
+                    thead
+                        td URL
+                        td Description
+                        td Delete
+                    tbody
+                        each shareLink in shareLinks
+                            tr
+                                td 
+                                    span#link(style="padding-right: 5px") #{shareLink.url}
+
+                                    a.fa.fa-clipboard.copyShare
+                                td #{shareLink.description}
+                                td 
+                                    a.btn.btn-block.btn-danger.fa.fa-trash(href=shareLink.removeUrl)
+            else
+                h5 You have not created any share links!
+
+            a.btn.btn-success(href="createShareLink") Create a share link
+            
+            hr
+            a.btn.btn-info(href=uri) Return to page
