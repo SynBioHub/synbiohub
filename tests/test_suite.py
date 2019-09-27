@@ -39,9 +39,6 @@ if __name__ == '__main__':
 
     import docker_test
     addTestModule(docker_test)
-
-    import test_logout
-    addTestModule(test_logout)
     
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
