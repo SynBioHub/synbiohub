@@ -24,6 +24,3 @@ class TestSetup(TestCase):
         logininfo = {'email' : 'test@user.synbiohub',
                      'password' : 'test'}
         compare_post_request("/login", logininfo)
-
-    def test_rootCollections(self):
-        compare_get_request("/rootCollections")
