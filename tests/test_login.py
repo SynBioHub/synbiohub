@@ -9,4 +9,7 @@ class TestSetup(TestCase):
                      'password' : 'test'}
         login_with(logininfo)
 
+    def test_profile(TestCase):
+        compare_get_request("/profile")
+
 
