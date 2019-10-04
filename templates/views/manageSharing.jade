@@ -14,12 +14,12 @@ block content
                 h4 Shared with Others
                 table.table.table-striped
                     th User
-                    th privilege
+                    th Privilege
                     th Delete
                     each share in shares
                         tr
                             td #{share.user.username}
-                            td
+                            td #{share.privilege}
                             td 
                                 a.btn.btn-block.btn-danger.fa.fa-trash(href=share.removeUrl)
             else

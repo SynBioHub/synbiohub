@@ -21,4 +21,10 @@ block content
                 br
                 div.row
                     div.col-sm-12
+                        select(name='privilege' style='width:260px').form-control
+                            option(value='0') Allow Viewing
+                            option(value='1') Allow Viewing and Editing 
+                br
+                div.row
+                    div.col-sm-12
                         input.btn.btn-info(type="submit", value="Grant ownership")
