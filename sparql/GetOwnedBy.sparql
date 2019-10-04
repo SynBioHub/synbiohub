@@ -1,7 +1,0 @@
-PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
-
-SELECT 
-       ?ownedBy
-WHERE { 
-      <$topLevel> sbh:ownedBy ?ownedBy . 
-}
