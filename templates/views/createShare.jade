@@ -10,9 +10,17 @@ block content
                     | Create share link
             form.form(method="POST", action="displayShareLink")
                 input(type="hidden", name="uri", value=uri)
+                div.row
+                    div.col-sm-12
+                        select(name='privileges' style='width:260px').form-control
+                            option(value='1') Allow Viewing
+                            option(value='2') Allow Viewing and Editing 
+                            option(value='3') Allow Viewing, Editing, and Sharing
+                br
                 label(for="shareNotes") Optional: what is this share link for?
                 textarea.form-control(name="shareNotes", placeholder='This is to remind you later in case you want to revoke it.')
                 br
                 div.row
                     div.col-sm-12
                         input.btn.btn-info(type="submit", value="Share")
+

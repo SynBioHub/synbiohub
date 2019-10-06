@@ -42,7 +42,7 @@ block generalTopLevelButtons
                 li.btn.btn-success
                         a(href=rootCollection,title='Back to root collection',style="color:white")
                             span.fa.fa-arrow-left
-                if meta.triplestore != 'public'
+                if meta.triplestore != 'public' && meta.canShare
                     li.dropdown.btn.btn-success
                         span.fa.fa-share
                         | &nbsp;&nbsp; Sharing &nbsp;
