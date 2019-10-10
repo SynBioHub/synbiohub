@@ -9,7 +9,7 @@ block generalTopLevelButtons
             div.btn-group
                 li.dropdown.btn.btn-primary
                     span.fa.fa-download
-                    | &nbsp; Download &nbsp;
+                    | &nbsp;&nbsp;
                     span.caret
                     ul.dropdown-menu.dropdown-toggle
                         li
@@ -45,7 +45,7 @@ block generalTopLevelButtons
                 if meta.triplestore != 'public' && meta.canShare
                     li.dropdown.btn.btn-success
                         span.fa.fa-share
-                        | &nbsp;&nbsp; Sharing &nbsp;
+                        | &nbsp;&nbsp; 
                         span.caret
                         ul.dropdown-menu.dropdown-toggle
                             li
@@ -56,17 +56,13 @@ block generalTopLevelButtons
                                 a(href=meta.url + '/sharing') Current sharing settings
                 if meta.triplestore != 'public' && locals.user && locals.user.isCurator
                     li.btn.btn-success
-                        span.fa.fa-unlock
-                        | &nbsp;&nbsp;
                         a(href=meta.url + '/makePublic',title='Make Public',style="color:white")
-                            | Make public
+                            span.fa.fa-unlock
                 if meta.canEdit && meta.triplestore != 'public' 
                     if rdfType.name == 'Collection'
                         li.btn.btn-danger
-                            span.fa.fa-remove
-                            | &nbsp;&nbsp;
                             a(href=meta.url + '/removeCollection',title='Remove Collection',style="color:white",onclick="return confirm('Are you sure you want to delete this?')")
-                                    | Remove
+                                span.fa.fa-remove
                     else 
                         li.btn.btn-success
                                 a(href=meta.url + '/remove',title='Remove',style="color:white", onclick="return confirm('Are you sure you want to delete this?')")
