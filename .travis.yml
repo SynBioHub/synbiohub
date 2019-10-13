@@ -3,6 +3,8 @@ sudo: required
 language: node_js
 node_js:
     - "lts/*"
+env:
+    - DOCKER_COMPOSE_VERSION=1.22.0
 
 language: python
 python:
