@@ -22,15 +22,33 @@ services:
 
 jobs:
     include:
+        - stage: build
+          install: 
+              - docker build -t synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID -f docker/Dockerfile .
+          script:
+              - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+              - docker push synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID
+
         - stage: test
           install:
-              - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
+              - docker pull synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID
+              - docker tag synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID synbiohub/synbiohub:snapshot-standalone 
               - pip install -r tests/test_requirements.txt
-          script: travis_retry tests/test.sh
+          script: travis_retry tests/test.sh --stopaftertestsuite
 
+        - stage: test
+          install: 
+              - docker pull synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID
+              - docker tag synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID synbiohub/synbiohub:snapshot-standalone 
+              - pip install -r tests/test_requirements.txt
+          script: 
+              - tests/sbolsuite.sh
+
+          
         - stage: push
           install:
-              - docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .
+              - docker pull synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID
+              - docker tag synbiohub/synbiohub:travis-$TRAVIS_BUILD_ID synbiohub/synbiohub:snapshot-standalone 
           script: docker/push.sh
           if: branch = master AND type = push
 
