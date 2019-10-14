@@ -34,6 +34,9 @@ if __name__ == '__main__':
     import test_admin_views
     addTestModule(test_admin_views)
 
+    import test_features
+    addTestModule(test_features)
+
     import docker_test_setup
     addTestModule(docker_test_setup)
 
