@@ -10,6 +10,7 @@ block content
                     | Create share link
             form.form(method="POST", action="displayShareLink")
                 input(type="hidden", name="uri", value=uri)
+                input(type="hidden", name="url", value=url)
                 div.row
                     div.col-sm-12
                         select(name='privileges' style='width:260px').form-control
