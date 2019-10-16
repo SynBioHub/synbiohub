@@ -6,6 +6,7 @@ if [ -z "$TAG" ];
 then
     TAG="snapshot"
 else
+    echo "Retagging to $TAG-standalone"
     docker tag synbiohub/synbiohub:snapshot-standalone \
                synbiohub/synbiohub:$TAG-standalone
 fi

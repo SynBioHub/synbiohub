@@ -34,6 +34,12 @@ if __name__ == '__main__':
     import test_admin_views
     addTestModule(test_admin_views)
 
+    import test_features
+    addTestModule(test_features)
+
+    import test_logout
+    addTestModule(test_logout)
+
     import docker_test_setup
     addTestModule(docker_test_setup)
 
