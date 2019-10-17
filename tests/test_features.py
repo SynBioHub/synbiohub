@@ -6,4 +6,6 @@ class TestFeatures(TestCase):
 
     def test_advancedSearch(self):
         compare_get_request("/advancedSearch")
-        
+
+    def test_resetPassword(self):
+        compare_get_request("/resetPassword")
