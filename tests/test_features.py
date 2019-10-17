@@ -6,4 +6,6 @@ class TestFeatures(TestCase):
 
     def test_advancedSearch(self):
         compare_get_request("/advancedSearch")
-        
+
+    def test_createCollection(self):
+        compare_get_request("/createCollection")
