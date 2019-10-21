@@ -15,3 +15,6 @@ class TestFeatures(TestCase):
 
     def test_browse(self):
         compare_get_request("/browse")
+
+    def test_sparql(self):
+        compare_get_request("/sparql", headers = {"Accept": "text/html"})
