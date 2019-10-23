@@ -20,4 +20,4 @@ class TestFeatures(TestCase):
         compare_get_request("/sparql", headers = {"Accept": "text/html"})
 
     def test_searchQuery(self):
-        compare_get_request("/search/:query?", route_parameters = ["99999999999"])
+        compare_get_request("/search/:query?", route_parameters = ["123"])
