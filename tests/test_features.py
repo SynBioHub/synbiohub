@@ -18,3 +18,6 @@ class TestFeatures(TestCase):
 
     def test_sparql(self):
         compare_get_request("/sparql", headers = {"Accept": "text/html"})
+
+    def test_searchCount_query(self):
+        compare_get_request("/searchCount/:query?", route_parameters = ["123"])
