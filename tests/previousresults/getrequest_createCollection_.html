@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   Test Synbiohub
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
+ </head>
+ <body>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/shared">
+        <span class="fa fa-bolt">
+        </span>
+        <span class="blue-text">
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text">
+         Admin
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text">
+         Sign Out
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-search">
+     </span>
+     Create Collection
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <div align="center" class="submission-container">
+   <form class="submission-form" method="post" name="advancedSearch">
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group-100 required">
+       <label for="name">
+        Collection Name
+        <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Name" title="SynBioHub organizes objects into collections.  You can put as many objects as you want into one collection, and then conveniently download them all together or share the collection as a whole with other people.">
+         <span class="fa fa-info-circle">
+         </span>
+        </a>
+        <input class="form-control" id="metaName" name="metaName" placeholder="A short title for your collection.  You can use spaces and symbols here." style="width: 675px" value=""/>
+       </label>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group-100 required">
+       <label for="description">
+        Collection Description
+        <textarea class="form-control" id="metaDescription" name="metaDescription" placeholder="The more you say, the easier it will be to find your design." style="width: 675px" value=""></textarea>
+       </label>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-6">
+      <div class="form-group-100 required">
+       <label for="id">
+        Collection Id
+        <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id" title="An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.">
+         <span class="fa fa-info-circle">
+         </span>
+        </a>
+       </label>
+       <input class="form-control" id="metaId" name="metaId" placeholder="Just letters and numbers, no spaces" type="text" value=""/>
+      </div>
+     </div>
+     <div class="col-md-6">
+      <div class="form-group-100 required">
+       <label for="version">
+        Collection Version
+        <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version" title="A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.">
+         <span class="fa fa-info-circle">
+         </span>
+        </a>
+       </label>
+       <input class="form-control" id="metaVersion" name="metaVersion" placeholder="Version" type="text" value=""/>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <div class="form-group-50 required">
+     <table class="table advanced-search-table">
+      <tbody>
+       <tr>
+        <th>
+         Property
+        </th>
+        <th>
+         Value
+        </th>
+       </tr>
+       <tr>
+        <td>
+         Object Type
+        </td>
+        <td>
+         <select class="chosen-select" name="objectType" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           sbol2:Collection
+          </option>
+          <option>
+           sbol2:ComponentDefinition
+          </option>
+          <option>
+           sbol2:Sequence
+          </option>
+         </select>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Creator
+        </td>
+        <td>
+         <select class="chosen-select" name="creator" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           Test User
+          </option>
+         </select>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Created After
+        </td>
+        <td>
+         <input name="createdAfter" placeholder="YYYY-MM-DD" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Created Before
+        </td>
+        <td>
+         <input name="createdBefore" placeholder="YYYY-MM-DD" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Modified After
+        </td>
+        <td>
+         <input name="modifiedAfter" placeholder="YYYY-MM-DD" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Modified Before
+        </td>
+        <td>
+         <input name="modifiedBefore" placeholder="YYYY-MM-DD" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         ID/Name/Description
+        </td>
+        <td>
+         <input name="description" placeholder="Search terms" style="width: 550px" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Type
+        </td>
+        <td>
+         <select class="chosen-select" name="type" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           biopax:DnaRegion
+          </option>
+          <option>
+           so:linear
+          </option>
+         </select>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Role
+        </td>
+        <td>
+         <select class="chosen-select" name="role" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           so:CDS
+          </option>
+          <option>
+           so:engineered_region
+          </option>
+          <option>
+           so:ribosome_entry_site
+          </option>
+          <option>
+           so:terminator
+          </option>
+         </select>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Collections
+        </td>
+        <td>
+         <select class="chosen-select" data-placeholder="Select Some Collections" id="collections" multiple="" name="collections">
+          <option>
+           testcollection0
+          </option>
+         </select>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <select class="chosen-select" name="searchPred1" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           dc:creator
+          </option>
+          <option>
+           dcterms:created
+          </option>
+          <option>
+           dcterms:description
+          </option>
+          <option>
+           dcterms:title
+          </option>
+          <option>
+           prov:wasDerivedFrom
+          </option>
+          <option>
+           purl:OBI_0001617
+          </option>
+          <option>
+           rdf:type
+          </option>
+          <option>
+           sbh:ownedBy
+          </option>
+          <option>
+           sbh:topLevel
+          </option>
+          <option>
+           sbol2:component
+          </option>
+          <option>
+           sbol2:displayId
+          </option>
+          <option>
+           sbol2:elements
+          </option>
+          <option>
+           sbol2:encoding
+          </option>
+          <option>
+           sbol2:member
+          </option>
+          <option>
+           sbol2:persistentIdentity
+          </option>
+          <option>
+           sbol2:role
+          </option>
+          <option>
+           sbol2:sequence
+          </option>
+          <option>
+           sbol2:sequenceAnnotation
+          </option>
+          <option>
+           sbol2:type
+          </option>
+          <option>
+           sbol2:version
+          </option>
+         </select>
+        </td>
+        <td>
+         <button class="btn btn-primary btn-sm" name="adv" type="submit" value="Filter1">
+          Filter
+         </button>
+         <input placeholder="Search term" style="width: 500px" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <select class="chosen-select" name="searchPred2" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           dc:creator
+          </option>
+          <option>
+           dcterms:created
+          </option>
+          <option>
+           dcterms:description
+          </option>
+          <option>
+           dcterms:title
+          </option>
+          <option>
+           prov:wasDerivedFrom
+          </option>
+          <option>
+           purl:OBI_0001617
+          </option>
+          <option>
+           rdf:type
+          </option>
+          <option>
+           sbh:ownedBy
+          </option>
+          <option>
+           sbh:topLevel
+          </option>
+          <option>
+           sbol2:component
+          </option>
+          <option>
+           sbol2:displayId
+          </option>
+          <option>
+           sbol2:elements
+          </option>
+          <option>
+           sbol2:encoding
+          </option>
+          <option>
+           sbol2:member
+          </option>
+          <option>
+           sbol2:persistentIdentity
+          </option>
+          <option>
+           sbol2:role
+          </option>
+          <option>
+           sbol2:sequence
+          </option>
+          <option>
+           sbol2:sequenceAnnotation
+          </option>
+          <option>
+           sbol2:type
+          </option>
+          <option>
+           sbol2:version
+          </option>
+         </select>
+        </td>
+        <td>
+         <button class="btn btn-primary btn-sm" name="adv" type="submit" value="Filter2">
+          Filter
+         </button>
+         <input placeholder="Search term" style="width: 500px" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <select class="chosen-select" name="searchPred3" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           dc:creator
+          </option>
+          <option>
+           dcterms:created
+          </option>
+          <option>
+           dcterms:description
+          </option>
+          <option>
+           dcterms:title
+          </option>
+          <option>
+           prov:wasDerivedFrom
+          </option>
+          <option>
+           purl:OBI_0001617
+          </option>
+          <option>
+           rdf:type
+          </option>
+          <option>
+           sbh:ownedBy
+          </option>
+          <option>
+           sbh:topLevel
+          </option>
+          <option>
+           sbol2:component
+          </option>
+          <option>
+           sbol2:displayId
+          </option>
+          <option>
+           sbol2:elements
+          </option>
+          <option>
+           sbol2:encoding
+          </option>
+          <option>
+           sbol2:member
+          </option>
+          <option>
+           sbol2:persistentIdentity
+          </option>
+          <option>
+           sbol2:role
+          </option>
+          <option>
+           sbol2:sequence
+          </option>
+          <option>
+           sbol2:sequenceAnnotation
+          </option>
+          <option>
+           sbol2:type
+          </option>
+          <option>
+           sbol2:version
+          </option>
+         </select>
+        </td>
+        <td>
+         <button class="btn btn-primary btn-sm" name="adv" type="submit" value="Filter3">
+          Filter
+         </button>
+         <input placeholder="Search term" style="width: 500px" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <select class="chosen-select" name="searchPred4" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           dc:creator
+          </option>
+          <option>
+           dcterms:created
+          </option>
+          <option>
+           dcterms:description
+          </option>
+          <option>
+           dcterms:title
+          </option>
+          <option>
+           prov:wasDerivedFrom
+          </option>
+          <option>
+           purl:OBI_0001617
+          </option>
+          <option>
+           rdf:type
+          </option>
+          <option>
+           sbh:ownedBy
+          </option>
+          <option>
+           sbh:topLevel
+          </option>
+          <option>
+           sbol2:component
+          </option>
+          <option>
+           sbol2:displayId
+          </option>
+          <option>
+           sbol2:elements
+          </option>
+          <option>
+           sbol2:encoding
+          </option>
+          <option>
+           sbol2:member
+          </option>
+          <option>
+           sbol2:persistentIdentity
+          </option>
+          <option>
+           sbol2:role
+          </option>
+          <option>
+           sbol2:sequence
+          </option>
+          <option>
+           sbol2:sequenceAnnotation
+          </option>
+          <option>
+           sbol2:type
+          </option>
+          <option>
+           sbol2:version
+          </option>
+         </select>
+        </td>
+        <td>
+         <button class="btn btn-primary btn-sm" name="adv" type="submit" value="Filter4">
+          Filter
+         </button>
+         <input placeholder="Search term" style="width: 500px" type="text"/>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <select class="chosen-select" name="searchPred5" style="width: 260px">
+          <option>
+           No Filter
+          </option>
+          <option>
+           dc:creator
+          </option>
+          <option>
+           dcterms:created
+          </option>
+          <option>
+           dcterms:description
+          </option>
+          <option>
+           dcterms:title
+          </option>
+          <option>
+           prov:wasDerivedFrom
+          </option>
+          <option>
+           purl:OBI_0001617
+          </option>
+          <option>
+           rdf:type
+          </option>
+          <option>
+           sbh:ownedBy
+          </option>
+          <option>
+           sbh:topLevel
+          </option>
+          <option>
+           sbol2:component
+          </option>
+          <option>
+           sbol2:displayId
+          </option>
+          <option>
+           sbol2:elements
+          </option>
+          <option>
+           sbol2:encoding
+          </option>
+          <option>
+           sbol2:member
+          </option>
+          <option>
+           sbol2:persistentIdentity
+          </option>
+          <option>
+           sbol2:role
+          </option>
+          <option>
+           sbol2:sequence
+          </option>
+          <option>
+           sbol2:sequenceAnnotation
+          </option>
+          <option>
+           sbol2:type
+          </option>
+          <option>
+           sbol2:version
+          </option>
+         </select>
+        </td>
+        <td>
+         <button class="btn btn-primary btn-sm" name="adv" type="submit" value="Filter5">
+          Filter
+         </button>
+         <input placeholder="Search term" style="width: 500px" type="text"/>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <div class="clearfix">
+    </div>
+    <br/>
+    <br/>
+    <button class="btn btn-primary btn-lg" name="adv" type="submit" value="Search">
+     Create Collection
+    </button>
+   </form>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="http://wiki.synbiohub.org">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
+  </div>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
+ </body>
+</html>
