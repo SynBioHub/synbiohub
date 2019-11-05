@@ -33,3 +33,7 @@ class TestFeatures(TestCase):
 
     def test_createCollectionQuery(self):
         compare_get_request("/createCollection/:query?", route_parameters = ["test"])
+
+    def test_rootCollections(self):
+        compare_get_request("/rootCollections")
+
