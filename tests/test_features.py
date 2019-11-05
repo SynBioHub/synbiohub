@@ -31,3 +31,5 @@ class TestFeatures(TestCase):
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
 
+    def test_public_collection_collectionid_displayid_sbol(self):
+        compare_get_request("/public/:collectionId/:displayId/sbol", route_parameters = ["testid0","BBa_I0462"])
