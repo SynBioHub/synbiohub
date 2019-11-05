@@ -26,7 +26,7 @@ class TestFeatures(TestCase):
         compare_get_request("/searchCount/:query?", route_parameters = ["I0462"])        
 
     def test_advancedSearchQuery(self):
-        compare_get_request("/advancedSearch/:query?", route_parameters = ["I0462"])
+        compare_get_request("/advancedSearch/:query?", route_parameters = ["I0462"])        
 
-    def test_rootCollections(self):
-        compare_get_request("/rootCollections")
+    def test_autocompleteQuery(self):
+        compare_get_request("/autocomplete/:query", route_parameters = ["I0462"])
