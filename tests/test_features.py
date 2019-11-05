@@ -33,3 +33,6 @@ class TestFeatures(TestCase):
 
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
+
+    def test_typeCount(self):
+        compare_get_request("/:type/count", route_parameters = ["Component"])
