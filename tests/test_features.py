@@ -30,3 +30,6 @@ class TestFeatures(TestCase):
 
     def test_autocompleteQuery(self):
         compare_get_request("/autocomplete/:query", route_parameters = ["I0462"])
+
+    def test_rootCollections(self):
+        compare_get_request("/rootCollections")
