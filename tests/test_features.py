@@ -30,3 +30,4 @@ class TestFeatures(TestCase):
 
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
+
