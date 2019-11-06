@@ -30,4 +30,6 @@ class TestFeatures(TestCase):
 
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
-
+        
+    def test_public_collection_collectionid_displayid_sbolnr(self):
+        compare_get_request("/public/:collectionId/:displayId/sbolnr", route_parameters = ["testid0","BBa_I0462"])
