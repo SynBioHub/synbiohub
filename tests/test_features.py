@@ -31,6 +31,9 @@ class TestFeatures(TestCase):
     def test_autocompleteQuery(self):
         compare_get_request("/autocomplete/:query", route_parameters = ["I0462"])
 
+    def test_createCollectionQuery(self):
+        compare_get_request("/createCollection/:query?", route_parameters = ["test"])
+
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
 
