@@ -30,37 +30,6 @@ try {
   </script>
  </head>
  <body>
-  <div class="modal fade" id="registryModal" role="dialog" tabindex="-1">
-   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-     <div class="modal-header">
-      <button arial-label="close" class="close" data-dismiss="modal" type="button">
-       <span aria-hidden="true">
-        ×
-       </span>
-      </button>
-      <h4 class="modal-title">
-       Add Registry
-      </h4>
-     </div>
-     <div class="modal-body">
-      <form action="/admin/saveRegistry" class="form" id="registryForm" method="POST">
-       <input class="form-control" name="uri" placeholder="Registry URI Prefix" type="text"/>
-       <br/>
-       <input class="form-control" name="url" placeholder="Registry URL" type="text"/>
-      </form>
-     </div>
-     <div class="modal-footer">
-      <button class="btn btn-danger" data-dismiss="modal">
-       Close
-      </button>
-      <button class="btn btn-primary" form="registryForm" type="submit">
-       Submit
-      </button>
-     </div>
-    </div>
-   </div>
-  </div>
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
@@ -189,7 +158,7 @@ try {
        </a>
       </li>
       <!--li(role='presentation',class=(adminSection==='sparql'?'active':''))a(href='/admin/sparql') SPARQL-->
-      <li class="active" role="presentation">
+      <li role="presentation">
        <a href="/admin/registries">
         Registries
        </a>
@@ -210,7 +179,7 @@ try {
         SPARQL
        </a>
       </li>
-      <li role="presentation">
+      <li class="active" role="presentation">
        <a href="/admin/theme">
         Theme
        </a>
@@ -224,155 +193,71 @@ try {
     </div>
     <div class="col-md-8">
      <div class="row">
-      <div class="col-sm-12">
-       <h4>
-        Web of Registries
-       </h4>
+      <div class="col-md-12">
+       <h1>
+        Create an Account
+       </h1>
       </div>
      </div>
      <div class="row">
-      <form action="federate" method="POST">
-       <div class="col-sm-4">
-        <input class="form-control" name="webOfRegistries" placeholder="Web of Registries URL" type="text" value="https://wor.synbiohub.org"/>
-       </div>
-       <div class="col-sm-4">
-        <input class="form-control" name="administratorEmail" placeholder="Administrator Email" type="text"/>
-       </div>
-       <div class="col-sm-4">
-        <input class="btn btn-primary btn-block" type="submit" value="Submit"/>
-       </div>
-      </form>
-     </div>
-     <hr/>
-     <div class="row">
-      <div class="col-sm-8">
-       <h4>
-        Local Web of Registries
-       </h4>
+      <div class="col-md-12">
+       <p>
+        The user will be emailed their login details upon account creation.
+       </p>
       </div>
-      <div class="col-4 pull-right">
-       <form action="retrieveFromWebOfRegistries" class="form form-inline" method="POST">
-        <button class="btn btn-info" style="margin-right: 20px" type="submit">
-         <span class="fa fa-cloud-download">
-         </span>
-         Retrieve from Web of Registries
-        </button>
-        <a class="btn btn-primary" data-target="#registryModal" data-toggle="modal">
-         <span class="fa fa-plus">
-         </span>
-         Add Registry
-        </a>
+     </div>
+     <div class="row">
+      <div class="col-md-12">
+       <form accept-charset="UTF-8" action="newUser" method="post">
+        <input class="text" name="utf8" type="hidden" value="✓"/>
+        <div class="form-group">
+         <label for="name">
+          Full Name
+         </label>
+         <input autocomplete="off" class="form-control" id="name" name="name" type="text"/>
+        </div>
+        <div class="form-group">
+         <label for="affiliation">
+          Affiliation (optional)
+         </label>
+         <input autocomplete="off" class="form-control" id="affiliation" name="affiliation"/>
+        </div>
+        <div class="form-group">
+         <label for="email">
+          Email
+         </label>
+         <input autocomplete="off" class="form-control" id="email" name="email" type="email"/>
+        </div>
+        <div class="form-group">
+         <label for="username">
+          Username
+         </label>
+         <input autocomplete="off" class="form-control" id="username" name="username" type="username"/>
+        </div>
+        <div class="checkbox">
+         <label class="form-check-label">
+          <input name="isAdmin" type="checkbox"/>
+          Grant Administrative Privileges
+         </label>
+        </div>
+        <div class="checkbox">
+         <label class="form-check-label">
+          <input name="isMember" type="checkbox"/>
+          Grant Member Privileges
+         </label>
+        </div>
+        <div class="checkbox">
+         <label class="form-check-label">
+          <input name="isCurator" type="checkbox"/>
+          Grant Curator Privileges
+         </label>
+        </div>
+        <div>
+         <input class="btn btn-primary" type="submit" value="Create"/>
+        </div>
        </form>
       </div>
      </div>
-     <table class="table table-striped sbh-registries-datatable">
-      <thead>
-       <tr>
-        <th>
-         URI Prefix
-        </th>
-        <th>
-         SynBioHub URL
-        </th>
-        <th>
-        </th>
-        <th>
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <input class="form-control" id="uri" readonly="readonly" type="text" value="http://localhost:7777"/>
-        </td>
-        <td>
-         <input class="form-control" id="url" type="text" value="http://localhost:7777"/>
-        </td>
-        <td>
-         <button class="btn btn-success btn-block save-registry">
-          Save
-         </button>
-        </td>
-        <td>
-         <button class="btn btn-danger btn-block delete-registry">
-          Delete
-         </button>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <input class="form-control" id="uri" readonly="readonly" type="text" value="https://synbiohub.org"/>
-        </td>
-        <td>
-         <input class="form-control" id="url" type="text" value="https://synbiohub.org"/>
-        </td>
-        <td>
-         <button class="btn btn-success btn-block save-registry">
-          Save
-         </button>
-        </td>
-        <td>
-         <button class="btn btn-danger btn-block delete-registry">
-          Delete
-         </button>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <input class="form-control" id="uri" readonly="readonly" type="text" value="https://synbiohub.programmingbiology.org"/>
-        </td>
-        <td>
-         <input class="form-control" id="url" type="text" value="https://synbiohub.programmingbiology.org"/>
-        </td>
-        <td>
-         <button class="btn btn-success btn-block save-registry">
-          Save
-         </button>
-        </td>
-        <td>
-         <button class="btn btn-danger btn-block delete-registry">
-          Delete
-         </button>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <input class="form-control" id="uri" readonly="readonly" type="text" value="https://synbiohub.utah.edu"/>
-        </td>
-        <td>
-         <input class="form-control" id="url" type="text" value="https://synbiohub.utah.edu"/>
-        </td>
-        <td>
-         <button class="btn btn-success btn-block save-registry">
-          Save
-         </button>
-        </td>
-        <td>
-         <button class="btn btn-danger btn-block delete-registry">
-          Delete
-         </button>
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <input class="form-control" id="uri" readonly="readonly" type="text" value="http://sevahub.es"/>
-        </td>
-        <td>
-         <input class="form-control" id="url" type="text" value="http://sevahub.es"/>
-        </td>
-        <td>
-         <button class="btn btn-success btn-block save-registry">
-          Save
-         </button>
-        </td>
-        <td>
-         <button class="btn btn-danger btn-block delete-registry">
-          Delete
-         </button>
-        </td>
-       </tr>
-      </tbody>
-     </table>
     </div>
     <div class="col-md-1">
     </div>

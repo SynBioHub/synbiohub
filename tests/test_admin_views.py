@@ -32,6 +32,9 @@ class TestAdminViews(TestCase):
     def test_admin_theme(self):
         compare_get_request("/admin/theme")
 
+    def test_admin_newUser(self):
+        compare_get_request("/admin/newUser")
+
     def test_admin_sparql(self):
         compare_get_request("/admin/sparql", headers = {"Accept": "text/html"})
 
