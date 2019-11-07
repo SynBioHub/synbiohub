@@ -31,5 +31,5 @@ class TestFeatures(TestCase):
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
         
-    def test_public_collection_collectionid_displayid_search_query(self):
+    def test_public_collection_collectionid_displayid_copyFromRemote(self):
         compare_get_request("public/:collectionId/:displayId/:version/copyFromRemote", route_parameters = ["testid0","BBa_I0462", "1"])
