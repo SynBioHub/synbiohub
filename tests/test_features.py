@@ -33,3 +33,6 @@ class TestFeatures(TestCase):
         
     def test_public_collection_collectionid_displayid_search_query(self):
         compare_get_request("public/:collectionId/:displayId/search/:query?", route_parameters = ["testid0","BBa_I0462", "test"])
+
+    def test_public_collection_collectionid_displayid_version_metadata(self):
+        compare_get_request("/public/:collectionId/:displayId/:version/metadata", route_parameters = ["testid0","BBa_I0462", "1"])
