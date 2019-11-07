@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   Test Synbiohub
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
+ </head>
+ <body>
+  <div class="modal fade" id="remoteModal" role="dialog" tabindex="-1">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button arial-label="close" class="close" data-dismiss="modal" type="button">
+       <span aria-hidden="true">
+        ×
+       </span>
+      </button>
+      <h4 class="modal-title">
+       Remote Information
+      </h4>
+     </div>
+     <div class="modal-body">
+      <form action="/admin/saveRemote" class="form" id="remoteForm" method="POST">
+      </form>
+     </div>
+     <div class="modal-footer">
+      <button class="btn btn-danger" data-dismiss="modal">
+       Close
+      </button>
+      <button class="btn btn-primary" form="remoteForm" type="submit">
+       Submit
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/shared">
+        <span class="fa fa-bolt">
+        </span>
+        <span class="blue-text">
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text">
+         Admin
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text">
+         Sign Out
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-cogs">
+     </span>
+     Admin
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <br/>
+  <br/>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-2">
+     <ul class="nav nav-pills nav-stacked">
+      <li role="presentation">
+       <a href="/admin/">
+        Status
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/backup">
+        Backup
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/graphs">
+        Graphs
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/log">
+        Log
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/mail">
+        Mail
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/plugins">
+        Plugins
+       </a>
+      </li>
+      <!--li(role='presentation',class=(adminSection==='sparql'?'active':''))a(href='/admin/sparql') SPARQL-->
+      <li role="presentation">
+       <a href="/admin/registries">
+        Registries
+       </a>
+      </li>
+      <li class="active" role="presentation">
+       <a href="/admin/remotes">
+        Remotes
+       </a>
+      </li>
+      <!--li(role='presentation',class=(adminSection==='caches'?'active':''))a(href='/admin/caches') Caches-->
+      <li role="presentation">
+       <a href="/admin/explorer">
+        SBOLExplorer
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/sparql">
+        SPARQL
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/theme">
+        Theme
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/users">
+        Users
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="col-md-8">
+     <div>
+      No remotes configured
+     </div>
+     <div class="col-md-3">
+      <table class="table table-striped">
+       <tbody>
+        <tr>
+         <td>
+          <b>
+           Type:
+          </b>
+         </td>
+         <td>
+          <select class="form-control" id="remoteTypeSelect">
+           <option value="">
+            -----
+           </option>
+           <option value="ice">
+            ice
+           </option>
+           <option value="benchling">
+            benchling
+           </option>
+          </select>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2">
+          <a class="btn-block btn btn-success" data-target="#remoteModal" data-toggle="modal" disabled="true" id="addRemote">
+           <span class="fa fa-plus">
+           </span>
+           Add Remote
+          </a>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="http://wiki.synbiohub.org">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
+  </div>
+  <script>
+   remotes = []
+  </script>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
+ </body>
+</html>
