@@ -26,20 +26,16 @@ class TestFeatures(TestCase):
         compare_get_request("/searchCount/:query?", route_parameters = ["I0462"])        
 
     def test_advancedSearchQuery(self):
-        compare_get_request("/advancedSearch/:query?", route_parameters = ["I0462"])        
-
-    def test_autocompleteQuery(self):
-        compare_get_request("/autocomplete/:query", route_parameters = ["I0462"])
-
-    def test_createCollectionQuery(self):
-        compare_get_request("/createCollection/:query?", route_parameters = ["test"])
+        compare_get_request("/advancedSearch/:query?", route_parameters = ["I0462"])
 
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
+       
+    def test_typeCount(self):
+        compare_get_request("/:type/count", route_parameters = ["Component"])
         
     def test_public_collection_collectionid_displayid_sbolnr(self):
         compare_get_request("/public/:collectionId/:displayId/sbolnr", route_parameters = ["testid0","BBa_I0462"])
 
-    def test_typeCount(self):
-        compare_get_request("/:type/count", route_parameters = ["Component"])
-
+    def test_public_collection_collectionid_displayid_search_query(self):
+        compare_get_request("public/:collectionId/:displayId/search/:query?", route_parameters = ["testid0","BBa_I0462", "test"])
