@@ -39,3 +39,6 @@ class TestFeatures(TestCase):
 
     def test_public_collection_collectionid_displayid_version_uses(self):
         compare_get_request("/public/:collectionId/:displayId/:version/uses", route_parameters = ["testid0","BBa_I0462", "1"])
+
+    def test_public_collection_collectionid_displayid_version_similar(self):
+        compare_get_request("/public/:collectionId/:displayId/:version/similar", route_parameters = ["testid0","BBa_I0462", "1"])
