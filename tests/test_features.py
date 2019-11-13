@@ -30,12 +30,6 @@ class TestFeatures(TestCase):
 
     def test_rootCollections(self):
         compare_get_request("/rootCollections")
-
-    def test_typeCount(self):
-        compare_get_request("/:type/count", route_parameters = ["Component"])
-        
-    def test_public_collection_collectionid_displayid_sbol(self):
-        compare_get_request("/public/:collectionId/:displayId/sbol", route_parameters = ["testid0","BBa_I0462"])
        
     def test_typeCount(self):
         compare_get_request("/:type/count", route_parameters = ["Component"])
