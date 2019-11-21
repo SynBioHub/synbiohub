@@ -3,7 +3,9 @@ extends ../layouts/default.jade
 
 block content
     div.container
-        div.submission-container(align='center')
+        br
+        br 
+        div(align='center')
             div.submission-header
                 span(style='font-size: 3.3em').fa.fa-share
                 p(style='font-size: 1.7em; font-weight: bolder')
@@ -34,6 +36,7 @@ block content
                     thead
                         td URL
                         td Description
+                        td Privilege
                         td Delete
                     tbody
                         each shareLink in shareLinks
@@ -43,6 +46,7 @@ block content
 
                                     a.fa.fa-clipboard.copyShare
                                 td #{shareLink.description}
+                                td #{shareLink.privilege}
                                 td 
                                     a.btn.btn-block.btn-danger.fa.fa-trash(href=shareLink.removeUrl)
             else
