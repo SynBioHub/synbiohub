@@ -1,0 +1,1063 @@
+[SBOLDocument]
+id: sbol-10101
+condition: strong required
+description: An SBOL document MUST declare the use of the following XML namespace: “http://sbols.org/v2#”.
+reference: Section 10 on page 54
+
+[SBOLDocument]
+id: sbol-10102
+condition: strong required
+description: An SBOL document MUST declare the use of the
+following XML namespace:
+“http://www.w3.org/1999/02/22-rdf-syntax-ns#”.
+reference: Section 10 on page 54
+
+[SBOLDocument]
+id: sbol-10103
+condition: strong required
+description: If an SBOL document includes any name or
+description properties,then it MUST declare the use of the
+following XML namespace: “http://purl.org/dc/terms/”.
+reference: Section 10 on page 54
+
+[SBOLDocument]
+id: sbol-10104
+condition: strong required
+description: If an SBOL document includes any wasDerivedFrom
+properties, then it MUST declare the use of the following XML
+namespace: “http://www.w3.org/ns/prov#”.
+reference: Section 10 on page 54
+
+[Identified]
+id: sbol-10201
+condition: strong required
+description: The identity property of an Identified object is REQUIRED and MUST contain a URI that adheres to the syntax defined by:
+“http://www.w3.org/1999/02/22-rdf-syntax#about”
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10202
+condition: weak required
+description: The identity property of an Identified object MUST be globally unique.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10203
+condition: strong required
+description: The persistentIdentity property of an Identified object
+is OPTIONAL and MAY contain a URI that MUST adhere to the syntax
+defined by:
+“http://www.w3.org/1999/02/22-rdf-syntax#about”
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10204
+condition: strong required
+description: The displayId property of an Identified object is
+OPTIONAL and MAY contain a String that MUST be composed of only
+alphanumeric or underscore characters and MUST NOT begin with a digit.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10205
+condition: recommended
+description: The displayId property of an Identified object SHOULD be
+locally unique.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10206
+condition: strong required
+description: The version property of an Identified object is OPTIONAL
+and MAY contain a String that MUST be composed of only alphanumeric
+characters, underscores, hyphens, or periods and MUST begin with a
+digit.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10207
+condition: recommended
+description: The version property of an Identified object SHOULD
+follow the conventions of semantic versioning as implemented by
+Maven.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10208
+condition: strong required
+description: The wasDerivedFrom property of an Identified object is
+OPTIONAL and MAY contain a URI.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10209
+condition: strong required
+description: The wasDerivedFrom property of an Identified object MUST
+NOT contain a URI reference to the Identified object itself.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10210
+condition: weak required
+description: Identified objects MUST NOT form circular reference
+chains via their wasDerivedFrom properties.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10211
+condition: weak required
+description: If the wasDerivedFrom property of one Identified object
+refers to another Identified object with the same persistentIdentity
+property, then version property of the second Identified object MUST
+precede that of the first if both objects have a version.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10212
+condition: strong required
+description: The name property of an Identified object is OPTIONAL and
+MAY contain a String.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10213
+condition: strong required
+description: The description property of an Identified object is
+OPTIONAL and MAY contain a String.
+reference: Section 7.4 on page 16
+
+[Identified]
+id: sbol-10214
+condition: strong required
+description: The annotations property of an Identified object is
+OPTIONAL and MAY contain a set of Annotation objects.
+reference:  Section 7.4 on page 16
+
+[Identified]
+id: sbol-10215
+condition: recommended
+description: The displayId property of a compliant Identified object
+is REQUIRED.
+reference: Section 11.2 on page 56
+
+[Identified]
+id: sbol-10216
+condition: recommended
+description: The persistentIdentity property of a compliant TopLevel
+object is REQUIRED and MUST contain a URI that ends with a delimiter
+(’/’, ’#’, or ’:’) followed by the displayId of the TopLevel object.
+reference: Section 11.2 on page 56
+
+[Identified]
+id: sbol-10217
+condition: recommended
+description: The persistentIdentity property of a compliant Identified
+object that is not also a 
+TopLevel object is REQUIRED and MUST contain a URI that begins with the
+persistentIdentity of the compliant object’s parent and is immediately followed by a
+delimiter (’/’, ’#’, or ’:’) and the displayId of the compliant
+object.
+reference: Section 11.2 on page 56
+
+[Identified]
+id: sbol-10218
+condition: recommended
+description: If a compliant Identified object has no version property,
+then its identity property MUST contain the same URI as its
+persistentIdentity property. Otherwise, the compliant object’s
+identity property MUST contain a URI that begins with its
+persistentIdentity and is immediately followed by a delimiter (’/’,
+’#’, or ’:’) and its version.
+reference: Section 11.2 on page 56
+
+[Identified]
+id: sbol-10219
+condition: recommended
+description: The version property of a compliant Identified object
+that is not also a TopLevel object is REQUIRED to contain the same
+String as the version property of the compliant object’s parent.
+reference: Section 11.2 on page 56
+
+[TopLevel]
+id: sbol-10301
+condition: strong required
+description: A TopLevel object MUST inherit all properties of the
+Identified class.
+reference: Section 7.5 on page 19
+
+[Sequence]
+id: sbol-10401
+condition: strong required
+description: A Sequence MUST inherit all properties of the TopLevel
+class.
+reference: Section 7.6 on page 19
+
+[Sequence]
+id: sbol-10402
+condition: strong required
+description: The elements property of a Sequence is REQUIRED and MUST
+contain a String.
+reference: Section 7.6 on page 19
+
+[Sequence]
+id: sbol-10403
+condition: strong required
+description: The encoding property of Sequence is REQUIRED and MUST contain a URI.
+reference: Section 7.6 on page 19
+
+[Sequence]
+id: sbol-10404
+condition: weak required
+description: The encoding property of a Sequence MUST indicate how the elements property of the Sequence is to be formed and interpreted.
+reference: Section 7.6 on page 19
+
+[Sequence]
+id: sbol-10405
+condition: weak required
+description: The elements property of a Sequence MUST be consistent
+with its encoding property.
+reference: Section 7.6 on page 19
+
+[Sequence]
+id: sbol-10406
+condition: weak required
+description: The encoding property of a Sequence MUST contain a URI
+from Table 1 if it is well-described by this URI.
+reference: Section 7.6 on page 19
+
+[ComponentDefinition]
+id: sbol-10501
+condition: strong required
+description: A ComponentDefinition MUST inherit all properties of the
+TopLevel class.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10502
+condition: strong required
+description: The types property of a ComponentDefinition is REQUIRED
+and MUST contain a non-empty set of URIs.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10503
+condition: strong required
+description: The types property of a ComponentDefinition MUST NOT contain more than one URI from Table 2.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10504
+condition: weak required
+description: Each URI contained by the types property of a
+ComponentDefinition MUST refer to an ontology term that describes the
+category of biochemical or physical entity that is represented by the
+ComponentDefinition.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10505
+condition: weak required
+description: The types property of a ComponentDefinition MUST contain
+a URI from Table 2 if it is well-described by this URI.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10506
+condition: weak required
+description: All URIs contained by the types property of a
+ComponentDefinition MUST refer to non-conflicting ontology terms.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10507
+condition: strong required
+description: The roles property of a ComponentDefinition is OPTIONAL
+and MAY contain a set of URIs.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10508
+condition: weak required
+description: Each URI contained by the roles property of a
+ComponentDefinition MUST refer to an ontology term that clarifies the
+potential function of the ComponentDefinition in a biochemical or
+physical context.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10509
+condition: weak required
+description: Each URI contained by the roles property of a
+ComponentDefinition MUST refer to an ontology term that is consistent
+with its types property.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10510
+condition: weak required
+description: The roles property of a ComponentDefinition MUST contain
+a URI from Table 3 if it is well-described by this URI.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10511
+condition: recommended
+description: The roles property of a ComponentDefinition SHOULD only
+contain a URI provided in Table 3 if one of its types is cross-listed
+with this URI.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10512
+condition: strong required
+description: The sequences property of a ComponentDefinition is OPTIONAL
+and MAY contain a set of URIs.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10513
+condition: weak required
+description: Each URI contained by the sequences property of a
+ComponentDefinition MUST refer to a Sequence object.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10514
+condition: weak required
+description: The Sequence objects referred to by the sequences property of a ComponentDefinition MUST be consistent with each other, such that well-defined mappings exist between their elements properties in accordance with their encoding properties.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10515
+condition: weak required
+description: The sequences property of a ComponentDefinition MUST NOT refer to
+Sequence objects with conflicting encoding properties.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10516
+condition: weak required
+description: If the sequences property of a ComponentDefinition refers
+to one or more Sequence objects, and one of the types of this
+ComponentDefinition comes from Table 2, then one of the Sequence
+objects MUST have the encoding that is cross-listed with this type in
+Table 1.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10517
+condition: weak required
+description: If the sequences property of a ComponentDefinition refers to a Sequence with an encoding from Table 1, then the types property of the ComponentDefinition MUST contain the type from Table 2 that is cross-listed with this encoding in Table 1.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10518
+condition: recommended
+description: If a ComponentDefinition refers to more than one Sequence
+with the same encoding, then the elements of these Sequence objects
+SHOULD have equal lengths.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10519
+condition: strong required
+description: The components property of a ComponentDefinition is OPTIONAL and MAY contain a set of Component objects.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10520
+condition: recommended
+description: 
+If a ComponentDefinition in a ComponentDefinition-Component hierarchy
+refers to one or more Sequence objects, and there exist
+ComponentDefinition objects lower in the hierarchy that refer to
+Sequence objects with the same encoding, then the elements properties
+of these Sequence objects SHOULD be consistent with each other, such
+that well-defined mappings exist from the “lower level” elements to
+the “higher level” elements in accordance with their shared encoding
+properties. This mapping is also subject to any restrictions on the
+positions of the Component objects in the hierarchy that are imposed
+by the SequenceAnnotation or SequenceConstraint objects contained by
+the ComponentDefinition objects in the hierarchy.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10521
+condition: strong required
+description: The sequenceAnnotations property of a ComponentDefinition is OPTIONAL
+and MAY contain a set of SequenceAnnotation objects.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10522
+condition: strong required
+description: The sequenceAnnotations property of a ComponentDefinition
+MUST NOT contain two or more SequenceAnnotation objects that refer to
+the same Component.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10523
+condition: recommended
+description: If the sequences property of a ComponentDefinition refers to a Sequence with an IUPAC encoding from Table 1, then each SequenceAnnotation that includes a Range and/or Cut in the sequenceAnnotations property of the ComponentDefinition SHOULD specify a region on the elements of this Sequence.
+reference: Section 7.7 on page 21
+
+[ComponentDefinition]
+id: sbol-10524
+condition: strong required
+description: The sequenceConstraints property of a ComponentDefinition
+is OPTIONAL and MAY contain a set of SequenceConstraint objects.
+reference: Section 7.7 on page 21
+
+[ComponentInstance]
+id: sbol-10601
+condition: strong required
+description: A ComponentInstance MUST inherit all properties of the Identified class.
+reference: Section 7.7.1 on page 24
+
+[ComponentInstance]
+id: sbol-10602
+condition: strong required
+description: The definition property of a ComponentInstance is
+REQUIRED and MUST contain a URI.
+reference: Section 7.7.1 on page 24
+
+[ComponentInstance]
+id: sbol-10603
+condition: strong required
+description: The definition property of a ComponentInstance MUST NOT
+contain a URI reference to the ComponentDefinition that contains the
+ComponentInstance. 
+reference: Section 7.7.1 on page 24
+
+[ComponentInstance]
+id: sbol-10604
+condition: weak required
+description: The URI contained by the definition property MUST refer to a
+ComponentDefinition object.
+reference: Section 7.7.1 on page 24
+
+[ComponentInstance]
+id: sbol-10605
+condition: weak required
+description: ComponentInstance objects MUST NOT form circular
+reference chains via their definition properties and parent
+ComponentDefinition objects.
+reference: Section 7.7.1 on page 24
+
+[ComponentInstance]
+id: sbol-10606
+condition: strong required
+description: The mapsTos property of a ComponentInstance is OPTIONAL
+and MAY contain a set of MapsTo objects.
+reference: Section 7.7.1 on page 24
+
+[ComponentInstance]
+id: sbol-10607
+condition: strong required
+description: The access property of a ComponentInstance is REQUIRED and MUST contain a URI from Table4.
+reference: Section 7.7.1 on page 24
+
+[Component]
+id: sbol-10701
+condition: strong required
+description: A Component MUST inherit all properties of the
+ComponentInstance class.
+reference: Section 7.7.1 on page 24
+
+[MapsTo]
+id: sbol-10801
+condition: strong required
+description: A MapsTo MUST inherit all properties of the Identified class.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10802
+condition: strong required
+description: The local property of a MapsTo is REQUIRED and MUST contain a URI.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10803
+condition: strong required
+description: If a MapsTo is contained by a Component in a
+ComponentDefinition, then the local property of the MapsTo MUST refer to another Component in the ComponentDefinition.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10804
+condition: strong required
+description: If a MapsTo is contained by a FunctionalComponent or
+Module in a ModuleDefinition, then the local property of the MapsTo
+MUST refer to another FunctionalComponent in the ModuleDefinition.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10805
+condition: strong required
+description: The remote property of a MapsTo is REQUIRED and MUST contain a URI.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10806
+condition: weak required
+description: The remote property of a MapsTo MUST refer to a ComponentInstance.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10807
+condition: weak required
+description: The ComponentInstance referred to by the remote property of a MapsTo MUST have an access property that contains the URI http://sbols.org/v2#public.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10808
+condition: weak required
+description: If a MapsTo is contained by a ComponentInstance, then the
+remote property of the MapsTo MUST refer to a Component in the
+ComponentDefinition that is referenced by the definition property of the ComponentInstance.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10809
+condition: weak required
+description: If a MapsTo is contained by a Module, then the remote property of the
+MapsTo MUST refer to a FunctionalComponent in the ModuleDefinition
+that is referenced by the definition property of the Module.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10810
+condition: strong required
+description: The refinement property of a MapsTo is REQUIRED and MUST contain a URI from Table 5.
+reference: Section 7.7.3 on page 26
+
+[MapsTo]
+id: sbol-10811
+condition: weak required
+description: If the refinement property of a MapsTo contains the URI http://sbols.org/v2#verifyIdentical , then the ComponentInstance objects referred to by local and remote properties of the MapsTo MUST refer to the same ComponentDefinition via their definition properties.
+reference: Section 7.7.3 on page 26
+
+[SequenceAnnotation]
+id: sbol-10901
+condition: strong required
+description: A SequenceAnnotation MUST inherit all properties of the
+Identified class.
+reference: Section 7.7.4 on page 29
+
+[SequenceAnnotation]
+id: sbol-10902
+condition: strong required
+description: The locations property of a SequenceAnnotation is REQUIRED and MUST contain a non- empty set of Location objects. 
+reference: Section 7.7.4 on page 29
+
+[SequenceAnnotation]
+id: sbol-10903
+condition: recommended
+description: The Location objects contained by the locations property of a single SequenceAnnotation SHOULD NOT specify overlapping regions.
+reference: Section 7.7.4 on page 29
+
+[SequenceAnnotation]
+id: sbol-10904
+condition: strong required
+description: The component property is OPTIONAL and MAY contain a URI reference to a Component.
+reference: Section 7.7.4 on page 29
+
+[SequenceAnnotation]
+id: sbol-10905
+condition: strong required
+description: The Component referenced by the component property of a SequenceAnnotation MUST be contained by the ComponentDefinition that contains the SequenceAnnotation.
+reference: Section 7.7.4 on page 29
+
+[Location]
+id: sbol-11001
+condition: strong required
+description: A Location MUST inherit all properties of the Identified
+class.
+reference: Section 7.7.5 on page 30
+
+[Location]
+id: sbol-11002
+condition: strong required
+description: The orientation property of a Location is OPTIONAL and
+MAY contain a URI from Table 6.
+reference: Section 7.7.5 on page 30
+
+[Range]
+id: sbol-11101
+condition: strong required
+description: A Range MUST inherit all properties of the Location class.
+reference: Section 7.7.5 on page 31
+
+[Range]
+id: sbol-11102
+condition: strong required
+description: The start property of a Range is REQUIRED and MUST
+contain an Integer greater than zero.
+reference: Section 7.7.5 on page 31
+
+[Range]
+id: sbol-11103
+condition: strong required
+description: The end property of a Range is REQUIRED and MUST contain
+an Integer greater than zero.
+reference: Section 7.7.5 on page 31
+
+[Range]
+id: sbol-11104
+condition: strong required
+description: The value of the end property of a Range MUST be greater
+than or equal to the value of its start property.
+reference: Section 7.7.5 on page 31
+
+[Cut]
+id: sbol-11201
+condition: strong required
+description: A Cut MUST inherit all properties of the Location class.
+reference: Section 7.7.5 on page 31
+
+[Cut]
+id: sbol-11202
+condition: strong required
+description: The at property is REQUIRED and MUST contain an Integer
+greater than or equal to zero.
+reference: Section 7.7.5 on page 31
+
+[GenericLocation]
+id: sbol-11301
+condition: strong required
+description: A GenericLocation MUST inherit all properties of the
+Location class.
+reference: Section 7.7.5 on page 32
+
+[SequenceConstraint]
+id: sbol-11401
+condition: strong required
+description: A SequenceConstraint MUST inherit all properties of the
+Identified class.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11402
+condition: strong required
+description: The subject property is REQUIRED and MUST contain a URI
+reference to a Component.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11403
+condition: strong required
+description: The Component referenced by the subject property of a
+SequenceConstraint MUST be contained by the ComponentDefinition that
+contains the SequenceConstraint.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11404
+condition: strong required
+description: The object property is REQUIRED and MUST contain a URI reference to a Component.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11405
+condition: strong required
+description: The Component referenced by the object property of a
+SequenceConstraint MUST be contained by the ComponentDefinition that
+contains the SequenceConstraint.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11406
+condition: strong required
+description: The object property of a SequenceConstraint MUST NOT
+refer to the same Component as the subject property of the SequenceConstraint.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11407
+condition: strong required
+description: The restriction property is REQUIRED and MUST contain a
+URI.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11408
+condition: weak required
+description: The URI contained by the restriction property of a
+SequenceConstraint MUST indicate the type of structural restriction on
+the relative, sequence-based positions or orientations of the
+Component objects referred to by the subject and object properties of
+the SequenceConstraint.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11409
+condition: weak required
+description: If the restriction property of a SequenceConstraint
+contains the URI http://sbols.org/v2#precedes, then the position of
+the Component referred to by the subject property of the
+SequenceConstraint MUST precede that of the Component referred to by
+its object property. 
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11410
+condition: weak required
+description: If the restriction property of a SequenceConstraint contains the URI http://sbols.org/v2#sameOrientationAs, then the orientation of the Component referred to by the subject property of the SequenceConstraint MUST be the same as that of the Component referred to by its object property.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11411
+condition: weak required
+description: If the restriction property of a SequenceConstraint
+contains the URI http://sbols.org/v2#oppositeOrientationAs, then the
+orientation of the Component referred to by the subject property of the SequenceConstraint MUST be opposite that of the Component referred to by its object property.
+reference: Section 7.7.6 on page 32
+
+[SequenceConstraint]
+id: sbol-11412
+condition: recommended
+description: The URI contained by the restriction property SHOULD come
+from Table 7.
+reference: Section 7.7.6 on page 32
+
+[Model]
+id: sbol-11501
+condition: strong required
+description: A Model MUST inherit all properties of the TopLevel class.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11502
+condition: strong required
+description: The source property is a REQUIRED and MUST contain a URI.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11503
+condition: weak required
+description: The URI contained by the source property of a Model MUST specify the location of the model’s source file.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11504
+condition: strong required
+description: The language property is REQUIRED and MUST contain a URI.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11505
+condition: weak required
+description: The URI contained by the language property of a Model MUST specify the language in which the model is encoded.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11506
+condition: weak required
+description: The language property of a Model MUST contain a URI from
+Table 8 if it is well-described by this URI.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11507
+condition: recommended
+description: The language property of a Model SHOULD contain a URI
+that refers to a term from the EDAM ontology.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11508
+condition: strong required
+description: The framework property is REQUIRED and MUST contain a URI.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11509
+condition: weak required
+description: The URI contained by the framework property of a Model MUST specify the modeling framework of the model.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11510
+condition: weak required
+description: The framework property of a Model MUST contain a URI from Table 9 if it is well-described by this URI.
+reference: Section 7.8 on page 34
+
+[Model]
+id: sbol-11511
+condition: weak required
+description: The framework property SHOULD contain a URI that refers to a term from
+the modeling framework branch of the SBO.
+reference: Section 7.8 on page 34
+
+[ModuleDefinition]
+id: sbol-11601
+condition: strong required
+description: A ModuleDefinition MUST inherit all properties of the
+TopLevel class.
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11602
+condition: strong required
+description: The roles property is OPTIONAL and MAY contain a set of URIs.
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11603
+condition: weak required
+description: Each URI contained by roles property of a
+ModuleDefinition MUST refer to a resource that clarifies the
+intended function of the ModuleDefinition.
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11604
+condition: strong required
+description: The modules property OPTIONAL and MAY contain a set of Module objects.
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11605
+condition: strong required
+description: The interactions property is OPTIONAL and MAY contain a
+set of Interaction objects. 
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11606
+condition: strong required
+description: The functionalComponents property is OPTIONAL and MAY
+contain a set of FunctionalComponent objects.
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11607
+condition: strong required
+description: The models property is OPTIONAL and MAY contain a set of URIs.
+reference: Section 7.9 on page 35
+
+[ModuleDefinition]
+id: sbol-11608
+condition: weak required
+description: Each URI contained by the models property of a
+ModuleDefinition MUST refer to a Model.
+reference: Section 7.9 on page 35
+
+[Module]
+id: sbol-11701
+condition: strong required
+description: A Module MUST inherit all properties of the Identified class.
+reference: Section 7.9.1 on page 37
+
+[Module]
+id: sbol-11702
+condition: strong required
+description: The definition property of a Module is REQUIRED and MUST contain a URI.
+reference: Section 7.9.1 on page 37
+
+[Module]
+id: sbol-11703
+condition: strong required
+description: The URI contained by the definition property of Module
+MUST refer to a ModuleDefinition.
+reference: Section 7.9.1 on page 37
+
+[Module]
+id: sbol-11704
+condition: strong required
+description: The definition property of a Module MUST NOT contain a
+URI reference to the ModuleDefinition that contains the Module.
+reference: Section 7.9.1 on page 37
+
+[Module]
+id: sbol-11705
+condition: weak required
+description: Module objects MUST NOT form circular reference chains
+via their definition properties and parent ModuleDefinition objects.
+reference: Section 7.9.1 on page 37
+
+[Module]
+id: sbol-11706
+condition: strong required
+description: The mapsTos property is OPTIONAL and MAY contain a set of
+MapsTo objects.
+reference: Section 7.9.1 on page 37
+
+[FunctionalComponent]
+id: sbol-11801
+condition: strong required
+description: A FunctionalComponent MUST inherit all properties of the
+ComponentInstance class.
+reference: Section 7.7.1 on page 24
+
+[FunctionalComponent]
+id: sbol-11802
+condition: strong required
+description: The direction property of a FunctionalComponent is
+REQUIRED and MUST contain a URI from Table 10.
+reference: Section 7.9.2 on page 38
+
+[Interaction]
+id: sbol-11901
+condition: strong required
+description: An Interaction MUST inherit all properties of the
+Identified class.
+reference: Section 7.9.3 on page 39
+
+[Interaction]
+id: sbol-11902
+condition: strong required
+description: The types property of an Interaction is REQUIRED and MUST
+contain a non-empty set of URIs.
+reference: Section 7.9.3 on page 39
+
+[Interaction]
+id: sbol-11903
+condition: weak required
+description: Each URI contained by the types property of an
+Interaction MUST refer to an ontology term that describes the
+behavior represented by the Interaction.
+reference: Section 7.9.3 on page 39
+
+[Interaction]
+id: sbol-11904
+condition: weak required
+description: All URIs contained by the types property of an
+Interaction MUST refer to non-conflicting ontology terms.
+reference: Section 7.9.3 on page 39
+
+[Interaction]
+id: sbol-11905
+condition: recommended
+description: A least one URI contained by the types property of an Interaction SHOULD refer to a term from the occurring entity relationship branch of the SBO.
+reference: Section 7.9.3 on page 39
+
+[Interaction]
+id: sbol-11906
+condition: strong required
+description: The participations property of an Interaction is OPTIONAL
+and MAY contain a set of Participation objects.
+reference: Section 7.9.3 on page 39
+
+[Participation]
+id: sbol-12001
+condition: strong required
+description: A Participation MUST inherit all properties of the Identified class.
+reference: Section 7.9.4 on page 41
+
+[Participation]
+id: sbol-12002
+condition: strong required
+description: The participant property of a Participation is REQUIRED and MUST contain a URI reference to a FunctionalComponent.
+reference: Section 7.9.4 on page 41
+
+[Participation]
+id: sbol-12003
+condition: strong required
+description: The FunctionalComponent referenced by the participant
+property of a Participation MUST be contained by the ModuleDefinition
+that contains the Interaction which contains the Participation.
+reference: Section 7.9.4 on page 41
+
+[Participation]
+id: sbol-12004
+condition: strong required
+description: The roles property of an Participation is OPTIONAL and
+MAY contain a set of URIs.
+reference: Section 7.9.4 on page 41
+
+[Participation]
+id: sbol-12005
+condition: weak required
+description: Each URI contained by the roles property of an Participation MUST refer to an ontology term that describes the behavior represented by the Participation.
+reference: Section 7.9.4 on page 41
+
+[Participation]
+id: sbol-12006
+condition: weak required
+description: All URIs contained by the roles property of an
+Participation MUST refer to non-conflicting ontology terms.
+reference: Section 7.9.4 on page 41
+
+[Participation]
+id: sbol-12007
+condition: recommended
+description: A least one role in the set of roles SHOULD be a URI from
+the participant role branch of the SBO.
+reference: Section 7.9.4 on page 41
+
+[Collection]
+id: sbol-12101 
+condition: strong required
+description: A Collection MUST inherit all properties of the TopLevel class.
+reference: Section 7.10 on page 42
+
+[Collection]
+id: sbol-12102 
+condition: strong required
+description: The members property of a Collection is OPTIONAL and MAY
+contain a set of URIs.
+reference: Section 7.10 on page 42
+
+[Collection]
+id: sbol-12103 
+condition: weak required
+description: Each URI contained by the members property of a
+Collection MUST reference a TopLevel object.
+reference: Section 7.10 on page 42
+
+[Annotation]
+id: sbol-12201
+condition: strong required
+description: The name property of an Annotation is REQUIRED and MUST
+contain a QName.
+reference: Section 7.11 on page 43
+
+[Annotation]
+id: sbol-12202
+condition: strong required
+description: The value property of an Annotation is REQUIRED and MUST
+contain an AnnotationValue. 
+reference: Section 7.11 on page 43
+
+[Annotation]
+id: sbol-12203
+condition: strong required
+description: An AnnotationValue MUST be a literal (a String, Integer,
+Double, or Boolean), URI, or a NestedAnnotations object.
+reference: Section 7.11 on page 43
+
+[Annotation]
+id: sbol-12204
+condition: strong required
+description: The nestedQName property of a NestedAnnotations object is
+REQUIRED and MUST contain a QName.
+reference: Section 7.11 on page 43
+
+[Annotation]
+id: sbol-12205
+condition: strong required
+description: The nestedURI property of a NestedAnnotations object is
+REQUIRED and MUST contain a URI.
+reference: Section 7.11 on page 43
+
+[Annotation]
+id: sbol-12206
+condition: strong required
+description: The annotations property of a NestedAnnotations object is
+OPTIONAL and MAY contain a set of Annotation objects.
+reference: Section 7.11 on page 43
+
+[GenericTopLevel]
+id: sbol-12301
+condition: strong required
+description: A GenericTopLevel object MUST inherit all properties of the TopLevel class.
+reference: Section 7.11.2 on page 45
+
+[GenericTopLevel]
+id: sbol-12302
+condition: strong required
+description: The rdfType property of a GenericTopLevel object is
+REQUIRED and MUST contain a QName.
+reference: Section 7.11.2 on page 45

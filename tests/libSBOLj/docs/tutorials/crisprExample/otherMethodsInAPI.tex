@@ -1,0 +1,283 @@
+\section*{Other Features of {\tt libSBOj}}
+So far, we have demonstrated how one can build the CRISPR-based repression module ~\cite{kiani2014crispr} using {\tt libSBOLj}. In this section, we present other major methods in the library's API. 
+
+\subsection*{Retrieving an Existing Object}
+Often, we need getter methods to retrieve a previously created object. You can easily do this by calling a ``get'' method in the \sbol{SBOLDocument} class to get back the \sbol{TopLevel} object you are looking for. For example, if we want to get the \lstinline+cas9_generic+ protein \sbol{ComponentDefinition} object, we can use the \lstinline+getComponentDefinition+ method (lines 1-4) shown below by providing the display ID and version of the object. If we want to get the latest version of a \sbol{TopLevel} object, we can pass \lstinline+null+ to its version field (lines 5-8), and the getter method will retrieve the object with the latest version. This is an implementation of the persistent identity feature. In our case, since we only have one version of the \lstinline+cas9_generic+ object, the two retrieved objects, namely \lstinline+cas9_generic1+ and \lstinline+cas9_generic2+, are identical, which can checked by calling the \lstinline+equals+ method (lines 9-11). In fact, they refer to the same object, i.e. \lstinline+cas9_generic+. The library provides \lstinline+equals+  method for every data model class, as well as the \sbol{SBOLDocument} class. To retrieve a non-\sbol{TopLevel} object, the getter method needs to be called on its immediate parent object. For example, line 12 below retrieves the \lstinline+gRNA_b_gene_constraint1+ from its parent \sbol{ComponentDefinition} \lstinline+gRNA_b_gene+. There is no need to provide the version here, because the child object's version is \emph{always} the same as its immediate parent's, under our compliant URI scheme.
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+ComponentDefinition cas9_generic1 = doc.getComponentDefinition(
+        "cas9_generic", 
+        version
+        );
+ComponentDefinition cas9_generic2 = doc.getComponentDefinition(
+        "cas9_generic", 
+        null
+        );
+if (cas9_generic1.equals(cas9_generic2)) {
+    System.out.println("Two Cas9 generic protein objects are equal.");
+}
+gRNA_b_gene.getSequenceConstraint("gRNA_b_gene_constraint1");
+\end{lstlisting}
+\end{minipage}
+
+\subsection*{Manipulating Optional Fields}
+For any optional field that is not a set or list, the library provides methods to set its value, unset its value to \lstinline+null+, and check its value. The only exceptions where these methods are not available are the following three fields in the \lstinline+Identified+ class: \lstinline+persistentIdentity+, \lstinline+displayId+, and
+\lstinline+version+.  These fields cannot be edited, since they are crucial to maintaining
+compliant SBOL objects (see Section~11.2 ``Compliant SBOL Objects'' of the~\href{http://sbolstandard.org/downloads/specification-data-model-2-0/}{Specification
+  (Data Model 2)} for more details).  The example code below first sets the name of the \lstinline+CRISPR_Template+ \sbol{ModuleDefinition} with some garbage characters, it then unsets the name and rename it with a clear one. The code then sets the description of this object to the source of its bibliographic information. 
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+CRISPR_Template.setName("C~R*I!S@P#R-based Repression Template");
+if (CRISPR_Template.isSetName()) { // always true in this case
+	CRISPR_Template.unsetName();
+	CRISPR_Template.setName("CRISPR-based Repression Template");
+}
+CRISPR_Template.setDescription(
+        "Authors: S. Kiani, J. Beal, M. Ebrahimkhani, J. Huh, R. Hall, Z. Xie, Y. Li, and R. Weiss," + 
+        "Title: Crispr transcriptional repression devices and layered circuits in mammalian cells," + 
+        "Journal: Nature Methods, vol. 11, no. 7, pp. 723–726, 2014."
+        );
+\end{lstlisting}
+\end{minipage}
+
+For an optional field that is either a list or a set, the library provides methods for adding, removing, and checking if an element is contained in the list or set. One example we have seen several times so far is the call to the \lstinline+addRole+ method. Previously, we added the \lstinline+PROMOTER+ role, which is defined as \url{http://identifiers.org/so/SO:0000167}, to \lstinline+gRNA_b_gene+. The code below adds a second role \lstinline+gRNA_b_gene_role2+ to it first, it then checks the containment of this role before removing it. 
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+URI gRNA_b_gene_role2 = URI.create("http://identifiers.org/so/SO:0000613"); 
+gRNA_b_gene.addRole(gRNA_b_gene_role2);
+if (gRNA_b_gene.containsRole(gRNA_b_gene_role2)) {
+  gRNA_b_gene.removeRole(gRNA_b_gene_role2);
+}
+\end{lstlisting}
+\end{minipage}
+
+Fields that are a list or set of objects also include operations to clear, get, and set them.  The example code below removes all roles at once by calling \lstinline+clearRoles()+, gets the set of roles for the \lstinline+gRNA_b_gene+, and checks if it is empty.   Finally, it sets the entire set of roles (replacing any existing set) by calling \lstinline+setRoles(Set<URI> roles)+. At this point, \lstinline+gRNA_b_gene+ should only contain one role, which is \lstinline+PROMOTER+.
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+gRNA_b_gene.clearRoles();
+if (!gRNA_b_gene.getRoles().isEmpty()) {
+  System.out.println("gRNA_b_gene set is not empty.");
+}
+gRNA_b_gene.setRoles(new HashSet<URI>(
+        Arrays.asList(
+        SequenceOntology.PROMOTER))
+        );
+ \end{lstlisting}
+\end{minipage}
+
+\subsection*{Creating and Editing References}
+\sbol{TopLevel} objects can refer to other \sbol{TopLevel} objects.  For example, 
+a \lstinline+ComponentDefinition+ object can refer to one or more sequences.  This reference is created by calling the \lstinline+addSequence(URI)+ method.  Methods available for manipulating references are similar to those for the optional fields. Previously, we added the \lstinline+CRP_b_seq+ \sbol{Sequence} to the \lstinline+CRP_b+ \sbol{ComponentDefinition}. The code below first clears all sequences associated with \lstinline+CRP_b+,  then adds the \lstinline+CRP_b_seq+ \sbol{Sequence} back. The last three lines will cause an exception to be thrown indicating that the sequence with the specified URI cannot be found in the \lstinline+doc+ \sbol{SBOLDocument} object. Note that since the \lstinline+complete+ flag is set to \lstinline+true+, the library verifies that all objects referenced are present in it.
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+CRP_b.clearSequences();
+CRP_b.addSequence("CRP_b_seq");
+CRP_b.addSequence(
+	URI.create("http://partsregistry.org/seq/partseq_154")
+	);
+\end{lstlisting}
+\end{minipage}
+
+\subsection*{Creating Annotations}
+In order to allow representation of data that can not currently be represented
+by the SBOL data model or data that are outside the scope of SBOL,
+SBOL offers developers the ability to embed custom data as annotations
+of SBOL objects and as generic top-level objects. These data are exchanged unmodified between
+software tools that adopt {\tt libSBOLj 2}. 
+
+Each object in SBOL 2 can be annotated by having any number of
+\lstinline+Annotation+ objects that store data in the form of name/value 
+property pairs. The name of an annotation must be a \lstinline+QName+
+object, which is composed of a namespace, a
+local name, and an optional prefix. The value of an annotation must contain a literal (i.e., a
+\lstinline+String+, \lstinline+int+, \lstinline+double+,
+\lstinline+boolean+), URI, or NestedAnnotations object. The code
+snippet below creates an annotation for the \lstinline+pConst+ promoter. First, a new namespace is added to \lstinline+document+. It creates a short name ``pr'' for the \lstinline+prURI+
+previously defined as the default URI prefix for this SBOL
+document. This annotation is named ``pr:experience'', and is composed of
+the \lstinline+prURI+ namespace, a local name ``experience'' and its prefix ``pr''.  It
+contains a URI that can be resolved to the information web page
+on the Parts Registry for the constitutive promoter `` J23119''.
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+String prURI = "http://partsregistry.org"; 
+String prPrefix = "pr";
+doc.addNamespace(URI.create(prURI) , prPrefix);
+ComponentDefinition pConst = doc.getComponentDefinition("pConst", version);
+pConst.createAnnotation(
+        new QName(prURI, "experience", prPrefix),
+        URI.create("http://parts.igem.org/Part:BBa_J23119:Experience"));
+\end{lstlisting}
+\end{minipage}
+
+\subsection*{Creating Generic TopLevel Object}
+To embed custom data directly in an SBOL document, we can store them
+using \lstinline+GenericTopLevel+ objects. The example code below first
+creates such an object \lstinline+datasheet+, whose display ID is
+``datasheet'' and version is ``1.1''. Its required RDF type property
+is a \lstinline+QName+ object named
+``myersLab:datasheet''. Then we set its name to
+``Datasheet for Custom Parameters''. Custom data are encoded as annotations of this generic
+top-level object. The first one is the characterization data with a
+URI value that can be resolved to a location where measurement data
+can be found. The next annotation stores the value of the
+transcription rate, which is 0.75. The last three lines create
+an annotation for \lstinline+TetR_promoter+ that refers to the
+\lstinline+datasheet+ object.
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+String myersLabURI = "http://www.async.ece.utah.edu";
+String myersLabPrefix = "myersLab";	
+GenericTopLevel datasheet=doc.createGenericTopLevel(
+			"datasheet",
+			"1.1",
+      new QName(myersLabURI, "datasheet", myersLabPrefix));
+datasheet.setName("Datasheet for Custom Parameters");		
+datasheet.createAnnotation(
+				new QName(myersLabURI, "characterizationData", myersLabPrefix), 
+				URI.create(myersLabURI + "/measurement/Part:BBa_J23119:Experience"));				
+datasheet.createAnnotation(
+				new QName(myersLabURI, "transcriptionRate", myersLabPrefix), 
+				0.75);
+pConst.createAnnotation(
+				new QName(myersLabURI, "datasheet", myersLabPrefix), 
+				datasheet.getIdentity());
+\end{lstlisting}
+\end{minipage}
+
+\subsection*{Creating and Editing Child Objects}
+Certain classes in the SBOL 2 data model are allowed to own non-\sbol{TopLevel} child
+objects that are also part of the data model. For example, all
+\sbol{SequenceConstraints} we created previously are child objects of
+their corresponding parent \sbol{ComponentDefinitions}, and all
+\sbol{MapsTo} objects we created are child objects of their corresponding
+parent \sbol{Modules}. Note that a child object can not exist on its
+own, it therefore can only be created from its immediate parent
+object. The library provides similar methods for retrieving,
+removing and checking containment of child objects. Adding a child object to a parent
+object is not directly available, due to our effort in maintaining
+URI persistance between them. This, however, can be done by calling
+the create method on its immediate parent, which adds the child object after its creation. 
+
+\subsection*{Copying Objects}
+The library can make copies of \sbol{TopLevel} objects using the \lstinline+createCopy+ methods.  There are several variations of this method. The \lstinline+createCopy(TopLevel)+ method makes an identical copy of its given \sbol{TopLevel} object. Note that this will cause an exception if it is copied into the same \sbol{SBOLDocument}, since it will not have a unique identity. Therefore, this method is meant to be used only when one wants to copy an object from one SBOL document to another. The \lstinline+createCopy(TopLevel, String)+ takes a \sbol{TopLevel} object to be copied and a new display ID, and it returns an identical copy with the display ID, and its own and its descendant's URI identities updated accordingly. There is a copy method that also takes a version field, and it returns a copy with the version, and its own and its descendant's URI identities updated accordingly.  Finally, a new URI prefix can also be provided, once again resulting in updated identities. The example below makes a copy of the
+\lstinline+pConst+ promoter by calling \lstinline+createCopy+ with a new display ID, \lstinline+pConst_alt+. The identity URI for \lstinline+pConst_alt+ is changed to include the new display ID, and this change also percolates through the identity URIs for any of its descendent objects.  This example gives the new copy a sequence, but it keeps all other properties the same. 
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+ComponentDefinition pConst_alt = (ComponentDefinition) doc.createCopy(pConst, "pConst_alt");
+Sequence pConst_alt_seq = doc.createSequence(
+        "pConst_alt_seq", 
+        version, 
+	"ttgacggctagctcagtcctaggtacagtgctagc",
+	Sequence.IUPAC_DNA); 
+pConst_alt.addSequence(pConst_alt_seq);
+\end{lstlisting}
+\end{minipage}
+
+\subsection*{Validation}
+Since version 2.1.0 of {\tt libSBOLj}, validation rules defined in
+the~\href{http://sbolstandard.org/wp-content/uploads/2016/10/BBF-RFC112-SBOL2.1.0.pdf}{SBOL
+  Version 2.1.0 specification} that are at least partially
+machine-chackable have been encoded in the library. This enables users
+of the library to automatically validate an SBOL file on reading
+and/or during construction of SBOL objects using the library's API
+call. The code lines [1-7] below validates the complete modesl we created in this
+tutorial. Once the user has created the Repression Model, they can use lines [10-11] to check against a \href{https://github.com/SynBioDex/libSBOLj/blob/master/core2/src/test/resources/SBOL2/RepressionModel.rdf}{completed version} of this tutorial to ensure correctness. 
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+SBOLValidate.validateSBOL(doc, true, true, true);
+if (SBOLValidate.getNumErrors() > 0) {
+  for (String error : SBOLValidate.getErrors()) {
+    System.out.println(error);
+  }
+  return;
+}
+
+// TODO: uncomment to compare with a "golden" version of the RepressionModel.xml
+	SBOLDocument doc2 = SBOLReader.read(<path of RepressionModel.xml>);
+	SBOLValidate.compareDocuments("Mine", doc, "Solution", doc2);
+    
+\end{lstlisting}
+\end{minipage}
+
+The method
+\lstinline+SBOLValidate.validateSBOL(SBOLDocument sbolDocument, boolean complete, boolean compliant, boolean bestPractice)+ 
+is called to validate the SBOL document we created in the beginning of
+this tutorial. Errors encountered during validation either throw
+exceptions or, if not fatal, are added to the list of errors that can
+be later accessed using the \lstinline+getErrors()+ method. Setting the \lstinline+complete+
+flag to \lstinline+true+ enables the validation routine to check if
+{\bf all} references to SBOL objects in the given document can
+dereference to objects that exist in the same document. A
+\lstinline+true+ value for the \lstinline+compliant+ flag means that
+all SBOL objects' identity URIs in the given SBOL document are
+compliant. Lastly, setting \lstinline+bestPractice+ to
+\lstinline+true+ enables the validator to check rules with the
+RECOMMENDED condition in the~\href{http://sbolstandard.org/wp-content/uploads/2016/10/BBF-RFC112-SBOL2.1.0.pdf}{SBOL
+  Version 2.1.0 specification}.
+
+\subsection*{Serialization}
+The library supports reading and writing data encoded in RDF/XML
+format. We can produce a serialization output by
+calling various write methods in the \sbol{SBOLWriter}
+class. These methods write to either an output stream in the form of
+Java OutputStream object or a file, some
+of which are demonstrated below. The first method call produces an output
+stream and the second stores the output to file
+``RepressionModel.rdf''. Note that these two method calls do not
+specify the output file type, and the library's default serialization
+output format is RDF/XML.
+
+\vspace{\abovedisplayskip}
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+  SBOLWriter.write(doc,(System.out));
+  SBOLWriter.write(doc, "RepressionModel.rdf");
+\end{lstlisting}
+\end{minipage}
+
+Reading of a file or an input stream in the form of Java InputStream
+object is supported by similar read methods in the \sbol{SBOLReader}
+class. The default input format for any of these read methods is also
+RDF/XML. The method below first writes the \sbol{SBOLDocument}
+``\lstinline+doc+'' to a Java \lstinline+ByteArrayOutputStream+,
+and then reads it back to a new \sbol{SBOLDocument} object.
+
+\begin{minipage}{0.95\textwidth} 
+\begin{lstlisting}
+public static SBOLDocument writeThenRead(SBOLDocument doc)
+	               throws SBOLValidationException, IOException, FactoryConfigurationError
+{
+  ByteArrayOutputStream out = new ByteArrayOutputStream();
+  SBOLWriter.write(doc, out);
+  return SBOLReader.read(new ByteArrayInputStream(out.toByteArray()));
+}
+\end{lstlisting}
+\end{minipage}
+
+The complete repression model described in this tutorial is provided as ``RepressionModel.java'' under the {\tt libSBOLj} \href{https://github.com/SynBioDex/libSBOLj/tree/master/examples/src/main/java/org/sbolstandard/core2/examples}{examples}
+directory. This example is self-contained in that you can run it to generate the RDF/XML output. Note that SBOL does not provide the specification of a mathematical model directly. It is possible, however, to generate a mathematical model using SBML~\cite{SBML} and the procedure described in~\cite{roehner2015generating}. Then, the SBOL document can reference this generated SBML model.
+
+% The RDF serialization for the SBOLDocument object created in this
+% tutorial is shown below. Note that we only show the beginning of the
+% actual sequences for \lstinline+seq_K137046+ and
+% \lstinline+partseq_153+ in the serialization output below. Actual
+% serialization includes the complete sequences.

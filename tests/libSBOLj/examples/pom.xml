@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sbolstandard</groupId>
+        <artifactId>libSBOLj-parent</artifactId>
+         <version>2.4.1-SNAPSHOT</version>
+    </parent>
+
+    <packaging>jar</packaging>
+
+    <artifactId>libSBOLj-examples</artifactId>
+
+    <dependencies>
+        <!-- dependencies used by libSBOLj -->
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>libSBOLj</artifactId>
+            <version>2.4.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- test dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

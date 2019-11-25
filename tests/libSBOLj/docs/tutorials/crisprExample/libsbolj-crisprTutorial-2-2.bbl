@@ -1,0 +1,28 @@
+\begin{thebibliography}{1}
+
+\bibitem{kiani2014crispr}
+S.~Kiani, J.~Beal, M.~Ebrahimkhani, J.~Huh, R.~Hall, Z.~Xie, Y.~Li, and
+  R.~Weiss, ``Crispr transcriptional repression devices and layered circuits in
+  mammalian cells,'' {\em Nature Methods}, vol.~11, no.~7, pp.~723--726, 2014.
+
+\bibitem{Courtot2011}
+M.~Courtot, N.~Juty, C.~Kn\"{u}pfer, D.~Waltemath, A.~Zhukova, A.~Dr\"{a}ger,
+  M.~Dumontier, A.~Finney, M.~Golebiewski, J.~Hastings, S.~Hoops, S.~Keating,
+  D.~Kell, S.~Kerrien, J.~Lawson, A.~Lister, J.~Lu, R.~Machne, P.~Mendes,
+  M.~Pocock, N.~Rodriguez, A.~Villeger, D.~Wilkinson, S.~Wimalaratne, C.~Laibe,
+  M.~Hucka, and N.~{Le Nov\`{e}re}, ``{Controlled vocabularies and semantics in
+  systems biology},'' {\em Molecular Systems Biology}, vol.~7, 2011.
+
+\bibitem{SBML}
+M.~Hucka, A.~Finney, H.~Sauro, H.~Bolouri, J.~Doyle, H.~Kitano, A.~Arkin,
+  B.~Bornstein, D.~Bray, A.~Cornish-Bowden, {\em et~al.}, ``The systems biology
+  markup language (sbml): a medium for representation and exchange of
+  biochemical network models,'' {\em Bioinformatics}, vol.~19, no.~4,
+  pp.~524--531, 2003.
+
+\bibitem{roehner2015generating}
+N.~Roehner, Z.~Zhang, T.~Nguyen, and C.~Myers, ``Generating systems biology
+  markup language models from the synthetic biology open language,'' {\em ACS
+  Synthetic Biology}, vol.~4, no.~8, pp.~873--879, 2015.
+
+\end{thebibliography}

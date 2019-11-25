@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: libsbolj-crisprTutorial-2-2.aux
+The style file: ieeetr.bst
+Database file #1: libsbolj-crisprTutorial-2-2.bib
+You've used 4 entries,
+            1876 wiz_defined-function locations,
+            507 strings with 4826 characters,
+and the built_in function-call counts, 1707 in all, are:
+= -- 124
+> -- 158
+< -- 0
++ -- 54
+- -- 50
+* -- 168
+:= -- 291
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 60
+empty$ -- 108
+format.name$ -- 50
+if$ -- 370
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 15
+num.names$ -- 4
+pop$ -- 6
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 43
+stack$ -- 0
+substring$ -- 92
+swap$ -- 28
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 12
+width$ -- 5
+write$ -- 44
