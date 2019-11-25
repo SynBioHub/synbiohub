@@ -22,12 +22,22 @@ else
     git clone --recurse-submodules https://github.com/mehersam/SBOLTestRunner;
 fi
 
+#clone libSBOLj
+message "pulling libSBOLj"
 if cd libSBOLj; then
     git pull;
     cd ..;
 else
     git clone https://github.com/SynBioDex/libSBOLj;
+    cd libSBOLj;
+    git submodule update --init --recursive;
+    sudo mvn package;
+    cd ..;
 fi
+
+
+#!/bin/sh
+
 
 bash ./start_containers.sh
 
