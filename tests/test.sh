@@ -31,7 +31,7 @@ else
     git clone https://github.com/SynBioDex/libSBOLj;
     cd libSBOLj;
     git submodule update --init --recursive;
-    sudo mvn package;
+    mvn package;
     cd ..;
 fi
 
