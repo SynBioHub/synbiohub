@@ -19,6 +19,9 @@ block generalTopLevelButtons
                         if rdfType.name == 'Component'
                             li 
                                 a(href=meta.url + '/' + meta.id + '.gb') Download GenBank
+                        if rdfType.name == 'Component'
+                            li 
+                                a(href=meta.url + '/' + meta.id + '.gff') Download GFF3
                         if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                             li 
                                 a(href=meta.url + '/' + meta.id + '.fasta') Download FASTA

@@ -13,38 +13,42 @@ public class ConvertToGenBankJob extends Job
 	public boolean requireCompliant;
 	public boolean enforceBestPractices;
 	public boolean typesInURI;
-	public boolean keepGoing;
-	public String topLevelURI;
+    public boolean keepGoing;
+    public boolean gff3Out;
+    public String topLevelURI;
 
-	public void execute() throws Exception
-	{
-		ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
-		ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
-		
-		SBOLDocument doc = SBOLValidate.validate(
-				new PrintStream(logOutputStream),
-				new PrintStream(errorOutputStream),
-				sbolFilename,
-				"",
-				"",
-				requireComplete,
-				requireCompliant, 
-				enforceBestPractices,
-				typesInURI,
-				"",
-				keepGoing,
-				"",
-				"",
-				sbolFilename,
-				topLevelURI,
-				true,
-				false,
-				false,
-				false,
-				"",
-				false,
-				false,
-				false);
+    public void execute() throws Exception
+    {
+            ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
+            ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
+            
+            System.err.println("GFF3="+gff3Out);
+            
+            SBOLDocument doc = SBOLValidate.validate(
+            		new PrintStream(logOutputStream),
+            		new PrintStream(errorOutputStream),
+            		sbolFilename,
+            		"",
+            		"",
+            		requireComplete,
+            		requireCompliant, 
+            		enforceBestPractices,
+            		typesInURI,
+            		"",
+            		keepGoing,
+            		"",
+            		"",
+            		sbolFilename,
+            		topLevelURI,
+            		!gff3Out,
+            		false,
+            		false,
+            		false,
+            		gff3Out,
+            		"",
+            		false,
+            		false,
+            		false);
 		
 		String log = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		String errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
