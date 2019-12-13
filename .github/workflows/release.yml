@@ -18,8 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
-          repository: synbiohub/synbiohub-docker
-          ref: snapshot
+          with:
+            repository: synbiohub/synbiohub-docker
+            ref: snapshot
         - name: Change tag
           run: sed -i "s/snapshot/$GITHUB_REF/g" docker-compose.yml docker-compose.version.yml
         - name: Commit to master and push
@@ -30,5 +31,5 @@ jobs:
         - name: Push changes
           uses: ad-m/github/push-action@master
           with: 
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+            github_token: ${{ secrets.ZACH_GITHUB_TOKEN }}
     
