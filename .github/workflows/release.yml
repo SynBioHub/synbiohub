@@ -1,0 +1,35 @@
+name: Run release 
+
+on: 
+  release:
+    types: [published]
+
+jobs:
+
+  retag-release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:$GITHUB_REF-standalone
+    - name: Push the image to Docker Hub
+      run: docker push synbiohub/synbiohub:$GITHUB_REF-standalone
+  update-compose:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+          with:
+            repository: synbiohub/synbiohub-docker
+            ref: snapshot
+        - name: Change tag
+          run: sed -i "s/snapshot/$GITHUB_REF/g" docker-compose.yml docker-compose.version.yml
+        - name: Commit to master and push
+          run: | 
+              git checkout master
+              git commit -am "Update to version $GITHUB_REF"
+              gitA
+        - name: Push changes
+          uses: ad-m/github/push-action@master
+          with: 
+            github_token: ${{ secrets.ZACH_GITHUB_TOKEN }}
+    
