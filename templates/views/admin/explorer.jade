@@ -4,6 +4,7 @@ extends ../../layouts/admin.jade
 block adminContent
     form(action='explorerUpdateIndex', method='POST', id="explorerButtons")
     form(action='/admin/explorer', method='POST', id="explorerForm")
+    form(action='explorerLog', method='POST', id='explorerButtons2')
         div.row 
             div.col-md-12 
                 div.alert.alert-info 
@@ -21,6 +22,8 @@ block adminContent
                         | Searching Using SBOLExplorer
 
         button.btn.btn-info(type="submit", style="margin-right: 20px; margin-bottom:20px", form="explorerButtons") Update Index Now
+        button.btn.btn-info(type="submit", style="margin-right: 20px; margin-bottom:20px", form="explorerButtons2") Download Log
+
         div.alert.alert-info 
                     span Start of last index update: #{explorerConfig.last_update_start}
                          br
