@@ -49,6 +49,7 @@ If you are making a change that should be ignored by the test suite for a very g
 
 ## Arguments
   -h, --help            show this help message and exit
+
   --resetalltests       reset all tests for requests by saving responses for
                         future comparisons. Should only be run if working on
                         the test suite implementation itself and all tests
