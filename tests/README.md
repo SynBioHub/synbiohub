@@ -53,20 +53,25 @@ If you are making a change that should be ignored by the test suite for a very g
                         future comparisons. Should only be run if working on
                         the test suite implementation itself and all tests
                         have passed.
+
   --serveraddress SERVERADDRESS
                         specify the synbiohub server to test.
+
   --resetgetrequests [RESETGETREQUESTS [RESETGETREQUESTS ...]]
                         reset a get request test by saving the result of the
                         request for future comparison. Use this option after
                         verifying that a request works correctly.
+
   --resetpostrequests [RESETPOSTREQUESTS [RESETPOSTREQUESTS ...]]
                         reset a post request test by saving the result of the
                         request for future comparison. Use this option after
                         verifying that a request works correctly.
+
   --stopaftertestsuite  stop after the test suite has run in order to keep the
                         test server running. This can be used to view the
                         state of the synbiohub instance after the tests have
                         run but before sboltestrunner has been run.
+
   --stopafterstart      do not run the test suite, just start up a new test
                         synbiohub instance.
 
