@@ -290,7 +290,7 @@ public class PrepareSubmissionJob extends Job {
 			SBOLDocument individual = SBOLValidate.validate(new PrintStream(logOutputStream),
 					new PrintStream(errorOutputStream), filename, "http://dummy.org/", defaultDisplayId, requireComplete,
 					requireCompliant, enforceBestPractices, typesInURI, "1", keepGoing, "", "", filename, topLevelURI,
-					false, false, false, false, null, false, true, false);
+					false, false, false, false, false, null, false, true, false);
 
 			String fileLog = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 			errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);

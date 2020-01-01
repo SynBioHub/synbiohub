@@ -24,48 +24,34 @@ block content
                     each error in errors
                         p #{error}
                         br
-
-            if submission.type == 'acs'
-                div(style='margin: 0 auto').form-group-100.required
-                    label ACS submission ID
-                    input(name='acs',type='text',value=submission.acs)
         
             div.clearfix
 
-            div.form-group-50.required
-                label Id
-                br
-                input(type='text', name='id',placeholder='Submission Id',value=submission.id)
+            div.row
+                div.col-md-6
+                    div.form-group-100.required
+                        label(for="id") Collection Id  
+                            a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id",title='An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.')
+                                span.fa.fa-info-circle
+                        input.form-control(type='text', id="id", name='id',placeholder='Just letters and numbers, no spaces',value=submission.id)
+                div.col-md-6
+                    div.form-group-100.required
+                        label(for='version') Collection Version 
+                            a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version",title='A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.')
+                                span.fa.fa-info-circle
+                        input.form-control(type='text', id='version', name='version',placeholder='Version',value=submission.version)
 
-            div.form-group-50.required
-                label Version
-                br
-                input(type='text', name='version',placeholder='Version',value=submission.version)
-
-            div.form-group-100.required(style='text-align: left;')
-                label If Existing:
-                br
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="0", checked=true)
-                    div.col-sm-10 Prevent submission
-                div.row
-                    div.col-sm-2
-                        input(id="om", type="radio", name="overwrite_merge", value="1", checked=overwrite=="Overwrite")
-                    div.col-sm-10 Overwrite submission
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="2", checked=overwrite=="Merge")
-                    div.col-sm-10 Merge and prevent, if member of collection exists
-                div.row
-                    div.col-sm-2
-                        input(type="radio", name="overwrite_merge", value="3", checked=overwrite=="Merge")
-                    div.col-sm-10 Merge and replace, if member of collection exists.
+            div.row
+                div.col-sm-12
+                    div.checkbox(style="margin-left:20px")
+                        label 
+                            input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                            |    Overwrite Existing Objects   
+                            a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Overwrite",title='If you are cloning the same thing twice because you have changed things, tick the box below to overwrite previous versions with what you are cloning now.  If this is the first time you are cloning this submission, you can ignore this.')
+                                span.fa.fa-info-circle
+            br
 
             div.clearfix
-
-            br
-            br
 
             button(type='submit').btn.btn-primary.btn-lg
                 | Copy

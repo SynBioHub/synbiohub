@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.sbolstandard.core2.*;
@@ -62,6 +63,7 @@ public class CloneSubmissionJob extends Job
 				false,
 				false,
 				false,
+				false,
 				null,
 				false,
 				true,
@@ -81,9 +83,36 @@ public class CloneSubmissionJob extends Job
 
 		doc = doc.changeURIPrefixVersion(uriPrefix, null, version);
 
-		Collection originalRootCollection = doc.getCollection(originalCollectionDisplayId,version);
+		Collection originalRootCollection = doc.getCollection(originalCollectionDisplayId,originalCollectionVersion);
 		doc.removeCollection(originalRootCollection);
 		Collection rootCollection = (Collection)doc.createCopy(originalRootCollection, newRootCollectionDisplayId, version);
+		
+		// Update topLevel
+		(new IdentifiedVisitor() {
+
+			@Override
+			public void visit(Identified identified, TopLevel topLevel) {
+
+				try {
+
+					addTopLevelToNestedAnnotations(topLevel, identified.getAnnotations());
+					
+					Annotation annotation = identified.getAnnotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"));
+					if (annotation != null) {
+						identified.removeAnnotation(annotation);
+					}
+
+					identified.createAnnotation(
+							new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
+							topLevel.getIdentity());
+
+				} catch (SBOLValidationException e) {
+
+				}
+
+			}
+
+		}).visitDocument(doc);
 		
 		if (!overwrite_merge.equals("0") && !overwrite_merge.equals("1")) {
 			for(TopLevel topLevel : doc.getTopLevels())
@@ -147,5 +176,24 @@ public class CloneSubmissionJob extends Job
 
 		finish(new CloneSubmissionResult(this, true, resultFile.getAbsolutePath(), log, errorLog));
 
+	}
+	
+	public void addTopLevelToNestedAnnotations(TopLevel topLevel, List<Annotation> annotations)
+			throws SBOLValidationException {
+		for (Annotation annotation : annotations) {
+			if (annotation.isNestedAnnotations()) {
+				List<Annotation> nestedAnnotations = annotation.getAnnotations();
+				addTopLevelToNestedAnnotations(topLevel, nestedAnnotations);
+				for (Annotation nestedAnnotation : nestedAnnotations) {
+					if (nestedAnnotation.getQName().equals(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"))) {
+						nestedAnnotations.remove(nestedAnnotation);
+					}
+				}
+				nestedAnnotations.add(
+						new Annotation(new QName("http://wiki.synbiohub.org/wiki/Terms/synbiohub#", "topLevel", "sbh"),
+								topLevel.getIdentity()));
+				annotation.setAnnotations(nestedAnnotations);
+			}
+		}
 	}
 }
