@@ -43,10 +43,6 @@ public class Job
 		{
 			return gson.fromJson(json, ConvertToGenBankJob.class);
 		}
-		else if(job.type.equals("cloneSubmission"))
-		{
-			return gson.fromJson(json, CloneSubmissionJob.class);
-		}
 		else if(job.type.equals("buildCombineArchive"))
 		{
 			return gson.fromJson(json, BuildCombineArchiveJob.class);
