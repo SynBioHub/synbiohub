@@ -54,7 +54,7 @@ block content
             div(align='center')
                 a.btn.btn-primary(href='register') I need an account
 
-        if(config.allowPublicSignup && config.externalAuth.provider === 'google')
+        if(config.allowPublicSignup && externalAuthProvider === 'google')
           div(align='center')
             hr
             a.btn-google(href='/auth/external')

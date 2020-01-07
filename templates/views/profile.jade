@@ -42,7 +42,7 @@ block content
 
                 div.clearfix
 
-                if(config.externalAuth.provider === 'google' && !externalProfiles.includes('google'))
+                if(externalAuthProvider === 'google' && !externalProfiles.includes('google'))
                   div(align='center')
                     hr
                     a.btn-google(href='/auth/external')
