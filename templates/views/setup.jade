@@ -118,6 +118,14 @@ block body
                       value=settings.googleClientSecret,
                       autocomplete='off'
                     )
+                div.form-group
+                  label Redirect URL
+                    input.form-control(
+                      name='googleCallbackUrl'
+                      value=settings.googleCallbackUrl
+                    )
+                  p
+                      | This is the path in your application that users are redirected to after they have authenticated with Google. The path will be appended with the authorization code for access. Must have a protocol. Cannot contain URL fragments or relative paths. Cannot be a public IP address. 
 
             div.text-center
                 input(type='submit',value='Continue').btn.btn-primary.setup-done
