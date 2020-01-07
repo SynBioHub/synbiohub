@@ -19,31 +19,19 @@ console.error('starting SynBioHub server')
 if (!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size === 0) {
   db.sequelize.sync({ force: true }).then(startServer)
 } else {
-  db.umzug.up().then(() => {
-    startServer()
-  })
+  db.umzug.up().then(startServer)
 }
 
 config.set('revision', gitRev())
 
-function startServer () {
-  return init()
-    .then(() => java.init())
-    .then(() => theme.setCurrentThemeFromConfig())
-    .then(() => jobUtils.setRunningJobsToQueued())
-    .then(() => jobUtils.resumeAllJobs())
-    .then(() => {
-      var app = new App()
+async function startServer () {
+  await java.init()
+  await theme.setCurrentThemeFromConfig()
+  await jobUtils.setRunningJobsToQueued()
+  await jobUtils.resumeAllJobs()
 
-      app.listen(parseInt(config.get('port')))
-    })
-}
-
-function init () {
-  return new Promise((resolve, reject) => {
-    // TODO
-    resolve()
-  })
+  const app = new App()
+  app.listen(parseInt(config.get('port')))
 }
 
 process.on('SIGINT', function () {
