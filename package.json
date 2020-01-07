@@ -84,6 +84,9 @@
     "xtend": "^4.0.1"
   },
   "devDependencies": {},
+  "authDependencies": {
+    "google": "passport-google-oauth@~2.0.0"
+  },
   "engines": {
     "node": ">=11.0.0"
   },
