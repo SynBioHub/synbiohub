@@ -13,18 +13,18 @@ block generalTopLevelButtons
                         span.caret
                     ul.dropdown-menu.dropdown-toggle
                         li
-                            a(href=meta.url + '/' + meta.id + '.xml') Download SBOL File
+                            a(href=meta.url + '/sbol') Download SBOL File
                         li
-                            a(href=meta.url + '/' + meta.id + '.omex') Download COMBINE Archive
+                            a(href=meta.url + '/omex') Download COMBINE Archive
                         if rdfType.name == 'Component'
                             li 
-                                a(href=meta.url + '/' + meta.id + '.gb') Download GenBank
+                                a(href=meta.url + '/gb') Download GenBank
                         if rdfType.name == 'Component'
                             li 
-                                a(href=meta.url + '/' + meta.id + '.gff') Download GFF3
+                                a(href=meta.url + '/gff') Download GFF3
                         if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                             li 
-                                a(href=meta.url + '/' + meta.id + '.fasta') Download FASTA
+                                a(href=meta.url + '/fasta') Download FASTA
                         if rdfType.name == 'Component' || rdfType.name == 'Module'
                             li 
                                 a.sbh-download-picture Download Image

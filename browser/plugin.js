@@ -12,12 +12,17 @@ function fetchPluginStream(streamId, $element) {
         url: '/api/stream/' + streamId,
         success: function(data) {
             var $contentPanel = $($element.closest(".stream-content"))
-
+            var content = data.body || data || " "
+            
+            // Kind of a hack to make sure it's HTML
+            if (content.charAt(0) !== "<") {
+                content = "<p>" + content + "</p>"
+            }
 
             if ($contentPanel.length === 0) {
                 window.location.reload(true)
             } else {
-                $contentPanel.html(data.body)
+                $contentPanel.html(content)
                 deleteStream(streamId)
             }
         },
