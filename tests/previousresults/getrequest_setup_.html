@@ -11,6 +11,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -174,6 +175,51 @@ try {
       Password (again)
       <input autocomplete="new-password" class="form-control" name="userPasswordConfirm" type="password"/>
      </label>
+    </div>
+    <h2>
+     4. Set up external auth provider
+    </h2>
+    <div class="form-group">
+     <p>
+      Here, you can set up an external auth provider. Select one from the list and provide additional information.
+     </p>
+     <p>
+      Selected auth:
+     </p>
+     <label>
+      Auth provider
+      <select class="form-control" name="authProvider">
+       <option selected="" value="">
+        None
+       </option>
+       <option value="google">
+        Google
+       </option>
+      </select>
+     </label>
+     <div class="auth-google" style="display:none">
+      <div class="form-group">
+       <label>
+        Client ID
+        <input autocomplete="off" class="form-control" name="googleClientId" value=""/>
+       </label>
+      </div>
+      <div class="form-group">
+       <label>
+        Client secret
+        <input autocomplete="off" class="form-control" name="googleClientSecret" value=""/>
+       </label>
+      </div>
+      <div class="form-group">
+       <label>
+        Redirect URL
+        <input class="form-control" name="googleCallbackUrl" value=""/>
+       </label>
+       <p>
+        This is the path in your application that users are redirected to after they have authenticated with Google. The path will be appended with the authorization code for access. Must have a protocol. Cannot contain URL fragments or relative paths. Cannot be a public IP address.
+       </p>
+      </div>
+     </div>
     </div>
     <div class="text-center">
      <input class="btn btn-primary setup-done" type="submit" value="Continue"/>

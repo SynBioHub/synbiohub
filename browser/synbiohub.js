@@ -1,4 +1,3 @@
-
 $(document).on('click', '[data-uri]', function () {
     window.location = $(this).attr('data-uri')
 })
@@ -698,4 +697,12 @@ $(document).on('click', '.remove-attachment', function() {
     $.get(attachmentUri + "/remove")
      .done(() => $row.remove())
      .error(() => alert("Could not remove attachment!"));
+})
+
+$('form[action="/setup"] select[name="authProvider"]').change(function () {
+    const providerName = this.value;
+    const parentEl = $(this).closest('.form-group');
+
+    parentEl.find('div[class^="auth-"]').hide();
+    parentEl.find('div.auth-' + providerName).show();
 })

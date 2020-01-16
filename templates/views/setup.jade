@@ -93,7 +93,39 @@ block body
                 label Password (again)
                     input.form-control(type='password',name='userPasswordConfirm',autocomplete='new-password')
 
+            h2 4. Set up external auth provider
+            div.form-group
+              p 
+                | Here, you can set up an external auth provider. Select one from the list and provide additional information.
+              p Selected auth: #{settings.authProvider}
+              label Auth provider
+                select.form-control(name='authProvider')
+                  option(value='',selected=(!settings.authProvider)) None
+                  option(value='google',selected=(settings.authProvider=='google')) Google
+
+              div.auth-google(style=(settings.authProvider != 'google' && 'display:none'))
+                div.form-group
+                  label Client ID
+                    input.form-control(
+                      name='googleClientId',
+                      value=settings.googleClientId,
+                      autocomplete='off'
+                    )
+                div.form-group
+                  label Client secret
+                    input.form-control(
+                      name='googleClientSecret',
+                      value=settings.googleClientSecret,
+                      autocomplete='off'
+                    )
+                div.form-group
+                  label Redirect URL
+                    input.form-control(
+                      name='googleCallbackUrl'
+                      value=settings.googleCallbackUrl
+                    )
+                  p
+                      | This is the path in your application that users are redirected to after they have authenticated with Google. The path will be appended with the authorization code for access. Must have a protocol. Cannot contain URL fragments or relative paths. Cannot be a public IP address. 
+
             div.text-center
                 input(type='submit',value='Continue').btn.btn-primary.setup-done
-
-
