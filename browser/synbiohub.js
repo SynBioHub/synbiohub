@@ -190,6 +190,7 @@ function createPluginFunctions(pluginType) {
     })
 }
 
+createPluginFunctions('submit')
 createPluginFunctions('rendering')
 createPluginFunctions('download')
 
