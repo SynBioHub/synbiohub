@@ -5,7 +5,9 @@
         "config.local.json",
         "browser",
         "public/styles/theme",
-        "node_modules"
+        "node_modules",
+        "package.json",
+        "yarn.lock"
     ],
     "signal": "SIGKILL"
 }

@@ -25,7 +25,7 @@ Prequisites:
 * Linux (only tested with Ubuntu 18.04.01) or macOS
 * A JDK
 * [Apache Maven](https://maven.apache.org/)
-* [node.js](https://nodejs.org/en/) >= 6.10
+* [node.js](https://nodejs.org/en/) >= 11.0.0
 * [OpenLink Virtuoso](https://github.com/openlink/virtuoso-opensource) 7.x.x
 * [rapper](http://librdf.org/raptor/rapper.html) (apt install `raptor2-utils`)
 * [jq](https://stedolan.github.io/jq/) (apt install `jq`)
