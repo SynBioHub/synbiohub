@@ -103,13 +103,6 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cloud-upload">
-     </span>
-     Submit
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
@@ -233,6 +226,20 @@ try {
           </label>
           <br/>
           <input name="file" type="file" value=""/>
+         </div>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col-md-12">
+         <div class="form-group-100">
+          <label for="plugin">
+           Submit Handler
+          </label>
+          <select class="form-control" id="plugin" name="plugin">
+           <option value="default">
+            Default handler
+           </option>
+          </select>
          </div>
         </div>
        </div>
