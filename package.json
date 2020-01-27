@@ -40,6 +40,7 @@
     "less-middleware": "^3.0.1",
     "lint-staged": "^8.1.0",
     "main-loop": "^3.4.0",
+    "mime-types": "^2.1.26",
     "mkdirp-promise": "^5.0.1",
     "moment": "^2.24.0",
     "multer": "^1.1.0",
