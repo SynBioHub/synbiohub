@@ -7,7 +7,6 @@ block adminContent
             thead
                 tr
                     th ID
-                    th Status
                     th Name
                     th URL
                     th
@@ -17,7 +16,6 @@ block adminContent
                     tr
                         td
                             p#id #{plugin.index + 1}
-                        td
                         td
                             input.form-control#name(type='text', value=plugin.name, style="width:100%")
                         td
@@ -30,7 +28,6 @@ block adminContent
                     td
                         p#id New
                     td
-                    td
                         input.form-control#name(type='text', placeholder="Name", style="width:100%")
                     td
                         input.form-control#url(type='text', placeholder="URL", style="width:100%")
@@ -39,14 +36,42 @@ block adminContent
 
     div
         h3 Submission
-        h6 Submission plugins are not currently supported
+        table.table.table-striped
+            thead
+                tr
+                    th ID
+                    th Name
+                    th URL
+                    th
+                    th
+            tbody
+                for plugin in plugins.submit
+                    tr
+                        td
+                            p#id #{plugin.index + 1}
+                        td
+                            input.form-control#name(type='text', value=plugin.name, style="width:100%")
+                        td
+                            input.form-control#url(type='text', value=plugin.url, style="width:100%")
+                        td
+                            btn.btn.btn-success.btn-block.save-submit-plugin Save
+                        td
+                            btn.btn.btn-danger.btn-block.delete-submit-plugin Delete
+                tr
+                    td
+                        p#id New
+                    td
+                        input.form-control#name(type='text', placeholder="Name", style="width:100%")
+                    td
+                        input.form-control#url(type='text', placeholder="URL", style="width:100%")
+                    td(colspan="2")
+                        btn.btn.btn-success.btn-block.save-submit-plugin Save
     div
         h3 Download
         table.table.table-striped
             thead
                 tr
                     th ID
-                    th Status
                     th Name
                     th URL
                     th
@@ -56,7 +81,6 @@ block adminContent
                     tr
                         td
                             p#id #{plugin.index + 1}
-                        td
                         td
                             input.form-control#name(type='text', value=plugin.name, style="width:100%")
                         td
@@ -68,7 +92,6 @@ block adminContent
                 tr
                     td
                         p#id New
-                    td
                     td
                         input.form-control#name(type='text', placeholder="Name", style="width:100%")
                     td
