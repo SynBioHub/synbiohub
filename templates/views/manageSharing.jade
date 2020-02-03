@@ -21,7 +21,11 @@ block content
                     each share in shares
                         tr
                             td #{share.user.username}
-                            td #{share.privilege}
+                            td 
+                                select#privilege(name="share-" + share.id)
+                                    option(value="1" selected=share.privilege.value == "1") Allow Viewing
+                                    option(value="2" selected=share.privilege.value == "2") Allow Viewing and Editing
+                                    option(value="3" selected=share.privilege.value == "3") Allow Viewing, Editing, and Sharing
                             td 
                                 a.btn.btn-block.btn-danger.fa.fa-trash(href=share.removeUrl)
             else
@@ -46,7 +50,11 @@ block content
 
                                     a.fa.fa-clipboard.copyShare
                                 td #{shareLink.description}
-                                td #{shareLink.privilege}
+                                td
+                                    select#privilege(name="share-" + shareLink.authId)
+                                        option(value="1" selected=share.privilege.value == "1") Allow Viewing
+                                        option(value="2" selected=share.privilege.value == "2") Allow Viewing and Editing
+                                        option(value="3" selected=share.privilege.value == "3") Allow Viewing, Editing, and Sharing
                                 td 
                                     a.btn.btn-block.btn-danger.fa.fa-trash(href=shareLink.removeUrl)
             else

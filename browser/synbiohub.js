@@ -749,3 +749,11 @@ $(document).on('click', '.copyShare', function() {
 
     textArea.remove();
 })
+
+$(document).on('change', 'select#privilege', function() {
+    let name = $(this).attr('name').substring(6);
+    let value = $(this).val();
+    let updatePath = location.pathname.split('/').slice(0, -1).join('/') + '/updateShare'
+
+    $.post(updatePath, { authId: name, newPrivilege: value })
+})
