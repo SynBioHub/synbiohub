@@ -21,7 +21,6 @@ SELECT
        ?wasDerivedFrom
        ?wasGeneratedBy
 WHERE { 
-      <$collection> a sbol2:Collection .
       OPTIONAL { <$collection> sbol2:persistentIdentity ?persistentIdentity . }
       OPTIONAL { <$collection> sbol2:displayId ?displayId . }
       OPTIONAL { <$collection> sbol2:version ?version . }
