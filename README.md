@@ -88,7 +88,7 @@ A JDK
         different (`7.2.5.1_1` might be `7.3.6.1_1` or any other version number).
       * If you're having trouble finding the location of the virtuoso.ini file, run `sudo find / -name virtuoso.ini`.
         Press the control and c keys simultaneously to quit the search.
-      2. `virtuoso-t -f`
+    2. `virtuoso-t -f`
 
 ### Both Systems
  1. Clone the SynBioHub repository `git clone https://github.com/SynBioHub/synbiohub`
