@@ -79,28 +79,28 @@ A JDK
  3. Install the necessary packages `apt install default-jdk maven raptor2-utils nodejs jq build-essential python`
  4. Start virtuoso process `virtuoso-t +configfile /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini -f`
 
- ### MacOS
-  1. Install the necessary packages `brew install openjdk maven node virtuoso raptor jq python`
-  2. Start virtuoso process 
-      1. `cd /usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`
-         * The command above is based on where the virtuoso.ini file is located. Your installation might be located
-            somewhere different than `/usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`, or the version might be
-            different (`7.2.5.1_1` might be `7.3.6.1_1` or any other version number).
-         * If you're having trouble finding the location of the virtuoso.ini file, run `sudo find / -name virtuoso.ini`.
-            Press the control and c keys simultaneously to quit the search.
+### MacOS
+ 1. Install the necessary packages `brew install openjdk maven node virtuoso raptor jq python`
+ 2. Start virtuoso process 
+    1. `cd /usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`
+      * The command above is based on where the virtuoso.ini file is located. Your installation might be located
+        somewhere different than `/usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`, or the version might be
+        different (`7.2.5.1_1` might be `7.3.6.1_1` or any other version number).
+      * If you're having trouble finding the location of the virtuoso.ini file, run `sudo find / -name virtuoso.ini`.
+        Press the control and c keys simultaneously to quit the search.
       2. `virtuoso-t -f`
 
 ### Both Systems
- 4. Clone the SynBioHub repository `git clone https://github.com/SynBioHub/synbiohub`
- 5. Change to the SynBioHub directory `cd synbiohub`
- 6. Build the Java components with Maven `cd java && mvn package`
- 7. Return to the root directory and install the Node dependencies with yarn `cd ../ && yarn install`
+ 1. Clone the SynBioHub repository `git clone https://github.com/SynBioHub/synbiohub`
+ 2. Change to the SynBioHub directory `cd synbiohub`
+ 3. Build the Java components with Maven `cd java && mvn package`
+ 4. Return to the root directory and install the Node dependencies with yarn `cd ../ && yarn install`
     Make sure that yarn is being used, not 'cmdtest'.
- 8. Install nodemon and forever with `npm install nodemon -g && npm install forever -g`
- 9. Add SPARQL update rights to the dba user in virtuoso.
+ 5. Install nodemon and forever with `npm install nodemon -g && npm install forever -g`
+ 6. Add SPARQL update rights to the dba user in virtuoso.
  * Visit localhost:8890, click conductor on the left hand side, and login with user name dba and password dba.
  * Visit system admin -> user accounts in the menu at the top.
  * Find the accound labled dba and edit.<br/>Add SPARQL_UPDATE to roles using the menu at the bottom.
  * If no dba account exists, add one, then add update rights.
- 10. Start the SynBioHub process `npm start` or `npm run-script dev`
+ 7. Start the SynBioHub process `npm start` or `npm run-script dev`
 
