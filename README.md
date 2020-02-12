@@ -83,11 +83,11 @@ A JDK
  1. Install the necessary packages `brew install openjdk maven node virtuoso raptor jq python`
  2. Start virtuoso process 
     1. `cd /usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`
-      * The command above is based on where the virtuoso.ini file is located. Your installation might be located
-        somewhere different than `/usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`, or the version might be
-        different (`7.2.5.1_1` might be `7.3.6.1_1` or any other version number).
-      * If you're having trouble finding the location of the virtuoso.ini file, run `sudo find / -name virtuoso.ini`.
-        Press the control and c keys simultaneously to quit the search.
+         * The command above is based on where the virtuoso.ini file is located. Your installation might be located
+           somewhere different than `/usr/local/Cellar/virtuoso/7.2.5.1_1/var/lib/virtuoso/db`, or the version might be
+           different (`7.2.5.1_1` might be `7.3.6.1_1` or any other version number).
+         * If you're having trouble finding the location of the virtuoso.ini file, run `sudo find / -name virtuoso.ini`.
+           Press the control and c keys simultaneously to quit the search.
     2. `virtuoso-t -f`
 
 ### Both Systems
