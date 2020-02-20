@@ -145,9 +145,12 @@ if (typeof meta !== 'undefined') {
 }
 
 $(document).on('click', '.sbh-collection-members-datatable .delete', function () {
+    if(!confirm('Are you sure you want to delete this part?')) {
+        return
+    }
+
     const $row = $(this).closest('tr')
     const removeUrl = $row.find('a').first().attr('href') + '/remove'
-    console.log(removeUrl)
 
     var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
 
