@@ -43,8 +43,8 @@ class TestFeatures(TestCase):
 #    def test_public_collection_collectionid_displayid_search_query(self):
 #        compare_get_request("public/:collectionId/:displayId/search/:query?", route_parameters = ["testid0","BBa_I0462", "test"])
 
-    def test_public_collection_collectionid_displayId_verion_addOwner(self):
-        compare_get_request("public/:collectionId/:displayId/:version/addOwner", route_parameters = ["testid0","BBa_I0462", "1"])
+    def test_public_collection_collectionid_displayId_verion_sharing(self):
+        compare_get_request("public/:collectionId/:displayId/:version/sharing", route_parameters = ["testid0","BBa_I0462", "1"])
 
     def test_public_collection_collectionid_displayid_version_metadata(self):
         compare_get_request("/public/:collectionId/:displayId/:version/metadata", route_parameters = ["testid0","BBa_I0462", "1"])

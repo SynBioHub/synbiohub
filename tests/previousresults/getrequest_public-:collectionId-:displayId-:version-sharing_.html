@@ -116,36 +116,14 @@ try {
    </ul>
   </div>
   <div class="container">
-   <div align="center" class="submission-container">
-    <div class="submission-header">
-     <span class="fa fa-id-card" style="font-size: 3.3em">
-     </span>
-     <p style="font-size: 1.7em; font-weight: bolder">
-      Add owner
-     </p>
-     <p>
-      <span class="text-danger" style="font-weight: bolder">
-       Warning:
-      </span>
-      this will give another user complete control over this object.
-     </p>
-    </div>
-    <form class="form" method="POST">
-     <input name="uri" type="hidden" value="http://localhost:7777/public/testid0/BBa_I0462/1"/>
-     <div class="row">
-      <div class="col-sm-12">
-       <select class="chosen-select" name="user" style="width: 260px">
-       </select>
-      </div>
-     </div>
-     <br/>
-     <div class="row">
-      <div class="col-sm-12">
-       <input class="btn btn-info" type="submit" value="Grant ownership"/>
-      </div>
-     </div>
-    </form>
-   </div>
+   <h1>
+    Error
+   </h1>
+   <p style="white-space:pre">
+    Error: getType: http://localhost:7777/public/testid0/BBa_I0462/1/sharing not found
+    at sparql.queryJson.then (/synbiohub/lib/query/local/type.js:12:29)
+    at process.internalTickCallback (internal/process/next_tick.js:77:7)
+   </p>
   </div>
   <div class="clearfix">
   </div>

@@ -116,35 +116,34 @@ try {
    </ul>
   </div>
   <div class="container">
-   <div align="center" class="submission-container">
+   <br/>
+   <br/>
+   <div align="center">
     <div class="submission-header">
-     <span class="fa fa-id-card" style="font-size: 3.3em">
+     <span class="fa fa-share" style="font-size: 3.3em">
      </span>
      <p style="font-size: 1.7em; font-weight: bolder">
-      Add owner
-     </p>
-     <p>
-      <span class="text-danger" style="font-weight: bolder">
-       Warning:
-      </span>
-      this will give another user complete control over this object.
+      Manage Sharing
      </p>
     </div>
-    <form class="form" method="POST">
-     <input name="uri" type="hidden" value="http://localhost:7777/user/testuser/testid0/BBa_I0462/1"/>
-     <div class="row">
-      <div class="col-sm-12">
-       <select class="chosen-select" name="user" style="width: 260px">
-       </select>
-      </div>
-     </div>
-     <br/>
-     <div class="row">
-      <div class="col-sm-12">
-       <input class="btn btn-info" type="submit" value="Grant ownership"/>
-      </div>
-     </div>
-    </form>
+    <hr/>
+    <h5>
+     You have not shared this part with any users!
+    </h5>
+    <a class="btn btn-success" href="createShare">
+     Share with someone
+    </a>
+    <hr/>
+    <h5>
+     You have not created any share links!
+    </h5>
+    <a class="btn btn-success" href="createShareLink">
+     Create a share link
+    </a>
+    <hr/>
+    <a class="btn btn-info" href="/user/testuser/testid0/BBa_I0462/1">
+     Return to page
+    </a>
    </div>
   </div>
   <div class="clearfix">
