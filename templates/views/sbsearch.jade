@@ -1,0 +1,23 @@
+
+extends ../layouts/default.jade
+
+block content
+    form(action='/sbsearch',method='post')
+
+        div.form-group.row
+            div.col-md-6
+                div.form-group
+                    label(for='sequenceText') Enter sequence:
+                        input.form-control(type='text' name='sequenceInput', placeholder="2000 bp or shorter:")
+
+
+        div.form-group.row
+            div.col-md-6
+                div.form-group
+                    label(for='sequenceUpload') Or, upload a FASTA file:
+                        input(type='file' id='sequenceFile' accept='.fsa, .txt')
+
+
+        div.form-group.row
+            div.col-md-1.col-md-offset-11
+                button.btn.btn-primary(type='submit').submit Search
