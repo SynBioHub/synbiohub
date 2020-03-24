@@ -15,14 +15,13 @@ jobs:
           RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
           docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:$RELEASE-standalone
     - name: Push the image to Docker Hub
-      uses: manusa/actions-publish-docker@master
-      with:
-        name: synbiohub/synbiohub
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        tag script: |
-            return context.ref
-              .split("/")[2] + "-standalone";
+      env:
+          DH_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DH_PASSWORD: ${{ secrets.DOCKER_OASSWORD }}
+      run: |
+          RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
+          docker login -u "$DH_USERNAME" -p "$DH_PASSWORD"
+          docker push synbiohub/synbiohub:$RELEASE-standalone
   update-compose:
     runs-on: ubuntu-latest
     steps:
