@@ -20,7 +20,7 @@ jobs:
           DH_PASSWORD: ${{ secrets.DOCKER_OASSWORD }}
       run: |
           RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
-          docker login -u "$DH_USERNAME" -p "$DH_PASSWORD"
+          echo $DH_PASSWORD | docker login -u "$DH_USERNAME" --password-stdin
           docker push synbiohub/synbiohub:$RELEASE-standalone
   update-compose:
     runs-on: ubuntu-latest
@@ -28,20 +28,11 @@ jobs:
         - uses: actions/checkout@v2
           with:
             repository: synbiohub/synbiohub-docker
-            ref: snapshot
-        - run: |
-            git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         - name: Change tag
           run: |
             RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
-            sed -i "s/snapshot/$RELEASE/g" docker-compose.yml docker-compose.version.yml
-        - name: Commit to master and push
-          run: | 
-              RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
-              git stash
-              git checkout master
-              git stash pop
-              git commit -am "Update to version $RELEASE"
+            sed -i "s/synbiohub\/synbiohub:.*-standalone/synbiohub\/synbiohub:$RELEASE-standalone/g" docker-compose.yml docker-compose.version.yml
+            git commit -am "Update to version $RELEASE"
         - name: Push changes
           uses: ad-m/github-push-action@master
           with: 
