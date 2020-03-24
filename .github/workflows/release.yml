@@ -30,7 +30,7 @@ jobs:
           with:
             repository: synbiohub/synbiohub-docker
             ref: snapshot
-          run: |
+        - run: |
             git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         - name: Change tag
           run: |
