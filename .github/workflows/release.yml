@@ -39,7 +39,9 @@ jobs:
         - name: Commit to master and push
           run: | 
               RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
+              git stash
               git checkout master
+              git stash pop
               git commit -am "Update to version $RELEASE"
         - name: Push changes
           uses: ad-m/github-push-action@master
