@@ -27,6 +27,8 @@ jobs:
     steps:
         - uses: actions/checkout@v2
           with:
+            persist-credentials: false
+            fetch-depth: 0
             repository: synbiohub/synbiohub-docker
         - name: Change tag
           run: |
