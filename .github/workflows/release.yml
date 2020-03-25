@@ -37,5 +37,6 @@ jobs:
         - name: Push changes
           uses: ad-m/github-push-action@master
           with: 
+            repository: synbiohub/synbiohub-docker
             github_token: ${{ secrets.ZACH_GITHUB_TOKEN }}
     
