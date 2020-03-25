@@ -32,7 +32,8 @@ jobs:
           run: |
             RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
             sed -i "s/synbiohub\/synbiohub:.*-standalone/synbiohub\/synbiohub:$RELEASE-standalone/g" docker-compose.yml docker-compose.version.yml
-            git commit -am "Update to version $RELEASE"
+        - name: Commit tag change
+          uses: zwaldowski/git-commit-action@v1
         - name: Push changes
           uses: ad-m/github-push-action@master
           with: 
