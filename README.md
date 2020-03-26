@@ -103,3 +103,18 @@ A JDK
  * Find the accound labled dba and edit.<br/>Add SPARQL_UPDATE to roles using the menu at the bottom.
  * If no dba account exists, add one, then add update rights.
  7. Start the SynBioHub process `npm start` or `npm run-script dev`
+
+
+# Publishing
+The repository is set up to prohibit commits directly to the master branch.
+Commits must be made in another branch, and then a GitHub PR used to merge them into master.
+GitHub PRs must be approved by at least one other developer before they can be merged into master.
+Additionally, they must pass Travis checks, which build a Docker image and run the [SBOLTestSuite](https://github.com/synbiodex/sboltestsuite) and SynBioHub integration tests against it.
+Each time a PR is merged into master, the Travis checks are re-run on the master branch, and if they succeed the resulting image is pushed by Travis to DockerHub under the tag `snapshot-standalone`.
+
+## Publishing a release
+This automation is currently *under construction*, so the process described below may not be completely implemented.
+Releases are published automatically using GitHub Actions. 
+There is an action which fires on release publication.
+It publishes an image to Docker Hub under the $VERSION-standalone tag, and updates the [synbiohub-docker](https://github.com/synbiohub/synbiohub-docker) master branch to point to this version.
+More information available [here](https://github.com/SynBioHub/synbiohub/blob/master/.github/workflows/README.md).

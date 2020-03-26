@@ -9,11 +9,15 @@ jobs:
   retag-release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
           RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
           docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:$RELEASE-standalone
+    - uses: azure/docker-login@v1
+      with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push the image to Docker Hub
       run: |
           RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
@@ -23,20 +27,18 @@ jobs:
     steps:
         - uses: actions/checkout@v2
           with:
+            persist-credentials: false
+            fetch-depth: 0
             repository: synbiohub/synbiohub-docker
-            ref: snapshot
         - name: Change tag
           run: |
             RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
-            sed -i "s/snapshot/$RELEASE/g" docker-compose.yml docker-compose.version.yml
-        - name: Commit to master and push
-          run: | 
-              RELEASE=$(echo $GITHUB_REF | cut -d'/' -f 3)
-              git checkout master
-              git commit -am "Update to version $RELEASE"
-              gitA
+            sed -i "s/synbiohub\/synbiohub:.*-standalone/synbiohub\/synbiohub:$RELEASE-standalone/g" docker-compose.yml docker-compose.version.yml
+        - name: Commit tag change
+          uses: zwaldowski/git-commit-action@v1
         - name: Push changes
           uses: ad-m/github-push-action@master
           with: 
+            repository: synbiohub/synbiohub-docker
             github_token: ${{ secrets.ZACH_GITHUB_TOKEN }}
     
