@@ -11,6 +11,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -203,9 +204,6 @@ try {
           ID
          </th>
          <th>
-          Status
-         </th>
-         <th>
           Name
          </th>
          <th>
@@ -223,8 +221,6 @@ try {
           <p id="id">
            New
           </p>
-         </td>
-         <td>
          </td>
          <td>
           <input class="form-control" id="name" placeholder="Name" style="width:100%" type="text"/>
@@ -245,22 +241,11 @@ try {
       <h3>
        Submission
       </h3>
-      <h6>
-       Submission plugins are not currently supported
-      </h6>
-     </div>
-     <div>
-      <h3>
-       Download
-      </h3>
       <table class="table table-striped">
        <thead>
         <tr>
          <th>
           ID
-         </th>
-         <th>
-          Status
          </th>
          <th>
           Name
@@ -282,6 +267,48 @@ try {
           </p>
          </td>
          <td>
+          <input class="form-control" id="name" placeholder="Name" style="width:100%" type="text"/>
+         </td>
+         <td>
+          <input class="form-control" id="url" placeholder="URL" style="width:100%" type="text"/>
+         </td>
+         <td colspan="2">
+          <btn class="btn btn-success btn-block save-submit-plugin">
+           Save
+          </btn>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <div>
+      <h3>
+       Download
+      </h3>
+      <table class="table table-striped">
+       <thead>
+        <tr>
+         <th>
+          ID
+         </th>
+         <th>
+          Name
+         </th>
+         <th>
+          URL
+         </th>
+         <th>
+         </th>
+         <th>
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>
+          <p id="id">
+           New
+          </p>
          </td>
          <td>
           <input class="form-control" id="name" placeholder="Name" style="width:100%" type="text"/>
@@ -319,7 +346,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="http://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |

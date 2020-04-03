@@ -11,6 +11,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -236,6 +237,20 @@ try {
         </div>
        </div>
        <div class="row">
+        <div class="col-md-12">
+         <div class="form-group-100">
+          <label for="plugin">
+           Submit Handler
+          </label>
+          <select class="form-control" id="plugin" name="plugin">
+           <option value="default">
+            Default handler
+           </option>
+          </select>
+         </div>
+        </div>
+       </div>
+       <div class="row">
         <div class="col-sm-12">
          <div class="checkbox" style="margin-left:20px">
           <label>
@@ -335,7 +350,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="http://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |
