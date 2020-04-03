@@ -128,8 +128,11 @@ if (typeof meta !== 'undefined') {
         serverSide: true,
 
       searching: !meta.remote,
+      order: [[0, "asc"]],
+      "columnDefs": [
+        { "orderable": false, "targets": 2 }
+      ],
       ordering: !meta.remote,
-	order: [[2, "asc"]],
         
 	ajax: {
             url: '/api/datatables',
@@ -138,6 +141,7 @@ if (typeof meta !== 'undefined') {
                 d.type = 'collectionMembers'
                 d.collectionUri = meta.remote ? meta.uri.toString().replace("/1","/current") : meta.uri
                 d.graphUri = meta.graphUri
+                d.typeFilter = meta.typeFilter
             }
         }
     })
