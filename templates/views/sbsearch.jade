@@ -1,0 +1,84 @@
+
+extends ../layouts/default.jade
+include ../mixins/advanced-search-filter.jade
+
+block head
+    style.
+        body {
+            background-color: #f6f6f6;
+        }
+
+        .grey-page-mark {
+            background-color: #f6f6f6;
+        }
+
+        .top-search-form {
+            display: none;
+        }
+
+        .main-search-form input {
+            width: 60%;
+            margin-left: 0;
+            background-color: white;
+            padding: 14px 16px 13px 32px;
+        }
+
+        .main-search-form .submit {
+            padding: 12px 21px;
+        }
+
+        .main-search-form label {
+            color: #7F8C8D;
+        }
+
+        .search-section {
+            height: 60px;
+            padding: 20px;
+            margin: 0 auto;
+            width: 60%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+block breadcrumbs
+    ul
+        li.inactive
+            span.fa.fa-search
+            |  Sequence Search
+
+block content
+    div.submission-container(align='center')
+        form(action='/sbsearch',method='POST')
+            label(for='sequenceHeader' style='font-size: 1.2em') Enter sequence:
+            div 
+                label(for='sequenceText' style='padding-top: 20px; padding-bottom: 20px; font-size: 1.0em')
+                    textarea(name='sequenceInput' style='height: 100px; width: 400px; font-weight: normal')
+
+                table.table.advanced-search-table
+                    th Flag
+                    th Value
+                    tr
+                        td Search Method
+                        td
+                            select(name='searchMethod').chosen-select
+                                option(value='global') Global
+                                option(value='exact') Exact
+                    tr
+                        td Max Accepts
+                        td
+                            input(type='number' name='maxAccepts' placeholder='Default: 50' min='1' max='999')
+                    tr
+                        td ID
+                        td
+                            input(type='number' name='id' placeholder='Default: 0.8' min='0.0' max='1.0' step='0.01')
+                        
+
+            button(type='submit').btn.btn-primary.btn-md Search
+
+
+
+        //- div.form-group.row
+        //-     div.col-md-6
+        //-         div.form-group
+        //-             label(for='sequenceUpload') Or, upload a FASTA file:
+        //-                 input(type='file' id='sequenceFile' accept='.fsa, .txt')
