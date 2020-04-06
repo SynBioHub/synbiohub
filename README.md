@@ -6,7 +6,7 @@
 
 SynBioHub is a Web-based repository for synthetic biology, enabling users to browse, upload, and share synthetic biology designs.
 
-To learn more about the SynBioHub, including installation instructions and documentation, visit [the SynBioHub wiki](http://wiki.synbiohub.org).
+To learn more about the SynBioHub, including installation instructions and documentation, visit [the SynBioHub wiki](https://synbiohub.github.io/api-docs/).
  
 To access a sample instance of SynBioHub containing enriched _Bacillus subtilis_ data, features from the _Escherichia coli_ genome, and the complete [iGEM Registry of Standard Biological Parts](http://parts.igem.org/Main_Page), visit [synbiohub.org](http://synbiohub.org). To access a bleeding-edge version of SynBioHub, visit [dev.synbiohub.org](https://dev.synbiohub.org).
 
@@ -113,7 +113,6 @@ Additionally, they must pass Travis checks, which build a Docker image and run t
 Each time a PR is merged into master, the Travis checks are re-run on the master branch, and if they succeed the resulting image is pushed by Travis to DockerHub under the tag `snapshot-standalone`.
 
 ## Publishing a release
-This automation is currently *under construction*, so the process described below may not be completely implemented.
 Releases are published automatically using GitHub Actions. 
 There is an action which fires on release publication.
 It publishes an image to Docker Hub under the $VERSION-standalone tag, and updates the [synbiohub-docker](https://github.com/synbiohub/synbiohub-docker) master branch to point to this version.
