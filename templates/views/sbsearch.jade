@@ -49,28 +49,38 @@ block breadcrumbs
 block content
     div.submission-container(align='center')
         form(action='/sbsearch',method='POST')
-            label(for='sequenceHeader' style='font-size: 1.2em') Enter sequence:
+            label(for='sequenceHeader' style='font-size: 1.2em') Enter Sequence:
             div 
                 label(for='sequenceText' style='padding-top: 20px; padding-bottom: 20px; font-size: 1.0em')
                     textarea(name='sequenceInput' style='height: 100px; width: 400px; font-weight: normal')
 
                 table.table.advanced-search-table
-                    th Flag
+                    th Option
                     th Value
                     tr
                         td Search Method
                         td
-                            select(name='searchMethod').chosen-select
+                            select(name='searchMethod' style='width: 140px').chosen-select
                                 option(value='global') Global
                                 option(value='exact') Exact
                     tr
-                        td Max Accepts
+                        td Number of Results
                         td
-                            input(type='number' name='maxAccepts' placeholder='Default: 50' min='1' max='999')
+                            input(type='number' name='maxAccepts' placeholder='Default: 50' min='1' max='999' style='width: 140px')
                     tr
-                        td ID
+                        td Percent Match (0 to 1)
                         td
-                            input(type='number' name='id' placeholder='Default: 0.8' min='0.0' max='1.0' step='0.01')
+                            input(type='number' name='id' placeholder='Default: 0.8' min='0.0' max='1.0' step='0.01' style='width: 140px')
+
+                    tr
+                        td Pairwise Identity Definition
+                        td
+                            select(name='iddef' style='width: 140px').chosen-select
+                                option(value='2') Default
+                                option(value='0') CD-HIT definition ((matching columns) / (shortest sequence length))
+                                option(value='1') edit distance ((matching columns) / (alignment length)).
+                                option(value='3') Marine Biological Lab definition (counts each gap opening (internal or terminal) as a single mismatch, whether or not the gap was extended: 1.0 - [(mismatches + gap openings)/(longest sequence length)])
+
                         
 
             button(type='submit').btn.btn-primary.btn-md Search
