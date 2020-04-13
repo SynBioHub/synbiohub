@@ -2,9 +2,9 @@
 extends ../../layouts/admin.jade
 
 block adminContent
-    form(action='explorerUpdateIndex', method='POST', id="explorerButtons")
+    form(action='explorerUpdateIndex', method='POST', id='explorerButtons')
     form(action='explorerLog', method='POST', id='explorerButtons2')
-    form(action='/admin/explorer', method='POST', id="explorerForm")
+    form(action='/admin/explorer', method='POST', id='explorerForm')
         div.row 
             div.col-md-12 
                 div.alert.alert-info 
@@ -18,22 +18,41 @@ block adminContent
             div.col-md-6
                 div.checkbox
                     label
-                        input(type='checkbox', name="useSBOLExplorer", checked=config.useSBOLExplorer) 
+                        input(type='checkbox', name='useSBOLExplorer', checked=config.useSBOLExplorer) 
                         | Searching Using SBOLExplorer
+            div.col-md-6
+                div.radio
+                    label(for="whichSearch")
+                        input(type='radio', name='whichSearch', value="usearch", checked=explorerConfig.which_search == "usearch")
+                        | USearch &nbsp &nbsp &nbsp &nbsp &nbsp
+                        input(type='radio', name='whichSearch', value="vsearch", checked=explorerConfig.which_search == "vsearch")
+                        | VSearch
 
-        button.btn.btn-info(type="submit", style="margin-right: 20px; margin-bottom:20px", form="explorerButtons") Update Index Now
-        button.btn.btn-info(type="submit", style="margin-right: 20px; margin-bottom:20px", form="explorerButtons2") Download Log
+
+        button.btn.btn-info(type='submit', style='margin-right: 20px; margin-bottom:20px', form='explorerButtons') Update Index Now
+        button.btn.btn-info(type='submit', style='margin-right: 20px; margin-bottom:20px', form='explorerButtons2') Download Log
+
 
         div.alert.alert-info 
                     span Start of last index update: #{explorerConfig.last_update_start}
                          br
                          | End of last index update: #{explorerConfig.last_update_end}
+        div.row
+            div.col-md-6
+                div.checkbox
+                    label
+                        input(type='checkbox', name='useCron', checked=config.use_cron) 
+                        | Update index automatically
+                div.form-group
+                    label(for='cronInterval') Update index every &nbsp
+                        <input id='cronDay' type="number" min="1" max="31" placeholder="1-31"/> days &nbsp
+                        <input id='cronHour' type="number" min="0" max="23" placeholder="0-23"/>  hours
 
         div.row 
             div.col-md-12 
                 div.checkbox
                     label
-                        input(type='checkbox', name="useDistributedSearch", checked=explorerConfig.distributed_search) 
+                        input(type='checkbox', name='useDistributedSearch', checked=explorerConfig.distributed_search) 
                         | Use Distributed Search
         div.row
             div.col-md-12
