@@ -42,6 +42,7 @@ block content
                 div
                     input.btn.btn-primary(name='commit', type='submit', value='Log in')
 
+
                 if(forgotPasswordEnabled)
                     br
                     
@@ -52,6 +53,14 @@ block content
         if(config.allowPublicSignup)
             div(align='center')
                 a.btn.btn-primary(href='register') I need an account
+
+        if(config.allowPublicSignup && externalAuthProvider === 'google')
+          div(align='center')
+            hr
+            a.btn-google(href='/auth/external')
+              span.wrapper
+                i.icon 
+                span.contents Sign in with Google
 
         div.clearfix
 

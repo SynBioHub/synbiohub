@@ -1,8 +1,6 @@
-
 $(document).on('click', '[data-uri]', function () {
     window.location = $(this).attr('data-uri')
 })
-
 
 $("body").tooltip({
     selector: '[data-toggle="tooltip"]',
@@ -146,9 +144,12 @@ if (typeof meta !== 'undefined') {
 }
 
 $(document).on('click', '.sbh-collection-members-datatable .delete', function () {
+    if(!confirm('Are you sure you want to delete this part?')) {
+        return
+    }
+
     const $row = $(this).closest('tr')
     const removeUrl = $row.find('a').first().attr('href') + '/remove'
-    console.log(removeUrl)
 
     var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
 
@@ -191,6 +192,7 @@ function createPluginFunctions(pluginType) {
     })
 }
 
+createPluginFunctions('submit')
 createPluginFunctions('rendering')
 createPluginFunctions('download')
 
@@ -698,4 +700,12 @@ $(document).on('click', '.remove-attachment', function() {
     $.get(attachmentUri + "/remove")
      .done(() => $row.remove())
      .error(() => alert("Could not remove attachment!"));
+})
+
+$('form[action="/setup"] select[name="authProvider"]').change(function () {
+    const providerName = this.value;
+    const parentEl = $(this).closest('.form-group');
+
+    parentEl.find('div[class^="auth-"]').hide();
+    parentEl.find('div.auth-' + providerName).show();
 })
