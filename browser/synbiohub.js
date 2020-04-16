@@ -129,7 +129,7 @@ if (typeof meta !== 'undefined') {
 
       searching: !meta.remote,
       order: [[0, "asc"]],
-      "columnDefs": [
+      columnDefs: [
         { "orderable": false, "targets": 2 }
       ],
       ordering: !meta.remote,
