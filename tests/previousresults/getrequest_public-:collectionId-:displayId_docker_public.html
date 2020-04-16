@@ -262,6 +262,37 @@ try {
    <h3>
     Members
    </h3>
+   <form class="submission-form" method="post" name="filterTypes">
+    <select class="chosen-select" name="typeFilter" style="width: 260px">
+     <option>
+      No Type Filter
+     </option>
+     <option value="http://www.biopax.org/release/biopax-level3.owl#DnaRegion">
+      biopax:DnaRegion
+     </option>
+     <option value="http://sbols.org/v2#ComponentDefinition">
+      sbol2:ComponentDefinition
+     </option>
+     <option value="http://sbols.org/v2#Sequence">
+      sbol2:Sequence
+     </option>
+     <option value="http://identifiers.org/so/SO:0000316">
+      so:CDS
+     </option>
+     <option value="http://identifiers.org/so/SO:0000804">
+      so:engineered_region
+     </option>
+     <option value="http://identifiers.org/so/SO:0000139">
+      so:ribosome_entry_site
+     </option>
+     <option value="http://identifiers.org/so/SO:0000141">
+      so:terminator
+     </option>
+    </select>
+    <button class="btn btn-primary btn-sm" name="typeFilter" type="submit">
+     Filter
+    </button>
+   </form>
    <table class="table table-striped entry-detail-table sbh-collection-members-datatable">
     <thead>
      <tr>
@@ -276,8 +307,6 @@ try {
       </th>
       <th>
        Description
-      </th>
-      <th>
       </th>
      </tr>
     </thead>

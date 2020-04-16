@@ -30,13 +30,21 @@ block modal
 
 block topLevelPreview
     h3 Members
+    if types
+        form(name="filterTypes", method="post").submission-form
+            select(name='typeFilter' style='width: 260px;').chosen-select
+                option #{'No Type Filter'}
+                for type in types
+                    option(value=type.uri,selected=(type.uri==initType)) #{type.name}
+            button(type='submit',name="typeFilter",value=typeFilter).btn.btn-primary.btn-sm
+                | Filter
+            
     table.table.table-striped.entry-detail-table.sbh-collection-members-datatable
         thead
             th Name
             th Identifier
             th Type
             th Description
-            th
         tbody
             if meta.members	
                 for member in meta.members
