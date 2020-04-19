@@ -78,7 +78,7 @@
     "validator": "^10.9.0",
     "value-event": "^5.1.1",
     "virtual-dom": "^2.1.1",
-    "visbol": "^1.4.24",
+    "visbol": "^1.4.28",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.8.0",
     "xml2js": "^0.4.10",
