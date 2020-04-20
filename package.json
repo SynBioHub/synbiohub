@@ -18,7 +18,6 @@
     "deepmerge": "^2.2.1",
     "doi-regex": "^0.1.4",
     "dom-delegator": "^13.1.0",
-    "edam-ontology": "^1.0.0",
     "escape-html": "^1.0.3",
     "escape-string-regexp": "^1.0.3",
     "eslint": "^5.12.1",
