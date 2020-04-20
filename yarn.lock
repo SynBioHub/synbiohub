@@ -1761,7 +1761,7 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
-edam-ontology@^1.0.0:
+edam-ontology@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/edam-ontology/-/edam-ontology-1.1.0.tgz#097c23778f5ddd9f8d114c08fe5d2bd48cc41392"
   integrity sha512-W+G5xVg104t1mR6YAAvhTTVb1/bdQ3RA/J56wvo0KaUUfbE0+EQY62DymzIRotdowJIHeDhTFjx1cZ0PJnrk6w==
