@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -482,8 +484,14 @@ public class PrepareSubmissionJob extends Job {
 						SBOLDocument tlDoc;
 						try {
 							tlDoc = sbh.getSBOL(URI.create(topLevelUri));
-						} catch (SynBioHubException e) {
-							tlDoc = null;
+						} catch (SynBioHubException e1) {
+							StringWriter sw = new StringWriter();
+				            e1.printStackTrace(new PrintWriter(sw));
+				            errorLog = sw.toString();
+							System.err.println(errorLog);
+							finish(new PrepareSubmissionResult(this, false, "", log, errorLog,
+									attachmentFiles, tempDirPath));
+							return;
 						}
 						
 						if (tlDoc != null) {
