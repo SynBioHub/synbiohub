@@ -1,0 +1,4 @@
+PREFIX sbol: <http://sbols.org/v2#>
+INSERT DATA {
+<$uri> sbol:member <$memberUri>
+}
