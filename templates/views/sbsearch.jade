@@ -69,6 +69,16 @@ block content
                             input(type='number' name='maxAccepts' placeholder='50' min='0' max='10000' style='width: 140px')
 
                     tr
+                        td Minimum Sequence Length
+                        td
+                            input(type='number' name='minSeqLength' placeholder='20' min='0' max='100000' step='1' style='width: 140px')
+
+                    tr
+                        td Maximum Sequence Length
+                        td
+                            input(type='number' name='maxSeqLength' placeholder='5000' min='0' max='100000' style='width: 140px')
+
+                    tr
                         td # of Failed Hits Before Stopping
                             a(href='#' title='Maximum number of non-matching target sequences to consider before stopping the search. This option works in pair with the flag above. The search process sorts target sequences by decreasing number of k-mers they have in common with the query sequence, using that information as a proxy for sequence similarity. After pairwise alignments, if none of the first x examined target sequences pass the acceptation criteria, the search process stops for that query (no hit). If this flag is set to a higher value, more target sequences are considered. If the flag above and this flag are both set to 0, the complete database is searched.')    &#9432
                         td
