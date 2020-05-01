@@ -32,7 +32,7 @@ jobs:
         cat sbh.tar.gz | docker import - synbiohub/synbiohub:snapshot-standalone
     - uses: actions/setup-python@v1
       with:
-        python-version: '3.6.7' # To match the one in Travis
+        python-version: '3.6' # To match the one in Travis
     - name: Install test dependencies
       run: |
         pip install -r tests/test_requirements.txt
@@ -53,7 +53,7 @@ jobs:
         cat sbh.tar.gz | docker import - synbiohub/synbiohub:snapshot-standalone
     - uses: actions/setup-python@v1
       with:
-        python-version: '3.6.7' # To match the one in Travis
+        python-version: '3.6' # To match the one in Travis
     - name: Install test dependencies
       run: |
         pip install -r tests/test_requirements.txt
