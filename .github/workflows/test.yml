@@ -52,6 +52,7 @@ jobs:
   publish:
     needs: [sboltests, sbhtests]
     runs-on: ubuntu-latest
+    if: endsWith(github.ref, "master")
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
