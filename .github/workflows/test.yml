@@ -4,6 +4,7 @@ on: push
 
 jobs:
   build: 
+    name: Build Docker image
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -18,6 +19,7 @@ jobs:
         name: sbh-image
         path: sbh.tar.gz
   sboltests:
+    name: SBOL Test Suite
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +37,7 @@ jobs:
       run: |
         tests/sbolsuite.sh
   sbhtests:
+    name: SynBioHub Test Suite
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -52,6 +55,7 @@ jobs:
       run: |
         tests/test.sh --stopaftertestsuite
   publish:
+    name: Publish snapshot image
     needs: [sboltests, sbhtests]
     runs-on: ubuntu-latest
     if: endsWith(github.ref, 'master')
