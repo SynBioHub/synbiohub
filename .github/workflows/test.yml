@@ -32,6 +32,7 @@ jobs:
       run: |
         pip install -r tests/test_requirements.txt
     - name: Run tests
+      run: |
         tests/sbolsuite.sh
   sbhtests:
     needs: build
