@@ -29,7 +29,7 @@ jobs:
         name: sbh-image
     - name: Import saved Docker image
       run: |
-        cat sbh.tar.gz | docker import - synbiohub/synbiohub:snapshot-standalone
+        cat sbh.tar.gz | docker load
     - uses: actions/setup-python@v1
       with:
         python-version: '3.6' # To match the one in Travis
@@ -50,7 +50,7 @@ jobs:
         name: sbh-image
     - name: Import saved Docker image
       run: |
-        cat sbh.tar.gz | docker import - synbiohub/synbiohub:snapshot-standalone
+        cat sbh.tar.gz | docker load
     - uses: actions/setup-python@v1
       with:
         python-version: '3.6' # To match the one in Travis
@@ -72,7 +72,7 @@ jobs:
         name: sbh-image
     - name: Import saved Docker image
       run: |
-        cat sbh.tar.gz | docker import - synbiohub/synbiohub:snapshot-standalone
+        cat sbh.tar.gz | docker load
     - uses: azure/docker-login@v1
       with: 
         username: ${{ secrets.DOCKER_USERNAME }}
