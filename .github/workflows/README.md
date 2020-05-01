@@ -1,4 +1,8 @@
 # GitHub Actions
+## Test
+This is the workflow described in the file `test.yml`.
+It runs the SBH test suite, the SynBioHub test suite, and then if both succeed the image is pushed to Docker Hub.
+
 ## Release
 This is the workflow described in the file `release.yml`.
 It is composed of two jobs: `retag-release` and `update-compose`.
