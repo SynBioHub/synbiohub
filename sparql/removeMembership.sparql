@@ -1,0 +1,4 @@
+PREFIX sbol: <http://sbols.org/v2#>
+DELETE WHERE {
+<$uri> sbol:member <$memberUri>
+}

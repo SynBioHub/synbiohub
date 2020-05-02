@@ -148,7 +148,7 @@ if (typeof meta !== 'undefined') {
 }
 
 $(document).on('click', '.sbh-collection-members-datatable .delete', function () {
-    if(!confirm('Are you sure you want to delete this part?')) {
+    if(!confirm('Are you sure you want to delete this object?')) {
         return
     }
 
@@ -158,6 +158,28 @@ $(document).on('click', '.sbh-collection-members-datatable .delete', function ()
     var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
 
     $.get(removeUrl, function () {
+
+        dt.row($row).remove().draw()
+
+    })
+})
+
+$(document).on('click', '.sbh-collection-members-datatable .remove', function () {
+    if(!confirm('Are you sure you want to remove this object from this collection?')) {
+        return
+    }
+
+    const $row = $(this).closest('tr')
+    const memberUrl = $row.find('a').first().attr('href') 
+    const removeUrl = meta.url + '/removeMembership'
+
+    var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
+
+    var removeInfo = {
+      member: memberUrl
+    }
+  
+    $.post(removeUrl, removeInfo, function () {
 
         dt.row($row).remove().draw()
 
