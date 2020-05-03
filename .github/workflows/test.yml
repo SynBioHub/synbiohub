@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: |
-        docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:snapshot-standalone
+    - uses: nick-invision/retry@v1
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:snapshot-standalone
     - name: Package image
       run: |
         docker save synbiohub/synbiohub:snapshot-standalone | gzip > sbh.tar.gz
@@ -36,9 +38,11 @@ jobs:
     - name: Install test dependencies
       run: |
         pip install -r tests/test_requirements.txt
-    - name: Run tests
-      run: |
-        tests/sbolsuite.sh
+    - uses: nick-invision/retry@v1
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: tests/sbolsuite.sh
   sbhtests:
     name: SynBioHub Test Suite
     needs: build
