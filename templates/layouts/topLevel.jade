@@ -60,6 +60,10 @@ block generalTopLevelButtons
                         li.btn.btn-success
                                 a(href=meta.url + '/remove',title='Remove',style="color:white", onclick="return confirm('Are you sure you want to delete this?')")
                                     span.fa.fa-remove
+                if locals.user
+                    li.btn.btn-info
+                            a(href=meta.url + "/addToCollection",title='Add to Collection',style="color:white")
+                                span.fa.fa-link
                 if meta.canEdit
                     li.btn.btn-info
                             a(href=meta.url + "/addOwner",title='Add Owner',style="color:white")
