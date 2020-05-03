@@ -1,0 +1,45 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li.inactive
+            span.fa.fa-link
+            |  Add To Collection
+
+
+block content
+    div.submission-container(align='center')
+        div.submission-header
+            span(style='font-size: 3.3em').fa.fa-link
+            p(style='font-size: 1.7em; font-weight: bolder')
+                | Add to Collection
+        
+        form(name='addToCollection',method='post').submission-form
+            if errors.length > 0
+                each error in errors
+                    div.alert.alert-danger
+                        p #{error}
+                    br
+        
+            div.clearfix
+
+            br
+            div.form-group-200.required
+                label Collections
+                br
+                select.form-control(name='collections' style="width:650px;" id='collections' data-placeholder='Select Some Collections')
+                    option(value="") Choose a collection...
+                    for collection in collections
+                        option(value=collection.uri) #{collection.name}
+
+            div.clearfix
+
+            br
+            br
+
+            button(type='submit').btn.btn-primary.btn-lg
+                | Add to Collection
+
+                
+
