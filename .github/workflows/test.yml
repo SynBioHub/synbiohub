@@ -100,4 +100,4 @@ jobs:
         SD2_USER: ${{ secrets.SD2_USER }}
         SD2_TOKEN: ${{ secrets.SD2_TOKEN }}
       run: | 
-        curl -X POST --user $SD2_USER:$SD2_TOKEN http://jenkins.sd2e.org/job/Synbiohub/job/Redeploy%20to%20dev%20server/build | 
+        curl -X POST --user $SD2_USER:$SD2_TOKEN http://jenkins.sd2e.org/job/Synbiohub/job/Redeploy%20to%20dev%20server/build
