@@ -74,11 +74,14 @@ block content
         div.row
             div.col-md-11
 
-                if meta.wasDerivedFroms
+                if meta.wasDerivedFroms && meta.wasDerivedFroms.length > 0
                     for wasDerivedFrom in meta.wasDerivedFroms
                         h5 Source: 
-                            div(class=meta.canUpdate ? "edit edit-wasDerivedFrom" : "")
+                            div(class=meta.canUpdate ? "edit edit-multiple edit-wasDerivedFrom" : "", editText=wasDerivedFrom.url.toString(), style="display: contents")
                                 a(href=wasDerivedFrom.url) #{wasDerivedFrom.uri}
+                else if meta.canUpdate
+                    h5 Source: 
+                        div(class=meta.canUpdate ? "edit edit-multiple edit-wasDerivedFrom" : "", editText='', style="display: contents")
 
                 if meta.wasGeneratedBys
                     for wasGeneratedBy in meta.wasGeneratedBys
@@ -103,11 +106,12 @@ block content
                         a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date') 
                             span.fa.fa-search
 
-                if meta.description && meta.description != ''
+                if (meta.description && meta.description != '') || meta.canUpdate 
                     h4(class=meta.canUpdate ? "edit edit-description" : "")
-                        != meta.description 
-                        a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
-                            span.fa.fa-search
+                        != meta.description
+                        if meta.description && meta.description != ''
+                            a(href='/search/?q='+meta.description.replace('<br/>',' '),title='Find all records with terms in common with this description')
+                                span.fa.fa-search
 
                 block topLevelBelowTitle
 
@@ -157,29 +161,32 @@ block content
                                                         span.fa.fa-search
                                                 br
 
-                                if meta.roles && meta.roles.length > 0
+                                if meta.roles && meta.roles.length > 0 || meta.canUpdate
                                     tr
                                         td 
                                             | Roles
                                             a(href='http://sbols.org/v2#role',title='Learn more about roles') 
                                                 span.fa.fa-info-circle
                                         td
-                                            for role in meta.roles
-                                                if role.description
-                                                    div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", editText=role.uri, style="display: contents")
-                                                        != role.description.name
-                                                    a(href=role.uri,title='Learn more about this role') 
-                                                        span.fa.fa-info-circle
-                                                    a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
-                                                        span.fa.fa-search
-                                                else 
-                                                    div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", style="display: contents")
-                                                        != role.term 
-                                                    a(href=role.uri,title='Learn more about this role') 
-                                                        span.fa.fa-info-circle
-                                                    a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
-                                                        span.fa.fa-search
-                                                br
+                                            if meta.roles && meta.roles.length > 0
+                                                for role in meta.roles
+                                                    if role.description
+                                                        div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", editText=role.uri, style="display: contents")
+                                                            != role.description.name
+                                                        a(href=role.uri,title='Learn more about this role') 
+                                                            span.fa.fa-info-circle
+                                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                            span.fa.fa-search
+                                                    else 
+                                                        div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", style="display: contents")
+                                                            != role.term 
+                                                        a(href=role.uri,title='Learn more about this role') 
+                                                            span.fa.fa-info-circle
+                                                        a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                            span.fa.fa-search
+                                                    br
+                                            else if meta.canUpdate
+                                                div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", style="display: contents")
 
                                 block topLevelPropertyTable
 
