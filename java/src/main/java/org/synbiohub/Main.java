@@ -29,6 +29,7 @@ public class Main
 						try {
 							job.execute();
 						} catch(Exception e) {
+							e.printStackTrace(System.err);
 							job.finish(new ErrorResult(job, e));
 						}
 					}
