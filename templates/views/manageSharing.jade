@@ -52,9 +52,9 @@ block content
                                 td #{shareLink.description}
                                 td
                                     select#privilege(name="share-" + shareLink.authId)
-                                        option(value="1" selected=share.privilege.value == "1") Allow Viewing
-                                        option(value="2" selected=share.privilege.value == "2") Allow Viewing and Editing
-                                        option(value="3" selected=share.privilege.value == "3") Allow Viewing, Editing, and Sharing
+                                        option(value="1" selected=shareLink.privilege.value == "1") Allow Viewing
+                                        option(value="2" selected=shareLink.privilege.value == "2") Allow Viewing and Editing
+                                        option(value="3" selected=shareLink.privilege.value == "3") Allow Viewing, Editing, and Sharing
                                 td 
                                     a.btn.btn-block.btn-danger.fa.fa-trash(href=shareLink.removeUrl)
             else
