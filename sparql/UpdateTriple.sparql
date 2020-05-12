@@ -11,8 +11,8 @@ INSERT {
 }
 
 WHERE {
-    <$subject> <$predicate> $previous .
     OPTIONAL {
+        <$subject> <$predicate> $previous .
         <$subject> dcterms:modified ?mod
     }
 }
