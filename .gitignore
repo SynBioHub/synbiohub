@@ -15,7 +15,7 @@ public/local/*
 unzipped/*
 jsbml.log
 logs
-
+.DS_Store
 *~
 
 tests/synbiohub-docker/*
