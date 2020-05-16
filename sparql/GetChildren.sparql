@@ -1,4 +1,6 @@
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+
 SELECT ?o
 WHERE {
-    <$uri> ?p ?o .
+    <$uri> !sbh:ownedBy ?o .
 }
