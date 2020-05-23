@@ -44,9 +44,9 @@ block adminContent
                         input(type='checkbox', name='useCron', checked=config.use_cron) 
                         | Update index automatically
                 div.form-group
-                    label(for='cronInterval') Update index every &nbsp
-                        <input id='cronDay' type="number" min="1" max="31" placeholder="1-31"/> days &nbsp
-                        <input id='cronHour' type="number" min="0" max="23" placeholder="0-23"/>  hours
+                    label(for='cronString') Update index every &nbsp
+                        input(name='cronDay' type="number" min="1" max="31" placeholder="1-31") days &nbsp
+                        input(name='cronHour' type="number" min="0" max="23" placeholder="0-23")  hours
 
         div.row 
             div.col-md-12 
