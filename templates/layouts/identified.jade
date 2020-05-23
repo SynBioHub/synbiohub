@@ -29,7 +29,7 @@ block content
 
         div.row.entry-heading
             div.col-sm-8.entry-title
-                h1(class=meta.canUpdate ? "edit edit-title" : "" ) #{meta.name ? meta.name : meta.id}
+                h1(class=meta.canUpdate ? "edit edit-title" : "" ) !{meta.name ? meta.name : meta.id}
                     if meta.sbhBookmark && meta.sbhBookmark.description == 'true'
                         a(href='http://wiki.synbiohub.org/Terms/synbiohub#bookmark',title='Bookmarked Parts')
                             span.fa.fa-bookmark
