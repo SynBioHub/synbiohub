@@ -195,41 +195,40 @@ block content
                             +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, meta.canEdit)
                             +mutable-source(meta.sourceSource, meta.source, meta.canEdit)
                             +citations(citationsSource, submissionCitations, meta.canEdit)
-                block topLevelPanels
+            block topLevelPanels
                 
-                block topLevelPanelsMeasured
+            block topLevelPanelsMeasured
 		
-                if meta.annotations && meta.annotations.length > 0
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseOther')
-                                    | <b>Other Properties</b>
-                        #collapseOther.panel-collapse.collapse
-                            .panel-body
-                                div.row
-                                    div.col-md-12
-                                        table.table.table-striped.entry-detail-table
-                                            for annotation in meta.annotations
-                                                tr
-                                                    td #{annotation.name}
-                                                        a(href=annotation.nameDef,title='Learn more about this annotation type') 
-                                                           span.fa.fa-info-circle
-                                                    if (annotation.type === 'uri')
-                                                        td #{annotation.value}
-                                                            a(href=annotation.url,title='Learn more about this annotation value') 
-                                                                span.fa.fa-info-circle &nbsp;
-                                                            a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
-                                                                span.fa.fa-search
-                                                            if(meta.canEdit && annotation.removeOwner)
-                                                                form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
-                                                                    input(type='hidden' name='userUri' value=config.databasePrefix + 'user/' + annotation.value)
-                                                                    button.fakelink(type='submit')
-                                                                        | &nbsp;
-                                                                        span.fa.fa-trash
-                                                    else 
-                                                        td #{annotation.value.toString()} &nbsp;
-                                                            a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
-                                                                span.fa.fa-search
-
-                block topLevelPanelsCont
+            if meta.annotations && meta.annotations.length > 0
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseOther', class='collapsed')
+                                | <b>Other Properties</b>
+                    #collapseOther.panel-collapse.collapse
+                        .panel-body
+                            div.row
+                                div.col-md-12
+                                    table.table.table-striped.entry-detail-table
+                                        for annotation in meta.annotations
+                                            tr
+                                                td #{annotation.name}
+                                                    a(href=annotation.nameDef,title='Learn more about this annotation type') 
+                                                        span.fa.fa-info-circle
+                                                if (annotation.type === 'uri')
+                                                    td #{annotation.value}
+                                                        a(href=annotation.url,title='Learn more about this annotation value') 
+                                                            span.fa.fa-info-circle &nbsp;
+                                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
+                                                            span.fa.fa-search
+                                                        if(meta.canEdit && annotation.removeOwner)
+                                                            form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
+                                                                input(type='hidden' name='userUri' value=config.databasePrefix + 'user/' + annotation.value)
+                                                                button.fakelink(type='submit')
+                                                                    | &nbsp;
+                                                                    span.fa.fa-trash
+                                                else 
+                                                    td #{annotation.value.toString()} &nbsp;
+                                                        a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
+                                                            span.fa.fa-search
+            block topLevelPanelsCont

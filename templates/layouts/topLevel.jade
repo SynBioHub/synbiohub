@@ -77,7 +77,7 @@ block topLevelPanelsCont
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseCollections')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseCollections', class='collapsed')
                                     | <b>Member of these Collections</b>
                         #collapseCollections.panel-collapse.collapse
                             .panel-body
@@ -106,7 +106,7 @@ block topLevelPanelsCont
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapse' + plugin.safeName)
+                                a.accordion-toggle(data-toggle='collapse', href='#collapse' + plugin.safeName, class='collapsed')
                                     | <b>#{plugin.name}</b>
                         panel-collapse.collapse(id='collapse' + plugin.safeName)
                             .panel-body
