@@ -1,8 +1,6 @@
-
 $(document).on('click', '[data-uri]', function () {
     window.location = $(this).attr('data-uri')
 })
-
 
 $("body").tooltip({
     selector: '[data-toggle="tooltip"]',
@@ -130,8 +128,11 @@ if (typeof meta !== 'undefined') {
         serverSide: true,
 
       searching: !meta.remote,
+      order: [[0, "asc"]],
+      columnDefs: [
+        { "orderable": false, "targets": 2 }
+      ],
       ordering: !meta.remote,
-	order: [[2, "asc"]],
         
 	ajax: {
             url: '/api/datatables',
@@ -140,19 +141,45 @@ if (typeof meta !== 'undefined') {
                 d.type = 'collectionMembers'
                 d.collectionUri = meta.remote ? meta.uri.toString().replace("/1","/current") : meta.uri
                 d.graphUri = meta.graphUri
+                d.typeFilter = meta.typeFilter
             }
         }
     })
 }
 
 $(document).on('click', '.sbh-collection-members-datatable .delete', function () {
+    if(!confirm('Are you sure you want to delete this object?')) {
+        return
+    }
+
     const $row = $(this).closest('tr')
     const removeUrl = $row.find('a').first().attr('href') + '/remove'
-    console.log(removeUrl)
 
     var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
 
     $.get(removeUrl, function () {
+
+        dt.row($row).remove().draw()
+
+    })
+})
+
+$(document).on('click', '.sbh-collection-members-datatable .remove', function () {
+    if(!confirm('Are you sure you want to remove this object from this collection?')) {
+        return
+    }
+
+    const $row = $(this).closest('tr')
+    const memberUrl = $row.find('a').first().attr('href') 
+    const removeUrl = meta.url + '/removeMembership'
+
+    var dt = $(this).closest('.sbh-collection-members-datatable').DataTable()
+
+    var removeInfo = {
+      member: memberUrl
+    }
+  
+    $.post(removeUrl, removeInfo, function () {
 
         dt.row($row).remove().draw()
 
@@ -191,6 +218,7 @@ function createPluginFunctions(pluginType) {
     })
 }
 
+createPluginFunctions('submit')
 createPluginFunctions('rendering')
 createPluginFunctions('download')
 
@@ -698,4 +726,12 @@ $(document).on('click', '.remove-attachment', function() {
     $.get(attachmentUri + "/remove")
      .done(() => $row.remove())
      .error(() => alert("Could not remove attachment!"));
+})
+
+$('form[action="/setup"] select[name="authProvider"]').change(function () {
+    const providerName = this.value;
+    const parentEl = $(this).closest('.form-group');
+
+    parentEl.find('div[class^="auth-"]').hide();
+    parentEl.find('div.auth-' + providerName).show();
 })

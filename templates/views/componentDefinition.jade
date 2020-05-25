@@ -3,7 +3,7 @@ extends ../layouts/topLevel.jade
 
 block topLevelPreview
     if meta.displayList
-        div.row
+        div.design-container
             div.col-md-12.text-center
             div#design
 
@@ -13,7 +13,7 @@ block topLevelPropertyTable
             tr
             td 
                 | Implementations
-                a(href='http://sbolstandard.org/v2#Implementation',title='Learn more about implementations') 
+                a(href='http://sbols.org/v2#Implementation',title='Learn more about implementations') 
                     span.fa.fa-info-circle
             td
                 for build in builds
@@ -27,7 +27,7 @@ block topLevelPropertyTable
         tr
             td 
                 | Sequences
-                a(href='http://sbolstandard.org/v2#Sequence',title='Learn more about sequences') 
+                a(href='http://sbols.org/v2#Sequence',title='Learn more about sequences') 
                     span.fa.fa-info-circle
             td
                 for sequence in meta.sequences
@@ -142,15 +142,15 @@ block topLevelPanels
                                     tr
                                         td 
                                             | Access
-                                            a(href='http://sbolstandard.org/v2#access',title='Learn more about access') 
+                                            a(href='http://sbols.org/v2#access',title='Learn more about access') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Instance
-                                            a(href='http://sbolstandard.org/v2#Component',title='Learn more about Components') 
+                                            a(href='http://sbols.org/v2#Component',title='Learn more about Components') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Definition
-                                            a(href='http://sbolstandard.org/v2#definition',title='Learn more about definitions') 
+                                            a(href='http://sbols.org/v2#definition',title='Learn more about definitions') 
                                                 span.fa.fa-info-circle
                                     tr
                                         td
@@ -179,21 +179,21 @@ block topLevelPanels
                                     tr
                                         td 
                                             | Sequence Annotation
-                                            a(href='http://sbolstandard.org/v2#SequenceAnnotation',title='Learn more about Sequence Annotations') 
+                                            a(href='http://sbols.org/v2#SequenceAnnotation',title='Learn more about Sequence Annotations') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Location
-                                            a(href='http://sbolstandard.org/v2#Location',title='Learn more about Locations') 
+                                            a(href='http://sbols.org/v2#Location',title='Learn more about Locations') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Component
-                                            a(href='http://sbolstandard.org/v2#component',title='Learn more about components') 
+                                            a(href='http://sbols.org/v2#component',title='Learn more about components') 
                                                 span.fa.fa-info-circle
                                             | 
                                             | /
                                             | 
                                             | Role(s)
-                                            a(href='http://sbolstandard.org/v2#role',title='Learn more about roles') 
+                                            a(href='http://sbols.org/v2#role',title='Learn more about roles') 
                                                 span.fa.fa-info-circle
                                     tr
                                         td
@@ -239,19 +239,19 @@ block topLevelPanels
                                     tr
                                         td 
                                             | Sequence Constraint
-                                            a(href='http://sbolstandard.org/v2#SequenceConstraint',title='Learn more about Sequence Constraints') 
+                                            a(href='http://sbols.org/v2#SequenceConstraint',title='Learn more about Sequence Constraints') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Subject
-                                            a(href='http://sbolstandard.org/v2#subject',title='Learn more about subjects') 
+                                            a(href='http://sbols.org/v2#subject',title='Learn more about subjects') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Predicate
-                                            a(href='http://sbolstandard.org/v2#restriction',title='Learn more about restrictions') 
+                                            a(href='http://sbols.org/v2#restriction',title='Learn more about restrictions') 
                                                 span.fa.fa-info-circle
                                         td 
                                             | Object
-                                            a(href='http://sbolstandard.org/v2#object',title='Learn more about objects') 
+                                            a(href='http://sbols.org/v2#object',title='Learn more about objects') 
                                                 span.fa.fa-info-circle
                                     tr
                                         td

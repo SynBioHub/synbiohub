@@ -4,10 +4,6 @@ $("input[form=sbh-attachment-lookup][name=url]").on('blur', (event) => {
     let $name = $("input[form=sbh-attachment-lookup][name=name]")
     let $submit = $(":button[form=sbh-attachment-lookup][type=submit]")
 
-    console.log(event.target)
-    console.log($type)
-    console.log(url)
-
     fetch(url, { 
         method: "GET",
         headers: {

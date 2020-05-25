@@ -13,15 +13,18 @@ block generalTopLevelButtons
                         span.caret
                     ul.dropdown-menu.dropdown-toggle
                         li
-                            a(href=meta.url + '/' + meta.id + '.xml') Download SBOL File
+                            a(href=meta.url + '/sbol') Download SBOL File
                         li
-                            a(href=meta.url + '/' + meta.id + '.omex') Download COMBINE Archive
+                            a(href=meta.url + '/omex') Download COMBINE Archive
                         if rdfType.name == 'Component'
                             li 
-                                a(href=meta.url + '/' + meta.id + '.gb') Download GenBank
+                                a(href=meta.url + '/gb') Download GenBank
+                        if rdfType.name == 'Component'
+                            li 
+                                a(href=meta.url + '/gff') Download GFF3
                         if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                             li 
-                                a(href=meta.url + '/' + meta.id + '.fasta') Download FASTA
+                                a(href=meta.url + '/fasta') Download FASTA
                         if rdfType.name == 'Component' || rdfType.name == 'Module'
                             li 
                                 a.sbh-download-picture Download Image
@@ -57,6 +60,10 @@ block generalTopLevelButtons
                         li.btn.btn-success
                                 a(href=meta.url + '/remove',title='Remove',style="color:white", onclick="return confirm('Are you sure you want to delete this?')")
                                     span.fa.fa-remove
+                if locals.user
+                    li.btn.btn-info
+                            a(href=meta.url + "/addToCollection",title='Add to Collection',style="color:white")
+                                span.fa.fa-link
                 if meta.canEdit
                     li.btn.btn-info
                             a(href=meta.url + "/addOwner",title='Add Owner',style="color:white")

@@ -12,6 +12,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -149,7 +150,7 @@ try {
    </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
-     <form action="search" class="top-search-form">
+     <form action="/search" class="top-search-form">
       <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
@@ -167,6 +168,10 @@ try {
     </button>
    </form>
    <br/>
+   <a href="/sbsearch">
+    Sequence Search
+   </a>
+   |
    <a href="/advancedSearch">
     Advanced Search
    </a>
@@ -234,7 +239,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="http://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |

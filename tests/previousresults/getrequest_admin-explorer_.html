@@ -11,6 +11,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -111,7 +112,7 @@ try {
    </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
-     <form action="search" class="top-search-form">
+     <form action="/search" class="top-search-form">
       <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
@@ -130,11 +131,6 @@ try {
       <li role="presentation">
        <a href="/admin/">
         Status
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/backup">
-        Backup
        </a>
       </li>
       <li role="presentation">
@@ -157,7 +153,6 @@ try {
         Plugins
        </a>
       </li>
-      <!--li(role='presentation',class=(adminSection==='sparql'?'active':''))a(href='/admin/sparql') SPARQL-->
       <li role="presentation">
        <a href="/admin/registries">
         Registries
@@ -168,7 +163,6 @@ try {
         Remotes
        </a>
       </li>
-      <!--li(role='presentation',class=(adminSection==='caches'?'active':''))a(href='/admin/caches') Caches-->
       <li class="active" role="presentation">
        <a href="/admin/explorer">
         SBOLExplorer
@@ -199,7 +193,7 @@ try {
          <span class="fa fa-check-circle-o">
          </span>
          <span>
-          Error: It looks like SBOLExplorer is not responding.  Please check that it is up, and that the SBOLExplorer endpoint is correct.  Endpoint fields should end with '/'.
+          SBOLExplorer is disabled. Check the "Searching Using SBOLExplorer" to enable it.
          </span>
         </div>
        </div>
@@ -251,7 +245,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="http://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |

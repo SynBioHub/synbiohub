@@ -35,6 +35,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -169,7 +170,7 @@ try {
    </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
-     <form action="search" class="top-search-form">
+     <form action="/search" class="top-search-form">
       <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
@@ -201,7 +202,7 @@ try {
      </h3>
      <h4>
       Collection
-      <a href="http://sbolstandard.org/v2#Collection" title="Learn more about this RDF type">
+      <a href="http://sbols.org/v2#Collection" title="Learn more about this RDF type">
        <span class="fa fa-info-circle">
        </span>
       </a>
@@ -220,7 +221,7 @@ try {
      <h4>
       testdescription0
       <br/>
-      <a href="/search/?q=testdescription0&lt;br/&gt;
+      <a href="/search/?q=testdescription0 
 " title="Find all records with terms in common with this description">
        <span class="fa fa-search">
        </span>
@@ -237,12 +238,12 @@ try {
       </span>
       <ul class="dropdown-menu dropdown-toggle">
        <li>
-        <a href="/public/testid0/testid0_collection/1/testid0_collection.xml">
+        <a href="/public/testid0/testid0_collection/1/sbol">
          Download SBOL File
         </a>
        </li>
        <li>
-        <a href="/public/testid0/testid0_collection/1/testid0_collection.omex">
+        <a href="/public/testid0/testid0_collection/1/omex">
          Download COMBINE Archive
         </a>
        </li>
@@ -254,6 +255,12 @@ try {
        </span>
       </a>
      </li>
+     <li class="btn btn-info">
+      <a href="/public/testid0/testid0_collection/1/addToCollection" style="color:white" title="Add to Collection">
+       <span class="fa fa-link">
+       </span>
+      </a>
+     </li>
     </div>
     <br/>
     <br/>
@@ -261,6 +268,37 @@ try {
    <h3>
     Members
    </h3>
+   <form class="submission-form" method="post" name="filterTypes">
+    <select class="chosen-select" name="typeFilter" style="width: 260px">
+     <option>
+      No Type Filter
+     </option>
+     <option value="http://www.biopax.org/release/biopax-level3.owl#DnaRegion">
+      biopax:DnaRegion
+     </option>
+     <option value="http://sbols.org/v2#ComponentDefinition">
+      sbol2:ComponentDefinition
+     </option>
+     <option value="http://sbols.org/v2#Sequence">
+      sbol2:Sequence
+     </option>
+     <option value="http://identifiers.org/so/SO:0000316">
+      so:CDS
+     </option>
+     <option value="http://identifiers.org/so/SO:0000804">
+      so:engineered_region
+     </option>
+     <option value="http://identifiers.org/so/SO:0000139">
+      so:ribosome_entry_site
+     </option>
+     <option value="http://identifiers.org/so/SO:0000141">
+      so:terminator
+     </option>
+    </select>
+    <button class="btn btn-primary btn-sm" name="typeFilter" type="submit">
+     Filter
+    </button>
+   </form>
    <table class="table table-striped entry-detail-table sbh-collection-members-datatable">
     <thead>
      <tr>
@@ -411,7 +449,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="http://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |

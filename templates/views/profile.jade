@@ -42,10 +42,18 @@ block content
 
                 div.clearfix
 
+                if(externalAuthProvider === 'google' && !externalProfiles.includes('google'))
+                  div(align='center')
+                    hr
+                    a.btn-google(href='/auth/external')
+                      span.wrapper
+                        i.icon 
+                        span.contents Connect with Google
+
                 br
                 br
 
                 div
-                    input(type='submit',class='btn btn-primary',value='Register')
+                    input(type='submit',class='btn btn-primary',value='Save')
 
     br

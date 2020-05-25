@@ -1,0 +1,105 @@
+
+extends ../layouts/default.jade
+include ../mixins/advanced-search-filter.jade
+
+block head
+    style.
+        body {
+            background-color: #f6f6f6;
+        }
+
+        .grey-page-mark {
+            background-color: #f6f6f6;
+        }
+
+        .top-search-form {
+            display: none;
+        }
+
+        .main-search-form input {
+            width: 60%;
+            margin-left: 0;
+            background-color: white;
+            padding: 14px 16px 13px 32px;
+        }
+
+        .main-search-form .submit {
+            padding: 12px 21px;
+        }
+
+        .main-search-form label {
+            color: #7F8C8D;
+        }
+
+        .search-section {
+            height: 60px;
+            padding: 20px;
+            margin: 0 auto;
+            width: 60%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+block breadcrumbs
+    ul
+        li.inactive
+            span.fa.fa-search
+            |  Sequence Search
+
+block content
+    div.submission-container(align='center')
+        form(action='/sbsearch',method='POST')
+            label(for='sequenceHeader' style='font-size: 1.2em') Enter Sequence:
+            div 
+                label(for='sequenceText' style='padding-top: 20px; padding-bottom: 20px; font-size: 1.0em')
+                    textarea(name='sequenceInput' style='height: 100px; width: 400px; font-weight: normal')
+
+                table.table.advanced-search-table
+                    th Option
+                    th Value
+                    tr
+                        td Search Method
+                        td
+                            select(name='searchMethod' style='width: 140px').chosen-select
+                                option(value='global') Global
+                                option(value='exact') Exact
+                    tr
+                        td Number of Results
+                        td
+                            input(type='number' name='maxAccepts' placeholder='50' min='0' max='10000' style='width: 140px')
+
+                    tr
+                        td Minimum Sequence Length
+                        td
+                            input(type='number' name='minSeqLength' placeholder='20' min='0' max='100000' step='1' style='width: 140px')
+
+                    tr
+                        td Maximum Sequence Length
+                        td
+                            input(type='number' name='maxSeqLength' placeholder='5000' min='0' max='100000' style='width: 140px')
+
+                    tr
+                        td # of Failed Hits Before Stopping
+                            a(href='#' title='Maximum number of non-matching target sequences to consider before stopping the search. This option works in pair with the flag above. The search process sorts target sequences by decreasing number of k-mers they have in common with the query sequence, using that information as a proxy for sequence similarity. After pairwise alignments, if none of the first x examined target sequences pass the acceptation criteria, the search process stops for that query (no hit). If this flag is set to a higher value, more target sequences are considered. If the flag above and this flag are both set to 0, the complete database is searched.')    &#9432
+                        td
+                            input(type='number' name='maxRejects' min='0' max='10000' step='1' style='width: 140px')
+
+                    tr
+                        td Percent Match (0 to 1)
+                        td
+                            input(type='number' name='id' placeholder='0.8' min='0.0' max='1.0' step='0.01' style='width: 140px')
+
+                    tr
+                        td Pairwise Identity Definition
+                            a(href='#' title='Default: edit distance excluding terminal gaps\n\nCD-HIT definition: (matching columns) / (shortest sequence length)\n\nEdit distance: (matching columns) / (alignment length)\n\nMarine BIological Lab definition: counts each gap opening (internal or terminal) as a single mismatch, whether or not the gap was extended: 1.0 - [(mismatches + gap openings)/(longest sequence length)]\n\nBLAST Definition: equivalent to edit distance for global pairwise alignments')    &#9432
+                        td
+                            select(name='iddef' style='width: 140px').chosen-select
+                                option(value='2') Default
+                                option(value='0') CD-HIT Definition
+                                option(value='1') Edit Distance
+                                option(value='3') Marine Biological Lab Definition
+                                option(value='4') BLAST Definition
+
+                        
+
+            button(type='submit').btn.btn-primary.btn-md Search

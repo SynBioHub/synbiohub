@@ -34,6 +34,7 @@
   <link href="/styles/site.css" rel="stylesheet"/>
   <link href="/datatables.min.css" rel="stylesheet"/>
   <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
   <script>
    var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
 function $buo_f() {
@@ -125,7 +126,7 @@ try {
    </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
-     <form action="search" class="top-search-form">
+     <form action="/search" class="top-search-form">
       <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
@@ -157,7 +158,7 @@ try {
      </h3>
      <h4>
       Component
-      <a href="http://sbolstandard.org/v2#ComponentDefinition" title="Learn more about this RDF type">
+      <a href="http://sbols.org/v2#ComponentDefinition" title="Learn more about this RDF type">
        <span class="fa fa-info-circle">
        </span>
       </a>
@@ -168,7 +169,7 @@ try {
     <div class="col-md-11">
      <h5>
       Source:
-      <div>
+      <div edittext="http://partsregistry.org/Part:BBa_I0462" style="display: contents">
        <a href="http://partsregistry.org/Part:BBa_I0462">
         http://partsregistry.org/Part:BBa_I0462
        </a>
@@ -177,7 +178,7 @@ try {
      <h4>
       LuxR protein generator
       <br/>
-      <a href="/search/?q=LuxR protein generator&lt;br/&gt;
+      <a href="/search/?q=LuxR protein generator 
 " title="Find all records with terms in common with this description">
        <span class="fa fa-search">
        </span>
@@ -194,22 +195,27 @@ try {
       </span>
       <ul class="dropdown-menu dropdown-toggle">
        <li>
-        <a href="/public/testid0/BBa_I0462/1/BBa_I0462.xml">
+        <a href="/public/testid0/BBa_I0462/1/sbol">
          Download SBOL File
         </a>
        </li>
        <li>
-        <a href="/public/testid0/BBa_I0462/1/BBa_I0462.omex">
+        <a href="/public/testid0/BBa_I0462/1/omex">
          Download COMBINE Archive
         </a>
        </li>
        <li>
-        <a href="/public/testid0/BBa_I0462/1/BBa_I0462.gb">
+        <a href="/public/testid0/BBa_I0462/1/gb">
          Download GenBank
         </a>
        </li>
        <li>
-        <a href="/public/testid0/BBa_I0462/1/BBa_I0462.fasta">
+        <a href="/public/testid0/BBa_I0462/1/gff">
+         Download GFF3
+        </a>
+       </li>
+       <li>
+        <a href="/public/testid0/BBa_I0462/1/fasta">
          Download FASTA
         </a>
        </li>
@@ -244,11 +250,17 @@ try {
        </span>
       </a>
      </li>
+     <li class="btn btn-info">
+      <a href="/public/testid0/BBa_I0462/1/addToCollection" style="color:white" title="Add to Collection">
+       <span class="fa fa-link">
+       </span>
+      </a>
+     </li>
     </div>
     <br/>
     <br/>
    </div>
-   <div class="row">
+   <div class="design-container">
     <div class="col-md-12 text-center">
     </div>
     <div id="design">
@@ -273,7 +285,7 @@ try {
           <tr>
            <td>
             Types
-            <a href="http://sbolstandard.org/v2#type" title="Learn more about types">
+            <a href="http://sbols.org/v2#type" title="Learn more about types">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -308,7 +320,7 @@ try {
           <tr>
            <td>
             Roles
-            <a href="http://sbolstandard.org/v2#role" title="Learn more about roles">
+            <a href="http://sbols.org/v2#role" title="Learn more about roles">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -331,7 +343,7 @@ try {
           <tr>
            <td>
             Sequences
-            <a href="http://sbolstandard.org/v2#Sequence" title="Learn more about sequences">
+            <a href="http://sbols.org/v2#Sequence" title="Learn more about sequences">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -373,21 +385,21 @@ try {
           <tr>
            <td>
             Access
-            <a href="http://sbolstandard.org/v2#access" title="Learn more about access">
+            <a href="http://sbols.org/v2#access" title="Learn more about access">
              <span class="fa fa-info-circle">
              </span>
             </a>
            </td>
            <td>
             Instance
-            <a href="http://sbolstandard.org/v2#Component" title="Learn more about Components">
+            <a href="http://sbols.org/v2#Component" title="Learn more about Components">
              <span class="fa fa-info-circle">
              </span>
             </a>
            </td>
            <td>
             Definition
-            <a href="http://sbolstandard.org/v2#definition" title="Learn more about definitions">
+            <a href="http://sbols.org/v2#definition" title="Learn more about definitions">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -396,19 +408,19 @@ try {
           <tr>
            <td>
             public
-            <a href="http://sbolstandard.org/v2#public" title="Learn more about this access type">
+            <a href="http://sbols.org/v2#public" title="Learn more about this access type">
              <span class="fa fa-info-circle">
              </span>
             </a>
             <br/>
             public
-            <a href="http://sbolstandard.org/v2#public" title="Learn more about this access type">
+            <a href="http://sbols.org/v2#public" title="Learn more about this access type">
              <span class="fa fa-info-circle">
              </span>
             </a>
             <br/>
             public
-            <a href="http://sbolstandard.org/v2#public" title="Learn more about this access type">
+            <a href="http://sbols.org/v2#public" title="Learn more about this access type">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -465,28 +477,28 @@ try {
           <tr>
            <td>
             Sequence Annotation
-            <a href="http://sbolstandard.org/v2#SequenceAnnotation" title="Learn more about Sequence Annotations">
+            <a href="http://sbols.org/v2#SequenceAnnotation" title="Learn more about Sequence Annotations">
              <span class="fa fa-info-circle">
              </span>
             </a>
            </td>
            <td>
             Location
-            <a href="http://sbolstandard.org/v2#Location" title="Learn more about Locations">
+            <a href="http://sbols.org/v2#Location" title="Learn more about Locations">
              <span class="fa fa-info-circle">
              </span>
             </a>
            </td>
            <td>
             Component
-            <a href="http://sbolstandard.org/v2#component" title="Learn more about components">
+            <a href="http://sbols.org/v2#component" title="Learn more about components">
              <span class="fa fa-info-circle">
              </span>
             </a>
             /
  
 Role(s)
-            <a href="http://sbolstandard.org/v2#role" title="Learn more about roles">
+            <a href="http://sbols.org/v2#role" title="Learn more about roles">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -677,7 +689,7 @@ Role(s)
    </span>
    <br/>
    <span>
-    <a href="http://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |

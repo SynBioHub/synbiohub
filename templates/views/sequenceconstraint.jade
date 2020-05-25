@@ -3,7 +3,7 @@ extends ../layouts/identified.jade
 
 block topLevelPreview
     if meta.displayList
-        div.row
+        div.design-container
             div.col-md-12.text-center
             div#design
 
@@ -14,7 +14,7 @@ block topLevelPropertyTable
         tr
             td 
                 | Subject
-                a(href='http://sbolstandard.org/v2#subject',title='Learn more about subjects') 
+                a(href='http://sbols.org/v2#subject',title='Learn more about subjects') 
                     span.fa.fa-info-circle
             td
                 a(href=meta.subject.url) #{meta.subject.name}
@@ -22,7 +22,7 @@ block topLevelPropertyTable
     tr
         td 
             | Restriction
-            a(href='http://sbolstandard.org/v2#restriction',title='Learn more about restriction types') 
+            a(href='http://sbols.org/v2#restriction',title='Learn more about restriction types') 
                 span.fa.fa-info-circle
         td
             != meta.restriction.id
@@ -33,7 +33,7 @@ block topLevelPropertyTable
         tr
             td 
                 | Object
-                a(href='http://sbolstandard.org/v2#object',title='Learn more about objects') 
+                a(href='http://sbols.org/v2#object',title='Learn more about objects') 
                     span.fa.fa-info-circle
             td
                 a(href=meta.object.url) #{meta.object.name}

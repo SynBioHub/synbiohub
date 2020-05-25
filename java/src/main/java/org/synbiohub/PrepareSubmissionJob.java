@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -290,7 +292,7 @@ public class PrepareSubmissionJob extends Job {
 			SBOLDocument individual = SBOLValidate.validate(new PrintStream(logOutputStream),
 					new PrintStream(errorOutputStream), filename, "http://dummy.org/", defaultDisplayId, requireComplete,
 					requireCompliant, enforceBestPractices, typesInURI, "1", keepGoing, "", "", filename, topLevelURI,
-					false, false, false, false, null, false, true, false);
+					false, false, false, false, false, null, false, true, false);
 
 			String fileLog = new String(logOutputStream.toByteArray(), StandardCharsets.UTF_8);
 			errorLog = new String(errorOutputStream.toByteArray(), StandardCharsets.UTF_8);
@@ -337,26 +339,35 @@ public class PrepareSubmissionJob extends Job {
 				}
 			}
 
-			// Update URI prefix and version of all objects
-			individual.setDefaultURIprefix("http://dummy.org/");
-			if (individual.getTopLevels().size() == 0) {
-				individual.setDefaultURIprefix(uriPrefix);
-			} else {
-				System.err.println("Changing URI prefix: start (" + filename + ")");
-				individual = individual.changeURIPrefixVersion(uriPrefix, null, version);
-				System.err.println("Changing URI prefix: done (" + filename + ")");
-				individual.setDefaultURIprefix(uriPrefix);
+			try {
+				// Update URI prefix and version of all objects
+				individual.setDefaultURIprefix("http://dummy.org/");
+				if (individual.getTopLevels().size() == 0) {
+					individual.setDefaultURIprefix(uriPrefix);
+				} else {
+					System.err.println("Changing URI prefix: start (" + filename + ")");
+					individual = individual.changeURIPrefixVersion(uriPrefix, null, version);
+					System.err.println("Changing URI prefix: done (" + filename + ")");
+					individual.setDefaultURIprefix(uriPrefix);
 
-				for (Attachment attachment : individual.getAttachments()) {
-					if (attachment.getSource().toString().startsWith(databasePrefix) &&
-							attachment.getSource().toString().endsWith("/download")) {
-						attachment.setSource(URI.create(attachment.getIdentity().toString()+"/download"));
+					for (Attachment attachment : individual.getAttachments()) {
+						if (attachment.getSource().toString().startsWith(databasePrefix) &&
+								attachment.getSource().toString().endsWith("/download")) {
+							attachment.setSource(URI.create(attachment.getIdentity().toString()+"/download"));
+						}
 					}
 				}
+				// Copy SBOL for individual file into composite document
+				doc.createCopy(individual);
+			} catch (Exception e) {
+				StringWriter stringWriter = new StringWriter();
+				e.printStackTrace(new PrintWriter(stringWriter));
+				String error = stringWriter.toString();
+				
+				finish(new PrepareSubmissionResult(this, false, "", log, error,
+						attachmentFiles, tempDirPath));
+				return;
 			}
-
-			// Copy SBOL for individual file into composite document
-			doc.createCopy(individual);
 		}
 
 		Collection rootCollection = null;
@@ -482,8 +493,14 @@ public class PrepareSubmissionJob extends Job {
 						SBOLDocument tlDoc;
 						try {
 							tlDoc = sbh.getSBOL(URI.create(topLevelUri));
-						} catch (SynBioHubException e) {
-							tlDoc = null;
+						} catch (SynBioHubException e1) {
+							StringWriter sw = new StringWriter();
+				            e1.printStackTrace(new PrintWriter(sw));
+				            errorLog = sw.toString();
+							System.err.println(errorLog);
+							finish(new PrepareSubmissionResult(this, false, "", log, errorLog,
+									attachmentFiles, tempDirPath));
+							return;
 						}
 						
 						if (tlDoc != null) {

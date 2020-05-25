@@ -10,7 +10,7 @@ INSERT {
         sbol:displayId "$displayId" ;
         sbol:persistentIdentity <$persistentIdentity> ;
         sbol:version "$version" ;
-        sbol:ownedBy <$ownedBy> ;
+        sbh:ownedBy <$ownedBy> ;
         sbh:topLevel <$uri> ;
         sbol:source <$source> ;
         sbol:format <$type> .

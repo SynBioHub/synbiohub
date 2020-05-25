@@ -8,3 +8,9 @@ INSERT {
     <$subject> <$predicate> $object .
     <$subject> dcterms:modified $modified
 }
+
+WHERE {
+    OPTIONAL {
+        <$subject> dcterms:modified ?mod
+    }
+}

@@ -36,9 +36,7 @@ function save($input, $elem, toEdit, oldVal) {
     appendEditor(0, $elem)
 
     updateSparql(newVal, oldVal, toEdit, (newText) => {
-        $elem.text(newText)
-        $input.replaceWith($elem)
-        appendEditor(0, $elem)
+        location.reload()
     })
 }
 
@@ -68,35 +66,71 @@ function getField(elem, idx) {
 }
 
 function appendEditor(idx, elem) {
-    let $elem = $(elem)
-    let toEdit = getField($elem)
+  let $elem = $(elem)
+  let toEdit = getField($elem)
+  let text = $elem.attr("editText") || $elem.text().trim()
 
-    if (toEdit === null) {
-        return
-    }
+  if (toEdit === null) {
+    return
+  }
+  if (toEdit !== 'description' && toEdit !== 'title' && text === '') {
+    return
+  }
+  
+  let editClass = 'do-edit-' + toEdit + idx
 
-    let editClass = 'do-edit-' + toEdit + idx
+  let editLink = document.createElement('a')
+  editLink.setAttribute('style', 'margin-left: 10px')
 
-    let editLink = document.createElement('a')
-    editLink.setAttribute('style', 'margin-left: 10px')
+  let editButton = document.createElement('span')
+  editButton.setAttribute('class', 'fa fa-pencil ' + editClass)
+  editLink.appendChild(editButton)
 
-    let editButton = document.createElement('span')
-    editButton.setAttribute('class', 'fa fa-pencil ' + editClass)
-    editLink.appendChild(editButton)
+  $elem.append(editLink)
 
-    $elem.append(editLink)
+  $("." + editClass).on('click', () => {
+    let $input = $("<input/>").val(text)
+    
+    $elem.replaceWith($input)
 
-    $("." + editClass).on('click', () => {
-      let text = $elem.attr("editText") || $elem.text().trim()
-      let $input = $("<input/>").val(text)
-
-      $elem.replaceWith($input)
-
-      $input.one('blur', () => save($input, $elem, toEdit, text)).focus()
-    })
+    $input.one('blur', () => save($input, $elem, toEdit, text)).focus()
+  })
+  if ((toEdit === 'description' || toEdit === 'title') && text !== '') {
+    appendRemover(idx, elem)
+  }
 }
 
-function appendRemover($elems) {
+function appendRemover(idx, elem) {
+  let $elem = $(elem)
+  let toRemove = getField($elem)
+  let removeClass = 'do-remove-' + toRemove + '-' + idx
+  let text = $elem.attr("editText") || $elem.text().trim()
+  if (text==='') {
+    return
+  }
+  let removeLink = document.createElement('a')
+  removeLink.setAttribute('class', "remove-" + toRemove)
+  removeLink.setAttribute('style', 'margin-left: 2px')
+  
+  let removeButton = document.createElement('span')
+  removeButton.setAttribute('class', 'fa fa-trash ' + removeClass)
+  removeLink.appendChild(removeButton)
+
+  $elem.append(removeLink)
+
+  $('.' + removeClass).on('click', () => {
+    let $trashes = $(".remove-" + toRemove)
+    let text = $elem.attr("editText") || $elem.text()
+    
+    $trashes.remove()
+
+    removeSparql(text, toRemove, () => {
+      location.reload()
+    })
+  })
+}
+
+function appendRemovers($elems) {
   let toRemove = getField($elems[0])
 
   if (toRemove === null) {
@@ -104,33 +138,7 @@ function appendRemover($elems) {
   }
 
   $elems.each((idx, elem) => {
-    let $elem = $(elem)
-    let removeClass = 'do-remove-' + toRemove + '-' + idx
-
-    let removeLink = document.createElement('a')
-    removeLink.setAttribute('class', "remove-" + toRemove)
-    removeLink.setAttribute('style', 'margin-left: 2px')
-
-    let removeButton = document.createElement('span')
-    removeButton.setAttribute('class', 'fa fa-trash ' + removeClass)
-    removeLink.appendChild(removeButton)
-
-    $elem.append(removeLink)
-
-    $('.' + removeClass).on('click', () => {
-        let $trashes = $(".remove-" + toRemove)
-        let text = $elem.attr("editText") || $elem.text()
-
-        $trashes.remove()
-
-        removeSparql(text, toRemove, () => {
-          $elem.remove()
-          updateAddRemove()
-        },
-        () => {
-            updateAddRemove() 
-        })
-    })
+    appendRemover(idx, elem)
   })
 }
 
@@ -170,7 +178,7 @@ function updateAddRemove() {
 
   // Remove existing adders and removers
   $("a[class|=add]").remove()
-  $("a[class|=remove]").remove()
+  //$("a[class|=remove]").remove()
 
   fields.forEach(field => {
     let classname = '.edit-' + field
@@ -178,8 +186,8 @@ function updateAddRemove() {
 
     appendAdder($elems)
 
-    if ($elems.length > 1) {
-      appendRemover($elems)
+    if ($elems.length > 1 || (field !== 'type' && $elems.length > 0)) {
+      appendRemovers($elems)
     }
   })
 }
