@@ -16,11 +16,12 @@ mixin collection-item(collection)
                 span.fa.fa-globe.sbh-remote-icon
             a(href=collection.url) #{collection.name?collection.name:collection.displayId}
 
-            p version #{collection.version}
+            if collection.version
+                p version #{collection.version}
 
             div.keywords
                 if collection.description != ''
-                    strong #{collection.description}
+                    strong !{collection.description}
             br
 
         div.clearfix
