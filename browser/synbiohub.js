@@ -735,3 +735,27 @@ $('form[action="/setup"] select[name="authProvider"]').change(function () {
     parentEl.find('div[class^="auth-"]').hide();
     parentEl.find('div.auth-' + providerName).show();
 })
+
+$(document).on('click', '.copyShare', function() {
+    let $row = $(this).closest('tr');
+    let shareLink = $row.find('#link').first().text();
+
+    let textArea = document.createElement("textarea");
+    textArea.value = shareLink;
+    document.body.appendChild(textArea);
+
+    textArea.select()
+    textArea.setSelectionRange(0, 9999999); // for mobile? 
+    document.execCommand('copy');
+
+    textArea.remove();
+})
+
+$(document).on('change', 'select#privilege', function() {
+    let name = $(this).attr('name').substring(6);
+    let value = $(this).val();
+    let updatePath = location.pathname.split('/').slice(0, -1).join('/') + '/updateShare'
+
+    $.post(updatePath, { authId: name, newPrivilege: value })
+})
+

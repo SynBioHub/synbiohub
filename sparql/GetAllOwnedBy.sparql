@@ -1,0 +1,20 @@
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol: <http://sbols.org/v2#>
+
+SELECT ?topLevel ?ownedBy
+WHERE {
+  ?topLevel sbh:ownedBy ?ownedBy .
+  
+  # Filter out things shared from topLevels not themselves
+  FILTER NOT EXISTS {
+    ?topLevel sbh:topLevel ?tl .
+    ?tl sbh:ownedBy ?ownedBy
+    FILTER (?topLevel != ?tl)
+  }
+
+  # If shared as part of collection, only show the collection
+  FILTER NOT EXISTS {
+    ?coll sbol:member ?topLevel .
+    ?coll sbh:ownedBy ?ownedBy
+  }
+}
