@@ -29,43 +29,6 @@ try {
   </script>
   <script src="/js/popupS.min.js">
   </script>
-  <style>
-   body {
-    background-color: #f6f6f6;
-}
-
-.grey-page-mark {
-    background-color: #f6f6f6;
-}
-
-.top-search-form {
-    display: none;
-}
-
-.main-search-form input {
-    width: 60%;
-    margin-left: 0;
-    background-color: white;
-    padding: 14px 16px 13px 32px;
-}
-
-.main-search-form .submit {
-    padding: 12px 21px;
-}
-
-.main-search-form label {
-    color: #7F8C8D;
-}
-
-.search-section {
-    height: 60px;
-    padding: 20px;
-    margin: 0 auto;
-    width: 60%;
-    margin-bottom: 40px;
-    text-align: center;
-}
-  </style>
  </head>
  <body>
   <nav class="navbar navbar-fixed-top">
@@ -144,7 +107,7 @@ try {
     <li class="inactive">
      <span class="fa fa-search">
      </span>
-     Advanced Search
+     Create Collection
     </li>
    </ul>
    <ul style="flex-grow: 1">
@@ -682,10 +645,64 @@ try {
     </div>
     <div class="clearfix">
     </div>
-    <br/>
-    <br/>
     <button class="btn btn-primary btn-lg" name="adv" type="submit" value="Search">
      Search
+    </button>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group-100 required">
+       <label for="name">
+        Collection Name
+        <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Name" title="SynBioHub organizes objects into collections.  You can put as many objects as you want into one collection, and then conveniently download them all together or share the collection as a whole with other people.">
+         <span class="fa fa-info-circle">
+         </span>
+        </a>
+        <input class="form-control" id="metaName" name="metaName" placeholder="A short title for your collection.  You can use spaces and symbols here." style="width: 675px" value=""/>
+       </label>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+      <div class="form-group-100 required">
+       <label for="description">
+        Collection Description
+        <textarea class="form-control" id="metaDescription" name="metaDescription" placeholder="The more you say, the easier it will be to find your design." style="width: 675px" value=""></textarea>
+       </label>
+      </div>
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-md-6">
+      <div class="form-group-100 required">
+       <label for="id">
+        Collection Id
+        <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id" title="An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.">
+         <span class="fa fa-info-circle">
+         </span>
+        </a>
+       </label>
+       <input class="form-control" id="metaId" name="metaId" placeholder="Just letters and numbers, no spaces" type="text" value=""/>
+      </div>
+     </div>
+     <div class="col-md-6">
+      <div class="form-group-100 required">
+       <label for="version">
+        Collection Version
+        <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version" title="A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.">
+         <span class="fa fa-info-circle">
+         </span>
+        </a>
+       </label>
+       <input class="form-control" id="metaVersion" name="metaVersion" placeholder="Version" type="text" value=""/>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix">
+    </div>
+    <br/>
+    <button class="btn btn-primary btn-lg" name="adv" type="submit" value="Create">
+     Create Collection
     </button>
    </form>
   </div>
