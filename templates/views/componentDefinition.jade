@@ -72,8 +72,9 @@ block topLevelBelowTitle
 block topLevelButtons
     li.dropdown.btn.btn-primary
         span.fa.fa-search
-            |  
-            span.caret
+        span.hidden-xs.hidden-sm
+            | &nbsp;&nbsp;Search&nbsp;&nbsp;
+        span.caret
         ul.dropdown-menu.dropdown-toggle
             li
                 a(href=href=meta.url + '/uses',title='Find all uses of this '+rdfType.name) Find Uses
@@ -89,11 +90,14 @@ block topLevelButtons
         li.dropdown.btn.btn-success
             a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
                 span.fa.fa-cubes
+                span.hidden-xs.hidden-sm
+                    | &nbsp;&nbsp;Create Implementation
     if meta.remote
         li.dropdown.btn.btn-primary
             span.fa.fa-send
-                |  
-                span.caret
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Create Implementation&nbsp;&nbsp;
+            span.caret
             ul.dropdown-menu.dropdown-toggle
                 li
                     a(href=meta.url + '/copyFromRemote') Copy to SynBioHub
