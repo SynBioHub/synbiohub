@@ -14,7 +14,7 @@ module.exports = {
     let graphs = users.map(user => user.graphUri)
     let userByUris = {}
     users.forEach(user => {
-      userByUris[databasePrefix + 'user/' + user.username] = user
+      userByUris[user.graphUri] = user
     })
 
     // Also search the public graph
@@ -26,7 +26,6 @@ module.exports = {
       let ownerships = await sparql.queryJson(ownedByQuery, graph)
 
       ownerships
-        .filter(ownership => ownership.topLevel.startsWith(databasePrefix))
         .filter(ownership => ownership.topLevel.startsWith(databasePrefix))
         .filter(ownership => ownership.ownedBy !== graph)
         .forEach(ownership => {
