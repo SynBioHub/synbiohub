@@ -2,53 +2,22 @@
 extends ../layouts/default.jade
 include ../mixins/advanced-search-filter.jade
 
-block head
-    style.
-        body {
-            background-color: #f6f6f6;
-        }
-
-        .grey-page-mark {
-            background-color: #f6f6f6;
-        }
-
-        .top-search-form {
-            display: none;
-        }
-
-        .main-search-form input {
-            width: 60%;
-            margin-left: 0;
-            background-color: white;
-            padding: 14px 16px 13px 32px;
-        }
-
-        .main-search-form .submit {
-            padding: 12px 21px;
-        }
-
-        .main-search-form label {
-            color: #7F8C8D;
-        }
-
-        .search-section {
-            height: 60px;
-            padding: 20px;
-            margin: 0 auto;
-            width: 60%;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
 block breadcrumbs
     ul
         li.inactive
             span.fa.fa-search
-            |  Advanced Search
+            |  Create Collection
 
 block content
   div.submission-container(align='center')
     form(name="advancedSearch", method="post").submission-form
+
+        if errors.length > 0
+            each error in errors
+                div.alert.alert-danger
+                    p #{error}
+                br
+
         div.form-group-50.required
             table.table.advanced-search-table
                 th Property
@@ -119,11 +88,43 @@ block content
  
         div.clearfix
 
-        br
-        br
-
         button(type='submit',name="adv",value="Search").btn.btn-primary.btn-lg
             | Search
+
+        if locals.user
+            div.row
+                div.col-md-12
+                    div.form-group-100.required
+                        label(for="name") Collection Name 
+                            a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Name",title='SynBioHub organizes objects into collections.  You can put as many objects as you want into one collection, and then conveniently download them all together or share the collection as a whole with other people.')
+                                span.fa.fa-info-circle
+                            input.form-control(name='metaName',id="metaName",placeholder='A short title for your collection.  You can use spaces and symbols here.',value=collectionMeta.name,style="width: 675px;")
+            div.row
+                div.col-md-12
+                    div.form-group-100.required
+                        label(for="description") Collection Description
+                            textarea.form-control(name='metaDescription', id="metaDescription" placeholder='The more you say, the easier it will be to find your design.',value=collectionMeta.description,style="width: 675px;")
+                                 | #{collectionMeta.description}
+
+            div.row
+                div.col-md-6
+                    div.form-group-100.required
+                        label(for="id") Collection Id  
+                            a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id",title='An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.')
+                                span.fa.fa-info-circle
+                        input.form-control(type='text', id="metaId", name='metaId',placeholder='Just letters and numbers, no spaces',value=collectionMeta.id)
+                div.col-md-6
+                    div.form-group-100.required
+                        label(for='version') Collection Version 
+                            a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version",title='A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.')
+                                span.fa.fa-info-circle
+                        input.form-control(type='text', id='metaVersion', name='metaVersion',placeholder='Version',value=collectionMeta.version)
+
+            div.clearfix
+            br
+
+            button(type='submit',name="adv",value="Create").btn.btn-primary.btn-lg
+                | Create Collection
 
 
 
