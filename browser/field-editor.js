@@ -73,7 +73,7 @@ function appendEditor(idx, elem) {
   if (toEdit === null) {
     return
   }
-  if (toEdit !== 'description' && toEdit !== 'title' && text === '') {
+  if (toEdit !== 'description' && toEdit !== 'title' && toEdit !== 'annotation' && text === '') {
     return
   }
   
@@ -95,7 +95,7 @@ function appendEditor(idx, elem) {
 
     $input.one('blur', () => save($input, $elem, toEdit, text)).focus()
   })
-  if ((toEdit === 'description' || toEdit === 'title') && text !== '') {
+  if ((toEdit === 'description' || toEdit === 'title' || toEdit === 'annotation') && text !== '') {
     appendRemover(idx, elem)
   }
 }
