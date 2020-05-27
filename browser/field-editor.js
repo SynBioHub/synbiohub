@@ -1,8 +1,8 @@
-function updateSparql(value, oldVal, field, cb) {
+function updateSparql(value, oldVal, field, pred, cb) {
     $.ajax({
         type: 'POST',
         url: window.location.href + "/edit/" + field,
-        data: { object: value, previous: oldVal },
+        data: { object: value, previous: oldVal, pred: pred },
         success: (data, status, xhr) => cb(data),
         error: () => console.log("Failed to update SPARQL")
     })
@@ -18,24 +18,24 @@ function addSparql(value, field, cb) {
     })
 }
 
-function removeSparql(value, field, cb, finalCb) {
+function removeSparql(value, field, pred, cb, finalCb) {
     $.ajax({
         type: 'POST',
         url: window.location.href + "/remove/" + field,
-        data: { object: value },
+        data: { object: value, pred: value },
         success: (data, status, xhr) => cb(data),
         error: () => console.log("Failed to remove SPARQL"),
         complete: finalCb
     })
 }
 
-function save($input, $elem, toEdit, oldVal) {
+function save($input, $elem, toEdit, oldVal, pred) {
     let newVal = $input.val()
     $input.prop('disabled', true)
 
     appendEditor(0, $elem)
 
-    updateSparql(newVal, oldVal, toEdit, (newText) => {
+    updateSparql(newVal, oldVal, toEdit, pred, (newText) => {
         location.reload()
     })
 }
@@ -69,11 +69,12 @@ function appendEditor(idx, elem) {
   let $elem = $(elem)
   let toEdit = getField($elem)
   let text = $elem.attr("editText") || $elem.text().trim()
+  let pred = $elem.attr("editPred") || ''
 
   if (toEdit === null) {
     return
   }
-  if (toEdit !== 'description' && toEdit !== 'title' && toEdit !== 'annotation' && text === '') {
+  if (toEdit !== 'description' && toEdit !== 'title' && text === '') {
     return
   }
   
@@ -93,9 +94,9 @@ function appendEditor(idx, elem) {
     
     $elem.replaceWith($input)
 
-    $input.one('blur', () => save($input, $elem, toEdit, text)).focus()
+    $input.one('blur', () => save($input, $elem, toEdit, text, pred)).focus()
   })
-  if ((toEdit === 'description' || toEdit === 'title' || toEdit === 'annotation') && text !== '') {
+  if ((toEdit === 'description' || toEdit === 'title') && text !== '') {
     appendRemover(idx, elem)
   }
 }
@@ -105,6 +106,7 @@ function appendRemover(idx, elem) {
   let toRemove = getField($elem)
   let removeClass = 'do-remove-' + toRemove + '-' + idx
   let text = $elem.attr("editText") || $elem.text().trim()
+  let pred = $elem.attr("editPred") || ''
   if (text==='') {
     return
   }
@@ -124,7 +126,7 @@ function appendRemover(idx, elem) {
     
     $trashes.remove()
 
-    removeSparql(text, toRemove, () => {
+    removeSparql(text, toRemove, pred, () => {
       location.reload()
     })
   })
