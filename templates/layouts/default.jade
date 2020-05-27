@@ -20,35 +20,35 @@ block body
                 div.pull-right.menu
                     ul
                         li
-                            a(href='/submit')
+                            a(href='/submit', title='Submit')
                                 span.fa.fa-cloud-upload
                                 span.blue-text.hidden-xs.hidden-sm  Submit
 
                         if locals.user
                             li
-                                a(href='/shared')
+                                a(href='/shared', title='Shared with Me')
                                     span.fa.fa-bolt
                                     span.blue-text.hidden-xs.hidden-sm  Shared with Me
                             li
-                                a(href='/manage')
+                                a(href='/manage', title='Manage Submissions')
                                     span.fa.fa-align-left
                                     span.blue-text.hidden-xs.hidden-sm  Submissions
                             if config.experimental.dataIntegration
                                 li
-                                    a(href='/jobs')
+                                    a(href='/jobs', title='Manage Jobs')
                                         span.fa.fa-tasks
                                         span.blue-text.hidden-xs.hidden-sm  Jobs
                             if locals.user.isAdmin
                                 li
-                                    a(href='/admin')
+                                    a(href='/admin', title='Administration')
                                         span.fa.fa-cogs
                                         span.blue-text.hidden-xs.hidden-sm  Admin
                             li
-                                a(href='/profile') 
+                                a(href='/profile', title='Edit Profile') 
                                     span.fa.fa-id-card
                                     span.blue-text.hidden-xs.hidden-sm  Profile 
                             li
-                                a(href='/logout')
+                                a(href='/logout', title='Sign Out')
                                     span.fa.fa-sign-out
                                     span.blue-text.hidden-xs.hidden-sm  Sign Out
                         else
