@@ -68,8 +68,11 @@ block topLevelButtons
         li.btn.btn-success
             a(data-toggle="modal", data-target="#iconModal", title='Change Collection Icon',style="color:white")
                 span.fa.fa-file-image-o
+                span.hidden-xs.hidden-sm
+                    | &nbsp;&nbsp;Change Icon
     if meta.remote
         li.btn.btn-success
             a(href=copyFromRemote, title='Copy to SynBioHub',style="color:white")
                span.fa.fa-share-alt
+                    | &nbsp;&nbsp;Copy from REmote
 
