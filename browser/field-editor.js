@@ -22,7 +22,7 @@ function removeSparql(value, field, pred, cb, finalCb) {
     $.ajax({
         type: 'POST',
         url: window.location.href + "/remove/" + field,
-        data: { object: value, pred: value },
+        data: { object: value, pred: pred },
         success: (data, status, xhr) => cb(data),
         error: () => console.log("Failed to remove SPARQL"),
         complete: finalCb
