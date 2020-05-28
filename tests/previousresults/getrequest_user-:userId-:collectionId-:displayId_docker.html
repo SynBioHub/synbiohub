@@ -368,21 +368,6 @@ try {
       <div class="panel-collapse collapse in" id="collapseDetails">
        <div class="panel-body">
         <table class="table table-striped entry-detail-table">
-         <tbody>
-          <tr>
-           <td>
-            Roles
-            <a href="http://sbols.org/v2#role" title="Learn more about roles">
-             <span class="fa fa-info-circle">
-             </span>
-            </a>
-           </td>
-           <td>
-            <div class="edit edit-multiple edit-role" style="display: contents">
-            </div>
-           </td>
-          </tr>
-         </tbody>
         </table>
         <div data-src="" id="sbh-description">
          <h4>
@@ -457,7 +442,9 @@ try {
              </a>
             </td>
             <td>
-             user/dockertestuser
+             <div class="edit edit-multiple edit-annotation" editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" edittext="http://localhost:7777/user/dockertestuser" style="display: contents">
+              user/dockertestuser
+             </div>
              <a href="/user/dockertestuser" title="Learn more about this annotation value">
               <span class="fa fa-info-circle">
               </span>
@@ -477,7 +464,9 @@ try {
              </a>
             </td>
             <td>
-             testid_sequence1_collection/1
+             <div class="edit edit-multiple edit-annotation" editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" edittext="http://localhost:7777/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1" style="display: contents">
+              testid_sequence1_collection/1
+             </div>
              <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1" title="Learn more about this annotation value">
               <span class="fa fa-info-circle">
               </span>
