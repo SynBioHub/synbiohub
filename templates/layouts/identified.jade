@@ -161,7 +161,7 @@ block content
                                                         span.fa.fa-search
                                                 br
 
-                                if meta.roles && meta.roles.length > 0 || meta.canUpdate
+                                if meta.roles && (meta.roles.length > 0 || meta.canUpdate)
                                     tr
                                         td 
                                             | Roles
@@ -178,7 +178,7 @@ block content
                                                         a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
                                                             span.fa.fa-search
                                                     else 
-                                                        div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", style="display: contents")
+                                                        div(class=meta.canUpdate ? "edit edit-multiple edit-role" : "", editText=role.uri, style="display: contents")
                                                             != role.term 
                                                         a(href=role.uri,title='Learn more about this role') 
                                                             span.fa.fa-info-circle
@@ -217,7 +217,7 @@ block content
                                                         span.fa.fa-info-circle
                                                 if (annotation.type === 'uri')
                                                     td 
-                                                        div(class=meta.canUpdate && !annotation.name.startsWith('synbiohub#') ? "edit edit-multiple edit-annotation" : "", editText=annotation.uri, editPred=annotation.nameDef, style="display: contents")
+                                                        div(class=meta.canUpdate ? "edit edit-multiple edit-annotation" : "", editText=annotation.uri, editPred=annotation.nameDef, style="display: contents")
                                                             != annotation.value
                                                         a(href=annotation.url,title='Learn more about this annotation value') 
                                                             span.fa.fa-info-circle &nbsp;

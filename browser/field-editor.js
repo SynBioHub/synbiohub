@@ -87,7 +87,7 @@ function appendEditor(idx, elem) {
   if (toEdit === null) {
     return
   }
-  if (toEdit !== 'description' && toEdit !== 'title' && text === '') {
+  if ((toEdit !== 'description' && toEdit !== 'title' && text === '') || (pred.startsWith('http://wiki.synbiohub.org/'))) {
     return
   }
   
@@ -121,6 +121,9 @@ function appendRemover(idx, elem) {
   let text = $elem.attr("editText") || $elem.text().trim()
   let pred = $elem.attr("editPred") || ''
   if (text==='') {
+    return
+  }
+  if (pred.startsWith('http://wiki.synbiohub.org/')) {
     return
   }
   let removeLink = document.createElement('a')
