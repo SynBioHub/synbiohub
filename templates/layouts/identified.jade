@@ -217,7 +217,7 @@ block content
                                                         span.fa.fa-info-circle
                                                 if (annotation.type === 'uri')
                                                     td 
-                                                        div(class=meta.canUpdate ? "edit edit-multiple edit-annotation" : "", editText=annotation.uri, editPred=annotation.nameDef, style="display: contents")
+                                                        div(class=meta.canUpdate && !annotation.name.startsWith('synbiohub#') ? "edit edit-multiple edit-annotation" : "", editText=annotation.uri, editPred=annotation.nameDef, style="display: contents")
                                                             != annotation.value
                                                         a(href=annotation.url,title='Learn more about this annotation value') 
                                                             span.fa.fa-info-circle &nbsp;

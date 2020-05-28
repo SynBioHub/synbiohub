@@ -8,11 +8,11 @@ function updateSparql(value, oldVal, field, pred, cb) {
     })
 }
 
-function addSparql(value, field, cb) {
+function addSparql(value, field, pred, cb) {
     $.ajax({
         type: 'POST',
         url: window.location.href + "/add/" + field,
-        data: { object: value },
+        data: { object: value, pred: pred },
         success: (data, status, xhr) => cb(data),
         error: () => console.log("Failed to add SPARQL")
     })
@@ -44,9 +44,22 @@ function add($input, $elem, toEdit) {
     let newVal = $input.val()
     $input.prop('disabled', true)
 
-    appendEditor(0, $elem)
+//    appendEditor(0, $elem)
 
-    addSparql(newVal, toEdit, (newText) => {
+    addSparql(newVal, toEdit, '', (newText) => {
+        location.reload()
+    })
+}
+
+function addPair($input0, $input1, $elem, toEdit) {
+    let newPred = $input0.val()
+    let newVal = $input1.val()
+//    $input0.prop('disabled', true)
+//    $input1.prop('disabled', true)
+
+//    appendEditor(0, $elem)
+
+    addSparql(newVal, toEdit, newPred, (newText) => {
         location.reload()
     })
 }
@@ -164,13 +177,25 @@ function appendAdder($elems) {
 
   $last.append(addLink)
   $("." + addClass).on("click", () => {
-    let $row = $("<tr><td/><td/><tr>")
-    let $cell = $row.find("td").last()
-    let $input = $("<input/>")
-    $cell.append($input)
-    $last.parent().append($row)
+    let $row = $("<tr><td><td/></tr>")
 
-    $input.one('blur', () => add($input, $last, toAdd)).focus()
+    if (toAdd === 'annotation') {
+      let $cell1 = $row.find("td").last()
+      let $cell0 = $row.find("td").first()
+      let $input1 = $("<input/>")
+      let $input0 = $("<input/>")
+      $cell1.append($input1)
+      $cell0.append($input0)
+      $input1.one('blur', () => addPair($input0, $input1, $last, toAdd)).focus()
+      $input0.one('blur', () => addPair($input0, $input1, $last, toAdd)).focus()
+      $last.parent().parent().parent().append($row)
+    } else {
+      let $cell = $row.find("td").last()
+      let $input = $("<input/>")
+      $cell.append($input)
+      $input.one('blur', () => add($input, $last, toAdd)).focus()
+      $last.parent().append($row)
+    }
   })
 }
 
