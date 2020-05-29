@@ -18,9 +18,9 @@ block content
                                 for u in users
                                     if u.id != user.id
                                         if u.isCurator
-                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (curator)  [" + u.username + "]" + }
+                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (curator)  [" + u.username + "]"}
                                         else
-                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " [" + u.username + "]" + }
+                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " [" + u.username + "]" }
                 br
                 div.row
                     div.col-sm-12
