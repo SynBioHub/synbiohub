@@ -5,6 +5,7 @@ public/styles/site.css
 config.local.json
 .vscode
 uploads
+public/icons
 public/styles/theme/*.less
 *.class
 java/target

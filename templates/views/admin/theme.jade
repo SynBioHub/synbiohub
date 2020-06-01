@@ -40,5 +40,11 @@ block adminContent
                         input(type='checkbox', name="showModuleInteractions", checked=config.showModuleInteractions) 
                         | Show Module Interactions
         div.row
+            div.col-md-12
+                div.checkbox
+                    label
+                        input(type='checkbox', name="removePublicEnabled", checked=config.removePublicEnabled) 
+                        | Remove Public Enabled
+        div.row
             div.col-md-1.col-md-offset-11
                 button.btn.btn-primary(type='submit') Save
