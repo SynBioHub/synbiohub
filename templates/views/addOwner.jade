@@ -17,7 +17,10 @@ block content
                             select(name='user' style='width: 260px;').chosen-select
                                 for u in users
                                     if u.id != user.id
-                                        option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (" + u.username + ")"}
+                                        if u.isCurator
+                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " (curator)  [" + u.username + "]"}
+                                        else
+                                            option(value=config.databasePrefix + 'user/' + u.username) !{u.name + " [" + u.username + "]" }
                 br
                 div.row
                     div.col-sm-12
