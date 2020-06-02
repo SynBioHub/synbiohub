@@ -4,5 +4,6 @@ java/targets
 **/**/*.class
 config.local.json
 uploads
+public/icons
 logs
 docker/Dockerfile
