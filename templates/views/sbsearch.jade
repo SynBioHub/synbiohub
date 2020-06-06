@@ -48,11 +48,15 @@ block breadcrumbs
 
 block content
     div.submission-container(align='center')
-        form(action='/sbsearch',method='POST')
+        form(action='/sbsearch' method='POST' enctype="multipart/form-data")
             label(for='sequenceHeader' style='font-size: 1.2em') Enter Sequence:
             div 
                 label(for='sequenceText' style='padding-top: 20px; padding-bottom: 20px; font-size: 1.0em')
                     textarea(name='sequenceInput' style='height: 100px; width: 400px; font-weight: normal')
+                    div
+                        label Or, upload a FASTA/FASTQ file:
+                        br
+                        input(type='file',name='sequenceFile')
 
                 table.table.advanced-search-table
                     th Option
@@ -102,4 +106,4 @@ block content
 
                         
 
-            button(type='submit').btn.btn-primary.btn-md Search
+            button(name='submitButton' type='submit').btn.btn-primary.btn-md Search
