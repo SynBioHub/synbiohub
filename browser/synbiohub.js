@@ -356,10 +356,15 @@ function createWikiEditor($el, saveButtonText, updateEndpoint) {
 
     $textarea.val($el.attr('data-src'))
     $textarea.attr('rows', $el.attr('data-src').split(/\r\n|\r|\n/).length)
+    if (saveButtonText === 'Save Citations') {
+      $textarea.attr('placeholder','Please enter comma-separated PubMedIds')
+    }
 
     var $div = $('<div></div>')
-        .append($topbar)
-        .append($textarea)
+    if (saveButtonText !== 'Save Citations') {
+      $div.append($topbar)
+    }
+    $div.append($textarea)
         .append($saveButton)
         .append($cancelButton)
 
