@@ -21,7 +21,7 @@ block content
 
             ul.nav.nav-tabs(role="tablist")
                 li.active(role="presentation")
-                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Collection
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Create a New Collection
                 li(role="presentation")
                     a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Collection
 
@@ -82,7 +82,7 @@ block content
                         div.row
                             div.col-md-12
                                 div.form-group-100
-                                   label SBOL/GenBank/FASTA/ZIP File
+                                   label SBOL/GenBank/GFF3/FASTA/ZIP File (optional)
                                    br
                                    input(type='file',name='file',value=submission.file)
 
@@ -130,7 +130,7 @@ block content
                         div.row
                             div.col-md-12
                                 div.form-group.required
-                                   label SBOL/GenBank/FASTA/ZIP File
+                                   label SBOL/GenBank/GFF3/FASTA/ZIP File
                                    input(type='file',name='file',value=submission.file)
             
                         div.row

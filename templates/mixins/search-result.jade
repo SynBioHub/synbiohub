@@ -63,7 +63,7 @@ mixin search-result-collection(submission,removePublicEnabled)
             a(href=submission.url + '/removeCollection')
                 button(type='button', onclick="return confirm('Are you sure you want to remove this collection?')").btn.btn-success.remove-btn Remove
             | 
-        else if removePublicEnabled
+        else if removePublicEnabled && locals.user.isAdmin
             a(href=submission.url + '/removeCollection')
                 button(type='button', onclick="return confirm('Are you sure you want to remove this collection?')").btn.btn-success.remove-btn Remove
 

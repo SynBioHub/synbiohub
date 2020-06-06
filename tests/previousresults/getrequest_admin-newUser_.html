@@ -43,55 +43,55 @@ try {
     <div class="pull-right menu">
      <ul>
       <li>
-       <a href="/submit">
+       <a href="/submit" title="Submit">
         <span class="fa fa-cloud-upload">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Submit
         </span>
        </a>
       </li>
       <li>
-       <a href="/shared">
+       <a href="/shared" title="Shared with Me">
         <span class="fa fa-bolt">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Shared with Me
         </span>
        </a>
       </li>
       <li>
-       <a href="/manage">
+       <a href="/manage" title="Manage Submissions">
         <span class="fa fa-align-left">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Submissions
         </span>
        </a>
       </li>
       <li>
-       <a href="/admin">
+       <a href="/admin" title="Administration">
         <span class="fa fa-cogs">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Admin
         </span>
        </a>
       </li>
       <li>
-       <a href="/profile">
+       <a href="/profile" title="Edit Profile">
         <span class="fa fa-id-card">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Profile
         </span>
        </a>
       </li>
       <li>
-       <a href="/logout">
+       <a href="/logout" title="Sign Out">
         <span class="fa fa-sign-out">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Sign Out
         </span>
        </a>
@@ -103,17 +103,10 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cogs">
-     </span>
-     Admin
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -122,140 +115,13 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Log
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/sparql">
-        SPARQL
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div class="col-md-8">
-     <div class="row">
-      <div class="col-md-12">
-       <h1>
-        Create an Account
-       </h1>
-      </div>
-     </div>
-     <div class="row">
-      <div class="col-md-12">
-       <p>
-        The user will be emailed their login details upon account creation.
-       </p>
-      </div>
-     </div>
-     <div class="row">
-      <div class="col-md-12">
-       <form accept-charset="UTF-8" action="newUser" method="post">
-        <input class="text" name="utf8" type="hidden" value="✓"/>
-        <div class="form-group">
-         <label for="name">
-          Full Name
-         </label>
-         <input autocomplete="off" class="form-control" id="name" name="name" type="text"/>
-        </div>
-        <div class="form-group">
-         <label for="affiliation">
-          Affiliation (optional)
-         </label>
-         <input autocomplete="off" class="form-control" id="affiliation" name="affiliation"/>
-        </div>
-        <div class="form-group">
-         <label for="email">
-          Email
-         </label>
-         <input autocomplete="off" class="form-control" id="email" name="email" type="email"/>
-        </div>
-        <div class="form-group">
-         <label for="username">
-          Username
-         </label>
-         <input autocomplete="off" class="form-control" id="username" name="username" type="username"/>
-        </div>
-        <div class="checkbox">
-         <label class="form-check-label">
-          <input name="isAdmin" type="checkbox"/>
-          Grant Administrative Privileges
-         </label>
-        </div>
-        <div class="checkbox">
-         <label class="form-check-label">
-          <input name="isMember" type="checkbox"/>
-          Grant Member Privileges
-         </label>
-        </div>
-        <div class="checkbox">
-         <label class="form-check-label">
-          <input name="isCurator" type="checkbox"/>
-          Grant Curator Privileges
-         </label>
-        </div>
-        <div>
-         <input class="btn btn-primary" type="submit" value="Create"/>
-        </div>
-       </form>
-      </div>
-     </div>
-    </div>
-    <div class="col-md-1">
-    </div>
-   </div>
+  <div class="container">
+   <h1>
+    Error
+   </h1>
+   <p style="white-space:pre">
+    SendGrid Email Account Needed
+   </p>
   </div>
   <div class="clearfix">
   </div>
