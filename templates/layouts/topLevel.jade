@@ -39,7 +39,8 @@ block generalTopLevelButtons
                     li.dropdown.btn.btn-primary
                             a(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name,style="color:white")
                                 span.fa.fa-search
-                                |  
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Search
                 block topLevelButtons
                 li.btn.btn-success
                         a(href=rootCollection,title='Back to root collection',style="color:white")
