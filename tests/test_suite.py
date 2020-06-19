@@ -22,8 +22,8 @@ if __name__ == '__main__':
     import test_before_login
     addTestModule(test_before_login)
 
-    import test_login
-    addTestModule(test_login)
+    import test_user
+    addTestModule(test_user)
 
     import test_submit
     addTestModule(test_submit)
@@ -39,9 +39,6 @@ if __name__ == '__main__':
 
     import test_user_features
     addTestModule(test_user_features)
-
-    import test_logout
-    addTestModule(test_logout)
 
     import docker_test_setup
     addTestModule(docker_test_setup)
