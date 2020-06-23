@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # add test modules here
     import test_tests
     addTestModule(test_tests)
-    
+
     import first_time_setup
     addTestModule(first_time_setup)
 
@@ -28,24 +28,27 @@ if __name__ == '__main__':
     import test_submit
     addTestModule(test_submit)
 
-    import test_public_collection
-    addTestModule(test_public_collection)
+    import test_search
+    addTestModule(test_search)
 
-    import test_admin_views
-    addTestModule(test_admin_views)
+    import test_download
+    addTestModule(test_download)
 
-    import test_features
-    addTestModule(test_features)
+    import test_admin
+    addTestModule(test_admin)
 
-    import test_user_features
-    addTestModule(test_user_features)
+#    import test_features
+#    addTestModule(test_features)
+
+#    import test_user_features
+#    addTestModule(test_user_features)
 
     import docker_test_setup
     addTestModule(docker_test_setup)
 
     import docker_test
     addTestModule(docker_test)
-    
+
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
 
