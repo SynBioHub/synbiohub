@@ -52,47 +52,11 @@ try {
        </a>
       </li>
       <li>
-       <a href="/shared" title="Shared with Me">
-        <span class="fa fa-bolt">
+       <a href="/login">
+        <span class="fa fa-sign-in">
         </span>
         <span class="blue-text hidden-xs hidden-sm">
-         Shared with Me
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/manage" title="Manage Submissions">
-        <span class="fa fa-align-left">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Submissions
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/admin" title="Administration">
-        <span class="fa fa-cogs">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Admin
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/profile" title="Edit Profile">
-        <span class="fa fa-id-card">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Profile
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/logout" title="Sign Out">
-        <span class="fa fa-sign-out">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Sign Out
+         Login or Register
         </span>
        </a>
       </li>
@@ -103,13 +67,6 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cogs">
-     </span>
-     Admin
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
@@ -122,117 +79,50 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Log
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/sparql">
-        SPARQL
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div class="col-md-8">
-     <div class="container">
-      <br/>
-      <form action="/admin/sparql" method="post">
-       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">
-         Graph
-        </label>
-       </div>
-       <div class="form-group row">
-        <div class="col-sm-10">
-         <select class="form-control" name="graph">
-          <option value="http://localhost:7777/public">
-           http://localhost:7777/public
-          </option>
-         </select>
-        </div>
-       </div>
-       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">
-         Query
-        </label>
-       </div>
-       <div class="form-group row">
-        <div class="col-sm-10">
-         <textarea class="sbh-sparql-editor form-control" name="query">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
-PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
-PREFIX sbh: &lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#&gt;
-PREFIX prov: &lt;http://www.w3.org/ns/prov#&gt;
-PREFIX sbol: &lt;http://sbols.org/v2#&gt;
-PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-PREFIX purl: &lt;http://purl.obolibrary.org/obo/&gt;
-
-</textarea>
-        </div>
-       </div>
-       <div class="form-group row">
-        <button class="pull-right btn btn-primary" type="submit">
-         Submit Query
-        </button>
-       </div>
-      </form>
+  <div class="account-container">
+   <div align="center">
+    <span class="fa fa-lock" style="font-size: 3.5em">
+    </span>
+    <p style="font-size: 1.5em">
+     Login
+    </p>
+   </div>
+   <br/>
+   <div align="center">
+    <form accept-charset="UTF-8" action="login" autocomplete="off" class="formbody" id="user_edit" method="post">
+     <input class="text" name="utf8" type="hidden" value="✓"/>
+     <input name="next" type="hidden" value="/admin/sparql"/>
+     <!--input(style='display:none', type='text', name='fakeusernameremembered')-->
+     <!--input(style='display:none', type='password', name='fakepasswordremembered')-->
+     <div class="input-item">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-mail">
+        <input autocomplete="off" class="sbol-login-text username-text" name="email" placeholder="e-mail" type="text"/>
+       </span>
+      </span>
      </div>
-    </div>
-    <div class="col-md-1">
-    </div>
+     <div class="input-item" style="margin-top: 4px">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-lock">
+        <input autocomplete="off" class="sbol-login-text password-text" name="password" placeholder="password" type="password"/>
+       </span>
+      </span>
+     </div>
+     <div class="clearfix">
+     </div>
+     <br/>
+     <div>
+      <input class="btn btn-primary" name="commit" type="submit" value="Log in"/>
+     </div>
+     <br/>
+    </form>
+   </div>
+   <div align="center">
+    <a class="btn btn-primary" href="register">
+     I need an account
+    </a>
+   </div>
+   <div class="clearfix">
    </div>
   </div>
   <div class="clearfix">
@@ -283,10 +173,6 @@ PREFIX purl: &lt;http://purl.obolibrary.org/obo/&gt;
   <script src="/js/dropzone.js">
   </script>
   <script src="/js/BootstrapMenu.js">
-  </script>
-  <script src="/js/codemirror.js">
-  </script>
-  <script src="/js/codemirror-mode-sparql.js">
   </script>
   <script src="/bundle.js">
   </script>

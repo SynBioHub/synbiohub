@@ -52,47 +52,11 @@ try {
        </a>
       </li>
       <li>
-       <a href="/shared" title="Shared with Me">
-        <span class="fa fa-bolt">
+       <a href="/login">
+        <span class="fa fa-sign-in">
         </span>
         <span class="blue-text hidden-xs hidden-sm">
-         Shared with Me
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/manage" title="Manage Submissions">
-        <span class="fa fa-align-left">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Submissions
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/admin" title="Administration">
-        <span class="fa fa-cogs">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Admin
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/profile" title="Edit Profile">
-        <span class="fa fa-id-card">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Profile
-        </span>
-       </a>
-      </li>
-      <li>
-       <a href="/logout" title="Sign Out">
-        <span class="fa fa-sign-out">
-        </span>
-        <span class="blue-text hidden-xs hidden-sm">
-         Sign Out
+         Login or Register
         </span>
        </a>
       </li>
@@ -103,13 +67,6 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cloud-upload">
-     </span>
-     Submit
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
@@ -122,210 +79,50 @@ try {
     </li>
    </ul>
   </div>
-  <div align="center" class="submission-container">
-   <div class="submission-header">
-    <span class="fa fa-cloud-upload" style="font-size: 3.3em">
+  <div class="account-container">
+   <div align="center">
+    <span class="fa fa-lock" style="font-size: 3.5em">
     </span>
-    <p style="font-size: 1.7em; font-weight: bolder">
-     Tell us about your submission
+    <p style="font-size: 1.5em">
+     Login
     </p>
-    <p style="text-align:center">
-     SynBioHub organizes your uploads into
-     <b>
-      collections
-     </b>
-     .  Parts can be uploaded into a new or existing collection.
-    </p>
-    <p>
-     <span style="font-weight: bolder">
-      Bold fields
-     </span>
-     are required
-    </p>
-    <ul class="nav nav-tabs" role="tablist">
-     <li class="active" role="presentation">
-      <a aria-controls="new" data-toggle="tab" href="#new" role="tab">
-       Create a New Collection
-      </a>
-     </li>
-     <li role="presentation">
-      <a aria-controls="existing" data-toggle="tab" href="#existing" role="tab">
-       Submit to Existing Collection
-      </a>
-     </li>
-    </ul>
-    <div class="tab-content">
-     <div class="tab-pane active" id="new" role="tabpanel">
-      <form class="form submission-form" enctype="multipart/form-data" method="post">
-       <input name="submitType" type="hidden" value="new"/>
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group-100 required">
-          <label for="name">
-           Collection Name
-           <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Name" title="SynBioHub organizes your uploads into collections.  You can upload as many parts as you want into one collection, and then conveniently download them all together or share the collection as a whole with other people.  If you have already made a collection, select the Submit to Existing Private Collection button above.  If you have not, fill out the form below to create a new one.">
-            <span class="fa fa-info-circle">
-            </span>
-           </a>
-          </label>
-          <input class="form-control" id="name" name="name" placeholder="A short title for your collection.  You can use spaces and symbols here." value=""/>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group-100 required">
-          <label for="description">
-           Collection Description
-          </label>
-          <textarea class="form-control" id="description" name="description" placeholder="The more you say, the easier it will be to find your design."></textarea>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-md-6">
-         <div class="form-group-100 required">
-          <label for="id">
-           Collection Id
-           <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id" title="An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.">
-            <span class="fa fa-info-circle">
-            </span>
-           </a>
-          </label>
-          <input class="form-control" id="id" name="id" placeholder="Just letters and numbers, no spaces" type="text" value=""/>
-         </div>
-        </div>
-        <div class="col-md-6">
-         <div class="form-group-100 required">
-          <label for="version">
-           Collection Version
-           <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version" title="A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.">
-            <span class="fa fa-info-circle">
-            </span>
-           </a>
-          </label>
-          <input class="form-control" id="version" name="version" placeholder="Version" type="text" value="1"/>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group-100">
-          <label for="citations">
-           Citations (optional)
-          </label>
-          <input class="form-control" id="citations" name="citations" placeholder="Comma separated Pubmed IDs, we'll do the rest!" value=""/>
-         </div>
-        </div>
-       </div>
-       <!--div.row-->
-       <!--    div.col-md-12-->
-       <!--        div.form-group-100-->
-       <!--            label(for="collections") Collection-->
-       <!--            select(name='collections' style="width:675px;" id='collections' multiple data-placeholder='Select Some Collections').chosen-select-->
-       <!--                for collection in collections-->
-       <!--                    option(value=collection.uri) #{collection.name}-->
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group-100">
-          <label>
-           SBOL/GenBank/GFF3/FASTA/ZIP File (optional)
-          </label>
-          <br/>
-          <input name="file" type="file" value=""/>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group-100">
-          <label for="plugin">
-           Submit Handler
-          </label>
-          <select class="form-control" id="plugin" name="plugin">
-           <option value="default">
-            Default handler
-           </option>
-          </select>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-sm-12">
-         <div class="checkbox" style="margin-left:20px">
-          <label>
-           <input id="overwrite_objects" name="overwrite_objects" type="checkbox"/>
-           Overwrite Existing Objects
-           <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Overwrite" title="If you are submitting the same thing twice because you have changed things, tick the box below to overwrite previous versions with what you are uploading now.  If this is the first time you have made this submission, you can ignore this.">
-            <span class="fa fa-info-circle">
-            </span>
-           </a>
-          </label>
-         </div>
-        </div>
-       </div>
-       <br/>
-       <div class="row">
-        <div class="col-md-12">
-         <button class="btn btn-primary btn-lg" type="submit">
-          Submit
-         </button>
-        </div>
-       </div>
-      </form>
+   </div>
+   <br/>
+   <div align="center">
+    <form accept-charset="UTF-8" action="login" autocomplete="off" class="formbody" id="user_edit" method="post">
+     <input class="text" name="utf8" type="hidden" value="✓"/>
+     <input name="next" type="hidden" value="/submit"/>
+     <!--input(style='display:none', type='text', name='fakeusernameremembered')-->
+     <!--input(style='display:none', type='password', name='fakepasswordremembered')-->
+     <div class="input-item">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-mail">
+        <input autocomplete="off" class="sbol-login-text username-text" name="email" placeholder="e-mail" type="text"/>
+       </span>
+      </span>
      </div>
-     <div class="tab-pane" id="existing" role="tabpanel">
-      <form enctype="multipart/form-data" method="post">
-       <br/>
-       <input name="submitType" type="hidden" value="existing"/>
-       <div class="row">
-        <div class="col-sm-12">
-         <div class="form-group required">
-          <label for="rootCollections">
-           Destination Collection
-          </label>
-          <select class="form-control" id="rootCollections" name="rootCollections">
-           <option value="">
-            Choose a collection...
-           </option>
-          </select>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-md-12">
-         <div class="form-group required">
-          <label>
-           SBOL/GenBank/GFF3/FASTA/ZIP File
-          </label>
-          <input name="file" type="file" value=""/>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-sm-12">
-         <div class="checkbox" style="margin-left:20px">
-          <label>
-           <input id="overwrite_objects" name="overwrite_objects" type="checkbox"/>
-           Overwrite Existing Objects
-           <a href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Overwrite" title="If you are submitting the same thing twice because you have changed things, tick the box below to overwrite previous versions with what you are uploading now.  If this is the first time you have made this submission, you can ignore this.">
-            <span class="fa fa-info-circle">
-            </span>
-           </a>
-          </label>
-         </div>
-        </div>
-       </div>
-       <div class="row">
-        <div class="col-md-12">
-         <button class="btn btn-primary btn-lg" type="submit">
-          Submit
-         </button>
-        </div>
-       </div>
-      </form>
+     <div class="input-item" style="margin-top: 4px">
+      <span class="input-label" style="border-bottom: 1px solid white; padding-bottom: 4px">
+       <span class="icon-lock">
+        <input autocomplete="off" class="sbol-login-text password-text" name="password" placeholder="password" type="password"/>
+       </span>
+      </span>
      </div>
-    </div>
+     <div class="clearfix">
+     </div>
+     <br/>
+     <div>
+      <input class="btn btn-primary" name="commit" type="submit" value="Log in"/>
+     </div>
+     <br/>
+    </form>
+   </div>
+   <div align="center">
+    <a class="btn btn-primary" href="register">
+     I need an account
+    </a>
+   </div>
+   <div class="clearfix">
    </div>
   </div>
   <div class="clearfix">
