@@ -44,4 +44,49 @@ class TestAdmin(TestCase):
 
     #def test_admin_log(self):
     #    compare_get_request("admin/log")
-    
+    def test_admin_mail(self):
+        data={
+            'key': '123456',
+            'fromEmail' : 'ron@test.synbiohub',
+        }
+        compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
+    def test_admin_savePlugin(self):
+        data={
+            'id': 'New',
+            'category' : 'download',
+            'name' : 'test_plugin',
+            'url' : 'jimmy',
+        }
+        compare_post_request("/admin/savePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_savePlugin")
+
+    def test_admin_deletePlugin(self):
+        data={
+            'id': 'New',
+            'category' : 'download',
+        }
+        compare_post_request("/admin/deletePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_deletePlugin")
+
+    def test_admin_saveRegistry(self):
+        data={
+            'uri': 'testurl.com',
+            'url' : 'testurl.com',
+        }
+        compare_post_request("/admin/saveRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRegistry")
+
+     def test_admin_deleteRegistry(self):
+        data={
+            'uri': 'testurl.com',
+        }
+        compare_post_request("/admin/deleteRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRegistry")
+
+     def test_admin_retreiveFromWebOfRegistries(self):
+
+        compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
+
+     def test_admin_federate(self):
+        data={
+            'administratorEmail': 'test@synbiohub.org>',
+            'webOfRegistries' : 'testwebOfRegist.com>',
+        }
+        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+
