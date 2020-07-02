@@ -14,20 +14,11 @@ class TestAdmin(TestCase):
     def test_admin_users(self):
         compare_get_request("/admin/users")
 
-    def test_admin_mail(self):
-        compare_get_request("/admin/mail")
-
-    def test_admin_plugins(self):
-        compare_get_request("/admin/plugins")
-
     def test_admin_graphs(self):
         compare_get_request("/admin/graphs")
 
     def test_admin_remotes(self):
         compare_get_request("/admin/remotes")
-
-    def test_admin_registries(self):
-        compare_get_request("admin/registries")
 
     def test_admin_theme(self):
         compare_get_request("/admin/theme")
@@ -50,6 +41,10 @@ class TestAdmin(TestCase):
             'fromEmail' : 'ron@test.synbiohub',
         }
         compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
+
+    def test_admin_mail(self):
+        compare_get_request("/admin/mail")
+
     def test_admin_savePlugin(self):
         data={
             'id': 'New',
@@ -59,12 +54,15 @@ class TestAdmin(TestCase):
         }
         compare_post_request("/admin/savePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_savePlugin")
 
-    def test_admin_deletePlugin(self):
-        data={
-            'id': 'New',
-            'category' : 'download',
-        }
-        compare_post_request("/admin/deletePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_deletePlugin")
+    def test_admin_plugins(self):
+        compare_get_request("/admin/plugins")
+
+#    def test_admin_deletePlugin(self):
+#        data={
+#            'id': 'New',
+#            'category' : 'download',
+#        }
+#        compare_post_request("/admin/deletePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_deletePlugin")
 
     def test_admin_saveRegistry(self):
         data={
@@ -73,20 +71,31 @@ class TestAdmin(TestCase):
         }
         compare_post_request("/admin/saveRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRegistry")
 
-     def test_admin_deleteRegistry(self):
+    def test_admin_registries(self):
+        compare_get_request("admin/registries")
+
+#    def test_admin_deleteRegistry(self):
+#        data={
+#            'uri': 'testurl.com',
+#        }
+#        compare_post_request("/admin/deleteRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRegistry")
+
+    def test_admin_retreiveFromWebOfRegistries(self):
         data={
-            'uri': 'testurl.com',
         }
-        compare_post_request("/admin/deleteRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRegistry")
-
-     def test_admin_retreiveFromWebOfRegistries(self):
-
         compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
 
-     def test_admin_federate(self):
+#    def test_admin_federate(self):
+#        data={
+#            'administratorEmail': 'test@synbiohub.org>',
+#            'webOfRegistries' : 'testwebOfRegist.com>',
+#        }
+#        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+
+    def test_admin_setAdministratorEmail(self):
         data={
-            'administratorEmail': 'test@synbiohub.org>',
-            'webOfRegistries' : 'testwebOfRegist.com>',
+            'administratorEmail': 'test@synbiohub.org',
         }
-        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+        compare_post_request("/admin/setAdministratorEmail", data, headers = {"Accept": "text/plain"}, test_name = "admin_setAdministratorEmail")
+
 
