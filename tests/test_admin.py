@@ -1,4 +1,5 @@
 import requests
+import os
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
@@ -97,5 +98,18 @@ class TestAdmin(TestCase):
             'administratorEmail': 'test@synbiohub.org',
         }
         compare_post_request("/admin/setAdministratorEmail", data, headers = {"Accept": "text/plain"}, test_name = "admin_setAdministratorEmail")
+
+    def test_admin_updateTheme(self):
+        logo = os.path.basename('./logo.jpg');
+        data={
+            'instanceName': 'test_instance',
+            'frontPageText' : 'test_instance',
+            'baseColor' : '000000',
+            'showModuleInteractions' : 'ok',
+        }
+        files={
+            'logo' : (logo, open('./logo.jpg', 'rb')),
+        }
+        compare_post_request("/admin/theme", data, headers = {"Accept": "text/plain"}, files = files, test_name = "admin_setAdministratorEmail")
 
 
