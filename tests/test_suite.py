@@ -31,6 +31,9 @@ if __name__ == '__main__':
     import test_search
     addTestModule(test_search)
 
+    import test_attachment
+    addTestModule(test_attachment)
+
     import test_download
     addTestModule(test_download)
 
