@@ -86,12 +86,12 @@ class TestAdmin(TestCase):
         }
         compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
 
-    def test_admin_federate(self):
-        data={
-            'administratorEmail': 'test@synbiohub.org>',
-            'webOfRegistries' : 'testwebOfRegist.com>',
-        }
-        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+#    def test_admin_federate(self):
+#        data={
+#            'administratorEmail': 'test@synbiohub.org>',
+#            'webOfRegistries' : 'testwebOfRegist.com>',
+#        }
+#        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
 
     def test_admin_setAdministratorEmail(self):
         data={
