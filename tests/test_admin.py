@@ -60,7 +60,7 @@ class TestAdmin(TestCase):
 
 #    def test_admin_deletePlugin(self):
 #        data={
-#            'id': 'New',
+#            'id': '1',
 #            'category' : 'download',
 #        }
 #        compare_post_request("/admin/deletePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_deletePlugin")
