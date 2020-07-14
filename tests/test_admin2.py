@@ -19,3 +19,14 @@ class TestAdmin2(TestCase):
         }
         compare_post_request("/admin/deleteRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRegistry")
 
+    def test_admin_deleteRemoteBenchling(self):
+        data={
+            'id': '1',
+        }
+        compare_post_request("/admin/deleteRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRemoteBenchling")
+    def test_admin_deleteRemoteICE(self):
+        data={
+            'id': 'test',
+        }
+        compare_post_request("/admin/deleteRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRemoteICE")
+
