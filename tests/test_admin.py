@@ -35,8 +35,8 @@ class TestAdmin(TestCase):
     #    compare_get_request("admin/log")
     def test_admin_mail(self):
         data={
-            'key': '123456',
-            'fromEmail' : 'ron@test.synbiohub',
+            'key': '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',
+            'fromEmail' : 'synbiohub@synbiohub.utah.edu',
         }
         compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
 
@@ -85,8 +85,8 @@ class TestAdmin(TestCase):
 
 #    def test_admin_federate(self):
 #        data={
-#            'administratorEmail': 'test@synbiohub.org>',
-#            'webOfRegistries' : 'testwebOfRegist.com>',
+#            'administratorEmail': 'test@synbiohub.org',
+#            'webOfRegistries' : 'testwebOfRegist.com',
 #        }
 #        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
 
