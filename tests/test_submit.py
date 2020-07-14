@@ -9,13 +9,13 @@ class TestSubmit(TestCase):
         headers = {'Accept':'text/plain'}
         compare_get_request("/", test_name = "after_admin_login", headers = headers)
 
-        
-        
+
+
     def test_get_submit_submissions_empty(self):
         compare_get_request("submit")
         compare_get_request("manage")
-    
-        
+
+
     # working curl request
     """curl -X POST -H "Accept: text/plain" -H "X-authorization: e35054aa-04e3-425c-afd2-66cb95ff66e1" -F id=green -F version="3" -F name="test" -F description="testd" -F citations="none" -F overwrite_merge="0" -F file=@"./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml" http://localhost:7777/submit"""
 
@@ -32,7 +32,7 @@ class TestSubmit(TestCase):
         with self.assertRaises(requests.exceptions.HTTPError):
             compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                                  files = files, test_name = "missing_id")
-    
+
     def test_create_and_delete_collections(self):
         # create the collection
         data = {'id':(None, 'testid'),
@@ -44,27 +44,27 @@ class TestSubmit(TestCase):
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
                                               open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
-        
+
         compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                              files = files, test_name = "submit_test_BBa")
         with self.assertRaises(requests.exceptions.HTTPError):
             compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                                  files = files, test_name = "submit_already_in_use")
-        
+
         self.create_collection2()
 
         compare_get_request("manage", test_name = "two_submissions")
         compare_get_request("submit", test_name = "two_submissions")
-        
+
 
         # now remove the collections
         compare_get_request('/user/:userId/:collectionId/:displayId/:version/removeCollection', route_parameters = ["testuser", "testid", "testid_collection", "1"])
         compare_get_request('/user/:userId/:collectionId/:displayId/:version/removeCollection', route_parameters = ["testuser", "testid2", "testid2_collection", "1"], test_name = 'remove_second')
 
         compare_get_request("manage", test_name = "no_submissions")
-        
-        
-        
+
+
+
 
     def create_collection2(self):
         data = {'id':(None, 'testid2'),
@@ -76,7 +76,7 @@ class TestSubmit(TestCase):
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
                                               open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
-        
+
         compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                              files = files,
                              test_name = "create_2")
@@ -95,14 +95,14 @@ class TestSubmit(TestCase):
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
                                               open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
-        
+
         compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                              files = files, test_name = "generic_collection" + uniqueid)
         return data
-    
+
     """ def test_bad_make_public(self):
         data = self.make_new_collection("1")
-        
+
         data['tabState'] = 'new'
 
         # try to remove the collection but don't enter a id
@@ -111,20 +111,38 @@ class TestSubmit(TestCase):
             compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid1", "testid_collection1", "1"], data = data)
     TODO: uncomment when this does raise an HTTPError in synbiohub
         """
-        
+
 
     def test_make_public(self):
         data = self.make_new_collection("0")
-        
-        
+
+
         # get the view
         compare_get_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid0", "testid0_collection", "1"])
 
         data['tabState'] = 'new'
-        
+
         # make the collection public
         compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid0", "testid0_collection", "1"], data = data)
 
         # try to delete the collection
         with self.assertRaises(requests.exceptions.HTTPError):
             compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid0", "testid0_collection", "1"], test_name = 'remove')
+
+#    def test_attach(self):
+#        files={
+#            'file' : open('test_user.py', 'rb')
+#            }
+#        data = {
+#        }
+#        compare_post_request("/public/:collectionId/:displayId/:version/attach", data, route_parameters = ["testid0", "testid_collection0", "1"], headers = {"Accept": "text/plain"}, files = files, test_name = "test_attach")
+
+
+#    def test_attachUrl(self):
+        #http://localhost:7777/public/testid0/testid0_collection/1/attachUrl
+#        data = {
+#            'url': 'testsite.com',
+#            'name' : 'testURLAttachment',
+#            'type' : 'dim'
+#            }
+#        compare_post_request("/public/:collectionId/:displayId/:version/attachUrl", data, route_parameters = ["testid0", "testid_collection0", "1"], headers = {"Accept": "text/plain"}, test_name = "test_attachUrl")

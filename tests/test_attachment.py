@@ -20,4 +20,4 @@ class TestAttachment(TestCase):
             'name' : 'testURLAttachment',
             'type' : 'dim'
         }
-        compare_post_request("/public/:collectionId/:displayId/:version/attachUrl", data, route_parameters = ["testid0", "testid_collection0", "1"],headers = {"Accept": "text/plain"}, test_name = "test_attachUrl")
+        compare_post_request("/public/:collectionId/:displayId/:version/attachUrl", data, route_parameters = ["testid0", "testid_collection0", "1"],headers = {"Accept": "text/plain"}, test_name = "test_attachUrl"), headers = {"Accept": "text/plain"}, test_name = "test_attachUrl")
