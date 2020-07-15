@@ -7,7 +7,10 @@ from test_functions import compare_get_request, compare_post_request
 class TestAdmin(TestCase):
 
     def test_admin_status(self):
-        compare_get_request("/admin")
+
+      compare_get_request("/admin")
+#    def test_admin_explorer(self):
+#        compare_get_request("/admin/explorer")
 
     def test_admin_users(self):
         compare_get_request("/admin/users")
@@ -33,6 +36,7 @@ class TestAdmin(TestCase):
 
     #def test_admin_log(self):
     #    compare_get_request("admin/log")
+    
     def test_admin_mail(self):
         data={
             'key': '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',
@@ -174,3 +178,4 @@ class TestAdmin(TestCase):
             'allowPublicSignup': 'False',
         }
         compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+
