@@ -36,7 +36,7 @@ class TestAdmin(TestCase):
 
     #def test_admin_log(self):
     #    compare_get_request("admin/log")
-    
+
     def test_admin_mail(self):
         data={
             'key': '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',
@@ -173,9 +173,9 @@ class TestAdmin(TestCase):
 #        }
 #        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
 
-    def test_updateUserConfig(self):
-        data={
-            'allowPublicSignup': 'False',
-        }
-        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+#    def test_updateUserConfig(self):
+#        data={
+#            'allowPublicSignup': 'False',
+#        }
+#        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
 
