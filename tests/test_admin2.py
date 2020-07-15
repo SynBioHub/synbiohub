@@ -3,7 +3,6 @@ import os
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
-
 class TestAdmin2(TestCase):
 
     def test_admin_deletePlugin(self):
