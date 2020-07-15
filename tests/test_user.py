@@ -41,9 +41,9 @@ class TestUser(TestCase):
 
         compare_get_request("/logout")
 
-    def test_post_login_token(self):
-        logininfo = {'email' : 'test@user.synbiohub',
-                     'password' : 'test'}
-        login_with(logininfo)
+#    def test_post_login_token(self):
+#        logininfo = {'email' : 'test@user.synbiohub',
+#                     'password' : 'test'}
+#        login_with(logininfo)
 
 
