@@ -30,3 +30,15 @@ class TestAdmin2(TestCase):
         }
         compare_post_request("/admin/deleteRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRemoteICE")
 
+#    def test_newUser(self):
+#        data = {
+#            'username': 'adminNewUser',
+#            'name' : 'adminNewUser',
+#            'email' : 'adminNewUser@user.synbiohub',
+#            'affiliation' : 'adminNewUser',
+#            'isMember' : '1',
+#            'isCurator' : '1',
+#            'isAdmin' : '1',
+#        }
+#        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
+

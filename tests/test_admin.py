@@ -55,13 +55,6 @@ class TestAdmin(TestCase):
     def test_admin_plugins(self):
         compare_get_request("/admin/plugins")
 
-#    def test_admin_deletePlugin(self):
-#        data={
-#            'id': '1',
-#            'category' : 'download',
-#        }
-#        compare_post_request("/admin/deletePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_deletePlugin")
-
     def test_admin_saveRegistry(self):
         data={
             'uri': 'testurl.com',
@@ -71,12 +64,6 @@ class TestAdmin(TestCase):
 
     def test_admin_registries(self):
         compare_get_request("admin/registries")
-
-#    def test_admin_deleteRegistry(self):
-#        data={
-#            'uri': 'testurl.com',
-#        }
-#        compare_post_request("/admin/deleteRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRegistry")
 
     def test_admin_retreiveFromWebOfRegistries(self):
         data={
@@ -130,6 +117,7 @@ class TestAdmin(TestCase):
         data={
         }
         compare_post_request("/admin/explorerUpdateIndex", data, headers = {"Accept": "text/plain"}, test_name = "admin_explorerUpdateIndex")
+
     def test_saveRemoveICE(self):
         data={
             'type': 'ice',
@@ -153,6 +141,7 @@ class TestAdmin(TestCase):
             'rootCollectionDescription' : 'test'
         }
         compare_post_request("/admin/saveRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRemoteICE")
+
     def test_saveRemoveBenchling(self):
         data={
             'type': 'benchling',
@@ -167,6 +156,7 @@ class TestAdmin(TestCase):
             'rootCollectionDescription': 'test'
         }
         compare_post_request("/admin/saveRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRemoteBenchling")
+
 #    def test_newUser(self):
 #        data = {
 #            'username': 'adminNewUser',
