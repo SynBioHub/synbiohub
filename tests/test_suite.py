@@ -25,6 +25,9 @@ if __name__ == '__main__':
     import test_user
     addTestModule(test_user)
 
+    import test_user2
+    addTestModule(test_user2)
+
     import test_submit
     addTestModule(test_submit)
 

@@ -8,8 +8,8 @@ class TestAdmin(TestCase):
     def test_admin_status(self):
         compare_get_request("/admin")
 
-    def test_admin_explorer(self):
-        compare_get_request("/admin/explorer")
+#    def test_admin_explorer(self):
+#        compare_get_request("/admin/explorer")
 
     def test_admin_users(self):
         compare_get_request("/admin/users")
@@ -44,4 +44,4 @@ class TestAdmin(TestCase):
 
     #def test_admin_log(self):
     #    compare_get_request("admin/log")
-    
+
