@@ -1,7 +1,7 @@
 <img src="https://synbiohub.org/logo_uploaded.svg" width="100%" />
 
 ![]("https://david-dm.org/synbiohub/synbiohub.svg")
-![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
+[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source-150x25.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 
 SynBioHub is a Web-based repository for synthetic biology, enabling users to browse, upload, and share synthetic biology designs.
