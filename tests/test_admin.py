@@ -76,7 +76,7 @@ class TestAdmin(TestCase):
 
 #    def test_admin_federate(self):
 #        data={
-#            'administratorEmail': 'test@synbiohub.org',
+#            'administratorEmail': 'myers@ece.utah.edu',
 #            'webOfRegistries' : 'testwebOfRegist.com',
 #        }
 #        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
@@ -178,4 +178,14 @@ class TestAdmin(TestCase):
 #            'allowPublicSignup': 'False',
 #        }
 #        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
-
+    def test_updateUser(self):
+        data={
+            'id': '2',
+            'name' : 'ronnieUpdated',
+            'email' : 'ronnieUpdated@user.synbiohub',
+            'affiliation' : 'updatedAffiliation',
+            'isMember' : '1',
+            'isCurator' : '1',
+            'isAdmin' : '1'
+        }
+        compare_post_request("/admin/updateUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUser")
