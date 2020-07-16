@@ -2,7 +2,6 @@ import requests
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
-
 class TestSubmit(TestCase):
 
     def test_main_page(self):
@@ -126,5 +125,20 @@ class TestSubmit(TestCase):
         compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid0", "testid0_collection", "1"], data = data)
 
         # try to delete the collection
-#        with self.assertRaises(requests.exceptions.HTTPError):
-#            compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid0", "testid0_collection", "1"], test_name = 'remove')
+        with self.assertRaises(requests.exceptions.HTTPError):
+            compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid0", "testid0_collection", "1"], test_name = 'remove')
+
+#    def make_new_private_collection(self, uniqueid):
+        # create the collection
+#        data = {'id':(None, 'testid1'),
+#                'version' : (None, '1'),
+#                'name' : (None, 'testcollection1'),
+#                'description':(None, 'testdescription'),
+#                'citations':(None, 'none'),
+#                'overwrite_merge':(None, '0')
+#                }
+#
+#        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml", open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml', 'rb'))}
+#
+#        compare_post_request("submit", data, headers = {"Accept": "text/plain"}, files = files, test_name = "generic_collection" + uniqueid+1 )
+#
