@@ -29,6 +29,11 @@ class TestAdmin2(TestCase):
         }
         compare_post_request("/admin/deleteRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRemoteICE")
 
+    def test_adminDeleteUser(self):
+        data={
+            'id': '2',
+        }
+        compare_post_request("/admin/deleteUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteUser")
 #    def test_newUser(self):
 #        data = {
 #            'username': 'adminNewUser',
