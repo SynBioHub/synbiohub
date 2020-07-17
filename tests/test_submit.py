@@ -2,7 +2,6 @@ import requests
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
-
 class TestSubmit(TestCase):
 
     def test_main_page(self):
@@ -144,4 +143,19 @@ class TestSubmit(TestCase):
 #            'type' : 'dim'
 #        }
 #        compare_post_request("/public/:collectionId/:displayId/:version/attachUrl", data, route_parameters = ["testid0", "testid_collection0", "1"],headers = {"Accept": "text/plain"}, test_name = "test_attachUrl")
+
+#    def make_new_private_collection(self, uniqueid):
+        # create the collection
+#        data = {'id':(None, 'testid1'),
+#                'version' : (None, '1'),
+#                'name' : (None, 'testcollection1'),
+#                'description':(None, 'testdescription'),
+#                'citations':(None, 'none'),
+#                'overwrite_merge':(None, '0')
+#                }
+#
+#        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml", open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml', 'rb'))}
+#
+#        compare_post_request("submit", data, headers = {"Accept": "text/plain"}, files = files, test_name = "generic_collection" + uniqueid+1 )
+#
 
