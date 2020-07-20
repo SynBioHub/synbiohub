@@ -101,7 +101,7 @@ block content
                             span.fa.fa-search
 
                 if meta.modified.description && meta.modified.description != ''
-                    h5 Date modified: 
+                    h5.testignore Date modified: 
                         != meta.modified.description 
                         a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date') 
                             span.fa.fa-search

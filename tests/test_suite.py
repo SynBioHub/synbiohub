@@ -31,6 +31,9 @@ if __name__ == '__main__':
     import test_submit
     addTestModule(test_submit)
 
+    import test_edit
+    addTestModule(test_edit)
+
     import test_search
     addTestModule(test_search)
 
