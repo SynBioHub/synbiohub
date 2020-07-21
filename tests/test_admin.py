@@ -170,11 +170,12 @@ class TestAdmin(TestCase):
 #        }
 #        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
 
-#    def test_updateUserConfig(self):
-#        data={
-#            'allowPublicSignup': 'False',
-#        }
-#        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+    def test_updateUserConfig(self):
+        data={
+            'allowPublicSignup': 'False',
+        }
+        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+
     def test_updateUser(self):
         data={
             'id': '2',
