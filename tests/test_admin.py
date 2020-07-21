@@ -7,10 +7,7 @@ from test_functions import compare_get_request, compare_post_request
 class TestAdmin(TestCase):
 
     def test_admin_status(self):
-
       compare_get_request("/admin")
-#    def test_admin_explorer(self):
-#        compare_get_request("/admin/explorer")
 
     def test_admin_users(self):
         compare_get_request("/admin/users")
@@ -38,14 +35,14 @@ class TestAdmin(TestCase):
     #    compare_get_request("admin/log")
 
     def test_admin_mail(self):
+        compare_get_request("/admin/mail")
+
+    def test_admin_mail(self):
         data={
             'key': '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',
             'fromEmail' : 'synbiohub@synbiohub.utah.edu',
         }
         compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
-
-    def test_admin_mail(self):
-        compare_get_request("/admin/mail")
 
     def test_admin_savePlugin(self):
         data={
@@ -69,17 +66,17 @@ class TestAdmin(TestCase):
     def test_admin_registries(self):
         compare_get_request("admin/registries")
 
-    def test_admin_retreiveFromWebOfRegistries(self):
-        data={
-        }
-        compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
+#    def test_admin_retreiveFromWebOfRegistries(self):
+#        data={
+#        }
+#        compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
 
-    def test_admin_federate(self):
-        data={
-            'administratorEmail': 'myers@ece.utah.edu',
-            'webOfRegistries' : 'http://wor.synbiohub.org',
-        }
-        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+#    def test_admin_federate(self):
+#        data={
+#            'administratorEmail': 'myers@ece.utah.edu',
+#            'webOfRegistries' : 'https://wor.synbiohub.org',
+#        }
+#        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
 
     def test_admin_setAdministratorEmail(self):
         data={

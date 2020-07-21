@@ -34,15 +34,23 @@ class TestAdmin2(TestCase):
             'id': '2',
         }
         compare_post_request("/admin/deleteUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteUser")
-#    def test_newUser(self):
-#        data = {
-#            'username': 'adminNewUser',
-#            'name' : 'adminNewUser',
-#            'email' : 'adminNewUser@user.synbiohub',
-#            'affiliation' : 'adminNewUser',
-#            'isMember' : '1',
-#            'isCurator' : '1',
-#            'isAdmin' : '1',
+    def test_newUser(self):
+        data = {
+            'username': 'adminNewUser',
+            'name' : 'adminNewUser',
+            'email' : 'adminNewUser@user.synbiohub',
+            'affiliation' : 'adminNewUser',
+            'isMember' : '1',
+            'isCurator' : '1',
+            'isAdmin' : '1',
+        }
+        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
+
+#    def test_admin_federate(self):
+#        data={
+#            'administratorEmail': 'myers@ece.utah.edu',
+#            'webOfRegistries' : 'https://wor.synbiohub.org',
 #        }
-#        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
+#        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+
 
