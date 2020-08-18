@@ -33,7 +33,7 @@ block topLevelPanels
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseModules')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseModules', class='collapsed')
                                     | <b>Modules</b>
                         #collapseModules.panel-collapse.collapse
                             .panel-body
@@ -80,7 +80,7 @@ block topLevelPanels
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseFunctionalComponents')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseFunctionalComponents', class='collapsed')
                                     | <b>Functional Components</b>
                         #collapseFunctionalComponents.panel-collapse.collapse
                             .panel-body
@@ -149,7 +149,7 @@ block topLevelPanels
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseInteractions')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseInteractions', class='collapsed')
                                     | <b>Interactions</b>
                         #collapseInteractions.panel-collapse.collapse
                             .panel-body

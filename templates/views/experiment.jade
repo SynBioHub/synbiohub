@@ -9,14 +9,12 @@ block topLevelPreview
 
 block topLevelPropertyTable
 							
-block topLevelButtons
-
 block topLevelPanels
                 if meta.experimentalData && meta.experimentalData.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseExperimentalData')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseExperimentalData', class='collapsed')
                                     | <b>Experimental Data</b>
                         #collapseExperimentalData.panel-collapse.collapse
                             .panel-body

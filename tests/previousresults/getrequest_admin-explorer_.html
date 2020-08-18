@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <title>
-   Test Synbiohub
+   test_instance
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -34,64 +34,60 @@ try {
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
-     <div class="pull-left">
-      <h1 style="margin-left: 15px">
-       Test Synbiohub
-      </h1>
-     </div>
+     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
     </a>
     <div class="pull-right menu">
      <ul>
       <li>
-       <a href="/submit">
+       <a href="/submit" title="Submit">
         <span class="fa fa-cloud-upload">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Submit
         </span>
        </a>
       </li>
       <li>
-       <a href="/shared">
+       <a href="/shared" title="Shared with Me">
         <span class="fa fa-bolt">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Shared with Me
         </span>
        </a>
       </li>
       <li>
-       <a href="/manage">
+       <a href="/manage" title="Manage Submissions">
         <span class="fa fa-align-left">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Submissions
         </span>
        </a>
       </li>
       <li>
-       <a href="/admin">
+       <a href="/admin" title="Administration">
         <span class="fa fa-cogs">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Admin
         </span>
        </a>
       </li>
       <li>
-       <a href="/profile">
+       <a href="/profile" title="Edit Profile">
         <span class="fa fa-id-card">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Profile
         </span>
        </a>
       </li>
       <li>
-       <a href="/logout">
+       <a href="/logout" title="Sign Out">
         <span class="fa fa-sign-out">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Sign Out
         </span>
        </a>
@@ -113,7 +109,7 @@ try {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -186,6 +182,10 @@ try {
      </ul>
     </div>
     <div class="col-md-8">
+     <form action="explorerUpdateIndex" id="explorerButtons" method="POST">
+     </form>
+     <form action="explorerLog" id="explorerButtons2" method="POST">
+     </form>
      <form action="/admin/explorer" id="explorerForm" method="POST">
       <div class="row">
        <div class="col-md-12">
@@ -193,7 +193,7 @@ try {
          <span class="fa fa-check-circle-o">
          </span>
          <span>
-          SBOLExplorer is disabled. Check the "Searching Using SBOLExplorer" to enable it.
+          Note: Looks like SBOLExplorer is up and running :) Endpoint fields should end with '/', SynBioHub Public Graph should end with '/public', and SPARQL/Virtuoso Endpoint should end with '/sparql?'.
          </span>
         </div>
        </div>
@@ -204,15 +204,115 @@ try {
          <label for="SBOLExplorerEndpoint">
           SBOLExplorer Endpoint
          </label>
-         <input class="form-control" name="SBOLExplorerEndpoint" type="text"/>
+         <input class="form-control" name="SBOLExplorerEndpoint" type="text" value="http://explorer:13162/"/>
         </div>
        </div>
        <div class="col-md-6">
         <div class="checkbox">
          <label>
-          <input name="useSBOLExplorer" type="checkbox"/>
+          <input checked="" name="useSBOLExplorer" type="checkbox"/>
           Searching Using SBOLExplorer
          </label>
+        </div>
+       </div>
+       <div class="col-md-6">
+        <div class="radio">
+         <label for="whichSearch">
+          <input name="whichSearch" type="radio" value="usearch"/>
+          USearch &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp &amp;nbsp
+          <input checked="" name="whichSearch" type="radio" value="vsearch"/>
+          VSearch
+         </label>
+        </div>
+       </div>
+      </div>
+      <button class="btn btn-info" form="explorerButtons" style="margin-right: 20px; margin-bottom:20px" type="submit">
+       Update Index Now
+      </button>
+      <button class="btn btn-info" form="explorerButtons2" style="margin-right: 20px; margin-bottom:20px" type="submit">
+       Download Log
+      </button>
+      <div class="alert alert-info">
+       <span>
+        Start of last index update:
+        <br/>
+        End of last index update:
+       </span>
+      </div>
+      <div class="row">
+       <div class="col-md-6">
+        <div class="checkbox">
+         <label>
+          <input name="useCron" type="checkbox"/>
+          Update index automatically
+         </label>
+        </div>
+        <div class="form-group">
+         <label for="cronInterval">
+          Update index every &amp;nbsp
+          <input id="cronDay" max="31" min="1" placeholder="1-31" type="number"/>
+          days &amp;nbsp
+          <input id="cronHour" max="23" min="0" placeholder="0-23" type="number"/>
+          hours
+         </label>
+        </div>
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12">
+        <div class="checkbox">
+         <label>
+          <input checked="" name="useDistributedSearch" type="checkbox"/>
+          Use Distributed Search
+         </label>
+        </div>
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12">
+        <div class="form-group">
+         <label for="pagerankTolerance">
+          Pagerank Tolerance
+         </label>
+         <input class="form-control" name="pagerankTolerance" type="text" value=".0002"/>
+        </div>
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12">
+        <div class="form-group">
+         <label for="uclustIdentity">
+          UClust Clustering Identity
+         </label>
+         <input class="form-control" name="uclustIdentity" type="text" value="0.9"/>
+        </div>
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-6">
+        <div class="form-group">
+         <label for="elasticsearchEndpoint">
+          Elasticsearch Endpoint
+         </label>
+         <input class="form-control" name="elasticsearchEndpoint" type="text" value="http://elasticsearch:9200/"/>
+        </div>
+       </div>
+       <div class="col-md-6">
+        <div class="form-group">
+         <label for="elasticsearchIndexName">
+          Elasticsearch Index Name
+         </label>
+         <input class="form-control" name="elasticsearchIndexName" type="text" value="part"/>
+        </div>
+       </div>
+      </div>
+      <div class="row">
+       <div class="col-md-12">
+        <div class="form-group">
+         <label for="sparqlEndpoint">
+          SPARQL/Virtuoso Endpoint
+         </label>
+         <input class="form-control" name="sparqlEndpoint" type="text" value="http://virtuoso:8890/sparql?"/>
         </div>
        </div>
       </div>

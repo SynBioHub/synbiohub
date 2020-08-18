@@ -29,7 +29,7 @@
 }
   </script>
   <title>
-   Test Synbiohub
+   test_instance
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -101,55 +101,51 @@ try {
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
-     <div class="pull-left">
-      <h1 style="margin-left: 15px">
-       Test Synbiohub
-      </h1>
-     </div>
+     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
     </a>
     <div class="pull-right menu">
      <ul>
       <li>
-       <a href="/submit">
+       <a href="/submit" title="Submit">
         <span class="fa fa-cloud-upload">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Submit
         </span>
        </a>
       </li>
       <li>
-       <a href="/shared">
+       <a href="/shared" title="Shared with Me">
         <span class="fa fa-bolt">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Shared with Me
         </span>
        </a>
       </li>
       <li>
-       <a href="/manage">
+       <a href="/manage" title="Manage Submissions">
         <span class="fa fa-align-left">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Submissions
         </span>
        </a>
       </li>
       <li>
-       <a href="/profile">
+       <a href="/profile" title="Edit Profile">
         <span class="fa fa-id-card">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Profile
         </span>
        </a>
       </li>
       <li>
-       <a href="/logout">
+       <a href="/logout" title="Sign Out">
         <span class="fa fa-sign-out">
         </span>
-        <span class="blue-text">
+        <span class="blue-text hidden-xs hidden-sm">
          Sign Out
         </span>
        </a>
@@ -171,7 +167,7 @@ try {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 96%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -233,8 +229,11 @@ try {
     <div class="btn-group">
      <li class="dropdown btn btn-primary">
       <span class="fa fa-download">
-       <span class="caret">
-       </span>
+      </span>
+      <span class="hidden-xs hidden-sm">
+       Download
+      </span>
+      <span class="caret">
       </span>
       <ul class="dropdown-menu dropdown-toggle">
        <li>
@@ -253,11 +252,17 @@ try {
       <a href="/public/testid0/testid0_collection/1" style="color:white" title="Back to root collection">
        <span class="fa fa-arrow-left">
        </span>
+       <span class="hidden-xs hidden-sm">
+        Back
+       </span>
       </a>
      </li>
      <li class="btn btn-info">
       <a href="/public/testid0/testid0_collection/1/addToCollection" style="color:white" title="Add to Collection">
        <span class="fa fa-link">
+       </span>
+       <span class="hidden-xs hidden-sm">
+        Add to Collection
        </span>
       </a>
      </li>
@@ -270,8 +275,11 @@ try {
    </h3>
    <form class="submission-form" method="post" name="filterTypes">
     <select class="chosen-select" name="typeFilter" style="width: 260px">
+     <option selected="">
+      Show Only Root Objects
+     </option>
      <option>
-      No Type Filter
+      Show All Objects
      </option>
      <option value="http://www.biopax.org/release/biopax-level3.owl#DnaRegion">
       biopax:DnaRegion
@@ -337,95 +345,128 @@ try {
        <div class="panel-body">
         <table class="table table-striped entry-detail-table">
         </table>
-        <div data-src="" id="sbh-description">
+        <div data-src="testUpdateMutableDescription" id="sbh-description">
+         <h3>
+          Description
+         </h3>
+         testUpdateMutableDescription
+         <br/>
+         <br/>
         </div>
-        <div data-src="" id="sbh-notes">
+        <div data-src="testUpdateMutableNotes" id="sbh-notes">
+         <h3>
+          Notes
+         </h3>
+         testUpdateMutableNotes
+         <br/>
+         <br/>
         </div>
-        <div data-src="" id="sbh-source">
+        <div data-src="testUpdateMutableSource" id="sbh-source">
+         <h3>
+          Source
+         </h3>
+         testUpdateMutableSource
+         <br/>
+         <br/>
         </div>
-        <div data-src="none" id="sbh-citations">
+        <div data-src="1234" id="sbh-citations">
+         <h3>
+          References
+         </h3>
+         <br/>
+         Nadeau, D., Marchand, C., "Change in the kinetics of sulphacetamide tissue distribution in Walker tumor-bearing rats.", Drug metabolism and disposition: the biological fate of chemicals, 3(6): 565-76, PMID:
+         <a href="https://www.ncbi.nlm.nih.gov/pubmed/1234">
+          1234
+         </a>
+         .
+         <br/>
+         <br/>
         </div>
        </div>
       </div>
      </div>
-     <div class="panel panel-default">
-      <div class="panel-heading">
-       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapseOther">
-         <b>
-          Other Properties
-         </b>
-        </a>
-       </h4>
-      </div>
-      <div class="panel-collapse collapse" id="collapseOther">
-       <div class="panel-body">
-        <div class="row">
-         <div class="col-md-12">
-          <table class="table table-striped entry-detail-table">
-           <tbody>
-            <tr>
-             <td>
-              synbiohub#ownedBy
-              <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
-               <span class="fa fa-info-circle">
-               </span>
-              </a>
-             </td>
-             <td>
+    </div>
+    <div class="panel panel-default">
+     <div class="panel-heading">
+      <h4 class="panel-title">
+       <a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseOther">
+        <b>
+         Other Properties
+        </b>
+       </a>
+      </h4>
+     </div>
+     <div class="panel-collapse collapse" id="collapseOther">
+      <div class="panel-body">
+       <div class="row">
+        <div class="col-md-12">
+         <table class="table table-striped entry-detail-table">
+          <tbody>
+           <tr>
+            <td>
+             synbiohub#ownedBy
+             <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
+              <span class="fa fa-info-circle">
+              </span>
+             </a>
+            </td>
+            <td>
+             <div editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" edittext="http://localhost:7777/user/testuser" style="display: contents">
               user/testuser
-              <a href="/user/testuser" title="Learn more about this annotation value">
-               <span class="fa fa-info-circle">
-               </span>
-              </a>
-              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/testuser&gt;&amp;" title="Find all records with this annotation">
-               <span class="fa fa-search">
-               </span>
-              </a>
-             </td>
-            </tr>
-            <tr>
-             <td>
-              synbiohub#topLevel
-              <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" title="Learn more about this annotation type">
-               <span class="fa fa-info-circle">
-               </span>
-              </a>
-             </td>
-             <td>
+             </div>
+             <a href="/user/testuser" title="Learn more about this annotation value">
+              <span class="fa fa-info-circle">
+              </span>
+             </a>
+             <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/testuser&gt;&amp;" title="Find all records with this annotation">
+              <span class="fa fa-search">
+              </span>
+             </a>
+            </td>
+           </tr>
+           <tr>
+            <td>
+             synbiohub#topLevel
+             <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" title="Learn more about this annotation type">
+              <span class="fa fa-info-circle">
+              </span>
+             </a>
+            </td>
+            <td>
+             <div editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" edittext="http://localhost:7777/public/testid0/testid0_collection/1" style="display: contents">
               testid0_collection/1
-              <a href="/public/testid0/testid0_collection/1" title="Learn more about this annotation value">
-               <span class="fa fa-info-circle">
-               </span>
-              </a>
-              <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel&gt;=&lt;http://localhost:7777/public/testid0/testid0_collection/1&gt;&amp;" title="Find all records with this annotation">
-               <span class="fa fa-search">
-               </span>
-              </a>
-             </td>
-            </tr>
-           </tbody>
-          </table>
-         </div>
+             </div>
+             <a href="/public/testid0/testid0_collection/1" title="Learn more about this annotation value">
+              <span class="fa fa-info-circle">
+              </span>
+             </a>
+             <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel&gt;=&lt;http://localhost:7777/public/testid0/testid0_collection/1&gt;&amp;" title="Find all records with this annotation">
+              <span class="fa fa-search">
+              </span>
+             </a>
+            </td>
+           </tr>
+          </tbody>
+         </table>
         </div>
        </div>
       </div>
      </div>
-     <div class="panel panel-default">
-      <div class="panel-heading">
-       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapseAttachments">
-         <b>
-          Attachments
-         </b>
-        </a>
-       </h4>
-      </div>
-      <div class="panel-collapse collapse in" id="collapseAttachments">
-       <div class="panel-body">
-        <div class="row">
-         <div class="col-md-12">
-         </div>
+    </div>
+    <div class="panel panel-default">
+     <div class="panel-heading">
+      <h4 class="panel-title">
+       <a class="accordion-toggle" data-toggle="collapse" href="#collapseAttachments">
+        <b>
+         Attachments
+        </b>
+       </a>
+      </h4>
+     </div>
+     <div class="panel-collapse collapse in" id="collapseAttachments">
+      <div class="panel-body">
+       <div class="row">
+        <div class="col-md-12">
         </div>
        </div>
       </div>

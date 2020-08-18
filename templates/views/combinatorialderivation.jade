@@ -31,14 +31,12 @@ block topLevelPropertyTable
                     span.fa.fa-search
                 br
 							
-block topLevelButtons
-
 block topLevelPanels
                 if meta.variableComponents && meta.variableComponents.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseVariableComponents')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseVariableComponents', class='collapsed')
                                     | <b>Variable Components</b>
                         #collapseVariableComponents.panel-collapse.collapse
                             .panel-body

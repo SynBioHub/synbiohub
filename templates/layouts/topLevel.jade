@@ -9,8 +9,9 @@ block generalTopLevelButtons
             div.btn-group
                 li.dropdown.btn.btn-primary
                     span.fa.fa-download
-                        |  
-                        span.caret
+                    span.hidden-xs.hidden-sm
+                        | &nbsp;&nbsp;Download&nbsp;&nbsp;
+                    span.caret
                     ul.dropdown-menu.dropdown-toggle
                         li
                             a(href=meta.url + '/sbol') Download SBOL File
@@ -38,36 +39,51 @@ block generalTopLevelButtons
                     li.dropdown.btn.btn-primary
                             a(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name,style="color:white")
                                 span.fa.fa-search
-                                |  
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Search
                 block topLevelButtons
                 li.btn.btn-success
                         a(href=rootCollection,title='Back to root collection',style="color:white")
                             span.fa.fa-arrow-left
+                            span.hidden-xs.hidden-sm
+                                | &nbsp;&nbsp;Back
                 if meta.triplestore != 'public'
                     li.btn.btn-success
                             a(onclick="popup()",title='Share',style="color:white")
                                 span.fa.fa-share
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Share
                 if meta.triplestore != 'public' && locals.user && locals.user.isCurator
                     li.btn.btn-success
                             a(href=meta.url + '/makePublic',title='Make Public',style="color:white")
                                 span.fa.fa-unlock
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Make Public
                 if meta.canEdit && meta.triplestore != 'public' 
                     if rdfType.name == 'Collection'
                         li.btn.btn-success
                                 a(href=meta.url + '/removeCollection',title='Remove Collection',style="color:white",onclick="return confirm('Are you sure you want to delete this?')")
                                     span.fa.fa-remove
+                                    span.hidden-xs.hidden-sm
+                                        | &nbsp;&nbsp;Remove
                     else 
                         li.btn.btn-success
                                 a(href=meta.url + '/remove',title='Remove',style="color:white", onclick="return confirm('Are you sure you want to delete this?')")
                                     span.fa.fa-remove
+                                    span.hidden-xs.hidden-sm
+                                        | &nbsp;&nbsp;Remove
                 if locals.user
                     li.btn.btn-info
                             a(href=meta.url + "/addToCollection",title='Add to Collection',style="color:white")
                                 span.fa.fa-link
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Add to Collection
                 if meta.canEdit
                     li.btn.btn-info
                             a(href=meta.url + "/addOwner",title='Add Owner',style="color:white")
                                 span.fa.fa-id-card
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Add Owner
             br
             br
 
@@ -77,7 +93,7 @@ block topLevelPanelsCont
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseCollections')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseCollections', class='collapsed')
                                     | <b>Member of these Collections</b>
                         #collapseCollections.panel-collapse.collapse
                             .panel-body
@@ -106,7 +122,7 @@ block topLevelPanelsCont
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapse' + plugin.safeName)
+                                a.accordion-toggle(data-toggle='collapse', href='#collapse' + plugin.safeName, class='collapsed')
                                     | <b>#{plugin.name}</b>
                         panel-collapse.collapse(id='collapse' + plugin.safeName)
                             .panel-body

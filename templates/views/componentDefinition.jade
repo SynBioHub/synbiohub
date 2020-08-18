@@ -72,8 +72,9 @@ block topLevelBelowTitle
 block topLevelButtons
     li.dropdown.btn.btn-primary
         span.fa.fa-search
-            |  
-            span.caret
+        span.hidden-xs.hidden-sm
+            | &nbsp;&nbsp;Search&nbsp;&nbsp;
+        span.caret
         ul.dropdown-menu.dropdown-toggle
             li
                 a(href=href=meta.url + '/uses',title='Find all uses of this '+rdfType.name) Find Uses
@@ -89,17 +90,22 @@ block topLevelButtons
         li.dropdown.btn.btn-success
             a(href=meta.url + '/createImplementation',title='Create Implementation',style="color:white")
                 span.fa.fa-cubes
+                span.hidden-xs.hidden-sm
+                    | &nbsp;&nbsp;Create Implementation
     if meta.remote
         li.dropdown.btn.btn-primary
             span.fa.fa-send
-                |  
-                span.caret
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Copy&nbsp;&nbsp;
+            span.caret
             ul.dropdown-menu.dropdown-toggle
                 li
                     a(href=meta.url + '/copyFromRemote') Copy to SynBioHub
     if meta.BenchlingRemotes && meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Send&nbsp;&nbsp;
                 |  
                 span.caret
             ul.dropdown-menu.dropdown-toggle
@@ -110,6 +116,8 @@ block topLevelButtons
     else if meta.BenchlingRemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Send&nbsp;&nbsp;
                 |  
                 span.caret
             ul.dropdown-menu.dropdown-toggle
@@ -118,6 +126,8 @@ block topLevelButtons
     else if meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Send&nbsp;&nbsp;
                 |  
                 span.caret
             ul.dropdown-menu.dropdown-toggle
@@ -134,7 +144,7 @@ block topLevelPanels
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseComponents')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseComponents', class='collapsed')
                                     | <b>Components</b>
                         #collapseComponents.panel-collapse.collapse
                             .panel-body
@@ -171,7 +181,7 @@ block topLevelPanels
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceAnnotations')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceAnnotations', class='collapsed')
                                     | <b>Sequence Annotations</b>
                         #collapseSequenceAnnotations.panel-collapse.collapse
                             .panel-body
@@ -231,7 +241,7 @@ block topLevelPanels
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceConstraints')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSequenceConstraints', class='collapsed')
                                     | <b>Sequence Constraints</b>
                         #collapseSequenceConstraints.panel-collapse.collapse
                             .panel-body
