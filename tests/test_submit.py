@@ -1,25 +1,30 @@
 import requests
 from unittest import TestCase
+from test_arguments import test_print
 from test_functions import compare_get_request, compare_post_request
 
 class TestSubmit(TestCase):
 
     def test_main_page(self):
+        test_print("test_main_page starting")
         headers = {'Accept':'text/plain'}
         compare_get_request("/", test_name = "after_admin_login", headers = headers)
 
+        test_print("test_main_page completed")
 
 
     def test_get_submit_submissions_empty(self):
+        test_print("test_get_submit_submissions_empty starting")
         compare_get_request("submit")
         compare_get_request("manage")
 
+        # working curl request
+        #curl -X POST -H "Accept: text/plain" -H "X-authorization: e35054aa-04e3-425c-afd2-66cb95ff66e1" -F id=green -F version="3" -F name="test" -F description="testd" -F citations="none" -F overwrite_merge="0" -F file=@"./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml" http://localhost:7777/submit"""
 
-    # working curl request
-    """curl -X POST -H "Accept: text/plain" -H "X-authorization: e35054aa-04e3-425c-afd2-66cb95ff66e1" -F id=green -F version="3" -F name="test" -F description="testd" -F citations="none" -F overwrite_merge="0" -F file=@"./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml" http://localhost:7777/submit"""
-
+        test_print("test_get_submit_submissions_empty completed")
 
     def test_create_id_missing(self):
+        test_print("test_create_id_missing starting")
         data = {'version' : (None, '1'),
                 'name' : (None, 'testcollection'),
                 'description':(None, 'testdescription'),
@@ -32,7 +37,10 @@ class TestSubmit(TestCase):
             compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                                  files = files, test_name = "missing_id")
 
+        test_print("test_create_id_missing completed")
+
     def test_create_and_delete_collections(self):
+        test_print("test_create_and_delete_collections starting")
         # create the collection
         data = {'id':(None, 'testid'),
                 'version' : (None, '1'),
@@ -63,9 +71,11 @@ class TestSubmit(TestCase):
         compare_get_request("manage", test_name = "no_submissions")
 
 
+        test_print("test_create_and_delete_collections completed")
 
 
     def create_collection2(self):
+        test_print("create_collection2 starting")
         data = {'id':(None, 'testid2'),
                 'version' : (None, '1'),
                 'name' : (None, 'testcollection2'),
@@ -83,7 +93,10 @@ class TestSubmit(TestCase):
         # delete collection
         #compare_get_request("/user/testuser/testid2/testid_collection2/1/removeCollection")
 
+        test_print("create_collection2 completed")
+
     def make_new_collection(self, uniqueid):
+        test_print("make_new_collection starting")
         # create the collection
         data = {'id':(None, 'testid' + uniqueid),
                 'version' : (None, '1'),
@@ -97,6 +110,8 @@ class TestSubmit(TestCase):
 
         compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                              files = files, test_name = "generic_collection" + uniqueid)
+
+        test_print("make_new_collection completed")
         return data
 
     """ def test_bad_make_public(self):
@@ -113,6 +128,7 @@ class TestSubmit(TestCase):
 
 
     def test_make_public(self):
+        test_print("test_make_public starting")
         data = self.make_new_collection("0")
 
 
@@ -127,6 +143,8 @@ class TestSubmit(TestCase):
         # try to delete the collection
         with self.assertRaises(requests.exceptions.HTTPError):
             compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid0", "testid0_collection", "1"], test_name = 'remove')
+
+        test_print("test_make_public completed")
 
 #    def make_new_private_collection(self, uniqueid):
         # create the collection
