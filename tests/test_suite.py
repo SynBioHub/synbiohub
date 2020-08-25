@@ -31,14 +31,14 @@ if __name__ == '__main__':
     import test_submit
     addTestModule(test_submit)
 
-    import test_edit
-    addTestModule(test_edit)
-
     import test_search
     addTestModule(test_search)
 
     import test_download
     addTestModule(test_download)
+
+    import test_edit
+    addTestModule(test_edit)
 
     import test_admin
     addTestModule(test_admin)

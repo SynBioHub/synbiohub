@@ -9,7 +9,7 @@ class TestEdit(TestCase):
         # test_update_mutableDescription
         test_print("test_update_mutableDescription starting")
         data={
-            'uri': 'http://localhost:7777/public/testid0/testid0_collection/1',
+            'uri': 'http://localhost:7777/public/testid1/testid1_collection/1',
             'value' : 'testUpdateMutableDescription'
         }
         compare_post_request("updateMutableDescription", data, headers = {"Accept": "text/plain"},test_name = "test_update_mutableDescription")
@@ -18,7 +18,7 @@ class TestEdit(TestCase):
         # test_update_mutableNotes
         test_print("test_update_mutableNotes starting")
         data={
-            'uri': 'http://localhost:7777/public/testid0/testid0_collection/1',
+            'uri': 'http://localhost:7777/public/testid1/testid1_collection/1',
             'value' : 'testUpdateMutableNotes'
         }
         compare_post_request("updateMutableNotes", data, headers = {"Accept": "text/plain"},test_name = "test_update_mutableNotes")
@@ -27,7 +27,7 @@ class TestEdit(TestCase):
         # test_update_mutableSource
         test_print("test_update_mutableSource starting")
         data={
-            'uri': 'http://localhost:7777/public/testid0/testid0_collection/1',
+            'uri': 'http://localhost:7777/public/testid1/testid1_collection/1',
             'value' : 'testUpdateMutableSource'
         }
         compare_post_request("updateMutableSource", data, headers = {"Accept": "text/plain"},test_name = "test_update_mutableSource")
@@ -36,7 +36,7 @@ class TestEdit(TestCase):
         # test_edit_citations
         test_print("test_edit_citations starting")
         data={
-            'uri': 'http://localhost:7777/public/testid0/testid0_collection/1',
+            'uri': 'http://localhost:7777/public/testid1/testid1_collection/1',
             'value' : '1234'
         }
         compare_post_request("updateCitations", data, headers = {"Accept": "text/plain"},test_name = "test_edit_mutable_citations")
