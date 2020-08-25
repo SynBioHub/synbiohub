@@ -25,9 +25,9 @@ class TestSearch(TestCase):
         test_print("test_advancedSearch completed")
 
         # test_rootCollections(self):
-        test_print("test_advancedSearch starting")
+        test_print("test_rootCollections starting")
         compare_get_request("/rootCollections")
-        test_print("test_advancedSearch completed")
+        test_print("test_rootCollections completed")
 
         # test_sparql(self):
         test_print("test_sparql starting")

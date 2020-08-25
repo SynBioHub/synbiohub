@@ -5,15 +5,13 @@ from test_functions import compare_get_request, compare_post_request
 
 class TestSubmit(TestCase):
 
-    def test_main_page(self):
+    def test_submit(self):
         test_print("test_main_page starting")
         headers = {'Accept':'text/plain'}
         compare_get_request("/", test_name = "after_admin_login", headers = headers)
 
         test_print("test_main_page completed")
 
-
-    def test_get_submit_submissions_empty(self):
         test_print("test_get_submit_submissions_empty starting")
         compare_get_request("submit")
         compare_get_request("manage")
@@ -23,8 +21,8 @@ class TestSubmit(TestCase):
 
         test_print("test_get_submit_submissions_empty completed")
 
-    def test_create_id_missing(self):
         test_print("test_create_id_missing starting")
+
         data = {'version' : (None, '1'),
                 'name' : (None, 'testcollection'),
                 'description':(None, 'testdescription'),
@@ -39,7 +37,6 @@ class TestSubmit(TestCase):
 
         test_print("test_create_id_missing completed")
 
-    def test_create_and_delete_collections(self):
         test_print("test_create_and_delete_collections starting")
         # create the collection
         data = {'id':(None, 'testid'),
@@ -58,7 +55,7 @@ class TestSubmit(TestCase):
             compare_post_request("submit", data, headers = {"Accept": "text/plain"},
                                  files = files, test_name = "submit_already_in_use")
 
-        self.create_collection2()
+#        self.create_collection2()
 
         compare_get_request("manage", test_name = "two_submissions")
         compare_get_request("submit", test_name = "two_submissions")
@@ -73,8 +70,6 @@ class TestSubmit(TestCase):
 
         test_print("test_create_and_delete_collections completed")
 
-
-    def create_collection2(self):
         test_print("create_collection2 starting")
         data = {'id':(None, 'testid2'),
                 'version' : (None, '1'),
@@ -95,42 +90,36 @@ class TestSubmit(TestCase):
 
         test_print("create_collection2 completed")
 
-    def make_new_collection(self, uniqueid):
         test_print("make_new_collection starting")
         # create the collection
-        data = {'id':(None, 'testid' + uniqueid),
+        data = {'id':(None, 'testid1'),
                 'version' : (None, '1'),
-                'name' : (None, 'testcollection' + uniqueid),
-                'description':(None, 'testdescription' + uniqueid),
+                'name' : (None, 'testcollection1'),
+                'description':(None, 'testdescription1'),
                 'citations':(None, 'none'),
                 'overwrite_merge':(None, '0')}
 
-        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
-                                              open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
+        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml",
+                                              open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml', 'rb'))}
 
         compare_post_request("submit", data, headers = {"Accept": "text/plain"},
-                             files = files, test_name = "generic_collection" + uniqueid)
+                             files = files, test_name = "generic_collection1")
 
         test_print("make_new_collection completed")
-        return data
 
-    """ def test_bad_make_public(self):
-        data = self.make_new_collection("1")
+#    """ def test_bad_make_public(self):
+#        data = self.make_new_collection("1")
+#
+#        data['tabState'] = 'new'
+#
+#        # try to remove the collection but don't enter a id
+#        del data['id']
+#        with self.assertRaises(requests.exceptions.HTTPError):
+#            compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid1", "testid_collection1", "1"], data = data)
+#    TODO: uncomment when this does raise an HTTPError in synbiohub
+#        """
 
-        data['tabState'] = 'new'
-
-        # try to remove the collection but don't enter a id
-        del data['id']
-        with self.assertRaises(requests.exceptions.HTTPError):
-            compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid1", "testid_collection1", "1"], data = data)
-    TODO: uncomment when this does raise an HTTPError in synbiohub
-        """
-
-
-    def test_make_public(self):
         test_print("test_make_public starting")
-        data = self.make_new_collection("0")
-
 
         # get the view
         compare_get_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid0", "testid0_collection", "1"])
@@ -138,11 +127,11 @@ class TestSubmit(TestCase):
         data['tabState'] = 'new'
 
         # make the collection public
-        compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid0", "testid0_collection", "1"], data = data)
+        compare_post_request("/user/:userId/:collectionId/:displayId/:version/makePublic", route_parameters = ["testuser", "testid1", "testid1_collection", "1"], data = data)
 
         # try to delete the collection
         with self.assertRaises(requests.exceptions.HTTPError):
-            compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid0", "testid0_collection", "1"], test_name = 'remove')
+            compare_get_request("/public/:collectionId/:displayId/:version/removeCollection", route_parameters = ["testid1", "testid1_collection", "1"], test_name = 'remove')
 
         test_print("test_make_public completed")
 
@@ -158,5 +147,6 @@ class TestSubmit(TestCase):
 #
 #        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml", open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml', 'rb'))}
 #
-#        compare_post_request("submit", data, headers = {"Accept": "text/plain"}, files = files, test_name = "generic_collection" + uniqueid+1 )
+#        compare_post_request("submit", data, headers = {"Accept":
+#        "text/plain"}, files = files, test_name = "second_generic_collection")
 #
