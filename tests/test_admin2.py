@@ -64,7 +64,7 @@ class TestAdmin2(TestCase):
             'isCurator' : '1',
             'isAdmin' : '1',
         }
-        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
+        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser333")
         test_print("test_newUser completed")
 
 #    def test_admin_federate(self):

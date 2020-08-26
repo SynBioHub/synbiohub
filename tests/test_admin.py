@@ -94,17 +94,10 @@ class TestAdmin(TestCase):
         compare_get_request("admin/registries")
         test_print("test_admin_registries completed")
 
-        #    def test_admin_retreiveFromWebOfRegistries(self):
-        #        data={
-        #        }
-        #        compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
-
-        #    def test_admin_federate(self):
-        #        data={
-        #            'administratorEmail': 'myers@ece.utah.edu',
-        #            'webOfRegistries' : 'https://wor.synbiohub.org',
-        #        }
-        #        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+        def test_admin_retreiveFromWebOfRegistries(self):
+            data={
+            }
+            compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
 
         # test_admin_setAdministratorEmail(self):
         test_print("test_admin_setAdministratorEmail starting")
@@ -147,7 +140,7 @@ class TestAdmin(TestCase):
 
         # test_admin_explorer(self):
         test_print("test_admin_explorer starting")
-        compare_get_request("/admin/explorer")
+#        compare_get_request("/admin/explorer")
         test_print("test_admin_explorer completed")
 
         # test_explorerUpdateIndex(self):
@@ -201,22 +194,16 @@ class TestAdmin(TestCase):
         test_print("test_saveRemoteBenchling completed")
 
         #    def test_newUser(self):
-        #        data = {
-        #            'username': 'adminNewUser',
-        #            'name' : 'adminNewUser',
-        #            'email' : 'adminNewUser@user.synbiohub',
-        #            'affiliation' : 'adminNewUser',
-        #            'isMember' : '1',
-        #            'isCurator' : '1',
-        #            'isAdmin' : '1',
-        #        }
-        #        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
-
-        #    def test_updateUserConfig(self):
-        #        data={
-        #            'allowPublicSignup': 'False',
-        #        }
-        #        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+        data = {
+            'username': 'adminNewUser',
+            'name' : 'adminNewUser',
+            'email' : 'adminNewUser@user.synbiohub',
+            'affiliation' : 'adminNewUser',
+            'isMember' : '1',
+            'isCurator' : '1',
+            'isAdmin' : '1',
+        }
+        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
 
         # test_updateUser(self):
         test_print("test_updateUser starting")
@@ -229,5 +216,21 @@ class TestAdmin(TestCase):
             'isCurator' : '1',
             'isAdmin' : '1'
         }
+
         compare_post_request("/admin/updateUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUser")
         test_print("test_updateUser completed")
+
+        #   def test_admin_federate(self):
+#        data={
+#            'administratorEmail': 'myers@ece.utah.edu',
+#            'webOfRegistries' : 'https://wor.synbiohub.org',
+#        }
+#        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+
+        #    def test_updateUserConfig(self):
+        data={
+            'allowPublicSignup': 'False',
+        }
+        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+
+

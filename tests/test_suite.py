@@ -46,12 +46,6 @@ if __name__ == '__main__':
     import test_admin2
     addTestModule(test_admin2)
 
-#    import test_features
-#    addTestModule(test_features)
-
-#    import test_user_features
-#    addTestModule(test_user_features)
-
     import docker_test_setup
     addTestModule(docker_test_setup)
 
