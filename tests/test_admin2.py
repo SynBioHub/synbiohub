@@ -53,20 +53,6 @@ class TestAdmin2(TestCase):
         compare_post_request("/admin/deleteUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteUser")
         test_print("test_admin_DeleteUser completed")
 
-        # test_newUser(self):
-        test_print("test_newUser starting")
-        data = {
-            'username': 'adminNewUser',
-            'name' : 'adminNewUser',
-            'email' : 'adminNewUser@user.synbiohub',
-            'affiliation' : 'adminNewUser',
-            'isMember' : '1',
-            'isCurator' : '1',
-            'isAdmin' : '1',
-        }
-        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser333")
-        test_print("test_newUser completed")
-
 #    def test_admin_federate(self):
 #        data={
 #            'administratorEmail': 'myers@ece.utah.edu',
