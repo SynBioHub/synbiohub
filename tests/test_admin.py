@@ -146,9 +146,9 @@ class TestAdmin(TestCase):
         test_print("test_admin_status completed")
 
         # test_admin_explorer(self):
-        test_print("test_admin_explorer starting")
-        compare_get_request("/admin/explorer")
-        test_print("test_admin_explorer completed")
+#        test_print("test_admin_explorer starting")
+#        compare_get_request("/admin/explorer")
+#        test_print("test_admin_explorer completed")
 
         # test_explorerUpdateIndex(self):
         test_print("test_explorerUpdateIndex starting")
