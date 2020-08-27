@@ -40,6 +40,9 @@ if __name__ == '__main__':
     import test_edit
     addTestModule(test_edit)
 
+    import test_attachment
+    addTestModule(test_attachment)
+
     import test_admin
     addTestModule(test_admin)
 
