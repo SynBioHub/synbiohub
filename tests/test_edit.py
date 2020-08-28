@@ -42,16 +42,30 @@ class TestEdit(TestCase):
         compare_post_request("updateCitations", data, headers = {"Accept": "text/plain"},test_name = "test_edit_mutable_citations")
         test_print("test_edit_citations completed")
 
-#    def test_add_field(self):
-#        data={
-#            'object' : 'testAddField'
-#        }
-#        compare_post_request("http://localhost:7777/public/testid0/testid0_collection/1/add/title", data, headers = {"Accept": "text/plain"},test_name = "test_add_field")
+        test_print("test_edit_field_private_collection starting")
+        data={
+            'previous': '<previous>',
+            'object' : 'testEditTitle',
+            'pred' : '<pred>',
+        }
+        compare_post_request("user/:userId/:collectionId/:displayId/:version/edit/:field",route_parameters = ["testuser", "testid2", "testid2_collection", "1", "title"],data=data,  headers = {"Accept": "text/plain"}, test_name = "test_edit_field_private_collection")
 
-#    def test_edit_field(self):
-#        data={
-#            'previous' : 'testAddField',
-#            'object' : 'testEditField'
-#        }
-#        compare_post_request("http://localhost:7777/public/testid0/testid0_collection/1/add/title", data, headers = {"Accept": "text/plain"},test_name = "test_add_field")
+        test_print("test_edit_field_private_collection completed")
+
+        test_print("test_edit_citations starting")
+        data={
+            'object' : 'testAddRole',
+            'pred' : '<pred>',
+        }
+        compare_post_request("user/:userId/:collectionId/:displayId/:version/add/:field",route_parameters = ["testuser", "testid2", "testid2_collection", "1", "wasDerivedFrom"],data=data,  headers = {"Accept": "text/plain"}, test_name = "test_add_role_private_collection")
+
+        test_print("test_remove_field_private_collection starting")
+
+        data={
+            'object' : 'testEditTitle',
+            'pred' : '<pred>',
+        }
+#        compare_post_request("user/:userId/:collectionId/:displayId/:version/remove/:field",route_parameters = ["testuser", "testid2", "testid2_collection", "1", "title"],data=data,  headers = {"Accept": "text/plain"}, test_name = "test_remove_field_private_collection")
+
+        test_print("test_edit_field_private_collection completed")
 
