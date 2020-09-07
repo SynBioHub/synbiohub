@@ -56,13 +56,13 @@ class TestAdmin(TestCase):
         test_print("test_admin_mail completed")
 
         # test_post_admin_mail(self):
-        test_print("test_admin_mail starting")
+        test_print("test_post_admin_mail starting")
         data={
             'key': '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',
             'fromEmail' : 'synbiohub@synbiohub.utah.edu',
         }
         compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
-        test_print("test_admin_mail completed")
+        test_print("test_post_admin_mail completed")
 
         # test_admin_savePlugin(self):
         test_print("test_admin_savePlugin starting")
@@ -146,9 +146,9 @@ class TestAdmin(TestCase):
         test_print("test_admin_status completed")
 
         # test_admin_explorer(self):
-        test_print("test_admin_explorer starting")
-        compare_get_request("/admin/explorer")
-        test_print("test_admin_explorer completed")
+#        test_print("test_admin_explorer starting")
+#        compare_get_request("/admin/explorer")
+#        test_print("test_admin_explorer completed")
 
         # test_explorerUpdateIndex(self):
         test_print("test_explorerUpdateIndex starting")
