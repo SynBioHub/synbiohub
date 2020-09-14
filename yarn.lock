@@ -7541,10 +7541,17 @@ virtual-dom@^2.1.1:
     x-is-array "0.1.0"
     x-is-string "0.1.0"
 
-visbol-react@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.3.tgz#38bbe4c68e292784d06d4efec5430fd3a807e071"
-  integrity sha512-G1FiUO2vi07Zg/txKYbCzdW1xvdsahB83dYVr8y1NOKBJaD+x3WxBP4Fq4SuGf9Q3Js/hTPkcy3bsRSWavZAnA==
+visbol-react@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.12.tgz#0086418460a060e040d4a3dffcb6478f1d5162a2"
+  integrity sha512-0XpBeh4NCc30Oc9wQnncFSjdSQC9axjO52Kg7zzZ3B/n0jDJ+yngYWkXPlJqUvRlpfjbzTwu2XoD5Rn6i4XXHA==
+  dependencies:
+    react-parametric-svg "^0.1.7"
+
+visbol-react@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.9.tgz#f369e2eafe57328e6c409eb0420fd83af6869c75"
+  integrity sha512-L2TPM4v/WTKnOILwbHHZduMgUPsC6ukT2cFw4KPl+F3lVpkxXPhfg3q/DrEY6PwX+VKSfLhxrHKX7dnZl+qo1w==
   dependencies:
     react-parametric-svg "^0.1.7"
 
@@ -7561,14 +7568,14 @@ visbol@1.4.30:
     sha1 "^1.1.1"
     urijs "^1.16.1"
 
-visbol@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.0.tgz#8fbd3ae010533d0593c724d3cb27d6017cb847d3"
-  integrity sha512-xPA3pmFtLbzHK9OU2lzqRfSBpg0LEGF4WeB4MS8tjEELVbvRZkkW9yiGxdhrWdbMVXhhEkZBgQo/Sb7AhBSTtw==
+visbol@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.1.tgz#2ffd239dbe3df3e43416b12d705be76d0f2834f7"
+  integrity sha512-zc8E6haTdHNAudUkkvmqHE5StD66JRUW8tTEpgPtm6Hhz6LaFDZQ3/LjYHS2BEgQMbRDOGCYmuOrD6nldrFbpw==
   dependencies:
     sboljs "^2.1.9"
     visbol "1.4.30"
-    visbol-react "^1.0.3"
+    visbol-react "^1.0.9"
 
 vm-browserify@^1.0.0:
   version "1.1.0"
