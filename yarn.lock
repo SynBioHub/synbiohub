@@ -7541,24 +7541,17 @@ virtual-dom@^2.1.1:
     x-is-array "0.1.0"
     x-is-string "0.1.0"
 
-visbol-react@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.12.tgz#0086418460a060e040d4a3dffcb6478f1d5162a2"
-  integrity sha512-0XpBeh4NCc30Oc9wQnncFSjdSQC9axjO52Kg7zzZ3B/n0jDJ+yngYWkXPlJqUvRlpfjbzTwu2XoD5Rn6i4XXHA==
+visbol-react@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.14.tgz#d7a0dbc85539a5a82e3438fa51bb95506cb628c2"
+  integrity sha512-dhLAT1HQ9hiK+dAJ9FbLJ0m/T+BXRvdvm8cRXf/PJ7fzgb5bC+TXwJwsu7PE5lqxEi6L9Vv6VjC/cHCrBemkmQ==
   dependencies:
     react-parametric-svg "^0.1.7"
 
-visbol-react@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.9.tgz#f369e2eafe57328e6c409eb0420fd83af6869c75"
-  integrity sha512-L2TPM4v/WTKnOILwbHHZduMgUPsC6ukT2cFw4KPl+F3lVpkxXPhfg3q/DrEY6PwX+VKSfLhxrHKX7dnZl+qo1w==
-  dependencies:
-    react-parametric-svg "^0.1.7"
-
-visbol@1.4.30:
-  version "1.4.30"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.30.tgz#55df46ae9293244a74fc224d1db9f2ef6f2ae54e"
-  integrity sha512-fgBpXqS75taJFlWfevZWQ9BThykNSdKRRhSTpVKI3aAZzBa2eljcrPrbvvG0Al7I7509Wi+rUrx5Bg3uyVhiDA==
+visbol@1.4.32:
+  version "1.4.32"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.32.tgz#71a243cef17e084478ef8d8a5fde92d4ffb00663"
+  integrity sha512-N6jQw05sLOTYWCQXOPnA+UUv6/98xTOeFNb/HbVhoZEUGFB5l34jvsX+Ge9OkraIuiYEAVzwypSd0vFbzmu4tA==
   dependencies:
     rdf-ext "^1.1.2"
     rdf-graph-abstract "^0.3.0"
@@ -7568,14 +7561,13 @@ visbol@1.4.30:
     sha1 "^1.1.1"
     urijs "^1.16.1"
 
-visbol@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.1.tgz#2ffd239dbe3df3e43416b12d705be76d0f2834f7"
-  integrity sha512-zc8E6haTdHNAudUkkvmqHE5StD66JRUW8tTEpgPtm6Hhz6LaFDZQ3/LjYHS2BEgQMbRDOGCYmuOrD6nldrFbpw==
+visbol@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.5.tgz#49d4000c9af8ed4a19a088a5f48048da139587b6"
+  integrity sha512-Y/Z9R42mKdhxKrC7tK+W9tlA+Ipd/DZCyEwYAIZF4iDP5gTYwZ4yxrx8fyA6eyOaqJX2f0QnFPwMe90RVEsZQQ==
   dependencies:
     sboljs "^2.1.9"
-    visbol "1.4.30"
-    visbol-react "^1.0.9"
+    visbol "1.4.32"
 
 vm-browserify@^1.0.0:
   version "1.1.0"
