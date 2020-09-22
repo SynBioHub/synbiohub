@@ -1,50 +1,71 @@
 import requests
 import os
+from test_arguments import test_print
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 
 
 class TestAdmin(TestCase):
 
-    def test_admin_status(self):
-      compare_get_request("/admin")
+    def test_admin1(self):
+        # test_admin_status(self):
+        test_print("test_admin_status starting")
+        compare_get_request("/admin")
+        test_print("test_admin_status completed")
 
-    def test_admin_users(self):
+        # test_admin_users(self):
+        test_print("test_admin_users starting")
         compare_get_request("/admin/users")
+        test_print("test_admin_users completed")
 
-    def test_admin_graphs(self):
+        # test_admin_graphs(self):
+        test_print("test_admin_graphs starting")
         compare_get_request("/admin/graphs")
+        test_print("test_admin_graphs completed")
 
-    def test_admin_remotes(self):
+        # test_admin_remotes(self):
+        test_print("test_admin_remotes starting")
         compare_get_request("/admin/remotes")
+        test_print("test_admin_remotes completed")
 
-    def test_admin_theme(self):
+        # test_admin_theme(self):
+        test_print("test_admin_theme starting")
         compare_get_request("/admin/theme")
+        test_print("test_admin_theme completed")
 
-    def test_admin_newUser(self):
+        # test_admin_newUser(self):
+        test_print("test_admin_newUser starting")
         compare_get_request("/admin/newUser")
+        test_print("test_admin_newUser completed")
 
-    def test_admin_sparql(self):
+        # test_admin_sparql(self):
+        test_print("test_admin_sparql starting")
         compare_get_request("/admin/sparql", headers = {"Accept": "text/html"})
+        test_print("test_admin_sparql completed")
 
-    # TODO: fix backup in docker containers
-    #def test_admin_backup(self):
-    #    compare_get_request("admin/backup")
+        # TODO: fix backup in docker containers
+        #def test_admin_backup(self):
+        #    compare_get_request("admin/backup")
 
-    #def test_admin_log(self):
-    #    compare_get_request("admin/log")
+        #def test_admin_log(self):
+        #    compare_get_request("admin/log")
 
-    def test_admin_mail(self):
+        # test_admin_mail(self):
+        test_print("test_admin_mail starting")
         compare_get_request("/admin/mail")
+        test_print("test_admin_mail completed")
 
-    def test_admin_mail(self):
+        # test_post_admin_mail(self):
+        test_print("test_post_admin_mail starting")
         data={
             'key': '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',
             'fromEmail' : 'synbiohub@synbiohub.utah.edu',
         }
         compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
+        test_print("test_post_admin_mail completed")
 
-    def test_admin_savePlugin(self):
+        # test_admin_savePlugin(self):
+        test_print("test_admin_savePlugin starting")
         data={
             'id': 'New',
             'category' : 'download',
@@ -52,39 +73,49 @@ class TestAdmin(TestCase):
             'url' : 'jimmy',
         }
         compare_post_request("/admin/savePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_savePlugin")
+        test_print("test_admin_savePlugintatus completed")
 
-    def test_admin_plugins(self):
+        # test_admin_plugins(self):
+        test_print("test_admin_plugins starting")
         compare_get_request("/admin/plugins")
+        test_print("test_admin_plgins completed")
 
-    def test_admin_saveRegistry(self):
+        # test_admin_saveRegistry(self):
+        test_print("test_admin_saveRegistrytatus starting")
         data={
             'uri': 'testurl.com',
             'url' : 'testurl.com',
         }
         compare_post_request("/admin/saveRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRegistry")
+        test_print("test_admin_saveRegistry completed")
 
-    def test_admin_registries(self):
+        # test_admin_registries(self):
+        test_print("test_admin_registries starting")
         compare_get_request("admin/registries")
+        test_print("test_admin_registries completed")
 
-#    def test_admin_retreiveFromWebOfRegistries(self):
-#        data={
-#        }
-#        compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
+        #    def test_admin_retreiveFromWebOfRegistries(self):
+        #        data={
+        #        }
+        #        compare_post_request("/admin/retrieveFromWebOfRegistries", data, headers = {"Accept": "text/plain"}, test_name = "admin_retrieveFromWebOfRegistries")
 
-#    def test_admin_federate(self):
-#        data={
-#            'administratorEmail': 'myers@ece.utah.edu',
-#            'webOfRegistries' : 'https://wor.synbiohub.org',
-#        }
-#        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
+        #    def test_admin_federate(self):
+        #        data={
+        #            'administratorEmail': 'myers@ece.utah.edu',
+        #            'webOfRegistries' : 'https://wor.synbiohub.org',
+        #        }
+        #        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
 
-    def test_admin_setAdministratorEmail(self):
+        # test_admin_setAdministratorEmail(self):
+        test_print("test_admin_setAdministratorEmail starting")
         data={
             'administratorEmail': 'test@synbiohub.org',
         }
         compare_post_request("/admin/setAdministratorEmail", data, headers = {"Accept": "text/plain"}, test_name = "admin_setAdministratorEmail")
+        test_print("test_admin_setAdministratorEmail completed")
 
-    def test_admin_updateTheme(self):
+        # test_admin_updateTheme(self):
+        test_print("test_admin_updateTheme starting")
         logo = os.path.basename('./logo.jpg');
         data={
             'instanceName': 'test_instance',
@@ -96,8 +127,10 @@ class TestAdmin(TestCase):
             'logo' : (logo, open('./logo.jpg', 'rb')),
         }
         compare_post_request("/admin/theme", data, headers = {"Accept": "text/plain"}, files = files, test_name = "admin_setAdministratorEmail")
+        test_print("test_admin_updateTheme completed")
 
-    def test_updateExplorerConfig(self):
+        # test_updateExplorerConfig(self):
+        test_print("test_admin_status starting")
         data={
             'useSBOLExplorer': 'True',
             'SBOLExplorerEndpoint' : 'http://explorer:13162/',
@@ -110,16 +143,22 @@ class TestAdmin(TestCase):
             'sparqlEndpoint' : 'http://virtuoso:8890/sparql?'
         }
         compare_post_request("/admin/explorer", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateExplorerConfig")
+        test_print("test_admin_status completed")
 
-    def test_admin_explorer(self):
-        compare_get_request("/admin/explorer")
+        # test_admin_explorer(self):
+#        test_print("test_admin_explorer starting")
+#        compare_get_request("/admin/explorer")
+#        test_print("test_admin_explorer completed")
 
-    def test_explorerUpdateIndex(self):
+        # test_explorerUpdateIndex(self):
+        test_print("test_explorerUpdateIndex starting")
         data={
         }
         compare_post_request("/admin/explorerUpdateIndex", data, headers = {"Accept": "text/plain"}, test_name = "admin_explorerUpdateIndex")
+        test_print("test_explorerUpdateIndex completed")
 
-    def test_saveRemoveICE(self):
+        # test_saveRemoteICE(self):
+        test_print("test_saveRemoteICE starting")
         data={
             'type': 'ice',
             'id' : 'test',
@@ -142,8 +181,10 @@ class TestAdmin(TestCase):
             'rootCollectionDescription' : 'test'
         }
         compare_post_request("/admin/saveRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRemoteICE")
+        test_print("test_saveRemoteICE completed")
 
-    def test_saveRemoveBenchling(self):
+        # test_saveRemoteBenchling(self):
+        test_print("test_saveRemoteBenchling starting")
         data={
             'type': 'benchling',
             'id': '1',
@@ -157,25 +198,28 @@ class TestAdmin(TestCase):
             'rootCollectionDescription': 'test'
         }
         compare_post_request("/admin/saveRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRemoteBenchling")
+        test_print("test_saveRemoteBenchling completed")
 
-#    def test_newUser(self):
-#        data = {
-#            'username': 'adminNewUser',
-#            'name' : 'adminNewUser',
-#            'email' : 'adminNewUser@user.synbiohub',
-#            'affiliation' : 'adminNewUser',
-#            'isMember' : '1',
-#            'isCurator' : '1',
-#            'isAdmin' : '1',
-#        }
-#        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
+        #    def test_newUser(self):
+        #        data = {
+        #            'username': 'adminNewUser',
+        #            'name' : 'adminNewUser',
+        #            'email' : 'adminNewUser@user.synbiohub',
+        #            'affiliation' : 'adminNewUser',
+        #            'isMember' : '1',
+        #            'isCurator' : '1',
+        #            'isAdmin' : '1',
+        #        }
+        #        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser")
 
-#    def test_updateUserConfig(self):
-#        data={
-#            'allowPublicSignup': 'False',
-#        }
-#        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
-    def test_updateUser(self):
+        #    def test_updateUserConfig(self):
+        #        data={
+        #            'allowPublicSignup': 'False',
+        #        }
+        #        compare_post_request("/admin/users", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUsersConfig")
+
+        # test_updateUser(self):
+        test_print("test_updateUser starting")
         data={
             'id': '2',
             'name' : 'ronnieUpdated',
@@ -186,3 +230,4 @@ class TestAdmin(TestCase):
             'isAdmin' : '1'
         }
         compare_post_request("/admin/updateUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUser")
+        test_print("test_updateUser completed")

@@ -1,22 +1,35 @@
 import requests
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
+from test_arguments import test_print
 
 # "/manage" is tested within test_submit.py
 
 class TestSearch(TestCase):
 
-    def test_searchQuery(self):
+    def test_search(self):
+
+        # test_searchQuery(self):
+        test_print("test_search starting")
         compare_get_request("/search/:query?", route_parameters = ["I0462"])
+        test_print("test_search completed")
 
-    def test_searchCount(self):
+        # test_searchCount(self):
+        test_print("test_searchCount starting")
         compare_get_request("/searchCount/:query?", route_parameters = ["I0462"])
+        test_print("test_searchCount completed")
 
-    def test_advancedSearch(self):
+        # test_advancedSearch(self):
+        test_print("test_advancedSearch starting")
         compare_get_request("/advancedSearch")
+        test_print("test_advancedSearch completed")
 
-    def test_rootCollections(self):
+        # test_rootCollections(self):
+        test_print("test_rootCollections starting")
         compare_get_request("/rootCollections")
+        test_print("test_rootCollections completed")
 
-    def test_sparql(self):
+        # test_sparql(self):
+        test_print("test_sparql starting")
         compare_get_request("/sparql", headers = {"Accept": "text/html"})
+        test_print("test_sparql completed")
