@@ -33,3 +33,9 @@ class TestSearch(TestCase):
         test_print("test_sparql starting")
         compare_get_request("/sparql", headers = {"Accept": "text/html"})
         test_print("test_sparql completed")
+
+
+        # test_sparql(self):
+        test_print("test_subcollections starting")
+        compare_get_request("/public/:collectionId/:displayId/:version/subCollections", route_parameters = ["testid1","testid1_collection", "1"],headers = {"Accept": "text/html"})
+        test_print("test_subcollections completed")
