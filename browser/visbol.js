@@ -11,6 +11,6 @@ if(document.getElementById('design')
     const container = document.getElementById('design');
     if (typeof window !== 'undefined') {
         const display = prepareDisplay(meta.displayList);
-        ReactDOM.render(<Rendering display={display} toLog={meta.displayList}/>, container);
+        ReactDOM.render(<Rendering display={display}/>, container);
     }
 }
