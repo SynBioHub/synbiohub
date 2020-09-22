@@ -1,15 +1,16 @@
 
-const visbol = require('visbol')
-const sbolv = require('visbol/font/sbolv/main')
+const prepareDisplay = require('visbol').prepareDisplay;
+const React = require('react');
+const ReactDOM = require('react-dom');
+import Rendering from 'visbol-react';
 
 if(document.getElementById('design')
     && typeof meta !== 'undefined'
     && meta.displayList) {
 
-    var design = new visbol.Design({
-        element: document.getElementById('design'),
-        font: sbolv
-    });
-
-    design.setDisplayList(meta.displayList);
+    const container = document.getElementById('design');
+    if (typeof window !== 'undefined') {
+        const display = prepareDisplay(meta.displayList);
+        ReactDOM.render(<Rendering display={display}/>, container);
+    }
 }
