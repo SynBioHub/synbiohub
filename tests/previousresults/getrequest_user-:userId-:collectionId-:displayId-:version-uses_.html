@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   Test Synbiohub
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
+  <style>
+   body {
+    background-color: #f6f6f6;
+}
+
+.grey-page-mark {
+    background-color: #f6f6f6;
+}
+
+.top-search-form {
+    display: none;
+}
+
+.main-search-form input {
+    width: 60%;
+    margin-left: 0;
+    background-color: white;
+    padding: 14px 16px 13px 32px;
+}
+
+.main-search-form .submit {
+    padding: 12px 21px;
+}
+
+.main-search-form label {
+    color: #7F8C8D;
+}
+
+.search-section {
+    height: 60px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 40px;
+    text-align: center;
+}
+  </style>
+ </head>
+ <body>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit" title="Submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/shared" title="Shared with Me">
+        <span class="fa fa-bolt">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage" title="Manage Submissions">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin" title="Administration">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Admin
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile" title="Edit Profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout" title="Sign Out">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Sign Out
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-search">
+     </span>
+     Search
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="/search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <div align="center" class="search-section">
+   <form action="/search" class="main-search-form">
+    <input class="sbh-autocomplete" name="q" placeholder="Search SynBioHub" type="text"/>
+    <button class="submit" type="submit">
+     Search
+    </button>
+   </form>
+   <br/>
+   <a href="/sbsearch">
+    Sequence Search
+   </a>
+   |
+   <a href="/advancedSearch">
+    Advanced Search
+   </a>
+   |
+   <a href="/sparql">
+    SPARQL
+   </a>
+   <br/>
+   <div class="search-result-actions">
+   </div>
+   <div class="search-result-summary">
+    Showing 1 - 2 of 2 result(s)
+    <br/>
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <div class="search-results-area">
+   <div class="vert" style="overflow: hidden; display: none">
+   </div>
+   <div class="facets">
+   </div>
+   <div class="search-results-scroll-area">
+    <div class="clearfix">
+    </div>
+    <div class="search-results">
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-private">
+        Private
+       </div>
+      </div>
+      <a href="/user/testuser/testid2/BBa_I0462/1">
+       I0462
+      </a>
+      <br/>
+      <strong>
+       BBa_I0462 Version 1 (Component)
+      </strong>
+      <br/>
+      LuxR protein generator
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+      <!--if submission.triplestore != 'public'-->
+      <!--    a(href=submission.url + '/makePublic')-->
+      <!--        button(type='button').btn.btn-success.public-btn Make Public-->
+      <!--    | -->
+      <!--    a(href=submission.url + '/removeSubmission')-->
+      <!--        button(type='button').btn.btn-success.remove-btn Remove-->
+      <!--    | -->
+      <!--    a(href=submission.url + '/cloneSubmission')-->
+      <!--        button(type='button').btn.btn-success.clone-btn Copy-->
+     </div>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-private">
+        Private
+       </div>
+      </div>
+      <a href="/user/testuser/testid2/testid2_collection/1">
+       testcollection2
+      </a>
+      <br/>
+      <strong>
+       testid2_collection Version 1 (Collection)
+      </strong>
+      <br/>
+      testdescription
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+      <!--if submission.triplestore != 'public'-->
+      <!--    a(href=submission.url + '/makePublic')-->
+      <!--        button(type='button').btn.btn-success.public-btn Make Public-->
+      <!--    | -->
+      <!--    a(href=submission.url + '/removeSubmission')-->
+      <!--        button(type='button').btn.btn-success.remove-btn Remove-->
+      <!--    | -->
+      <!--    a(href=submission.url + '/cloneSubmission')-->
+      <!--        button(type='button').btn.btn-success.clone-btn Copy-->
+     </div>
+    </div>
+   </div>
+   <div align="center" class="search-result-summary">
+    Showing 1 - 2 of 2 result(s)
+    <br/>
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
+  </div>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
+ </body>
+</html>
