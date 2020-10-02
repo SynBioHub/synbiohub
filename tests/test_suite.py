@@ -49,6 +49,9 @@ if __name__ == '__main__':
     import test_admin2
     addTestModule(test_admin2)
 
+    import test_twins
+    addTestModule(test_twins)
+
 #    import test_features
 #    addTestModule(test_features)
 
