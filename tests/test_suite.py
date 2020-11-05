@@ -1,5 +1,4 @@
 import unittest
-from sys import argv
 from sys import exit
 
 from test_functions import cleanup_check
@@ -43,6 +42,9 @@ if __name__ == '__main__':
     import test_attachment
     addTestModule(test_attachment)
 
+#    import test_collection
+#    addTestModule(test_attachment)
+
     import test_admin
     addTestModule(test_admin)
 
@@ -51,12 +53,6 @@ if __name__ == '__main__':
 
     import test_twins
     addTestModule(test_twins)
-
-#    import test_features
-#    addTestModule(test_features)
-
-#    import test_user_features
-#    addTestModule(test_user_features)
 
     import docker_test_setup
     addTestModule(docker_test_setup)
