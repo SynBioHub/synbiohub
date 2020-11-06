@@ -103,13 +103,6 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cogs">
-     </span>
-     Admin
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
@@ -122,158 +115,15 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Log
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/sparql">
-        SPARQL
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-     </ul>
-    </div>
-    <div class="col-md-8">
-     <table class="table table-striped sbh-datatable">
-      <thead>
-       <tr>
-        <th>
-         Graph URI
-        </th>
-        <th>
-         # Triples
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <code>
-          http://www.openlinksw.com/schemas/virtrdf#
-         </code>
-        </td>
-        <td>
-         2479
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://www.w3.org/ns/ldp#
-         </code>
-        </td>
-        <td>
-         3
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:8890/sparql
-         </code>
-        </td>
-        <td>
-         14
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:8890/DAV/
-         </code>
-        </td>
-        <td>
-         2959
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://www.w3.org/2002/07/owl#
-         </code>
-        </td>
-        <td>
-         160
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:7777/public
-         </code>
-        </td>
-        <td>
-         950
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:7777/user/testuser
-         </code>
-        </td>
-        <td>
-         183
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-    <div class="col-md-1">
-    </div>
-   </div>
+  <div class="container">
+   <h1>
+    Error
+   </h1>
+   <p style="white-space:pre">
+    Error: getType: http://localhost:7777/public/testid1/testid1_collection/1/attachUrl  not found
+    at sparql.queryJson.then (/synbiohub/lib/query/local/type.js:12:29)
+    at process.internalTickCallback (internal/process/next_tick.js:77:7)
+   </p>
   </div>
   <div class="clearfix">
   </div>
@@ -304,27 +154,27 @@ try {
     </a>
    </span>
   </div>
-  <script src="/js/saveSvgAsPng.js">
-  </script>
-  <script src="/js/jquery/jquery-2.1.3.min.js">
-  </script>
-  <script src="/js/bootstrap/bootstrap-3.3.4.js">
-  </script>
-  <script src="/js/typeahead.bundle.js">
-  </script>
-  <script src="/js/typeahead.jquery.min.js">
-  </script>
-  <script src="/datatables.min.js">
-  </script>
-  <script src="/js/pathseg.js">
-  </script>
-  <script src="/js/chosen.jquery.js">
-  </script>
-  <script src="/js/dropzone.js">
-  </script>
-  <script src="/js/BootstrapMenu.js">
-  </script>
-  <script src="/bundle.js">
-  </script>
  </body>
+ <script src="/js/saveSvgAsPng.js">
+ </script>
+ <script src="/js/jquery/jquery-2.1.3.min.js">
+ </script>
+ <script src="/js/bootstrap/bootstrap-3.3.4.js">
+ </script>
+ <script src="/js/typeahead.bundle.js">
+ </script>
+ <script src="/js/typeahead.jquery.min.js">
+ </script>
+ <script src="/datatables.min.js">
+ </script>
+ <script src="/js/pathseg.js">
+ </script>
+ <script src="/js/chosen.jquery.js">
+ </script>
+ <script src="/js/dropzone.js">
+ </script>
+ <script src="/js/BootstrapMenu.js">
+ </script>
+ <script src="/bundle.js">
+ </script>
 </html>
