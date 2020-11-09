@@ -42,8 +42,8 @@ if __name__ == '__main__':
     import test_attachment
     addTestModule(test_attachment)
 
-#    import test_collection
-#    addTestModule(test_attachment)
+    import test_collection
+    addTestModule(test_collection)
 
     import test_admin
     addTestModule(test_admin)
