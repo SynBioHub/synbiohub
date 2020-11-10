@@ -4,16 +4,16 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="testdescription1" name="description"/>
+  <meta content="testdescription" name="description"/>
   <script type="application/ld+json">
    {
-  "name": "testcollection1",
-  "description": "testdescription1<br/>\n",
-  "url": "http://localhost:7777/public/testid1/testid1_collection/1",
+  "name": "testcollection2",
+  "description": "testdescription<br/>\n",
+  "url": "http://localhost:7777/user/testuser/testid2/testid2_collection/1",
   "identifier": [
     null
   ],
-  "distribution": "/public/testid1/testid1_collection/1",
+  "distribution": "/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share",
   "includedInDataCatalog": [
     "http://localhost:7777/"
   ],
@@ -79,9 +79,9 @@ try {
         <h5>
          Upload New Icon
         </h5>
-        <form action="/public/testid1/testid1_collection/1/icon" class="form" enctype="multipart/form-data" id="iconForm" method="POST">
-         <input name="collectionUrl" type="hidden" value="/public/testid1/testid1_collection/1"/>
-         <input name="collectionUri" type="hidden" value="http://localhost:7777/public/testid1/testid1_collection/1"/>
+        <form action="http://localhost:7777/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/icon" class="form" enctype="multipart/form-data" id="iconForm" method="POST">
+         <input name="collectionUrl" type="hidden" value="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share"/>
+         <input name="collectionUri" type="hidden" value="http://localhost:7777/user/testuser/testid2/testid2_collection/1"/>
          <input class="form-control" name="collectionIcon" type="file"/>
         </form>
        </div>
@@ -194,17 +194,17 @@ try {
   <div class="submission-detail container-fluid">
    <div class="row entry-heading">
     <div class="col-sm-8 entry-title">
-     <h1>
-      testcollection1
+     <h1 class="edit edit-title">
+      testcollection2
      </h1>
      <h3>
-      testid1_collection
-      <a href="/search/displayId='testid1_collection'&amp;" title="Find all records with the same identifier">
+      testid2_collection
+      <a href="/search/displayId='testid2_collection'&amp;" title="Find all records with the same identifier">
        <span class="fa fa-search">
        </span>
       </a>
       Version 1
-      <a href="/search/persistentIdentity=&lt;http%3A%2F%2Flocalhost%3A7777%2Fpublic%2Ftestid1%2Ftestid1_collection&gt;&amp;" title="Find all versions">
+      <a href="/search/persistentIdentity=&lt;http%3A%2F%2Flocalhost%3A7777%2Fuser%2Ftestuser%2Ftestid2%2Ftestid2_collection&gt;&amp;" title="Find all versions">
        <span class="fa fa-search">
        </span>
       </a>
@@ -221,16 +221,21 @@ try {
    <div class="row">
     <div class="col-md-11">
      <h5>
+      Source:
+      <div class="edit edit-multiple edit-wasDerivedFrom" edittext="" style="display: contents">
+      </div>
+     </h5>
+     <h5>
       Created by: Test User
       <a href="/search/dc:creator='Test User'&amp;" title="Find all records created by this person">
        <span class="fa fa-search">
        </span>
       </a>
      </h5>
-     <h4>
-      testdescription1
+     <h4 class="edit edit-description">
+      testdescription
       <br/>
-      <a href="/search/?q=testdescription1 
+      <a href="/search/?q=testdescription 
 " title="Find all records with terms in common with this description">
        <span class="fa fa-search">
        </span>
@@ -250,28 +255,19 @@ try {
       </span>
       <ul class="dropdown-menu dropdown-toggle">
        <li>
-        <a href="/public/testid1/testid1_collection/1/sbol">
+        <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/sbol">
          Download SBOL File
         </a>
        </li>
        <li>
-        <a href="/public/testid1/testid1_collection/1/omex">
+        <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/omex">
          Download COMBINE Archive
         </a>
        </li>
       </ul>
      </li>
      <li class="btn btn-success">
-      <a data-target="#iconModal" data-toggle="modal" style="color:white" title="Change Collection Icon">
-       <span class="fa fa-file-image-o">
-       </span>
-       <span class="hidden-xs hidden-sm">
-        Change Icon
-       </span>
-      </a>
-     </li>
-     <li class="btn btn-success">
-      <a href="/public/testid1/testid1_collection/1" style="color:white" title="Back to root collection">
+      <a href="/user/testuser/testid2/testid2_collection/1" style="color:white" title="Back to root collection">
        <span class="fa fa-arrow-left">
        </span>
        <span class="hidden-xs hidden-sm">
@@ -279,8 +275,35 @@ try {
        </span>
       </a>
      </li>
+     <li class="btn btn-success">
+      <a onclick="popup()" style="color:white" title="Share">
+       <span class="fa fa-share">
+       </span>
+       <span class="hidden-xs hidden-sm">
+        Share
+       </span>
+      </a>
+     </li>
+     <li class="btn btn-success">
+      <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/makePublic" style="color:white" title="Make Public">
+       <span class="fa fa-unlock">
+       </span>
+       <span class="hidden-xs hidden-sm">
+        Make Public
+       </span>
+      </a>
+     </li>
+     <li class="btn btn-success">
+      <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/removeCollection" onclick="return confirm('Are you sure you want to delete this?')" style="color:white" title="Remove Collection">
+       <span class="fa fa-remove">
+       </span>
+       <span class="hidden-xs hidden-sm">
+        Remove
+       </span>
+      </a>
+     </li>
      <li class="btn btn-info">
-      <a href="/public/testid1/testid1_collection/1/addToCollection" style="color:white" title="Add to Collection">
+      <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/addToCollection" style="color:white" title="Add to Collection">
        <span class="fa fa-link">
        </span>
        <span class="hidden-xs hidden-sm">
@@ -289,7 +312,7 @@ try {
       </a>
      </li>
      <li class="btn btn-info">
-      <a href="/public/testid1/testid1_collection/1/addOwner" style="color:white" title="Add Owner">
+      <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/addOwner" style="color:white" title="Add Owner">
        <span class="fa fa-id-card">
        </span>
        <span class="hidden-xs hidden-sm">
@@ -315,26 +338,11 @@ try {
      <option value="http://www.biopax.org/release/biopax-level3.owl#DnaRegion">
       biopax:DnaRegion
      </option>
-     <option value="http://www.biopax.org/release/biopax-level3.owl#Protein">
-      biopax:Protein
-     </option>
-     <option value="http://sbolhub.org/UploadData">
-      http://sbolhub.org/UploadData
-     </option>
      <option value="http://sbols.org/v2#Attachment">
       sbol2:Attachment
      </option>
-     <option value="http://sbols.org/v2#Collection">
-      sbol2:Collection
-     </option>
      <option value="http://sbols.org/v2#ComponentDefinition">
       sbol2:ComponentDefinition
-     </option>
-     <option value="http://sbols.org/v2#Model">
-      sbol2:Model
-     </option>
-     <option value="http://sbols.org/v2#ModuleDefinition">
-      sbol2:ModuleDefinition
      </option>
      <option value="http://sbols.org/v2#Sequence">
       sbol2:Sequence
@@ -342,11 +350,8 @@ try {
      <option value="http://identifiers.org/so/SO:0000316">
       so:CDS
      </option>
-     <option value="http://identifiers.org/so/SO:0000280">
-      so:engineered_gene
-     </option>
-     <option value="http://identifiers.org/so/SO:0000167">
-      so:promoter
+     <option value="http://identifiers.org/so/SO:0000804">
+      so:engineered_region
      </option>
      <option value="http://identifiers.org/so/SO:0000139">
       so:ribosome_entry_site
@@ -395,66 +400,49 @@ try {
        <div class="panel-body">
         <table class="table table-striped entry-detail-table">
         </table>
-        <div data-src="testUpdateMutableDescription" id="sbh-description">
-         <div class="pull-left">
-          <a href="#">
-           <span class="fa fa-pencil" id="sbh-edit-description">
+        <div data-src="" id="sbh-description">
+         <h4>
+          <a href="#" id="sbh-add-description">
+           <span class="fa fa-plus">
            </span>
+           <i>
+            Add description...
+           </i>
           </a>
-         </div>
-         <h3>
-          Description
-         </h3>
-         testUpdateMutableDescription
-         <br/>
-         <br/>
+         </h4>
         </div>
-        <div data-src="testUpdateMutableNotes" id="sbh-notes">
-         <div class="pull-left">
-          <a href="#">
-           <span class="fa fa-pencil" id="sbh-edit-notes">
+        <div data-src="" id="sbh-notes">
+         <h4>
+          <a href="#" id="sbh-add-notes">
+           <span class="fa fa-plus">
            </span>
+           <i>
+            Add notes...
+           </i>
           </a>
-         </div>
-         <h3>
-          Notes
-         </h3>
-         testUpdateMutableNotes
-         <br/>
-         <br/>
+         </h4>
         </div>
-        <div data-src="testUpdateMutableSource" id="sbh-source">
-         <div class="pull-left">
-          <a href="#">
-           <span class="fa fa-pencil" id="sbh-edit-source">
+        <div data-src="" id="sbh-source">
+         <h4>
+          <a href="#" id="sbh-add-source">
+           <span class="fa fa-plus">
            </span>
+           <i>
+            Add source...
+           </i>
           </a>
-         </div>
-         <h3>
-          Source
-         </h3>
-         testUpdateMutableSource
-         <br/>
-         <br/>
+         </h4>
         </div>
-        <div data-src="1234" id="sbh-citations">
-         <div class="pull-left">
-          <a href="#">
-           <span class="fa fa-pencil" id="sbh-edit-citations">
+        <div data-src="none" id="sbh-citations">
+         <h4>
+          <a href="#" id="sbh-add-citations">
+           <span class="fa fa-plus">
            </span>
+           <i>
+            Add reference...
+           </i>
           </a>
-         </div>
-         <h3>
-          References
-         </h3>
-         <br/>
-         Nadeau, D., Marchand, C., "Change in the kinetics of sulphacetamide tissue distribution in Walker tumor-bearing rats.", Drug metabolism and disposition: the biological fate of chemicals, 3(6): 565-76, PMID:
-         <a href="https://www.ncbi.nlm.nih.gov/pubmed/1234">
-          1234
-         </a>
-         .
-         <br/>
-         <br/>
+         </h4>
         </div>
        </div>
       </div>
@@ -484,32 +472,10 @@ try {
             </a>
            </td>
            <td>
-            <div editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" edittext="dockertestuser" style="display: contents">
-             dockertestuser
-            </div>
-            <a href="dockertestuser" title="Learn more about this annotation value">
-             <span class="fa fa-info-circle">
-             </span>
-            </a>
-            <a href="/search/&lt;http%3A%2F%2Fwiki.synbiohub.org%2Fwiki%2FTerms%2Fsynbiohub%23ownedBy&gt;=&lt;dockertestuser&gt;&amp;" title="Find all records with this annotation">
-             <span class="fa fa-search">
-             </span>
-            </a>
-           </td>
-          </tr>
-          <tr>
-           <td>
-            synbiohub#ownedBy
-            <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
-             <span class="fa fa-info-circle">
-             </span>
-            </a>
-           </td>
-           <td>
-            <div editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" edittext="http://localhost:7777/user/testuser" style="display: contents">
+            <div class="edit edit-multiple edit-annotation" editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" edittext="http://localhost:7777/user/testuser" style="display: contents">
              user/testuser
             </div>
-            <a href="/user/testuser" title="Learn more about this annotation value">
+            <a href="/user/testuser/8557d0eb7502163f86841a0f6ef4f45948e51d4b/share" title="Learn more about this annotation value">
              <span class="fa fa-info-circle">
              </span>
             </a>
@@ -517,13 +483,6 @@ try {
              <span class="fa fa-search">
              </span>
             </a>
-            <form action="/public/testid1/testid1_collection/1/removeOwner/testuser" class="form-inline" method="POST" style="display: inline">
-             <input name="userUri" type="hidden" value="http://localhost:7777/user/user/testuser"/>
-             <button class="fakelink" type="submit">
-              <span class="fa fa-trash">
-              </span>
-             </button>
-            </form>
            </td>
           </tr>
           <tr>
@@ -535,14 +494,14 @@ try {
             </a>
            </td>
            <td>
-            <div editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" edittext="http://localhost:7777/public/testid1/testid1_collection/1" style="display: contents">
-             testid1_collection/1
+            <div class="edit edit-multiple edit-annotation" editpred="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" edittext="http://localhost:7777/user/testuser/testid2/testid2_collection/1" style="display: contents">
+             testid2_collection/1
             </div>
-            <a href="/public/testid1/testid1_collection/1" title="Learn more about this annotation value">
+            <a href="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share" title="Learn more about this annotation value">
              <span class="fa fa-info-circle">
              </span>
             </a>
-            <a href="/search/&lt;http%3A%2F%2Fwiki.synbiohub.org%2Fwiki%2FTerms%2Fsynbiohub%23topLevel&gt;=&lt;http%3A%2F%2Flocalhost%3A7777%2Fpublic%2Ftestid1%2Ftestid1_collection%2F1&gt;&amp;" title="Find all records with this annotation">
+            <a href="/search/&lt;http%3A%2F%2Fwiki.synbiohub.org%2Fwiki%2FTerms%2Fsynbiohub%23topLevel&gt;=&lt;http%3A%2F%2Flocalhost%3A7777%2Fuser%2Ftestuser%2Ftestid2%2Ftestid2_collection%2F1&gt;&amp;" title="Find all records with this annotation">
              <span class="fa fa-search">
              </span>
             </a>
@@ -568,7 +527,7 @@ try {
       <div class="panel-body">
        <div class="row">
         <div class="col-md-12">
-         <form action="/public/testid1/testid1_collection/1/attach" enctype="multipart/form-data" id="sbh-attachment-upload" method="post">
+         <form action="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/attach" enctype="multipart/form-data" id="sbh-attachment-upload" method="post">
          </form>
          <table class="attachments-table table table-striped">
           <thead>
@@ -592,14 +551,14 @@ try {
              unknown
             </td>
             <td>
-             <a href="/public/testid1/attachment_e4555f66e46a4b52a8944bc25e72d5ec/1">
-              attachment_e4555f66e46a4b52a8944bc25e72d5ec
+             <a href="/user/testuser/testid2/attachment_7937f9be3b584a6a85a70048ec7939ef/1/cfc7966e2f41bd2a098c86a40afcef01c409b9da/share">
+              attachment_7937f9be3b584a6a85a70048ec7939ef
              </a>
             </td>
             <td>
             </td>
             <td>
-             <a href="/public/testid1/attachment_e4555f66e46a4b52a8944bc25e72d5ec/1/download">
+             <a href="/user/testuser/testid2/attachment_7937f9be3b584a6a85a70048ec7939ef/1/cfc7966e2f41bd2a098c86a40afcef01c409b9da/share/download">
               <button class="btn btn-primary">
                <span class="fa fa-download">
                </span>
@@ -636,7 +595,7 @@ try {
             </td>
            </tr>
            <div class="row">
-            <form action="/public/testid1/testid1_collection/1/attachUrl" id="sbh-attachment-lookup" method="post">
+            <form action="/user/testuser/testid2/testid2_collection/1/4526e9d354b3da038abb8e25e32aac64527fe00f/share/attachUrl" id="sbh-attachment-lookup" method="post">
              <tr>
               <td>
                Lookup Attachment

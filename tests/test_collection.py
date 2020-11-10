@@ -1,4 +1,5 @@
 import requests
+import time
 from unittest import TestCase
 from test_functions import compare_get_request, compare_post_request
 from test_arguments import test_print
@@ -29,5 +30,19 @@ class TestCollections(TestCase):
 
         test_print("test_addOwner_post completed")
 
+        time.sleep(3)
+
+        test_print("test_removeOwner starting")
+        data={
+            'userUri' : 'dockertestuser'
+        }
+        compare_post_request("user/:userId/:collectionId/:displayId/:version/removeOwner/:username", route_parameters = ["testuser","testid2","testid2_collection","1", "dockertestuser"], data = data)
+
+        data={
+            'userUri' : 'dockertestuser'
+        }
+        compare_post_request("/public/:collectionId/:displayId/:version/removeOwner/:username", route_parameters = ["testid1", "testid1_collection", "1", "dockertestuser"], data = data)
+
+        test_print("test_removeOwner completed")
 
 
