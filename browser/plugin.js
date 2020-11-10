@@ -34,7 +34,8 @@ function fetchPluginStream(streamId, $element) {
                 setTimeout(fetchPluginStream, retry, streamId, $element)
             },
             410: function(){
-                window.location.reload(true)
+                deleteStream(streamId)
+//                window.location.reload(true)
             },
             404: function(jqXHR) {
                 var $panel = $element.closest(".panel")
