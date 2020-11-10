@@ -16,16 +16,16 @@ class TestCollections(TestCase):
 
         test_print("test_addOwner_post starting")
         data={
-            'uri': 'localhost:7777/user/testuser/testid2/testid2_collection/1',
+            'uri': 'http://localhost:7777/user/testuser/testid2/testid2_collection/1',
             'user' : 'dockertestuser'
         }
-#        compare_post_request("addOwner", data, headers = {"Accept": "text/plain"},test_name = "test_addOwnerPrivate")
+        compare_post_request("user/:userId/:collectionId/:displayId/:version/addOwner", route_parameters = ["testuser","testid2","testid2_collection","1"], data = data)
 
         data={
-            'uri': '/public/testid1/testid1_collection/1',
+            'uri': 'http://localhost:7777/public/testid1/testid1_collection/1',
             'user' : 'dockertestuser'
         }
-#        compare_post_request("addOwner", data, headers = {"Accept": "text/plain"},test_name = "test_addOwnerPublic")
+        compare_post_request("/public/:collectionId/:displayId/:version/addOwner", route_parameters = ["testid1", "testid1_collection", "1"], data = data)
 
         test_print("test_addOwner_post completed")
 
