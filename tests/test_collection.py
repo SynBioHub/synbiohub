@@ -47,3 +47,14 @@ class TestCollections(TestCase):
         test_print("test_addToCollection completed")
 
 
+        test_print("test_addOwner_get starting")
+
+        compare_get_request("user/:userId/:collectionId/:displayId/:version/remove", route_parameters = ["testuser","testid2","testid2_collection","1"], test_name = "test_get_add_owner_private")
+
+        test_print("test_addOwner_post completed")
+
+        test_print("test_addOwner_get starting")
+
+        compare_get_request("user/:userId/:collectionId/:displayId/:version/replace", route_parameters = ["testuser","testid2","testid2_collection","1"], test_name = "test_get_add_owner_private")
+
+        test_print("test_addOwner_post completed")
