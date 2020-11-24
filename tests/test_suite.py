@@ -36,20 +36,17 @@ if __name__ == '__main__':
     import test_download
     addTestModule(test_download)
 
-    import test_edit
-    addTestModule(test_edit)
-
-    import test_attachment
-    addTestModule(test_attachment)
-
-#    import test_collection
-#    addTestModule(test_attachment)
+    import test_collection
+    addTestModule(test_collection)
 
     import test_admin
     addTestModule(test_admin)
 
     import test_admin2
     addTestModule(test_admin2)
+
+    import test_attachment
+    addTestModule(test_attachment)
 
     import test_twins
     addTestModule(test_twins)

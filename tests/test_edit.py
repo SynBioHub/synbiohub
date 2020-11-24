@@ -42,6 +42,21 @@ class TestEdit(TestCase):
         compare_post_request("updateCitations", data, headers = {"Accept": "text/plain"},test_name = "test_edit_mutable_citations")
         test_print("test_edit_citations completed")
 
+        # test_remove_get
+        test_print("test_remove_private_GET starting")
+
+        compare_get_request("user/:userId/:collectionId/:displayId/:version/remove", route_parameters = ["testuser","testid2","testid2_collection","1"])
+
+        test_print("test_remove_private_GET completed")
+
+        # test_replace_get
+        test_print("test_replace_private_GET starting")
+
+        compare_get_request("user/:userId/:collectionId/:displayId/:version/replace", route_parameters = ["testuser","testid2","testid2_collection","1"])
+
+        test_print("test_replace_private_GET completed")
+
+
 #    def test_add_field(self):
 #        data={
 #            'object' : 'testAddField'

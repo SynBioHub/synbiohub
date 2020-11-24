@@ -103,13 +103,6 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cogs">
-     </span>
-     Admin
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
@@ -122,157 +115,39 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Log
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/sparql">
-        SPARQL
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-     </ul>
+  <div class="container">
+   <div align="center" class="submission-container">
+    <div class="submission-header">
+     <span class="fa fa-id-card" style="font-size: 3.3em">
+     </span>
+     <p style="font-size: 1.7em; font-weight: bolder">
+      Add owner
+     </p>
+     <p>
+      <span class="text-danger" style="font-weight: bolder">
+       Warning:
+      </span>
+      this will give another user complete control over this object.
+     </p>
     </div>
-    <div class="col-md-8">
-     <table class="table table-striped sbh-datatable">
-      <thead>
-       <tr>
-        <th>
-         Graph URI
-        </th>
-        <th>
-         # Triples
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <code>
-          http://www.openlinksw.com/schemas/virtrdf#
-         </code>
-        </td>
-        <td>
-         2479
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://www.w3.org/ns/ldp#
-         </code>
-        </td>
-        <td>
-         3
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:8890/sparql
-         </code>
-        </td>
-        <td>
-         14
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:8890/DAV/
-         </code>
-        </td>
-        <td>
-         2959
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://www.w3.org/2002/07/owl#
-         </code>
-        </td>
-        <td>
-         160
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:7777/public
-         </code>
-        </td>
-        <td>
-         932
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:7777/user/testuser
-         </code>
-        </td>
-        <td>
-         170
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-    <div class="col-md-1">
-    </div>
+    <form class="form" method="POST">
+     <input name="uri" type="hidden" value="http://localhost:7777/user/testuser/testid2/testid2_collection/1"/>
+     <div class="row">
+      <div class="col-sm-12">
+       <select class="chosen-select" name="user" style="width: 260px">
+        <option value="http://localhost:7777/user/testuser2">
+         ronnie [testuser2]
+        </option>
+       </select>
+      </div>
+     </div>
+     <br/>
+     <div class="row">
+      <div class="col-sm-12">
+       <input class="btn btn-info" type="submit" value="Grant ownership"/>
+      </div>
+     </div>
+    </form>
    </div>
   </div>
   <div class="clearfix">

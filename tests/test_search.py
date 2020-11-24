@@ -32,9 +32,7 @@ class TestSearch(TestCase):
         }
         compare_post_request("/advancedSearch", data = data)
 
-
         test_print("test_advancedSearch completed")
-
 
 
         # test_rootCollections(self):
@@ -64,5 +62,9 @@ class TestSearch(TestCase):
         test_print("test_browse_get starting")
         compare_get_request("browse", headers = {"Accept": "text/html"})
         test_print("test_browse_get completed")
+
+#        test_print("test_browse_post starting")
+#        compare_post_request("/ browse", data = data)
+#        test_print("test_browse_post completed")
 
 

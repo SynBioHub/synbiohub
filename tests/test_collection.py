@@ -9,7 +9,7 @@ class TestCollections(TestCase):
 
         test_print("test_addOwner_get starting")
 
-#        compare_get_request("/public/:collectionId/:displayId/:version/addOwner", route_parameters = ["testid1","testid1_collection","1"], test_name = "test_get_add_owner_public")
+        compare_get_request("/public/:collectionId/:displayId/:version/addOwner", route_parameters = ["testid1","testid1_collection","1"], test_name = "test_get_add_owner_public")
         compare_get_request("user/:userId/:collectionId/:displayId/:version/addOwner", route_parameters = ["testuser","testid2","testid2_collection","1"], test_name = "test_get_add_owner_private")
 
         test_print("test_addOwner_get completed")
@@ -29,5 +29,21 @@ class TestCollections(TestCase):
 
         test_print("test_addOwner_post completed")
 
+        test_print("test_addToCollection starting")
+
+        compare_get_request("user/:userId/:collectionId/:displayId/:version/addToCollection", route_parameters = ["testuser","testid2","testid2_collection","1"], test_name = "test_addToCollection_private_GET")
+        compare_get_request("/public/:collectionId/:displayId/:version/addToCollection", route_parameters = ["testid1","testid1_collection","1"], test_name = "test_addToCollection_public_GET")
+
+        data={
+            'collections': 'http://localhost:7777/public/testid1/col_james_test_sbol2_061015155208/1',
+        }
+ #       compare_post_request("/user/:userId/:collectionId/:displayId/:version/addToCollection", route_parameters = ["testuser", "testid2", "testid2_collection", "1"], data = data)
+
+        data={
+            'collections': 'http://localhost:7777/user/testuser/testid2/testid2_collection/1',
+        }
+        compare_post_request("/public/:collectionId/:displayId/:version/addToCollection", route_parameters = [ "testid1", "testid1_collection", "1"], data = data)
+
+        test_print("test_addToCollection completed")
 
 
