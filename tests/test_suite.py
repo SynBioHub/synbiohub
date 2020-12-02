@@ -36,17 +36,20 @@ if __name__ == '__main__':
     import test_download
     addTestModule(test_download)
 
+    import test_edit
+    addTestModule(test_edit)
+
+    import test_attachment
+    addTestModule(test_attachment)
+
     import test_collection
-    addTestModule(test_collection)
+    addTestModule(test_attachment)
 
     import test_admin
     addTestModule(test_admin)
 
     import test_admin2
     addTestModule(test_admin2)
-
-    import test_attachment
-    addTestModule(test_attachment)
 
     import test_twins
     addTestModule(test_twins)
@@ -66,3 +69,4 @@ if __name__ == '__main__':
     # if any tests failed, exit with code one
     if len(result.failures) != 0 or len(result.errors) != 0:
         exit(1)
+

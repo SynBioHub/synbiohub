@@ -52,7 +52,7 @@ class TestEdit(TestCase):
         # test_replace_get
         test_print("test_replace_private_GET starting")
 
-        compare_get_request("user/:userId/:collectionId/:displayId/:version/replace", route_parameters = ["testuser","testid2","testid2_collection","1"])
+#        compare_get_request("user/:userId/:collectionId/:displayId/:version/replace", route_parameters = ["testuser","testid2","testid2_collection","1"])
 
         test_print("test_replace_private_GET completed")
 
