@@ -45,7 +45,7 @@ block adminContent
                         | Update index automatically
                 div.form-group
                     label(for='cronInterval') Update index every &nbsp
-                        input(name='cronDay' type="number" min="1" max="100" value=explorerConfig.updateTimeInDays) 
+                        input(name='cronDay' type="number" min="0" max="100" value=explorerConfig.updateTimeInDays) 
                         | days
 
         div.row 
