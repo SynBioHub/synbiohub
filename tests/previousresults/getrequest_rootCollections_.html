@@ -1,9 +1,252 @@
+<!DOCTYPE html>
 <html>
  <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   SynBioHub
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
  </head>
  <body>
-  <p>
-   [{"uri":"http://localhost:7777/public/testid1/testid1_collection/1","name":"testcollection1","description":"testdescription1","displayId":"testid1_collection","version":"1"},{"uri":"http://localhost:7777/user/testuser/testid2/testid2_collection/1","name":"testcollection2","description":"testdescription","displayId":"testid2_collection","version":"1"}]
-  </p>
+  <center>
+   <img src="../images/sbolhub_logo_sl_dark.svg" width="900"/>
+  </center>
+  <div class="setup">
+   <h1>
+    Congratulations, SynBioHub is successfully installed!
+   </h1>
+   <div class="text-center">
+    <p>
+     We just need a few more details to configure your SynBioHub instance.
+    </p>
+   </div>
+   <br/>
+   <form action="/setup" enctype="multipart/form-data" method="post">
+    <h2>
+     1. Brand your SynBioHub
+    </h2>
+    <div class="form-group">
+     <label>
+      Instance Name
+      <input class="form-control" name="instanceName" value="My SynBioHub"/>
+     </label>
+     <p>
+      <i>
+       Try to choose something descriptive to identify the kind of parts your SynBioHub instance will store.  Don't worry, you can change this later.
+      </i>
+     </p>
+     <br/>
+     <label>
+      Pick a Color
+      <input class="form-control" id="setupColor" name="color" type="color" value="#D25627"/>
+     </label>
+     <p>
+      <i>
+       This color will be used to theme your SynBioHub instance.
+      </i>
+     </p>
+     <br/>
+     <label>
+      Write a Welcome Message
+     </label>
+     <textarea class="form-control" form-id="themeForm" name="frontPageText" rows="6">&lt;a href="/About"&gt;SynBioHub&lt;/a&gt; is a &lt;i&gt;design repository&lt;/i&gt; for people designing biological constructs. It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them. SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.</textarea>
+     <p>
+      <i>
+       This message will be displayed on the home page of your SynBioHub instance.
+      </i>
+     </p>
+     <br/>
+     <label>
+      Upload a Logo
+      <input name="logo" type="file"/>
+     </label>
+     <p>
+      <i>
+       For best results, upload an SVG or high resolution PNG.
+      </i>
+     </p>
+    </div>
+    <div class="checkbox">
+     <label>
+      <input checked="" name="allowPublicSignup" type="checkbox"/>
+      Allow public account creation
+     </label>
+    </div>
+    <br/>
+    <h2>
+     2. Some technical details
+    </h2>
+    <div class="form-group">
+     <p>
+      We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
+      <b>
+       http://localhost:7777/
+      </b>
+      , but if this is incorrect, please change it here.
+     </p>
+     <label>
+      Instance URL
+      <input class="form-control" name="instanceURL" value="http://localhost:7777/"/>
+     </label>
+     <p>
+      We need to know how to prefix URIs of objects stored in this SynBioHub. Its default is the same as the URL, and should only be changed if you are shadowing another instance.
+     </p>
+     <label>
+      URI Prefix
+      <input class="form-control" name="uriPrefix" value="http://localhost:7777/"/>
+     </label>
+     <p>
+      We need to know where the Virtuoso INI is stored. We have guessed it to be
+      <b>
+       /etc/virtuoso-opensource-7/virtuoso.ini
+      </b>
+      , but if this is incorrect, please change it here.
+     </p>
+     <label>
+      Virtuoso INI
+      <input class="form-control" name="virtuosoINI" value="/etc/virtuoso-opensource-7/virtuoso.ini"/>
+     </label>
+     <p>
+      We need to know the location of the Virtuoso DB directory. We have guessed it to be
+      <b>
+       /virtuoso
+      </b>
+      , but if this is incorrect, please change it here.
+     </p>
+     <label>
+      Virtuoso Data Directory
+      <input class="form-control" name="virtuosoDB" value="/virtuoso"/>
+     </label>
+    </div>
+    <br/>
+    <h2>
+     3. Create your first user account
+    </h2>
+    <div class="form-group">
+     <label>
+      Username
+      <input class="form-control" name="userName" placeholder="john" value=""/>
+     </label>
+     <br/>
+     <label>
+      Full Name
+      <input class="form-control" name="userFullName" placeholder="John Doe" value=""/>
+     </label>
+     <br/>
+     <label>
+      Affiliation
+      <input class="form-control" name="affiliation" placeholder="Affiliation (optional)" value=""/>
+     </label>
+     <br/>
+     <label>
+      E-mail address
+      <input class="form-control" name="userEmail" placeholder="john@example.com" value=""/>
+     </label>
+     <br/>
+     <label>
+      Password
+      <input autocomplete="new-password" class="form-control" name="userPassword" type="password"/>
+     </label>
+     <br/>
+     <label>
+      Password (again)
+      <input autocomplete="new-password" class="form-control" name="userPasswordConfirm" type="password"/>
+     </label>
+    </div>
+    <h2>
+     4. Set up external auth provider
+    </h2>
+    <div class="form-group">
+     <p>
+      Here, you can set up an external auth provider. Select one from the list and provide additional information.
+     </p>
+     <p>
+      Selected auth:
+     </p>
+     <label>
+      Auth provider
+      <select class="form-control" name="authProvider">
+       <option selected="" value="">
+        None
+       </option>
+       <option value="google">
+        Google
+       </option>
+      </select>
+     </label>
+     <div class="auth-google" style="display:none">
+      <div class="form-group">
+       <label>
+        Client ID
+        <input autocomplete="off" class="form-control" name="googleClientId" value=""/>
+       </label>
+      </div>
+      <div class="form-group">
+       <label>
+        Client secret
+        <input autocomplete="off" class="form-control" name="googleClientSecret" value=""/>
+       </label>
+      </div>
+      <div class="form-group">
+       <label>
+        Redirect URL
+        <input class="form-control" name="googleCallbackUrl" value=""/>
+       </label>
+       <p>
+        This is the path in your application that users are redirected to after they have authenticated with Google. The path will be appended with the authorization code for access. Must have a protocol. Cannot contain URL fragments or relative paths. Cannot be a public IP address.
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="text-center">
+     <input class="btn btn-primary setup-done" type="submit" value="Continue"/>
+    </div>
+   </form>
+  </div>
+  <script src="/js/saveSvgAsPng.js">
+  </script>
+  <script src="/js/jquery/jquery-2.1.3.min.js">
+  </script>
+  <script src="/js/bootstrap/bootstrap-3.3.4.js">
+  </script>
+  <script src="/js/typeahead.bundle.js">
+  </script>
+  <script src="/js/typeahead.jquery.min.js">
+  </script>
+  <script src="/datatables.min.js">
+  </script>
+  <script src="/js/pathseg.js">
+  </script>
+  <script src="/js/chosen.jquery.js">
+  </script>
+  <script src="/js/dropzone.js">
+  </script>
+  <script src="/js/BootstrapMenu.js">
+  </script>
+  <script src="/bundle.js">
+  </script>
  </body>
 </html>
