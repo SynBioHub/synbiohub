@@ -4,8 +4,9 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Browse 4 collection(s) including testcollection1, SynBioHub, LCP SynBioHub, SEVAhub" name="description"/>
   <title>
-   SynBioHub
+   Test Synbiohub
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -29,202 +30,315 @@ try {
   </script>
   <script src="/js/popupS.min.js">
   </script>
+  <style>
+   body {
+    background-color: #f6f6f6;
+}
+
+.grey-page-mark {
+    background-color: #f6f6f6;
+}
+
+.top-search-form {
+    display: none;
+}
+
+.main-search-form input {
+    width: 60%;
+    margin-left: 0;
+    background-color: white;
+    padding: 14px 16px 13px 32px;
+}
+
+.main-search-form .submit {
+    padding: 12px 21px;
+}
+
+.main-search-form label {
+    color: #7F8C8D;
+}
+
+.search-section {
+    height: 60px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 40px;
+    text-align: center;
+}
+  </style>
  </head>
  <body>
-  <center>
-   <img src="../images/sbolhub_logo_sl_dark.svg" width="900"/>
-  </center>
-  <div class="setup">
-   <h1>
-    Congratulations, SynBioHub is successfully installed!
-   </h1>
-   <div class="text-center">
-    <p>
-     We just need a few more details to configure your SynBioHub instance.
-    </p>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit" title="Submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/shared" title="Shared with Me">
+        <span class="fa fa-bolt">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage" title="Manage Submissions">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin" title="Administration">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Admin
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile" title="Edit Profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout" title="Sign Out">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Sign Out
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
    </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-search">
+     </span>
+     Search
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="/search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <div align="center" class="search-section">
+   <form action="/search" class="main-search-form">
+    <input class="sbh-autocomplete" name="q" placeholder="Search SynBioHub" type="text"/>
+    <button class="submit" type="submit">
+     Search
+    </button>
+   </form>
    <br/>
-   <form action="/setup" enctype="multipart/form-data" method="post">
-    <h2>
-     1. Brand your SynBioHub
-    </h2>
-    <div class="form-group">
-     <label>
-      Instance Name
-      <input class="form-control" name="instanceName" value="My SynBioHub"/>
-     </label>
-     <p>
-      <i>
-       Try to choose something descriptive to identify the kind of parts your SynBioHub instance will store.  Don't worry, you can change this later.
-      </i>
-     </p>
-     <br/>
-     <label>
-      Pick a Color
-      <input class="form-control" id="setupColor" name="color" type="color" value="#D25627"/>
-     </label>
-     <p>
-      <i>
-       This color will be used to theme your SynBioHub instance.
-      </i>
-     </p>
-     <br/>
-     <label>
-      Write a Welcome Message
-     </label>
-     <textarea class="form-control" form-id="themeForm" name="frontPageText" rows="6">&lt;a href="/About"&gt;SynBioHub&lt;/a&gt; is a &lt;i&gt;design repository&lt;/i&gt; for people designing biological constructs. It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them. SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.</textarea>
-     <p>
-      <i>
-       This message will be displayed on the home page of your SynBioHub instance.
-      </i>
-     </p>
-     <br/>
-     <label>
-      Upload a Logo
-      <input name="logo" type="file"/>
-     </label>
-     <p>
-      <i>
-       For best results, upload an SVG or high resolution PNG.
-      </i>
-     </p>
+   <a href="/sbsearch">
+    Sequence Search
+   </a>
+   |
+   <a href="/advancedSearch">
+    Advanced Search
+   </a>
+   |
+   <a href="/createCollection">
+    Create Collection
+   </a>
+   |
+   <a href="/sparql">
+    SPARQL
+   </a>
+   <br/>
+  </div>
+  <div class="clearfix">
+  </div>
+  <br/>
+  <div class="search-results-area">
+   <div class="vert" style="overflow: hidden; display: none">
+   </div>
+   <div class="facets">
+   </div>
+   <div class="search-results-scroll-area">
+    <div class="clearfix">
     </div>
-    <div class="checkbox">
-     <label>
-      <input checked="" name="allowPublicSignup" type="checkbox"/>
-      Allow public account creation
-     </label>
-    </div>
-    <br/>
-    <h2>
-     2. Some technical details
-    </h2>
-    <div class="form-group">
-     <p>
-      We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
-      <b>
-       http://localhost:7777/
-      </b>
-      , but if this is incorrect, please change it here.
-     </p>
-     <label>
-      Instance URL
-      <input class="form-control" name="instanceURL" value="http://localhost:7777/"/>
-     </label>
-     <p>
-      We need to know how to prefix URIs of objects stored in this SynBioHub. Its default is the same as the URL, and should only be changed if you are shadowing another instance.
-     </p>
-     <label>
-      URI Prefix
-      <input class="form-control" name="uriPrefix" value="http://localhost:7777/"/>
-     </label>
-     <p>
-      We need to know where the Virtuoso INI is stored. We have guessed it to be
-      <b>
-       /etc/virtuoso-opensource-7/virtuoso.ini
-      </b>
-      , but if this is incorrect, please change it here.
-     </p>
-     <label>
-      Virtuoso INI
-      <input class="form-control" name="virtuosoINI" value="/etc/virtuoso-opensource-7/virtuoso.ini"/>
-     </label>
-     <p>
-      We need to know the location of the Virtuoso DB directory. We have guessed it to be
-      <b>
-       /virtuoso
-      </b>
-      , but if this is incorrect, please change it here.
-     </p>
-     <label>
-      Virtuoso Data Directory
-      <input class="form-control" name="virtuosoDB" value="/virtuoso"/>
-     </label>
-    </div>
-    <br/>
-    <h2>
-     3. Create your first user account
-    </h2>
-    <div class="form-group">
-     <label>
-      Username
-      <input class="form-control" name="userName" placeholder="john" value=""/>
-     </label>
-     <br/>
-     <label>
-      Full Name
-      <input class="form-control" name="userFullName" placeholder="John Doe" value=""/>
-     </label>
-     <br/>
-     <label>
-      Affiliation
-      <input class="form-control" name="affiliation" placeholder="Affiliation (optional)" value=""/>
-     </label>
-     <br/>
-     <label>
-      E-mail address
-      <input class="form-control" name="userEmail" placeholder="john@example.com" value=""/>
-     </label>
-     <br/>
-     <label>
-      Password
-      <input autocomplete="new-password" class="form-control" name="userPassword" type="password"/>
-     </label>
-     <br/>
-     <label>
-      Password (again)
-      <input autocomplete="new-password" class="form-control" name="userPasswordConfirm" type="password"/>
-     </label>
-    </div>
-    <h2>
-     4. Set up external auth provider
-    </h2>
-    <div class="form-group">
-     <p>
-      Here, you can set up an external auth provider. Select one from the list and provide additional information.
-     </p>
-     <p>
-      Selected auth:
-     </p>
-     <label>
-      Auth provider
-      <select class="form-control" name="authProvider">
-       <option selected="" value="">
-        None
-       </option>
-       <option value="google">
-        Google
-       </option>
-      </select>
-     </label>
-     <div class="auth-google" style="display:none">
-      <div class="form-group">
-       <label>
-        Client ID
-        <input autocomplete="off" class="form-control" name="googleClientId" value=""/>
-       </label>
+    <div class="search-results">
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-public">
+        Public
+       </div>
       </div>
-      <div class="form-group">
-       <label>
-        Client secret
-        <input autocomplete="off" class="form-control" name="googleClientSecret" value=""/>
-       </label>
-      </div>
-      <div class="form-group">
-       <label>
-        Redirect URL
-        <input class="form-control" name="googleCallbackUrl" value=""/>
-       </label>
+      <div style="margin-right: 100px">
+       <a href="/public/testid1/testid1_collection/1">
+        testcollection1
+       </a>
        <p>
-        This is the path in your application that users are redirected to after they have authenticated with Google. The path will be appended with the authorization code for access. Must have a protocol. Cannot contain URL fragments or relative paths. Cannot be a public IP address.
+        version 1
        </p>
+       <div class="keywords">
+        <strong>
+         testdescription1
+        </strong>
+       </div>
+       <br/>
+      </div>
+      <div class="clearfix">
+      </div>
+     </div>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-public">
+        Public
+       </div>
+      </div>
+      <div style="margin-right: 100px">
+       <span class="fa fa-globe sbh-remote-icon">
+       </span>
+       <a href="https://synbiohub.org">
+        SynBioHub
+       </a>
+       <div class="keywords">
+        <strong>
+         <a href="/About">
+          SynBioHub
+         </a>
+         is a
+         <i>
+          design repository
+         </i>
+         for people designing biological constructs. It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them. SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.
+        </strong>
+       </div>
+       <br/>
+      </div>
+      <div class="clearfix">
+      </div>
+     </div>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-public">
+        Public
+       </div>
+      </div>
+      <div style="margin-right: 100px">
+       <span class="fa fa-globe sbh-remote-icon">
+       </span>
+       <a href="https://synbiohub.programmingbiology.org">
+        LCP SynBioHub
+       </a>
+       <div class="keywords">
+        <strong>
+         <a href="/About">
+          SynBioHub
+         </a>
+         is a
+         <i>
+          design repository
+         </i>
+         for people designing biological constructs. It enables DNA and protein designs to be uploaded, then provides a shareable link to allow others to view them. SynBioHub also facilitates searching for information about existing useful parts and designs by combining data from a variety of sources.
+        </strong>
+       </div>
+       <br/>
+      </div>
+      <div class="clearfix">
+      </div>
+     </div>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-public">
+        Public
+       </div>
+      </div>
+      <div style="margin-right: 100px">
+       <span class="fa fa-globe sbh-remote-icon">
+       </span>
+       <a href="http://sevahub.es">
+        SEVAhub
+       </a>
+       <div class="keywords">
+        <strong>
+         The
+         <a href="http://seva.cnb.csic.es">
+          SEVA database (SEVA-DB)
+         </a>
+         is a resource for implementation of a standard for physical assembly of vector plasmids and for their non-ambiguous nomenclature as well as the index for a repository of functional sequences and actual constructs available to the community. This resource, SEVAhub, is an instance of the
+         <a href="http://wiki.synbiohub.org/">
+          SynBioHub
+         </a>
+         design repository providing access to SEVA-DB converted to the Synthetic Biology Open Language (SBOL).
+        </strong>
+       </div>
+       <br/>
+      </div>
+      <div class="clearfix">
       </div>
      </div>
     </div>
-    <div class="text-center">
-     <input class="btn btn-primary setup-done" type="submit" value="Continue"/>
-    </div>
-   </form>
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
   </div>
   <script src="/js/saveSvgAsPng.js">
   </script>
