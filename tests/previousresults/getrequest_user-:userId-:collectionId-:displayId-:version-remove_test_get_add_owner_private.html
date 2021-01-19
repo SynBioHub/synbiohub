@@ -105,9 +105,9 @@ try {
   <div class="sbol-breadcrumbs" style="display: flex">
    <ul>
     <li class="inactive">
-     <span class="fa fa-cogs">
+     <span class="fa fa-align-left">
      </span>
-     Admin
+     Manage Submissions
     </li>
    </ul>
    <ul style="flex-grow: 1">
@@ -122,156 +122,45 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
+  <div class="clearfix">
+  </div>
+  <div class="container">
    <div class="row">
-    <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Log
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/sparql">
-        SPARQL
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-     </ul>
+    <div class="col-md-6 submission-list">
+     <h4>
+      Private Submissions
+     </h4>
+     <p>
+      You currently have 0 private submission(s)
+     </p>
     </div>
-    <div class="col-md-8">
-     <table class="table table-striped sbh-datatable">
-      <thead>
-       <tr>
-        <th>
-         Graph URI
-        </th>
-        <th>
-         # Triples
-        </th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr>
-        <td>
-         <code>
-          http://www.openlinksw.com/schemas/virtrdf#
-         </code>
-        </td>
-        <td>
-         2479
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://www.w3.org/ns/ldp#
-         </code>
-        </td>
-        <td>
-         3
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:8890/sparql
-         </code>
-        </td>
-        <td>
-         14
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:8890/DAV/
-         </code>
-        </td>
-        <td>
-         2959
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://www.w3.org/2002/07/owl#
-         </code>
-        </td>
-        <td>
-         160
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:7777/public
-         </code>
-        </td>
-        <td>
-         950
-        </td>
-       </tr>
-       <tr>
-        <td>
-         <code>
-          http://localhost:7777/user/testuser
-         </code>
-        </td>
-        <td>
-         165
-        </td>
-       </tr>
-      </tbody>
-     </table>
-    </div>
-    <div class="col-md-1">
+    <div class="col-md-6 submission-list">
+     <h4>
+      Public Submissions
+     </h4>
+     <p>
+      You currently have 1 public submission(s)
+     </p>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-public">
+        Public
+       </div>
+      </div>
+      <a href="/public/testid1/testid1_collection/1">
+       testid1_collection (testcollection1)
+      </a>
+      <p>
+       version 1
+      </p>
+      <div class="keywords">
+       <strong>
+        testdescription1
+       </strong>
+      </div>
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+     </div>
     </div>
    </div>
   </div>
