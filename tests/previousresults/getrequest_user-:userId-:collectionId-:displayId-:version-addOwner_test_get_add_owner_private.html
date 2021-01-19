@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <title>
-   test_instance
+   Test Synbiohub
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -34,7 +34,11 @@ try {
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
-     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
     </a>
     <div class="pull-right menu">
      <ul>
@@ -99,17 +103,10 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-align-left">
-     </span>
-     Manage Submissions
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -118,46 +115,39 @@ try {
     </li>
    </ul>
   </div>
-  <div class="clearfix">
-  </div>
   <div class="container">
-   <div class="row">
-    <div class="col-md-6 submission-list">
-     <h4>
-      Private Submissions
-     </h4>
+   <div align="center" class="submission-container">
+    <div class="submission-header">
+     <span class="fa fa-id-card" style="font-size: 3.3em">
+     </span>
+     <p style="font-size: 1.7em; font-weight: bolder">
+      Add owner
+     </p>
      <p>
-      You currently have 0 private submission(s)
+      <span class="text-danger" style="font-weight: bolder">
+       Warning:
+      </span>
+      this will give another user complete control over this object.
      </p>
     </div>
-    <div class="col-md-6 submission-list">
-     <h4>
-      Public Submissions
-     </h4>
-     <p>
-      You currently have 1 public submission(s)
-     </p>
-     <div class="search-result-item">
-      <div class="ribbon-wrapper">
-       <div class="ribbon-public">
-        Public
-       </div>
+    <form class="form" method="POST">
+     <input name="uri" type="hidden" value="http://localhost:7777/user/testuser/testid2/testid2_collection/1"/>
+     <div class="row">
+      <div class="col-sm-12">
+       <select class="chosen-select" name="user" style="width: 260px">
+        <option value="http://localhost:7777/user/testuser2">
+         ronnie [testuser2]
+        </option>
+       </select>
       </div>
-      <a href="/public/testid1/testid1_collection/1">
-       testid1_collection (testcollection1)
-      </a>
-      <p>
-       version 1
-      </p>
-      <div class="keywords">
-       <strong>
-        testdescription1
-       </strong>
-      </div>
-      <br/>
-      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
      </div>
-    </div>
+     <br/>
+     <div class="row">
+      <div class="col-sm-12">
+       <input class="btn btn-info" type="submit" value="Grant ownership"/>
+      </div>
+     </div>
+    </form>
    </div>
   </div>
   <div class="clearfix">
@@ -176,7 +166,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="https://wiki.synbiohub.org">
+    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
      About SynBioHub
     </a>
     |
