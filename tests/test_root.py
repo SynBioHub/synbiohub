@@ -8,37 +8,40 @@ class TestRoot(TestCase):
 
         def test_root(self):
 
+            # no commented tests
             from test_tests import TestTests
             testTests=TestTests()
             testTests.test_get_address()
 
+            # no commented tests
             from first_time_setup import TestSetup
             firstTimeSetup = TestSetup()
             firstTimeSetup.test_get()
             firstTimeSetup.test_post()
 
+            # no commented tests
+            from first_time_setup import TestSetup
             from test_before_login import TestBeforeLogin
             testBeforeLogin = TestBeforeLogin()
             testBeforeLogin.test_before_login()
 
+            # no commented tests
             from test_user import TestUser
             testUser = TestUser()
             testUser.test_post_register()
-
-            from test_user2 import TestUser2
-            testUser2 = TestUser2()
-            testUser2.test_post_login_token()
 
             from test_submit import TestSubmit
             testSubmit = TestSubmit()
             testSubmit.test_submit()
 
+            # get uses is commeneted out
             from test_search import TestSearch
             testSearch = TestSearch()
             testSearch.test_search()
 
             from test_download import TestDownload
 
+            # add field edit field are commented out
             from test_edit import TestEdit
             testEdit = TestEdit()
             testEdit.test_edit()
@@ -47,6 +50,7 @@ class TestRoot(TestCase):
             testAttachment = TestAttachment()
             testAttachment.test_attachment()
 
+            # several tests commented out
             from test_collection import TestCollections
             testCollections = TestCollections()
             testCollections.test_collections()
@@ -54,10 +58,6 @@ class TestRoot(TestCase):
             from test_admin import TestAdmin
             testAdmin = TestAdmin()
             testAdmin.test_admin1()
-
-            from test_admin2 import TestAdmin2
-            testAdmin2 = TestAdmin2()
-            testAdmin2.test_admin2()
 
             from test_twins import TestTwins
 
