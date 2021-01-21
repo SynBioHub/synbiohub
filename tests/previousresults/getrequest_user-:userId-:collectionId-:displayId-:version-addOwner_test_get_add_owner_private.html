@@ -103,13 +103,6 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-cogs">
-     </span>
-     Admin
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
@@ -122,120 +115,39 @@ try {
     </li>
    </ul>
   </div>
-  <br/>
-  <br/>
-  <div class="container-fluid">
-   <div class="row">
-    <div class="col-md-2">
-     <ul class="nav nav-pills nav-stacked">
-      <li role="presentation">
-       <a href="/admin/">
-        Status
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/graphs">
-        Graphs
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/log">
-        Log
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/mail">
-        Mail
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/plugins">
-        Plugins
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/registries">
-        Registries
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/remotes">
-        Remotes
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/explorer">
-        SBOLExplorer
-       </a>
-      </li>
-      <li class="active" role="presentation">
-       <a href="/admin/sparql">
-        SPARQL
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/theme">
-        Theme
-       </a>
-      </li>
-      <li role="presentation">
-       <a href="/admin/users">
-        Users
-       </a>
-      </li>
-     </ul>
+  <div class="container">
+   <div align="center" class="submission-container">
+    <div class="submission-header">
+     <span class="fa fa-id-card" style="font-size: 3.3em">
+     </span>
+     <p style="font-size: 1.7em; font-weight: bolder">
+      Add owner
+     </p>
+     <p>
+      <span class="text-danger" style="font-weight: bolder">
+       Warning:
+      </span>
+      this will give another user complete control over this object.
+     </p>
     </div>
-    <div class="col-md-8">
-     <div class="container">
-      <br/>
-      <form action="/admin/sparql" method="post">
-       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">
-         Graph
-        </label>
-       </div>
-       <div class="form-group row">
-        <div class="col-sm-10">
-         <select class="form-control" name="graph">
-          <option value="http://localhost:7777/public">
-           http://localhost:7777/public
-          </option>
-          <option value="http://localhost:7777/user/testuser">
-           http://localhost:7777/user/testuser
-          </option>
-         </select>
-        </div>
-       </div>
-       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">
-         Query
-        </label>
-       </div>
-       <div class="form-group row">
-        <div class="col-sm-10">
-         <textarea class="sbh-sparql-editor form-control" name="query">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
-PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
-PREFIX sbh: &lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#&gt;
-PREFIX prov: &lt;http://www.w3.org/ns/prov#&gt;
-PREFIX sbol: &lt;http://sbols.org/v2#&gt;
-PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-PREFIX purl: &lt;http://purl.obolibrary.org/obo/&gt;
-
-</textarea>
-        </div>
-       </div>
-       <div class="form-group row">
-        <button class="pull-right btn btn-primary" type="submit">
-         Submit Query
-        </button>
-       </div>
-      </form>
+    <form class="form" method="POST">
+     <input name="uri" type="hidden" value="http://localhost:7777/user/testuser/testid2/testid2_collection/1"/>
+     <div class="row">
+      <div class="col-sm-12">
+       <select class="chosen-select" name="user" style="width: 260px">
+        <option value="http://localhost:7777/user/testuser2">
+         ronnie [testuser2]
+        </option>
+       </select>
+      </div>
      </div>
-    </div>
-    <div class="col-md-1">
-    </div>
+     <br/>
+     <div class="row">
+      <div class="col-sm-12">
+       <input class="btn btn-info" type="submit" value="Grant ownership"/>
+      </div>
+     </div>
+    </form>
    </div>
   </div>
   <div class="clearfix">
@@ -286,10 +198,6 @@ PREFIX purl: &lt;http://purl.obolibrary.org/obo/&gt;
   <script src="/js/dropzone.js">
   </script>
   <script src="/js/BootstrapMenu.js">
-  </script>
-  <script src="/js/codemirror.js">
-  </script>
-  <script src="/js/codemirror-mode-sparql.js">
   </script>
   <script src="/bundle.js">
   </script>
