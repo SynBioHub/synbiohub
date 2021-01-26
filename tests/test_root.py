@@ -30,35 +30,40 @@ class TestRoot(TestCase):
             testUser = TestUser()
             testUser.test_post_register()
 
+            # no commented tests
             from test_submit import TestSubmit
             testSubmit = TestSubmit()
             testSubmit.test_submit()
 
-            # get uses is commeneted out
+            # no commented tests
             from test_search import TestSearch
             testSearch = TestSearch()
             testSearch.test_search()
 
+            # TODO: TEST TEST_DOWNLOAD
             from test_download import TestDownload
 
-            # add field edit field are commented out
+            # TODO: add field edit field are commented out
             from test_edit import TestEdit
             testEdit = TestEdit()
             testEdit.test_edit()
 
+            # TODO: several tests commented out
             from test_attachment import TestAttachment
             testAttachment = TestAttachment()
             testAttachment.test_attachment()
 
-            # several tests commented out
+            # TODO: several tests commented out
             from test_collection import TestCollections
             testCollections = TestCollections()
             testCollections.test_collections()
 
+            # TODO: test new user commented out
             from test_admin import TestAdmin
             testAdmin = TestAdmin()
             testAdmin.test_admin1()
 
+            # TODO: TEST TEST_TWINS
             from test_twins import TestTwins
 
             from  docker_test_setup import TestDockerSetup
