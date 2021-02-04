@@ -12,7 +12,7 @@ class TestAttachment(TestCase):
                 'name' : 'synbiohubtestattachurl',
                 'type' : 'test',
         }
-        compare_post_request("/user/:userId/:collectionId/:displayId/:version/attachUrl", route_parameters = ["testuser", "testid2", "testid2_collection", "1"], data = data, test_name = "test_attachURL_private")
+#        compare_post_request("/user/:userId/:collectionId/:displayId/:version/attachUrl", route_parameters = ["testuser", "testid2", "testid2_collection", "1"], data = data, test_name = "test_attachURL_private")
 
         test_print("test_attachUrl_private completed")
 
@@ -29,14 +29,14 @@ class TestAttachment(TestCase):
         compare_post_request("public/:collectionId/:displayId/:version/attach",route_parameters = ["testid1", "testid1_collection", "1"],data=data,  headers = {"Accept": "text/plain"}, files = files, test_name = "test_attach_to_public_collection")
         test_print("test_attach_private_collection completed")
 
-#        test_print("test_attachUrl_public starting")
-#        data={
-#            'url': 'synbiohub.org',
-#            'name' : 'synbiohub_test_attachurl',
-#            'type' : 'test'
-#        }
-#        compare_post_request("public/:collectionId/:displayId/:version/attachUrl", route_parameters = ["testid1", "testid1_collection", "1"], data = data)
+#      test_print("test_attachUrl_public starting")
+        data={
+                'url': 'synbiohub.org',
+                'name' : 'synbiohubtestattachurl',
+                'type' : 'test',
+        }
+#        compare_post_request("/public/:collectionId/:displayId/:version/attachUrl", route_parameters = ["testid1", "testid1_collection", "1"], data = data)
 
-#        test_print("test_attachUrl_public completed")
+ #       test_print("test_attachUrl_public completed")
 
 

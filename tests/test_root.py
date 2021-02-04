@@ -48,17 +48,18 @@ class TestRoot(TestCase):
             testEdit = TestEdit()
             testEdit.test_edit()
 
-            # TODO: several tests commented out
+            # TODO: both public and private attachURL seem nondeterministic
             from test_attachment import TestAttachment
             testAttachment = TestAttachment()
             testAttachment.test_attachment()
 
-            # TODO: several tests commented out
+            # no commented tests
             from test_collection import TestCollections
             testCollections = TestCollections()
             testCollections.test_collections()
 
             # TODO: test new user commented out
+            # ALL ASIDE FROM TEST_NEWUSER SHOULD WAIT UNTIL LATER
             from test_admin import TestAdmin
             testAdmin = TestAdmin()
             testAdmin.test_admin1()
@@ -76,3 +77,4 @@ class TestRoot(TestCase):
             testDocker.test_dockeruser_persist()
             testDocker.test_public_persist()
             testDocker.test_admin_persist()
+
