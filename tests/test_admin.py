@@ -94,6 +94,7 @@ class TestAdmin(TestCase):
         compare_get_request("admin/registries")
         test_print("test_admin_registries completed")
 
+        # TODO: FIGURE OUT ANOTHER WAY TO TEST THIS
         #    def test_admin_retreiveFromWebOfRegistries(self):
         #        data={
         #        }
@@ -106,7 +107,6 @@ class TestAdmin(TestCase):
         #        }
         #        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
 
-        # test_admin_setAdministratorEmail(self):
         test_print("test_admin_setAdministratorEmail starting")
         data={
             'administratorEmail': 'test@synbiohub.org',
@@ -114,7 +114,6 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/setAdministratorEmail", data, headers = {"Accept": "text/plain"}, test_name = "admin_setAdministratorEmail")
         test_print("test_admin_setAdministratorEmail completed")
 
-        # test_admin_updateTheme(self):
         test_print("test_admin_updateTheme starting")
         logo = os.path.basename('./logo.jpg');
         data={
@@ -129,7 +128,6 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/theme", data, headers = {"Accept": "text/plain"}, files = files, test_name = "admin_setAdministratorEmail")
         test_print("test_admin_updateTheme completed")
 
-        # test_updateExplorerConfig(self):
         test_print("test_admin_status starting")
         data={
             'useSBOLExplorer': 'True',
@@ -145,19 +143,18 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/explorer", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateExplorerConfig")
         test_print("test_admin_status completed")
 
+        # TODO: FIGURE OUT ANOTHER WAY TO TEST THIS
         # test_admin_explorer(self):
-#        test_print("test_admin_explorer starting")
-#        compare_get_request("/admin/explorer")
-#        test_print("test_admin_explorer completed")
+        # test_print("test_admin_explorer starting")
+        # compare_get_request("/admin/explorer")
+        # test_print("test_admin_explorer completed")
 
-        # test_explorerUpdateIndex(self):
         test_print("test_explorerUpdateIndex starting")
         data={
         }
         compare_post_request("/admin/explorerUpdateIndex", data, headers = {"Accept": "text/plain"}, test_name = "admin_explorerUpdateIndex")
         test_print("test_explorerUpdateIndex completed")
 
-        # test_saveRemoteICE(self):
         test_print("test_saveRemoteICE starting")
         data={
             'type': 'ice',
@@ -183,7 +180,6 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/saveRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRemoteICE")
         test_print("test_saveRemoteICE completed")
 
-        # test_saveRemoteBenchling(self):
         test_print("test_saveRemoteBenchling starting")
         data={
             'type': 'benchling',
