@@ -135,6 +135,37 @@ class TestSubmit(TestCase):
 
         test_print("test_make_public completed")
 
+        test_print("creating new collection for test_attachment")
+        data = {'id':(None, 'testid1'),
+                'version' : (None, '1'),
+                'name' : (None, 'testcollection1'),
+                'description':(None, 'testdescription'),
+                'citations':(None, 'none'),
+                'overwrite_merge':(None, '0')
+                }
+
+        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml", open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml', 'rb'))}
+
+        compare_post_request("submit", data, headers = {"Accept":"text/plain"}, files = files, test_name = "collection_for_test_attachment")
+
+        test_print("completed")
+
+        test_print("creating new collection for test_hash")
+        data = {'id':(None, 'testid2'),
+                'version' : (None, '2'),
+                'name' : (None, 'testcollection2'),
+                'description':(None, 'testdescription'),
+                'citations':(None, 'none'),
+                'overwrite_merge':(None, '0')
+                }
+
+        files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/Measure.xml", open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/Measure.xml', 'rb'))}
+
+        compare_post_request("submit", data, headers = {"Accept":"text/plain"}, files = files, test_name = "collection_for_test_hash")
+
+        test_print("completed")
+
+
 #    def make_new_private_collection(self, uniqueid):
         # create the collection
 #        data = {'id':(None, 'testid1'),
