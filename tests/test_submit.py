@@ -136,10 +136,10 @@ class TestSubmit(TestCase):
         test_print("test_make_public completed")
 
         test_print("creating new collection for test_attachment")
-        data = {'id':(None, 'testid1'),
+        data = {'id':(None, 'test_attachment'),
                 'version' : (None, '1'),
-                'name' : (None, 'testcollection1'),
-                'description':(None, 'testdescription'),
+                'name' : (None, 'test_attachment'),
+                'description':(None, 'used for tesitng the attachment endpoints'),
                 'citations':(None, 'none'),
                 'overwrite_merge':(None, '0')
                 }
@@ -151,10 +151,10 @@ class TestSubmit(TestCase):
         test_print("completed")
 
         test_print("creating new collection for test_hash")
-        data = {'id':(None, 'testid2'),
+        data = {'id':(None, 'test_hash'),
                 'version' : (None, '2'),
-                'name' : (None, 'testcollection2'),
-                'description':(None, 'testdescription'),
+                'name' : (None, 'test_hash'),
+                'description':(None, 'used for testing endpoints with hash built in.'),
                 'citations':(None, 'none'),
                 'overwrite_merge':(None, '0')
                 }
