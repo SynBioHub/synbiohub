@@ -67,8 +67,12 @@ class TestRoot(TestCase):
             # TODO: TEST TEST_TWINS
             from test_twins import TestTwins
 
-#	    from test_hash import TestHash
-#	    testHash = TestHash()
+            from test_hash import TestHash
+            testHash = TestHash()
+            testHash.test_hash()
+            
+#            from test_hash import TestHash
+#            testHash = TestHash()
 #	    testHash.test_hash()
 
             from  docker_test_setup import TestDockerSetup
