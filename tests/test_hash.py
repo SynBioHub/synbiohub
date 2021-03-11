@@ -17,14 +17,14 @@ class TestHash(TestCase):
         compare_post_request("user/:userId/:collectionId/:displayId/:version/:hash/share/attach",route_parameters = ["testuser", "test_hash", "test_hash_collection","2", "599c07a2540e8b1e9429c35ff76b61bd4eaa9a9a"],data=data,  headers = {"Accept": "text/plain"}, files = files, test_name = "test_attach_to_collection_hash")
         test_print("test_attach_collection_hash completed")
 
-        test_print("test_attachUrl_hash starting")
-        data={
-                'url': 'synbiohub.org',
-                'name' : 'synbiohubtestattachurl',
-                'type' : 'test',
-        }
-        compare_post_request("user/:userId/:collectionId/:displayId/:version/:hash/share/attachUrl", route_parameters = ["testuser", "test_hash", "test_hash_collection","2", "599c07a2540e8b1e9429c35ff76b61bd4eaa9a9a"], data = data, test_name = "test_attachURL_hash")
-        test_print("test_attachUrl_hash completed")
+#        test_print("test_attachUrl_hash starting")
+#        data={
+#                'url': 'synbiohub.org',
+#                'name' : 'synbiohubtestattachurl',
+#                'type' : 'test',
+#        }
+#        compare_post_request("user/:userId/:collectionId/:displayId/:version/:hash/share/attachUrl", route_parameters = ["testuser", "test_hash", "test_hash_collection","2", "599c07a2540e8b1e9429c35ff76b61bd4eaa9a9a"], data = data, test_name = "test_attachURL_hash")
+#        test_print("test_attachUrl_hash completed")
 
 
 #[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/makePublic was not tested.
