@@ -11,58 +11,9 @@ if __name__ == '__main__':
         newtests = unittest.defaultTestLoader.loadTestsFromModule(m)
         tests.addTests(newtests)
 
-    # add test modules here
     import test_root
     addTestModule(test_root)
 
-#    import test_tests
-#    addTestModule(test_tests)
-
-#     import first_time_setup
-#     addTestModule(test_tests)
-#
-#     import test_before_login
-#     addTestModule(test_tests)
-#
-#     import test_user
-#     addTestModule(test_tests)
-#
-#     import test_user2
-#     addTestModule(test_tests)
-#
-# #    import test_submit
-# #    addTestModule(test_submit)
-#
-#     import test_search
-#     addTestModule(test_tests)
-# #
-#    import test_download
-#    addTestModule(test_download)
-#
-#    import test_edit
-#    addTestModule(test_edit)
-#
-#    import test_attachment
-#    addTestModule(test_attachment)
-#
-##    import test_collection
-##    addTestModule(test_attachment)
-#
-#    import test_admin
-#    addTestModule(test_admin)
-#
-#    import test_admin2
-#    addTestModule(test_admin2)
-#
-#    import test_twins
-#    addTestModule(test_twins)
-#
-#    import docker_test_setup
-#    addTestModule(docker_test_setup)
-#
-#    import docker_test
-#    addTestModule(docker_test)
-#
     runner = unittest.TextTestRunner()
     result = runner.run(tests)
 
