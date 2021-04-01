@@ -42,6 +42,8 @@ class TestRoot(TestCase):
 
             # TODO: TEST TEST_DOWNLOAD
             from test_download import TestDownload
+            testDownload = TestDownload()
+            testDownload.test_download()
 
             # TODO: add field edit field are commented out
             from test_edit import TestEdit
