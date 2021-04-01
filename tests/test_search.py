@@ -37,10 +37,10 @@ class TestSearch(TestCase):
 
 
 
-        # test_rootCollections(self):
-        test_print("test_rootCollections starting")
-        compare_get_request("/rootCollections")
-        test_print("test_rootCollections completed")
+#TODO: NONDETERMINISTIC
+#        test_print("test_rootCollections starting")
+#        compare_get_request("/rootCollections")
+#        test_print("test_rootCollections completed")
 
         # test_sparql(self):
         test_print("test_sparql starting")
@@ -52,10 +52,9 @@ class TestSearch(TestCase):
         compare_get_request("/public/:collectionId/:displayId/:version/subCollections", route_parameters = ["testid1","testid1_collection", "1"],headers = {"Accept": "text/html"})
         test_print("test_subcollections_public completed")
 
-        # test_uses(self):
 #        test_print("test_uses starting")
 #        compare_get_request("user/:userId/:collectionId/:displayId/:version/uses", route_parameters = ["testuser","testid2", "BBa_B0015", "1"],headers = {"Accept": "text/html"})
-#        test_print("test_uses completed")
+#       test_print("test_uses completed")
 
         test_print("test_subcollections_private starting")
         compare_get_request("user/:userId/:collectionId/:displayId/:version/subCollections", route_parameters = ["testuser","testid2","testid2_collection", "1"],headers = {"Accept": "text/html"})
