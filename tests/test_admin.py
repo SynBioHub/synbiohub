@@ -34,9 +34,9 @@ class TestAdmin(TestCase):
         test_print("test_admin_theme completed")
 
         # test_admin_newUser(self):
-        test_print("test_admin_newUser starting")
+        test_print("test_admin_newUser GET starting")
         compare_get_request("/admin/newUser")
-        test_print("test_admin_newUser completed")
+        test_print("test_admin_newUser GET  completed")
 
         # test_admin_sparql(self):
         test_print("test_admin_sparql starting")
@@ -94,6 +94,7 @@ class TestAdmin(TestCase):
         compare_get_request("admin/registries")
         test_print("test_admin_registries completed")
 
+        # TODO: FIGURE OUT ANOTHER WAY TO TEST THIS
         #    def test_admin_retreiveFromWebOfRegistries(self):
         #        data={
         #        }
@@ -106,7 +107,6 @@ class TestAdmin(TestCase):
         #        }
         #        compare_post_request("/admin/federate", data, headers = {"Accept": "text/plain"}, test_name = "admin_federate")
 
-        # test_admin_setAdministratorEmail(self):
         test_print("test_admin_setAdministratorEmail starting")
         data={
             'administratorEmail': 'test@synbiohub.org',
@@ -114,7 +114,6 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/setAdministratorEmail", data, headers = {"Accept": "text/plain"}, test_name = "admin_setAdministratorEmail")
         test_print("test_admin_setAdministratorEmail completed")
 
-        # test_admin_updateTheme(self):
         test_print("test_admin_updateTheme starting")
         logo = os.path.basename('./logo.jpg');
         data={
@@ -129,7 +128,6 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/theme", data, headers = {"Accept": "text/plain"}, files = files, test_name = "admin_setAdministratorEmail")
         test_print("test_admin_updateTheme completed")
 
-        # test_updateExplorerConfig(self):
         test_print("test_admin_status starting")
         data={
             'useSBOLExplorer': 'True',
@@ -145,19 +143,18 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/explorer", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateExplorerConfig")
         test_print("test_admin_status completed")
 
+        # TODO: FIGURE OUT ANOTHER WAY TO TEST THIS
         # test_admin_explorer(self):
-#        test_print("test_admin_explorer starting")
-#        compare_get_request("/admin/explorer")
-#        test_print("test_admin_explorer completed")
+        # test_print("test_admin_explorer starting")
+        # compare_get_request("/admin/explorer")
+        # test_print("test_admin_explorer completed")
 
-        # test_explorerUpdateIndex(self):
         test_print("test_explorerUpdateIndex starting")
         data={
         }
         compare_post_request("/admin/explorerUpdateIndex", data, headers = {"Accept": "text/plain"}, test_name = "admin_explorerUpdateIndex")
         test_print("test_explorerUpdateIndex completed")
 
-        # test_saveRemoteICE(self):
         test_print("test_saveRemoteICE starting")
         data={
             'type': 'ice',
@@ -183,7 +180,6 @@ class TestAdmin(TestCase):
         compare_post_request("/admin/saveRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_saveRemoteICE")
         test_print("test_saveRemoteICE completed")
 
-        # test_saveRemoteBenchling(self):
         test_print("test_saveRemoteBenchling starting")
         data={
             'type': 'benchling',
@@ -231,3 +227,65 @@ class TestAdmin(TestCase):
         }
         compare_post_request("/admin/updateUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_updateUser")
         test_print("test_updateUser completed")
+
+        test_print("test_admin_newUser GET starting")
+        compare_get_request("/admin/newUser", test_name = "test_new_user0")
+        test_print("test_admin_newUser GET completed")
+
+
+        # test_admin_deletePlugin(self):
+        test_print("test_admin_deletePlugin starting")
+        data={
+            'id': '1',
+            'category' : 'download',
+        }
+        compare_post_request("/admin/deletePlugin", data, headers = {"Accept": "text/plain"}, test_name = "admin_deletePlugin")
+        test_print("test_admin_deletePlugin completed")
+
+        # test_admin_deleteRegistry(self):
+        test_print("test_admin_deleteRegistry starting")
+        data={
+            'uri': 'testurl.com',
+        }
+        compare_post_request("/admin/deleteRegistry", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRegistry")
+        test_print("test_admin_deleteRegistry completed")
+
+        # test_admin_deleteRemoteBenchling(self):
+        test_print("test_admin_deleteRemoteBenchling starting")
+        data={
+            'id': '1',
+        }
+        compare_post_request("/admin/deleteRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRemoteBenchling")
+        test_print("test_admin_deleteRemoteBenchling completed")
+
+        # test_admin_deleteRemoteICE(self):
+        test_print("test_admin_deleteRemoteICE starting")
+        data={
+            'id': 'test',
+        }
+        compare_post_request("/admin/deleteRemote", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteRemoteICE")
+        test_print("test_admin_deleteRemoteICE completed")
+
+        # test_admin_DeleteUser(self):
+        test_print("test_admin_DeleteUser starting")
+        data={
+            'id': '2',
+        }
+        compare_post_request("/admin/deleteUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_deleteUser")
+        test_print("test_admin_DeleteUser completed")
+
+        # test_newUser(self):
+        test_print("test_newUser POST starting")
+        data = {
+            'username': 'adminNewUser',
+            'name' : 'adminNewUser',
+            'email' : 'adminNewUser@user.synbiohub',
+            'affiliation' : 'adminNewUser',
+            'isMember' : '1',
+            'isCurator' : '1',
+            'isAdmin' : '1',
+        }
+        compare_post_request("/admin/newUser", data, headers = {"Accept": "text/plain"}, test_name = "admin_newUser1")
+        test_print("test_newUser POST completed")
+
+

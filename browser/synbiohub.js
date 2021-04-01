@@ -68,8 +68,8 @@ $(document).on('click', '.removeFromWoR', function() {
 })
 
 $(document).on('blur', '#user_edit #email', function() {
-    $username = $('#username');
-    $email = $(this).closest('#email');
+    const $username = $('#username');
+    const $email = $(this).closest('#email');
 
     let email = $email.val();
     let username = email.split('@')[0].replace(/\W/g, '');
@@ -78,8 +78,8 @@ $(document).on('blur', '#user_edit #email', function() {
 })
 
 $(document).on('blur', '#new #name', function() {
-    $id = $('input#id');
-    $name = $(this).closest('input#name');
+    const $id = $('input#id');
+    const $name = $(this).closest('input#name');
 
     let name = $name.val();
     let id = "";
@@ -188,7 +188,7 @@ $(document).on('click', '.sbh-collection-members-datatable .remove', function ()
 
 function createPluginFunctions(pluginType) {
     $(document).on('click', '.save-' + pluginType + '-plugin', function () {
-        $row = $(this).closest('tr')
+        const $row = $(this).closest('tr')
     
         var pluginInfo = {
             id: $row.find("#id").text(),
@@ -203,7 +203,7 @@ function createPluginFunctions(pluginType) {
     })
     
     $(document).on('click', '.delete-' + pluginType + '-plugin', function () {
-        $row = $(this).closest('tr')
+        const $row = $(this).closest('tr')
     
         var pluginInfo = {
             id: $row.find("#id").text(),
@@ -232,7 +232,7 @@ $('.sbh-registries-datatable').DataTable({
 })
 
 $(document).on('click', '.save-registry', function () {
-    $row = $(this).closest('tr')
+    const $row = $(this).closest('tr')
 
     var registryInfo = {
         uri: $row.find('#uri').val(),
@@ -243,7 +243,7 @@ $(document).on('click', '.save-registry', function () {
 })
 
 $(document).on('click', '.delete-registry', function () {
-    $row = $(this).closest('tr')
+    const $row = $(this).closest('tr')
 
      var registryInfo = {
         uri: $row.find('#uri').val(),
@@ -621,19 +621,19 @@ function getFields(type) {
 }
 
 function clearForm() {
-    $form = $('#remoteForm').empty();
+    var $form = $('#remoteForm').empty();
 }
 
 function populateForm(type, data) {
-    $form = $('#remoteForm');
+    var $form = $('#remoteForm');
 
     const fields = getFields(type);
 
     Object.keys(fields).forEach(key => {
-        fieldInfo = fields[key];
+        var fieldInfo = fields[key];
 
-        $label = $("<label />").attr("for", key).text(fieldInfo.name);
-        $input = {
+        var $label = $("<label />").attr("for", key).text(fieldInfo.name);
+        var $input = {
             "text": $("<input />").attr("type", "text").val(fieldInfo.default),
             "checkbox": $("<input />").attr("type", "checkbox").prop("checked", fieldInfo.default),
             "textarea": $("<textarea />").val(fieldInfo.default),
@@ -652,7 +652,7 @@ function populateForm(type, data) {
             }
         }
 
-        $group = $("<div />").addClass('form-group').append($label, $input)
+        var $group = $("<div />").addClass('form-group').append($label, $input)
 
         $('#remoteForm').append($group)
     })
@@ -660,10 +660,10 @@ function populateForm(type, data) {
 
 }
 
-$(document).on('click', '#remoteTypeSelect', function () {
+$('#remoteTypeSelect').on('change', function () {
     var type = $(this).val()
 
-    if (type != "") {
+    if (type !== "") {
         clearForm();
         $('#addRemote').attr('disabled', false);
         populateForm(type, {"type": type})

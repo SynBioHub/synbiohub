@@ -3,7 +3,7 @@ from test_functions import compare_get_request, compare_post_request
 from test_arguments import test_print
 
 
-class TestSetup(TestCase):
+class TestBeforeLogin(TestCase):
 
     def test_before_login(self):
 
