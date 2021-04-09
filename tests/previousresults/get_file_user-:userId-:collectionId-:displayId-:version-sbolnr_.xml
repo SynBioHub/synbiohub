@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:sbol="http://sbols.org/v2#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#dateTime/" xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/" xmlns:synbiohub="http://synbiohub.org#" xmlns:sbh="http://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:sybio="http://www.sybio.ncl.ac.uk#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:ncbi="http://www.ncbi.nlm.nih.gov#" xmlns:igem="http://wiki.synbiohub.org/wiki/Terms/igem#" xmlns:genbank="http://www.ncbi.nlm.nih.gov/genbank#" xmlns:gbconv="http://sbols.org/genBankConversion#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:obo="http://purl.obolibrary.org/obo/">
+  <sbol:ComponentDefinition rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1">
+    <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1"/>
+    <sbol:displayId>part_pIKE_Toggle_1</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <dcterms:title>LacI/TetR Toggle Switch</dcterms:title>
+    <dcterms:description>LacI/TetR Toggle Switch</dcterms:description>
+    <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+    <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+    <obo:OBI_0001617>none</obo:OBI_0001617>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:role rdf:resource="http://identifiers.org/so/SO:0000280"/>
+    <sbol:component>
+      <sbol:Component rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/pIKELeftCassette_1/1">
+        <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/pIKELeftCassette_1"/>
+        <sbol:displayId>pIKELeftCassette_1</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+        <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+        <obo:OBI_0001617>none</obo:OBI_0001617>
+        <sbol:definition rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKELeftCassette_1/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:component>
+      <sbol:Component rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/pIKERightCassette_1/1">
+        <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/pIKERightCassette_1"/>
+        <sbol:displayId>pIKERightCassette_1</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+        <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+        <obo:OBI_0001617>none</obo:OBI_0001617>
+        <sbol:definition rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKERightCassette_1/1"/>
+        <sbol:access rdf:resource="http://sbols.org/v2#public"/>
+      </sbol:Component>
+    </sbol:component>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno1/1">
+        <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno1"/>
+        <sbol:displayId>anno1</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+        <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+        <obo:OBI_0001617>none</obo:OBI_0001617>
+        <sbol:location>
+          <sbol:Range rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno1/location1/1">
+            <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno1/location1"/>
+            <sbol:displayId>location1</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+            <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+            <obo:OBI_0001617>none</obo:OBI_0001617>
+            <sbol:start>1</sbol:start>
+            <sbol:end>1285</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/pIKELeftCassette_1/1"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+    <sbol:sequenceAnnotation>
+      <sbol:SequenceAnnotation rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno2/1">
+        <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno2"/>
+        <sbol:displayId>anno2</sbol:displayId>
+        <sbol:version>1</sbol:version>
+        <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+        <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+        <obo:OBI_0001617>none</obo:OBI_0001617>
+        <sbol:location>
+          <sbol:Range rdf:about="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno2/location2/1">
+            <sbol:persistentIdentity rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/anno2/location2"/>
+            <sbol:displayId>location2</sbol:displayId>
+            <sbol:version>1</sbol:version>
+            <sbh:topLevel rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/1"/>
+            <sbh:ownedBy rdf:resource="http://localhost:7777/user/testuser"/>
+            <obo:OBI_0001617>none</obo:OBI_0001617>
+            <sbol:start>1286</sbol:start>
+            <sbol:end>2834</sbol:end>
+            <sbol:orientation rdf:resource="http://sbols.org/v2#inline"/>
+          </sbol:Range>
+        </sbol:location>
+        <sbol:component rdf:resource="http://localhost:7777/user/testuser/test_attachment/part_pIKE_Toggle_1/pIKERightCassette_1/1"/>
+      </sbol:SequenceAnnotation>
+    </sbol:sequenceAnnotation>
+  </sbol:ComponentDefinition>
+</rdf:RDF>
