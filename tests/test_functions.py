@@ -1,6 +1,6 @@
 import subprocess, shutil, time, os
 from requests.exceptions import HTTPError
-import requests_html, difflib, sys, requests
+import requests_html, difflib, sys, requests, json
 from bs4 import BeautifulSoup
 
 from test_arguments import args, test_print
@@ -75,6 +75,7 @@ def get_request(request, headers, route_parameters, re_render_time):
     session = requests_html.HTMLSession()
 
     response = session.get(address, headers = headers)
+
     try:
         response.raise_for_status()
     except HTTPError:
@@ -94,6 +95,24 @@ def get_request(request, headers, route_parameters, re_render_time):
     content = format_html(content_html.html)
 
     return content
+
+def get_request_download(request, headers, route_parameters, re_render_time):
+    # get the current token
+    user_token = test_state.get_authentication()
+    if user_token != None:
+        headers["X-authorization"] = user_token
+
+    address = get_address(request, route_parameters)
+
+    session = requests_html.HTMLSession()
+
+    response = session.get(address, headers = headers)
+    try:
+        response.raise_for_status()
+    except HTTPError:
+        raise HTTPError("Internal server error. Content of response was \n" + response.text)
+
+    return response.text
 
 # data is the data field for a request
 def post_request(request, data, headers, route_parameters, files):
@@ -122,7 +141,8 @@ def post_request(request, data, headers, route_parameters, files):
 def request_file_path(request, requesttype, testname):
     return 'previousresults/' + requesttype.replace(" ", "") + "_" + request.replace("/", "-") + "_" + testname + ".html"
 
-
+def request_file_path_download(request, requesttype, testname):
+    return 'previousresults/' + requesttype.replace(" ", "") + "_" + request.replace("/", "-") + "_" + testname + ".xml"
 
 def compare_request(requestcontent, request, requesttype, route_parameters, file_path):
     """ Checks a request against previous results or saves the result of a request.
@@ -132,6 +152,10 @@ requesttype is the type of request performed- either 'get request' or 'post requ
     if args.resetalltests:
         with open(file_path, 'w') as rfile:
             rfile.write(requestcontent)
+    elif requesttype[0:8] == "get_file" and request in args.resetgetrequests:
+        test_print("resetting get_file request " + request + " and saving to file " + file_path)
+        with open(file_path, 'w') as file:
+            file.write(requestcontent)
     elif requesttype[0:3] == "get" and request in args.resetgetrequests:
         test_print("resetting get request " + request + " and saving to file " + file_path)
         with open(file_path, 'w') as rfile:
@@ -157,32 +181,31 @@ def file_diff_download(requestcontent, request, requesttype, route_parameters, f
                             requesttype + " " + request + ". If the saved result has not yet been created because it is a new page, please use --resetgetrequests [requests] or --resetpostrequests [requests] to create the file.") from e
 
     request = { 'options': {'language' : 'SBOL2',
-                        'test_equality': True,
-                        'check_uri_compliance': False,
-                        'check_completeness': False,
-                        'check_best_practices': False,
-                        'fail_on_first_error': False,
-                        'provide_detailed_stack_trace': False,
-                        'subset_uri': '',
-                        'uri_prefix': '',
-                        'version': '',
-                        'insert_type': False,
-                        'main_file_name': 'requestcontent',
-                        'diff_file_name': 'olddata',
-                                },
-            'return_file': True,
-            'main_file': requestcontent,
-            'diff_file': olddata
-          }
+        'test_equality': True,
+        'check_uri_compliance': False,
+        'check_completeness': False,
+        'check_best_practices': False,
+        'fail_on_first_error': False,
+        'provide_detailed_stack_trace': False,
+        'subset_uri': '',
+        'uri_prefix': '',
+        'version': '',
+        'insert_type': False,
+        'main_file_name': 'requestcontent',
+        'diff_file_name': 'olddata',
+        },
+        'return_file': False,
+        'main_file': requestcontent,
+        'diff_file': olddata
+        }
 
     resp = requests.post("https://validator.sbolstandard.org/validate/", json=request)
 
-    if resp.status_code != 200:
-        changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
-        changelist.append("\n Here is the SBOLValidator error log: \n")
-        changelist += resp.content
-        raise ValueError(''.join(changelist))
+    resp_json = json.loads(resp.content)
 
+    if resp_json["equal"] == False:
+        changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
+        raise ValueError(''.join(changelist))
 
 def file_diff(requestcontent, request, requesttype, route_parameters, file_path):
     olddata = None
@@ -252,10 +275,10 @@ def compare_get_request_download(request, test_name = "", route_parameters = [],
     # remove any leading forward slashes for consistency
     request = clip_request(request)
 
-    testpath = request_file_path(request, "get_file request", test_name)
+    testpath = request_file_path_download(request, "get_file", test_name)
     test_state.add_get_request(request, testpath, test_name)
 
-    compare_request(get_request(request, headers, route_parameters, re_render_time), request, "get_file request", route_parameters, testpath)
+    compare_request(get_request_download(request, headers, route_parameters, re_render_time), request, "get_file request", route_parameters, testpath)
 
 def compare_post_request(request, data, test_name = "", route_parameters = [], headers = {}, files = None):
     """Complete a post request and error if it differs from previous results.
