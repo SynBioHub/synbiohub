@@ -180,8 +180,6 @@ def file_diff_download(requestcontent, request, requesttype, route_parameters, f
         raise Exception("\n[synbiohub test] Could not open previous result for the " + \
                             requesttype + " " + request + ". If the saved result has not yet been created because it is a new page, please use --resetgetrequests [requests] or --resetpostrequests [requests] to create the file.") from e
 
-    print(file_path)
-
     request = { 'options': {'language' : 'SBOL2',
         'test_equality': True,
         'check_uri_compliance': False,
@@ -205,12 +203,8 @@ def file_diff_download(requestcontent, request, requesttype, route_parameters, f
 
     resp_json = json.loads(resp.content)
 
-    print(resp_json)
-
     if resp_json["equal"] == False:
         changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
-        changelist.append("\n Here is the SBOLValidator error log: \n")
-        changelist += resp.content
         raise ValueError(''.join(changelist))
 
 def file_diff(requestcontent, request, requesttype, route_parameters, file_path):
