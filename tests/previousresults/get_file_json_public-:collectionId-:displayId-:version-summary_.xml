@@ -5,7 +5,7 @@
       "persistentIdentity": "http://localhost:7777/public/testid1/part_pIKE_Toggle_1",
       "displayId": "part_pIKE_Toggle_1",
       "version": "1",
-      "description": "LacI/TetR Toggle Switch meoow",
+      "description": "LacI/TetR Toggle Switch",
       "annotations": [
         {
           "type": "uri",
@@ -561,6 +561,31 @@
       ],
       "components": [
         {
+          "uri": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/BBa_J61120/1",
+          "persistentIdentity": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/BBa_J61120",
+          "displayId": "BBa_J61120",
+          "version": "1",
+          "annotations": [
+            {
+              "type": "uri",
+              "name": "http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel",
+              "value": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/1"
+            },
+            {
+              "type": "uri",
+              "name": "http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy",
+              "value": "http://localhost:7777/user/testuser"
+            },
+            {
+              "type": "string",
+              "name": "http://purl.obolibrary.org/obo/OBI_0001617",
+              "value": "none"
+            }
+          ],
+          "access": "http://sbols.org/v2#public",
+          "definition": "http://localhost:7777/public/testid1/BBa_J61120/1"
+        },
+        {
           "uri": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/BBa_J61130/1",
           "persistentIdentity": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/BBa_J61130",
           "displayId": "BBa_J61130",
@@ -684,31 +709,6 @@
           ],
           "access": "http://sbols.org/v2#public",
           "definition": "http://localhost:7777/public/testid1/BBa_E0040/1"
-        },
-        {
-          "uri": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/BBa_J61120/1",
-          "persistentIdentity": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/BBa_J61120",
-          "displayId": "BBa_J61120",
-          "version": "1",
-          "annotations": [
-            {
-              "type": "uri",
-              "name": "http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel",
-              "value": "http://localhost:7777/public/testid1/part_pIKERightCassette_1/1"
-            },
-            {
-              "type": "uri",
-              "name": "http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy",
-              "value": "http://localhost:7777/user/testuser"
-            },
-            {
-              "type": "string",
-              "name": "http://purl.obolibrary.org/obo/OBI_0001617",
-              "value": "none"
-            }
-          ],
-          "access": "http://sbols.org/v2#public",
-          "definition": "http://localhost:7777/public/testid1/BBa_J61120/1"
         }
       ],
       "sequenceAnnotations": [

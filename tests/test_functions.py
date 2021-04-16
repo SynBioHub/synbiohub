@@ -161,7 +161,7 @@ requesttype is the type of request performed- either 'get request' or 'post requ
         with open(file_path, 'w') as rfile:
             rfile.write(requestcontent)
     else:
-        if requesttype[0:8] == "get_file_json":
+        if requesttype[0:13] == "get_file_json":
             file_diff_json(requestcontent, request, requesttype, route_parameters, file_path)
         elif requesttype[0:8] == "get_file":
             file_diff_download(requestcontent, request, requesttype, route_parameters, file_path)
@@ -248,16 +248,9 @@ def file_diff_json(requestcontent, request, requesttype, route_parameters, file_
         raise Exception("\n[synbiohub test] Could not open previous result for the " + \
                             requesttype + " " + request + ". If the saved result has not yet been created because it is a new page, please use --resetgetrequests [requests] or --resetpostrequests [requests] to create the file.") from e
 
-    print("REQUEST DATA")
-    print(json.dumps(requestcontent, sort_keys = True))
-
-    print("OLD DATA")
-    print(json.dumps(olddata, sort_keys = True))
-
     if json.dumps(requestcontent,sort_keys = True) != json.dumps(olddata, sort_keys = True):
-        changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\nThe following is a diff of the new files compared to the old.\n"]
+        changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\n"]
         raise ValueError(''.join(changelist))
-
 
 def login_with(data, headers = {'Accept':'text/plain'}):
     result = post_request("login", data, headers, [], files = None)
@@ -312,7 +305,7 @@ def compare_get_request_json(request, test_name = "", route_parameters = [], hea
     testpath = request_file_path_download(request, "get_file_json", test_name)
     test_state.add_get_request(request, testpath, test_name)
 
-    compare_request(get_request_download(request, headers, route_parameters, re_render_time), request, "get_file request", route_parameters, testpath)
+    compare_request(get_request_download(request, headers, route_parameters, re_render_time), request, "get_file_json", route_parameters, testpath)
 
 
 def compare_post_request(request, data, test_name = "", route_parameters = [], headers = {}, files = None):
