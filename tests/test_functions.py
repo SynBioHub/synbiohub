@@ -250,6 +250,15 @@ def file_diff_json(requestcontent, request, requesttype, route_parameters, file_
 
     if json.dumps(requestcontent,sort_keys = True) != json.dumps(olddata, sort_keys = True):
         changelist = [requesttype, " ", file_path, " did not match previous results. If you are adding changes to SynBioHub that change this page, please check that the page is correct and update the file using the command line argument --resetgetrequests [requests] and --resetpostrequests [requests].\n"]
+
+        changes = difflib.unified_diff(json.dumps(olddata), json.dumps(requestcontent))
+        # temp variable to detect if we need to print the beginning of the error
+
+        for c in changes:
+            changelist.append(c)
+
+        changelist.append("\n")
+
         raise ValueError(''.join(changelist))
 
 def login_with(data, headers = {'Accept':'text/plain'}):
