@@ -35,4 +35,9 @@ class TestUser(TestCase):
 
         test_print("test_post_register completed")
 
+        test_print("test_post_login_token starting")
+        logininfo = {'email' : 'test@user.synbiohub',
+                      'password' : 'test'}
+        login_with(logininfo)
+        test_print("test_post_login_token completed")
 

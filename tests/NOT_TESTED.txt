@@ -1,0 +1,134 @@
+WILL DO
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/removeMembership was not tested.
+
+
+DOWNLOAD ENDPOINTS
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/summary was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/gb was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/metadata was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/summary was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/gb was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/metadata was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/download was not tested.
+
+
+REPLACE HASH WITH VALUE THROUGH GUI, TEST LIKE NORMAL
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/attach was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/attachUrl was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/subCollections was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/remove was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/replace was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/makePublic was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/removeMembership was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/makePublic was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/sbol was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/sbolnr was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/omex was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/summary was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/fasta was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/gb was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/gff was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/metadata was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/addOwner was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/removeOwner/:username was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/addOwner was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/download was not tested.
+
+
+(*) EXPANDS DEPENDING ON CHILDREN, NEED TO TEST WITH ALL OBJECT TYPES, GENERALIZED TESTS
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId(*)/:version/:hash/share/full was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId(*)/:version/:hash/share was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId(*)/:version/full was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId(*)/:version was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId(*)/:version was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId(*)/:version/:hash/share/full was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId(*)/:version/:hash/share was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId(*)/:version/full was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId(*)/:version was not tested.
+[synbiohub test] Warning- post endpoint public/:collectionId/:displayId(*)/:version/full was not tested.
+[synbiohub test] Warning- post endpoint public/:collectionId/:displayId(*)/:version was not tested.
+
+
+CURRENTLY BROKEN
+[synbiohub test] Warning- post endpoint admin/retrieveFromWebOfRegistries was not tested.
+[synbiohub test] Warning- post endpoint admin/federate was not tested.
+[synbiohub test] Warning- post endpoint updateWebOfRegistries was not tested.
+[synbiohub test] Warning- post endpoint admin/sparql was not tested.
+[synbiohub test] Warning- post endpoint admin/users was not tested.
+[synbiohub test] Warning- post endpoint public/:collectionId/:displayId/:version/icon was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/twins was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/twins was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/uses was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/uses was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displ cvxcc fayId/:version/:hash/share/twins was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/uses was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/edit/:field was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/add/:field was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/similar was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/similar was not tested.
+attachUrl
+addOwner
+RemoveOwner
+[synbiohub test] Warning- post endpoint advancedSearch was not tested.
+
+
+Need to figure out how to test
+[synbiohub test] Warning- all endpoint resetPassword/token/:token was not tested.
+[synbiohub test] Warning- get endpoint about was not tested.
+[synbiohub test] Warning- post endpoint createCollection was not tested.
+[synbiohub test] Warning- post endpoint sparql was not tested.
+[synbiohub test] Warning- get endpoint shared was not tested.
+[synbiohub test] Warning- get endpoint sbsearch was not tested.
+[synbiohub test] Warning- post endpoint sbsearch was not tested.
+[synbiohub test] Warning- get endpoint admin/explorer was not tested.
+[synbiohub test] Warning- get endpoint admin/log was not tested.
+[synbiohub test] Warning- get endpoint admin/virtuoso was not tested.
+
+
+LIKELY WON'T GET TESTED
+[synbiohub test] Warning- get endpoint expose/:id was not tested.
+[synbiohub test] Warning- post endpoint actions/job/cancel was not tested.
+[synbiohub test] Warning- post endpoint actions/job/restart was not tested.
+[synbiohub test] Warning- get endpoint jobs was not tested.
+[synbiohub test] Warning- get endpoint admin/jobs was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/createImplementation was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/createTest was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/createSnapshot was not tested.
+[synbiohub test] Warning- get endpoint logo* was not tested.
+[synbiohub test] Warning- get endpoint autocomplete/:query was not tested.
+[synbiohub test] Warning- get endpoint api/datatables was not tested.
+[synbiohub test] Warning- get endpoint stream/:id was not tested.
+[synbiohub test] Warning- get endpoint api/stream/:id was not tested.
+[synbiohub test] Warning- get endpoint remoteSearch/:query? was not tested.
+[synbiohub test] Warning- get endpoint :type/count was not tested.
+[synbiohub test] Warning- post endpoint remoteLogin was not tested.
+[synbiohub test] Warning- post endpoint setNewPassword was not tested.
+[synbiohub test] Warning- post endpoint remoteSubmit was not tested.
+
+
+WORRY ABOUT LATER
+[synbiohub test] Warning- post endpoint public/:collectionId/:displayId/:version/copyFromRemote was not tested.
+[synbiohub test] Warning- post endpoint public/:collectionId/:displayId/:version/createBenchlingSequence was not tested.
+[synbiohub test] Warning- post endpoint public/:collectionId/:displayId/:version/createICEPart was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/createBenchlingSequence was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/createICEPart was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/createBenchlingSequence was not tested.
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/createICEPart was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/copyFromRemote was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/createBenchlingSequence was not tested.
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/createICEPart was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/createBenchlingSequence was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/createICEPart was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/createBenchlingSequence was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/createICEPart was not tested.
+
+WILL NEVER BE TESTED
+[synbiohub test] Warning- get endpoint public/:collectionId/:displayId/:version/visualization was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/visualization was not tested.
+[synbiohub test] Warning- get endpoint user/:userId/:collectionId/:displayId/:version/:hash/share/visualization was not tested.
+[synbiohub test] Warning- all endpoint user/:userId/:collectionId/:displayId/:version([^\\.]+)/integrate was not tested.
+[synbiohub test] Warning- all endpoint public/:collectionId/:displayId/:version([^\\.]+)/integrate was not tested.
+
+
+[synbiohub test] Warning- post endpoint user/:userId/:collectionId/:displayId/:version/remove/:field was not tested.
+
