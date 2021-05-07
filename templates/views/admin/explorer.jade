@@ -4,6 +4,7 @@ extends ../../layouts/admin.jade
 block adminContent
     form(action='explorerUpdateIndex', method='POST', id='explorerButtons')
     form(action='explorerLog', method='POST', id='explorerButtons2')
+    form(action='explorerIndexingLog', method='POST', id='explorerButtons3')
     form(action='/admin/explorer', method='POST', id='explorerForm')
         div.row 
             div.col-md-12 
@@ -30,7 +31,8 @@ block adminContent
 
 
         button.btn.btn-info(type='submit', style='margin-right: 20px; margin-bottom:20px', form='explorerButtons') Update Index Now
-        button.btn.btn-info(type='submit', style='margin-right: 20px; margin-bottom:20px', form='explorerButtons2') Download Log
+        button.btn.btn-info(type='submit', style='margin-right: 20px; margin-bottom:20px', form='explorerButtons2') Download General Log
+        button.btn.btn-info(type='submit', style='margin-right: 20px; margin-bottom:20px', form='explorerButtons3') Download Indexing Log
 
 
         div.alert.alert-info 
