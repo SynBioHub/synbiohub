@@ -42,6 +42,8 @@ class TestRoot(TestCase):
 
             # TODO: TEST TEST_DOWNLOAD
             from test_download import TestDownload
+            testDownload = TestDownload()
+            testDownload.test_download()
 
             # TODO: add field edit field are commented out
             from test_edit import TestEdit
@@ -66,6 +68,14 @@ class TestRoot(TestCase):
 
             # TODO: TEST TEST_TWINS
             from test_twins import TestTwins
+
+            from test_submit_other_user import TestSubmitOtherUser
+            testSubmitOtherUser = TestSubmitOtherUser()
+            testSubmitOtherUser.test_submit_other_user()
+
+            from test_hash import TestHash
+            testHash = TestHash()
+            testHash.test_hash()
 
             from  docker_test_setup import TestDockerSetup
             testDockerSetup = TestDockerSetup()
