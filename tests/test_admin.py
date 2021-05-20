@@ -58,7 +58,7 @@ class TestAdmin(TestCase):
         # test_post_admin_mail(self):
         test_print("test_post_admin_mail starting")
         data={
-            'key': 'SG.Dummy_Key',
+            'key': 'SG.Dummy_Token',
             'fromEmail' : 'synbiohub@synbiohub.utah.edu',
         }
         compare_post_request("/admin/mail", data, headers = {"Accept": "text/plain"}, test_name = "admin_mail")
