@@ -7569,10 +7569,10 @@ visbol@1.4.33:
     sha1 "^1.1.1"
     urijs "^1.16.1"
 
-visbol@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.8.tgz#df5f613c69b8d5515e83b5c9f2904c69aa3dfdc9"
-  integrity sha512-4q01tRjmaPViGtMR0Pc6ssAstUzw+QHS8lWkgmhnEkaYkdZPHIMcChWaw44IG8GGT961VnNjG70Al149AlExJA==
+visbol@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.15.tgz#555abc154f287c72bc4d22d8a5b39213543f266d"
+  integrity sha512-nA5Hp12KVOVarhHfQUTb4JC1NSFItwHAfcUQ++BRyAM3cAAcO+5onflpLc4DAO50rZmBn7kAEQL3wndzcBQFbQ==
   dependencies:
     sboljs "^2.1.9"
     visbol "1.4.33"

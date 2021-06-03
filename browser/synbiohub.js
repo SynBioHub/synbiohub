@@ -9,7 +9,7 @@ $("body").tooltip({
 
 $('.sbh-download-picture').click(function () {
 
-    var element = $(document.getElementById('design').childNodes[0])
+    var element = $(document.getElementById("design").childNodes[0].childNodes[1].childNodes[0]);
     var clone = element.clone()
 
     element.find('*').each(function(i, elem) {
@@ -20,7 +20,6 @@ $('.sbh-download-picture').click(function () {
     saveSvgAsPng(element[0], 'figure.png')
 
     element.replaceWith(clone)
-
 })
 
 

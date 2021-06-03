@@ -10,6 +10,7 @@ if(document.getElementById('design')
 
     const container = document.getElementById('design');
     if (typeof window !== 'undefined') {
+        console.log(JSON.stringify(meta.displayList, null, 2));
         const display = prepareDisplay(meta.displayList);
         ReactDOM.render(<Rendering display={display}/>, container);
     }
