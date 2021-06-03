@@ -13,7 +13,7 @@ To access a sample instance of SynBioHub containing enriched _Bacillus subtilis_
 
 ## Installation
 
-The recommended way to install SynBioHub is via the Docker image.  See [Installation](http://wiki.synbiohub.org/wiki/Installation) for more information.
+The recommended way to install SynBioHub is via the Docker image.  See [Installation](https://wiki.synbiohub.org/installation/) for more information.
 
 
 ## Manual Installation
