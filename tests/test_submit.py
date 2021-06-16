@@ -26,7 +26,7 @@ class TestSubmit(TestCase):
         data = {'version' : (None, '1'),
                 'name' : (None, 'testcollection'),
                 'description':(None, 'testdescription'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')}
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
@@ -43,7 +43,7 @@ class TestSubmit(TestCase):
                 'version' : (None, '1'),
                 'name' : (None, 'testcollection'),
                 'description':(None, 'testdescription'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')}
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
@@ -75,7 +75,7 @@ class TestSubmit(TestCase):
                 'version' : (None, '1'),
                 'name' : (None, 'testcollection2'),
                 'description':(None, 'testdescription'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')}
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
@@ -96,7 +96,7 @@ class TestSubmit(TestCase):
                 'version' : (None, '1'),
                 'name' : (None, 'testcollection1'),
                 'description':(None, 'testdescription1'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')}
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/toggle.xml",
@@ -140,7 +140,7 @@ class TestSubmit(TestCase):
                 'version' : (None, '1'),
                 'name' : (None, 'test_attachment'),
                 'description':(None, 'used for tesitng the attachment endpoints'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')
                 }
 
@@ -155,7 +155,7 @@ class TestSubmit(TestCase):
                 'version' : (None, '2'),
                 'name' : (None, 'test_hash'),
                 'description':(None, 'used for testing endpoints with hash built in.'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')
                 }
 
