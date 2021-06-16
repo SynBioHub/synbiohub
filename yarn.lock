@@ -7596,10 +7596,10 @@ virtual-dom@^2.1.1:
     x-is-array "0.1.0"
     x-is-string "0.1.0"
 
-visbol-react@^1.0.66:
-  version "1.0.66"
-  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.66.tgz#1d98521c2298ea3291e14f4023210c2f991c232d"
-  integrity sha512-YQqLd+VTgKbiv4w75mEh/3Fh4YwCXGBngQ9UuCj2QYnI3M9FBUxfdI5d+MJbliBBa+FnuaSC4r/0HfZvk02bHg==
+visbol-react@^1.0.68:
+  version "1.0.68"
+  resolved "https://registry.yarnpkg.com/visbol-react/-/visbol-react-1.0.68.tgz#5a1a47aff57922987a597233ef234ceb425df999"
+  integrity sha512-sGNihLNlJFxgAM8MsTJ8XGWm1YpPUD5n7VoGVQgMouZdLC9Larns+XFKWnl9Jt3mpvt44CLxJDVV1R+0EFzQhA==
   dependencies:
     react-parametric-svg "^0.1.7"
 
