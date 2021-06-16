@@ -32,7 +32,7 @@ class TestSubmitOtherUser(TestCase):
 #                'version' : (None, '2'),
 #                'name' : (None, 'testcollection2'),
 #                'description':(None, 'testdescription'),
-#                'citations':(None, 'none'),
+#                'citations':(None, ''),
 #                'overwrite_merge':(None, '0')
 #                }
 #

@@ -172,7 +172,7 @@ class TestSubmit(TestCase):
 #                'version' : (None, '1'),
 #                'name' : (None, 'testcollection1'),
 #                'description':(None, 'testdescription'),
-#                'citations':(None, 'none'),
+#                'citations':(None, ''),
 #                'overwrite_merge':(None, '0')
 #                }
 #

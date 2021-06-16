@@ -12,7 +12,7 @@ class TestTwins(TestCase):
 #                    'version' : (None, '1'),
 #                    'name' : (None, 'testcollection1'),
 #                    'description':(None, 'testdescription'),
-#                    'citations':(None, 'none'),
+#                    'citations':(None, ''),
 #                    'overwrite_merge':(None, '0')}
 #         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml",
 #                                          open('./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/BBa_I0462.xml', 'rb'))}
