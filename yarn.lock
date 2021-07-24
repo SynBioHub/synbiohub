@@ -2054,9 +2054,9 @@ color-name@^1.0.0:
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 color-string@^1.5.2:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.5.3.tgz#c9bbc5f01b58b5492f3d6857459cb6590ce204cc"
-  integrity sha512-dC2C5qeWoYkxki5UAXapdjqO672AM4vZuPGRQfO8b5HKuKGBbKWpITyDYN7TOFKvRW7kOgAn3746clDBMDJyQw==
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.6.0.tgz#c3915f61fe267672cb7e1e064c9d692219f6c312"
+  integrity sha512-c/hGS+kRWJutUBEngKKmk4iH3sD59MBkoxVapS/0wgpCz2u7XsNloxknyvBhzwEs1IbV36D9PwqLPJ2DTu3vMA==
   dependencies:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
@@ -5940,6 +5940,15 @@ rdf-dataset-indexed@^0.4.0:
     "@rdfjs/data-model" "^1.1.1"
     readable-stream "^3.3.0"
 
+rdf-ext-sboljs@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/rdf-ext-sboljs/-/rdf-ext-sboljs-0.3.0.tgz#705af786fa2cbf5008af8c9036507578f49da389"
+  integrity sha512-Hn6285+IpC0ylY564KfiU43p1WN1zgMuZKCJJb9r4FKYNTmX/5of7kn5FsiwkG9NMEzK9Rqr36fh1St3pg+K+g==
+  dependencies:
+    es6-promise "^3.0.2"
+    rdf-graph-array "^0.3.0"
+    rdf-store-inmemory "^0.3.0"
+
 rdf-ext@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/rdf-ext/-/rdf-ext-0.3.0.tgz#954bd7b8d117083c8a2ea9d2a2d2775a0773fe02"
@@ -5973,6 +5982,14 @@ rdf-graph-abstract@^0.3.0:
   integrity sha1-gAZBZNzWCQflO++XLIv/DmGsFDM=
   dependencies:
     rdf-normalize "^0.3.0"
+
+rdf-graph-array-sboljs@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/rdf-graph-array-sboljs/-/rdf-graph-array-sboljs-0.3.1.tgz#3abc2f05dc5f791a19314ad42fb2533332a0d053"
+  integrity sha512-4drBp/Y71fovsSqJX54IgrVtNZ0ku2RleX3V8NvROa43P4l44E8Ki4TXaqCSLCTlsFm69JqIEyu51VhN6nMqow==
+  dependencies:
+    inherits "^2.0.1"
+    rdf-graph-abstract "^0.3.0"
 
 rdf-graph-array@^0.3.0:
   version "0.3.0"
@@ -6452,7 +6469,7 @@ sax@>=0.6.0, sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-sboljs@^2.0.4, sboljs@^2.1.9:
+sboljs@^2.1.9:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.2.tgz#4fcd184800d652e4ba58aff01f75a71d6909fc8e"
   integrity sha512-NqcRM0Hwh2fD+sVfAVptqzvhaHg6tzt6hZJGme7IXfOi/1D9Zd4nnVGJ5NgZHJX5qLEoY4su0I3mCDyGIsn3KA==
@@ -6461,6 +6478,21 @@ sboljs@^2.0.4, sboljs@^2.1.9:
     json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
     rdf-ext "git://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8"
     rdf-graph-array "git+https://github.com/udp/rdf-graph-array.git"
+    rdf-parser-rdfxml "^0.3.0-rc1"
+    request "https://registry.npmjs.org/request/-/request-2.83.0.tgz"
+    urijs "https://registry.npmjs.org/urijs/-/urijs-1.18.7.tgz"
+    xml "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
+    xmlhttprequest "^1.8.0"
+
+sboljs@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.6.tgz#73dcdf59a9353d5efdbc0f637fb570d77a125528"
+  integrity sha512-g8U/9i2478my5k6usb2DVo9J86jex6oBLBPviIz+oqDXuy7K3DP4yzqyN8mxFNHwlcA6dMuA+JiAqlInpoB0fg==
+  dependencies:
+    extend "^3.0.0"
+    json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
+    rdf-ext-sboljs "^0.3.0"
+    rdf-graph-array-sboljs "^0.3.1"
     rdf-parser-rdfxml "^0.3.0-rc1"
     request "https://registry.npmjs.org/request/-/request-2.83.0.tgz"
     urijs "https://registry.npmjs.org/urijs/-/urijs-1.18.7.tgz"
