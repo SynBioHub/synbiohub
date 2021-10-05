@@ -1,7 +1,7 @@
 FROM node:16-alpine3.14
 MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
-RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
+RUN apk add nss git openjdk8-jre openjdk8 maven python3 alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
 
 WORKDIR /synbiohub
 COPY . . 
