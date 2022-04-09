@@ -49,7 +49,7 @@
     "mime-types": "^2.1.26",
     "mkdirp": "^1.0.4",
     "mkdirp-promise": "^5.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "multer": "^1.1.0",
     "multimap": "^1.0.2",
     "multiparty": "^4.1.3",
