@@ -100,12 +100,12 @@ module.exports = function (req, res) {
             break;
         }
         case 'evaluate': {
-            const data = req.body.data
+            const data = decodeURIComponent(req.body.data); 
             getEvaluate(pluginUrl, data, category, res);
             break;
         }
         case 'run': {
-            const data = req.body.data
+            const data = decodeURIComponent(req.body.data); 
             getRun(pluginUrl, data, category, res);
             break;
         }
