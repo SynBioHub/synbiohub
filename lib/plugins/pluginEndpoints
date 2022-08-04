@@ -6,85 +6,10 @@ const get = util.promisify(request.get)
 
 const config = require('../config')
 
-
-const findPlugin = (name) => {
-    const pluginList = config.get('plugins');
-
-
-    for (let plugin of pluginList.download) {
-        if(plugin.name === name) {
-            return [plugin.url, 'download'];
-        }
-    }
-
-    for (let plugin of pluginList.rendering) {
-        if(plugin.name === name) {
-            return [plugin.url, 'visual'];
-        }
-    }
-
-    for (let plugin of pluginList.submit) {
-        if(plugin.name === name) {
-            return [plugin.url, 'submit'];
-        }
-    }
-
-    return null;
-
-}
-
-const getStatus = (pluginUrl, res) => {
-    
-
-    return axios({
-        method: 'GET',
-        url: pluginUrl + 'status',
-        responseType: 'text'
-    }).then(response => {
-        return res.status(200).send(response.data);
-    }).catch(error => {
-        return res.status(400).send('The Plugin is not Responding');
-    })
-
-}
-
-const getEvaluate = (pluginUrl, data, category, res) => {
-
-
-    return axios({
-        method: 'POST',
-        url: pluginUrl + 'evaluate',
-        responseType: category === 'submit' ? 'application/json' : 'text',
-        data: data
-    }).then(response => {
-        return res.status(200).send(response.data);
-    }).catch(error => {
-        return res.status(400).send('Error with request');
-    })
-
-}
-
-const getRun = (pluginUrl, data, category, res) => {
-
-
-    return axios({
-        method: 'POST',
-        url: pluginUrl + 'run',
-        responseType: category === 'visual' ? 'text' : category === 'submit' ? 'arraybuffer' : 'blob',
-        data: data
-    }).then(response => {
-        return res.status(200).send(response.data);
-    }).catch(error => {
-        return res.status(400).send('Error with request');
-    })
-
-}
-
-
 module.exports = function (req, res) {
 
-    const name = req.body.name;
-    const endpoint = req.body.endpoint;
+    const name = req.query.name;
+    const endpoint = req.query.endpoint;
     const [pluginUrl, category] = findPlugin(name);
 
 
@@ -100,16 +25,93 @@ module.exports = function (req, res) {
             break;
         }
         case 'evaluate': {
-            const data = decodeURIComponent(req.body.data); 
+            const data = decodeURIComponent(req.query.data); 
             getEvaluate(pluginUrl, data, category, res);
             break;
         }
         case 'run': {
-            const data = decodeURIComponent(req.body.data); 
+            const data = decodeURIComponent(req.query.data); 
             getRun(pluginUrl, data, category, res);
             break;
         }
         default: res.status(400).send('Error with request');
     }
 
+    function findPlugin(name) {
+        const pluginList = config.get('plugins');
+
+    
+        for (let plugin of pluginList.download) {
+            if(plugin.name === name) {
+                return [plugin.url, 'download'];
+            }
+        }
+    
+        for (let plugin of pluginList.rendering) {
+            if(plugin.name === name) {
+                return [plugin.url, 'visual'];
+            }
+        }
+    
+        for (let plugin of pluginList.submit) {
+            if(plugin.name === name) {
+                return [plugin.url, 'submit'];
+            }
+        }
+
+    
+        return [null, null];
+    
+    }
+    
+    function getStatus (pluginUrl, res) {
+        
+    
+        return axios({
+            method: 'GET',
+            url: pluginUrl + 'status',
+            responseType: 'text'
+        }).then(response => {
+            return res.status(200).send(response.data);
+        }).catch(error => {
+            return res.status(400).send('The Plugin is not Responding');
+        })
+    
+    }
+    
+    function getEvaluate (pluginUrl, data, category, res) {
+    
+    
+        return axios({
+            method: 'POST',
+            url: pluginUrl + 'evaluate',
+            responseType: category === 'submit' ? 'application/json' : 'text',
+            data: data
+        }).then(response => {
+            return res.status(200).send(response.data);
+        }).catch(error => {
+            return res.status(400).send('Error with request');
+        })
+    
+    }
+    
+    function getRun (pluginUrl, data, category, res) {
+    
+    
+        return axios({
+            method: 'POST',
+            url: pluginUrl + 'run',
+            responseType: category === 'visual' ? 'text' : category === 'submit' ? 'arraybuffer' : 'blob',
+            data: data
+        }).then(response => {
+            return res.status(200).send(response.data);
+        }).catch(error => {
+            return res.status(400).send('Error with request');
+        })
+    
+    }
+
 }
+
+
+
