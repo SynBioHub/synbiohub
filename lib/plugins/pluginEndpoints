@@ -14,7 +14,7 @@ module.exports = function (req, res) {
 
 
     if (pluginUrl === null) {
-        return res.status(404).send('Plugin not found');
+        return res.status(404).send('The plugin ' + name + ' was not found or there is no url associated with this name. Check that this is a valid plugin name.');
     }
     
 
@@ -34,7 +34,7 @@ module.exports = function (req, res) {
             getRun(pluginUrl, data, category, res);
             break;
         }
-        default: res.status(400).send('Error with request');
+        default: res.status(400).send('This plugin endpoint' + endpoint + ' is not known. Instead try status, evaluate, or run.');
     }
 
     function findPlugin(name) {
@@ -74,7 +74,7 @@ module.exports = function (req, res) {
         }).then(response => {
             return res.status(200).send(response.data);
         }).catch(error => {
-            return res.status(400).send('The Plugin is not Responding');
+            return res.status(400).send('The plugin ' + name + ' status endpoint is not responding. Check that the plugin is active and running.');
         })
     
     }
@@ -90,7 +90,7 @@ module.exports = function (req, res) {
         }).then(response => {
             return res.status(200).send(response.data);
         }).catch(error => {
-            return res.status(400).send('Error with request');
+            return res.status(400).send('The plugin ' + name + ' evaluate endpoint is not responding. Check that the plugin is active and running.');
         })
     
     }
@@ -106,7 +106,7 @@ module.exports = function (req, res) {
         }).then(response => {
             return res.status(200).send(response.data);
         }).catch(error => {
-            return res.status(400).send('Error with request');
+            return res.status(400).send('The plugin ' + name + ' run endpoint is not responding. Check that the plugin is active and running.');
         })
     
     }
