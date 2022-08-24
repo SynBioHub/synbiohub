@@ -7,6 +7,7 @@ WORKDIR /synbiohub
 COPY . . 
 
 RUN cd java && mvn package
+RUN git config --global url."https://".insteadOf git://
 RUN yarn install
 
 RUN mkdir /mnt/data && \
