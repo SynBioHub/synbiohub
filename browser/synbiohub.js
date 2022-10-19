@@ -220,6 +220,7 @@ function createPluginFunctions(pluginType) {
 createPluginFunctions('submit')
 createPluginFunctions('rendering')
 createPluginFunctions('download')
+createPluginFunctions('curation')
 
 $('.sbh-registries-datatable').DataTable({
     processing: false,

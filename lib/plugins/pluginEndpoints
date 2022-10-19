@@ -59,6 +59,12 @@ module.exports = function (req, res) {
             }
         }
 
+        for (let plugin of pluginList.curation) {
+            if(plugin.name === name) {
+                return [plugin.url, 'curation'];
+            }
+        }
+
     
         return [null, null];
     
