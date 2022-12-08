@@ -40,7 +40,7 @@ jobs:
     - uses: actions/setup-python@v1
       name: Install Python 
       with:
-        python-version: '3.6' # To match the one in Travis
+        python-version: '3.11' # To match the one in Travis
     - name: Install test dependencies
       run: |
         pip install -r tests/test_requirements.txt
