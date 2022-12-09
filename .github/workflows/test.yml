@@ -6,6 +6,9 @@ jobs:
   build: 
     name: Build Docker image
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+          python-version: ["3.6", "3.9"]
     steps:
     - uses: actions/checkout@v2
       name: Checkout source tree
@@ -27,6 +30,9 @@ jobs:
     name: SBOL Test Suite
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+          python-version: ["3.6", "3.9"]
     steps:
     - uses: actions/checkout@v2
       name: Checkout source tree
@@ -40,7 +46,7 @@ jobs:
     - uses: actions/setup-python@v1
       name: Install Python 
       with:
-        python-version: '3.11' # To match the one in Travis
+        python-version: '3.6' # To match the one in Travis
     - name: Install test dependencies
       run: |
         pip install -r tests/test_requirements.txt
@@ -54,6 +60,9 @@ jobs:
     name: SynBioHub Test Suite
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+          python-version: ["3.6", "3.9"]
     steps:
     - uses: actions/checkout@v2
       name: Checkout source tree
