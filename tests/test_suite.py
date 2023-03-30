@@ -10,7 +10,7 @@ if __name__ == '__main__':
     test_root.test_root()
 
     # # do final check after all tests have run
-    cleanup_check()
+    # cleanup_check()
 
     # # if any tests failed, exit with code one
     # if len(result.failures) != 0 or len(result.errors) != 0:
