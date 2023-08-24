@@ -1,4 +1,4 @@
-const Bluebird = require('bluebird')
+// const Bluebird = require('bluebird')
 const loadTemplate = require('../lib/loadTemplate')
 const db = require('../lib/db')
 const config = require('../lib/config')
@@ -6,7 +6,7 @@ const sparql = require('../lib/sparql/sparql')
 
 module.exports = {
   up: (query, DataTypes) => {
-    var query = loadTemplate('./sparql/MigrateAttachments.sparql', {})
+    query = loadTemplate('./sparql/MigrateAttachments.sparql', {})
 
     var graphs = [config.get('databasePrefix') + 'public']
 
