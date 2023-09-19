@@ -35,7 +35,7 @@ class TestSetup(TestCase):
             'allowPublicSignup': 'true',
         }
 
-        compare_post_request('setup', setup)
+        compare_post_request('setup', setup, headers = {"Accept": "text/plain"})
 
         test_print("test_setup_post completed")
 
