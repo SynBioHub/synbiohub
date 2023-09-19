@@ -118,6 +118,8 @@
   "plugins": {
       "rendering": [],
       "download": [],
-      "submit": []
+      "submit": [],
+      "curation": [],
+      "authorization": []
   }
 }
