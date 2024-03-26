@@ -1,4 +1,4 @@
-var Bluebird = require('bluebird')
+// var Bluebird = require('bluebird')
 
 module.exports = {
   up: (query, DataTypes) => {
@@ -8,9 +8,9 @@ module.exports = {
     return query.sequelize.query('PRAGMA table_info(user)', { type: DataTypes.QueryTypes.SELECT })
       .then(columns => {
         columns.forEach(function (column) {
-          if (column.name == 'isMember') { isMember = true }
+          if (column.name === 'isMember') { isMember = true }
 
-          if (column.name == 'isCurator') { isCurator = true }
+          if (column.name === 'isCurator') { isCurator = true }
         }, this)
 
         var queries = []
