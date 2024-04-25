@@ -25,7 +25,7 @@ class TestSetup(TestCase):
             'userEmail': 'test@user.synbiohub',
             'userPassword': 'test',
             'userPasswordConfirm': 'test',
-            'instanceName': 'Test Synbiohub',
+            'instanceName': 'Test Synbiohub', 'frontendURL': 'http://localhost:7777',
             'instanceURL': 'http://localhost:7777/',
             'uriPrefix': 'http://localhost:7777/',
             'color': '#D25627',
