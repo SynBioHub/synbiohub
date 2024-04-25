@@ -51,7 +51,13 @@ block body
             h2 2. Some technical details
             div.form-group
                 p
-                    | We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
+                    | Frontend Url: We need to know where this SynBioHub instance is is displayed. If the URL below is incorrect, please change it
+                    b  #{settings.frontendURL}
+                    |, but if this is incorrect, please change it here.
+                label Frontend URL
+                    input.form-control(name='frontendURL',value=settings.frontendURL)
+                p
+                    | Backend Url: We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
                     b  #{settings.instanceUrl}
                     |, but if this is incorrect, please change it here.
                 label Instance URL
