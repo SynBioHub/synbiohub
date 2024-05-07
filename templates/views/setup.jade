@@ -67,6 +67,10 @@ block body
                 label URI Prefix   
                     input.form-control(name='uriPrefix',value=settings.uriPrefix)
                 p
+                    | We need to know where if you would like to set up your own home page.
+                label Alternate Home Page   
+                    input.form-control(name='altHome',value=settings.altHome)
+                p
                     | We need to know where the Virtuoso INI is stored. We have guessed it to be
                     b  #{config.triplestore.virtuosoINI}
                     |, but if this is incorrect, please change it here.
