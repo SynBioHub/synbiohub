@@ -51,25 +51,15 @@ block body
             h2 2. Some technical details
             div.form-group
                 p
-                    | Frontend Url: We need to know where this SynBioHub instance is is displayed. If the URL below is incorrect, please change it
-                    b  #{settings.frontendURL}
-                    |, but if this is incorrect, please change it here.
-                label Frontend URL
-                    input.form-control(name='frontendURL',value=settings.frontendURL)
-                p
                     | Backend Url: We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
                     b  #{settings.instanceUrl}
                     |, but if this is incorrect, please change it here.
                 label Instance URL
-                    input.form-control(name='instanceURL',value=settings.instanceUrl)
+                    input.form-control(name='instanceUrl',value=settings.instanceUrl)
                 p
                     | We need to know how to prefix URIs of objects stored in this SynBioHub. Its default is the same as the URL, and should only be changed if you are shadowing another instance.
                 label URI Prefix   
                     input.form-control(name='uriPrefix',value=settings.uriPrefix)
-                p
-                    | We need to know where if you would like to set up your own home page.
-                label Alternate Home Page   
-                    input.form-control(name='altHome',value=settings.altHome)
                 p
                     | We need to know where the Virtuoso INI is stored. We have guessed it to be
                     b  #{config.triplestore.virtuosoINI}
