@@ -120,7 +120,7 @@ def post_request(request, data, headers, route_parameters, files):
     user_token = test_state.get_authentication()
     if user_token != None:
         headers["X-authorization"] = user_token
-
+    test_print(str(data))
     address = get_address(request, route_parameters)
 
     session = requests_html.HTMLSession()
