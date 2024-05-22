@@ -51,11 +51,11 @@ block body
             h2 2. Some technical details
             div.form-group
                 p
-                    | We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
+                    | Backend Url: We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
                     b  #{settings.instanceUrl}
                     |, but if this is incorrect, please change it here.
                 label Instance URL
-                    input.form-control(name='instanceURL',value=settings.instanceUrl)
+                    input.form-control(name='instanceUrl',value=settings.instanceUrl)
                 p
                     | We need to know how to prefix URIs of objects stored in this SynBioHub. Its default is the same as the URL, and should only be changed if you are shadowing another instance.
                 label URI Prefix   
