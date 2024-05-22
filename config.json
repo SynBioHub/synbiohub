@@ -5,6 +5,8 @@
   "instanceLogo": "",
   "keywords": "synbiohub",
   "javaPath": "java",
+  "SBOLExplorerEndpoint": "http://localhost:13162/",
+  "useSBOLExplorer": true,
   "theme": "default",
   "themeParameters": {
       "default": {
