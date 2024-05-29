@@ -48,6 +48,12 @@ block body
                     | Allow public account creation
 
             br
+            div.checkbox 
+                label
+                    input(type="checkbox", name="requireLogin", checked=config.requireLogin)
+                    | Require login for all operations
+
+            br
             h2 2. Some technical details
             div.form-group
                 p

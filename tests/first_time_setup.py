@@ -33,6 +33,7 @@ class TestSetup(TestCase):
             'virtuosoINI': '/etc/virtuoso-opensource-7/virtuoso.ini',
             'virtuosoDB': '/var/lib/virtuoso-opensource-7/db',
             'allowPublicSignup': 'true',
+            'requireLogin': 'false',
         }
 
         compare_post_request('setup', setup, headers = {"Accept": "text/plain"})
