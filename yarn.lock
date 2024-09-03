@@ -5974,9 +5974,9 @@ rdf-ext@^1.1.2:
     rdf-dataset-indexed "^0.4.0"
     rdf-normalize "^1.0.0"
 
-"rdf-ext@git://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8":
+"rdf-ext@https://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8":
   version "0.3.0"
-  resolved "git://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8"
+  resolved "https://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8"
   dependencies:
     es6-promise "^3.0.2"
     rdf-graph-array "^0.3.0"
@@ -6482,7 +6482,7 @@ sboljs@^2.1.9:
   dependencies:
     extend "^3.0.0"
     json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
-    rdf-ext "git://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8"
+    rdf-ext "https://github.com/rdf-ext/rdf-ext.git#a01be12f62a55182edfffc3c81ff37befcbc85b8"
     rdf-graph-array "git+https://github.com/udp/rdf-graph-array.git"
     rdf-parser-rdfxml "^0.3.0-rc1"
     request "https://registry.npmjs.org/request/-/request-2.83.0.tgz"
