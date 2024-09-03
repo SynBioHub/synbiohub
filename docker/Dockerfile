@@ -6,9 +6,11 @@ RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev ya
 WORKDIR /synbiohub
 COPY . . 
 
-RUN cd java && mvn package
+# RUN rm .git
 RUN git config --global url."https://".insteadOf git://
 RUN yarn install
+
+RUN cd java && mvn package
 
 RUN mkdir /mnt/data && \
     mkdir /mnt/data/backup && \

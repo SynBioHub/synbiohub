@@ -7,3 +7,4 @@ uploads
 public/icons
 logs
 docker/Dockerfile
+.git
