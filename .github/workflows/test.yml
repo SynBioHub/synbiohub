@@ -18,7 +18,7 @@ jobs:
       - name: Package image
         run: |
           docker save synbiohub/synbiohub:snapshot-standalone | gzip > sbh.tar.gz
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         name: Upload Docker image
         with:
           name: sbh-image
@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout source tree
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         name: Download Docker image
         with:
           name: sbh-image
