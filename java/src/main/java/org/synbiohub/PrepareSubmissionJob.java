@@ -87,6 +87,7 @@ public class PrepareSubmissionJob extends Job {
 	public String tempDirPath;
 	public boolean useSBOLExplorer;
 	public String SBOLExplorerEndpoint;
+	public String user;
 
 	private boolean readCOMBINEArchive(String initialFilename, Map<String, String> attachments) {
 		CombineArchive combine = null;
@@ -481,6 +482,7 @@ public class PrepareSubmissionJob extends Job {
 				// Check if the object is already in the collection
 				for (String registry : webOfRegistries.keySet()) {
 					SynBioHubFrontend sbh = new SynBioHubFrontend(webOfRegistries.get(registry), registry);
+					sbh.setUser(user);
 					if (topLevel.getIdentity().toString().startsWith(registry)) {
 						
 						// Fetch the object from SynBioHub
