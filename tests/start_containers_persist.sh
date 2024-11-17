@@ -3,7 +3,7 @@
 source ./testutil.sh
 
 message "Starting SynBioHub from Containers"
-docker-compose -f ./synbiohub-docker/docker-compose.yml -f ./synbiohub-docker/docker-compose.explorer.yml -p testsuiteproject --compatibility up -d 
+docker compose -f ./synbiohub-docker/docker-compose.yml -f ./synbiohub-docker/docker-compose.explorer.yml -p testsuiteproject --compatibility up -d 
 while [[ "$(docker inspect testsuiteproject_synbiohub_1 | jq .[0].State.Health.Status)" != "\"healthy\"" ]]
 do
     sleep 5
