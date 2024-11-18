@@ -86,10 +86,10 @@ def get_request(request, headers, route_parameters, re_render_time):
 
     content_html = requests_html.HTML(html=content_unrendered)
 
-    content_html.render()
-    if re_render_time != 0:
-        time.sleep(re_render_time/1000)
-        content_html.render()
+    #content_html.render()
+    #if re_render_time != 0:
+    #    time.sleep(re_render_time/1000)
+    #    content_html.render()
 
     # format again after rendering
     content = format_html(content_html.html)
