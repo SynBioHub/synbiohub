@@ -7,4 +7,3 @@ lxml_html_clean==0.4.1
 requests-html==0.10.0
 soupsieve==2.1
 urllib3==1.26.5
-pyppeteer==2.0.0
