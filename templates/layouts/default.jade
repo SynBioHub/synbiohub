@@ -51,11 +51,16 @@ block body
                                 a(href='/logout', title='Sign Out')
                                     span.fa.fa-sign-out
                                     span.blue-text.hidden-xs.hidden-sm  Sign Out
-                        else
+                        else if config.allowPublicSignup
                             li
                                 a(href='/login')
                                     span.fa.fa-sign-in
                                     span.blue-text.hidden-xs.hidden-sm  Login or Register
+                        else 
+                            li
+                                a(href='/login')
+                                    span.fa.fa-sign-in
+                                    span.blue-text.hidden-xs.hidden-sm  Login
 
 
         div.clearfix
