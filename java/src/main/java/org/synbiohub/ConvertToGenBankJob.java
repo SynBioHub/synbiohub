@@ -21,9 +21,7 @@ public class ConvertToGenBankJob extends Job
     {
             ByteArrayOutputStream logOutputStream = new ByteArrayOutputStream();
             ByteArrayOutputStream errorOutputStream = new ByteArrayOutputStream();
-            
-            System.err.println("GFF3="+gff3Out);
-            
+             
             SBOLDocument doc = SBOLValidate.validate(
             		new PrintStream(logOutputStream),
             		new PrintStream(errorOutputStream),
@@ -45,7 +43,9 @@ public class ConvertToGenBankJob extends Job
             		false,
             		false,
             		gff3Out,
+            		false,
             		"",
+            		false,
             		false,
             		false,
             		false);
