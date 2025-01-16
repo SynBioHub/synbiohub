@@ -20,7 +20,7 @@ mixin attachments(url, attachments, canEdit)
                             if attachment.sizeString
                                 | #{attachment.sizeString}
                         td
-                            a(href=attachment.url + '/download')
+                            a(href=attachment.source)
                                 button.btn.btn-primary
                                     span.fa.fa-download
                                     |  Download
