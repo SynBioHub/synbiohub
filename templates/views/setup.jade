@@ -78,6 +78,15 @@ block body
                     |, but if this is incorrect, please change it here.
                 label Virtuoso Data Directory
                     input.form-control(name='virtuosoDB',value=config.triplestore.virtuosoDB)
+                div.checkbox 
+                label
+                    input(type="checkbox", name="pluginLocalComposePrefixBoolean", checked=config.pluginLocalComposePrefixBoolean)
+                    |   Use pluginLocalComposePrefix variable
+                br
+                label Plugin Local Compose Prefix
+                    input.form-control(name='pluginLocalComposePrefix', value=settings.pluginLocalComposePrefix)
+                p
+                    i Used only for local testing of plugins
             br
             h2 3. Create your first user account
             div.form-group
