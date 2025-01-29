@@ -5,6 +5,8 @@ PREFIX sbol: <http://sbols.org/v2#>
 INSERT {
     <$topLevel> sbol:attachment <$uri> .
 
+    <$collectionUri> sbol:member <$uri> .
+
     <$uri> a sbol:Attachment ;
         dcterms:title "$name" ;
         sbol:displayId "$displayId" ;

@@ -20,7 +20,7 @@ mixin attachments(url, attachments, canEdit)
                             if attachment.sizeString
                                 | #{attachment.sizeString}
                         td
-                            a(href=attachment.url + '/download')
+                            a(href=attachment.source)
                                 button.btn.btn-primary
                                     span.fa.fa-download
                                     |  Download
@@ -38,6 +38,9 @@ mixin attachments(url, attachments, canEdit)
                                     span.btn.btn-primary
                                         | Select file(s)&hellip;
                                         input(type="file",name="file",style="display: none;",multiple,form="sbh-attachment-upload")
+                            div.row(style="margin-top: 10px")
+                                div.col-md-6
+                                    input.form-control(type="text", name="id", placeholder="Name", form="sbh-attachment-upload")
                         td(colspan=2)
                             button.btn.btn-success(type='submit',style='width:100%;',form="sbh-attachment-upload") Attach
                     div.row
