@@ -1,5 +1,3 @@
-var Bluebird = require('bluebird')
-
 module.exports = {
   up: (query, DataTypes) => {
     var isMember = false
