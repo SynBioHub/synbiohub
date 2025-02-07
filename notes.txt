@@ -1,0 +1,9 @@
+Packages that need to go:
+ - multer
+ - mv
+ - node-pre-gyp
+ - tar
+ - tar-fs
+ - browserify
+
+sendgrid is deprecated. new package might be @sendgrid/mail but might need and API key.
