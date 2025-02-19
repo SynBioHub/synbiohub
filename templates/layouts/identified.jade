@@ -225,7 +225,7 @@ block content
                                                             span.fa.fa-search
                                                         if(meta.canEdit && annotation.removeOwner)
                                                             form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
-                                                                input(type='hidden' name='userUri' value=config.databasePrefix + 'user/' + annotation.value)
+                                                                input(type='hidden' name='userUri' value=config.databasePrefix + annotation.value)
                                                                 button.fakelink(type='submit')
                                                                     | &nbsp;
                                                                     span.fa.fa-trash
