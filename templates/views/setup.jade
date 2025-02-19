@@ -48,14 +48,20 @@ block body
                     | Allow public account creation
 
             br
+            div.checkbox 
+                label
+                    input(type="checkbox", name="requireLogin", checked=config.requireLogin)
+                    | Require login for all operations
+
+            br
             h2 2. Some technical details
             div.form-group
                 p
-                    | We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
+                    | Backend Url: We need to know where this SynBioHub instance is hosted so we can assign URLs to your submissions.  The instance URL has been automatically guessed as
                     b  #{settings.instanceUrl}
                     |, but if this is incorrect, please change it here.
                 label Instance URL
-                    input.form-control(name='instanceURL',value=settings.instanceUrl)
+                    input.form-control(name='instanceUrl',value=settings.instanceUrl)
                 p
                     | We need to know how to prefix URIs of objects stored in this SynBioHub. Its default is the same as the URL, and should only be changed if you are shadowing another instance.
                 label URI Prefix   
@@ -72,6 +78,15 @@ block body
                     |, but if this is incorrect, please change it here.
                 label Virtuoso Data Directory
                     input.form-control(name='virtuosoDB',value=config.triplestore.virtuosoDB)
+                div.checkbox 
+                label
+                    input(type="checkbox", name="pluginLocalComposePrefixBoolean", checked=config.pluginLocalComposePrefixBoolean)
+                    |   Use pluginLocalComposePrefix variable
+                br
+                label Plugin Local Compose Prefix
+                    input.form-control(name='pluginLocalComposePrefix', value=settings.pluginLocalComposePrefix)
+                p
+                    i Used only for local testing of plugins
             br
             h2 3. Create your first user account
             div.form-group

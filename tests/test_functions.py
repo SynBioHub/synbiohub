@@ -86,10 +86,10 @@ def get_request(request, headers, route_parameters, re_render_time):
 
     content_html = requests_html.HTML(html=content_unrendered)
 
-    content_html.render()
-    if re_render_time != 0:
-        time.sleep(re_render_time/1000)
-        content_html.render()
+    #content_html.render()
+    #if re_render_time != 0:
+    #    time.sleep(re_render_time/1000)
+    #    content_html.render()
 
     # format again after rendering
     content = format_html(content_html.html)
@@ -120,7 +120,7 @@ def post_request(request, data, headers, route_parameters, files):
     user_token = test_state.get_authentication()
     if user_token != None:
         headers["X-authorization"] = user_token
-
+    test_print(str(data))
     address = get_address(request, route_parameters)
 
     session = requests_html.HTMLSession()

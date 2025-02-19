@@ -26,16 +26,17 @@ class TestSetup(TestCase):
             'userPassword': 'test',
             'userPasswordConfirm': 'test',
             'instanceName': 'Test Synbiohub',
-            'instanceURL': 'http://localhost:7777/',
+            'instanceUrl': 'http://localhost:7777/',
             'uriPrefix': 'http://localhost:7777/',
             'color': '#D25627',
             'frontPageText': 'text',
             'virtuosoINI': '/etc/virtuoso-opensource-7/virtuoso.ini',
             'virtuosoDB': '/var/lib/virtuoso-opensource-7/db',
             'allowPublicSignup': 'true',
+            'requireLogin': 'false',
         }
 
-        compare_post_request('setup', setup)
+        compare_post_request('setup', setup, headers = {"Accept": "text/plain"})
 
         test_print("test_setup_post completed")
 
