@@ -71,7 +71,7 @@
     "sequelize": "^3.32.1",
     "sequence-formatter": "^1.0.0",
     "sha1": "^1.1.1",
-    "sha1-stream": "^1.0.1",
+    "sha1-stream": "^1.0.2",
     "simple-git": "^1.92.0",
     "sparqljs": "^1.3.0",
     "sqlite3": "^5.1.7",
@@ -116,7 +116,7 @@
       "git add"
     ]
   },
-"main": "synbiohub.js",
+  "main": "synbiohub.js",
   "exports": {
     ".": "./synbiohub.js",
     "./lib/*": "./lib/*.js",
