@@ -1,10 +1,11 @@
 FROM node:11.1.0-alpine
-MAINTAINER James Alastair McLaughlin <j.a.mclaughlin@ncl.ac.uk>
 
 RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
 
 WORKDIR /synbiohub
 COPY . . 
+
+RUN rm -rf .git
 
 RUN cd java && mvn package
 RUN git config --global url."https://".insteadOf git://
@@ -28,7 +29,7 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     ln -s /mnt/data/logs . && \
     ln -s /mnt/data/icons public/. 
 
-EXPOSE 8890 7777 1111
+EXPOSE 7777
 
 HEALTHCHECK --start-period=60s CMD ["node", "healthcheck.js"] 
 ENTRYPOINT ["./entry.sh"]
