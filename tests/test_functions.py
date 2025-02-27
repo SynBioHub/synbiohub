@@ -64,7 +64,6 @@ def get_address(request, route_parameters):
 # perform a get request, and render the javascript
 # post requests do not render the javascript
 def get_request(request, headers, route_parameters, re_render_time):
-
     # get the current token
     user_token = test_state.get_authentication()
     if user_token != None:
@@ -72,7 +71,7 @@ def get_request(request, headers, route_parameters, re_render_time):
 
     address = get_address(request, route_parameters)
 
-    session = requests_html.HTMLSession()
+    session = requests.Session()
 
     response = session.get(address, headers = headers)
 
@@ -104,7 +103,7 @@ def get_request_download(request, headers, route_parameters, re_render_time):
 
     address = get_address(request, route_parameters)
 
-    session = requests_html.HTMLSession()
+    session = requests.Session()
 
     response = session.get(address, headers = headers)
     try:
@@ -123,7 +122,7 @@ def post_request(request, data, headers, route_parameters, files):
     test_print(str(data))
     address = get_address(request, route_parameters)
 
-    session = requests_html.HTMLSession()
+    session = requests.Session()
 
     response = session.post(address, data = data, headers = headers, files = files)
 
