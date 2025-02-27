@@ -81,7 +81,7 @@ def get_request(request, headers, route_parameters, re_render_time):
         raise HTTPError("Internal server error. Content of response was \n" + response.text)
 
     # format once before rendering to remove ignored elements
-    content_unrendered = format_html(response.html.html)
+    content_unrendered = format_html(response.text)
 
     content_html = requests_html.HTML(html=content_unrendered)
 
@@ -131,7 +131,7 @@ def post_request(request, data, headers, route_parameters, files):
     except HTTPError:
         raise HTTPError("Internal server error. Content of response was \n" + response.text)
 
-    content = format_html(response.html.html)
+    content = format_html(response.text)
     return content
 
 
