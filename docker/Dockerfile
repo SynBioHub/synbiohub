@@ -1,4 +1,4 @@
-FROM node:15-alpine
+FROM node:13-alpine
 LABEL org.opencontainers.image.authors="j.a.mclaughlin@ncl.ac.uk"
 
 RUN apk add nss git openjdk8-jre openjdk8 maven python3 alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
