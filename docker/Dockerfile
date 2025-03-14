@@ -1,6 +1,6 @@
-FROM node:11.1.0-alpine
+FROM node:18.17-alpine
 
-RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
+RUN apk add nss git openjdk8-jre openjdk8 maven python3 alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq curl
 
 WORKDIR /synbiohub
 COPY . . 
@@ -28,6 +28,8 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     ln -s /mnt/data/uploads . && \
     ln -s /mnt/data/logs . && \
     ln -s /mnt/data/icons public/. 
+
+RUN apk del git openjdk8 maven alpine-sdk libxml2-dev g++ gcc raptor2 jq
 
 EXPOSE 7777
 
