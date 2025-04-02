@@ -219,6 +219,9 @@ public class PrepareSubmissionJob extends Job {
 	}
 
 	private boolean getFilenames(String initialFilename, Map<String, String> attachments) {
+		if (initialFilename.endsWith(".xlsx")||initialFilename.endsWith(".docx")||initialFilename.endsWith(".pptx")) {
+			return false;
+		}
 		if (readCOMBINEArchive(initialFilename, attachments)) {
 			return true;
 		}
