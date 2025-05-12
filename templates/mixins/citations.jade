@@ -37,10 +37,9 @@ mixin citations(src, submissionCitations, canEdit)
                 if (citation.pubmedID && citation.pubmedID != '') 
                    != ', PMID: '
                    a(href='https://www.ncbi.nlm.nih.gov/pubmed/'+citation.pubmedID) #{citation.pubmedID}
-                   != '.'
                 if (citation.publicationDOI && citation.publicationDOI != '')
                    != ', DOI: '
                    a(href='http://dx.doi.org/'+citation.publicationDOI) #{citation.publicationDOI}
-                   != '.'
+                != '.'
                 br
                 br
