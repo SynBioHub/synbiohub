@@ -87,7 +87,7 @@
     "validator": "^10.9.0",
     "value-event": "^5.1.1",
     "virtual-dom": "^2.1.1",
-    "visbol": "^2.0.17",
+    "visbol": "^2.0.24",
     "visbol-react": "^1.0.68",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.8.0",
