@@ -1,4 +1,3 @@
-
 # Testing SynBioHub
 
 ## Running the test suite
@@ -6,9 +5,23 @@
 First, install dependencies. The dependencies are python 3, the python packages in tests/test_requirements.txt, and jq.
 
 Ubuntu:\
-`sudo apt-get install jq`\
-`sudo apt-get install -y python3 python3-pip`\
-`sudo pip3 install -r tests/test_requirements.txt`\
+```bash
+sudo apt-get install jq python3 python3-pip python-is-python3 python3-venv
+
+# Install Chrome for the dependancies that pypeter needs
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update 
+sudo apt install google-chrome-stable libxss1
+
+cd tests
+
+python3 -m venv venv
+. venv/bin/activate
+pip3 install -r test_requirements.txt
+
+cd ..
+```
 
 Then build a docker image from the local version of synbiohub using
 `docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .`
