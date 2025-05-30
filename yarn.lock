@@ -891,19 +891,10 @@
     "@babel/plugin-transform-react-jsx-source" "^7.10.4"
     "@babel/plugin-transform-react-pure-annotations" "^7.10.4"
 
-"@babel/runtime@^7.0.0":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.2.tgz#c3d6e41b304ef10dcf13777a33e7694ec4a9a6dd"
-  integrity sha512-EXxN64agfUqqIGeEjI5dL5z0Sw0ZwWo1mLTi4mQowCZ42O59b7DRpZAnTC6OqdF28wMBMFKNb/4uFGrVaigSpg==
-  dependencies:
-    regenerator-runtime "^0.13.2"
-
-"@babel/runtime@^7.8.4":
-  version "7.11.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
-  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
-  dependencies:
-    regenerator-runtime "^0.13.4"
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.8.4":
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.27.1.tgz#9fce313d12c9a77507f264de74626e87fd0dc541"
+  integrity sha512-1x3D2xEk2fRo3PAhwQwu5UubzgiVWSXTBfWpVd2Mx2AzRqJuDJCsgaDVZ7HB5iGzDW1Hl1sWN2mFyKjmR9uAog==
 
 "@babel/template@^7.10.4":
   version "7.10.4"
@@ -6202,16 +6193,6 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
-regenerator-runtime@^0.13.2:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
-  integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
-
-regenerator-runtime@^0.13.4:
-  version "0.13.7"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
-  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
-
 regenerator-transform@^0.14.2:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.14.5.tgz#c98da154683671c9c4dcb16ece736517e1b7feb4"
@@ -6494,6 +6475,21 @@ sboljs@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.6.tgz#73dcdf59a9353d5efdbc0f637fb570d77a125528"
   integrity sha512-g8U/9i2478my5k6usb2DVo9J86jex6oBLBPviIz+oqDXuy7K3DP4yzqyN8mxFNHwlcA6dMuA+JiAqlInpoB0fg==
+  dependencies:
+    extend "^3.0.0"
+    json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
+    rdf-ext-sboljs "^0.3.0"
+    rdf-graph-array-sboljs "^0.3.1"
+    rdf-parser-rdfxml "^0.3.0-rc1"
+    request "https://registry.npmjs.org/request/-/request-2.83.0.tgz"
+    urijs "https://registry.npmjs.org/urijs/-/urijs-1.18.7.tgz"
+    xml "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
+    xmlhttprequest "^1.8.0"
+
+sboljs@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.8.tgz#305d0611acbb63e5c3a801b03f64a33a5bdc6b4a"
+  integrity sha512-RA88a0rg/FBvLM9I24cGQvBsddiIga8ignW8djReZxbUIVBZwz5CRdxI/2VVQG4sDq28sHqNq1Fn+CoCNd3k7w==
   dependencies:
     extend "^3.0.0"
     json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
@@ -7641,10 +7637,10 @@ visbol-react@^1.0.68:
   dependencies:
     react-parametric-svg "^0.1.7"
 
-visbol@1.4.33:
-  version "1.4.33"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.33.tgz#4bdd3e0b86b3a45c46834cf8b8a7d58fc7b5f059"
-  integrity sha512-5x+Oo/sYoU3N78fcJo9ETp0RFxvCl6AENKvmOrJKj4oJd8NlNAzjzlqzg3Va7Zh66elZ4ZXRY/Av24pPivA8Og==
+visbol@1.4.38:
+  version "1.4.38"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.38.tgz#712144ab97e98cf8e953c9773be89da6ac044267"
+  integrity sha512-npx4L1TqNRd3Cd3QV3gH1398B4eYLFVveLTA9ou8N2vQs57agK+Hjz/BWeLazR6WH++rsZKL+TPDRH3BKzPMyQ==
   dependencies:
     rdf-ext "^1.1.2"
     rdf-graph-abstract "^0.3.0"
@@ -7654,13 +7650,14 @@ visbol@1.4.33:
     sha1 "^1.1.1"
     urijs "^1.16.1"
 
-visbol@^2.0.17:
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.17.tgz#698963ec4d1e75d9106a1f98d1fd78fb3d7d463c"
-  integrity sha512-V9SMrDa0SHHZmVvf7GMz0yAsLl4DG3e0RoYrXctoua5bXr4fj8NVDYEe01nAEq9i7PLCLj6zZ/SWXfL2sg/Uvw==
+visbol@^2.0.24:
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.24.tgz#4800a947bd1a0c9a4e95962e6b536426a76452f3"
+  integrity sha512-a9A1BDxPR4F67McPUPDv3U6tQAw6zYYP4rMbplh789IDiu3WBKEsEDYMFX04FREi5B/w2yfUl1eG6rHL/nWwUg==
   dependencies:
-    sboljs "^2.1.9"
-    visbol "1.4.33"
+    rdf-graph-array "^0.3.0"
+    sboljs "^2.2.8"
+    visbol "1.4.38"
 
 vm-browserify@^1.0.0:
   version "1.1.0"
