@@ -3,101 +3,95 @@ name: Integration testing
 on: push
 
 jobs:
-  build: 
+  build:
     name: Build Docker image
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      name: Checkout source tree
-    - uses: nick-invision/retry@v1
-      name: Build docker image
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:snapshot-standalone
-    - name: Package image
-      run: |
-        docker save synbiohub/synbiohub:snapshot-standalone | gzip > sbh.tar.gz
-    - uses: actions/upload-artifact@v2
-      name: Upload Docker image
-      with:
-        name: sbh-image
-        path: sbh.tar.gz
+      - uses: actions/checkout@v2
+        name: Checkout source tree
+      - uses: nick-invision/retry@v1
+        name: Build docker image
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:snapshot-standalone
+      - name: Package image
+        run: |
+          docker save synbiohub/synbiohub:snapshot-standalone | gzip > sbh.tar.gz
+      - uses: actions/upload-artifact@v4
+        name: Upload Docker image
+        with:
+          name: sbh-image
+          path: sbh.tar.gz
   sboltests:
     name: SBOL Test Suite
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      name: Checkout source tree
-    - uses: actions/download-artifact@v2
-      name: Download Docker image
-      with:
-        name: sbh-image
-    - name: Import saved Docker image
-      run: |
-        cat sbh.tar.gz | docker load
-    - uses: actions/setup-python@v1
-      name: Install Python 
-      with:
-        python-version: '3.6' # To match the one in Travis
-    - name: Install test dependencies
-      run: |
-        pip install -r tests/test_requirements.txt
-    - uses: nick-invision/retry@v1
-      name: Run test suite
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: tests/sbolsuite.sh
+      - uses: actions/checkout@v2
+        name: Checkout source tree
+      - uses: actions/download-artifact@v4
+        name: Download Docker image
+        with:
+          name: sbh-image
+      - name: Import saved Docker image
+        run: |
+          cat sbh.tar.gz | docker load
+      - uses: actions/setup-python@v4
+        name: Install Python
+        with:
+          python-version: '3.9' # To match the one in Travis
+      - name: Install test dependencies
+        run: |
+          pip install -r tests/test_requirements.txt
+      - uses: nick-invision/retry@v1
+        name: Run test suite
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: tests/sbolsuite.sh
   sbhtests:
     name: SynBioHub Test Suite
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      name: Checkout source tree
-    - uses: actions/download-artifact@v2
-      name: Download Docker image
-      with:
-        name: sbh-image
-    - name: Import saved Docker image
-      run: |
-        cat sbh.tar.gz | docker load
-    - uses: actions/setup-python@v1
-      name: Install Python
-      with:
-        python-version: '3.6' # To match the one in Travis
-    - name: Install test dependencies
-      run: |
-        pip install -r tests/test_requirements.txt
-    - name: Run tests
-      run: |
-        tests/test.sh --stopaftertestsuite
+      - uses: actions/checkout@v2
+        name: Checkout source tree
+      - uses: actions/download-artifact@v4
+        name: Download Docker image
+        with:
+          name: sbh-image
+      - name: Import saved Docker image
+        run: |
+          cat sbh.tar.gz | docker load
+      - uses: actions/setup-python@v4
+        name: Install Python
+        with:
+          python-version: '3.9' # To match the one in Travis
+      - name: Install test dependencies
+        run: |
+          pip install -r tests/test_requirements.txt
+      - name: Run tests
+        run: |
+          tests/test.sh --stopaftertestsuite
   publish:
     name: Publish snapshot image
     needs: [sboltests, sbhtests]
     runs-on: ubuntu-latest
     if: endsWith(github.ref, 'master')
     steps:
-    - uses: actions/download-artifact@v2
-      name: Download Docker iamge
-      with:
-        name: sbh-image
-    - name: Import saved Docker image
-      run: |
-        cat sbh.tar.gz | docker load
-    - uses: azure/docker-login@v1
-      name: Log into Docker Hub
-      with: 
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Push the image to Docker Hub
-      run: |
-        docker push synbiohub/synbiohub:snapshot-standalone
-    - name: Trigger SD2 redeploy
-      env: 
-        SD2_USER: ${{ secrets.SD2_USER }}
-        SD2_TOKEN: ${{ secrets.SD2_TOKEN }}
-      run: | 
-        curl -X POST --user $SD2_USER:$SD2_TOKEN http://jenkins.sd2e.org/job/Synbiohub/job/Redeploy%20to%20dev%20server/build
+      - uses: actions/download-artifact@v4
+        name: Download Docker iamge
+        with:
+          name: sbh-image
+      - name: Import saved Docker image
+        run: |
+          cat sbh.tar.gz | docker load
+      - uses: azure/docker-login@v1
+        name: Log into Docker Hub
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push the image to Docker Hub
+        run: |
+          docker push synbiohub/synbiohub:snapshot-standalone

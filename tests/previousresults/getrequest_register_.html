@@ -7,20 +7,20 @@
   <meta content="A parts repository for synthetic biology." name="description"/>
   <script type="application/ld+json">
    {
-  "name": "Test Synbiohub",
-  "description": "text",
+  "name": "test_instance",
+  "description": "test_instance",
   "url": "http://localhost:7777/",
   "keywords": "synbiohub",
   "identifier": [
-    "TestSynbiohub"
+    "test_instance"
   ],
   "dataset": [
     {
-      "name": "testcollection0",
-      "description": "testdescription0",
+      "name": "testcollection1",
+      "description": "testdescription1",
       "url": "http://localhost:7777",
       "identifier": [
-        "testid0_collection"
+        "testid1_collection"
       ],
       "includedInDataCatalog": [
         "http://localhost:7777/"
@@ -51,7 +51,7 @@
 }
   </script>
   <title>
-   Test Synbiohub
+   test_instance
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -134,11 +134,7 @@ h1 {
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
-     <div class="pull-left">
-      <h1 style="margin-left: 15px">
-       Test Synbiohub
-      </h1>
-     </div>
+     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
     </a>
     <div class="pull-right menu">
      <ul>
@@ -166,6 +162,15 @@ h1 {
         </span>
         <span class="blue-text hidden-xs hidden-sm">
          Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin" title="Administration">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Admin
         </span>
        </a>
       </li>
@@ -204,7 +209,7 @@ h1 {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -218,9 +223,7 @@ h1 {
     <div class="col-md-2">
     </div>
     <div class="col-md-8" style="text-align: center">
-     <h1>
-      Test Synbiohub
-     </h1>
+     <img class="about-logo" src="/logo_uploaded.jpg" width="100%"/>
     </div>
    </div>
    <div class="row">
@@ -228,7 +231,7 @@ h1 {
     </div>
     <div class="col-md-8 sbh-frontpage-blurb">
      <p>
-      text
+      test_instance
      </p>
     </div>
    </div>
@@ -236,66 +239,64 @@ h1 {
     <div class="col-md-12" style="text-align: center">
      <div class="sbh-frontpage-container">
       <table class="sbh-frontpage-pictures" style="text-align: left">
-       <tbody>
-        <tr>
-         <td>
-          <span class="fa fa-search">
-          </span>
-         </td>
-         <td>
-          <h3>
-           <b>
-            Search
-           </b>
-           for useful parts and designs
-          </h3>
-          <form action="/search" class="main-search-form">
-           <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
-           <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
-            Search
-           </button>
-          </form>
-          <br/>
-          <a class="button btn btn-primary" href="/browse">
-           Browse Design Collections
-          </a>
-         </td>
-        </tr>
-        <tr>
-         <td>
-          <span class="fa fa-upload">
-          </span>
-         </td>
-         <td>
-          <h3>
-           <b>
-            Upload
-           </b>
-           your design for safekeeping
-          </h3>
-          <a class="button btn btn-primary" href="/submit">
-           Submit a Design
-          </a>
-         </td>
-        </tr>
-        <tr>
-         <td>
-          <span class="fa fa-share-alt">
-          </span>
-         </td>
-         <td>
-          <h3>
-           <b>
-            Share
-           </b>
-           designs for publication or collaboration
-          </h3>
-          <a class="button btn btn-primary" href="/manage">
-           Manage Submissions
-          </a>
-         </td>
-        </tr>
-       </tbody>
+       <tr>
+        <td>
+         <span class="fa fa-search">
+         </span>
+        </td>
+        <td>
+         <h3>
+          <b>
+           Search
+          </b>
+          for useful parts and designs
+         </h3>
+         <form action="/search" class="main-search-form">
+          <input class="sbh-autocomplete" name="q" placeholder="Part name" type="text" value=""/>
+          <button class="submit" style="padding-top: 10px; padding-bottom: 14px" type="submit">
+           Search
+          </button>
+         </form>
+         <br/>
+         <a class="button btn btn-primary" href="/browse">
+          Browse Design Collections
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <span class="fa fa-upload">
+         </span>
+        </td>
+        <td>
+         <h3>
+          <b>
+           Upload
+          </b>
+          your design for safekeeping
+         </h3>
+         <a class="button btn btn-primary" href="/submit">
+          Submit a Design
+         </a>
+        </td>
+       </tr>
+       <tr>
+        <td>
+         <span class="fa fa-share-alt">
+         </span>
+        </td>
+        <td>
+         <h3>
+          <b>
+           Share
+          </b>
+          designs for publication or collaboration
+         </h3>
+         <a class="button btn btn-primary" href="/manage">
+          Manage Submissions
+         </a>
+        </td>
+       </tr>
       </table>
      </div>
     </div>
@@ -317,7 +318,7 @@ h1 {
    </span>
    <br/>
    <span>
-    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
+    <a href="https://wiki.synbiohub.org">
      About SynBioHub
     </a>
     |
@@ -330,27 +331,27 @@ h1 {
     </a>
    </span>
   </div>
-  <script src="/js/saveSvgAsPng.js">
-  </script>
-  <script src="/js/jquery/jquery-2.1.3.min.js">
-  </script>
-  <script src="/js/bootstrap/bootstrap-3.3.4.js">
-  </script>
-  <script src="/js/typeahead.bundle.js">
-  </script>
-  <script src="/js/typeahead.jquery.min.js">
-  </script>
-  <script src="/datatables.min.js">
-  </script>
-  <script src="/js/pathseg.js">
-  </script>
-  <script src="/js/chosen.jquery.js">
-  </script>
-  <script src="/js/dropzone.js">
-  </script>
-  <script src="/js/BootstrapMenu.js">
-  </script>
-  <script src="/bundle.js">
-  </script>
  </body>
+ <script src="/js/saveSvgAsPng.js">
+ </script>
+ <script src="/js/jquery/jquery-2.1.3.min.js">
+ </script>
+ <script src="/js/bootstrap/bootstrap-3.3.4.js">
+ </script>
+ <script src="/js/typeahead.bundle.js">
+ </script>
+ <script src="/js/typeahead.jquery.min.js">
+ </script>
+ <script src="/datatables.min.js">
+ </script>
+ <script src="/js/pathseg.js">
+ </script>
+ <script src="/js/chosen.jquery.js">
+ </script>
+ <script src="/js/dropzone.js">
+ </script>
+ <script src="/js/BootstrapMenu.js">
+ </script>
+ <script src="/bundle.js">
+ </script>
 </html>

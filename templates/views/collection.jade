@@ -33,7 +33,8 @@ block topLevelPreview
     if types
         form(name="filterTypes", method="post").submission-form
             select(name='typeFilter' style='width: 260px;').chosen-select
-                option #{'No Type Filter'}
+                option(selected=(initType==='Show Only Root Objects')) #{'Show Only Root Objects'}
+                option(selected=(initType==='Show All Objects')) #{'Show All Objects'}
                 for type in types
                     option(value=type.uri,selected=(type.uri==initType)) #{type.name}
             button(type='submit',name="typeFilter",value=typeFilter).btn.btn-primary.btn-sm

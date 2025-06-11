@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   Test Synbiohub
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
+ </head>
+ <body>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <div class="pull-left">
+      <h1 style="margin-left: 15px">
+       Test Synbiohub
+      </h1>
+     </div>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit" title="Submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/shared" title="Shared with Me">
+        <span class="fa fa-bolt">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage" title="Manage Submissions">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin" title="Administration">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Admin
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile" title="Edit Profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout" title="Sign Out">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Sign Out
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-align-left">
+     </span>
+     Manage Submissions
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="/search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-6 submission-list">
+     <h4>
+      Private Submissions
+     </h4>
+     <p>
+      You currently have 2 private submission(s)
+     </p>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-private">
+        Private
+       </div>
+      </div>
+      <a href="/user/testuser/test_attachment/test_attachment_collection/1">
+       test_attachment_collection (test_attachment)
+      </a>
+      <p>
+       version 1
+      </p>
+      <div class="keywords">
+       <strong>
+        used for tesitng the attachment endpoints
+       </strong>
+      </div>
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+      <a href="/user/testuser/test_attachment/test_attachment_collection/1/makePublic">
+       <button class="btn btn-success public-btn" type="button">
+        Make Public
+       </button>
+      </a>
+      <a href="/user/testuser/test_attachment/test_attachment_collection/1/removeCollection">
+       <button class="btn btn-success remove-btn" onclick="return confirm('Are you sure you want to remove this collection?')" type="button">
+        Remove
+       </button>
+      </a>
+     </div>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-private">
+        Private
+       </div>
+      </div>
+      <a href="/user/testuser/test_hash/test_hash_collection/2">
+       test_hash_collection (test_hash)
+      </a>
+      <p>
+       version 2
+      </p>
+      <div class="keywords">
+       <strong>
+        used for testing endpoints with hash built in.
+       </strong>
+      </div>
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+      <a href="/user/testuser/test_hash/test_hash_collection/2/makePublic">
+       <button class="btn btn-success public-btn" type="button">
+        Make Public
+       </button>
+      </a>
+      <a href="/user/testuser/test_hash/test_hash_collection/2/removeCollection">
+       <button class="btn btn-success remove-btn" onclick="return confirm('Are you sure you want to remove this collection?')" type="button">
+        Remove
+       </button>
+      </a>
+     </div>
+    </div>
+    <div class="col-md-6 submission-list">
+     <h4>
+      Public Submissions
+     </h4>
+     <p>
+      You currently have 1 public submission(s)
+     </p>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-public">
+        Public
+       </div>
+      </div>
+      <a href="/public/testid1/testid1_collection/1">
+       testid1_collection (testcollection1)
+      </a>
+      <p>
+       version 1
+      </p>
+      <div class="keywords">
+       <strong>
+        testdescription1
+       </strong>
+      </div>
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="https://wiki.synbiohub.org">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
+  </div>
+ </body>
+ <script src="/js/saveSvgAsPng.js">
+ </script>
+ <script src="/js/jquery/jquery-2.1.3.min.js">
+ </script>
+ <script src="/js/bootstrap/bootstrap-3.3.4.js">
+ </script>
+ <script src="/js/typeahead.bundle.js">
+ </script>
+ <script src="/js/typeahead.jquery.min.js">
+ </script>
+ <script src="/datatables.min.js">
+ </script>
+ <script src="/js/pathseg.js">
+ </script>
+ <script src="/js/chosen.jquery.js">
+ </script>
+ <script src="/js/dropzone.js">
+ </script>
+ <script src="/js/BootstrapMenu.js">
+ </script>
+ <script src="/bundle.js">
+ </script>
+</html>

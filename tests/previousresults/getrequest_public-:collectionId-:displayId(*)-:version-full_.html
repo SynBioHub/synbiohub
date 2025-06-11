@@ -4,32 +4,8 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="testdescription0" name="description"/>
-  <script type="application/ld+json">
-   {
-  "name": "testcollection0",
-  "description": "testdescription0<br/>\n",
-  "url": "http://localhost:7777/public/testid0/testid0_collection/1",
-  "identifier": [
-    null
-  ],
-  "distribution": "/public/testid0/testid0_collection/1",
-  "includedInDataCatalog": [
-    "http://localhost:7777/"
-  ],
-  "@context": {
-    "scheme": "http://schema.org/",
-    "bs": "http://bioschema.org/"
-  },
-  "@type": "https://schema.org/Dataset",
-  "creator": [
-    "SynBioHub"
-  ],
-  "keywords": "synbiohub"
-}
-  </script>
   <title>
-   Test Synbiohub
+   test_instance
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -55,57 +31,10 @@ try {
   </script>
  </head>
  <body>
-  <div class="modal fade" id="iconModal" role="dialog" tabindex="-1">
-   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-     <div class="modal-header">
-      <button arial-label="close" class="close" data-dismiss="modal" type="button">
-       <span aria-hidden="true">
-        ×
-       </span>
-      </button>
-      <h4 class="modal-title">
-       Change Collection Icon
-      </h4>
-     </div>
-     <div class="modal-body">
-      <div class="row">
-       <div class="col-sm-6">
-        <h5>
-         No Icon Set!
-        </h5>
-       </div>
-       <div class="col-sm-6">
-        <h5>
-         Upload New Icon
-        </h5>
-        <form action="/public/testid0/testid0_collection/1/icon" class="form" enctype="multipart/form-data" id="iconForm" method="POST">
-         <input name="collectionUrl" type="hidden" value="/public/testid0/testid0_collection/1"/>
-         <input name="collectionUri" type="hidden" value="http://localhost:7777/public/testid0/testid0_collection/1"/>
-         <input class="form-control" name="collectionIcon" type="file"/>
-        </form>
-       </div>
-      </div>
-     </div>
-     <div class="modal-footer">
-      <button class="btn btn-danger" data-dismiss="modal">
-       Close
-      </button>
-      <button class="btn btn-primary" form="iconForm" type="submit">
-       Save changes
-      </button>
-     </div>
-    </div>
-   </div>
-  </div>
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
-     <div class="pull-left">
-      <h1 style="margin-left: 15px">
-       Test Synbiohub
-      </h1>
-     </div>
+     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
     </a>
     <div class="pull-right menu">
      <ul>
@@ -161,17 +90,10 @@ try {
   <div class="clearfix">
   </div>
   <div class="sbol-breadcrumbs" style="display: flex">
-   <ul>
-    <li class="inactive">
-     <span class="fa fa-eye">
-     </span>
-     View
-    </li>
-   </ul>
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -180,267 +102,15 @@ try {
     </li>
    </ul>
   </div>
-  <div class="clearfix">
-  </div>
-  <div class="submission-detail container-fluid">
-   <div class="row entry-heading">
-    <div class="col-sm-8 entry-title">
-     <h1>
-      testcollection0
-     </h1>
-     <h3>
-      testid0_collection
-      <a href="/search/displayId='testid0_collection'&amp;" title="Find all records with the same identifier">
-       <span class="fa fa-search">
-       </span>
-      </a>
-      Version 1
-      <a href="/search/persistentIdentity=&lt;http://localhost:7777/public/testid0/testid0_collection&gt;&amp;" title="Find all versions">
-       <span class="fa fa-search">
-       </span>
-      </a>
-     </h3>
-     <h4>
-      Collection
-      <a href="http://sbols.org/v2#Collection" title="Learn more about this RDF type">
-       <span class="fa fa-info-circle">
-       </span>
-      </a>
-     </h4>
-    </div>
-   </div>
-   <div class="row">
-    <div class="col-md-11">
-     <h5>
-      Created by: Test User
-      <a href="/search/dc:creator='Test User'&amp;" title="Find all records created by this person">
-       <span class="fa fa-search">
-       </span>
-      </a>
-     </h5>
-     <h4>
-      testdescription0
-      <br/>
-      <a href="/search/?q=testdescription0 
-" title="Find all records with terms in common with this description">
-       <span class="fa fa-search">
-       </span>
-      </a>
-     </h4>
-    </div>
-   </div>
-   <div class="row">
-    <div class="btn-group">
-     <li class="dropdown btn btn-primary">
-      <span class="fa fa-download">
-      </span>
-      <span class="hidden-xs hidden-sm">
-       Download
-      </span>
-      <span class="caret">
-      </span>
-      <ul class="dropdown-menu dropdown-toggle">
-       <li>
-        <a href="/public/testid0/testid0_collection/1/sbol">
-         Download SBOL File
-        </a>
-       </li>
-       <li>
-        <a href="/public/testid0/testid0_collection/1/omex">
-         Download COMBINE Archive
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="btn btn-success">
-      <a href="/public/testid0/testid0_collection/1" style="color:white" title="Back to root collection">
-       <span class="fa fa-arrow-left">
-       </span>
-       <span class="hidden-xs hidden-sm">
-        Back
-       </span>
-      </a>
-     </li>
-     <li class="btn btn-info">
-      <a href="/public/testid0/testid0_collection/1/addToCollection" style="color:white" title="Add to Collection">
-       <span class="fa fa-link">
-       </span>
-       <span class="hidden-xs hidden-sm">
-        Add to Collection
-       </span>
-      </a>
-     </li>
-    </div>
-    <br/>
-    <br/>
-   </div>
-   <h3>
-    Members
-   </h3>
-   <form class="submission-form" method="post" name="filterTypes">
-    <select class="chosen-select" name="typeFilter" style="width: 260px">
-     <option>
-      No Type Filter
-     </option>
-     <option value="http://www.biopax.org/release/biopax-level3.owl#DnaRegion">
-      biopax:DnaRegion
-     </option>
-     <option value="http://sbols.org/v2#ComponentDefinition">
-      sbol2:ComponentDefinition
-     </option>
-     <option value="http://sbols.org/v2#Sequence">
-      sbol2:Sequence
-     </option>
-     <option value="http://identifiers.org/so/SO:0000316">
-      so:CDS
-     </option>
-     <option value="http://identifiers.org/so/SO:0000804">
-      so:engineered_region
-     </option>
-     <option value="http://identifiers.org/so/SO:0000139">
-      so:ribosome_entry_site
-     </option>
-     <option value="http://identifiers.org/so/SO:0000141">
-      so:terminator
-     </option>
-    </select>
-    <button class="btn btn-primary btn-sm" name="typeFilter" type="submit">
-     Filter
-    </button>
-   </form>
-   <table class="table table-striped entry-detail-table sbh-collection-members-datatable">
-    <thead>
-     <tr>
-      <th>
-       Name
-      </th>
-      <th>
-       Identifier
-      </th>
-      <th>
-       Type
-      </th>
-      <th>
-       Description
-      </th>
-      <th>
-      </th>
-     </tr>
-    </thead>
-    <tbody>
-    </tbody>
-   </table>
-   <div class="container">
-    <div class="panel-group" id="accordion">
-     <div class="panel panel-default">
-      <div class="panel-heading">
-       <h4 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" href="#collapseDetails">
-         <b>
-          Details
-         </b>
-        </a>
-       </h4>
-      </div>
-      <div class="panel-collapse collapse in" id="collapseDetails">
-       <div class="panel-body">
-        <table class="table table-striped entry-detail-table">
-        </table>
-        <div data-src="" id="sbh-description">
-        </div>
-        <div data-src="" id="sbh-notes">
-        </div>
-        <div data-src="" id="sbh-source">
-        </div>
-        <div data-src="none" id="sbh-citations">
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-    <div class="panel panel-default">
-     <div class="panel-heading">
-      <h4 class="panel-title">
-       <a class="accordion-toggle collapsed" data-toggle="collapse" href="#collapseOther">
-        <b>
-         Other Properties
-        </b>
-       </a>
-      </h4>
-     </div>
-     <div class="panel-collapse collapse" id="collapseOther">
-      <div class="panel-body">
-       <div class="row">
-        <div class="col-md-12">
-         <table class="table table-striped entry-detail-table">
-          <tbody>
-           <tr>
-            <td>
-             synbiohub#ownedBy
-             <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy" title="Learn more about this annotation type">
-              <span class="fa fa-info-circle">
-              </span>
-             </a>
-            </td>
-            <td>
-             user/testuser
-             <a href="/user/testuser" title="Learn more about this annotation value">
-              <span class="fa fa-info-circle">
-              </span>
-             </a>
-             <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#ownedBy&gt;=&lt;http://localhost:7777/user/testuser&gt;&amp;" title="Find all records with this annotation">
-              <span class="fa fa-search">
-              </span>
-             </a>
-            </td>
-           </tr>
-           <tr>
-            <td>
-             synbiohub#topLevel
-             <a href="http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel" title="Learn more about this annotation type">
-              <span class="fa fa-info-circle">
-              </span>
-             </a>
-            </td>
-            <td>
-             testid0_collection/1
-             <a href="/public/testid0/testid0_collection/1" title="Learn more about this annotation value">
-              <span class="fa fa-info-circle">
-              </span>
-             </a>
-             <a href="/search/&lt;http://wiki.synbiohub.org/wiki/Terms/synbiohub#topLevel&gt;=&lt;http://localhost:7777/public/testid0/testid0_collection/1&gt;&amp;" title="Find all records with this annotation">
-              <span class="fa fa-search">
-              </span>
-             </a>
-            </td>
-           </tr>
-          </tbody>
-         </table>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-    <div class="panel panel-default">
-     <div class="panel-heading">
-      <h4 class="panel-title">
-       <a class="accordion-toggle" data-toggle="collapse" href="#collapseAttachments">
-        <b>
-         Attachments
-        </b>
-       </a>
-      </h4>
-     </div>
-     <div class="panel-collapse collapse in" id="collapseAttachments">
-      <div class="panel-body">
-       <div class="row">
-        <div class="col-md-12">
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
+  <div class="container">
+   <h1>
+    Error
+   </h1>
+   <p style="white-space:pre">
+    Error: getType: http://localhost:7777/public/testid0/testid0_collection/1 not found
+    at sparql.queryJson.then (/synbiohub/lib/query/local/type.js:12:29)
+    at process.internalTickCallback (internal/process/next_tick.js:77:7)
+   </p>
   </div>
   <div class="clearfix">
   </div>
@@ -458,7 +128,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
+    <a href="https://wiki.synbiohub.org">
      About SynBioHub
     </a>
     |
@@ -471,27 +141,27 @@ try {
     </a>
    </span>
   </div>
-  <script src="/js/saveSvgAsPng.js">
-  </script>
-  <script src="/js/jquery/jquery-2.1.3.min.js">
-  </script>
-  <script src="/js/bootstrap/bootstrap-3.3.4.js">
-  </script>
-  <script src="/js/typeahead.bundle.js">
-  </script>
-  <script src="/js/typeahead.jquery.min.js">
-  </script>
-  <script src="/datatables.min.js">
-  </script>
-  <script src="/js/pathseg.js">
-  </script>
-  <script src="/js/chosen.jquery.js">
-  </script>
-  <script src="/js/dropzone.js">
-  </script>
-  <script src="/js/BootstrapMenu.js">
-  </script>
-  <script src="/bundle.js">
-  </script>
  </body>
+ <script src="/js/saveSvgAsPng.js">
+ </script>
+ <script src="/js/jquery/jquery-2.1.3.min.js">
+ </script>
+ <script src="/js/bootstrap/bootstrap-3.3.4.js">
+ </script>
+ <script src="/js/typeahead.bundle.js">
+ </script>
+ <script src="/js/typeahead.jquery.min.js">
+ </script>
+ <script src="/datatables.min.js">
+ </script>
+ <script src="/js/pathseg.js">
+ </script>
+ <script src="/js/chosen.jquery.js">
+ </script>
+ <script src="/js/dropzone.js">
+ </script>
+ <script src="/js/BootstrapMenu.js">
+ </script>
+ <script src="/bundle.js">
+ </script>
 </html>

@@ -96,7 +96,7 @@ block topLevelButtons
         li.dropdown.btn.btn-primary
             span.fa.fa-send
             span.hidden-xs.hidden-sm
-                | &nbsp;&nbsp;Create Implementation&nbsp;&nbsp;
+                | &nbsp;&nbsp;Copy&nbsp;&nbsp;
             span.caret
             ul.dropdown-menu.dropdown-toggle
                 li
@@ -104,6 +104,8 @@ block topLevelButtons
     if meta.BenchlingRemotes && meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Send&nbsp;&nbsp;
                 |  
                 span.caret
             ul.dropdown-menu.dropdown-toggle
@@ -114,6 +116,8 @@ block topLevelButtons
     else if meta.BenchlingRemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Send&nbsp;&nbsp;
                 |  
                 span.caret
             ul.dropdown-menu.dropdown-toggle
@@ -122,6 +126,8 @@ block topLevelButtons
     else if meta.ICERemotes
         li.dropdown.btn.btn-success
             span.fa.fa-send
+            span.hidden-xs.hidden-sm
+                | &nbsp;&nbsp;Send&nbsp;&nbsp;
                 |  
                 span.caret
             ul.dropdown-menu.dropdown-toggle

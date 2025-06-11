@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <title>
-   Test Synbiohub
+   test_instance
   </title>
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
   <link href="/styles/site.css" rel="stylesheet"/>
@@ -34,11 +34,7 @@ try {
   <nav class="navbar navbar-fixed-top">
    <div class="content">
     <a href="/">
-     <div class="pull-left">
-      <h1 style="margin-left: 15px">
-       Test Synbiohub
-      </h1>
-     </div>
+     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
     </a>
     <div class="pull-right menu">
      <ul>
@@ -113,7 +109,7 @@ try {
    <ul style="flex-grow: 1">
     <li style="width: 100%; height: 100%">
      <form action="/search" class="top-search-form">
-      <input class="sbh-autocomplete" name="q" placeholder="Search Test Synbiohub" style="width: 91%" type="text" value=""/>
+      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
       <button class="inactive submit" type="submit">
        <span class="fa fa-search">
        </span>
@@ -131,8 +127,68 @@ try {
       Private Submissions
      </h4>
      <p>
-      You currently have 0 private submission(s)
+      You currently have 2 private submission(s)
      </p>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-private">
+        Private
+       </div>
+      </div>
+      <a href="/user/testuser/test_attachment/test_attachment_collection/1">
+       test_attachment_collection (test_attachment)
+      </a>
+      <p>
+       version 1
+      </p>
+      <div class="keywords">
+       <strong>
+        used for tesitng the attachment endpoints
+       </strong>
+      </div>
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+      <a href="/user/testuser/test_attachment/test_attachment_collection/1/makePublic">
+       <button class="btn btn-success public-btn" type="button">
+        Make Public
+       </button>
+      </a>
+      <a href="/user/testuser/test_attachment/test_attachment_collection/1/removeCollection">
+       <button class="btn btn-success remove-btn" onclick="return confirm('Are you sure you want to remove this collection?')" type="button">
+        Remove
+       </button>
+      </a>
+     </div>
+     <div class="search-result-item">
+      <div class="ribbon-wrapper">
+       <div class="ribbon-private">
+        Private
+       </div>
+      </div>
+      <a href="/user/testuser/test_hash/test_hash_collection/2">
+       test_hash_collection (test_hash)
+      </a>
+      <p>
+       version 2
+      </p>
+      <div class="keywords">
+       <strong>
+        used for testing endpoints with hash built in.
+       </strong>
+      </div>
+      <br/>
+      <!--button(type='button',data-designid=submission.id).btn.btn-default.journal-btn Submit to Journal-->
+      <a href="/user/testuser/test_hash/test_hash_collection/2/makePublic">
+       <button class="btn btn-success public-btn" type="button">
+        Make Public
+       </button>
+      </a>
+      <a href="/user/testuser/test_hash/test_hash_collection/2/removeCollection">
+       <button class="btn btn-success remove-btn" onclick="return confirm('Are you sure you want to remove this collection?')" type="button">
+        Remove
+       </button>
+      </a>
+     </div>
     </div>
     <div class="col-md-6 submission-list">
      <h4>
@@ -147,15 +203,15 @@ try {
         Public
        </div>
       </div>
-      <a href="/public/testid0/testid0_collection/1">
-       testid0_collection (testcollection0)
+      <a href="/public/testid1/testid1_collection/1">
+       testid1_collection (testcollection1)
       </a>
       <p>
        version 1
       </p>
       <div class="keywords">
        <strong>
-        testdescription0
+        testdescription1
        </strong>
       </div>
       <br/>
@@ -180,7 +236,7 @@ try {
    </span>
    <br/>
    <span>
-    <a href="https://synbiohub.github.io/api-docs/#about-synbiohub">
+    <a href="https://wiki.synbiohub.org">
      About SynBioHub
     </a>
     |
@@ -193,27 +249,27 @@ try {
     </a>
    </span>
   </div>
-  <script src="/js/saveSvgAsPng.js">
-  </script>
-  <script src="/js/jquery/jquery-2.1.3.min.js">
-  </script>
-  <script src="/js/bootstrap/bootstrap-3.3.4.js">
-  </script>
-  <script src="/js/typeahead.bundle.js">
-  </script>
-  <script src="/js/typeahead.jquery.min.js">
-  </script>
-  <script src="/datatables.min.js">
-  </script>
-  <script src="/js/pathseg.js">
-  </script>
-  <script src="/js/chosen.jquery.js">
-  </script>
-  <script src="/js/dropzone.js">
-  </script>
-  <script src="/js/BootstrapMenu.js">
-  </script>
-  <script src="/bundle.js">
-  </script>
  </body>
+ <script src="/js/saveSvgAsPng.js">
+ </script>
+ <script src="/js/jquery/jquery-2.1.3.min.js">
+ </script>
+ <script src="/js/bootstrap/bootstrap-3.3.4.js">
+ </script>
+ <script src="/js/typeahead.bundle.js">
+ </script>
+ <script src="/js/typeahead.jquery.min.js">
+ </script>
+ <script src="/datatables.min.js">
+ </script>
+ <script src="/js/pathseg.js">
+ </script>
+ <script src="/js/chosen.jquery.js">
+ </script>
+ <script src="/js/dropzone.js">
+ </script>
+ <script src="/js/BootstrapMenu.js">
+ </script>
+ <script src="/bundle.js">
+ </script>
 </html>

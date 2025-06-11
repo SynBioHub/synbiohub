@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   test_instance
+  </title>
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/styles/site.css" rel="stylesheet"/>
+  <link href="/datatables.min.css" rel="stylesheet"/>
+  <link href="/css/popupS.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500&amp;display=swap" rel="stylesheet"/>
+  <script>
+   var $buoop = {vs:{i:10,f:-4,o:-4,s:8,c:-4},api:4};
+function $buo_f() {
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    e.classList.add("testignore");
+    document.body.appendChild(e);
+};
+
+try {
+    document.addEventListener("DOMContentLoaded", $buo_f,false)
+} catch(e) {
+    window.attachEvent("onload", $buo_f)
+}
+  </script>
+  <script src="/js/popupS.min.js">
+  </script>
+ </head>
+ <body>
+  <nav class="navbar navbar-fixed-top">
+   <div class="content">
+    <a href="/">
+     <img class="pull-left instance-logo" height="50" src="/logo_uploaded.jpg"/>
+    </a>
+    <div class="pull-right menu">
+     <ul>
+      <li>
+       <a href="/submit" title="Submit">
+        <span class="fa fa-cloud-upload">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submit
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/shared" title="Shared with Me">
+        <span class="fa fa-bolt">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Shared with Me
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/manage" title="Manage Submissions">
+        <span class="fa fa-align-left">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Submissions
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/admin" title="Administration">
+        <span class="fa fa-cogs">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Admin
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/profile" title="Edit Profile">
+        <span class="fa fa-id-card">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="/logout" title="Sign Out">
+        <span class="fa fa-sign-out">
+        </span>
+        <span class="blue-text hidden-xs hidden-sm">
+         Sign Out
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <div class="clearfix">
+  </div>
+  <div class="sbol-breadcrumbs" style="display: flex">
+   <ul>
+    <li class="inactive">
+     <span class="fa fa-cogs">
+     </span>
+     Admin
+    </li>
+   </ul>
+   <ul style="flex-grow: 1">
+    <li style="width: 100%; height: 100%">
+     <form action="/search" class="top-search-form">
+      <input class="sbh-autocomplete" name="q" placeholder="Search test_instance" style="width: 91%" type="text" value=""/>
+      <button class="inactive submit" type="submit">
+       <span class="fa fa-search">
+       </span>
+      </button>
+     </form>
+    </li>
+   </ul>
+  </div>
+  <br/>
+  <br/>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-2">
+     <ul class="nav nav-pills nav-stacked">
+      <li role="presentation">
+       <a href="/admin/">
+        Status
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/graphs">
+        Graphs
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/log">
+        Log
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/mail">
+        Mail
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/plugins">
+        Plugins
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/registries">
+        Registries
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/remotes">
+        Remotes
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/explorer">
+        SBOLExplorer
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/sparql">
+        SPARQL
+       </a>
+      </li>
+      <li class="active" role="presentation">
+       <a href="/admin/theme">
+        Theme
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="/admin/users">
+        Users
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="col-md-8">
+     <div class="row">
+      <div class="col-md-12">
+       <h1>
+        Create an Account
+       </h1>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12">
+       <p>
+        The user will be emailed their login details upon account creation.
+       </p>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12">
+       <form accept-charset="UTF-8" action="newUser" method="post">
+        <input class="text" name="utf8" type="hidden" value="✓"/>
+        <div class="form-group">
+         <label for="name">
+          Full Name
+         </label>
+         <input autocomplete="off" class="form-control" id="name" name="name" type="text"/>
+        </div>
+        <div class="form-group">
+         <label for="affiliation">
+          Affiliation (optional)
+         </label>
+         <input autocomplete="off" class="form-control" id="affiliation" name="affiliation"/>
+        </div>
+        <div class="form-group">
+         <label for="email">
+          Email
+         </label>
+         <input autocomplete="off" class="form-control" id="email" name="email" type="email"/>
+        </div>
+        <div class="form-group">
+         <label for="username">
+          Username
+         </label>
+         <input autocomplete="off" class="form-control" id="username" name="username" type="username"/>
+        </div>
+        <div class="checkbox">
+         <label class="form-check-label">
+          <input name="isAdmin" type="checkbox"/>
+          Grant Administrative Privileges
+         </label>
+        </div>
+        <div class="checkbox">
+         <label class="form-check-label">
+          <input name="isMember" type="checkbox"/>
+          Grant Member Privileges
+         </label>
+        </div>
+        <div class="checkbox">
+         <label class="form-check-label">
+          <input name="isCurator" type="checkbox"/>
+          Grant Curator Privileges
+         </label>
+        </div>
+        <div>
+         <input class="btn btn-primary" type="submit" value="Create"/>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div>
+    <div class="col-md-1">
+    </div>
+   </div>
+  </div>
+  <div class="clearfix">
+  </div>
+  <div align="center" class="footer-bar home-page-footer blue-text grey-page-mark">
+   <span>
+    © 2018
+    <a href="http://ncl.ac.uk">
+     Newcastle University
+    </a>
+    ,
+    <a href="http://utah.edu">
+     University of Utah
+    </a>
+    , and collaborators
+   </span>
+   <br/>
+   <span>
+    <a href="https://wiki.synbiohub.org">
+     About SynBioHub
+    </a>
+    |
+    <a href="https://github.com/SynBioHub/synbiohub">
+     View Source on Github
+    </a>
+    |
+    <a href="https://github.com/synbiohub/synbiohub/issues">
+     Report an Issue
+    </a>
+   </span>
+  </div>
+ </body>
+ <script src="/js/saveSvgAsPng.js">
+ </script>
+ <script src="/js/jquery/jquery-2.1.3.min.js">
+ </script>
+ <script src="/js/bootstrap/bootstrap-3.3.4.js">
+ </script>
+ <script src="/js/typeahead.bundle.js">
+ </script>
+ <script src="/js/typeahead.jquery.min.js">
+ </script>
+ <script src="/datatables.min.js">
+ </script>
+ <script src="/js/pathseg.js">
+ </script>
+ <script src="/js/chosen.jquery.js">
+ </script>
+ <script src="/js/dropzone.js">
+ </script>
+ <script src="/js/BootstrapMenu.js">
+ </script>
+ <script src="/bundle.js">
+ </script>
+</html>

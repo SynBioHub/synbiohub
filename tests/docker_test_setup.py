@@ -38,7 +38,7 @@ class TestDockerSetup(TestCase):
                 'version' : (None, '1'),
                 'name' : (None, collectionname),
                 'description':(None, 'testdescription'),
-                'citations':(None, 'none'),
+                'citations':(None, ''),
                 'overwrite_merge':(None, '0')}
 
         files = {'file':("./SBOLTestRunner/src/main/resources/SBOLTestSuite/SBOL2/" + sbol2filename,

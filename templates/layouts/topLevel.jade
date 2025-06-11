@@ -26,9 +26,6 @@ block generalTopLevelButtons
                         if rdfType.name == 'Component' || rdfType.name == 'Sequence'
                             li 
                                 a(href=meta.url + '/fasta') Download FASTA
-                        if rdfType.name == 'Component' || rdfType.name == 'Module'
-                            li 
-                                a.sbh-download-picture Download Image
                         if rdfType.name == 'Attachment'
                             li 
                                 a(href=meta.attachmentDownloadURL) Download Attachment
@@ -39,7 +36,8 @@ block generalTopLevelButtons
                     li.dropdown.btn.btn-primary
                             a(href=meta.url + '/uses',title='Find all uses of this '+rdfType.name,style="color:white")
                                 span.fa.fa-search
-                                |  
+                                span.hidden-xs.hidden-sm
+                                    | &nbsp;&nbsp;Search
                 block topLevelButtons
                 li.btn.btn-success
                         a(href=rootCollection,title='Back to root collection',style="color:white")
