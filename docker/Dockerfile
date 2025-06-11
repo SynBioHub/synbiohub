@@ -6,6 +6,8 @@ RUN apk add nss git openjdk8-jre openjdk8 maven python3 alpine-sdk libxml2-dev y
 WORKDIR /synbiohub
 COPY . . 
 
+RUN rm -rf .git
+
 RUN cd java && mvn package
 RUN git config --global url."https://".insteadOf git://
 RUN yarn install
@@ -28,7 +30,7 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     ln -s /mnt/data/logs . && \
     ln -s /mnt/data/icons public/. 
 
-EXPOSE 8890 7777 1111
+EXPOSE 7777
 
 HEALTHCHECK --start-period=60s CMD ["node", "healthcheck.js"] 
 ENTRYPOINT ["./entry.sh"]
