@@ -19,6 +19,15 @@ def parse_obo(file_path):
                         'def': term.get('def', '')
                     }
                 term = {}
+            elif line == '[Typedef]':
+                if 'id' in term and 'name' in term:
+                    if 'def' in term:
+                        term['def'] = format_definition(term['def'])
+                    terms[term['id']] = {
+                        'name': term['name'],
+                        'def': term.get('def', '')
+                    }
+                term = {}
             elif line.startswith('id: '):
                 term['id'] = line[4:]
             elif line.startswith('name: '):
@@ -29,10 +38,10 @@ def parse_obo(file_path):
         if 'id' in term and 'name' in term:
             if 'def' in term:
                 term['def'] = format_definition(term['def'])
-                terms[term['id']] = {
-                    'name': term['name'],
-                    'def': term.get('def', '')
-                }
+            terms[term['id']] = {
+                'name': term['name'],
+                'def': term.get('def', '')
+            }
     return terms
 
 def format_definition(def_text):

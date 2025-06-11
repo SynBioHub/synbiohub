@@ -217,8 +217,24 @@ public class PrepareSubmissionJob extends Job {
 		}
 		return true;
 	}
+	
+	public static boolean hasMicrosoftZipExtension(String filename) {
+        String[] extensions = {".docx", ".dotx", ".xlsx", ".xltx", ".pptx", ".potx", ".ppsx", ".vsdx", ".vstx",
+                               ".docm", ".dotm", ".xlsm", ".xltm", ".pptm", ".potm", ".ppsm", ".mppx", ".pubx",
+                               ".xsn", ".thmx", ".stlx", ".onepkg", ".appx", ".msix", ".vsix", ".cabx"};
+
+        for (String ext : extensions) {
+            if (filename.toLowerCase().endsWith(ext)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	private boolean getFilenames(String initialFilename, Map<String, String> attachments) {
+		if (hasMicrosoftZipExtension(initialFilename)) {
+			return false;
+		}
 		if (readCOMBINEArchive(initialFilename, attachments)) {
 			return true;
 		}
