@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Save git revision to config before removing .git folder
+echo "Saving git revision to configuration..."
+node gitrevupdate.js
+
+echo "Git revision saved successfully!"

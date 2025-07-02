@@ -5,10 +5,11 @@ RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev ya
 WORKDIR /synbiohub
 COPY . . 
 
+RUN git config --global url."https://".insteadOf git://
+RUN docker/saveconfig.sh
 RUN rm -rf .git
 
 RUN cd java && mvn package
-RUN git config --global url."https://".insteadOf git://
 RUN yarn install
 
 RUN mkdir /mnt/data && \
@@ -19,8 +20,6 @@ RUN mkdir /mnt/data && \
     mkdir /mnt/config
 
 COPY docker/config.local.json /mnt/config/config.local.json
-COPY docker/healthcheck.js healthcheck.js
-COPY docker/entry.sh entry.sh
 
 RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synbiohub.sqlite ./synbiohub.sqlite && \
@@ -31,6 +30,5 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
 
 EXPOSE 7777
 
-HEALTHCHECK --start-period=60s CMD ["node", "healthcheck.js"] 
-ENTRYPOINT ["./entry.sh"]
+ENTRYPOINT ["./docker/entry.sh"]
 
