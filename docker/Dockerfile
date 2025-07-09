@@ -29,6 +29,7 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     ln -s /mnt/data/icons public/. 
 
 EXPOSE 7777
+HEALTHCHECK --interval=10s --timeout=10s --start-period=30s --retries=5 \
+  CMD curl -f http://localhost:7777/ || exit 1
 
 ENTRYPOINT ["./docker/entry.sh"]
-
