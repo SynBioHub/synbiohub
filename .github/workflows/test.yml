@@ -78,7 +78,7 @@ jobs:
     name: Publish snapshot image
     needs: [sboltests, sbhtests]
     runs-on: ubuntu-latest
-    if: endsWith(github.ref, 'master')
+    if: github.ref_name == 'master'
     steps:
       - uses: actions/download-artifact@v4
         name: Download Docker iamge
