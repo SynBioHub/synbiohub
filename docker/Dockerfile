@@ -1,6 +1,6 @@
 FROM node:11.1.0-alpine
 
-RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq
+RUN apk add nss git openjdk8-jre openjdk8 maven python alpine-sdk libxml2-dev yarn g++ gcc bash raptor2 jq curl
 
 WORKDIR /synbiohub
 COPY . . 
