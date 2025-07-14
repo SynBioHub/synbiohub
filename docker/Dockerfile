@@ -6,7 +6,7 @@ WORKDIR /synbiohub
 COPY . . 
 
 RUN git config --global url."https://".insteadOf git://
-RUN docker/saveconfig.sh
+RUN chmod +x docker/saveconfig.sh && ./docker/saveconfig.sh
 RUN rm -rf .git
 
 RUN cd java && mvn package
