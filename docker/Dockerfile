@@ -6,6 +6,7 @@ WORKDIR /synbiohub
 COPY . . 
 
 # RUN rm -rf .git
+RUN git reset --hard HEAD ; git reflog expire --expire=now --all ; git gc --prune=now --aggressive
 
 RUN cd java && mvn package
 RUN git config --global url."https://".insteadOf git://
