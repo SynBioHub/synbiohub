@@ -10,8 +10,8 @@ RUN git config --global url."https://".insteadOf git://
 RUN cd java && mvn package
 RUN yarn install
 
-RUN chmod +x docker/saveconfig.sh && ./docker/saveconfig.sh
-RUN rm -rf .git
+RUN node gitrevupdate.js
+RUN rm -rf .git ; apk del git
 
 RUN mkdir /mnt/data && \
     mkdir /mnt/data/backup && \
@@ -30,7 +30,8 @@ RUN ln -s /mnt/config/config.local.json ./config.local.json && \
     ln -s /mnt/data/icons public/. 
 
 EXPOSE 7777
-HEALTHCHECK --interval=10s --timeout=10s --start-period=30s --retries=5 \
-  CMD curl -f http://localhost:7777/ || exit 1
+
+HEALTHCHECK --interval=10s --timeout=10s --start-period=20s --retries=5 \
+  CMD ["node", "healthcheck.js"]
 
 ENTRYPOINT ["./docker/entry.sh"]
