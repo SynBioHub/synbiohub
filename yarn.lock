@@ -2235,6 +2235,11 @@ cookie-signature@1.0.6:
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
 
+cookie-signature@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.7.tgz#ab5dd7ab757c54e60f37ef6550f481c426d10454"
+  integrity sha512-NXdYc3dLr47pBkpUCHtKSwIOQXLVn8dZEuywboCOJY/osA0wFSLlSawr3KN8qXJEyX66FcONTH8EIlVuK0yyFA==
+
 cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
@@ -2244,6 +2249,11 @@ cookie@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
   integrity sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
+
+cookie@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.7.2.tgz#556369c472a2ba910f2979891b526b3436237ed7"
+  integrity sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==
 
 copy-descriptor@^0.1.0:
   version "0.1.1"
@@ -3117,18 +3127,18 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-express-session@^1.13.0:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.16.2.tgz#59f36d7770e94872d19b163b6708a2d16aa6848c"
-  integrity sha512-oy0sRsdw6n93E9wpCNWKRnSsxYnSDX9Dnr9mhZgqUEEorzcq5nshGYSZ4ZReHFhKQ80WI5iVUUSPW7u3GaKauw==
+express-session@^1.18.2:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.18.2.tgz#34db6252611b57055e877036eea09b4453dec5d8"
+  integrity sha512-SZjssGQC7TzTs9rpPDuUrR23GNZ9+2+IkA/+IJWmvQilTr5OSliEHGF+D9scbIpdC6yGtTI0/VhaHoVes2AN/A==
   dependencies:
-    cookie "0.3.1"
-    cookie-signature "1.0.6"
+    cookie "0.7.2"
+    cookie-signature "1.0.7"
     debug "2.6.9"
     depd "~2.0.0"
-    on-headers "~1.0.2"
+    on-headers "~1.1.0"
     parseurl "~1.3.3"
-    safe-buffer "5.1.2"
+    safe-buffer "5.2.1"
     uid-safe "~2.1.5"
 
 express-sse@^0.5.1:
@@ -5312,10 +5322,10 @@ on-finished@^2.3.0, on-finished@~2.3.0:
   dependencies:
     ee-first "1.1.1"
 
-on-headers@~1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
-  integrity sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==
+on-headers@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.1.0.tgz#59da4f91c45f5f989c6e4bcedc5a3b0aed70ff65"
+  integrity sha512-737ZY3yNnXy37FHkQxPzt4UZ2UWPWiCZWLvFZ4fu5cueciegX0zGPnrlY6bwRg4FdQOe9YU8MkmJwGhoMybl8A==
 
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
   version "1.4.0"
@@ -6453,10 +6463,10 @@ safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.0.tgz#b74daec49b1148f88c64b68d49b1e815c1f2f519"
-  integrity sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==
+safe-buffer@5.2.1, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.2.0:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
+  integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
 
 safe-regex@^1.1.0:
   version "1.1.0"
@@ -6494,6 +6504,21 @@ sboljs@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.6.tgz#73dcdf59a9353d5efdbc0f637fb570d77a125528"
   integrity sha512-g8U/9i2478my5k6usb2DVo9J86jex6oBLBPviIz+oqDXuy7K3DP4yzqyN8mxFNHwlcA6dMuA+JiAqlInpoB0fg==
+  dependencies:
+    extend "^3.0.0"
+    json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
+    rdf-ext-sboljs "^0.3.0"
+    rdf-graph-array-sboljs "^0.3.1"
+    rdf-parser-rdfxml "^0.3.0-rc1"
+    request "https://registry.npmjs.org/request/-/request-2.83.0.tgz"
+    urijs "https://registry.npmjs.org/urijs/-/urijs-1.18.7.tgz"
+    xml "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
+    xmlhttprequest "^1.8.0"
+
+sboljs@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.8.tgz#305d0611acbb63e5c3a801b03f64a33a5bdc6b4a"
+  integrity sha512-RA88a0rg/FBvLM9I24cGQvBsddiIga8ignW8djReZxbUIVBZwz5CRdxI/2VVQG4sDq28sHqNq1Fn+CoCNd3k7w==
   dependencies:
     extend "^3.0.0"
     json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
@@ -7641,10 +7666,10 @@ visbol-react@^1.0.68:
   dependencies:
     react-parametric-svg "^0.1.7"
 
-visbol@1.4.33:
-  version "1.4.33"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.33.tgz#4bdd3e0b86b3a45c46834cf8b8a7d58fc7b5f059"
-  integrity sha512-5x+Oo/sYoU3N78fcJo9ETp0RFxvCl6AENKvmOrJKj4oJd8NlNAzjzlqzg3Va7Zh66elZ4ZXRY/Av24pPivA8Og==
+visbol@1.4.38:
+  version "1.4.38"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.38.tgz#712144ab97e98cf8e953c9773be89da6ac044267"
+  integrity sha512-npx4L1TqNRd3Cd3QV3gH1398B4eYLFVveLTA9ou8N2vQs57agK+Hjz/BWeLazR6WH++rsZKL+TPDRH3BKzPMyQ==
   dependencies:
     rdf-ext "^1.1.2"
     rdf-graph-abstract "^0.3.0"
@@ -7654,13 +7679,14 @@ visbol@1.4.33:
     sha1 "^1.1.1"
     urijs "^1.16.1"
 
-visbol@^2.0.17:
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.17.tgz#698963ec4d1e75d9106a1f98d1fd78fb3d7d463c"
-  integrity sha512-V9SMrDa0SHHZmVvf7GMz0yAsLl4DG3e0RoYrXctoua5bXr4fj8NVDYEe01nAEq9i7PLCLj6zZ/SWXfL2sg/Uvw==
+visbol@^2.0.24:
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.24.tgz#4800a947bd1a0c9a4e95962e6b536426a76452f3"
+  integrity sha512-a9A1BDxPR4F67McPUPDv3U6tQAw6zYYP4rMbplh789IDiu3WBKEsEDYMFX04FREi5B/w2yfUl1eG6rHL/nWwUg==
   dependencies:
-    sboljs "^2.1.9"
-    visbol "1.4.33"
+    rdf-graph-array "^0.3.0"
+    sboljs "^2.2.8"
+    visbol "1.4.38"
 
 vm-browserify@^1.0.0:
   version "1.1.0"
