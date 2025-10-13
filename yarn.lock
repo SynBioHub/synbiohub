@@ -6505,6 +6505,21 @@ sboljs@^2.2.6:
     xml "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
     xmlhttprequest "^1.8.0"
 
+sboljs@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/sboljs/-/sboljs-2.2.8.tgz#305d0611acbb63e5c3a801b03f64a33a5bdc6b4a"
+  integrity sha512-RA88a0rg/FBvLM9I24cGQvBsddiIga8ignW8djReZxbUIVBZwz5CRdxI/2VVQG4sDq28sHqNq1Fn+CoCNd3k7w==
+  dependencies:
+    extend "^3.0.0"
+    json-stringify-safe "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
+    rdf-ext-sboljs "^0.3.0"
+    rdf-graph-array-sboljs "^0.3.1"
+    rdf-parser-rdfxml "^0.3.0-rc1"
+    request "https://registry.npmjs.org/request/-/request-2.83.0.tgz"
+    urijs "https://registry.npmjs.org/urijs/-/urijs-1.18.7.tgz"
+    xml "https://registry.npmjs.org/xml/-/xml-1.0.1.tgz"
+    xmlhttprequest "^1.8.0"
+
 sbolmeta@^0.1.10:
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/sbolmeta/-/sbolmeta-0.1.14.tgz#0c8886f24a357fae5dcd0304f2cacfe0b5f711de"
@@ -7585,10 +7600,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validator@^10.9.0:
-  version "10.11.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
-  integrity sha512-X/p3UZerAIsbBfN/IwahhYaBbY68EN/UQBWHtsbXGT5bfrH/p4NQzUCG1kF/rtKaNpnJ7jAu6NGTdSNtyNIXMw==
+validator@^13.15.15:
+  version "13.15.15"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.15.15.tgz#246594be5671dc09daa35caec5689fcd18c6e7e4"
+  integrity sha512-BgWVbCI72aIQy937xbawcs+hrVaN/CZ2UwutgaJ36hGqRrLNM+f5LUT/YPRbo8IV/ASeFzXszezV+y2+rq3l8A==
 
 validator@^5.2.0:
   version "5.7.0"
@@ -7641,10 +7656,10 @@ visbol-react@^1.0.68:
   dependencies:
     react-parametric-svg "^0.1.7"
 
-visbol@1.4.33:
-  version "1.4.33"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.33.tgz#4bdd3e0b86b3a45c46834cf8b8a7d58fc7b5f059"
-  integrity sha512-5x+Oo/sYoU3N78fcJo9ETp0RFxvCl6AENKvmOrJKj4oJd8NlNAzjzlqzg3Va7Zh66elZ4ZXRY/Av24pPivA8Og==
+visbol@1.4.38:
+  version "1.4.38"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-1.4.38.tgz#712144ab97e98cf8e953c9773be89da6ac044267"
+  integrity sha512-npx4L1TqNRd3Cd3QV3gH1398B4eYLFVveLTA9ou8N2vQs57agK+Hjz/BWeLazR6WH++rsZKL+TPDRH3BKzPMyQ==
   dependencies:
     rdf-ext "^1.1.2"
     rdf-graph-abstract "^0.3.0"
@@ -7654,13 +7669,14 @@ visbol@1.4.33:
     sha1 "^1.1.1"
     urijs "^1.16.1"
 
-visbol@^2.0.17:
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.17.tgz#698963ec4d1e75d9106a1f98d1fd78fb3d7d463c"
-  integrity sha512-V9SMrDa0SHHZmVvf7GMz0yAsLl4DG3e0RoYrXctoua5bXr4fj8NVDYEe01nAEq9i7PLCLj6zZ/SWXfL2sg/Uvw==
+visbol@^2.0.24:
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/visbol/-/visbol-2.0.24.tgz#4800a947bd1a0c9a4e95962e6b536426a76452f3"
+  integrity sha512-a9A1BDxPR4F67McPUPDv3U6tQAw6zYYP4rMbplh789IDiu3WBKEsEDYMFX04FREi5B/w2yfUl1eG6rHL/nWwUg==
   dependencies:
-    sboljs "^2.1.9"
-    visbol "1.4.33"
+    rdf-graph-array "^0.3.0"
+    sboljs "^2.2.8"
+    visbol "1.4.38"
 
 vm-browserify@^1.0.0:
   version "1.1.0"
