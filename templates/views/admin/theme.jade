@@ -51,6 +51,13 @@ block adminContent
                     label
                         input(type='checkbox', name="requireLogin", checked=config.requireLogin) 
                         | Require Login
+
+        div.row 
+            div.col-md-12
+                div.checkbox
+                    label
+                        input(type='checkbox', name="suppressLogs", checked=config.suppressLogs) 
+                        | Only Log Errors (Suppress Info, Warn, Debug)
         div.row
             div.col-md-1.col-md-offset-11
                 button.btn.btn-primary(type='submit') Save
