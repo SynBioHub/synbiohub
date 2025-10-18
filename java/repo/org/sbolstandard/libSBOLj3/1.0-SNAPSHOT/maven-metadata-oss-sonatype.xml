@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>org.sbolstandard</groupId>
+  <artifactId>libSBOLj3</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20200920.174808</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20200920174808</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <classifier>withDependencies</classifier>
+        <extension>jar</extension>
+        <value>1.0-20200920.174808-1</value>
+        <updated>20200920174808</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0-20200920.174808-1</value>
+        <updated>20200920174808</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0-20200920.174808-1</value>
+        <updated>20200920174808</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

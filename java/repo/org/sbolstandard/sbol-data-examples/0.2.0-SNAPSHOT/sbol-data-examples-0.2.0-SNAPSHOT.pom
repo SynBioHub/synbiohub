@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.sbolstandard</groupId>
+    <artifactId>sbol-data</artifactId>
+    <version>0.2.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>sbol-data-examples</artifactId>
+  <name>sbol-data-examples</name>
+  <description>Provides import and export examples in RDF/XML, RDF/Turtle,JSON and Graphviz</description>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+        <dependency>
+    	<groupId>org.sbolstandard</groupId>
+    	<artifactId>sbol-data-core</artifactId>
+    	<version>0.2.0-SNAPSHOT</version>
+  	</dependency>
+  	    <dependency>
+    	<groupId>org.sbolstandard</groupId>
+    	<artifactId>sbol-data-io-RDF</artifactId>
+    	<version>0.2.0-SNAPSHOT</version>
+  	</dependency>
+  	 <dependency>
+    	<groupId>org.sbolstandard</groupId>
+    	<artifactId>sbol-data-io-graphviz</artifactId>
+    	<version>0.2.0-SNAPSHOT</version>
+  	</dependency>
+      <dependency>
+       	<groupId>org.sbolstandard</groupId>
+       	<artifactId>sbol-data-io-json</artifactId>
+       	<version>0.2.0-SNAPSHOT</version>
+     	</dependency>
+      <dependency>
+       	<groupId>org.sbolstandard</groupId>
+       	<artifactId>sbol-data-io-turtle</artifactId>
+       	<version>0.2.0-SNAPSHOT</version>
+     	</dependency>
+<dependency>
+	<groupId>net.java.dev.stax-utils</groupId>
+	<artifactId>stax-utils</artifactId>
+	<version>20070216</version>
+	<exclusions>
+            <exclusion>
+                <groupId>com.bea.xml</groupId>
+                <artifactId>jsr173-ri</artifactId>
+            </exclusion>
+        </exclusions>
+</dependency>
+
+  	
+  </dependencies>
+</project>

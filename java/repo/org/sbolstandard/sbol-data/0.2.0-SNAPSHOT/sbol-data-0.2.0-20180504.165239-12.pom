@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.sbolstandard</groupId>
+	<artifactId>sbol-data</artifactId>
+	<version>0.2.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>sbol-data</name>
+	<description>APIs to manage SBOL-shaped data documents</description>
+	<url>https://github.com/drdozer/sbol-data</url>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/drdozer/sbol-data/issues</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:git@github.com:drdozer/sbol-data.git</connection>
+		<developerConnection>scm:git:git@github.com:drdozer/sbol-data.git</developerConnection>
+		<url>git@github.com:drdozer/sbol-data.git</url>
+	</scm>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>sbol-data-core</module>
+		<module>sbol-data-nativeSbol</module>
+		<module>sbol-data-io-RDF</module>
+		<module>sbol-data-examples</module>
+		<module>sbol-data-io-graphviz</module>
+		<module>sbol-data-io-json</module>
+		<module>sbol-data-io-turtle</module>
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- settings for javac. -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<!--<configuration> -->
+				<!--<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet> -->
+				<!--<docletArtifact> -->
+				<!--<groupId>org.umlgraph</groupId> -->
+				<!--<artifactId>umlgraph</artifactId> -->
+				<!--<version>5.6</version> -->
+				<!--</docletArtifact> -->
+				<!--<additionalparam>-views</additionalparam> -->
+				<!--<useStandardDocletOptions>true</useStandardDocletOptions> -->
+				<!--</configuration> -->
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>aggregate</id>
+						<goals>
+							<goal>aggregate</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-gpg-plugin</artifactId>
+			<version>1.5</version>
+			<executions>
+			<execution>
+			<id>sign-artifacts</id>
+			<phase>verify</phase>
+			<goals>
+				<goal>sign</goal>
+				</goals>
+			</execution>
+			</executions>
+			</plugin>
+			    <plugin>
+      <groupId>org.sonatype.plugins</groupId>
+      <artifactId>nexus-staging-maven-plugin</artifactId>
+      <version>1.6.2</version>
+      <extensions>true</extensions>
+      <configuration>
+        <serverId>ossrh</serverId>
+        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+      </configuration>
+    </plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<!-- Enable substitution of ${foo} maven variables in resource files. -->
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- test dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.9</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<developers>
+		<developer>
+			<id>drdozer</id>
+			<name>Matthew Pocock</name>
+			<email>turingatemyhamster@gmail.com</email>
+			<url>http://turingatemyhamster.co.uk/blog</url>
+			<organization>Turing Ate My Hamster Ltd</organization>
+			<organizationUrl>http://www.turingatemyhamster.co.uk</organizationUrl>
+			<timezone>Europe/London</timezone>
+		</developer>
+		<developer>
+			<id>goksel</id>
+			<name>Goksel Misirli</name>
+			<email>goksel.misirli@ncl.ac.uk</email>
+			<url>http://homepages.cs.ncl.ac.uk/goksel.misirli</url>
+			<organization>Newcastle University</organization>
+			<organizationUrl>http://www.ncl.ac.uk</organizationUrl>
+			<timezone>Europe/London</timezone>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+ 
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	 
+</project>

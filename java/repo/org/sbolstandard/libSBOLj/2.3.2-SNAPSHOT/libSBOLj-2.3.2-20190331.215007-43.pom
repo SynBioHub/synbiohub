@@ -1,0 +1,171 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.sbolstandard</groupId>
+		<artifactId>libSBOLj-parent</artifactId>
+		<version>2.3.2-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>libSBOLj</artifactId>
+	
+	<properties>
+		<sbol-data.version>0.2.0-SNAPSHOT</sbol-data.version>
+	</properties>
+
+
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- dependencies used by libSBOLj -->
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>org.sbolstandard</groupId>
+			<artifactId>sbol-data-core</artifactId>
+			<version>${sbol-data.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sbolstandard</groupId>
+			<artifactId>sbol-data-examples</artifactId>
+			<version>${sbol-data.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sbolstandard</groupId>
+			<artifactId>sbol-data-io-RDF</artifactId>
+			<version>${sbol-data.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sbolstandard</groupId>
+			<artifactId>sbol-data-nativeSbol</artifactId>
+			<version>${sbol-data.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openscience.cdk</groupId>
+			<artifactId>cdk-smiles</artifactId>
+			<version>1.5.14</version>
+		</dependency>
+        <dependency>
+           <groupId>org.openscience.cdk</groupId>
+           <artifactId>cdk-data</artifactId>
+           <version>1.5.14</version>
+        </dependency>
+       <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>4.5.1</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>1.3.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.7</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.apache.httpcomponents</groupId>
+      	<artifactId>httpmime</artifactId>
+      	<version>4.5.4</version>
+      </dependency>
+      <dependency>
+      	<groupId>joda-time</groupId>
+      	<artifactId>joda-time</artifactId>
+      	<version>2.9.9</version>
+      </dependency>
+      <dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>19.0</version>
+	  </dependency>
+	  <dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-lang3</artifactId>
+  		<version>3.7</version>
+	  </dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>Sonatype OSS Snapshot Repository</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<shadedArtifactAttached>true</shadedArtifactAttached>
+					<shadedClassifierName>withDependencies</shadedClassifierName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.3</version>
+				<configuration>
+		          <excludePackageNames>org.oboparser.obo.*</excludePackageNames>
+ 		        </configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/synbiodex/libsbolj</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/SynBioDex/libSBOLj</url>
+	</ciManagement>
+</project>

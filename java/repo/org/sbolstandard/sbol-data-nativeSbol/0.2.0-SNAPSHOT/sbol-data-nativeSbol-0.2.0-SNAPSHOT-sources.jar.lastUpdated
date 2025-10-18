@@ -1,0 +1,30 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jun 24 20:11:24 MDT 2021
+@default-staging-https\://oss.sonatype.org/service/local/staging/deploy/maven2/.lastUpdated=1624586586784
+https\://oss.sonatype.org/service/local/staging/deploy/maven2/.error=Could not transfer artifact org.sbolstandard\:sbol-data-nativeSbol\:jar\:sources\:0.2.0-SNAPSHOT from/to staging (https\://oss.sonatype.org/service/local/staging/deploy/maven2)\: Access denied to https\://oss.sonatype.org/service/local/staging/deploy/maven2/org/sbolstandard/sbol-data-nativeSbol/0.2.0-SNAPSHOT/sbol-data-nativeSbol-0.2.0-SNAPSHOT-sources.jar. Error code 401, Unauthorized
+https\://oss.sonatype.org/content/repositories/snapshots/.error=
+https\://download.osgeo.org/webdav/geotools/.error=
+https\://github.com/biojava/maven-repo/raw/master/.lastUpdated=1555799158735
+https\://mvn.bio.informatik.uni-rostock.de/snapshots/.error=
+http\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/.lastUpdated=1555799146214
+http\://mvn.sems.uni-rostock.de/snapshots/.error=
+http\://mvn.bio.informatik.uni-rostock.de/snapshots/.error=
+https\://repository.jboss.org/nexus/content/repositories/thirdparty-releases/.lastUpdated=1555799146626
+https\://artifacts.alfresco.com/nexus/content/repositories/public/.lastUpdated=1555799148718
+https\://oss.sonatype.org/content/repositories/snapshots/.lastUpdated=1555799143846
+https\://repository.jboss.org/nexus/content/repositories/thirdparty-releases/.error=
+https\://github.com/biojava/maven-repo/raw/master/.error=
+http\://mvn.sems.uni-rostock.de/snapshots/.lastUpdated=1555799156393
+http\://download.osgeo.org/webdav/geotools/.lastUpdated=1555799147280
+@default-netbeans-https\://bits.netbeans.org/maven2/.lastUpdated=1624587084465
+@default-ebi-https\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/.lastUpdated=1624587084159
+http\://mvn.bio.informatik.uni-rostock.de/snapshots/.lastUpdated=1624470322909
+http\://bits.netbeans.org/maven2/.lastUpdated=1555799147021
+https\://mvn.bio.informatik.uni-rostock.de/snapshots/.lastUpdated=1624585381618
+https\://download.osgeo.org/webdav/geotools/.lastUpdated=1624587084788
+http\://download.osgeo.org/webdav/geotools/.error=
+https\://artifacts.alfresco.com/nexus/content/repositories/public/.error=
+http\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/.error=
+https\://bits.netbeans.org/maven2/.error=Could not transfer artifact org.sbolstandard\:sbol-data-nativeSbol\:jar\:sources\:0.2.0-SNAPSHOT from/to netbeans (https\://bits.netbeans.org/maven2/)\: Access denied to https\://bits.netbeans.org/maven2/org/sbolstandard/sbol-data-nativeSbol/0.2.0-SNAPSHOT/sbol-data-nativeSbol-0.2.0-SNAPSHOT-sources.jar. Error code 401, Repository decommissioned. Please refer to https\://netbeans.apache.org/about/oracle-transition.html for more information.
+https\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/.error=Could not transfer artifact org.sbolstandard\:sbol-data-nativeSbol\:jar\:sources\:0.2.0-SNAPSHOT from/to ebi (https\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/)\: Failed to transfer https\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/org/sbolstandard/sbol-data-nativeSbol/0.2.0-SNAPSHOT/sbol-data-nativeSbol-0.2.0-SNAPSHOT-sources.jar. Error code 500, Internal Server Error
+http\://bits.netbeans.org/maven2/.error=

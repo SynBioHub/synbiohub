@@ -1,0 +1,13 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Mar 26 21:53:08 MDT 2019
+http\://bits.netbeans.org/maven2/.error=
+http\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/.error=
+https\://artifacts.alfresco.com/nexus/content/repositories/public/.lastUpdated=1553658788232
+http\://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/.lastUpdated=1553658787275
+https\://artifacts.alfresco.com/nexus/content/repositories/public/.error=
+http\://download.osgeo.org/webdav/geotools/.error=
+https\://repository.jboss.org/nexus/content/repositories/thirdparty-releases/.lastUpdated=1553658787357
+http\://bits.netbeans.org/maven2/.lastUpdated=1553658787513
+https\://repo.maven.apache.org/maven2/.lastUpdated=1553658788372
+http\://download.osgeo.org/webdav/geotools/.lastUpdated=1553658787570
+https\://repository.jboss.org/nexus/content/repositories/thirdparty-releases/.error=

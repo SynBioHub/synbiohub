@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.intellij</groupId>
+    <artifactId>annotations</artifactId>
+    <packaging>jar</packaging>
+    <version>9.0.4</version>
+
+    <name>IntelliJ IDEA Annotations</name>
+    <description>Annotations used by IntelliJ IDEA for static code analysis</description>
+    <url>http://www.jetbrains.com/idea/</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>http://git.jetbrains.org/idea/community.git</url>
+        <connection>scm:git:git://git.jetbrains.org/idea/community.git</connection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>JetBrains</name>
+            <url>http://www.jetbrains.com/</url>
+        </developer>
+    </developers>
+
+</project>

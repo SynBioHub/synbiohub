@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.sbolstandard</groupId>
+    <artifactId>libSBOLj-parent</artifactId>
+    <version>2.4.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>libSBOLj-parent</name>
+    <description>Implementation of the SBOL 2.3.0 data standard.</description>
+    <url>https://github.com/SynBioDex/libSBOLj</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:SynBioDex/libSBOLj.git</connection>
+        <developerConnection>scm:git:git@github.com:SynBioDex/libSBOLj.git</developerConnection>
+        <url>https://github.com/SynBioDex/libSBOLj</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/SynBioDex/libSBOLj/issues</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>SynBioDex</id> <!-- please use your github ID -->
+            <name>SynBioDex</name> <!-- your real name -->
+            <organization>Synthetic Biology Data Exchange Group</organization> <!-- optional -->
+            <organizationUrl>http://sbolstandard.org</organizationUrl> <!-- optional -->
+        </developer>
+    </developers>
+
+    <properties>
+        <!-- We have to make sure we're building on the same charset on all platforms or bad things happen. -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+         <module>core2</module>
+    </modules>
+
+    <build>
+            <plugins>
+                <plugin>
+                    <!-- settings for javac. -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+		    <version>3.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <!-- Build an executable JAR -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+		    <version>2.4</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <classpathPrefix>lib/</classpathPrefix>
+                                <mainClass>org.sbolstandard.core2.SBOLValidate</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+				<plugin>
+				    <groupId>org.sonatype.plugins</groupId>
+				    <artifactId>nexus-staging-maven-plugin</artifactId>
+				    <version>1.6.6</version>
+				    <extensions>true</extensions>
+				    <configuration>
+				        <serverId>ossrh</serverId>
+				        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+				        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+				    </configuration>
+				</plugin>
+                <!-- todo: add any other plugins needed here -->
+            </plugins>
+
+        <resources>
+            <resource>
+                <!-- Enable substitution of ${foo} maven variables in resource files. -->
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- dependencies used by libSBOLj -->
+
+            <!-- test dependencies -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+	<groupId>org.apache.jena</groupId>
+	<artifactId>jena-core</artifactId>
+	<version>2.11.0</version>
+</dependency>
+             <dependency>
+	<groupId>org.apache.jena</groupId>
+	<artifactId>jena-tdb</artifactId>
+	<version>1.0.0</version>
+</dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    
+    <distributionManagement>
+                <snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>	
+</project>
+
+
+
+
+

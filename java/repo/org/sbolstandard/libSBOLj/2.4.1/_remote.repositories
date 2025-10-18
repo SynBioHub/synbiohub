@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Oct 16 14:51:47 MDT 2025
+libSBOLj-2.4.1.jar>=
+libSBOLj-2.4.1-javadoc.jar>=
+libSBOLj-2.4.1-withDependencies.jar>=
+libSBOLj-2.4.1.pom>=
+libSBOLj-2.4.1-sources.jar>=
