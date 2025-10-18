@@ -42,10 +42,6 @@
     </plugins>
   </build>
   <repositories>
-   <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-  </repository>
   <repository>
     <id>biojava-legacy-repo</id>
     <name>BioJava's Git based legacy maven repo</name>
