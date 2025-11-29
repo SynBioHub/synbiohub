@@ -164,7 +164,8 @@ public class PrepareSubmissionJob extends Job {
 				continue;
 			}
 
-			if(entry.getName().contains("__MACOSX") || entry.getName().contains(".DS_Store")) {
+			if(entry.getName().contains("__MACOSX") || entry.getName().contains(".DS_Store") || 
+					entry.getName().endsWith("manifest.json")) {
 				continue; // a resource fork
 			}
 
