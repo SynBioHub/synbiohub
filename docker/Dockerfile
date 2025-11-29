@@ -10,24 +10,10 @@ RUN git config --global url."https://".insteadOf git://
 RUN cd java && mvn package
 RUN yarn install
 
-RUN node gitrevupdate.js
-RUN rm -rf .git ; apk del git
-
-RUN mkdir /mnt/data && \
-    mkdir /mnt/data/backup && \
-    mkdir /mnt/data/uploads && \
-    mkdir /mnt/data/logs && \
-    mkdir /mnt/data/icons && \
-    mkdir /mnt/config
-
-COPY docker/config.local.json /mnt/config/config.local.json
-
-RUN ln -s /mnt/config/config.local.json ./config.local.json && \
-    touch /mnt/data/synbiohub.sqlite && ln -s /mnt/data/synbiohub.sqlite ./synbiohub.sqlite && \
-    ln -s /mnt/data/backup . && \
-    ln -s /mnt/data/uploads . && \
-    ln -s /mnt/data/logs . && \
-    ln -s /mnt/data/icons public/. 
+COPY docker/config.local.json config.initial.local.json
+COPY docker/healthcheck.js healthcheck.js
+COPY docker/entry.sh entry.sh
+COPY docker/first_run.sh first_run.sh
 
 EXPOSE 7777
 
