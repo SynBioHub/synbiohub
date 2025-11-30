@@ -234,6 +234,7 @@ public class PrepareSubmissionJob extends Job {
 
 	private boolean getFilenames(String initialFilename, Map<String, String> attachments) {
 		if (hasMicrosoftZipExtension(initialFilename)) {
+			attachments.put(initialFilename, "http://identifiers.org/combine.specifications/sbol");
 			return false;
 		}
 		if (readCOMBINEArchive(initialFilename, attachments)) {
