@@ -11,6 +11,10 @@ PREFIX cello: <http://cellocad.org/Terms/cello#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX purl: <http://purl.obolibrary.org/obo/>
+PREFIX biopax: <http://www.biopax.org/release/biopax-level3.owl#>
+PREFIX so: <http://identifiers.org/so/>
+PREFIX bench: <http://wiki.synbiohub.org/wiki/Terms/benchling#>
+PREFIX genbank: <http://www.ncbi.nlm.nih.gov/genbank#>
 
 SELECT DISTINCT
     ?subject
@@ -19,6 +23,8 @@ SELECT DISTINCT
     ?name
     ?description
     ?type
+    ?sbolType
+    ?role
 $from
 WHERE {
     $criteria
@@ -29,6 +35,9 @@ WHERE {
     OPTIONAL { ?subject sbol2:version ?version . }
     OPTIONAL { ?subject dcterms:title ?name . }
     OPTIONAL { ?subject dcterms:description ?description . }
+    OPTIONAL { ?subject sbol2:type ?sbolType . FILTER(STRSTARTS(str(?sbolType),'http://www.biopax.org/release/biopax-level3.owl')) }
+    OPTIONAL { ?subject sbol2:role ?role . FILTER(STRSTARTS(str(?role),'http://identifiers.org/so/')) }
+
 } 
 
 $limit
