@@ -23,6 +23,8 @@ SELECT DISTINCT
     ?name
     ?description
     ?type
+    ?sbolType
+    ?role
 $from
 WHERE {
     $criteria
@@ -33,6 +35,9 @@ WHERE {
     OPTIONAL { ?subject sbol2:version ?version . }
     OPTIONAL { ?subject dcterms:title ?name . }
     OPTIONAL { ?subject dcterms:description ?description . }
+    OPTIONAL { ?subject sbol2:type ?sbolType . FILTER(STRSTARTS(str(?sbolType),'http://www.biopax.org/release/biopax-level3.owl')) }
+    OPTIONAL { ?subject sbol2:role ?role . FILTER(STRSTARTS(str(?role),'http://identifiers.org/so/')) }
+
 } 
 
 $limit
