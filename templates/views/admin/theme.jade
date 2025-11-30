@@ -51,6 +51,36 @@ block adminContent
                     label
                         input(type='checkbox', name="requireLogin", checked=config.requireLogin) 
                         | Require Login
+
+        div.row 
+            div.col-md-12
+                div.checkbox
+                    label
+                        input(type='checkbox', name="suppressDebugLogs", checked=config.suppressDebugLogs) 
+                        | Suppress Debug Logs
+
+        div.row 
+            div.col-md-12
+                div.checkbox
+                    label
+                        input(type='checkbox', name="suppressInfoLogs", checked=config.suppressInfoLogs) 
+                        | Suppress Info Logs
+
+
+        div.row 
+            div.col-md-12
+                div.checkbox
+                    label
+                        input(type='checkbox', name="suppressWarningLogs", checked=config.suppressWarningLogs) 
+                        | Suppress Warning Logs
+
+        div.row 
+            div.col-md-12
+                div.checkbox
+                    label
+                        input(type='checkbox', name="suppressErrorLogs", checked=config.suppressErrorLogs) 
+                        | Suppress Error Logs
+
         div.row
             div.col-md-1.col-md-offset-11
                 button.btn.btn-primary(type='submit') Save

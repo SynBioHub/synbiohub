@@ -5,13 +5,10 @@ const fs = require('fs')
 const jobUtils = require('./lib/jobs/job-utils')
 const java = require('./lib/java')
 const gitRev = require('./lib/gitRevision')
-const logger = require('./lib/logger')
 const theme = require('./lib/theme')
+const loggerOverride = require('./lib/loggerOverride')
 
-console.log = logger.info.bind(logger)
-console.debug = logger.debug.bind(logger)
-console.warn = logger.warn.bind(logger)
-console.error = logger.error.bind(logger)
+loggerOverride()
 
 // Log to error so that it shows up in all logfiles
 console.error('SynBioHub server is restarting')
