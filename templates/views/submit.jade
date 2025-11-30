@@ -129,6 +129,15 @@ block content
 
                         div.row
                             div.col-md-12
+                                div.form-group-100
+                                    label(for='plugin') Submit Handler
+                                    select.form-control(name='plugin', id='plugin')
+                                        option(value="default") Default handler
+                                        for plugin in plugins
+                                            option(value=plugin.index) #{plugin.name}
+
+                        div.row
+                            div.col-md-12
                                 div.form-group.required
                                    label SBOL/GenBank/GFF3/FASTA/ZIP File
                                    input(type='file',name='file',value=submission.file)
