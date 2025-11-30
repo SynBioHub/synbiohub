@@ -84,7 +84,7 @@
     "umzug": "^2.2.0",
     "underscore": "^1.8.0",
     "uuid": "^3.2.1",
-    "validator": "^10.9.0",
+    "validator": "^13.15.20",
     "value-event": "^5.1.1",
     "virtual-dom": "^2.1.1",
     "visbol": "^2.0.24",
