@@ -21,6 +21,8 @@ block topLevelPropertyTable
             a(href='http://sbols.org/v2#format',title='Learn more about format') 
                 span.fa.fa-info-circle
         td #{meta.attachmentType}
+           a(href=meta.attachmentTypeUrl.toString(),title='Learn more about this format type') 
+               span.fa.fa-info-circle &nbsp;
 
     if meta.attachmentDownloadURL 
         tr

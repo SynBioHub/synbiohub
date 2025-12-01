@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.sbolstandard</groupId>
+  <artifactId>libSBOLj</artifactId>
+  <versioning>
+    <versions>
+      <version>2.4.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20251018220309</lastUpdated>
+  </versioning>
+</metadata>
