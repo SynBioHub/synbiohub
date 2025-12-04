@@ -164,7 +164,8 @@ public class PrepareSubmissionJob extends Job {
 				continue;
 			}
 
-			if(entry.getName().contains("__MACOSX") || entry.getName().contains(".DS_Store")) {
+			if(entry.getName().contains("__MACOSX") || entry.getName().contains(".DS_Store") || 
+					entry.getName().endsWith("manifest.json")) {
 				continue; // a resource fork
 			}
 
@@ -233,6 +234,7 @@ public class PrepareSubmissionJob extends Job {
 
 	private boolean getFilenames(String initialFilename, Map<String, String> attachments) {
 		if (hasMicrosoftZipExtension(initialFilename)) {
+			attachments.put(initialFilename, "http://identifiers.org/combine.specifications/sbol");
 			return false;
 		}
 		if (readCOMBINEArchive(initialFilename, attachments)) {
