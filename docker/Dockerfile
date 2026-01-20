@@ -6,6 +6,8 @@ WORKDIR /synbiohub
 COPY . . 
 
 # RUN rm -rf .git
+ARG GIT_REVISION
+ENV GIT_REVISION=$GIT_REVISION
 
 RUN cd java && mvn package
 RUN git config --global url."https://".insteadOf git://
