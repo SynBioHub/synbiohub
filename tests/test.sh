@@ -23,17 +23,17 @@ else
 fi
 
 #clone libSBOLj
-message "pulling libSBOLj"
-if cd libSBOLj; then
-    git pull;
-    cd ..;
-else
-    git clone https://github.com/SynBioDex/libSBOLj;
-    cd libSBOLj;
-    git submodule update --init --recursive;
-    mvn package;
-    cd ..;
-fi
+# message "pulling libSBOLj"
+# if cd libSBOLj; then
+#     git pull;
+#     cd ..;
+# else
+#     git clone https://github.com/SynBioDex/libSBOLj;
+#     cd libSBOLj;
+#     git submodule update --init --recursive;
+#     mvn package;
+#     cd ..;
+# fi
 
 #!/bin/sh
 
