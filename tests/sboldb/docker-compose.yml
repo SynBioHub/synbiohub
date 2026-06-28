@@ -65,6 +65,13 @@ services:
       retries: 30
     ports:
       - "8890:8890"
+    # Answer at the same hostname Virtuoso used, so SynBioHub's triplestore
+    # config is byte-identical to the Virtuoso baseline and endpoint-display
+    # pages (e.g. /admin) match the recorded fixtures.
+    networks:
+      default:
+        aliases:
+          - virtuoso
     restart: always
 
   synbiohub:
