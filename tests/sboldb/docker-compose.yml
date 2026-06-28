@@ -1,0 +1,88 @@
+# SynBioHub against sbol-db instead of Virtuoso.
+#
+# Mirrors synbiohub-docker/docker-compose.yml but replaces the virtuoso
+# service with sbol-db (backed by Postgres). SynBioHub reaches the
+# triplestore at http://sboldb:8890 via the config seeded from
+# ./config.local.json (mounted as the synbiohub image's initial config).
+services:
+  autoheal:
+    image: willfarrell/autoheal
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=all
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: sbol
+      POSTGRES_PASSWORD: sbol
+      POSTGRES_DB: sbol
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sbol -d sbol"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+    restart: always
+
+  sboldb-migrate:
+    image: sbol-db:harness
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://sbol:sbol@postgres:5432/sbol
+    command: ["db", "migrate"]
+    restart: "no"
+
+  sboldb:
+    image: sbol-db:harness
+    depends_on:
+      sboldb-migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgres://sbol:sbol@postgres:5432/sbol
+      SBOL_DB_SPARQL_AUTH_USER: dba
+      SBOL_DB_SPARQL_AUTH_PASSWORD: dba
+      # Trusted docker network: skip write-endpoint auth. This avoids the
+      # 401-challenge (SynBioHub uploads with sendImmediately:false) closing the
+      # connection mid-body on large chunked uploads, which the node client
+      # surfaces as write EPIPE.
+      SBOL_DB_SPARQL_AUTH_DISABLED: "true"
+    command: ["server", "--bind", "0.0.0.0:8890"]
+    # Verbatim-triplestore mode does not use sbol-db's ontology tables, so the
+    # health check must not require an ontology load (db doctor requires SO by
+    # default). It checks DB reachability, migrations, and the worker registry.
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/sbol-db", "db", "doctor", "--require-ontologies", ""]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+    ports:
+      - "8890:8890"
+    restart: always
+
+  synbiohub:
+    image: synbiohub/synbiohub:snapshot-standalone
+    depends_on:
+      - sboldb
+    ports:
+      - "7777:7777"
+    volumes:
+      - type: volume
+        source: sbh
+        target: /mnt
+      - type: bind
+        source: ./config.local.json
+        target: /synbiohub/config.initial.local.json
+        read_only: true
+    restart: always
+
+volumes:
+  pgdata:
+  sbh:
