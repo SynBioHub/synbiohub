@@ -1,0 +1,126 @@
+# Benchmark stack: Virtuoso plus all three sbol-db storage backends side by
+# side, so the same corpus and the same queries can be measured against each on
+# this machine. Every service speaks the triplestore HTTP surface SynBioHub
+# uses; the runner (bench.py) talks to them directly, so SynBioHub itself is not
+# in the loop.
+#
+# Host ports are deliberately off the defaults so this stack coexists with the
+# test stacks: Virtuoso 18901, sbol-db/postgres 18902, sbol-db/sqlite 18903,
+# sbol-db/rocksdb 18904. The sbol-db image defaults to the locally built
+# sbol-db:bench; override with SBOLDB_IMAGE.
+#
+# bench.py polls each endpoint's HTTP readiness, so the sbol-db services carry
+# no `db doctor` healthcheck (which would also fail for RocksDB, whose database
+# lock is exclusive per process). The sqlite and rocksdb services run as root so
+# they can write their data volume.
+services:
+  virtuoso:
+    image: tenforce/virtuoso:virtuoso7.2.5
+    environment:
+      - DBA_PASSWORD=dba
+      - SPARQL_UPDATE=true
+      - VIRT_SPARQL_MaxQueryCostEstimationTime=default
+      - VIRT_SPARQL_MaxQueryExecutionTime=300
+      - VIRT_Parameters_ServerThreads=100
+      - VIRT_HTTPServer_ServerThreads=100
+    ports:
+      - "18901:8890"
+    restart: always
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: sbol
+      POSTGRES_PASSWORD: sbol
+      POSTGRES_DB: sbol
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sbol -d sbol"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: always
+
+  # --- sbol-db on Postgres -------------------------------------------------
+  sboldb-postgres-migrate:
+    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://sbol:sbol@postgres:5432/sbol
+    command: ["db", "migrate"]
+    restart: "no"
+
+  sboldb-postgres:
+    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    depends_on:
+      sboldb-postgres-migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgres://sbol:sbol@postgres:5432/sbol
+      SBOL_DB_SPARQL_AUTH_DISABLED: "true"
+    command: ["server", "--bind", "0.0.0.0:8890"]
+    ports:
+      - "18902:8890"
+    restart: always
+
+  # --- sbol-db on SQLite ---------------------------------------------------
+  sboldb-sqlite-migrate:
+    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    user: "0:0"
+    environment:
+      DATABASE_URL: sqlite:///data/sbol.db
+    command: ["db", "migrate"]
+    volumes:
+      - sqlitedata:/data
+    restart: "no"
+
+  sboldb-sqlite:
+    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    user: "0:0"
+    depends_on:
+      sboldb-sqlite-migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: sqlite:///data/sbol.db
+      SBOL_DB_SPARQL_AUTH_DISABLED: "true"
+    command: ["server", "--bind", "0.0.0.0:8890"]
+    volumes:
+      - sqlitedata:/data
+    ports:
+      - "18903:8890"
+    restart: always
+
+  # --- sbol-db on RocksDB --------------------------------------------------
+  # `db migrate` initializes the column families; it runs as a one-shot and
+  # exits before the server opens, so the exclusive database lock is never held
+  # by two processes at once.
+  sboldb-rocksdb-migrate:
+    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    user: "0:0"
+    environment:
+      DATABASE_URL: rocksdb:///data/sbol.rocksdb
+    command: ["db", "migrate"]
+    volumes:
+      - rocksdbdata:/data
+    restart: "no"
+
+  sboldb-rocksdb:
+    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    user: "0:0"
+    depends_on:
+      sboldb-rocksdb-migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: rocksdb:///data/sbol.rocksdb
+      SBOL_DB_SPARQL_AUTH_DISABLED: "true"
+    command: ["server", "--bind", "0.0.0.0:8890"]
+    volumes:
+      - rocksdbdata:/data
+    ports:
+      - "18904:8890"
+    restart: always
+
+volumes:
+  sqlitedata:
+  rocksdbdata:
