@@ -50,8 +50,9 @@ class Backend:
 
     def __init__(self, name, base, auth=None):
         self.name = name
-        self.sparql = base.rstrip("/") + "/sparql"
-        self.crud = base.rstrip("/") + "/sparql-graph-crud-auth/"
+        self.base = base.rstrip("/")
+        self.sparql = self.base + "/sparql"
+        self.crud = self.base + "/sparql-graph-crud-auth/"
         self.auth = auth
         self.session = requests.Session()
 
@@ -102,6 +103,23 @@ class Backend:
             timeout=600,
         )
         r.raise_for_status()
+
+    def settle(self):
+        """Run the backend's maintenance pass so reads reflect steady state.
+
+        A tight bulk-load loop leaves an sbol-db RocksDB store with an
+        un-compacted LSM (many overlapping SSTs / tombstones), which slows range
+        scans until RocksDB's background compaction catches up — a state a
+        long-running server does not sit in. Triggering compaction here measures
+        the settled read performance instead of that transient artifact. For the
+        SQL backends the endpoint runs an equivalent optimize; Virtuoso has no
+        such endpoint and is left as-is. Returns True if maintenance ran."""
+        url = self.base + "/lab/api/observability/maintenance/compact"
+        try:
+            r = self.session.post(url, auth=("dba", "dba"), timeout=600)
+            return r.status_code == 200
+        except requests.RequestException:
+            return False
 
     def count_triples(self, graph):
         rows = self.query_json(
@@ -417,6 +435,14 @@ def main():
     print("[bench] triples loaded: "
           + "  ".join("%s=%d" % (n, triples[n]) for n in triples))
 
+    # Let each store settle (RocksDB compaction / SQL optimize) so the read
+    # measurements reflect steady state rather than a freshly bulk-loaded,
+    # un-compacted index.
+    print("[bench] settle: running backend maintenance before read measurements")
+    for b in backends:
+        ran = b.settle()
+        print("[bench]   %-9s %s" % (b.name, "compacted" if ran else "skipped"))
+
     uris = discover_uris(backends[0], args.graph)
     print("[bench] sample collection: %s" % uris["collection"])
     queries = build_read_queries(args.graph, uris)
@@ -480,10 +506,13 @@ def main():
             "iterations": args.iterations,
             "warmup": args.warmup,
             "ingest_runs": args.ingest_runs,
+            "settled": True,
             "backends": [b.name for b in backends],
             "endpoints": endpoints,
             "virtuoso_image": "tenforce/virtuoso:virtuoso7.2.5",
-            "sboldb_image": os.environ.get("SBOLDB_IMAGE", "sbol-db:bench"),
+            "sboldb_image": os.environ.get(
+                "SBOLDB_IMAGE", "ghcr.io/marpaia/sbol-db:v0.1.1"
+            ),
             "triples": triples,
             "uris": uris,
         },

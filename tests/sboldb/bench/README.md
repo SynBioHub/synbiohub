@@ -24,18 +24,18 @@ corpus.
 
 - The Python test venv at `tests/venv` (see `tests/README.md`); `bench.py`
   uses `requests`, already in `tests/test_requirements.txt`.
-- Docker. Virtuoso is pulled automatically; the sbol-db image defaults to a
-  locally built `sbol-db:bench` (override with `SBOLDB_IMAGE`). Build it from
-  the sbol-db repo with `docker build -t sbol-db:bench .` — that image links
-  glibc so the RocksDB backend's C++ library builds (a static musl target
-  cannot).
+- Docker. Virtuoso is pulled automatically; the sbol-db image defaults to the
+  published `ghcr.io/marpaia/sbol-db:v0.1.1` (override with `SBOLDB_IMAGE`, e.g.
+  a locally built `sbol-db:bench` when iterating on the backend, built from the
+  sbol-db repo with `docker build -t sbol-db:bench .`). The image links glibc so
+  the RocksDB backend's C++ library builds (a static musl target cannot).
 - The SBOL corpus at `tests/Emulated/` (189 round-tripped SBOL2 files),
   produced by `tests/sboldb/run-sboltestrunner.sh`.
 
 ## Usage
 
 ```sh
-SBOLDB_IMAGE=sbol-db:bench tests/sboldb/bench/run-bench.sh   # full run, leaves the stack up
+tests/sboldb/bench/run-bench.sh                             # full run (v0.1.1), leaves the stack up
 tests/sboldb/bench/run-bench.sh --iterations 100
 tests/sboldb/bench/run-bench.sh --down                       # tear the stack down afterward
 ```

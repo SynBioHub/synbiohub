@@ -6,8 +6,8 @@
 #
 # Host ports are deliberately off the defaults so this stack coexists with the
 # test stacks: Virtuoso 18901, sbol-db/postgres 18902, sbol-db/sqlite 18903,
-# sbol-db/rocksdb 18904. The sbol-db image defaults to the locally built
-# sbol-db:bench; override with SBOLDB_IMAGE.
+# sbol-db/rocksdb 18904. The sbol-db image defaults to the published
+# ghcr.io/marpaia/sbol-db:v0.1.1; override with SBOLDB_IMAGE.
 #
 # bench.py polls each endpoint's HTTP readiness, so the sbol-db services carry
 # no `db doctor` healthcheck (which would also fail for RocksDB, whose database
@@ -42,7 +42,7 @@ services:
 
   # --- sbol-db on Postgres -------------------------------------------------
   sboldb-postgres-migrate:
-    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    image: ${SBOLDB_IMAGE:-ghcr.io/marpaia/sbol-db:v0.1.1}
     depends_on:
       postgres:
         condition: service_healthy
@@ -52,7 +52,7 @@ services:
     restart: "no"
 
   sboldb-postgres:
-    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    image: ${SBOLDB_IMAGE:-ghcr.io/marpaia/sbol-db:v0.1.1}
     depends_on:
       sboldb-postgres-migrate:
         condition: service_completed_successfully
@@ -66,7 +66,7 @@ services:
 
   # --- sbol-db on SQLite ---------------------------------------------------
   sboldb-sqlite-migrate:
-    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    image: ${SBOLDB_IMAGE:-ghcr.io/marpaia/sbol-db:v0.1.1}
     user: "0:0"
     environment:
       DATABASE_URL: sqlite:///data/sbol.db
@@ -76,7 +76,7 @@ services:
     restart: "no"
 
   sboldb-sqlite:
-    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    image: ${SBOLDB_IMAGE:-ghcr.io/marpaia/sbol-db:v0.1.1}
     user: "0:0"
     depends_on:
       sboldb-sqlite-migrate:
@@ -96,7 +96,7 @@ services:
   # exits before the server opens, so the exclusive database lock is never held
   # by two processes at once.
   sboldb-rocksdb-migrate:
-    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    image: ${SBOLDB_IMAGE:-ghcr.io/marpaia/sbol-db:v0.1.1}
     user: "0:0"
     environment:
       DATABASE_URL: rocksdb:///data/sbol.rocksdb
@@ -106,7 +106,7 @@ services:
     restart: "no"
 
   sboldb-rocksdb:
-    image: ${SBOLDB_IMAGE:-sbol-db:bench}
+    image: ${SBOLDB_IMAGE:-ghcr.io/marpaia/sbol-db:v0.1.1}
     user: "0:0"
     depends_on:
       sboldb-rocksdb-migrate:

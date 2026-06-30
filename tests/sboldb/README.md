@@ -11,8 +11,8 @@ integration.
 - The `synbiohub/synbiohub:snapshot-standalone` image, built from this repo:
   `docker build -t synbiohub/synbiohub:snapshot-standalone -f docker/Dockerfile .`
 - Docker. The sbol-db image is pulled from
-  `ghcr.io/marpaia/sbol-db` (published by the sbol-db repo's `container`
-  workflow); there is no local sbol-db build step.
+  `ghcr.io/marpaia/sbol-db:v0.1.1` (published by the sbol-db repo's `container`
+  workflow), pinned in `docker-compose.yml`; there is no local sbol-db build step.
 
 ## Layout
 
