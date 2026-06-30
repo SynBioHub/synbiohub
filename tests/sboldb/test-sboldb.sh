@@ -15,8 +15,8 @@
 #   --no-test   bring the stack up and wait for health, then stop
 #   <other>     forwarded to test_suite.py (e.g. --resetgetrequests browse)
 #
-# The image sbol-db:harness must exist (built from the sbol-db repo with
-# `docker build -t sbol-db:harness .`).
+# The sbol-db image is pulled from ghcr.io/marpaia/sbol-db (pinned in
+# docker-compose.yml); there is no local sbol-db build step.
 
 set -u
 

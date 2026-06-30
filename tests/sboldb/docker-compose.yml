@@ -31,7 +31,7 @@ services:
     restart: always
 
   sboldb-migrate:
-    image: ghcr.io/marpaia/sbol-db:9612787
+    image: ghcr.io/marpaia/sbol-db:v0.1.1
     depends_on:
       postgres:
         condition: service_healthy
@@ -41,7 +41,7 @@ services:
     restart: "no"
 
   sboldb:
-    image: ghcr.io/marpaia/sbol-db:9612787
+    image: ghcr.io/marpaia/sbol-db:v0.1.1
     depends_on:
       sboldb-migrate:
         condition: service_completed_successfully
