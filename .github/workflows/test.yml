@@ -74,9 +74,64 @@ jobs:
       - name: Run tests
         run: |
           tests/test.sh --stopaftertestsuite
+  sboltests-sboldb:
+    name: SBOL Test Suite (sbol-db)
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      SBH_TRIPLESTORE: sboldb
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout source tree
+      - uses: actions/download-artifact@v4
+        name: Download Docker image
+        with:
+          name: sbh-image
+      - name: Import saved Docker image
+        run: |
+          cat sbh.tar.gz | docker load
+      - uses: actions/setup-python@v4
+        name: Install Python
+        with:
+          python-version: '3.9' # To match the one in Travis
+      - name: Install test dependencies
+        run: |
+          pip install -r tests/test_requirements.txt
+      - uses: nick-invision/retry@v1
+        name: Run test suite
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: tests/sbolsuite.sh
+  sbhtests-sboldb:
+    name: SynBioHub Test Suite (sbol-db)
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      SBH_TRIPLESTORE: sboldb
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout source tree
+      - uses: actions/download-artifact@v4
+        name: Download Docker image
+        with:
+          name: sbh-image
+      - name: Import saved Docker image
+        run: |
+          cat sbh.tar.gz | docker load
+      - uses: actions/setup-python@v4
+        name: Install Python
+        with:
+          python-version: '3.9' # To match the one in Travis
+      - name: Install test dependencies
+        run: |
+          pip install -r tests/test_requirements.txt
+      - name: Run tests
+        run: |
+          tests/test.sh --stopaftertestsuite
   publish:
     name: Publish snapshot image
-    needs: [sboltests, sbhtests]
+    needs: [sboltests, sbhtests, sboltests-sboldb, sbhtests-sboldb]
     runs-on: ubuntu-latest
     if: endsWith(github.ref, 'master')
     steps:
