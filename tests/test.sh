@@ -4,6 +4,12 @@ cd tests
 
 source ./testutil.sh
 
+# Run the whole stack (initial bring-up, persistence restart, SBOLTestRunner)
+# against one triplestore. Defaults to virtuoso; set SBH_TRIPLESTORE=sboldb to
+# run the identical suite and fixtures against sbol-db.
+export SBH_TRIPLESTORE
+message "Triplestore backend: $SBH_TRIPLESTORE"
+
 # first, if it was run with help, just run the test script with help
 if [[ "$@" == "--help" || "$@" == "-h" ]]
 then

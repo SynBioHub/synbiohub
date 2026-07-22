@@ -29,6 +29,23 @@ Then build a docker image from the local version of synbiohub using
 Finally, run the test suite using
 `bash tests/test.sh`
 
+## Choosing the triplestore backend
+
+The suite runs against Virtuoso by default. To run the identical suite and
+fixtures against [sbol-db](https://github.com/marpaia/sbol-db) instead, set
+`SBH_TRIPLESTORE=sboldb`:
+
+```bash
+SBH_TRIPLESTORE=sboldb bash tests/test.sh
+```
+
+The only thing that changes is which docker-compose file describes the
+triplestore stack (`docker-compose.yml` for Virtuoso, `docker-compose.sboldb.yml`
+for sbol-db, both from the synbiohub-docker repo); the same SynBioHub image and
+the same fixtures gate both backends. The `start_containers.sh` and
+`start_containers_persist.sh` scripts also accept the backend as their first
+argument, e.g. `bash tests/start_containers_persist.sh sboldb`.
+
 ## Changing tests to reflect changes to SynBioHub
 
 When changing the output of any SynBioHub endpont, tests will fail and reflect the new changes. This is to prevent unintended changes to SynBioHub.

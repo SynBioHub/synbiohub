@@ -315,13 +315,21 @@ def file_tail(filename, length):
 
 
 def get_end_of_error_log(num_of_lines):
-    copy_docker_log()
-    directory = os.listdir("./logs_from_test_suite")
-    for filename in directory:
-        if filename[len(filename)-5:] == "error":
-            return file_tail("./logs_from_test_suite/" + filename, num_of_lines)
+    # Best effort: never let log retrieval mask the actual test diff.
+    try:
+        copy_docker_log()
+        directory = os.listdir("./logs_from_test_suite")
+        for filename in directory:
+            if filename[len(filename)-5:] == "error":
+                return file_tail("./logs_from_test_suite/" + filename, num_of_lines)
+        return "(no error log found in container logs)"
+    except Exception as e:
+        return "(could not fetch server error log: " + str(e) + ")"
 
-    raise Exception("Could not find error log")
+
+# The synbiohub container name differs by stack (Virtuoso suite vs sbol-db
+# harness); override with SBH_TEST_CONTAINER.
+SBH_TEST_CONTAINER = os.environ.get("SBH_TEST_CONTAINER", "testsuiteproject_synbiohub_1")
 
 
 def copy_docker_log():
@@ -331,7 +339,7 @@ def copy_docker_log():
     if os.path.isdir("docker_logs"):
         shutil.rmtree("./docker_logs")
 
-    run_bash("docker cp testsuiteproject_synbiohub_1:/mnt/data/logs .")
+    run_bash("docker cp " + SBH_TEST_CONTAINER + ":/mnt/data/logs .")
     run_bash("mv ./logs ./logs_from_test_suite")
 
 
