@@ -2,12 +2,9 @@
 
 source ./testutil.sh
 
-# stop the containers
-message "Stopping containers"
-docker stop testsuiteproject_synbiohub_1
-docker stop testsuiteproject_explorer_1
-docker stop testsuiteproject_autoheal_1
-docker stop testsuiteproject_virtuoso_1
+COMPOSE_FILES=$(triplestore_compose_files) || exit 1
 
-
-
+# Stop (do not remove) the containers, leaving volumes intact so the persistence
+# phase can restart the same stack with its data.
+message "Stopping containers (triplestore: $SBH_TRIPLESTORE)"
+docker compose $COMPOSE_FILES -p testsuiteproject stop
