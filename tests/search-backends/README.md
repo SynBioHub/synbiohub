@@ -20,6 +20,19 @@ Accepted empty documents remain recorded but are correctly non-probeable. The
 run also verifies private search visibility, anonymous isolation,
 private-to-public publication, removal, and an observable index completion.
 
+## Automation
+
+The `Integration testing` workflow runs the focused indexed-HTML contract on
+every push for Virtuoso with SBOLExplorer, sbol-db with SBOLExplorer, and
+sbol-db with its compatibility listener. Each row explicitly rebuilds the
+configured index and compares the complete `/search/I0462` HTML snapshot.
+
+The `Search backend conformance` workflow runs the full pinned corpus every
+Sunday and on manual dispatch. It runs the SBOLExplorer baseline and sbol-db
+candidate on separate runners, uploads both JSON reports and their Compose
+logs, and then uploads the comparison report. Each workflow's
+`SYNBIOHUB_DOCKER_REF` selects its companion topology revision.
+
 ## Run one topology
 
 For the native sbol-db row, pass the main listener's metrics endpoint so job

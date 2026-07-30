@@ -1,0 +1,218 @@
+name: Search backend conformance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 0'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: search-backend-conformance
+  cancel-in-progress: false
+
+env:
+  SYNBIOHUB_DOCKER_REF: marpaia/sbol-db-and-explorer
+  SBOL_TEST_SUITE_REVISION: 0044284331b2f915a6e4b9d50e1cbf3ea2f62dcd
+  SYNBIOHUB_CONFORMANCE_IMAGE: synbiohub/synbiohub:search-conformance
+
+jobs:
+  build:
+    name: Build SynBioHub image
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub
+      - name: Build Docker image
+        run: |
+          docker build . \
+            --file docker/Dockerfile \
+            --tag "$SYNBIOHUB_CONFORMANCE_IMAGE"
+      - name: Package Docker image
+        run: |
+          docker save "$SYNBIOHUB_CONFORMANCE_IMAGE" | gzip > sbh.tar.gz
+      - uses: actions/upload-artifact@v4
+        name: Upload Docker image
+        with:
+          name: search-conformance-sbh-image
+          path: sbh.tar.gz
+          retention-days: 1
+
+  sbolexplorer:
+    name: Full corpus (SBOLExplorer)
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      COMPOSE_PROJECT_NAME: search-conformance-explorer
+      SYNBIOHUB_IMAGE: synbiohub/synbiohub:search-conformance
+      SYNBIOHUB_PORT: '37777'
+      TRIPLESTORE_PORT: '38890'
+      EXPLORER_PORT: '33162'
+      ELASTICSEARCH_PORT: '39200'
+    steps:
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub Docker topologies
+        with:
+          repository: SynBioHub/synbiohub-docker
+          ref: ${{ env.SYNBIOHUB_DOCKER_REF }}
+          path: synbiohub-docker
+      - uses: actions/checkout@v5
+        name: Checkout pinned SBOLTestSuite corpus
+        with:
+          repository: SynBioDex/SBOLTestSuite
+          ref: ${{ env.SBOL_TEST_SUITE_REVISION }}
+          path: SBOLTestSuite
+      - uses: actions/download-artifact@v4
+        name: Download SynBioHub image
+        with:
+          name: search-conformance-sbh-image
+      - name: Import SynBioHub image
+        run: |
+          gzip --decompress --stdout sbh.tar.gz | docker load
+      - name: Create artifact directory
+        run: mkdir -p artifacts/search-backends
+      - name: Start sbol-db with SBOLExplorer
+        run: |
+          docker compose \
+            -f synbiohub-docker/docker-compose.sboldb.yml \
+            -f synbiohub-docker/docker-compose.sboldb-store-only.yml \
+            -f synbiohub-docker/docker-compose.explorer.yml \
+            up -d --wait --wait-timeout 600
+      - name: Run full-corpus SBOLExplorer baseline
+        run: |
+          python3 tests/search-backends/run-conformance.py \
+            --topology sboldb-explorer-fixed \
+            --base-url http://127.0.0.1:37777/ \
+            --corpus-root SBOLTestSuite \
+            --report artifacts/search-backends/sboldb-explorer-fixed.json
+      - name: Capture SBOLExplorer topology logs
+        if: always()
+        run: |
+          docker compose \
+            -f synbiohub-docker/docker-compose.sboldb.yml \
+            -f synbiohub-docker/docker-compose.sboldb-store-only.yml \
+            -f synbiohub-docker/docker-compose.explorer.yml \
+            logs --no-color > artifacts/search-backends/sboldb-explorer-fixed.compose.log 2>&1 || true
+      - name: Stop SBOLExplorer topology
+        if: always()
+        run: |
+          docker compose \
+            -f synbiohub-docker/docker-compose.sboldb.yml \
+            -f synbiohub-docker/docker-compose.sboldb-store-only.yml \
+            -f synbiohub-docker/docker-compose.explorer.yml \
+            down --volumes --remove-orphans
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: search-conformance-sbolexplorer
+          path: artifacts/search-backends/
+          if-no-files-found: error
+          retention-days: 30
+
+  sboldb:
+    name: Full corpus (sbol-db)
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      COMPOSE_PROJECT_NAME: search-conformance-sboldb
+      SYNBIOHUB_IMAGE: synbiohub/synbiohub:search-conformance
+      SYNBIOHUB_PORT: '27777'
+      TRIPLESTORE_PORT: '28890'
+    steps:
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub Docker topologies
+        with:
+          repository: SynBioHub/synbiohub-docker
+          ref: ${{ env.SYNBIOHUB_DOCKER_REF }}
+          path: synbiohub-docker
+      - uses: actions/checkout@v5
+        name: Checkout pinned SBOLTestSuite corpus
+        with:
+          repository: SynBioDex/SBOLTestSuite
+          ref: ${{ env.SBOL_TEST_SUITE_REVISION }}
+          path: SBOLTestSuite
+      - uses: actions/download-artifact@v4
+        name: Download SynBioHub image
+        with:
+          name: search-conformance-sbh-image
+      - name: Import SynBioHub image
+        run: |
+          gzip --decompress --stdout sbh.tar.gz | docker load
+      - name: Create artifact directory
+        run: mkdir -p artifacts/search-backends
+      - name: Start sbol-db native search topology
+        run: |
+          docker compose \
+            -f synbiohub-docker/docker-compose.sboldb.yml \
+            -f synbiohub-docker/docker-compose.sboldb-search.yml \
+            up -d --wait --wait-timeout 600
+      - name: Run full-corpus sbol-db candidate
+        run: |
+          python3 tests/search-backends/run-conformance.py \
+            --topology sboldb-native \
+            --base-url http://127.0.0.1:27777/ \
+            --metrics-url http://127.0.0.1:28890/metrics \
+            --corpus-root SBOLTestSuite \
+            --report artifacts/search-backends/sboldb-native.json
+      - name: Capture sbol-db topology logs
+        if: always()
+        run: |
+          docker compose \
+            -f synbiohub-docker/docker-compose.sboldb.yml \
+            -f synbiohub-docker/docker-compose.sboldb-search.yml \
+            logs --no-color > artifacts/search-backends/sboldb-native.compose.log 2>&1 || true
+      - name: Stop sbol-db topology
+        if: always()
+        run: |
+          docker compose \
+            -f synbiohub-docker/docker-compose.sboldb.yml \
+            -f synbiohub-docker/docker-compose.sboldb-search.yml \
+            down --volumes --remove-orphans
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: search-conformance-sboldb
+          path: artifacts/search-backends/
+          if-no-files-found: error
+          retention-days: 30
+
+  compare:
+    name: Compare full-corpus reports
+    needs: [sbolexplorer, sboldb]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub
+      - uses: actions/download-artifact@v4
+        name: Download SBOLExplorer report
+        with:
+          name: search-conformance-sbolexplorer
+          path: artifacts/search-backends/baseline
+      - uses: actions/download-artifact@v4
+        name: Download sbol-db report
+        with:
+          name: search-conformance-sboldb
+          path: artifacts/search-backends/candidate
+      - name: Compare backend reports
+        run: |
+          python3 tests/search-backends/compare-reports.py \
+            --baseline artifacts/search-backends/baseline/sboldb-explorer-fixed.json \
+            --candidate artifacts/search-backends/candidate/sboldb-native.json \
+            --output artifacts/search-backends/comparison.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: search-conformance-comparison
+          path: artifacts/search-backends/comparison.json
+          if-no-files-found: error
+          retention-days: 30

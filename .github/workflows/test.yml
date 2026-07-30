@@ -2,6 +2,9 @@ name: Integration testing
 
 on: push
 
+env:
+  SYNBIOHUB_DOCKER_REF: marpaia/sbol-db-and-explorer
+
 jobs:
   build:
     name: Build Docker image
@@ -144,9 +147,58 @@ jobs:
       - name: Run tests
         run: |
           tests/test.sh --stopaftertestsuite
+  explorer-compatibility:
+    name: Explorer compatibility (${{ matrix.label }})
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: Virtuoso + SBOLExplorer
+            store: virtuoso
+            search: sbol-explorer
+          - label: sbol-db + SBOLExplorer
+            store: sboldb
+            search: sbol-explorer
+          - label: sbol-db + sbol-db
+            store: sboldb
+            search: sbol-db
+    env:
+      SBH_TRIPLESTORE: ${{ matrix.store }}
+      SBH_SEARCH_BACKEND: ${{ matrix.search }}
+      SBH_DOCKER_DIR: ${{ github.workspace }}/synbiohub-docker
+      SBH_EXPLORER_INDEX_TIMEOUT: "600"
+    steps:
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub
+      - uses: actions/checkout@v5
+        name: Checkout SynBioHub Docker topologies
+        with:
+          repository: SynBioHub/synbiohub-docker
+          ref: ${{ env.SYNBIOHUB_DOCKER_REF }}
+          path: synbiohub-docker
+      - uses: actions/download-artifact@v4
+        name: Download Docker image
+        with:
+          name: sbh-image
+      - name: Import saved Docker image
+        run: |
+          gzip --decompress --stdout sbh.tar.gz | docker load
+      - uses: actions/setup-python@v6
+        name: Install Python
+        with:
+          python-version: '3.9'
+      - name: Install test dependencies
+        run: |
+          pip install -r tests/test_requirements.txt
+      - name: Run indexed Explorer HTML contract
+        run: |
+          tests/test.sh --stopaftertestsuite
   publish:
     name: Publish snapshot image
-    needs: [search-backend-harness, sboltests, sbhtests, sboltests-sboldb, sbhtests-sboldb]
+    needs: [search-backend-harness, sboltests, sbhtests, sboltests-sboldb, sbhtests-sboldb, explorer-compatibility]
     runs-on: ubuntu-latest
     if: endsWith(github.ref, 'master')
     steps:
