@@ -23,6 +23,21 @@ jobs:
         with:
           name: sbh-image
           path: sbh.tar.gz
+  search-backend-harness:
+    name: Search backend harness unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout source tree
+      - uses: actions/setup-python@v4
+        name: Install Python
+        with:
+          python-version: '3.9' # To match the integration-test jobs
+      - name: Run search backend harness unit tests
+        run: |
+          python -m unittest \
+            tests/search-backends/test_run_conformance.py \
+            tests/search-backends/test_compare_reports.py
   sboltests:
     name: SBOL Test Suite
     needs: build
@@ -131,7 +146,7 @@ jobs:
           tests/test.sh --stopaftertestsuite
   publish:
     name: Publish snapshot image
-    needs: [sboltests, sbhtests, sboltests-sboldb, sbhtests-sboldb]
+    needs: [search-backend-harness, sboltests, sbhtests, sboltests-sboldb, sbhtests-sboldb]
     runs-on: ubuntu-latest
     if: endsWith(github.ref, 'master')
     steps:
