@@ -258,7 +258,7 @@ def refresh_explorer_index(query, expected_display_id):
     if backend == "none":
         test_print("Search backend disabled; skipping explicit index refresh")
         return
-    if backend not in ("external", "native"):
+    if backend not in ("sbol-explorer", "sbol-db"):
         raise ValueError("Unknown SBH_SEARCH_BACKEND: " + backend)
 
     token = test_state.get_authentication()
@@ -286,11 +286,11 @@ def refresh_explorer_index(query, expected_display_id):
         before_info_response.raise_for_status()
         before_info = before_info_response.text
     except requests.RequestException:
-        # A fresh external Explorer may not have created its log file yet.
+        # A fresh SBOLExplorer may not have created its log file yet.
         before_info = ""
-    before_external_completions = before_info.count("Successfully updated index")
-    before_native_match = re.search(r"job_id=([^ ]+) status=([^ ]+)", before_info)
-    before_native_job = before_native_match.group(1) if before_native_match else None
+    before_sbol_explorer_completions = before_info.count("Successfully updated index")
+    before_sbol_db_match = re.search(r"job_id=([^ ]+) status=([^ ]+)", before_info)
+    before_sbol_db_job = before_sbol_db_match.group(1) if before_sbol_db_match else None
 
     update_response = requests.post(
         args.serveraddress + "admin/explorerUpdateIndex",
@@ -312,9 +312,9 @@ def refresh_explorer_index(query, expected_display_id):
             response.raise_for_status()
             info = response.text
             last_observation = info[-1000:]
-            native_match = re.search(r"job_id=([^ ]+) status=([^ ]+)", info)
-            if native_match and native_match.group(1) != before_native_job:
-                status = native_match.group(2)
+            sbol_db_match = re.search(r"job_id=([^ ]+) status=([^ ]+)", info)
+            if sbol_db_match and sbol_db_match.group(1) != before_sbol_db_job:
+                status = sbol_db_match.group(2)
                 if status == "succeeded":
                     break
                 if status in ("failed", "cancelled", "dead"):
@@ -324,7 +324,7 @@ def refresh_explorer_index(query, expected_display_id):
                     )
             elif (
                 info.count("Successfully updated index")
-                > before_external_completions
+                > before_sbol_explorer_completions
             ):
                 break
         except requests.RequestException as error:

@@ -6,8 +6,8 @@ source ./testutil.sh
 
 # Run the whole stack (initial bring-up, persistence restart, SBOLTestRunner)
 # against one store/search pairing. Search defaults to none for the historical
-# suite. Set SBH_SEARCH_BACKEND=external to test SBOLExplorer, or use native
-# with SBH_TRIPLESTORE=sboldb to test sbol-db in both roles.
+# suite. Set SBH_SEARCH_BACKEND=sbol-explorer to test SBOLExplorer, or use
+# sbol-db with SBH_TRIPLESTORE=sboldb to test sbol-db in both roles.
 export SBH_TRIPLESTORE
 export SBH_SEARCH_BACKEND
 message "Backends: store=$SBH_TRIPLESTORE search=$SBH_SEARCH_BACKEND"

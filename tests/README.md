@@ -40,21 +40,22 @@ SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=none bash tests/test.sh
 ```
 
 `SBH_SEARCH_BACKEND` is independent of the store and accepts `none` (the
-historical default), `external` (SBOLExplorer), or `native` (sbol-db's
-SBOLExplorer-compatible listener). Native search requires the sbol-db store.
+historical default), `sbol-explorer` (SBOLExplorer), or `sbol-db` (sbol-db's
+SBOLExplorer-compatible listener). The `sbol-db` search backend requires the
+sbol-db store.
 The two Explorer-enabled rows explicitly request an index update, wait for that
 specific operation to finish, and compare the complete `/search/I0462` HTML to
 the existing snapshot:
 
 ```bash
-# Virtuoso plus external SBOLExplorer
-SBH_TRIPLESTORE=virtuoso SBH_SEARCH_BACKEND=external bash tests/test.sh
+# Virtuoso plus SBOLExplorer
+SBH_TRIPLESTORE=virtuoso SBH_SEARCH_BACKEND=sbol-explorer bash tests/test.sh
 
-# sbol-db as store plus external SBOLExplorer
-SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=external bash tests/test.sh
+# sbol-db as store plus SBOLExplorer
+SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=sbol-explorer bash tests/test.sh
 
 # sbol-db in both store and Explorer roles
-SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=native bash tests/test.sh
+SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=sbol-db bash tests/test.sh
 ```
 
 The selected pair only changes the Compose files; every row uses the same
@@ -65,7 +66,7 @@ clone:
 ```bash
 SBH_DOCKER_DIR=/Users/marpaia/git/SynBioHub/synbiohub-docker \
 SBH_TRIPLESTORE=sboldb \
-SBH_SEARCH_BACKEND=native \
+SBH_SEARCH_BACKEND=sbol-db \
 bash tests/test.sh
 ```
 
@@ -131,5 +132,4 @@ If you are making a change that should be ignored by the test suite for a very g
 
   --stopafterstart      do not run the test suite, just start up a new test
                         synbiohub instance.
-
 

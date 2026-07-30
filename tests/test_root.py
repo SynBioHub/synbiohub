@@ -40,7 +40,7 @@ def test_root():
         testSearch = TestSearch()
         testSearch.test_search()
     else:
-        # External SBOLExplorer and sbol-db's compatible listener share this
+        # SBOLExplorer and sbol-db's compatible listener share this
         # exact user-visible contract: explicit indexing followed by the
         # existing complete HTML snapshot for the known I0462 fixture.
         from test_explorer_search import TestExplorerSearch
