@@ -29,22 +29,48 @@ Then build a docker image from the local version of synbiohub using
 Finally, run the test suite using
 `bash tests/test.sh`
 
-## Choosing the triplestore backend
+## Choosing the store and search backends
 
 The suite runs against Virtuoso by default. To run the identical suite and
 fixtures against [sbol-db](https://github.com/marpaia/sbol-db) instead, set
 `SBH_TRIPLESTORE=sboldb`:
 
 ```bash
-SBH_TRIPLESTORE=sboldb bash tests/test.sh
+SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=none bash tests/test.sh
 ```
 
-The only thing that changes is which docker-compose file describes the
-triplestore stack (`docker-compose.yml` for Virtuoso, `docker-compose.sboldb.yml`
-for sbol-db, both from the synbiohub-docker repo); the same SynBioHub image and
-the same fixtures gate both backends. The `start_containers.sh` and
-`start_containers_persist.sh` scripts also accept the backend as their first
-argument, e.g. `bash tests/start_containers_persist.sh sboldb`.
+`SBH_SEARCH_BACKEND` is independent of the store and accepts `none` (the
+historical default), `external` (SBOLExplorer), or `native` (sbol-db's
+SBOLExplorer-compatible listener). Native search requires the sbol-db store.
+The two Explorer-enabled rows explicitly request an index update, wait for that
+specific operation to finish, and compare the complete `/search/I0462` HTML to
+the existing snapshot:
+
+```bash
+# Virtuoso plus external SBOLExplorer
+SBH_TRIPLESTORE=virtuoso SBH_SEARCH_BACKEND=external bash tests/test.sh
+
+# sbol-db as store plus external SBOLExplorer
+SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=external bash tests/test.sh
+
+# sbol-db in both store and Explorer roles
+SBH_TRIPLESTORE=sboldb SBH_SEARCH_BACKEND=native bash tests/test.sh
+```
+
+The selected pair only changes the Compose files; every row uses the same
+SynBioHub image and fixtures. Set `SBH_DOCKER_DIR` to test an unmerged local
+synbiohub-docker checkout rather than the managed `tests/synbiohub-docker`
+clone:
+
+```bash
+SBH_DOCKER_DIR=/Users/marpaia/git/SynBioHub/synbiohub-docker \
+SBH_TRIPLESTORE=sboldb \
+SBH_SEARCH_BACKEND=native \
+bash tests/test.sh
+```
+
+The `start_containers.sh` and `start_containers_persist.sh` scripts still accept
+the store backend as their first argument for compatibility.
 
 ## Changing tests to reflect changes to SynBioHub
 
@@ -105,6 +131,5 @@ If you are making a change that should be ignored by the test suite for a very g
 
   --stopafterstart      do not run the test suite, just start up a new test
                         synbiohub instance.
-
 
 

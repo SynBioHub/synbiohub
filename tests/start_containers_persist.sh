@@ -9,9 +9,9 @@ fi
 
 source ./testutil.sh
 
-COMPOSE_FILES=$(triplestore_compose_files) || exit 1
+COMPOSE_FILES=$(backend_compose_files) || exit 1
 
-message "Starting SynBioHub from Containers (triplestore: $SBH_TRIPLESTORE)"
+message "Starting SynBioHub from Containers (store: $SBH_TRIPLESTORE, search: $SBH_SEARCH_BACKEND)"
 docker compose $COMPOSE_FILES -p testsuiteproject --compatibility up -d
 while [[ "$(docker inspect testsuiteproject_synbiohub_1 | jq .[0].State.Health.Status)" != "\"healthy\"" ]]
 do

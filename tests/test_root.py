@@ -34,9 +34,17 @@ def test_root():
     testSubmit.test_submit()
 
     # no commented tests
-    from test_search import TestSearch
-    testSearch = TestSearch()
-    testSearch.test_search()
+    import os
+    if os.environ.get('SBH_SEARCH_BACKEND', 'none') == 'none':
+        from test_search import TestSearch
+        testSearch = TestSearch()
+        testSearch.test_search()
+    else:
+        # External SBOLExplorer and sbol-db's compatible listener share this
+        # exact user-visible contract: explicit indexing followed by the
+        # existing complete HTML snapshot for the known I0462 fixture.
+        from test_explorer_search import TestExplorerSearch
+        TestExplorerSearch().test_indexed_search_html()
 
     # TODO: TEST TEST_DOWNLOAD
     from test_download import TestDownload

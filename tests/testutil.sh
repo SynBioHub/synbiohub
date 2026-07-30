@@ -3,24 +3,37 @@ function message {
 }
 
 # Triplestore backend the test stack runs against: "virtuoso" (default) or
-# "sboldb". Set with the SBH_TRIPLESTORE environment variable, or pass it as the
-# first argument to start_containers.sh / start_containers_persist.sh. The only
-# difference between the two is which docker-compose file describes the stack, so
-# the same SynBioHub image and the same fixtures gate both backends.
+# "sboldb". SBH_SEARCH_BACKEND independently selects "external" SBOLExplorer,
+# sbol-db's "native" compatibility listener, or "none". The historical full
+# suite stays store-only by default; external/native matrix rows opt in and run
+# the focused indexed-HTML contract in place of the ordinary search bundle.
 SBH_TRIPLESTORE="${SBH_TRIPLESTORE:-virtuoso}"
+SBH_SEARCH_BACKEND="${SBH_SEARCH_BACKEND:-none}"
+SBH_DOCKER_DIR="${SBH_DOCKER_DIR:-./synbiohub-docker}"
 
-# Echo the docker-compose -f flags for the selected triplestore. The compose
-# files live in the synbiohub-docker checkout that start_containers.sh clones.
-function triplestore_compose_files {
-    case "$SBH_TRIPLESTORE" in
-        virtuoso)
-            echo "-f ./synbiohub-docker/docker-compose.yml -f ./synbiohub-docker/docker-compose.explorer.yml"
+# Echo the Docker Compose files for the independently selected store/search
+# roles. The overlays set Explorer configuration at container startup and turn
+# fallback off, so a failed search backend cannot be hidden by the store.
+function backend_compose_files {
+    case "$SBH_TRIPLESTORE:$SBH_SEARCH_BACKEND" in
+        virtuoso:none)
+            echo "-f $SBH_DOCKER_DIR/docker-compose.yml"
             ;;
-        sboldb)
-            echo "-f ./synbiohub-docker/docker-compose.sboldb.yml"
+        virtuoso:external)
+            echo "-f $SBH_DOCKER_DIR/docker-compose.yml -f $SBH_DOCKER_DIR/docker-compose.explorer.yml"
+            ;;
+        sboldb:none)
+            echo "-f $SBH_DOCKER_DIR/docker-compose.sboldb.yml"
+            ;;
+        sboldb:external)
+            echo "-f $SBH_DOCKER_DIR/docker-compose.sboldb.yml -f $SBH_DOCKER_DIR/docker-compose.sboldb-store-only.yml -f $SBH_DOCKER_DIR/docker-compose.explorer.yml"
+            ;;
+        sboldb:native)
+            echo "-f $SBH_DOCKER_DIR/docker-compose.sboldb.yml -f $SBH_DOCKER_DIR/docker-compose.sboldb-search.yml"
             ;;
         *)
-            message "Unknown SBH_TRIPLESTORE '$SBH_TRIPLESTORE' (expected virtuoso or sboldb)." 1>&2
+            message "Unsupported backend pair store='$SBH_TRIPLESTORE' search='$SBH_SEARCH_BACKEND'." 1>&2
+            message "Expected virtuoso:(none|external) or sboldb:(none|external|native)." 1>&2
             return 1
             ;;
     esac

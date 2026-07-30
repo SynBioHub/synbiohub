@@ -5,10 +5,12 @@ cd tests
 source ./testutil.sh
 
 # Run the whole stack (initial bring-up, persistence restart, SBOLTestRunner)
-# against one triplestore. Defaults to virtuoso; set SBH_TRIPLESTORE=sboldb to
-# run the identical suite and fixtures against sbol-db.
+# against one store/search pairing. Search defaults to none for the historical
+# suite. Set SBH_SEARCH_BACKEND=external to test SBOLExplorer, or use native
+# with SBH_TRIPLESTORE=sboldb to test sbol-db in both roles.
 export SBH_TRIPLESTORE
-message "Triplestore backend: $SBH_TRIPLESTORE"
+export SBH_SEARCH_BACKEND
+message "Backends: store=$SBH_TRIPLESTORE search=$SBH_SEARCH_BACKEND"
 
 # first, if it was run with help, just run the test script with help
 if [[ "$@" == "--help" || "$@" == "-h" ]]
