@@ -27,9 +27,9 @@ jobs:
     name: Search backend harness unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         name: Checkout source tree
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         name: Install Python
         with:
           python-version: '3.9' # To match the integration-test jobs
