@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SYNBIOHUB_DOCKER_REF: marpaia/sbol-db-and-explorer
+  SYNBIOHUB_DOCKER_REF: snapshot
   SBOL_TEST_SUITE_REVISION: 0044284331b2f915a6e4b9d50e1cbf3ea2f62dcd
   SYNBIOHUB_CONFORMANCE_IMAGE: synbiohub/synbiohub:search-conformance
 
