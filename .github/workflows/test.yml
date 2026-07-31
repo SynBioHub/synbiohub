@@ -3,7 +3,7 @@ name: Integration testing
 on: push
 
 env:
-  SYNBIOHUB_DOCKER_REF: marpaia/sbol-db-and-explorer
+  SYNBIOHUB_DOCKER_REF: snapshot
 
 jobs:
   build:
