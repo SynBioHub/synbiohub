@@ -8,26 +8,31 @@ fi
 
 source ./testutil.sh
 
-message "Cleaning old test containers if they exist"
-
-bash ./testcleanup.sh
-
-
-message "pulling synbiohub/synbiohub-docker"
-if cd synbiohub-docker; then
-    git checkout snapshot;
-    git pull;
-    cd ..;
+if [[ "$SBH_DOCKER_DIR" == "./synbiohub-docker" ]]; then
+    message "pulling synbiohub/synbiohub-docker"
+    if cd synbiohub-docker; then
+        git checkout snapshot;
+        git pull;
+        cd ..;
+    else
+        # Clone the compose files when no explicit checkout was supplied.
+        git clone --single-branch --branch snapshot https://github.com/synbiohub/synbiohub-docker
+    fi
 else
-    # clone the synbiohub docker compose file in order to run docker containers
-    git clone --single-branch --branch snapshot https://github.com/synbiohub/synbiohub-docker
+    message "Using SynBioHub Docker checkout: $SBH_DOCKER_DIR"
 fi
 
-if [[ "$SBH_TRIPLESTORE" == "sboldb" && ! -f ./synbiohub-docker/docker-compose.sboldb.yml ]]; then
-    message "docker-compose.sboldb.yml not found in the synbiohub-docker checkout."
-    message "It lives in the synbiohub-docker repo; update that checkout to a revision that has it."
-    exit 1
-fi
+COMPOSE_FILES=$(backend_compose_files) || exit 1
+for compose_file in $(echo "$COMPOSE_FILES" | sed 's/-f //g'); do
+    if [[ ! -f "$compose_file" ]]; then
+        message "Required compose file not found: $compose_file"
+        message "Update the synbiohub-docker checkout, or set SBH_DOCKER_DIR to the comparison branch checkout."
+        exit 1
+    fi
+done
+
+message "Cleaning old test containers if they exist"
+bash ./testcleanup.sh
 
 
 bash ./start_containers_persist.sh "$SBH_TRIPLESTORE"

@@ -1,0 +1,25 @@
+{
+  "corpus": {
+    "repository": "https://github.com/SynBioDex/SBOLTestSuite.git",
+    "revision": "0044284331b2f915a6e4b9d50e1cbf3ea2f62dcd",
+    "directories": ["SBOL2", "SBOL2_bp", "SBOL2_ic", "SBOL2_nc"],
+    "extensions": [".xml"]
+  },
+  "topologies": {
+    "virtuoso-explorer": {
+      "store": "Virtuoso",
+      "explorer": "SBOLExplorer",
+      "required": false
+    },
+    "sboldb-explorer-fixed": {
+      "store": "sbol-db",
+      "explorer": "SBOLExplorer with only documented bounded fixes",
+      "required": false
+    },
+    "sboldb-native": {
+      "store": "sbol-db",
+      "explorer": "sbol-db Explorer compatibility listener",
+      "required": true
+    }
+  }
+}
