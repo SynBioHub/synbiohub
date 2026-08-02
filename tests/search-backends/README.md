@@ -22,10 +22,12 @@ private-to-public publication, removal, and an observable index completion.
 
 ## Automation
 
-The `Integration testing` workflow runs the focused indexed-HTML contract on
+The `Integration testing` workflow runs the focused indexed-search contract on
 every push for Virtuoso with SBOLExplorer, sbol-db with SBOLExplorer, and
 sbol-db with its compatibility listener. Each row explicitly rebuilds the
-configured index and compares the complete `/search/I0462` HTML snapshot.
+configured index and requires at least 50% Jaccard overlap between stable
+result identities from `/search/I0462`; page markup and result metadata are
+not compared.
 
 The `Search backend conformance` workflow runs the full pinned corpus every
 Sunday and on manual dispatch. It runs the SBOLExplorer baseline and sbol-db
@@ -91,9 +93,10 @@ python3 tests/search-backends/compare-reports.py \
 
 The comparison records submission and search-result differences and applies a
 pinned-corpus compatibility policy. Both lifecycle gates and identical
-submission outcomes are required; at least 90% of complete first-page result
-sets must agree, no more than two probes may have count drift, and either drift
-may be at most one result. Exact top-ten order remains diagnostic because
-SBOLExplorer and sbol-db intentionally use different ranking implementations.
-This boundary catches tokenizer explosions and missing ontology enrichment
-without pretending the two rankers are byte-identical.
+submission outcomes are required. At least 90% of probes must have 50% or
+greater Jaccard overlap between first-page result identities. Exact result
+sets, counts, metadata, and top-ten order remain diagnostic because
+SBOLExplorer and sbol-db intentionally use different search and ranking
+implementations. Jaccard overlap still penalizes unrelated extra results, so a
+first page dominated by unrelated objects will not satisfy the policy; full
+result counts remain visible in the diagnostic report.
