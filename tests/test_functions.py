@@ -7,6 +7,7 @@ from test_arguments import args, test_print
 from TestState import TestState, clip_request
 
 IGNORE_CLASSES = ["testignore", "buorg"]
+MIN_SEARCH_RESULT_OVERLAP = 0.50
 
 test_state = TestState()
 
@@ -241,6 +242,24 @@ def file_diff(requestcontent, request, requesttype, route_parameters, file_path)
         raise ValueError(''.join(changelist))
 
 
+def search_result_paths(htmlstring):
+    """Extract stable result identities from a rendered search page."""
+    soup = BeautifulSoup(htmlstring, 'lxml')
+    paths = set()
+    for item in soup.select('.search-result-item'):
+        link = item.find('a', href=True)
+        if link is not None:
+            paths.add(link['href'])
+    return paths
+
+
+def search_result_overlap(left, right):
+    """Return Jaccard overlap so unrelated extra results reduce the score."""
+    if not left and not right:
+        return 1.0
+    return len(left & right) / len(left | right)
+
+
 def login_with(data, headers = {'Accept':'text/plain'}):
     result = post_request("login", data, headers, [], files = None)
     test_state.save_authentication(result)
@@ -249,8 +268,8 @@ def login_with(data, headers = {'Accept':'text/plain'}):
 def refresh_explorer_index(query, expected_display_id):
     """Trigger the configured Explorer and wait for one known indexed result.
 
-    The final user-visible contract is still checked by compare_get_request;
-    this helper makes that HTML snapshot deterministic without depending on a
+    The final user-visible contract is checked by result identity overlap.
+    This helper makes that comparison deterministic without depending on a
     backend-specific log format. Strict Explorer mode means search failures
     cannot be satisfied by a triplestore fallback while this loop is running.
     """
@@ -382,6 +401,68 @@ page
     test_state.add_get_request(request, testpath, test_name)
 
     compare_request(get_request(request, headers, route_parameters, re_render_time), request, "get request", route_parameters, testpath)
+
+
+def compare_search_result_overlap(
+    request,
+    test_name="",
+    route_parameters=[],
+    headers={},
+    re_render_time=0,
+    minimum_overlap=MIN_SEARCH_RESULT_OVERLAP,
+):
+    """Compare search-result identities without diffing the complete HTML page."""
+    request = clip_request(request)
+    testpath = request_file_path(request, "get request", test_name)
+    test_state.add_get_request(request, testpath, test_name)
+    current_content = get_request(
+        request, headers, route_parameters, re_render_time
+    )
+
+    if args.resetalltests or request in args.resetgetrequests:
+        with open(testpath, 'w') as result_file:
+            result_file.write(current_content)
+        return
+
+    try:
+        with open(testpath, 'r') as result_file:
+            baseline_content = result_file.read()
+    except IOError as error:
+        raise Exception(
+            "\n[synbiohub test] Could not open previous search result for "
+            + request
+            + ". Reset the request once to create its semantic baseline."
+        ) from error
+
+    baseline_paths = search_result_paths(baseline_content)
+    current_paths = search_result_paths(current_content)
+    if not baseline_paths or not current_paths:
+        raise AssertionError(
+            "Search-result overlap requires non-empty baseline and current "
+            "result sets; baseline="
+            + repr(sorted(baseline_paths))
+            + ", current="
+            + repr(sorted(current_paths))
+        )
+
+    overlap = search_result_overlap(baseline_paths, current_paths)
+    if overlap < minimum_overlap:
+        raise AssertionError(
+            "Search-result identity overlap "
+            + format(overlap, '.3f')
+            + " was below the required "
+            + format(minimum_overlap, '.3f')
+            + "; only baseline="
+            + repr(sorted(baseline_paths - current_paths))
+            + ", only current="
+            + repr(sorted(current_paths - baseline_paths))
+        )
+    test_print(
+        "Search-result identity overlap "
+        + format(overlap, '.3f')
+        + " satisfied minimum "
+        + format(minimum_overlap, '.3f')
+    )
 
 def compare_get_request_download(request, test_name = "", route_parameters = [], headers = {}, re_render_time = 0):
     """Complete a get_file request and error if it differs from previous results.

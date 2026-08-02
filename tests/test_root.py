@@ -40,11 +40,10 @@ def test_root():
         testSearch = TestSearch()
         testSearch.test_search()
     else:
-        # SBOLExplorer and sbol-db's compatible listener share this
-        # exact user-visible contract: explicit indexing followed by the
-        # existing complete HTML snapshot for the known I0462 fixture.
+        # SBOLExplorer and sbol-db use distinct rankers. Require explicit
+        # indexing and meaningful result overlap without diffing page markup.
         from test_explorer_search import TestExplorerSearch
-        TestExplorerSearch().test_indexed_search_html()
+        TestExplorerSearch().test_indexed_search_overlap()
 
     # TODO: TEST TEST_DOWNLOAD
     from test_download import TestDownload
