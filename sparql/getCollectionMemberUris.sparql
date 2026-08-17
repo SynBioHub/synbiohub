@@ -1,0 +1,6 @@
+PREFIX sbol2: <http://sbols.org/v2#>
+SELECT DISTINCT ?uri
+$from
+WHERE {
+  <$collection> sbol2:member ?uri .
+}
