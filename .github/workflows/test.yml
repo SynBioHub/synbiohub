@@ -4,6 +4,8 @@ on: push
 
 env:
   SYNBIOHUB_DOCKER_REF: snapshot
+  # SBOLExplorer publishes snapshot-synbiohub from every branch; test the latest master build.
+  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:c6be0e1816217dbe67c01fc5c81d353d88b6c911b718194b54406272cd71ab91
 
 jobs:
   build:
