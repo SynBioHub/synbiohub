@@ -1,19 +1,20 @@
 #!/bin/bash
 
-docker kill testsuiteproject_synbiohub_1
-docker kill testsuiteproject_explorer_1
-docker kill testsuiteproject_elasticsearch_1
-docker kill testsuiteproject_autoheal_1
-docker kill testsuiteproject_virtuoso_1
+source ./testutil.sh
 
-docker rm testsuiteproject_synbiohub_1
-docker rm testsuiteproject_explorer_1
-docker rm testsuiteproject_elasticsearch_1
-docker rm testsuiteproject_autoheal_1
-docker rm testsuiteproject_virtuoso_1
+# Tear down any leftover testsuiteproject stack from a previous run. Supplying
+# the selected files is required by modern Compose; --remove-orphans also
+# removes services left by a different store/search pairing under this project.
+message "Removing any existing testsuiteproject containers and volumes"
+COMPOSE_FILES=$(backend_compose_files) || exit 1
+docker compose $COMPOSE_FILES -p testsuiteproject down --volumes --remove-orphans 2>/dev/null || true
 
-
-docker volume rm testsuiteproject_esdata
-docker volume rm testsuiteproject_explorer
-docker volume rm testsuiteproject_sbh
-docker volume rm testsuiteproject_virtuoso-db
+for volume in \
+    testsuiteproject_esdata \
+    testsuiteproject_explorer \
+    testsuiteproject_sbh \
+    testsuiteproject_virtuoso-db \
+    testsuiteproject_pgdata
+do
+    docker volume rm "$volume" 2>/dev/null || true
+done

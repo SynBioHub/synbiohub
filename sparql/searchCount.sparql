@@ -16,10 +16,11 @@ PREFIX so: <http://identifiers.org/so/>
 PREFIX bench: <http://wiki.synbiohub.org/wiki/Terms/benchling#>
 PREFIX genbank: <http://www.ncbi.nlm.nih.gov/genbank#>
 
-select (sum(?tempcount) as ?count) WHERE {
+select (sum(?tempcount) as ?count)
+$from
+WHERE {
 {
     SELECT (count(distinct ?subject) as ?tempcount)
-    $from
     WHERE {
         $criteria
 

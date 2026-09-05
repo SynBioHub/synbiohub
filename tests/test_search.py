@@ -64,4 +64,3 @@ class TestSearch(TestCase):
         compare_get_request("browse", headers = {"Accept": "text/html"})
         test_print("test_browse_get completed")
 
-

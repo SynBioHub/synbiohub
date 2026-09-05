@@ -34,9 +34,16 @@ def test_root():
     testSubmit.test_submit()
 
     # no commented tests
-    from test_search import TestSearch
-    testSearch = TestSearch()
-    testSearch.test_search()
+    import os
+    if os.environ.get('SBH_SEARCH_BACKEND', 'none') == 'none':
+        from test_search import TestSearch
+        testSearch = TestSearch()
+        testSearch.test_search()
+    else:
+        # SBOLExplorer and sbol-db use distinct rankers. Require explicit
+        # indexing and meaningful result overlap without diffing page markup.
+        from test_explorer_search import TestExplorerSearch
+        TestExplorerSearch().test_indexed_search_overlap()
 
     # TODO: TEST TEST_DOWNLOAD
     from test_download import TestDownload

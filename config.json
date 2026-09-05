@@ -7,6 +7,7 @@
   "javaPath": "java",
   "SBOLExplorerEndpoint": "http://localhost:13162/",
   "useSBOLExplorer": true,
+  "SBOLExplorerFallback": true,
   "theme": "default",
   "themeParameters": {
       "default": {

@@ -1,4 +1,4 @@
-import subprocess, shutil, time, os
+import subprocess, shutil, time, os, re
 from requests.exceptions import HTTPError
 import requests_html, difflib, sys, requests, json
 from bs4 import BeautifulSoup
@@ -7,6 +7,7 @@ from test_arguments import args, test_print
 from TestState import TestState, clip_request
 
 IGNORE_CLASSES = ["testignore", "buorg"]
+MIN_SEARCH_RESULT_OVERLAP = 0.50
 
 test_state = TestState()
 
@@ -241,9 +242,147 @@ def file_diff(requestcontent, request, requesttype, route_parameters, file_path)
         raise ValueError(''.join(changelist))
 
 
+def search_result_paths(htmlstring):
+    """Extract stable result identities from a rendered search page."""
+    soup = BeautifulSoup(htmlstring, 'lxml')
+    paths = set()
+    for item in soup.select('.search-result-item'):
+        link = item.find('a', href=True)
+        if link is not None:
+            paths.add(link['href'])
+    return paths
+
+
+def search_result_overlap(left, right):
+    """Return Jaccard overlap so unrelated extra results reduce the score."""
+    if not left and not right:
+        return 1.0
+    return len(left & right) / len(left | right)
+
+
 def login_with(data, headers = {'Accept':'text/plain'}):
     result = post_request("login", data, headers, [], files = None)
     test_state.save_authentication(result)
+
+
+def refresh_explorer_index(query, expected_display_id):
+    """Trigger the configured Explorer and wait for one known indexed result.
+
+    The final user-visible contract is checked by result identity overlap.
+    This helper makes that comparison deterministic without depending on a
+    backend-specific log format. Strict Explorer mode means search failures
+    cannot be satisfied by a triplestore fallback while this loop is running.
+    """
+    backend = os.environ.get("SBH_SEARCH_BACKEND", "none")
+    if backend == "none":
+        test_print("Search backend disabled; skipping explicit index refresh")
+        return
+    if backend not in ("sbol-explorer", "sbol-db"):
+        raise ValueError("Unknown SBH_SEARCH_BACKEND: " + backend)
+
+    token = test_state.get_authentication()
+    if token is None:
+        raise RuntimeError("Explorer index refresh requires an authenticated administrator")
+
+    headers = {
+        "Accept": "application/json",
+        "X-authorization": token,
+    }
+    config_response = requests.get(
+        args.serveraddress + "admin/explorer", headers=headers, timeout=30
+    )
+    config_response.raise_for_status()
+    explorer_config = config_response.json()
+    if explorer_config.get("useSBOLExplorer") is not True:
+        raise AssertionError(
+            "The test topology did not enable its Explorer endpoint: "
+            + json.dumps(explorer_config, sort_keys=True)
+        )
+
+    indexing_info_url = args.serveraddress + "admin/explorerIndexingLog"
+    try:
+        before_info_response = requests.get(indexing_info_url, headers=headers, timeout=30)
+        before_info_response.raise_for_status()
+        before_info = before_info_response.text
+    except requests.RequestException:
+        # A fresh SBOLExplorer may not have created its log file yet.
+        before_info = ""
+    before_sbol_explorer_completions = before_info.count("Successfully updated index")
+    before_sbol_db_match = re.search(r"job_id=([^ ]+) status=([^ ]+)", before_info)
+    before_sbol_db_job = before_sbol_db_match.group(1) if before_sbol_db_match else None
+
+    update_response = requests.post(
+        args.serveraddress + "admin/explorerUpdateIndex",
+        headers={
+            "Accept": "text/plain",
+            "X-authorization": token,
+        },
+        timeout=30,
+    )
+    update_response.raise_for_status()
+
+    timeout_seconds = int(os.environ.get("SBH_EXPLORER_INDEX_TIMEOUT", "300"))
+    deadline = time.monotonic() + timeout_seconds
+    last_observation = "index request accepted; no lifecycle response observed"
+
+    while time.monotonic() < deadline:
+        try:
+            response = requests.get(indexing_info_url, headers=headers, timeout=30)
+            response.raise_for_status()
+            info = response.text
+            last_observation = info[-1000:]
+            sbol_db_match = re.search(r"job_id=([^ ]+) status=([^ ]+)", info)
+            if sbol_db_match and sbol_db_match.group(1) != before_sbol_db_job:
+                status = sbol_db_match.group(2)
+                if status == "succeeded":
+                    break
+                if status in ("failed", "cancelled", "dead"):
+                    raise AssertionError(
+                        "sbol-db index update reached terminal status " + status
+                        + ": " + info
+                    )
+            elif (
+                info.count("Successfully updated index")
+                > before_sbol_explorer_completions
+            ):
+                break
+        except requests.RequestException as error:
+            last_observation = repr(error)
+        time.sleep(2)
+    else:
+        raise AssertionError(
+            "Explorer indexing did not complete within " + str(timeout_seconds)
+            + " seconds; last lifecycle observation: " + last_observation
+        )
+
+    # Completion and visibility get independent bounds: a large index may use
+    # almost all of the lifecycle timeout, but publication into the completed
+    # index should become visible promptly afterward.
+    deadline = time.monotonic() + min(60, timeout_seconds)
+    search_url = args.serveraddress + "search/" + requests.utils.quote(query, safe="")
+    last_observation = "index completed; no search request attempted"
+
+    while time.monotonic() < deadline:
+        try:
+            response = requests.get(search_url, headers=headers, timeout=30)
+            last_observation = "HTTP " + str(response.status_code) + ": " + response.text[:500]
+            if response.ok:
+                results = response.json()
+                if any(row.get("displayId") == expected_display_id for row in results):
+                    test_print(
+                        "Explorer index contains " + expected_display_id
+                        + " (backend=" + backend + ")"
+                    )
+                    return
+        except (requests.RequestException, ValueError) as error:
+            last_observation = repr(error)
+        time.sleep(2)
+
+    raise AssertionError(
+        "Explorer indexing did not expose " + expected_display_id
+        + " within " + str(timeout_seconds) + " seconds; last observation: "
+        + last_observation
+    )
 
 
 def compare_get_request(request, test_name = "", route_parameters = [], headers = {}, re_render_time = 0):
@@ -262,6 +401,68 @@ page
     test_state.add_get_request(request, testpath, test_name)
 
     compare_request(get_request(request, headers, route_parameters, re_render_time), request, "get request", route_parameters, testpath)
+
+
+def compare_search_result_overlap(
+    request,
+    test_name="",
+    route_parameters=[],
+    headers={},
+    re_render_time=0,
+    minimum_overlap=MIN_SEARCH_RESULT_OVERLAP,
+):
+    """Compare search-result identities without diffing the complete HTML page."""
+    request = clip_request(request)
+    testpath = request_file_path(request, "get request", test_name)
+    test_state.add_get_request(request, testpath, test_name)
+    current_content = get_request(
+        request, headers, route_parameters, re_render_time
+    )
+
+    if args.resetalltests or request in args.resetgetrequests:
+        with open(testpath, 'w') as result_file:
+            result_file.write(current_content)
+        return
+
+    try:
+        with open(testpath, 'r') as result_file:
+            baseline_content = result_file.read()
+    except IOError as error:
+        raise Exception(
+            "\n[synbiohub test] Could not open previous search result for "
+            + request
+            + ". Reset the request once to create its semantic baseline."
+        ) from error
+
+    baseline_paths = search_result_paths(baseline_content)
+    current_paths = search_result_paths(current_content)
+    if not baseline_paths or not current_paths:
+        raise AssertionError(
+            "Search-result overlap requires non-empty baseline and current "
+            "result sets; baseline="
+            + repr(sorted(baseline_paths))
+            + ", current="
+            + repr(sorted(current_paths))
+        )
+
+    overlap = search_result_overlap(baseline_paths, current_paths)
+    if overlap < minimum_overlap:
+        raise AssertionError(
+            "Search-result identity overlap "
+            + format(overlap, '.3f')
+            + " was below the required "
+            + format(minimum_overlap, '.3f')
+            + "; only baseline="
+            + repr(sorted(baseline_paths - current_paths))
+            + ", only current="
+            + repr(sorted(current_paths - baseline_paths))
+        )
+    test_print(
+        "Search-result identity overlap "
+        + format(overlap, '.3f')
+        + " satisfied minimum "
+        + format(minimum_overlap, '.3f')
+    )
 
 def compare_get_request_download(request, test_name = "", route_parameters = [], headers = {}, re_render_time = 0):
     """Complete a get_file request and error if it differs from previous results.
@@ -315,13 +516,21 @@ def file_tail(filename, length):
 
 
 def get_end_of_error_log(num_of_lines):
-    copy_docker_log()
-    directory = os.listdir("./logs_from_test_suite")
-    for filename in directory:
-        if filename[len(filename)-5:] == "error":
-            return file_tail("./logs_from_test_suite/" + filename, num_of_lines)
+    # Best effort: never let log retrieval mask the actual test diff.
+    try:
+        copy_docker_log()
+        directory = os.listdir("./logs_from_test_suite")
+        for filename in directory:
+            if filename[len(filename)-5:] == "error":
+                return file_tail("./logs_from_test_suite/" + filename, num_of_lines)
+        return "(no error log found in container logs)"
+    except Exception as e:
+        return "(could not fetch server error log: " + str(e) + ")"
 
-    raise Exception("Could not find error log")
+
+# The synbiohub container name differs by stack (Virtuoso suite vs sbol-db
+# harness); override with SBH_TEST_CONTAINER.
+SBH_TEST_CONTAINER = os.environ.get("SBH_TEST_CONTAINER", "testsuiteproject_synbiohub_1")
 
 
 def copy_docker_log():
@@ -331,7 +540,5 @@ def copy_docker_log():
     if os.path.isdir("docker_logs"):
         shutil.rmtree("./docker_logs")
 
-    run_bash("docker cp testsuiteproject_synbiohub_1:/mnt/data/logs .")
+    run_bash("docker cp " + SBH_TEST_CONTAINER + ":/mnt/data/logs .")
     run_bash("mv ./logs ./logs_from_test_suite")
-
-

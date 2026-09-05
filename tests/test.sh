@@ -4,6 +4,14 @@ cd tests
 
 source ./testutil.sh
 
+# Run the whole stack (initial bring-up, persistence restart, SBOLTestRunner)
+# against one store/search pairing. Search defaults to none for the historical
+# suite. Set SBH_SEARCH_BACKEND=sbol-explorer to test SBOLExplorer, or use
+# sbol-db with SBH_TRIPLESTORE=sboldb to test sbol-db in both roles.
+export SBH_TRIPLESTORE
+export SBH_SEARCH_BACKEND
+message "Backends: store=$SBH_TRIPLESTORE search=$SBH_SEARCH_BACKEND"
+
 # first, if it was run with help, just run the test script with help
 if [[ "$@" == "--help" || "$@" == "-h" ]]
 then
@@ -23,17 +31,17 @@ else
 fi
 
 #clone libSBOLj
-message "pulling libSBOLj"
-if cd libSBOLj; then
-    git pull;
-    cd ..;
-else
-    git clone https://github.com/SynBioDex/libSBOLj;
-    cd libSBOLj;
-    git submodule update --init --recursive;
-    mvn package;
-    cd ..;
-fi
+# message "pulling libSBOLj"
+# if cd libSBOLj; then
+#     git pull;
+#     cd ..;
+# else
+#     git clone https://github.com/SynBioDex/libSBOLj;
+#     cd libSBOLj;
+#     git submodule update --init --recursive;
+#     mvn package;
+#     cd ..;
+# fi
 
 #!/bin/sh
 
