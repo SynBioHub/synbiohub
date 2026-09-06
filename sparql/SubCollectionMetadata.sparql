@@ -2,7 +2,9 @@ PREFIX sbol2: <http://sbols.org/v2#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX ncbi: <http://www.ncbi.nlm.nih.gov#>
 
-SELECT ?Collection ?name ?description ?displayId ?version WHERE {
+SELECT ?Collection ?name ?description ?displayId ?version
+$graphs
+WHERE {
     ?Collection a sbol2:Collection .
     $parentCollection sbol2:member ?Collection .
     OPTIONAL { ?Collection dcterms:title ?name . }
