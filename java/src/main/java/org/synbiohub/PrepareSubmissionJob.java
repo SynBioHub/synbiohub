@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.List;
+import java.util.Set;
 import java.util.Enumeration;
 import java.util.zip.*;
 
@@ -39,10 +40,16 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import com.google.gson.Gson;
 
 import org.jdom2.JDOMException;
+import org.sbolstandard.core2.Activity;
+import org.sbolstandard.core2.Agent;
 import org.sbolstandard.core2.Annotation;
 import org.sbolstandard.core2.Attachment;
 import org.sbolstandard.core2.Collection;
+import org.sbolstandard.core2.ComponentDefinition;
+import org.sbolstandard.core2.GenericTopLevel;
 import org.sbolstandard.core2.Identified;
+import org.sbolstandard.core2.ModuleDefinition;
+import org.sbolstandard.core2.Plan;
 import org.sbolstandard.core2.IdentifiedVisitor;
 import org.sbolstandard.core2.SBOLConversionException;
 import org.sbolstandard.core2.SBOLDocument;
@@ -647,6 +654,10 @@ public class PrepareSubmissionJob extends Job {
     String name;
     String description;
     String type;
+    // Names match SBOLExplorer's Elasticsearch fields: a full reindex writes
+    // `role` and `sboltype`, and search reads them back under those names.
+    String role;
+    String sboltype;
     String graph;
   }
 
@@ -654,6 +665,33 @@ public class PrepareSubmissionJob extends Job {
     List<String> partsToRemove;
 
     List<ExplorerTopLevel> partsToAdd;
+  }
+
+  // rdf:type of a TopLevel, matching what a full reindex stores from `?subject a ?type`.
+  private static String rdfTypeOf(TopLevel topLevel) {
+    if (topLevel instanceof GenericTopLevel) {
+      QName rdfType = ((GenericTopLevel) topLevel).getRDFType();
+      return rdfType.getNamespaceURI() + rdfType.getLocalPart();
+    }
+    if (topLevel instanceof Activity || topLevel instanceof Agent || topLevel instanceof Plan) {
+      return "http://www.w3.org/ns/prov#" + topLevel.getClass().getSimpleName();
+    }
+    return "http://sbols.org/v2#" + topLevel.getClass().getSimpleName();
+  }
+
+  // First URI in preferredNamespace, else any URI, else null for an empty set.
+  private static String preferNamespace(Set<URI> uris, String preferredNamespace) {
+    String fallback = null;
+    for (URI uri : uris) {
+      String value = uri.toString();
+      if (value.startsWith(preferredNamespace)) {
+        return value;
+      }
+      if (fallback == null) {
+        fallback = value;
+      }
+    }
+    return fallback;
   }
 
   public void incrementallyUpdateSBOLExplorer(HashSet<String> explorerUrisToRemove, SBOLDocument topLevelsToAdd) {
@@ -677,7 +715,14 @@ public class PrepareSubmissionJob extends Job {
       etl.version = topLevel.getVersion();
       etl.name = topLevel.getName();
       etl.description = topLevel.getDescription();
-      etl.type = "TODO"; // TODO
+      etl.type = rdfTypeOf(topLevel);
+      if (topLevel instanceof ComponentDefinition) {
+        ComponentDefinition cd = (ComponentDefinition) topLevel;
+        etl.role = preferNamespace(cd.getRoles(), "http://identifiers.org/so/");
+        etl.sboltype = preferNamespace(cd.getTypes(), "http://www.biopax.org/release/biopax-level3.owl#");
+      } else if (topLevel instanceof ModuleDefinition) {
+        etl.role = preferNamespace(((ModuleDefinition) topLevel).getRoles(), "http://identifiers.org/so/");
+      }
 
       if (!submit && !copy) {
         etl.graph = databasePrefix + "public";
