@@ -64,6 +64,7 @@ def test_root():
     from test_collection import TestCollections
     testCollections = TestCollections()
     testCollections.test_collections()
+    testCollections.test_manage_submission_order()
 
     # TODO: test new user commented out
     # ALL ASIDE FROM TEST_NEWUSER SHOULD WAIT UNTIL LATER
