@@ -38,6 +38,17 @@ UNION
 ?child ?childRef ?uri .
 }
 FILTER(?otherMember != ?uri)
+  FILTER(
+    NOT EXISTS {
+      ?uri a ?uriType .
+      FILTER(STRSTARTS(STR(?uriType), 'http://sbols.org/v2#'))
+    }
+    ||
+    EXISTS {
+      ?otherMember a ?otherType .
+      FILTER(STRSTARTS(STR(?otherType), 'http://sbols.org/v2#'))
+    }
+  )
 }
 $search
 }
