@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.sbolstandard.core2.*;
+import org.synbiohub.frontend.SynBioHubFrontend;
 
 import javax.xml.namespace.QName;
 
@@ -25,6 +26,7 @@ public class RDFToSBOLJob extends Job
 	public String version;
 	public boolean keepGoing;
 	public HashMap<String,String> webOfRegistries;
+	public String user;
 
 	public void execute() throws Exception
 	{
@@ -68,7 +70,8 @@ public class RDFToSBOLJob extends Job
 		}
 		
 		for (String registry : webOfRegistries.keySet()) {
-			doc.addRegistry(webOfRegistries.get(registry),registry);
+			SynBioHubFrontend sbh = doc.addRegistry(webOfRegistries.get(registry),registry);
+			sbh.setUser(user);
 		}
 		//completeDocument(doc);
 		for (TopLevel topLevel : doc.getTopLevels()) {
