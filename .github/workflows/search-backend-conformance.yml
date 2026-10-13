@@ -13,7 +13,10 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SYNBIOHUB_DOCKER_REF: snapshot
+  SYNBIOHUB_DOCKER_REF: 0a58ba78b35911ce9273259b24061b8a83a5062f
+  SBOLDB_REVISION: 6c9e8e19e26ed2698d79600cc6032a8c4c3d8bce
+  SBOLDB_IMAGE: sbol-db-candidate:6c9e8e19e26ed2698d79600cc6032a8c4c3d8bce
+  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:ef904541fe6ad700777b3607660a01cfbf2972d214a818a53bec5a178f6bc4c3
   SBOL_TEST_SUITE_REVISION: 0044284331b2f915a6e4b9d50e1cbf3ea2f62dcd
   SYNBIOHUB_CONFORMANCE_IMAGE: synbiohub/synbiohub:search-conformance
 
@@ -21,7 +24,7 @@ jobs:
   build:
     name: Build SynBioHub image
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
         name: Checkout SynBioHub
@@ -30,14 +33,21 @@ jobs:
           docker build . \
             --file docker/Dockerfile \
             --tag "$SYNBIOHUB_CONFORMANCE_IMAGE"
+      - name: Build SBOL DB PR candidate
+        uses: ./.github/actions/build-sboldb-candidate
+        with:
+          revision: ${{ env.SBOLDB_REVISION }}
+          image: ${{ env.SBOLDB_IMAGE }}
       - name: Package Docker image
         run: |
-          docker save "$SYNBIOHUB_CONFORMANCE_IMAGE" | gzip > sbh.tar.gz
+          docker save "$SYNBIOHUB_CONFORMANCE_IMAGE" "$SBOLDB_IMAGE" | gzip > sbh.tar.gz
       - uses: actions/upload-artifact@v4
         name: Upload Docker image
         with:
           name: search-conformance-sbh-image
-          path: sbh.tar.gz
+          path: |
+            sbh.tar.gz
+            sbol-db-image.json
           retention-days: 1
 
   sbolexplorer:

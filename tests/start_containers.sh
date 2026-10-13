@@ -18,6 +18,9 @@ if [[ "$SBH_DOCKER_DIR" == "./synbiohub-docker" ]]; then
         # Clone the compose files when no explicit checkout was supplied.
         git clone --single-branch --branch snapshot https://github.com/synbiohub/synbiohub-docker
     fi
+    if [[ -n "${SYNBIOHUB_DOCKER_REF:-}" ]]; then
+        git -C synbiohub-docker checkout --detach "$SYNBIOHUB_DOCKER_REF" || exit 1
+    fi
 else
     message "Using SynBioHub Docker checkout: $SBH_DOCKER_DIR"
 fi
