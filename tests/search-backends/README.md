@@ -2,7 +2,8 @@
 
 This harness evaluates the Explorer role behind classic SynBioHub without
 allowing SynBioHub to silently retry failed Explorer queries against its store.
-The topology itself must set `SBH_EXPLORER_FALLBACK=false`.
+The topology itself must seed `"SBOLExplorerFallback": false` into
+SynBioHub's `config.local.json`.
 
 The full run is the principal gate. It pins SBOLTestSuite revision
 `0044284331b2f915a6e4b9d50e1cbf3ea2f62dcd` and attempts all 291 XML documents

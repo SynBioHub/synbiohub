@@ -12,8 +12,9 @@ SBH_SEARCH_BACKEND="${SBH_SEARCH_BACKEND:-none}"
 SBH_DOCKER_DIR="${SBH_DOCKER_DIR:-./synbiohub-docker}"
 
 # Echo the Docker Compose files for the independently selected store/search
-# roles. The overlays set Explorer configuration at container startup and turn
-# fallback off, so a failed search backend cannot be hidden by the store.
+# roles. The Explorer overlays seed SynBioHub's config.local.json with Explorer
+# enabled and fallback off, so a failed search backend cannot be hidden by the
+# store.
 function backend_compose_files {
     case "$SBH_TRIPLESTORE:$SBH_SEARCH_BACKEND" in
         virtuoso:none)
