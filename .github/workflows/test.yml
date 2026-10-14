@@ -3,9 +3,8 @@ name: Integration testing
 on: push
 
 env:
-  SYNBIOHUB_DOCKER_REF: 0a58ba78b35911ce9273259b24061b8a83a5062f
-  SBOLDB_REVISION: 6c9e8e19e26ed2698d79600cc6032a8c4c3d8bce
-  SBOLDB_IMAGE: sbol-db-candidate:6c9e8e19e26ed2698d79600cc6032a8c4c3d8bce
+  SYNBIOHUB_DOCKER_REF: bfa8929bad064c2e40557670f877c32a1a5be24f
+  SBOLDB_IMAGE: ghcr.io/marpaia/sbol-db:v0.1.8@sha256:ec35a160248e1db1b50e2a55c251e140c6f2f6c0d5781822b5140aa475af759b
   # The immutable baseline contains the private/public search policy under test.
   SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:ef904541fe6ad700777b3607660a01cfbf2972d214a818a53bec5a178f6bc4c3
 
@@ -23,21 +22,14 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: docker build . --file docker/Dockerfile --tag synbiohub/synbiohub:snapshot-standalone
-      - name: Build SBOL DB PR candidate
-        uses: ./.github/actions/build-sboldb-candidate
-        with:
-          revision: ${{ env.SBOLDB_REVISION }}
-          image: ${{ env.SBOLDB_IMAGE }}
       - name: Package image
         run: |
-          docker save synbiohub/synbiohub:snapshot-standalone "$SBOLDB_IMAGE" | gzip > sbh.tar.gz
+          docker save synbiohub/synbiohub:snapshot-standalone | gzip > sbh.tar.gz
       - uses: actions/upload-artifact@v4
         name: Upload Docker image
         with:
           name: sbh-image
-          path: |
-            sbh.tar.gz
-            sbol-db-image.json
+          path: sbh.tar.gz
   search-backend-harness:
     name: Search backend harness unit tests
     runs-on: ubuntu-latest
@@ -133,6 +125,21 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: tests/sbolsuite.sh
+      - name: Capture SBOL DB import diagnostics
+        if: always()
+        run: |
+          mkdir -p artifacts/sboltests-sboldb
+          docker compose -p testsuiteproject \
+            -f tests/synbiohub-docker/docker-compose.sboldb.yml \
+            logs --no-color > artifacts/sboltests-sboldb/compose.log 2>&1 || true
+          docker ps -a --filter label=com.docker.compose.project=testsuiteproject \
+            > artifacts/sboltests-sboldb/containers.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sboltests-sboldb-diagnostics
+          path: artifacts/sboltests-sboldb/
+          retention-days: 30
   sbhtests-sboldb:
     name: SynBioHub Test Suite (sbol-db)
     needs: build

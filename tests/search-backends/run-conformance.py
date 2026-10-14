@@ -706,6 +706,13 @@ def main() -> int:
     args = parse_args()
     if args.probe_window <= 0:
         raise SystemExit("--probe-window must be greater than zero")
+    if args.metrics_url and completed_rebuilds(
+        args.metrics_url, min(args.request_timeout, 10)
+    ) is None:
+        raise SystemExit(
+            f"Cannot read sbol-db metrics from {args.metrics_url}; "
+            "use the separate operations listener, not the SPARQL port"
+        )
     manifest = json.loads(MANIFEST_PATH.read_text())
     if args.topology not in manifest["topologies"]:
         raise SystemExit(f"unknown topology {args.topology!r}")

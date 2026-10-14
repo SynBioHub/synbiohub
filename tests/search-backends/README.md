@@ -37,14 +37,16 @@ logs, and then uploads the comparison report. Each workflow's
 
 ## Run one topology
 
-For the native sbol-db row, pass the main listener's metrics endpoint so job
-completion is observable:
+For the native sbol-db row, pass the separate operations listener's metrics
+endpoint so job completion is observable. The native Compose overlay publishes
+it on host loopback at port 9090 by default; `SBOLDB_OPERATIONS_PORT` overrides
+that host port. The harness checks this endpoint before importing documents.
 
 ```sh
 python3 tests/search-backends/run-conformance.py \
   --topology sboldb-native \
   --base-url http://127.0.0.1:27777/ \
-  --metrics-url http://127.0.0.1:18890/metrics \
+  --metrics-url http://127.0.0.1:9090/metrics \
   --corpus-root /Users/marpaia/git/SynBioDex/SBOLTestSuite \
   --report artifacts/search-backends/sboldb-native.json
 ```
@@ -76,7 +78,7 @@ re-running every collection download and live search query:
 python3 tests/search-backends/run-conformance.py \
   --topology sboldb-native \
   --base-url http://127.0.0.1:27777/ \
-  --metrics-url http://127.0.0.1:18890/metrics \
+  --metrics-url http://127.0.0.1:9090/metrics \
   --corpus-root /Users/marpaia/git/SynBioDex/SBOLTestSuite \
   --reprobe-from artifacts/search-backends/sboldb-native.json \
   --report artifacts/search-backends/sboldb-native-reprobed.json
