@@ -1,7 +1,11 @@
 import importlib.util
+import io
 from pathlib import Path
 import sys
+from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
+import urllib.error
 
 
 MODULE_PATH = Path(__file__).with_name("run-conformance.py")
@@ -66,6 +70,39 @@ class CollectionOracleTest(unittest.TestCase):
 
         self.assertEqual(oracle["selection"], "deterministic-direct-member")
         self.assertEqual(oracle["selected"]["display_id"], "urn_a")
+
+
+class MetricsEndpointTest(unittest.TestCase):
+    def test_fresh_worker_can_have_no_completed_jobs(self):
+        with patch.object(
+            CONFORMANCE.urllib.request,
+            "urlopen",
+            return_value=io.BytesIO(b"# TYPE sbol_db_jobs_completed_total counter\n"),
+        ):
+            self.assertEqual(CONFORMANCE.completed_rebuilds("http://metrics", 10), 0)
+
+    def test_counts_only_successful_search_rebuilds(self):
+        metrics = b'''sbol_db_jobs_completed_total{kind="rebuild_search_index",status="succeeded"} 3
+sbol_db_jobs_completed_total{kind="rebuild_search_index",status="failed"} 2
+sbol_db_jobs_completed_total{kind="rebuild_vector_index",status="succeeded"} 7
+'''
+        with patch.object(
+            CONFORMANCE.urllib.request, "urlopen", return_value=io.BytesIO(metrics)
+        ):
+            self.assertEqual(CONFORMANCE.completed_rebuilds("http://metrics", 10), 3)
+
+    def test_wrong_metrics_port_fails_before_setup_or_imports(self):
+        url = "http://127.0.0.1:28890/metrics"
+        args = SimpleNamespace(probe_window=10000, metrics_url=url, request_timeout=1800)
+        with patch.object(CONFORMANCE, "parse_args", return_value=args), patch.object(
+            CONFORMANCE.urllib.request,
+            "urlopen",
+            side_effect=urllib.error.HTTPError(url, 404, "Not Found", {}, None),
+        ) as request, patch.object(CONFORMANCE, "ensure_setup") as setup:
+            with self.assertRaisesRegex(SystemExit, "separate operations listener"):
+                CONFORMANCE.main()
+            request.assert_called_once_with(url, timeout=10)
+            setup.assert_not_called()
 
 
 if __name__ == "__main__":
