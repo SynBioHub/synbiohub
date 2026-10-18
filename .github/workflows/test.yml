@@ -3,16 +3,18 @@ name: Integration testing
 on: push
 
 env:
-  SYNBIOHUB_DOCKER_REF: snapshot
-  # SBOLExplorer publishes snapshot-synbiohub from every branch; test the latest master build.
-  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:c6be0e1816217dbe67c01fc5c81d353d88b6c911b718194b54406272cd71ab91
+  SYNBIOHUB_DOCKER_REF: bfa8929bad064c2e40557670f877c32a1a5be24f
+  SBOLDB_IMAGE: ghcr.io/marpaia/sbol-db:v0.1.8@sha256:ec35a160248e1db1b50e2a55c251e140c6f2f6c0d5781822b5140aa475af759b
+  # The immutable baseline contains the private/public search policy under test.
+  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:ef904541fe6ad700777b3607660a01cfbf2972d214a818a53bec5a178f6bc4c3
 
 jobs:
   build:
     name: Build Docker image
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         name: Checkout source tree
       - uses: nick-invision/retry@v1
         name: Build docker image
@@ -48,7 +50,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         name: Checkout source tree
       - uses: actions/download-artifact@v4
         name: Download Docker image
@@ -57,7 +59,7 @@ jobs:
       - name: Import saved Docker image
         run: |
           cat sbh.tar.gz | docker load
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         name: Install Python
         with:
           python-version: '3.9' # To match the one in Travis
@@ -75,7 +77,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         name: Checkout source tree
       - uses: actions/download-artifact@v4
         name: Download Docker image
@@ -84,7 +86,7 @@ jobs:
       - name: Import saved Docker image
         run: |
           cat sbh.tar.gz | docker load
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         name: Install Python
         with:
           python-version: '3.9' # To match the one in Travis
@@ -101,7 +103,7 @@ jobs:
     env:
       SBH_TRIPLESTORE: sboldb
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         name: Checkout source tree
       - uses: actions/download-artifact@v4
         name: Download Docker image
@@ -110,7 +112,7 @@ jobs:
       - name: Import saved Docker image
         run: |
           cat sbh.tar.gz | docker load
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         name: Install Python
         with:
           python-version: '3.9' # To match the one in Travis
@@ -123,6 +125,21 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: tests/sbolsuite.sh
+      - name: Capture SBOL DB import diagnostics
+        if: always()
+        run: |
+          mkdir -p artifacts/sboltests-sboldb
+          docker compose -p testsuiteproject \
+            -f tests/synbiohub-docker/docker-compose.sboldb.yml \
+            logs --no-color > artifacts/sboltests-sboldb/compose.log 2>&1 || true
+          docker ps -a --filter label=com.docker.compose.project=testsuiteproject \
+            > artifacts/sboltests-sboldb/containers.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sboltests-sboldb-diagnostics
+          path: artifacts/sboltests-sboldb/
+          retention-days: 30
   sbhtests-sboldb:
     name: SynBioHub Test Suite (sbol-db)
     needs: build
@@ -130,7 +147,7 @@ jobs:
     env:
       SBH_TRIPLESTORE: sboldb
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         name: Checkout source tree
       - uses: actions/download-artifact@v4
         name: Download Docker image
@@ -139,7 +156,7 @@ jobs:
       - name: Import saved Docker image
         run: |
           cat sbh.tar.gz | docker load
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         name: Install Python
         with:
           python-version: '3.9' # To match the one in Travis

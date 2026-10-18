@@ -13,7 +13,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SYNBIOHUB_DOCKER_REF: snapshot
+  SYNBIOHUB_DOCKER_REF: bfa8929bad064c2e40557670f877c32a1a5be24f
+  SBOLDB_IMAGE: ghcr.io/marpaia/sbol-db:v0.1.8@sha256:ec35a160248e1db1b50e2a55c251e140c6f2f6c0d5781822b5140aa475af759b
+  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:ef904541fe6ad700777b3607660a01cfbf2972d214a818a53bec5a178f6bc4c3
   SBOL_TEST_SUITE_REVISION: 0044284331b2f915a6e4b9d50e1cbf3ea2f62dcd
   SYNBIOHUB_CONFORMANCE_IMAGE: synbiohub/synbiohub:search-conformance
 
@@ -21,7 +23,7 @@ jobs:
   build:
     name: Build SynBioHub image
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
         name: Checkout SynBioHub
@@ -124,6 +126,7 @@ jobs:
       SYNBIOHUB_IMAGE: synbiohub/synbiohub:search-conformance
       SYNBIOHUB_PORT: '27777'
       TRIPLESTORE_PORT: '28890'
+      SBOLDB_OPERATIONS_PORT: '29090'
     steps:
       - uses: actions/checkout@v5
         name: Checkout SynBioHub
@@ -159,7 +162,7 @@ jobs:
           python3 tests/search-backends/run-conformance.py \
             --topology sboldb-native \
             --base-url http://127.0.0.1:27777/ \
-            --metrics-url http://127.0.0.1:28890/metrics \
+            --metrics-url http://127.0.0.1:29090/metrics \
             --corpus-root SBOLTestSuite \
             --report artifacts/search-backends/sboldb-native.json
       - name: Capture sbol-db topology logs
