@@ -4,8 +4,10 @@ on: push
 
 env:
   SYNBIOHUB_DOCKER_REF: snapshot
-  # SBOLExplorer publishes snapshot-synbiohub from every branch; test the latest master build.
-  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:c6be0e1816217dbe67c01fc5c81d353d88b6c911b718194b54406272cd71ab91
+  # SBOLExplorer master 705ebf0 (Elasticsearch 9 client). Its client must match
+  # the Elasticsearch server synbiohub-docker starts (9.5.3 on snapshot): a 9.x
+  # client cannot talk to 6.x and vice versa, so bump this when ES changes there.
+  SBOLEXPLORER_IMAGE: myersresearchgroup/sbolexplorer@sha256:f26b2d6dc5baa1c688055bbca023e0f552e04d89b5c90bbec3618c1c6654a3c2
 
 jobs:
   build:
