@@ -4,6 +4,7 @@ const db = require('./lib/db')
 const fs = require('fs')
 const jobUtils = require('./lib/jobs/job-utils')
 const java = require('./lib/java')
+const logger = require('./lib/logger')
 const gitRev = require('./lib/gitRevision')
 const theme = require('./lib/theme')
 const loggerOverride = require('./lib/loggerOverride')
@@ -18,8 +19,6 @@ if (!fs.existsSync('synbiohub.sqlite') || fs.statSync('synbiohub.sqlite').size =
 } else {
   db.umzug.up().then(startServer)
 }
-
-config.set('revision', gitRev())
 
 async function startServer () {
   await java.init()
