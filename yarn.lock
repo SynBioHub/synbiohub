@@ -6790,23 +6790,7 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sendgrid-rest@^2.3.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/sendgrid-rest/-/sendgrid-rest-2.4.0.tgz#88e11a86375ec0e14b5faf1b4a0a191639ce90ef"
-  integrity sha512-3VRHhTnln17jPQNzBjEHO6u2Y7kLlhVnOvX0aGjr7yRVZpq5LXo0ilAFMsaHUfKVH+jFdCrHMAVLOAdtu6wLJA==
 
-sendgrid@^5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/sendgrid/-/sendgrid-5.2.3.tgz#37cd28ddd93fca2d3fa7dda10a323b1f43ffecfc"
-  integrity sha512-FD7oR9TbJFUew1p0Vw9JX0wBetDyq634LzylSXz4n9+hwaf+6a9dNloZl8CcjpsX4NuEc3HJanTN4GjDwNyi4A==
-  dependencies:
-    async.ensureasync "^0.5.2"
-    async.queue "^0.5.2"
-    bottleneck "^1.12.0"
-    debug "^2.2.0"
-    lodash.chunk "^4.2.0"
-    mailparser "^0.6.1"
-    sendgrid-rest "^2.3.0"
 
 sequelize@^3.14.2, sequelize@^3.32.1:
   version "3.35.1"

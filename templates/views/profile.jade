@@ -32,16 +32,6 @@ block content
 
                 div.clearfix
 
-                div.control-group(style='margin-top: 4px')
-                    input#password1.sbol-login-text.password-text(name='password1',size='25',type='password',placeholder='Password',autocomplete='off')
-
-                div.clearfix
-
-                div.control-group(style='margin-top: 4px')
-                    input#password2.sbol-login-text.password-text(name='password2',size='25',type='password',placeholder='Confirm password',autocomplete='off')
-
-                div.clearfix
-
                 if(externalAuthProvider === 'google' && !externalProfiles.includes('google'))
                   div(align='center')
                     hr
@@ -55,5 +45,8 @@ block content
 
                 div
                     input(type='submit',class='btn btn-primary',value='Save')
+
+            br
+            a.btn.btn-primary(href='/changePassword') Change password
 
     br

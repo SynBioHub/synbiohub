@@ -56,7 +56,7 @@
   "fetchLimit": 1000,
   "staggeredQueryLimit": 10000,
   "mail": {
-      "sendgridApiKey": "",
+      "resendApiKey": "",
       "fromAddress": "foo@example.com"
   },
   "collectionIcons": {
