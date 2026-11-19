@@ -204,8 +204,8 @@ try {
           http://localhost:7777/public
          </code>
         </td>
-        <td>
-         866
+        <td class="sbh-graph-triple-count" data-graph-uri="http://localhost:7777/public">
+         …
         </td>
        </tr>
        <tr>
@@ -214,8 +214,8 @@ try {
           http://localhost:7777/user/testuser
          </code>
         </td>
-        <td>
-         1103
+        <td class="sbh-graph-triple-count" data-graph-uri="http://localhost:7777/user/testuser">
+         …
         </td>
        </tr>
       </tbody>
@@ -276,5 +276,36 @@ try {
  <script src="/js/BootstrapMenu.js">
  </script>
  <script src="/bundle.js">
+ </script>
+ <script>
+  (function () {
+            $.ajax({
+                url: '/admin/graphs',
+                dataType: 'json',
+                headers: { 'Accept': 'application/json' },
+                success: function (graphs) {
+                    var byUri = {}
+                    graphs.forEach(function (g) {
+                        byUri[g.graphUri] = g.numTriples
+                    })
+
+                    $('.sbh-graph-triple-count').each(function () {
+                        var uri = $(this).attr('data-graph-uri')
+                        if (Object.prototype.hasOwnProperty.call(byUri, uri)) {
+                            $(this).text(byUri[uri])
+                        } else {
+                            $(this).text('0')
+                        }
+                    })
+
+                    if ($.fn.DataTable && $.fn.DataTable.isDataTable('.sbh-datatable')) {
+                        $('.sbh-datatable').DataTable().cells('.sbh-graph-triple-count').invalidate().draw(false)
+                    }
+                },
+                error: function () {
+                    $('.sbh-graph-triple-count').text('Error')
+                }
+            })
+        })()
  </script>
 </html>
